@@ -17,6 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://fibertools.app"),
   title: {
     default: "FiberTools — Free Calculators for Knitters, Crocheters & Weavers",
     template: "%s | FiberTools",
@@ -35,8 +36,15 @@ export const metadata: Metadata = {
     "weaving sett calculator",
     "spinning ratio calculator",
     "fiber arts tools",
+    "free knitting tools",
+    "crochet stitch counter",
   ],
   authors: [{ name: "FiberTools" }],
+  creator: "FiberTools",
+  publisher: "FiberTools",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -44,6 +52,20 @@ export const metadata: Metadata = {
     title: "FiberTools — Free Calculators for Knitters, Crocheters & Weavers",
     description:
       "Free online calculators and tools for all fiber arts. No login required. Works offline.",
+    url: "https://fibertools.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FiberTools — Free Calculators for Fiber Crafters",
+    description: "Free yarn calculators, gauge tools, needle converters & more. No login. Works offline.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 };
 

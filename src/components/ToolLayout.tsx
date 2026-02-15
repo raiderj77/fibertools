@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getToolBySlug, getRelatedTools, CATEGORY_LABELS, CATEGORY_COLORS } from "@/lib/tools";
+import { toolFaqs } from "@/lib/faqs";
 import AdSlot from "./AdSlot";
+import FAQSection from "./FAQSection";
 
 interface ToolLayoutProps {
   slug: string;
@@ -72,6 +74,9 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
 
       {/* Ad: mid-content */}
       <AdSlot position="mid-content" />
+
+      {/* FAQ */}
+      <FAQSection faqs={toolFaqs[slug] || []} toolName={tool.name} />
 
       {/* Ad: before footer */}
       <AdSlot position="before-footer" />

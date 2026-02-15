@@ -37,7 +37,7 @@
   /* Tool card on homepage */
   .tool-card {
     @apply relative bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700
-           p-6 transition-all duration-200 hover:shadow-lg hover:shadow-sage-200/40 dark:hover:shadow-sage-900/30
+           p-7 transition-all duration-200 hover:shadow-lg hover:shadow-sage-200/40 dark:hover:shadow-sage-900/30
            hover:-translate-y-0.5 hover:border-sage-300 dark:hover:border-sage-700;
   }
 

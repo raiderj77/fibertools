@@ -4,26 +4,26 @@ import { tools, CATEGORY_LABELS, CATEGORY_COLORS, type Tool } from "@/lib/tools"
 function ToolCard({ tool }: { tool: Tool }) {
   return (
     <Link href={`/${tool.slug}`} className="tool-card group">
-      <div className="flex items-start gap-4">
-        <span className="text-3xl flex-shrink-0 mt-0.5">{tool.icon}</span>
-        <div className="min-w-0">
-          <div className="flex items-center gap-2 flex-wrap mb-1">
-            <h3 className="font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
-              {tool.shortName}
-            </h3>
-            <span
-              className={`inline-block px-2 py-0.5 text-[10px] font-medium rounded-full ${CATEGORY_COLORS[tool.category]}`}
-            >
-              {CATEGORY_LABELS[tool.category]}
-            </span>
-          </div>
-          <p className="text-sm text-bark-500 dark:text-bark-400 line-clamp-2">
+      <div className="flex flex-col gap-3">
+        <div className="flex items-center justify-between">
+          <span className="text-4xl">{tool.icon}</span>
+          <span
+            className={`inline-block px-2.5 py-1 text-[11px] font-medium rounded-full ${CATEGORY_COLORS[tool.category]}`}
+          >
+            {CATEGORY_LABELS[tool.category]}
+          </span>
+        </div>
+        <div>
+          <h3 className="text-lg font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors mb-1.5">
+            {tool.shortName}
+          </h3>
+          <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
             {tool.description}
           </p>
         </div>
       </div>
       {!tool.ready && (
-        <span className="absolute top-3 right-3 text-[10px] font-medium text-bark-400 dark:text-bark-500 bg-cream-200 dark:bg-bark-700 px-2 py-0.5 rounded-full">
+        <span className="absolute top-4 right-4 text-[10px] font-medium text-bark-400 dark:text-bark-500 bg-cream-200 dark:bg-bark-700 px-2.5 py-1 rounded-full">
           Coming soon
         </span>
       )}
@@ -98,7 +98,7 @@ export default function HomePage() {
               Most popular
             </span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {tier1.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
@@ -110,7 +110,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-6">
             More Calculators
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {tier2.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
@@ -122,7 +122,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-6">
             Specialty Tools
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {tier3.map((tool) => (
               <ToolCard key={tool.slug} tool={tool} />
             ))}
