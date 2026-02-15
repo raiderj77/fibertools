@@ -57,12 +57,20 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* About */}
+          {/* Resources */}
           <div>
             <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-300 uppercase tracking-wider mb-3">
-              About
+              Resources
             </h3>
             <ul className="space-y-2">
+              <li>
+                <Link
+                  href="/blog"
+                  className="text-sm text-bark-500 dark:text-bark-400 hover:text-sage-600 dark:hover:text-sage-400 transition-colors"
+                >
+                  📖 Guides &amp; Tutorials
+                </Link>
+              </li>
               <li>
                 <span className="text-sm text-bark-500 dark:text-bark-400">
                   100% free, 100% client-side

@@ -112,7 +112,7 @@ export default function Header() {
               )}
             </div>
 
-            <Link href="/blog" className="px-4 py-2 text-sm font-medium text-bark-600 dark:text-cream-300 hover:text-sage-600 dark:hover:text-sage-400 transition-colors">
+            <Link href="/#all-tools" className="px-4 py-2 text-sm font-medium text-bark-600 dark:text-cream-300 hover:text-sage-600 dark:hover:text-sage-400 transition-colors">
               Guides
             </Link>
           </nav>
