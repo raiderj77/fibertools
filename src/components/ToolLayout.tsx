@@ -78,6 +78,38 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
       {/* FAQ */}
       <FAQSection faqs={toolFaqs[slug] || []} toolName={tool.name} />
 
+      {/* Project tracking callout */}
+      <section className="mt-12">
+        <div className="bg-cream-100 dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700 p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+          <span className="text-3xl flex-shrink-0">🎙️</span>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-semibold text-bark-700 dark:text-cream-200 text-sm mb-1">
+              Ready to start your project?
+            </h3>
+            <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
+              {"You've done the planning — now keep track while you craft. "}
+              <a
+                href="https://mycrochetkit.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sage-600 dark:text-sage-400 hover:underline font-medium"
+              >
+                MyCrochetKit
+              </a>
+              {" is a free voice-activated row counter that lets you say \"next\" to count rows hands-free. Track multiple projects, save your progress, and never lose count again."}
+            </p>
+          </div>
+          <a
+            href="https://mycrochetkit.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-primary text-sm whitespace-nowrap flex-shrink-0"
+          >
+            Try It Free →
+          </a>
+        </div>
+      </section>
+
       {/* Ad: before footer */}
       <AdSlot position="before-footer" />
     </main>
