@@ -71,7 +71,7 @@ export const tools: Tool[] = [
     category: "both",
     icon: "📐",
     tier: 1,
-    ready: false,
+    ready: true,
     keywords: ["gauge calculator", "pattern resizer", "stitch calculator"],
   },
   {
@@ -82,7 +82,7 @@ export const tools: Tool[] = [
     category: "both",
     icon: "⚖️",
     tier: 1,
-    ready: false,
+    ready: true,
     keywords: ["yarn weight chart", "yarn substitution", "DK vs worsted"],
   },
   {
@@ -93,7 +93,7 @@ export const tools: Tool[] = [
     category: "both",
     icon: "🔢",
     tier: 1,
-    ready: false,
+    ready: true,
     keywords: ["stitch counter online", "row counter", "knitting counter"],
   },
 
