@@ -49,7 +49,7 @@ export const tools: Tool[] = [
     category: "both",
     icon: "🧶",
     tier: 1,
-    ready: false,
+    ready: true,
     keywords: ["yarn calculator", "how much yarn do I need", "yarn yardage calculator"],
   },
   {
