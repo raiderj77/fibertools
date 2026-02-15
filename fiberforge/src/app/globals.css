@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #FEFDFB;
+    --color-bg-secondary: #FDF9F3;
+    --color-text: #3D352E;
+    --color-text-muted: #746454;
+    --color-border: #EDE8E3;
+    --color-accent: #5E8A5E;
+    --color-accent-hover: #4A6F4A;
+  }
+
+  .dark {
+    --color-bg: #1C1917;
+    --color-bg-secondary: #292524;
+    --color-text: #FAF0E4;
+    --color-text-muted: #C5B8AA;
+    --color-border: #44403C;
+    --color-accent: #7FA67F;
+    --color-accent-hover: #A8C1A8;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+}
+
+@layer components {
+  /* Tool card on homepage */
+  .tool-card {
+    @apply relative bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700
+           p-7 transition-all duration-200 hover:shadow-lg hover:shadow-sage-200/40 dark:hover:shadow-sage-900/30
+           hover:-translate-y-0.5 hover:border-sage-300 dark:hover:border-sage-700;
+  }
+
+  /* Primary CTA button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 
+           bg-sage-500 hover:bg-sage-600 active:bg-sage-700
+           text-white font-medium rounded-xl
+           transition-all duration-150 
+           focus:outline-none focus:ring-2 focus:ring-sage-400 focus:ring-offset-2 dark:focus:ring-offset-bark-900
+           disabled:opacity-50 disabled:cursor-not-allowed
+           text-base min-h-[48px];
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5
+           bg-cream-200 hover:bg-cream-300 dark:bg-bark-700 dark:hover:bg-bark-600
+           text-bark-700 dark:text-cream-200 font-medium rounded-xl
+           transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-sage-400 focus:ring-offset-2 dark:focus:ring-offset-bark-900
+           text-base min-h-[44px];
+  }
+
+  /* Form input */
+  .input {
+    @apply w-full px-4 py-3 text-base
+           bg-white dark:bg-bark-800 
+           border border-cream-300 dark:border-bark-600
+           rounded-xl
+           text-bark-800 dark:text-cream-100
+           placeholder:text-bark-400 dark:placeholder:text-bark-500
+           focus:outline-none focus:ring-2 focus:ring-sage-400 focus:border-sage-400
+           transition-colors duration-150
+           min-h-[48px];
+  }
+
+  /* Select dropdown */
+  .select {
+    @apply input appearance-none bg-no-repeat bg-[right_12px_center] bg-[length:16px_16px] pr-10
+           cursor-pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%238D7B6A'%3E%3Cpath fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E");
+  }
+
+  /* Label */
+  .label {
+    @apply block text-sm font-medium text-bark-600 dark:text-cream-400 mb-1.5;
+  }
+
+  /* Result card */
+  .result-card {
+    @apply bg-sage-50 dark:bg-sage-900/30 border border-sage-200 dark:border-sage-800
+           rounded-2xl p-6;
+  }
+
+  /* Ad slot placeholder */
+  .ad-slot {
+    @apply w-full bg-cream-100 dark:bg-bark-800 border border-dashed border-cream-400 dark:border-bark-600
+           rounded-xl flex items-center justify-center text-bark-400 dark:text-bark-500 text-sm
+           min-h-[90px] my-8;
+  }
+
+  /* Tooltip */
+  .tooltip-trigger {
+    @apply inline-flex items-center justify-center w-5 h-5 rounded-full
+           bg-cream-300 dark:bg-bark-600 text-bark-500 dark:text-cream-400
+           text-xs font-bold cursor-help ml-1 hover:bg-cream-400 dark:hover:bg-bark-500
+           transition-colors;
+  }
+
+  /* Section heading */
+  .section-heading {
+    @apply text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-6;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .tool-card, .result-card {
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+}
