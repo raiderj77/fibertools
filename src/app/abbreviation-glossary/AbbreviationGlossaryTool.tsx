@@ -106,7 +106,6 @@ const ABBREVIATIONS: Abbreviation[] = [
 
 const CATEGORIES = ["all", "basic", "increase", "decrease", "texture", "colorwork", "finishing"];
 
-
 // ── COMPONENT ─────────────────────────────────────────────────────
 
 type ViewMode = "glossary" | "translator";

@@ -163,7 +163,7 @@ export const tools: Tool[] = [
     category: "cross-stitch",
     icon: "✂️",
     tier: 3,
-    ready: false,
+    ready: true,
     keywords: ["cross stitch size calculator", "aida cloth calculator"],
   },
   {
@@ -174,7 +174,7 @@ export const tools: Tool[] = [
     category: "weaving",
     icon: "🏗️",
     tier: 3,
-    ready: false,
+    ready: true,
     keywords: ["weaving sett calculator", "ends per inch calculator"],
   },
   {
@@ -185,7 +185,7 @@ export const tools: Tool[] = [
     category: "both",
     icon: "💰",
     tier: 3,
-    ready: false,
+    ready: true,
     keywords: ["crochet cost calculator", "knitting cost calculator"],
   },
   {
@@ -196,7 +196,7 @@ export const tools: Tool[] = [
     category: "both",
     icon: "🎨",
     tier: 3,
-    ready: false,
+    ready: true,
     keywords: ["color pooling calculator", "planned pooling crochet"],
   },
   {
@@ -207,7 +207,7 @@ export const tools: Tool[] = [
     category: "embroidery",
     icon: "🧵",
     tier: 3,
-    ready: false,
+    ready: true,
     keywords: ["DMC to anchor conversion", "embroidery thread converter"],
   },
 ];
