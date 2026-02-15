@@ -60,7 +60,7 @@ export const tools: Tool[] = [
     category: "both",
     icon: "🪡",
     tier: 1,
-    ready: false,
+    ready: true,
     keywords: ["knitting needle size chart", "crochet hook conversion", "needle size converter"],
   },
   {
