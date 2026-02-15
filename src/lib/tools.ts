@@ -106,7 +106,7 @@ export const tools: Tool[] = [
     category: "both",
     icon: "🛏️",
     tier: 2,
-    ready: false,
+    ready: true,
     keywords: ["blanket size chart", "crochet blanket sizes", "blanket calculator"],
   },
   {
@@ -117,7 +117,7 @@ export const tools: Tool[] = [
     category: "both",
     icon: "↕️",
     tier: 2,
-    ready: false,
+    ready: true,
     keywords: ["increase evenly calculator", "decrease evenly knitting"],
   },
   {
@@ -128,7 +128,7 @@ export const tools: Tool[] = [
     category: "both",
     icon: "🌈",
     tier: 2,
-    ready: false,
+    ready: true,
     keywords: ["random stripe generator", "stripe pattern creator"],
   },
   {
@@ -139,7 +139,7 @@ export const tools: Tool[] = [
     category: "both",
     icon: "📖",
     tier: 2,
-    ready: false,
+    ready: true,
     keywords: ["crochet abbreviations", "knitting abbreviations chart"],
   },
   {
@@ -150,7 +150,7 @@ export const tools: Tool[] = [
     category: "spinning",
     icon: "🌀",
     tier: 2,
-    ready: false,
+    ready: true,
     keywords: ["spinning wheel ratio", "TPI calculator"],
   },
 
