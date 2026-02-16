@@ -178,7 +178,7 @@ const ABBREVIATIONS: Abbreviation[] = [
 ];
 
 const CATEGORIES = ["all", "basic", "increase", "decrease", "texture", "colorwork", "finishing"];
-const CRAFTS = ["all", "knit", "crochet"] as const;
+// const CRAFTS = ["all", "knit", "crochet"] as const;
 
 // ── COMPONENT ─────────────────────────────────────────────────────
 
