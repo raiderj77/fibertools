@@ -124,4 +124,20 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "How do I convert a whole shopping list at once?", a: "Use our Bulk Convert tab. Paste a list of DMC numbers separated by commas or spaces, and we\u2019ll convert all of them in one shot with a printable results table." },
     { q: "What is the palette builder?", a: "Click the + button next to any search result to add it to your palette. The palette tab shows all your selected colors with every brand\u2019s number, ready to copy or print as a shopping list." },
   ],
+  "stitch-pattern-calculator": [
+    { q: "What is a stitch multiple?", a: "A stitch multiple is the number of stitches in one complete repeat of a pattern. If a pattern says \"multiple of 6,\" your total stitch count must be divisible by 6 for the pattern to work evenly." },
+    { q: "What does \"multiple of 4 plus 1\" mean?", a: "The \"plus\" value is an extra stitch needed for edge symmetry. \"Multiple of 4 plus 1\" means counts like 5, 9, 13, 17 — any number divisible by 4 with 1 added." },
+    { q: "What is the LCM and why does it matter?", a: "LCM (Least Common Multiple) is the smallest number all your pattern multiples divide into evenly. It determines the spacing between compatible stitch counts. A smaller LCM gives you more width options." },
+    { q: "Can I combine stitches with different multiples in a sampler blanket?", a: "Yes — that is exactly what a sampler blanket is. The key is finding a stitch count that works for every pattern. Our calculator finds all compatible counts within your desired range." },
+    { q: "What if no stitch count works for all my patterns?", a: "This usually happens when plus values conflict. Try swapping one pattern for a similar one with a different plus value, or adjust your edge stitch count. Sometimes adding 1 edge stitch solves the conflict." },
+    { q: "How many rows do I need for a complete stitch repeat?", a: "It depends on the stitch. Simple stitches need 1 row. Waffle stitch needs 4. Celtic weave needs 4. Always complete full repeats so your pattern does not get cut off mid-repeat." },
+  ],
+  "stitch-quick-reference": [
+    { q: "How many yarn overs are in a double crochet?", a: "A double crochet uses 4 total yarn overs: 1 before inserting the hook, 1 when pulling up the loop, and 2 more during the two pull-through-2 steps. The initial YO before inserting is what gives DC its height." },
+    { q: "What is the turning chain for each crochet stitch?", a: "SC = 1 chain, HDC = 2 chains, DC = 3 chains, TR = 4 chains, DTR = 5 chains. The turning chain number matches the stitch height." },
+    { q: "What is the difference between front post and regular double crochet?", a: "The only difference is where you insert the hook. Regular DC goes into the top loops. Front post DC (FPdc) goes around the vertical post of the stitch below. The yarn overs and pull-throughs are identical." },
+    { q: "Why does HDC feel different from other stitches?", a: "HDC is the one exception to the crochet pattern. Instead of pulling through 2 loops repeatedly, you pull through all 3 loops at once. This gives it a distinctive third horizontal bar at the top." },
+    { q: "What is the difference between SSK and K2tog?", a: "Both reduce 2 stitches to 1. K2tog leans right — insert through 2 stitches and knit. SSK leans left — slip 2 knitwise, then knit together through back loops. Use them as mirrors for symmetrical shaping." },
+    { q: "How do I count loops on my hook to check for mistakes?", a: "After pulling up a loop: SC has 2 loops, HDC has 3, DC has 3, TR has 4. Each pull-through-2 step removes one loop. If your count is wrong, you missed a yarn over or pulled through too many." },
+  ],
 };
