@@ -204,6 +204,8 @@ export default function NeedleConverterTool() {
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     Yarn Weight
+                    <Tooltip text="Approximate. Manufacturers vary — specialty yarns may need a very different size than their weight suggests." />
+                    <Tooltip text="Yarn weights are approximate. Manufacturers vary, and some specialty yarns (like eyelash or boucle) may recommend a very different hook/needle size than their weight category suggests." />
                   </th>
                   <th className="text-center py-3 px-3 font-semibold text-bark-700 dark:text-cream-200 hidden sm:table-cell">
                     Size
@@ -268,6 +270,8 @@ export default function NeedleConverterTool() {
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     Yarn Weight
+                    <Tooltip text="Approximate. Manufacturers vary — specialty yarns may need a very different size than their weight suggests." />
+                    <Tooltip text="Yarn weights are approximate. Manufacturers vary, and some specialty yarns (like eyelash or boucle) may recommend a very different hook/needle size than their weight category suggests." />
                   </th>
                   <th className="text-center py-3 px-3 font-semibold text-bark-700 dark:text-cream-200 hidden sm:table-cell">
                     Size
