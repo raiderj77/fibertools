@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 export type UnitSystem = "imperial" | "metric";
 
 interface UnitToggleProps {
@@ -7,12 +9,34 @@ interface UnitToggleProps {
   onChange: (unit: UnitSystem) => void;
 }
 
+/** Read saved preference on mount — call in any tool that uses units */
+export function useSavedUnits(
+  setValue: (u: UnitSystem) => void
+) {
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("ft-units") as UnitSystem | null;
+      if (saved === "imperial" || saved === "metric") {
+        setValue(saved);
+      }
+    } catch {}
+  }, [setValue]);
+}
+
 export default function UnitToggle({ value, onChange }: UnitToggleProps) {
+  // Persist choice
+  const handleChange = (unit: UnitSystem) => {
+    onChange(unit);
+    try {
+      localStorage.setItem("ft-units", unit);
+    } catch {}
+  };
+
   return (
     <div className="inline-flex items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1">
       <button
         type="button"
-        onClick={() => onChange("imperial")}
+        onClick={() => handleChange("imperial")}
         className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
           value === "imperial"
             ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm"
@@ -23,7 +47,7 @@ export default function UnitToggle({ value, onChange }: UnitToggleProps) {
       </button>
       <button
         type="button"
-        onClick={() => onChange("metric")}
+        onClick={() => handleChange("metric")}
         className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
           value === "metric"
             ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm"

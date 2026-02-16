@@ -159,4 +159,10 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "Can I use a regular sewing needle for crochet?", a: "You can in a pinch, but the small eye makes threading yarn difficult and the sharp tip will split your stitches. A tapestry needle is much easier." },
     { q: "What needle do I need to add beads to my crochet?", a: "A beading needle. They are thin enough to fit through seed bead holes. Pre-string your beads onto the yarn before you start crocheting." },
   ],
+  "amigurumi-shapes": [
+    { q: "What hook size should I use for amigurumi?", a: "Use a hook 1-2 sizes smaller than your yarn label recommends. This creates a tighter fabric that holds stuffing without showing through." },
+    { q: "Do I need to join rounds in amigurumi?", a: "No. Most amigurumi is worked in continuous spirals without joining or turning chains. Use a stitch marker to track round starts." },
+    { q: "How do I make a bigger sphere?", a: "Increase the number of rounds. More increase rounds before the even section creates a wider sphere. You can also use thicker yarn." },
+    { q: "What is sc2tog?", a: "Single crochet two together — a decrease. Insert hook in next stitch, pull up a loop, insert in following stitch, pull up a loop, yarn over and pull through all 3 loops." },
+  ],
 };

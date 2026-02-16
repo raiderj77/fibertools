@@ -92,6 +92,17 @@ const ABBREVIATIONS: Abbreviation[] = [
   { abbr: "MB", full: "Make Bobble", craft: "knit", category: "texture", desc: "Work multiple stitches into one, then decrease back. Creates a 3D bump.",
     steps: ["Into 1 stitch: (K1, YO, K1, YO, K1) — 5 stitches from 1", "Turn work. Purl 5.", "Turn work. Knit 5.", "Slip 4 stitches over the first stitch", "1 bobble complete — back to 1 stitch"] },
 
+  // ── Vintage / archaic terms ──────────────────────────────────
+  { abbr: "YRN", full: "Yarn Round Needle", craft: "knit", category: "vintage", desc: "Vintage term for yarn over (YO) in knitting. Wrap yarn completely around the right needle. Found in Reader's Digest and similar mid-century references.",
+    steps: ["Bring yarn to front", "Wrap completely around the right needle", "Continue with next stitch"] },
+  { abbr: "YON", full: "Yarn Over Needle", craft: "knit", category: "vintage", desc: "Vintage knitting term equivalent to yarn over (YO). Take yarn over the top of the right needle." },
+  { abbr: "YFwd", full: "Yarn Forward", craft: "knit", category: "vintage", desc: "Vintage term. Bring the yarn to the front between needles. In modern patterns this is part of a yarn over." },
+  { abbr: "WO", full: "Wool Over", craft: "knit", category: "vintage", desc: "Old British term for yarn over. Identical to YO — wrap the yarn over the needle. Common in pre-1980s UK patterns." },
+  { abbr: "WF", full: "Wool Forward", craft: "knit", category: "vintage", desc: "Old British term for yarn forward. Bring the wool to the front of the work between the needles." },
+  { abbr: "WRN", full: "Wool Round Needle", craft: "knit", category: "vintage", desc: "Old British term for yarn round needle. Wrap the wool completely around the needle. Same as YRN/YO." },
+  { abbr: "WON", full: "Wool Over Needle", craft: "knit", category: "vintage", desc: "Old British equivalent of yarn over needle. Take the wool over the top of the right needle." },
+  { abbr: "WBK", full: "Wool Back", craft: "knit", category: "vintage", desc: "Vintage term meaning take the yarn to the back of the work. Modern equivalent: yarn back (yb)." },
+
   // ── Crochet basics ────────────────────────────────────────────
   { abbr: "CH", full: "Chain", craft: "crochet", category: "basic", desc: "Yarn over, pull through loop on hook. Foundation of most crochet.", ukEquiv: "CH",
     steps: ["Yarn over (wrap yarn over hook from back to front)", "Pull through the loop on hook", "1 chain made"],

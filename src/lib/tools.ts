@@ -256,6 +256,17 @@ export const tools: Tool[] = [
     ready: true,
     keywords: ["sewing needle types", "tapestry vs chenille", "needle guide"],
   },
+  {
+    slug: "amigurumi-shapes",
+    name: "Amigurumi Shapes Guide",
+    shortName: "Amigurumi Shapes",
+    description: "Basic crochet shapes for amigurumi: sphere, cone, cylinder, and oval. Get round-by-round instructions for each shape.",
+    category: "crochet",
+    icon: "🧸",
+    tier: 2,
+    ready: true,
+    keywords: ["amigurumi shapes", "crochet sphere pattern", "amigurumi basic shapes"],
+  },
 ];
 
 export function getToolBySlug(slug: string): Tool | undefined {

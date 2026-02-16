@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
-import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
+import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitToggle";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -157,6 +157,7 @@ type Mode = "quick" | "precise";
 
 export default function YarnCalculatorTool() {
   const [units, setUnits] = useState<UnitSystem>("imperial");
+  useSavedUnits(setUnits);
   const [mode, setMode] = useState<Mode>("quick");
   const [projectType, setProjectType] = useState<ProjectType>("blanket");
   const [sizeIdx, setSizeIdx] = useState(5); // default: throw
