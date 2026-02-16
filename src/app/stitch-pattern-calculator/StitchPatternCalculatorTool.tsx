@@ -192,6 +192,13 @@ export default function StitchPatternCalculatorTool() {
   const [maxWidth, setMaxWidth] = useState("180");
   const [edgeStitches, setEdgeStitches] = useState("0");
 
+  // Gauge integration
+  const [useGauge, setUseGauge] = useState(false);
+  const [gaugeStitches, setGaugeStitches] = useState("18");
+  const [gaugeOver, setGaugeOver] = useState<"4" | "1">("4");
+  const [targetWidthIn, setTargetWidthIn] = useState("50");
+  const [widthTolerance, setWidthTolerance] = useState("2");
+
   // Database tab
   const [craftFilter, setCraftFilter] = useState<string>("all");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
@@ -209,6 +216,19 @@ export default function StitchPatternCalculatorTool() {
   ]);
   const [plannerNextId, setPlannerNextId] = useState(4);
 
+  // ── Gauge-derived range ──────────────────────────────────────
+  const gaugePerInch = useGauge
+    ? (parseFloat(gaugeStitches) || 0) / (gaugeOver === "4" ? 4 : 1)
+    : 0;
+
+  const effectiveMin = useGauge && gaugePerInch > 0
+    ? Math.floor(gaugePerInch * ((parseFloat(targetWidthIn) || 50) - (parseFloat(widthTolerance) || 2)))
+    : parseInt(minWidth) || 100;
+
+  const effectiveMax = useGauge && gaugePerInch > 0
+    ? Math.ceil(gaugePerInch * ((parseFloat(targetWidthIn) || 50) + (parseFloat(widthTolerance) || 2)))
+    : parseInt(maxWidth) || 200;
+
   // ── Calculator results ────────────────────────────────────────
 
   const calcResults = useMemo(() => {
@@ -217,14 +237,12 @@ export default function StitchPatternCalculatorTool() {
 
     const multiples = validEntries.map((e) => e.multiple);
     const lcmVal = lcmArray(multiples);
-    const min = parseInt(minWidth) || 100;
-    const max = parseInt(maxWidth) || 200;
     const edge = parseInt(edgeStitches) || 0;
 
-    const counts = findCompatibleCounts(validEntries, min, max, edge);
+    const counts = findCompatibleCounts(validEntries, effectiveMin, effectiveMax, edge);
 
-    return { lcm: lcmVal, counts, validEntries, edge };
-  }, [entries, minWidth, maxWidth, edgeStitches]);
+    return { lcm: lcmVal, counts, validEntries, edge, gaugePerInch: useGauge ? gaugePerInch : 0, effectiveMin, effectiveMax };
+  }, [entries, effectiveMin, effectiveMax, edgeStitches, useGauge, gaugePerInch]);
 
   // ── Database filtering ────────────────────────────────────────
 
@@ -312,12 +330,21 @@ export default function StitchPatternCalculatorTool() {
       ``,
       `LCM of multiples: ${calcResults.lcm}`,
       `Edge stitches: ${calcResults.edge}`,
-      ``,
-      `Compatible stitch counts (${minWidth}–${maxWidth} range):`,
-      ...(calcResults.counts.length > 0
-        ? calcResults.counts.map((c) => `  ${c} stitches`)
-        : ["  No compatible counts in this range."]),
     ];
+    if (calcResults.gaugePerInch > 0) {
+      lines.push(`Gauge: ${gaugeStitches} sts / ${gaugeOver === "4" ? "4 in" : "1 in"} (${calcResults.gaugePerInch.toFixed(2)} per inch)`);
+      lines.push(`Target width: ${targetWidthIn}" ± ${widthTolerance}"`);
+    }
+    lines.push(
+      ``,
+      `Compatible stitch counts (${calcResults.effectiveMin}–${calcResults.effectiveMax} range):`,
+      ...(calcResults.counts.length > 0
+        ? calcResults.counts.map((c) => {
+            const widthStr = calcResults.gaugePerInch > 0 ? ` → ${(c / calcResults.gaugePerInch).toFixed(1)}"` : "";
+            return `  ${c} stitches${widthStr}`;
+          })
+        : ["  No compatible counts in this range."]),
+    );
     navigator.clipboard.writeText(lines.join("\n"));
   };
 
@@ -422,7 +449,114 @@ export default function StitchPatternCalculatorTool() {
             </p>
           </div>
 
-          {/* Width range */}
+          {/* Gauge toggle */}
+          <div className="rounded-xl border border-cream-200 dark:border-bark-700 overflow-hidden">
+            <button
+              onClick={() => setUseGauge(!useGauge)}
+              className="w-full flex items-center justify-between p-4 hover:bg-cream-50 dark:hover:bg-bark-700/50 transition-colors"
+            >
+              <div className="flex items-center gap-2">
+                <span className="text-lg">📐</span>
+                <span className="font-medium text-bark-700 dark:text-cream-200 text-sm">
+                  Use my gauge to set width
+                </span>
+                <span className="text-[10px] px-2 py-0.5 bg-sage-100 dark:bg-sage-900/30 text-sage-700 dark:text-sage-400 rounded-full font-medium">
+                  NEW
+                </span>
+              </div>
+              <div className={`w-10 h-5 rounded-full transition-colors relative ${useGauge ? "bg-sage-500" : "bg-cream-300 dark:bg-bark-600"}`}>
+                <div className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${useGauge ? "translate-x-5" : "translate-x-0.5"}`} />
+              </div>
+            </button>
+
+            {useGauge && (
+              <div className="border-t border-cream-200 dark:border-bark-700 p-4 bg-cream-50/50 dark:bg-bark-800/50 space-y-4">
+                <p className="text-xs text-bark-400 dark:text-bark-500">
+                  Enter your gauge swatch measurement. We&apos;ll calculate the stitch count range from your desired blanket width.
+                </p>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div>
+                    <label className="label text-xs">
+                      Gauge Stitches
+                      <Tooltip text="How many stitches in your swatch measurement? Count the stitches across your gauge swatch." />
+                    </label>
+                    <input
+                      type="number"
+                      min={1}
+                      step="0.5"
+                      value={gaugeStitches}
+                      onChange={(e) => setGaugeStitches(e.target.value)}
+                      className="input"
+                      placeholder="18"
+                    />
+                  </div>
+                  <div>
+                    <label className="label text-xs">Measured Over</label>
+                    <select
+                      value={gaugeOver}
+                      onChange={(e) => setGaugeOver(e.target.value as "4" | "1")}
+                      className="input"
+                    >
+                      <option value="4">4 inches</option>
+                      <option value="1">1 inch</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="label text-xs">
+                      Target Width
+                      <Tooltip text="Desired blanket width in inches." />
+                    </label>
+                    <div className="flex items-center gap-1">
+                      <input
+                        type="number"
+                        min={1}
+                        value={targetWidthIn}
+                        onChange={(e) => setTargetWidthIn(e.target.value)}
+                        className="input flex-1"
+                        placeholder="50"
+                      />
+                      <span className="text-xs text-bark-400 dark:text-bark-500">in</span>
+                    </div>
+                  </div>
+                  <div>
+                    <label className="label text-xs">
+                      Tolerance
+                      <Tooltip text="How many inches wider or narrower is acceptable? A ±2 inch tolerance gives more compatible stitch counts." />
+                    </label>
+                    <div className="flex items-center gap-1">
+                      <span className="text-xs text-bark-400 dark:text-bark-500">±</span>
+                      <input
+                        type="number"
+                        min={0}
+                        step="0.5"
+                        value={widthTolerance}
+                        onChange={(e) => setWidthTolerance(e.target.value)}
+                        className="input flex-1"
+                        placeholder="2"
+                      />
+                      <span className="text-xs text-bark-400 dark:text-bark-500">in</span>
+                    </div>
+                  </div>
+                </div>
+                {gaugePerInch > 0 && (
+                  <div className="flex flex-wrap gap-3 text-xs">
+                    <span className="bg-cream-200 dark:bg-bark-600 px-2 py-1 rounded text-bark-600 dark:text-cream-300">
+                      {gaugePerInch.toFixed(2)} sts/inch
+                    </span>
+                    <span className="bg-cream-200 dark:bg-bark-600 px-2 py-1 rounded text-bark-600 dark:text-cream-300">
+                      Range: {effectiveMin}–{effectiveMax} stitches
+                    </span>
+                    <span className="bg-cream-200 dark:bg-bark-600 px-2 py-1 rounded text-bark-600 dark:text-cream-300">
+                      ({(parseFloat(targetWidthIn) - parseFloat(widthTolerance)).toFixed(1)}&quot;–{(parseFloat(targetWidthIn) + parseFloat(widthTolerance)).toFixed(1)}&quot;)
+                    </span>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Width range (manual — hidden when using gauge) */}
+          {!useGauge && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
               <label className="label">
@@ -467,6 +601,25 @@ export default function StitchPatternCalculatorTool() {
               />
             </div>
           </div>
+          )}
+
+          {/* Edge stitches (show separately when gauge is on) */}
+          {useGauge && (
+            <div className="w-full sm:w-48">
+              <label className="label">
+                Edge Stitches
+                <Tooltip text="Extra stitches added to each side for borders or selvedge." />
+              </label>
+              <input
+                type="number"
+                min={0}
+                value={edgeStitches}
+                onChange={(e) => setEdgeStitches(e.target.value)}
+                className="input"
+                placeholder="0"
+              />
+            </div>
+          )}
 
           {/* Results */}
           {calcResults && (
@@ -493,6 +646,19 @@ export default function StitchPatternCalculatorTool() {
                     Pattern repeats every {calcResults.lcm} stitches
                   </div>
                 </div>
+                {calcResults.gaugePerInch > 0 && (
+                  <div className="bg-white dark:bg-bark-700 rounded-lg px-4 py-3 shadow-sm">
+                    <div className="text-xs text-bark-400 dark:text-bark-500 uppercase tracking-wider">
+                      Your Gauge
+                    </div>
+                    <div className="text-2xl font-bold font-mono text-sage-700 dark:text-sage-300">
+                      {calcResults.gaugePerInch.toFixed(2)}
+                    </div>
+                    <div className="text-xs text-bark-400 dark:text-bark-500 mt-0.5">
+                      stitches per inch
+                    </div>
+                  </div>
+                )}
                 <div className="bg-white dark:bg-bark-700 rounded-lg px-4 py-3 shadow-sm">
                   <div className="text-xs text-bark-400 dark:text-bark-500 uppercase tracking-wider">
                     Compatible Counts
@@ -501,7 +667,10 @@ export default function StitchPatternCalculatorTool() {
                     {calcResults.counts.length}
                   </div>
                   <div className="text-xs text-bark-400 dark:text-bark-500 mt-0.5">
-                    in {minWidth}–{maxWidth} range
+                    in {calcResults.effectiveMin}–{calcResults.effectiveMax} range
+                    {calcResults.gaugePerInch > 0 && (
+                      <span> ({(calcResults.effectiveMin / calcResults.gaugePerInch).toFixed(1)}&quot;–{(calcResults.effectiveMax / calcResults.gaugePerInch).toFixed(1)}&quot;)</span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -517,10 +686,17 @@ export default function StitchPatternCalculatorTool() {
                       <button
                         key={count}
                         onClick={() => navigator.clipboard.writeText(String(count))}
-                        className="px-3 py-1.5 bg-white dark:bg-bark-600 border border-cream-300 dark:border-bark-500 rounded-lg font-mono font-bold text-bark-700 dark:text-cream-200 hover:border-sage-400 dark:hover:border-sage-500 transition-colors text-sm cursor-pointer"
+                        className="px-3 py-1.5 bg-white dark:bg-bark-600 border border-cream-300 dark:border-bark-500 rounded-lg hover:border-sage-400 dark:hover:border-sage-500 transition-colors cursor-pointer text-left"
                         title="Click to copy"
                       >
-                        {count}
+                        <span className="font-mono font-bold text-bark-700 dark:text-cream-200 text-sm">
+                          {count}
+                        </span>
+                        {calcResults.gaugePerInch > 0 && (
+                          <span className="block text-[10px] text-bark-400 dark:text-bark-500 font-mono">
+                            {(count / calcResults.gaugePerInch).toFixed(1)}&quot; wide
+                          </span>
+                        )}
                       </button>
                     ))}
                   </div>
