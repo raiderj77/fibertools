@@ -9,7 +9,6 @@ export interface Tool {
   ready: boolean;
   keywords: string[];
 }
-
 export type ToolCategory = 
   | "knitting" 
   | "crochet" 
@@ -18,7 +17,6 @@ export type ToolCategory =
   | "spinning" 
   | "embroidery" 
   | "cross-stitch";
-
 export const CATEGORY_LABELS: Record<ToolCategory, string> = {
   knitting: "Knitting",
   crochet: "Crochet",
@@ -28,7 +26,6 @@ export const CATEGORY_LABELS: Record<ToolCategory, string> = {
   embroidery: "Embroidery",
   "cross-stitch": "Cross Stitch",
 };
-
 export const CATEGORY_COLORS: Record<ToolCategory, string> = {
   knitting: "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300",
   crochet: "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300",
@@ -38,7 +35,6 @@ export const CATEGORY_COLORS: Record<ToolCategory, string> = {
   embroidery: "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300",
   "cross-stitch": "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300",
 };
-
 export const tools: Tool[] = [
   // Tier 1 — Build first
   {
@@ -96,7 +92,6 @@ export const tools: Tool[] = [
     ready: true,
     keywords: ["stitch counter online", "row counter", "knitting counter"],
   },
-
   // Tier 2 — Month 2-3
   {
     slug: "blanket-calculator",
@@ -153,7 +148,17 @@ export const tools: Tool[] = [
     ready: true,
     keywords: ["spinning wheel ratio", "TPI calculator"],
   },
-
+  {
+    slug: "stitch-pattern-calculator",
+    name: "Stitch Pattern Calculator",
+    shortName: "Stitch Calculator",
+    description: "Find compatible stitch counts for sampler blankets. Combine multiples, browse 50+ stitches, and plan rows.",
+    category: "both",
+    icon: "🧮",
+    tier: 2,
+    ready: true,
+    keywords: ["stitch pattern calculator", "crochet stitch multiple calculator", "sampler blanket planner"],
+  },
   // Tier 3 — Month 3-5
   {
     slug: "cross-stitch-calculator",
@@ -211,15 +216,12 @@ export const tools: Tool[] = [
     keywords: ["DMC to anchor conversion", "embroidery thread converter"],
   },
 ];
-
 export function getToolBySlug(slug: string): Tool | undefined {
   return tools.find((t) => t.slug === slug);
 }
-
 export function getRelatedTools(slug: string, count = 4): Tool[] {
   const current = getToolBySlug(slug);
   if (!current) return tools.slice(0, count);
-
   // Prefer same-category tools, then same-tier, then any
   return tools
     .filter((t) => t.slug !== slug)
