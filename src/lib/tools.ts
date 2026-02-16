@@ -224,6 +224,39 @@ export const tools: Tool[] = [
     keywords: ["DMC to anchor conversion", "embroidery thread converter"],
   },
 ];
+  {
+    slug: "uk-to-us-converter",
+    name: "UK to US Crochet Terms Converter",
+    shortName: "UK/US Converter",
+    description: "Instantly convert UK crochet patterns to US terminology and vice versa. Handles abbreviations, vintage terms, and full stitch names.",
+    category: "crochet",
+    icon: "🇬🇧",
+    tier: 2,
+    ready: true,
+    keywords: ["uk to us crochet terms", "crochet term converter", "british crochet terms"],
+  },
+  {
+    slug: "circle-calculator",
+    name: "Perfect Circle Calculator",
+    shortName: "Circle Calculator",
+    description: "Generate a flat circle crochet pattern for any stitch type with staggered increases. Enter your stitch and rounds to get the full pattern.",
+    category: "crochet",
+    icon: "⭕",
+    tier: 2,
+    ready: true,
+    keywords: ["crochet circle pattern", "flat circle calculator", "crochet circle increases"],
+  },
+  {
+    slug: "needle-guide",
+    name: "Sewing & Craft Needle Guide",
+    shortName: "Needle Guide",
+    description: "Visual guide to needle types: tapestry, chenille, embroidery, sharps, beading, and more. Know which needle to use for every project.",
+    category: "both",
+    icon: "🪡",
+    tier: 2,
+    ready: true,
+    keywords: ["sewing needle types", "tapestry vs chenille", "needle guide"],
+  },
 export function getToolBySlug(slug: string): Tool | undefined {
   return tools.find((t) => t.slug === slug);
 }
