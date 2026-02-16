@@ -140,4 +140,23 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "What is the difference between SSK and K2tog?", a: "Both reduce 2 stitches to 1. K2tog leans right — insert through 2 stitches and knit. SSK leans left — slip 2 knitwise, then knit together through back loops. Use them as mirrors for symmetrical shaping." },
     { q: "How do I count loops on my hook to check for mistakes?", a: "After pulling up a loop: SC has 2 loops, HDC has 3, DC has 3, TR has 4. Each pull-through-2 step removes one loop. If your count is wrong, you missed a yarn over or pulled through too many." },
   ],
+  "uk-to-us-converter": [
+    { q: "What is the difference between UK and US crochet terms?", a: "UK terms are shifted one position up from US terms. A UK double crochet equals a US single crochet, a UK treble equals a US double crochet, and so on." },
+    { q: "Does this converter work with abbreviations?", a: "Yes. It converts both full terms (double crochet → single crochet) and abbreviations (dc → sc)." },
+    { q: "Can I convert US patterns to UK?", a: "Yes — use the US → UK toggle at the top to reverse the direction." },
+    { q: "Does it handle vintage or old-fashioned terms?", a: "Yes. Terms like wool over, wool forward, and cast off from vintage patterns are included." },
+    { q: "Is my pattern text sent to a server?", a: "No. All conversion happens in your browser. Nothing is uploaded or stored." },
+  ],
+  "circle-calculator": [
+    { q: "Why is my circle turning into a hexagon?", a: "Increases are stacking on top of each other round after round. This calculator staggers increases to prevent that." },
+    { q: "My circle is cupping into a bowl shape. What do I do?", a: "Your tension is too tight. Try going up one hook size, or add 1-2 extra increases per round." },
+    { q: "Can I use this for hats?", a: "Yes! A hat crown is a flat circle. Follow this pattern for the top, then stop increasing and work even rounds for the sides." },
+    { q: "How big will my circle be?", a: "That depends on your yarn weight and gauge. A 10-round single crochet circle in worsted weight is roughly 5-6 inches across." },
+  ],
+  "needle-guide": [
+    { q: "What needle should I use to weave in crochet ends?", a: "A tapestry needle (also called a yarn needle). The blunt tip slides between stitches without splitting your yarn." },
+    { q: "What is the difference between a tapestry needle and a chenille needle?", a: "Both have large eyes, but a tapestry needle has a blunt tip while a chenille needle is sharp. Use tapestry for yarn work, chenille for piercing tightly woven fabric." },
+    { q: "Can I use a regular sewing needle for crochet?", a: "You can in a pinch, but the small eye makes threading yarn difficult and the sharp tip will split your stitches. A tapestry needle is much easier." },
+    { q: "What needle do I need to add beads to my crochet?", a: "A beading needle. They are thin enough to fit through seed bead holes. Pre-string your beads onto the yarn before you start crocheting." },
+  ],
 };

@@ -223,7 +223,6 @@ export const tools: Tool[] = [
     ready: true,
     keywords: ["DMC to anchor conversion", "embroidery thread converter"],
   },
-];
   {
     slug: "uk-to-us-converter",
     name: "UK to US Crochet Terms Converter",
@@ -248,7 +247,7 @@ export const tools: Tool[] = [
   },
   {
     slug: "needle-guide",
-    name: "Sewing & Craft Needle Guide",
+    name: "Sewing \& Craft Needle Guide",
     shortName: "Needle Guide",
     description: "Visual guide to needle types: tapestry, chenille, embroidery, sharps, beading, and more. Know which needle to use for every project.",
     category: "both",
@@ -257,9 +256,12 @@ export const tools: Tool[] = [
     ready: true,
     keywords: ["sewing needle types", "tapestry vs chenille", "needle guide"],
   },
+];
+
 export function getToolBySlug(slug: string): Tool | undefined {
   return tools.find((t) => t.slug === slug);
 }
+
 export function getRelatedTools(slug: string, count = 4): Tool[] {
   const current = getToolBySlug(slug);
   if (!current) return tools.slice(0, count);
