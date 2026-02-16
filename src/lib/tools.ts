@@ -36,7 +36,6 @@ export const CATEGORY_COLORS: Record<ToolCategory, string> = {
   "cross-stitch": "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300",
 };
 export const tools: Tool[] = [
-  // Tier 1 — Build first
   {
     slug: "yarn-calculator",
     name: "Yarn Yardage Calculator",
@@ -92,7 +91,6 @@ export const tools: Tool[] = [
     ready: true,
     keywords: ["stitch counter online", "row counter", "knitting counter"],
   },
-  // Tier 2 — Month 2-3
   {
     slug: "blanket-calculator",
     name: "Blanket Size Calculator",
@@ -130,7 +128,7 @@ export const tools: Tool[] = [
     slug: "abbreviation-glossary",
     name: "Abbreviation & Stitch Glossary",
     shortName: "Abbreviations",
-    description: "Searchable glossary of knitting and crochet abbreviations with US/UK toggle and stitch descriptions.",
+    description: "Searchable glossary of knitting and crochet abbreviations with US/UK toggle, stitch descriptions, and step-by-step diagrams.",
     category: "both",
     icon: "📖",
     tier: 2,
@@ -159,7 +157,17 @@ export const tools: Tool[] = [
     ready: true,
     keywords: ["stitch pattern calculator", "crochet stitch multiple calculator", "sampler blanket planner"],
   },
-  // Tier 3 — Month 3-5
+  {
+    slug: "stitch-quick-reference",
+    name: "Stitch Quick Reference",
+    shortName: "Stitch Reference",
+    description: "Visual step-by-step for every basic stitch. Yarn overs, pull-throughs, loop counts, and turning chains at a glance.",
+    category: "both",
+    icon: "🃏",
+    tier: 2,
+    ready: true,
+    keywords: ["crochet stitch diagram", "how to double crochet", "stitch quick reference", "crochet stitch steps"],
+  },
   {
     slug: "cross-stitch-calculator",
     name: "Cross Stitch Size & Thread Calculator",
@@ -222,7 +230,6 @@ export function getToolBySlug(slug: string): Tool | undefined {
 export function getRelatedTools(slug: string, count = 4): Tool[] {
   const current = getToolBySlug(slug);
   if (!current) return tools.slice(0, count);
-  // Prefer same-category tools, then same-tier, then any
   return tools
     .filter((t) => t.slug !== slug)
     .sort((a, b) => {
