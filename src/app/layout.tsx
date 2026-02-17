@@ -101,6 +101,7 @@ export default function RootLayout({
         <Footer />
               <ServiceWorkerRegistration />
               <InstallPrompt />
+              <InstallPrompt />
       </body>
     </html>
   );
