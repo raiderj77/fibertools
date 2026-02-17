@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitToggle";
+import StickyResult from "@/components/StickyResult";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -264,13 +265,18 @@ export default function YarnCalculatorTool() {
   const dimLabel = units === "metric" ? "cm" : "inches";
   const yardLabel = units === "metric" ? "meters" : "yards";
 
+  // Sticky result summary for mobile
+  const stickySummary = result
+    ? `${(units === "metric" ? result.meters : result.yardsWithBuffer).toLocaleString()} ${yardLabel} • ${result.skeins} ${result.skeins === 1 ? "skein" : "skeins"}`
+    : "";
+
   return (
     <div className="space-y-8">
       {/* Controls bar */}
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
         <UnitToggle value={units} onChange={setUnits} />
 
-        <div className="inline-flex items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1">
+        <div className="flex flex-col sm:flex-row sm:inline-flex items-stretch sm:items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1 gap-1">
           <button
             type="button"
             onClick={() => setMode("quick")}
@@ -503,69 +509,71 @@ export default function YarnCalculatorTool() {
             </div>
           </div>
 
-          {/* Results */}
-          {result && (
-            <div className="result-card space-y-4">
-              <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                You&apos;ll Need
-              </h3>
+          {/* Results — wrapped in StickyResult for mobile */}
+          <StickyResult summary={stickySummary} visible={!!result}>
+            {result && (
+              <div className="result-card space-y-4">
+                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                  You&apos;ll Need
+                </h3>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                    {units === "metric" ? result.meters.toLocaleString() : result.yardsWithBuffer.toLocaleString()}
-                  </p>
-                  <p className="text-sm text-bark-500 dark:text-bark-400">
-                    total {yardLabel}
-                    <span className="text-xs ml-1">(incl. 10% buffer)</span>
-                  </p>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
+                      {units === "metric" ? result.meters.toLocaleString() : result.yardsWithBuffer.toLocaleString()}
+                    </p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">
+                      total {yardLabel}
+                      <span className="text-xs ml-1">(incl. 10% buffer)</span>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
+                      {result.skeins}
+                    </p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">
+                      {result.skeins === 1 ? "skein" : "skeins"}
+                      <span className="text-xs ml-1">
+                        ({units === "metric" ? result.skeinYds : result.skeinYds} {units === "metric" ? "m" : "yd"} each)
+                      </span>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
+                      {units === "metric" ? result.grams.toLocaleString() : result.ounces} {units === "metric" ? "g" : "oz"}
+                    </p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">total weight</p>
+                  </div>
+                  <div>
+                    <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
+                      {units === "metric" ? Math.round(ydsToM(result.yardsNoBuffer)).toLocaleString() : result.yardsNoBuffer.toLocaleString()} {units === "metric" ? "m" : "yd"}
+                    </p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">without buffer</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                    {result.skeins}
-                  </p>
-                  <p className="text-sm text-bark-500 dark:text-bark-400">
-                    {result.skeins === 1 ? "skein" : "skeins"}
-                    <span className="text-xs ml-1">
-                      ({units === "metric" ? result.skeinYds : result.skeinYds} {units === "metric" ? "m" : "yd"} each)
-                    </span>
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
-                    {units === "metric" ? result.grams.toLocaleString() : result.ounces} {units === "metric" ? "g" : "oz"}
-                  </p>
-                  <p className="text-sm text-bark-500 dark:text-bark-400">total weight</p>
-                </div>
-                <div>
-                  <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
-                    {units === "metric" ? Math.round(ydsToM(result.yardsNoBuffer)).toLocaleString() : result.yardsNoBuffer.toLocaleString()} {units === "metric" ? "m" : "yd"}
-                  </p>
-                  <p className="text-sm text-bark-500 dark:text-bark-400">without buffer</p>
+
+                <div className="flex gap-2 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const text = `Yarn estimate: ${result.yardsWithBuffer} yards (${result.meters} m) / ${result.skeins} skeins / ${result.grams}g — ${yw.label}, ${sp.label}`;
+                      navigator.clipboard.writeText(text);
+                    }}
+                    className="btn-secondary text-sm"
+                  >
+                    📋 Copy
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => window.print()}
+                    className="btn-secondary text-sm"
+                  >
+                    🖨️ Print
+                  </button>
                 </div>
               </div>
-
-              <div className="flex gap-2 pt-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    const text = `Yarn estimate: ${result.yardsWithBuffer} yards (${result.meters} m) / ${result.skeins} skeins / ${result.grams}g — ${yw.label}, ${sp.label}`;
-                    navigator.clipboard.writeText(text);
-                  }}
-                  className="btn-secondary text-sm"
-                >
-                  📋 Copy
-                </button>
-                <button
-                  type="button"
-                  onClick={() => window.print()}
-                  className="btn-secondary text-sm"
-                >
-                  🖨️ Print
-                </button>
-              </div>
-            </div>
-          )}
+            )}
+          </StickyResult>
         </div>
       </div>
 

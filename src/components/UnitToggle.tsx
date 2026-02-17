@@ -37,7 +37,7 @@ export default function UnitToggle({ value, onChange }: UnitToggleProps) {
       <button
         type="button"
         onClick={() => handleChange("imperial")}
-        className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
+        className={`px-4 py-2.5 sm:py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
           value === "imperial"
             ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm"
             : "text-bark-500 dark:text-bark-400 hover:text-bark-700 dark:hover:text-cream-300"
@@ -48,7 +48,7 @@ export default function UnitToggle({ value, onChange }: UnitToggleProps) {
       <button
         type="button"
         onClick={() => handleChange("metric")}
-        className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
+        className={`px-4 py-2.5 sm:py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
           value === "metric"
             ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm"
             : "text-bark-500 dark:text-bark-400 hover:text-bark-700 dark:hover:text-cream-300"

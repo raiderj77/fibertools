@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
+import StickyResult from "@/components/StickyResult";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -113,6 +114,24 @@ export default function CrossStitchCalculatorTool() {
     };
   }, [patternW, patternH, effectiveCount, marginInches, units]);
 
+  // Sticky summary
+  const stickySummary = (() => {
+    if (tab === "size" && sizeResult?.primary) {
+      return units === "metric"
+        ? `${sizeResult.primary.widthCm} × ${sizeResult.primary.heightCm} cm`
+        : `${sizeResult.primary.widthIn.toFixed(1)} × ${sizeResult.primary.heightIn.toFixed(1)}″`;
+    }
+    if (tab === "thread" && threadResult) {
+      return `${threadResult.skeinsRounded} skein${threadResult.skeinsRounded !== 1 ? "s" : ""} needed`;
+    }
+    if (tab === "fabric" && fabricResult) {
+      return units === "metric"
+        ? `${fabricResult.totalWcm} × ${fabricResult.totalHcm} cm fabric`
+        : `${fabricResult.totalW} × ${fabricResult.totalH}″ fabric`;
+    }
+    return "";
+  })();
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap gap-4">
@@ -175,19 +194,21 @@ export default function CrossStitchCalculatorTool() {
       {tab === "size" && sizeResult && (
         <div className="space-y-6">
           {/* Primary result */}
-          {sizeResult.primary && (
-            <div className="result-card">
-              <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                Finished Size on {sizeResult.primary.name}
-                {overTwo && sizeResult.primary.count > 20 ? " (over two)" : ""}
-              </h3>
-              <p className="text-3xl font-bold text-bark-800 dark:text-cream-100 mt-2">
-                {units === "metric"
-                  ? `${sizeResult.primary.widthCm} × ${sizeResult.primary.heightCm} cm`
-                  : `${sizeResult.primary.widthIn.toFixed(1)} × ${sizeResult.primary.heightIn.toFixed(1)}″`}
-              </p>
-            </div>
-          )}
+          <StickyResult summary={stickySummary} visible={!!sizeResult.primary}>
+            {sizeResult.primary && (
+              <div className="result-card">
+                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                  Finished Size on {sizeResult.primary.name}
+                  {overTwo && sizeResult.primary.count > 20 ? " (over two)" : ""}
+                </h3>
+                <p className="text-3xl font-bold text-bark-800 dark:text-cream-100 mt-2">
+                  {units === "metric"
+                    ? `${sizeResult.primary.widthCm} × ${sizeResult.primary.heightCm} cm`
+                    : `${sizeResult.primary.widthIn.toFixed(1)} × ${sizeResult.primary.heightIn.toFixed(1)}″`}
+                </p>
+              </div>
+            )}
+          </StickyResult>
 
           {/* Comparison table */}
           <div>
@@ -250,35 +271,37 @@ export default function CrossStitchCalculatorTool() {
             </div>
           </div>
 
-          {threadResult && (
-            <div className="result-card space-y-3">
-              <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                Thread Needed
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{threadResult.skeinsRounded}</p>
-                  <p className="text-sm text-bark-500 dark:text-bark-400">
-                    {threadResult.skeinsRounded === 1 ? "skein" : "skeins"} (8m / 8.7yd each)
-                  </p>
-                  <p className="text-xs text-bark-400 dark:text-bark-500">
-                    Exact: {threadResult.skeins} skeins
-                  </p>
+          <StickyResult summary={stickySummary} visible={!!threadResult}>
+            {threadResult && (
+              <div className="result-card space-y-3">
+                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                  Thread Needed
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{threadResult.skeinsRounded}</p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">
+                      {threadResult.skeinsRounded === 1 ? "skein" : "skeins"} (8m / 8.7yd each)
+                    </p>
+                    <p className="text-xs text-bark-400 dark:text-bark-500">
+                      Exact: {threadResult.skeins} skeins
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
+                      {threadResult.totalMeters} m
+                    </p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">
+                      ({threadResult.totalInches}″) total thread
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
-                    {threadResult.totalMeters} m
-                  </p>
-                  <p className="text-sm text-bark-500 dark:text-bark-400">
-                    ({threadResult.totalInches}″) total thread
-                  </p>
-                </div>
+                <p className="text-xs text-bark-400 dark:text-bark-500">
+                  Estimate includes waste from threading and finishing. Buy 1 extra skein for safety on large areas.
+                </p>
               </div>
-              <p className="text-xs text-bark-400 dark:text-bark-500">
-                Estimate includes waste from threading and finishing. Buy 1 extra skein for safety on large areas.
-              </p>
-            </div>
-          )}
+            )}
+          </StickyResult>
         </div>
       )}
 
@@ -294,29 +317,31 @@ export default function CrossStitchCalculatorTool() {
               placeholder="3" className="input" min="0" inputMode="decimal" />
           </div>
 
-          <div className="result-card space-y-3">
-            <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-              Fabric Needed
-            </h3>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <p className="text-sm text-bark-500 dark:text-bark-400">Design area</p>
-                <p className="text-lg font-semibold text-bark-700 dark:text-cream-200">
-                  {units === "metric"
-                    ? `${(fabricResult.designW * 2.54).toFixed(1)} × ${(fabricResult.designH * 2.54).toFixed(1)} cm`
-                    : `${fabricResult.designW} × ${fabricResult.designH}″`}
-                </p>
-              </div>
-              <div>
-                <p className="text-sm text-bark-500 dark:text-bark-400">Total with margins</p>
-                <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">
-                  {units === "metric"
-                    ? `${fabricResult.totalWcm} × ${fabricResult.totalHcm} cm`
-                    : `${fabricResult.totalW} × ${fabricResult.totalH}″`}
-                </p>
+          <StickyResult summary={stickySummary} visible={!!fabricResult}>
+            <div className="result-card space-y-3">
+              <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                Fabric Needed
+              </h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p className="text-sm text-bark-500 dark:text-bark-400">Design area</p>
+                  <p className="text-lg font-semibold text-bark-700 dark:text-cream-200">
+                    {units === "metric"
+                      ? `${(fabricResult.designW * 2.54).toFixed(1)} × ${(fabricResult.designH * 2.54).toFixed(1)} cm`
+                      : `${fabricResult.designW} × ${fabricResult.designH}″`}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-sm text-bark-500 dark:text-bark-400">Total with margins</p>
+                  <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">
+                    {units === "metric"
+                      ? `${fabricResult.totalWcm} × ${fabricResult.totalHcm} cm`
+                      : `${fabricResult.totalW} × ${fabricResult.totalH}″`}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </StickyResult>
         </div>
       )}
 

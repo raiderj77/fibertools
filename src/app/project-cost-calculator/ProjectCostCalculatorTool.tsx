@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
+import StickyResult from "@/components/StickyResult";
 
 // ── TYPES ─────────────────────────────────────────────────────────
 
@@ -105,6 +106,10 @@ export default function ProjectCostCalculatorTool() {
       profit: +(sell - totalCost).toFixed(2),
     };
   }, [yarns, notions, totalStitches, stitchesPerMin, sellingPrice]);
+
+  const stickySummary = result.totalCost > 0
+    ? `${sym}${result.totalCost.toFixed(2)} total${result.hours > 0 ? ` • ${result.hours}h` : ""}`
+    : "";
 
   return (
     <div className="space-y-8">
@@ -220,66 +225,68 @@ export default function ProjectCostCalculatorTool() {
 
         {/* Right: results */}
         <div>
-          <div className="result-card space-y-5 sticky top-24">
-            <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-              Project Cost
-            </h3>
+          <StickyResult summary={stickySummary} visible={result.totalCost > 0}>
+            <div className="result-card space-y-5 sticky top-24">
+              <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                Project Cost
+              </h3>
 
-            <div className="space-y-3">
-              <div className="flex justify-between text-bark-600 dark:text-cream-300">
-                <span>Yarn</span>
-                <span className="font-medium">{sym}{result.yarnCost.toFixed(2)}</span>
-              </div>
-              {result.notionCost > 0 && (
+              <div className="space-y-3">
                 <div className="flex justify-between text-bark-600 dark:text-cream-300">
-                  <span>Notions</span>
-                  <span className="font-medium">{sym}{result.notionCost.toFixed(2)}</span>
+                  <span>Yarn</span>
+                  <span className="font-medium">{sym}{result.yarnCost.toFixed(2)}</span>
+                </div>
+                {result.notionCost > 0 && (
+                  <div className="flex justify-between text-bark-600 dark:text-cream-300">
+                    <span>Notions</span>
+                    <span className="font-medium">{sym}{result.notionCost.toFixed(2)}</span>
+                  </div>
+                )}
+                <div className="flex justify-between text-bark-800 dark:text-cream-100 border-t border-cream-300 dark:border-bark-600 pt-3">
+                  <span className="font-bold text-lg">Total</span>
+                  <span className="font-bold text-2xl">{sym}{result.totalCost.toFixed(2)}</span>
+                </div>
+              </div>
+
+              {result.hours > 0 && (
+                <div className="border-t border-cream-300 dark:border-bark-600 pt-4 space-y-2">
+                  <div className="flex justify-between text-bark-600 dark:text-cream-300">
+                    <span>Estimated time</span>
+                    <span className="font-medium">{result.hours} hours</span>
+                  </div>
+                  {result.sell > 0 && (
+                    <>
+                      <div className="flex justify-between text-bark-600 dark:text-cream-300">
+                        <span>Selling price</span>
+                        <span className="font-medium">{sym}{result.sell.toFixed(2)}</span>
+                      </div>
+                      <div className="flex justify-between text-bark-600 dark:text-cream-300">
+                        <span>Profit after materials</span>
+                        <span className={`font-medium ${result.profit >= 0 ? "text-sage-600 dark:text-sage-400" : "text-rose-500"}`}>
+                          {sym}{result.profit.toFixed(2)}
+                        </span>
+                      </div>
+                      <div className="flex justify-between text-bark-800 dark:text-cream-100 border-t border-cream-300 dark:border-bark-600 pt-2">
+                        <span className="font-bold">Effective hourly rate</span>
+                        <span className={`font-bold text-lg ${result.hourlyRate >= 0 ? "text-sage-600 dark:text-sage-400" : "text-rose-500"}`}>
+                          {sym}{result.hourlyRate.toFixed(2)}/hr
+                        </span>
+                      </div>
+                    </>
+                  )}
                 </div>
               )}
-              <div className="flex justify-between text-bark-800 dark:text-cream-100 border-t border-cream-300 dark:border-bark-600 pt-3">
-                <span className="font-bold text-lg">Total</span>
-                <span className="font-bold text-2xl">{sym}{result.totalCost.toFixed(2)}</span>
-              </div>
+
+              <button type="button" onClick={() => {
+                const lines = [`Project cost: ${sym}${result.totalCost.toFixed(2)}`];
+                yarns.forEach((y) => { if (y.skeins && y.pricePerSkein) lines.push(`  ${y.name}: ${y.skeins} skeins × ${sym}${y.pricePerSkein}`); });
+                if (result.hours > 0) lines.push(`Est. time: ${result.hours} hours`);
+                navigator.clipboard.writeText(lines.join("\n"));
+              }} className="btn-secondary text-sm">
+                📋 Copy breakdown
+              </button>
             </div>
-
-            {result.hours > 0 && (
-              <div className="border-t border-cream-300 dark:border-bark-600 pt-4 space-y-2">
-                <div className="flex justify-between text-bark-600 dark:text-cream-300">
-                  <span>Estimated time</span>
-                  <span className="font-medium">{result.hours} hours</span>
-                </div>
-                {result.sell > 0 && (
-                  <>
-                    <div className="flex justify-between text-bark-600 dark:text-cream-300">
-                      <span>Selling price</span>
-                      <span className="font-medium">{sym}{result.sell.toFixed(2)}</span>
-                    </div>
-                    <div className="flex justify-between text-bark-600 dark:text-cream-300">
-                      <span>Profit after materials</span>
-                      <span className={`font-medium ${result.profit >= 0 ? "text-sage-600 dark:text-sage-400" : "text-rose-500"}`}>
-                        {sym}{result.profit.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="flex justify-between text-bark-800 dark:text-cream-100 border-t border-cream-300 dark:border-bark-600 pt-2">
-                      <span className="font-bold">Effective hourly rate</span>
-                      <span className={`font-bold text-lg ${result.hourlyRate >= 0 ? "text-sage-600 dark:text-sage-400" : "text-rose-500"}`}>
-                        {sym}{result.hourlyRate.toFixed(2)}/hr
-                      </span>
-                    </div>
-                  </>
-                )}
-              </div>
-            )}
-
-            <button type="button" onClick={() => {
-              const lines = [`Project cost: ${sym}${result.totalCost.toFixed(2)}`];
-              yarns.forEach((y) => { if (y.skeins && y.pricePerSkein) lines.push(`  ${y.name}: ${y.skeins} skeins × ${sym}${y.pricePerSkein}`); });
-              if (result.hours > 0) lines.push(`Est. time: ${result.hours} hours`);
-              navigator.clipboard.writeText(lines.join("\n"));
-            }} className="btn-secondary text-sm">
-              📋 Copy breakdown
-            </button>
-          </div>
+          </StickyResult>
         </div>
       </div>
     </div>

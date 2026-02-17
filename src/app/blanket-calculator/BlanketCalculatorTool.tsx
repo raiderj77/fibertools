@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
+import StickyResult from "@/components/StickyResult";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -151,6 +152,10 @@ export default function BlanketCalculatorTool() {
     };
   }, [units, sizeIdx, useCustom, customW, customL, yarnWeight, pillowTuck, overhang, gaugeStitches, gaugeRows, gaugeOver, stitchMultiple, multipleExtra, skeinYards, yw]);
 
+  const stickySummary = result
+    ? `${units === "metric" ? result.meters.toLocaleString() + " m" : result.yards.toLocaleString() + " yds"} • ${result.skeins} skein${result.skeins !== 1 ? "s" : ""}`
+    : "";
+
   return (
     <div className="space-y-8">
       <UnitToggle value={units} onChange={setUnits} />
@@ -279,67 +284,69 @@ export default function BlanketCalculatorTool() {
 
         {/* Right: results */}
         <div>
-          {result && (
-            <div className="result-card space-y-5 sticky top-24">
-              <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                {useCustom ? "Custom Blanket" : BLANKET_SIZES[sizeIdx].label}
-              </h3>
+          <StickyResult summary={stickySummary} visible={!!result}>
+            {result && (
+              <div className="result-card space-y-5 sticky top-24">
+                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                  {useCustom ? "Custom Blanket" : BLANKET_SIZES[sizeIdx].label}
+                </h3>
 
-              <p className="text-sm text-bark-500 dark:text-bark-400">
-                Final size: {units === "metric"
-                  ? `${inToCm(result.widthIn)} × ${inToCm(result.lengthIn)} cm`
-                  : `${Math.round(result.widthIn)} × ${Math.round(result.lengthIn)}″`}
-                {pillowTuck && " (incl. pillow tuck)"}
-              </p>
+                <p className="text-sm text-bark-500 dark:text-bark-400">
+                  Final size: {units === "metric"
+                    ? `${inToCm(result.widthIn)} × ${inToCm(result.lengthIn)} cm`
+                    : `${Math.round(result.widthIn)} × ${Math.round(result.lengthIn)}″`}
+                  {pillowTuck && " (incl. pillow tuck)"}
+                </p>
 
-              {result.hasGauge && (
+                {result.hasGauge && (
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.stitches}</p>
+                      <p className="text-sm text-bark-500 dark:text-bark-400">
+                        stitches wide
+                        {result.hasMultiple && <span className="text-xs ml-1">(rounded from {result.stitchesRaw})</span>}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.rows}</p>
+                      <p className="text-sm text-bark-500 dark:text-bark-400">rows long</p>
+                    </div>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.stitches}</p>
-                    <p className="text-sm text-bark-500 dark:text-bark-400">
-                      stitches wide
-                      {result.hasMultiple && <span className="text-xs ml-1">(rounded from {result.stitchesRaw})</span>}
+                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
+                      {units === "metric" ? result.meters.toLocaleString() : result.yards.toLocaleString()}
                     </p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">{units === "metric" ? "meters" : "yards"} (incl. 10% buffer)</p>
                   </div>
                   <div>
-                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.rows}</p>
-                    <p className="text-sm text-bark-500 dark:text-bark-400">rows long</p>
+                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.skeins}</p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">{result.skeins === 1 ? "skein" : "skeins"}</p>
                   </div>
                 </div>
-              )}
 
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                    {units === "metric" ? result.meters.toLocaleString() : result.yards.toLocaleString()}
-                  </p>
-                  <p className="text-sm text-bark-500 dark:text-bark-400">{units === "metric" ? "meters" : "yards"} (incl. 10% buffer)</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.skeins}</p>
-                  <p className="text-sm text-bark-500 dark:text-bark-400">{result.skeins === 1 ? "skein" : "skeins"}</p>
-                </div>
-              </div>
-
-              <p className="text-sm text-bark-500 dark:text-bark-400">
-                Total weight: ≈ {result.grams.toLocaleString()}g ({(result.grams / 1000).toFixed(1)} kg)
-              </p>
-
-              {!result.hasGauge && (
-                <p className="text-xs text-amber-600 dark:text-amber-400">
-                  💡 Enter your gauge above to get exact stitch and row counts.
+                <p className="text-sm text-bark-500 dark:text-bark-400">
+                  Total weight: ≈ {result.grams.toLocaleString()}g ({(result.grams / 1000).toFixed(1)} kg)
                 </p>
-              )}
 
-              <div className="flex gap-2">
-                <button type="button" onClick={() => {
-                  const text = `${useCustom ? "Custom" : BLANKET_SIZES[sizeIdx].label} blanket: ${result.hasGauge ? `${result.stitches} sts × ${result.rows} rows, ` : ""}${result.yards} yds (${result.meters} m), ${result.skeins} skeins`;
-                  navigator.clipboard.writeText(text);
-                }} className="btn-secondary text-sm">📋 Copy</button>
-                <button type="button" onClick={() => window.print()} className="btn-secondary text-sm">🖨️ Print</button>
+                {!result.hasGauge && (
+                  <p className="text-xs text-amber-600 dark:text-amber-400">
+                    💡 Enter your gauge above to get exact stitch and row counts.
+                  </p>
+                )}
+
+                <div className="flex gap-2">
+                  <button type="button" onClick={() => {
+                    const text = `${useCustom ? "Custom" : BLANKET_SIZES[sizeIdx].label} blanket: ${result.hasGauge ? `${result.stitches} sts × ${result.rows} rows, ` : ""}${result.yards} yds (${result.meters} m), ${result.skeins} skeins`;
+                    navigator.clipboard.writeText(text);
+                  }} className="btn-secondary text-sm">📋 Copy</button>
+                  <button type="button" onClick={() => window.print()} className="btn-secondary text-sm">🖨️ Print</button>
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </StickyResult>
         </div>
       </div>
     </div>

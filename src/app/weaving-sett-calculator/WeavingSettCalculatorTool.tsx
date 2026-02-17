@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
+import StickyResult from "@/components/StickyResult";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -170,6 +171,20 @@ export default function WeavingSettCalculatorTool() {
     return { sett, dent, ratio: +ratio.toFixed(2), patterns };
   }, [desiredSett, reedDent]);
 
+  // Sticky summary
+  const stickySummary = (() => {
+    if (tab === "sett" && settResult) {
+      return `${settResult.recEpiLow}–${settResult.recEpiHigh} EPI`;
+    }
+    if (tab === "warp" && warpResult) {
+      return `${units === "metric" ? warpResult.totalWarpLengthCm + " cm" : warpResult.totalWarpLengthIn + "″"} warp${warpResult.totalEnds > 0 ? ` • ${warpResult.totalEnds} ends` : ""}`;
+    }
+    if (tab === "reed" && reedResult) {
+      return `${reedResult.ratio} ends/dent avg`;
+    }
+    return "";
+  })();
+
   return (
     <div className="space-y-6">
       <UnitToggle value={units} onChange={setUnits} />
@@ -220,22 +235,24 @@ export default function WeavingSettCalculatorTool() {
               placeholder="e.g. 12" className="input max-w-[120px]" min="1" inputMode="numeric" />
           )}
 
-          {settResult && (
-            <div className="result-card space-y-3">
-              <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                Recommended Sett
-              </h3>
-              <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                {settResult.recEpiLow}&ndash;{settResult.recEpiHigh} EPI
-              </p>
-              <p className="text-sm text-bark-500 dark:text-bark-400">
-                Target: {settResult.recEpi} ends per inch for {settResult.structure}
-              </p>
-              <p className="text-xs text-bark-400 dark:text-bark-500">
-                Based on ~{Math.round(settResult.wpi)} WPI. Always sample first — fiber, twist, and finishing change sett.
-              </p>
-            </div>
-          )}
+          <StickyResult summary={stickySummary} visible={!!settResult}>
+            {settResult && (
+              <div className="result-card space-y-3">
+                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                  Recommended Sett
+                </h3>
+                <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
+                  {settResult.recEpiLow}&ndash;{settResult.recEpiHigh} EPI
+                </p>
+                <p className="text-sm text-bark-500 dark:text-bark-400">
+                  Target: {settResult.recEpi} ends per inch for {settResult.structure}
+                </p>
+                <p className="text-xs text-bark-400 dark:text-bark-500">
+                  Based on ~{Math.round(settResult.wpi)} WPI. Always sample first — fiber, twist, and finishing change sett.
+                </p>
+              </div>
+            )}
+          </StickyResult>
 
           {/* Reference table */}
           <div>
@@ -317,47 +334,49 @@ export default function WeavingSettCalculatorTool() {
             </div>
           </div>
 
-          {warpResult && (
-            <div className="result-card space-y-4">
-              <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">Warp Plan</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">
-                    {units === "metric" ? `${warpResult.totalWarpLengthCm} cm` : `${warpResult.totalWarpLengthIn}″`}
-                  </p>
-                  <p className="text-sm text-bark-500 dark:text-bark-400">total warp length (incl. {warpResult.shrinkPct}% shrinkage)</p>
+          <StickyResult summary={stickySummary} visible={!!warpResult}>
+            {warpResult && (
+              <div className="result-card space-y-4">
+                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">Warp Plan</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">
+                      {units === "metric" ? `${warpResult.totalWarpLengthCm} cm` : `${warpResult.totalWarpLengthIn}″`}
+                    </p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">total warp length (incl. {warpResult.shrinkPct}% shrinkage)</p>
+                  </div>
+                  {warpResult.totalEnds > 0 && (
+                    <div>
+                      <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">{warpResult.totalEnds}</p>
+                      <p className="text-sm text-bark-500 dark:text-bark-400">total ends</p>
+                    </div>
+                  )}
+                  {warpResult.warpYards > 0 && (
+                    <>
+                      <div>
+                        <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
+                          {units === "metric" ? `${warpResult.warpMeters} m` : `${warpResult.warpYards} yd`}
+                        </p>
+                        <p className="text-sm text-bark-500 dark:text-bark-400">warp yarn</p>
+                      </div>
+                      <div>
+                        <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
+                          {units === "metric" ? `${warpResult.weftMeters} m` : `${warpResult.weftYards} yd`}
+                        </p>
+                        <p className="text-sm text-bark-500 dark:text-bark-400">weft yarn (estimate)</p>
+                      </div>
+                    </>
+                  )}
+                  {warpResult.skeinsNeeded > 0 && (
+                    <div>
+                      <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">{warpResult.skeinsNeeded}</p>
+                      <p className="text-sm text-bark-500 dark:text-bark-400">skeins total (warp + weft)</p>
+                    </div>
+                  )}
                 </div>
-                {warpResult.totalEnds > 0 && (
-                  <div>
-                    <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">{warpResult.totalEnds}</p>
-                    <p className="text-sm text-bark-500 dark:text-bark-400">total ends</p>
-                  </div>
-                )}
-                {warpResult.warpYards > 0 && (
-                  <>
-                    <div>
-                      <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
-                        {units === "metric" ? `${warpResult.warpMeters} m` : `${warpResult.warpYards} yd`}
-                      </p>
-                      <p className="text-sm text-bark-500 dark:text-bark-400">warp yarn</p>
-                    </div>
-                    <div>
-                      <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
-                        {units === "metric" ? `${warpResult.weftMeters} m` : `${warpResult.weftYards} yd`}
-                      </p>
-                      <p className="text-sm text-bark-500 dark:text-bark-400">weft yarn (estimate)</p>
-                    </div>
-                  </>
-                )}
-                {warpResult.skeinsNeeded > 0 && (
-                  <div>
-                    <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">{warpResult.skeinsNeeded}</p>
-                    <p className="text-sm text-bark-500 dark:text-bark-400">skeins total (warp + weft)</p>
-                  </div>
-                )}
               </div>
-            </div>
-          )}
+            )}
+          </StickyResult>
         </div>
       )}
 
@@ -389,21 +408,23 @@ export default function WeavingSettCalculatorTool() {
             </div>
           </div>
 
-          {reedResult && (
-            <div className="result-card space-y-3">
-              <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                Threading Plan
-              </h3>
-              <p className="text-sm text-bark-500 dark:text-bark-400">
-                {reedResult.sett} EPI in a {reedResult.dent}-dent reed ({reedResult.ratio} ends per dent average)
-              </p>
-              <div className="space-y-2">
-                {reedResult.patterns.map((p, i) => (
-                  <p key={i} className="text-bark-700 dark:text-cream-200 font-medium">{p}</p>
-                ))}
+          <StickyResult summary={stickySummary} visible={!!reedResult}>
+            {reedResult && (
+              <div className="result-card space-y-3">
+                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                  Threading Plan
+                </h3>
+                <p className="text-sm text-bark-500 dark:text-bark-400">
+                  {reedResult.sett} EPI in a {reedResult.dent}-dent reed ({reedResult.ratio} ends per dent average)
+                </p>
+                <div className="space-y-2">
+                  {reedResult.patterns.map((p, i) => (
+                    <p key={i} className="text-bark-700 dark:text-cream-200 font-medium">{p}</p>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </StickyResult>
         </div>
       )}
     </div>

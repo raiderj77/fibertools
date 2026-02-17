@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
+import StickyResult from "@/components/StickyResult";
 
 // ── TYPES ─────────────────────────────────────────────────────────
 
@@ -161,15 +162,31 @@ export default function GaugeCalculatorTool() {
     };
   }, [dimGaugeSt, dimGaugeRow, dimGaugeOver, desiredWidth, desiredHeight, dimStitchMultiple, dimMultipleExtra, edgeStitches, turningChains]);
 
+  // ── STICKY SUMMARY ──────────────────────────────────────────────
+  const stickySummary = (() => {
+    if (tab === "swatch" && swatchResult) {
+      return `${swatchResult.stPerStandard} sts × ${swatchResult.rowPerStandard} rows per ${dimPer}`;
+    }
+    if (tab === "resize" && resizeResult) {
+      const sts = resizeResult.hasMultiple ? resizeResult.roundedStitches : resizeResult.newStitches;
+      return `${sts} stitches${resizeResult.newRows > 0 ? ` • ${resizeResult.newRows} rows` : ""}`;
+    }
+    if (tab === "dimensions" && dimResult) {
+      const sts = dimResult.hasMultiple ? dimResult.roundedStitches : dimResult.stitchesNeeded;
+      return `${sts} stitches${dimResult.rowsNeeded > 0 ? ` • ${dimResult.rowsNeeded} rows` : ""}`;
+    }
+    return "";
+  })();
+
   return (
     <div className="space-y-6">
       {/* Controls */}
-      <div className="flex flex-wrap items-center gap-4">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
         <UnitToggle value={units} onChange={setUnits} />
       </div>
 
       {/* Tabs */}
-      <div className="inline-flex items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1 flex-wrap">
+      <div className="flex flex-col sm:flex-row sm:inline-flex items-stretch sm:items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1 gap-1">
         {([
           ["swatch", "📏 Gauge from Swatch"],
           ["resize", "🔄 Resize Pattern"],
@@ -196,7 +213,7 @@ export default function GaugeCalculatorTool() {
           <p className="text-sm text-bark-400 dark:text-bark-500">
             Measure your swatch, count the stitches and rows, and we&apos;ll calculate your gauge.
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div>
               <label className="label">Width ({dim})</label>
               <input
@@ -227,49 +244,51 @@ export default function GaugeCalculatorTool() {
             </div>
           </div>
 
-          {swatchResult && (
-            <div className="result-card space-y-4">
-              <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                Your Gauge
-              </h3>
-              <div className="grid grid-cols-2 gap-6">
-                <div>
-                  <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                    {swatchResult.stPerStandard}
-                  </p>
-                  <p className="text-sm text-bark-500 dark:text-bark-400">
-                    stitches per {dimPer}
-                  </p>
-                  <p className="text-xs text-bark-400 dark:text-bark-500 mt-1">
-                    ({swatchResult.stPerUnit} per {dim})
-                  </p>
+          <StickyResult summary={stickySummary} visible={!!swatchResult}>
+            {swatchResult && (
+              <div className="result-card space-y-4">
+                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                  Your Gauge
+                </h3>
+                <div className="grid grid-cols-2 gap-6">
+                  <div>
+                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
+                      {swatchResult.stPerStandard}
+                    </p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">
+                      stitches per {dimPer}
+                    </p>
+                    <p className="text-xs text-bark-400 dark:text-bark-500 mt-1">
+                      ({swatchResult.stPerUnit} per {dim})
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
+                      {swatchResult.rowPerStandard}
+                    </p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">
+                      rows per {dimPer}
+                    </p>
+                    <p className="text-xs text-bark-400 dark:text-bark-500 mt-1">
+                      ({swatchResult.rowPerUnit} per {dim})
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                    {swatchResult.rowPerStandard}
-                  </p>
-                  <p className="text-sm text-bark-500 dark:text-bark-400">
-                    rows per {dimPer}
-                  </p>
-                  <p className="text-xs text-bark-400 dark:text-bark-500 mt-1">
-                    ({swatchResult.rowPerUnit} per {dim})
-                  </p>
-                </div>
-              </div>
 
-              <button
-                type="button"
-                onClick={() => {
-                  navigator.clipboard.writeText(
-                    `Gauge: ${swatchResult.stPerStandard} sts × ${swatchResult.rowPerStandard} rows per ${dimPer}`
-                  );
-                }}
-                className="btn-secondary text-sm"
-              >
-                📋 Copy gauge
-              </button>
-            </div>
-          )}
+                <button
+                  type="button"
+                  onClick={() => {
+                    navigator.clipboard.writeText(
+                      `Gauge: ${swatchResult.stPerStandard} sts × ${swatchResult.rowPerStandard} rows per ${dimPer}`
+                    );
+                  }}
+                  className="btn-secondary text-sm"
+                >
+                  📋 Copy gauge
+                </button>
+              </div>
+            )}
+          </StickyResult>
         </div>
       )}
 
@@ -313,7 +332,7 @@ export default function GaugeCalculatorTool() {
           </div>
 
           {/* Pattern stitch counts */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div>
               <label className="label">
                 Pattern stitches
@@ -353,74 +372,76 @@ export default function GaugeCalculatorTool() {
             </div>
           </div>
 
-          {resizeResult && (
-            <div className="result-card space-y-4">
-              <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                Resized Pattern
-              </h3>
+          <StickyResult summary={stickySummary} visible={!!resizeResult}>
+            {resizeResult && (
+              <div className="result-card space-y-4">
+                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                  Resized Pattern
+                </h3>
 
-              <div className="grid grid-cols-2 gap-6">
-                {resizeResult.newStitches > 0 && (
-                  <div>
-                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                      {resizeResult.hasMultiple ? resizeResult.roundedStitches : resizeResult.newStitches}
+                <div className="grid grid-cols-2 gap-6">
+                  {resizeResult.newStitches > 0 && (
+                    <div>
+                      <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
+                        {resizeResult.hasMultiple ? resizeResult.roundedStitches : resizeResult.newStitches}
+                      </p>
+                      <p className="text-sm text-bark-500 dark:text-bark-400">
+                        stitches
+                        {resizeResult.hasMultiple && resizeResult.roundedStitches !== resizeResult.newStitches && (
+                          <span className="text-xs ml-1">(rounded from {resizeResult.newStitches})</span>
+                        )}
+                      </p>
+                    </div>
+                  )}
+                  {resizeResult.newRows > 0 && (
+                    <div>
+                      <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
+                        {resizeResult.newRows}
+                      </p>
+                      <p className="text-sm text-bark-500 dark:text-bark-400">rows</p>
+                    </div>
+                  )}
+                </div>
+
+                {/* What-if comparison */}
+                {(resizeResult.origW > 0 || resizeResult.origH > 0) && (
+                  <div className="mt-4 p-4 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl">
+                    <p className="text-sm font-medium text-amber-700 dark:text-amber-300 mb-2">
+                      ⚠️ &ldquo;What If&rdquo; — Size at your gauge WITHOUT resizing:
                     </p>
-                    <p className="text-sm text-bark-500 dark:text-bark-400">
-                      stitches
-                      {resizeResult.hasMultiple && resizeResult.roundedStitches !== resizeResult.newStitches && (
-                        <span className="text-xs ml-1">(rounded from {resizeResult.newStitches})</span>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      {resizeResult.origW > 0 && (
+                        <div>
+                          <p className="text-bark-600 dark:text-cream-300">
+                            Width: {resizeResult.yourWidth} {dim}
+                            <span className={`ml-1 font-medium ${resizeResult.widthDiff > 0 ? "text-rose-500" : resizeResult.widthDiff < 0 ? "text-blue-500" : "text-sage-500"}`}>
+                              ({resizeResult.widthDiff > 0 ? "+" : ""}{resizeResult.widthDiff} {dim})
+                            </span>
+                          </p>
+                          <p className="text-xs text-bark-400 dark:text-bark-500">
+                            Pattern calls for {resizeResult.origW} {dim}
+                          </p>
+                        </div>
                       )}
-                    </p>
-                  </div>
-                )}
-                {resizeResult.newRows > 0 && (
-                  <div>
-                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                      {resizeResult.newRows}
-                    </p>
-                    <p className="text-sm text-bark-500 dark:text-bark-400">rows</p>
+                      {resizeResult.origH > 0 && (
+                        <div>
+                          <p className="text-bark-600 dark:text-cream-300">
+                            Height: {resizeResult.yourHeight} {dim}
+                            <span className={`ml-1 font-medium ${resizeResult.heightDiff > 0 ? "text-rose-500" : resizeResult.heightDiff < 0 ? "text-blue-500" : "text-sage-500"}`}>
+                              ({resizeResult.heightDiff > 0 ? "+" : ""}{resizeResult.heightDiff} {dim})
+                            </span>
+                          </p>
+                          <p className="text-xs text-bark-400 dark:text-bark-500">
+                            Pattern calls for {resizeResult.origH} {dim}
+                          </p>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </div>
-
-              {/* What-if comparison */}
-              {(resizeResult.origW > 0 || resizeResult.origH > 0) && (
-                <div className="mt-4 p-4 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl">
-                  <p className="text-sm font-medium text-amber-700 dark:text-amber-300 mb-2">
-                    ⚠️ &ldquo;What If&rdquo; — Size at your gauge WITHOUT resizing:
-                  </p>
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    {resizeResult.origW > 0 && (
-                      <div>
-                        <p className="text-bark-600 dark:text-cream-300">
-                          Width: {resizeResult.yourWidth} {dim}
-                          <span className={`ml-1 font-medium ${resizeResult.widthDiff > 0 ? "text-rose-500" : resizeResult.widthDiff < 0 ? "text-blue-500" : "text-sage-500"}`}>
-                            ({resizeResult.widthDiff > 0 ? "+" : ""}{resizeResult.widthDiff} {dim})
-                          </span>
-                        </p>
-                        <p className="text-xs text-bark-400 dark:text-bark-500">
-                          Pattern calls for {resizeResult.origW} {dim}
-                        </p>
-                      </div>
-                    )}
-                    {resizeResult.origH > 0 && (
-                      <div>
-                        <p className="text-bark-600 dark:text-cream-300">
-                          Height: {resizeResult.yourHeight} {dim}
-                          <span className={`ml-1 font-medium ${resizeResult.heightDiff > 0 ? "text-rose-500" : resizeResult.heightDiff < 0 ? "text-blue-500" : "text-sage-500"}`}>
-                            ({resizeResult.heightDiff > 0 ? "+" : ""}{resizeResult.heightDiff} {dim})
-                          </span>
-                        </p>
-                        <p className="text-xs text-bark-400 dark:text-bark-500">
-                          Pattern calls for {resizeResult.origH} {dim}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
+            )}
+          </StickyResult>
         </div>
       )}
 
@@ -503,69 +524,71 @@ export default function GaugeCalculatorTool() {
 
             {/* Results */}
             <div>
-              {dimResult && (
-                <div className="result-card space-y-4">
-                  <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                    You Need
-                  </h3>
+              <StickyResult summary={stickySummary} visible={!!dimResult}>
+                {dimResult && (
+                  <div className="result-card space-y-4">
+                    <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                      You Need
+                    </h3>
 
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                        {dimResult.hasMultiple ? dimResult.roundedStitches : dimResult.stitchesNeeded} stitches
-                      </p>
-                      {dimResult.hasMultiple && dimResult.roundedStitches !== dimResult.stitchesNeeded && (
-                        <p className="text-xs text-bark-400 dark:text-bark-500 mt-1">
-                          Rounded from {dimResult.stitchesNeeded} to nearest multiple
-                        </p>
-                      )}
-                      {dimResult.actualWidth > 0 && dimResult.hasMultiple && (
-                        <p className="text-xs text-bark-400 dark:text-bark-500">
-                          Actual width: {dimResult.actualWidth} {dim}
-                        </p>
-                      )}
-                    </div>
-
-                    {dimResult.rowsNeeded > 0 && (
+                    <div className="space-y-4">
                       <div>
-                        <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">
-                          {dimResult.rowsNeeded} rows
+                        <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
+                          {dimResult.hasMultiple ? dimResult.roundedStitches : dimResult.stitchesNeeded} stitches
                         </p>
+                        {dimResult.hasMultiple && dimResult.roundedStitches !== dimResult.stitchesNeeded && (
+                          <p className="text-xs text-bark-400 dark:text-bark-500 mt-1">
+                            Rounded from {dimResult.stitchesNeeded} to nearest multiple
+                          </p>
+                        )}
+                        {dimResult.actualWidth > 0 && dimResult.hasMultiple && (
+                          <p className="text-xs text-bark-400 dark:text-bark-500">
+                            Actual width: {dimResult.actualWidth} {dim}
+                          </p>
+                        )}
                       </div>
-                    )}
 
-                    <div className="border-t border-cream-300 dark:border-bark-600 pt-4 space-y-2">
-                      {parseInt(edgeStitches) > 0 && (
-                        <p className="text-sm text-bark-600 dark:text-cream-300">
-                          🪡 <strong>Cast on:</strong> {dimResult.totalCastOn} stitches
-                          <span className="text-xs text-bark-400 dark:text-bark-500 ml-1">
-                            ({dimResult.roundedStitches} + {edgeStitches} edge)
-                          </span>
-                        </p>
+                      {dimResult.rowsNeeded > 0 && (
+                        <div>
+                          <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">
+                            {dimResult.rowsNeeded} rows
+                          </p>
+                        </div>
                       )}
-                      {parseInt(turningChains) > 0 && (
-                        <p className="text-sm text-bark-600 dark:text-cream-300">
-                          🧶 <strong>Foundation chain:</strong> {dimResult.foundationChain} chains
-                          <span className="text-xs text-bark-400 dark:text-bark-500 ml-1">
-                            ({dimResult.roundedStitches} + {turningChains} turning)
-                          </span>
-                        </p>
-                      )}
+
+                      <div className="border-t border-cream-300 dark:border-bark-600 pt-4 space-y-2">
+                        {parseInt(edgeStitches) > 0 && (
+                          <p className="text-sm text-bark-600 dark:text-cream-300">
+                            🪡 <strong>Cast on:</strong> {dimResult.totalCastOn} stitches
+                            <span className="text-xs text-bark-400 dark:text-bark-500 ml-1">
+                              ({dimResult.roundedStitches} + {edgeStitches} edge)
+                            </span>
+                          </p>
+                        )}
+                        {parseInt(turningChains) > 0 && (
+                          <p className="text-sm text-bark-600 dark:text-cream-300">
+                            🧶 <strong>Foundation chain:</strong> {dimResult.foundationChain} chains
+                            <span className="text-xs text-bark-400 dark:text-bark-500 ml-1">
+                              ({dimResult.roundedStitches} + {turningChains} turning)
+                            </span>
+                          </p>
+                        )}
+                      </div>
                     </div>
-                  </div>
 
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const text = `${dimResult.hasMultiple ? dimResult.roundedStitches : dimResult.stitchesNeeded} stitches × ${dimResult.rowsNeeded} rows for ${desiredWidth} × ${desiredHeight} ${dim}`;
-                      navigator.clipboard.writeText(text);
-                    }}
-                    className="btn-secondary text-sm"
-                  >
-                    📋 Copy
-                  </button>
-                </div>
-              )}
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const text = `${dimResult.hasMultiple ? dimResult.roundedStitches : dimResult.stitchesNeeded} stitches × ${dimResult.rowsNeeded} rows for ${desiredWidth} × ${desiredHeight} ${dim}`;
+                        navigator.clipboard.writeText(text);
+                      }}
+                      className="btn-secondary text-sm"
+                    >
+                      📋 Copy
+                    </button>
+                  </div>
+                )}
+              </StickyResult>
             </div>
           </div>
         </div>
