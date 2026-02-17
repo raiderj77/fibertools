@@ -1,0 +1,23 @@
+{
+  "name": "Privacy Toolkit - Free Online Security & Privacy Tools",
+  "short_name": "Privacy Toolkit",
+  "description": "Free client-side privacy and security tools. Check breaches, test VPN leaks, analyze your browser fingerprint, and more.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e17",
+  "theme_color": "#00e5bf",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["security", "utilities"]
+}
