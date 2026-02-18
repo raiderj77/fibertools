@@ -6,19 +6,16 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import InstallPrompt from "@/components/InstallPrompt";
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
-
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-
 export const metadata: Metadata = {
   metadataBase: new URL("https://fibertools.app"),
   title: {
@@ -45,6 +42,9 @@ export const metadata: Metadata = {
   authors: [{ name: "FiberTools" }],
   creator: "FiberTools",
   publisher: "FiberTools",
+  other: {
+    "google-adsense-account": "ca-pub-7171402107622932",
+  },
   alternates: {
     canonical: "/",
   },
@@ -71,7 +71,6 @@ export const metadata: Metadata = {
     },
   },
 };
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -99,9 +98,8 @@ export default function RootLayout({
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />
-              <ServiceWorkerRegistration />
-              <InstallPrompt />
-              <InstallPrompt />
+        <ServiceWorkerRegistration />
+        <InstallPrompt />
       </body>
     </html>
   );
