@@ -34,6 +34,7 @@
           </p>
         </div>
       </div>
-    </footer>
+      <div className="mt-4 text-center"><p className="text-xs text-bark-400 dark:text-bark-500">More Free Tools: <a href="https://creatorrevenuecalculator.com" className="hover:text-sage-600 transition-colors">Creator Revenue Calculator</a></p></div>
+</footer>
   );
 }
