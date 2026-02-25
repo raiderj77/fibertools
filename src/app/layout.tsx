@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   },
   description:
     "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery. Yarn calculator, needle converter, gauge calculator, and more. No login. Works offline.",
+  icons: {
+    icon: "/favicon.svg",
+  },
   keywords: [
     "yarn calculator",
     "knitting calculator",
