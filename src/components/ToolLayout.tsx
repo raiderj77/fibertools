@@ -3,6 +3,7 @@ import { getToolBySlug, getRelatedTools, CATEGORY_LABELS, CATEGORY_COLORS } from
 import { toolFaqs } from "@/lib/faqs";
 import AdSlot from "./AdSlot";
 import FAQSection from "./FAQSection";
+import { ToolSchema } from "./StructuredData";
 
 interface ToolLayoutProps {
   slug: string;
@@ -14,9 +15,13 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
   if (!tool) return null;
 
   const related = getRelatedTools(slug, 4);
+  const faqs = toolFaqs[slug] || [];
 
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      {/* Structured Data for SEO */}
+      <ToolSchema tool={tool} faqs={faqs} />
+      
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-2 text-sm text-bark-400 dark:text-bark-500 mb-4">
         <Link href="/" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">
