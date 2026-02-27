@@ -4,19 +4,19 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
-import InstallPrompt from "@/components/InstallPrompt";
-import CookieConsent from "@/components/CookieConsent";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://fibertools.app"),
   title: {
@@ -43,9 +43,6 @@ export const metadata: Metadata = {
   authors: [{ name: "FiberTools" }],
   creator: "FiberTools",
   publisher: "FiberTools",
-  other: {
-    "google-adsense-account": "ca-pub-7171402107622932",
-  },
   alternates: {
     canonical: "/",
   },
@@ -71,12 +68,8 @@ export const metadata: Metadata = {
       follow: true,
     },
   },
-  icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
-  },
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -85,22 +78,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <head>
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#6b8e6d" />
-        {/* Google Consent Mode v2 — set defaults BEFORE gtag loads */}
-        <Script id="consent-mode-defaults" strategy="beforeInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('consent', 'default', {
-              analytics_storage: 'denied',
-              ad_storage: 'denied',
-              ad_user_data: 'denied',
-              ad_personalization: 'denied',
-              wait_for_update: 500
-            });
-          `}
-        </Script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-T92LYDE8NN"
           strategy="afterInteractive"
@@ -118,9 +95,6 @@ export default function RootLayout({
         <Header />
         <div className="flex-1">{children}</div>
         <Footer />
-        <ServiceWorkerRegistration />
-        <InstallPrompt />
-        <CookieConsent />
       </body>
     </html>
   );
