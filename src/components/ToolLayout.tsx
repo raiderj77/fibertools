@@ -3,6 +3,7 @@ import { getToolBySlug, getRelatedTools, CATEGORY_LABELS, CATEGORY_COLORS } from
 import { toolFaqs } from "@/lib/faqs";
 import AdSlot from "./AdSlot";
 import FAQSection from "./FAQSection";
+import { ToolSchema } from "./StructuredData";
 
 interface ToolLayoutProps {
   slug: string;
@@ -16,32 +17,13 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
   const related = getRelatedTools(slug, 4);
   const faqs = toolFaqs[slug] || [];
 
-  const webAppSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    name: tool.name,
-    description: tool.description,
-    url: `https://fibertools.app/${slug}`,
-    applicationCategory: "UtilityApplication",
-    operatingSystem: "All",
-    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    author: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://fibertools.app" },
-      { "@type": "ListItem", position: 2, name: tool.name, item: `https://fibertools.app/${slug}` },
-    ],
-  };
 
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      {/* Structured Data for SEO */}
+      <ToolSchema tool={tool} faqs={faqs} />
 
+      {/* Breadcrumbs */}
       <nav className="flex items-center gap-2 text-sm text-bark-400 dark:text-bark-500 mb-4" aria-label="Breadcrumb">
         <Link href="/" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">Home</Link>
         <span aria-hidden="true">/</span>
