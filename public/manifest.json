@@ -1,11 +1,11 @@
 {
-  "name": "Privacy Toolkit - Free Online Security & Privacy Tools",
-  "short_name": "Privacy Toolkit",
-  "description": "Free client-side privacy and security tools. Check breaches, test VPN leaks, analyze your browser fingerprint, and more.",
+  "name": "FiberTools",
+  "short_name": "FiberTools",
+  "description": "Free fiber arts calculators for knitters, crocheters, and weavers",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0e17",
-  "theme_color": "#00e5bf",
+  "background_color": "#faf8f5",
+  "theme_color": "#1a1b1e",
   "orientation": "any",
   "icons": [
     {
