@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { getToolBySlug, getRelatedTools, CATEGORY_LABELS, CATEGORY_COLORS } from "@/lib/tools";
 import { toolFaqs } from "@/lib/faqs";
-import AdSlot from "./AdSlot";
 import FAQSection from "./FAQSection";
 import PrintShareButtons from "./PrintShareButtons";
 
@@ -83,9 +82,6 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
       {/* === TOOL UI === */}
       {children}
 
-      {/* Ad: after tool */}
-      <AdSlot position="after-tool" />
-
       {/* Related tools */}
       <section className="mt-12">
         <h2 className="section-heading">Related Tools</h2>
@@ -107,9 +103,6 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
           ))}
         </div>
       </section>
-
-      {/* Ad: mid-content */}
-      <AdSlot position="mid-content" />
 
       {/* FAQ */}
       <FAQSection faqs={toolFaqs[slug] || []} toolName={tool.name} />
@@ -146,8 +139,6 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
         </div>
       </section>
 
-      {/* Ad: before footer */}
-      <AdSlot position="before-footer" />
     </main>
   );
 }
