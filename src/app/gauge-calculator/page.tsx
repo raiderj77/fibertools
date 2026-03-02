@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import GaugeCalculatorTool from "./GaugeCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Free Gauge Calculator & Pattern Resizer — Stitch Count Calculator | FiberTools",
+  title: "Free Gauge Calculator & Resizer",
   description:
-    "Calculate your knitting or crochet gauge from a swatch, resize patterns to a new gauge, and get exact stitch and row counts for any dimension. Includes stitch multiple rounding.",
+    "Calculate gauge from your swatch, resize patterns, and get exact stitch counts. Supports knitting and crochet with stitch multiple rounding.",
   keywords: [
     "gauge calculator",
     "crochet gauge calculator",

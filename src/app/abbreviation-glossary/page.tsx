@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import AbbreviationGlossaryTool from "./AbbreviationGlossaryTool";
 
 export const metadata: Metadata = {
-  title: "Free Knitting & Crochet Abbreviation Glossary — Searchable with UK/US Toggle | FiberTools",
+  title: "Knitting & Crochet Abbreviations",
   description:
-    "Searchable glossary of 70+ knitting and crochet abbreviations with US/UK term toggle, category filters, and a pattern translator that explains any line of a pattern.",
+    "Searchable glossary of 70+ knitting and crochet abbreviations with US/UK toggle. Includes a pattern translator for any instruction line.",
   keywords: [
     "knitting abbreviations", "crochet abbreviations", "crochet stitch abbreviations chart",
     "knitting terms", "UK vs US crochet terms", "what does sk mean in crochet",

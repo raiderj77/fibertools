@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import StitchCounterTool from "./StitchCounterTool";
 
 export const metadata: Metadata = {
-  title: "Free Stitch & Row Counter Online — No Login, Works Offline | FiberTools",
+  title: "Free Stitch & Row Counter Online",
   description:
-    "Free digital stitch and row counter for knitting and crochet. Multiple named counters, row reminders, undo/redo, fullscreen mode, and auto-save. No app download or login needed.",
+    "Free digital stitch and row counter for knitting and crochet. Multiple counters, row reminders, undo/redo, and offline support. No login needed.",
   keywords: [
     "stitch counter online",
     "row counter online",

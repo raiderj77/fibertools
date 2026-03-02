@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import AmigurumiShapesTool from "./AmigurumiShapesTool";
 
 export const metadata: Metadata = {
-  title: "Amigurumi Shapes Guide — Sphere, Cone, Cylinder Patterns | FiberTools",
+  title: "Amigurumi Shapes Crochet Guide",
   description:
-    "Basic crochet shapes for amigurumi: sphere, cone, cylinder, flat circle, and oval. Get round-by-round increase and decrease instructions for each shape.",
+    "Basic crochet shapes for amigurumi: sphere, cone, cylinder, and oval. Get round-by-round increase and decrease instructions for each.",
   keywords: [
     "amigurumi shapes",
     "crochet sphere pattern",

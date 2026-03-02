@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import YarnCalculatorTool from "./YarnCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Free Yarn Yardage Calculator — How Much Yarn Do I Need? | FiberTools",
+  title: "Free Yarn Yardage Calculator",
   description:
-    "Calculate exactly how much yarn you need for any knitting or crochet project. Supports blankets, sweaters, hats, scarves, and more with stitch pattern adjustments and a leftover yarn calculator.",
+    "Calculate how much yarn you need for any knitting or crochet project. Enter your gauge and dimensions for instant yardage estimates. Free, no signup.",
   keywords: [
     "yarn calculator",
     "how much yarn do I need",

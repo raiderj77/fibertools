@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import StitchQuickReferenceTool from "./StitchQuickReferenceTool";
 
 export const metadata: Metadata = {
-  title: "Free Crochet & Knitting Stitch Quick Reference — Step-by-Step Diagrams | FiberForge",
+  title: "Crochet & Knitting Stitch Guide",
   description:
-    "Quick visual reference for crochet and knitting stitches. See yarn overs, pull-throughs, loop counts, and step-by-step instructions for SC, DC, TR, and more.",
+    "Visual step-by-step guide for crochet and knitting stitches. See yarn overs, pull-throughs, and loop counts for SC, DC, TR, and more.",
   keywords: [
     "crochet stitch diagram",
     "how to double crochet",

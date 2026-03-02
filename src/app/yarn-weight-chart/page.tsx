@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import YarnWeightChartTool from "./YarnWeightChartTool";
 
 export const metadata: Metadata = {
-  title: "Free Yarn Weight Chart & Substitution Guide — DK vs Worsted vs Aran | FiberTools",
+  title: "Yarn Weight Chart & Substitution",
   description:
-    "Interactive yarn weight chart with US, UK, and Australian ply names. Check yarn substitution compatibility and browse a fiber properties guide for wool, cotton, acrylic, and more.",
+    "Interactive yarn weight chart with US, UK, and Australian names. Check substitution compatibility and browse fiber properties for every yarn type.",
   keywords: [
     "yarn weight chart",
     "yarn weight conversion",

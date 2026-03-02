@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import NeedleConverterTool from "./NeedleConverterTool";
 
 export const metadata: Metadata = {
-  title: "Free Needle & Hook Size Converter Online — US, UK, Metric & Japanese | FiberTools",
+  title: "Needle & Hook Size Converter",
   description:
-    "Instantly convert knitting needle and crochet hook sizes between US, UK, metric (mm), and Japanese systems. Interactive chart with search, yarn weight recommendations, and visual size comparison.",
+    "Convert knitting needle and crochet hook sizes between US, UK, metric, and Japanese. Interactive chart with yarn weight recommendations.",
   keywords: [
     "knitting needle size chart",
     "knitting needle conversion chart",

@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import BlanketCalculatorTool from "./BlanketCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Free Blanket Size Calculator — Stitch Count & Yardage for Any Blanket | FiberTools",
+  title: "Blanket Size & Yarn Calculator",
   description:
-    "Calculate stitch counts, row counts, and yarn yardage for any blanket size from baby to California king. Includes pillow tuck, overhang, and stitch multiple rounding.",
+    "Calculate stitch count, row count, and yarn yardage for any blanket from baby to king size. Includes overhang and stitch multiple adjustments.",
   keywords: [
     "blanket size chart", "crochet blanket sizes", "blanket size calculator",
     "how big should a blanket be", "baby blanket size crochet", "throw blanket dimensions",

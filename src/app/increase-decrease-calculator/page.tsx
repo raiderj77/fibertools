@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import IncDecCalculatorTool from "./IncDecCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Free Increase & Decrease Calculator — Evenly Distribute Stitches | FiberTools",
+  title: "Increase & Decrease Calculator",
   description:
-    "Get stitch-by-stitch instructions for distributing increases or decreases evenly across a row or round. Works for both knitting and crochet.",
+    "Get stitch-by-stitch instructions to distribute increases or decreases evenly across a row or round. Works for knitting and crochet patterns.",
   keywords: [
     "increase evenly calculator", "decrease evenly knitting", "distribute increases",
     "evenly spaced decreases", "knitting increase calculator", "how to increase evenly across a row",

@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import StitchPatternCalculatorTool from "./StitchPatternCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Free Stitch Pattern Calculator — Combine Multiples for Sampler Blankets | FiberForge",
+  title: "Stitch Pattern Calculator",
   description:
-    "Calculate compatible stitch counts for sampler blankets. Enter stitch multiples, find the LCM, search 50+ stitch patterns by repeat, and plan rows. Free, no login.",
+    "Find compatible stitch counts for sampler blankets. Enter multiples, calculate the LCM, and browse 50+ stitch patterns. Free online tool.",
   keywords: [
     "stitch pattern calculator",
     "crochet stitch multiple calculator",

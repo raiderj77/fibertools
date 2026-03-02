@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import CircleCalculatorTool from "./CircleCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Perfect Circle Calculator — Crochet Circle Pattern Generator | FiberTools",
+  title: "Crochet Circle Pattern Generator",
   description:
-    "Generate a flat circle crochet pattern for any stitch type. Enter your stitch and number of rounds to get the full increase pattern with staggered increases.",
+    "Generate a flat circle crochet pattern for any stitch type. Get round-by-round increase instructions with staggered placement.",
   keywords: [
     "crochet circle pattern",
     "perfect circle crochet",

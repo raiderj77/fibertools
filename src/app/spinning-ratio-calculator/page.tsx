@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import SpinningCalculatorTool from "./SpinningCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Free Spinning Wheel Ratio Calculator — TPI, Plying & Fiber Guide | FiberTools",
+  title: "Spinning Wheel Ratio Calculator",
   description:
-    "Calculate drive ratios, twists per inch (TPI), and plying twist for handspinning. Includes a fiber guide with suggested twist rates for merino, alpaca, silk, cotton, and more.",
+    "Calculate drive ratios, twists per inch, and plying twist for handspinning. Includes a fiber guide with suggested twist rates for every fiber.",
   keywords: [
     "spinning wheel ratio", "spinning wheel drive ratio", "twist per inch calculator",
     "spinning wheel ratio chart", "TPI calculator", "what ratio for sock yarn spinning",

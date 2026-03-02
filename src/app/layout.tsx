@@ -108,6 +108,13 @@ export default function RootLayout({
             gtag('config', 'G-T92LYDE8NN');
           `}
         </Script>
+        {/* Google AdSense — auto ads */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         <Header />

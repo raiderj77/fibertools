@@ -3,6 +3,36 @@ import { getToolBySlug, getRelatedTools, CATEGORY_LABELS, CATEGORY_COLORS } from
 import { toolFaqs } from "@/lib/faqs";
 import AdSlot from "./AdSlot";
 import FAQSection from "./FAQSection";
+import PrintShareButtons from "./PrintShareButtons";
+
+function SoftwareApplicationSchema({ name, description, url }: { name: string; description: string; url: string }) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name,
+    description,
+    url: `https://fibertools.app/${url}`,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Any",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+    creator: {
+      "@type": "Organization",
+      name: "FiberTools",
+      url: "https://fibertools.app",
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
 
 interface ToolLayoutProps {
   slug: string;
@@ -17,6 +47,9 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
 
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      {/* SoftwareApplication JSON-LD */}
+      <SoftwareApplicationSchema name={tool.name} description={tool.description} url={tool.slug} />
+
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-2 text-sm text-bark-400 dark:text-bark-500 mb-4">
         <Link href="/" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">
@@ -28,11 +61,14 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
 
       {/* Title & category badge */}
       <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-3xl">{tool.icon}</span>
-          <h1 className="text-2xl sm:text-3xl font-display font-bold text-bark-800 dark:text-cream-100">
-            {tool.name}
-          </h1>
+        <div className="flex items-center justify-between gap-3 mb-2">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">{tool.icon}</span>
+            <h1 className="text-2xl sm:text-3xl font-display font-bold text-bark-800 dark:text-cream-100">
+              {tool.name}
+            </h1>
+          </div>
+          <PrintShareButtons toolName={tool.name} />
         </div>
         <div className="flex items-center gap-3">
           <span className={`inline-block px-2.5 py-0.5 text-xs font-medium rounded-full ${CATEGORY_COLORS[tool.category]}`}>

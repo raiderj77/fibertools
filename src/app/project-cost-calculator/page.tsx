@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import ProjectCostCalculatorTool from "./ProjectCostCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Free Project Cost Calculator — Yarn Budget & Time Estimator | FiberTools",
+  title: "Yarn & Project Cost Calculator",
   description:
-    "Calculate the total cost of your knitting or crochet project including yarn, notions, and estimated crafting time. See your effective hourly rate if you sell handmade items.",
+    "Calculate total project cost including yarn, notions, and crafting time. See your effective hourly rate for handmade items you sell.",
   keywords: [
     "crochet cost calculator", "knitting cost calculator", "how much does a blanket cost to make",
     "yarn project cost estimator", "cost to crochet a blanket", "is it cheaper to knit or buy",

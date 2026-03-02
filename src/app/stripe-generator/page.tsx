@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import StripeGeneratorTool from "./StripeGeneratorTool";
 
 export const metadata: Metadata = {
-  title: "Free Stripe Pattern Generator — Random & Weighted Stripes | FiberTools",
+  title: "Stripe Pattern Generator",
   description:
-    "Generate random or structured stripe patterns for knitting and crochet. Customize colors, widths, and weights with a live visual preview and per-color yardage breakdown.",
+    "Generate random or custom stripe patterns with a live preview. Set colors, widths, and weights with per-color yardage estimates for any project.",
   keywords: [
     "random stripe generator", "stripe pattern creator", "crochet stripe pattern",
     "knitting stripe pattern", "color stripe generator", "random stripe blanket pattern",
