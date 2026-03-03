@@ -1,39 +1,41 @@
-# FiberTools
+# FiberTools — Free Calculators for Knitters, Crocheters & Weavers
+> https://fibertools.app
 
-> Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery. No login required. Works offline.
-
-## About
-
-FiberTools (https://fibertools.app) provides free browser-based calculators for fiber arts crafters. All tools run client-side with no accounts or data collection. The site supports offline use as a Progressive Web App.
+FiberTools is a suite of free, browser-based calculators and references for fiber arts. All processing happens client-side — no data is sent to any server. No login required. Works offline.
 
 ## Tools
 
-### Tier 1 — Essential Tools
-- [Yarn Yardage Calculator](https://fibertools.app/yarn-calculator): Calculate how much yarn you need for any project — blankets, sweaters, scarves, and more.
+### Knitting & Crochet
+- [Yarn Calculator](https://fibertools.app/yarn-calculator): Calculate exactly how much yarn you need for any project — blankets, sweaters, scarves, and more.
 - [Needle & Hook Size Converter](https://fibertools.app/needle-converter): Convert knitting needle and crochet hook sizes between US, UK, metric, and Japanese systems.
-- [Gauge Calculator & Pattern Resizer](https://fibertools.app/gauge-calculator): Calculate gauge from a swatch, resize patterns, and get exact stitch and row counts.
-- [Yarn Weight Chart & Substitution Guide](https://fibertools.app/yarn-weight-chart): Interactive yarn weight chart with substitution compatibility checker.
-- [Stitch & Row Counter](https://fibertools.app/stitch-counter): Digital stitch counter with multiple counters, row reminders, and offline support.
-
-### Tier 2 — Calculators & Generators
-- [Blanket Size Calculator](https://fibertools.app/blanket-calculator): Stitch count, row count, and yardage for any blanket size from baby to king.
-- [Increase & Decrease Calculator](https://fibertools.app/increase-decrease-calculator): Distribute increases or decreases evenly across a row or round.
-- [Stripe Pattern Generator](https://fibertools.app/stripe-generator): Random or structured stripe patterns with per-color yardage estimates.
-- [Abbreviation & Stitch Glossary](https://fibertools.app/abbreviation-glossary): Searchable glossary of 70+ knitting and crochet abbreviations.
-- [Spinning Wheel Ratio Calculator](https://fibertools.app/spinning-ratio-calculator): Drive ratios, TPI, and plying ratios for handspinning.
-- [Stitch Pattern Calculator](https://fibertools.app/stitch-pattern-calculator): Compatible stitch counts for sampler blankets with 50+ stitch patterns.
-- [Stitch Quick Reference](https://fibertools.app/stitch-quick-reference): Visual step-by-step for every basic stitch.
-- [UK to US Crochet Terms Converter](https://fibertools.app/uk-to-us-converter): Convert UK crochet patterns to US terminology and vice versa.
+- [Gauge Calculator](https://fibertools.app/gauge-calculator): Calculate your gauge from a swatch, resize patterns to a new gauge, and get exact stitch counts.
+- [Yarn Weight Chart](https://fibertools.app/yarn-weight-chart): Interactive yarn weight chart with US, UK, and Australian names plus substitution compatibility checker.
+- [Stitch Counter](https://fibertools.app/stitch-counter): Free online stitch counter with multiple counters, row reminders, and offline support.
+- [Blanket Calculator](https://fibertools.app/blanket-calculator): Find the right stitch count, row count, and yarn yardage for any blanket size from baby to king.
+- [Increase & Decrease Calculator](https://fibertools.app/increase-decrease-calculator): Get stitch-by-stitch instructions for distributing increases or decreases evenly across a row or round.
+- [Stripe Generator](https://fibertools.app/stripe-generator): Generate random or structured stripe patterns with per-color yardage estimates.
+- [Abbreviation Glossary](https://fibertools.app/abbreviation-glossary): Searchable glossary of knitting and crochet abbreviations with US/UK toggle.
+- [Stitch Pattern Calculator](https://fibertools.app/stitch-pattern-calculator): Find compatible stitch counts for sampler blankets with 50+ stitch patterns.
+- [Stitch Quick Reference](https://fibertools.app/stitch-quick-reference): Visual step-by-step for every basic crochet and knitting stitch.
+- [UK to US Converter](https://fibertools.app/uk-to-us-converter): Convert UK crochet patterns to US terminology and vice versa.
 - [Perfect Circle Calculator](https://fibertools.app/circle-calculator): Generate flat circle crochet patterns with staggered increases.
 - [Sewing & Craft Needle Guide](https://fibertools.app/needle-guide): Visual guide to needle types for every project.
 - [Amigurumi Shapes Guide](https://fibertools.app/amigurumi-shapes): Round-by-round instructions for sphere, cone, cylinder, and oval shapes.
+- [Project Cost Calculator](https://fibertools.app/project-cost-calculator): Calculate the total cost of your project including yarn, notions, and time estimate.
+- [Color Pooling Calculator](https://fibertools.app/color-pooling-calculator): Calculate the exact stitch count to make variegated yarn pool into argyle and plaid patterns.
 
-### Tier 3 — Specialty Tools
-- [Cross Stitch Size & Thread Calculator](https://fibertools.app/cross-stitch-calculator): Finished dimensions and thread estimates for any fabric count.
-- [Weaving Sett Calculator](https://fibertools.app/weaving-sett-calculator): Sett (EPI) for your yarn and weave structure with warp planning.
-- [Project Cost Calculator](https://fibertools.app/project-cost-calculator): Total project cost including yarn, notions, and time.
-- [Color Pooling Calculator](https://fibertools.app/color-pooling-calculator): Stitch count for variegated yarn pooling into argyle and plaid patterns.
-- [Embroidery Thread Converter](https://fibertools.app/thread-converter): Convert between DMC, Anchor, and Cosmo thread numbers.
+### Spinning
+- [Spinning Ratio Calculator](https://fibertools.app/spinning-ratio-calculator): Calculate drive ratios, twists per inch, and plying ratios for handspinning.
+
+### Weaving
+- [Weaving Sett Calculator](https://fibertools.app/weaving-sett-calculator): Find the right sett (EPI) for your yarn and weave structure, plus warp length and reed substitution.
+
+### Cross Stitch
+- [Cross Stitch Calculator](https://fibertools.app/cross-stitch-calculator): Calculate finished dimensions for any fabric count and estimate thread amounts per color.
+
+### Embroidery
+- [Thread Converter](https://fibertools.app/thread-converter): Convert between DMC, Anchor, Cosmo, and Sulky embroidery thread numbers.
 
 ## Blog
-- [Guides & Tutorials](https://fibertools.app/blog): Fiber arts tips, how-tos, and tool guides.
+
+Guides and tutorials about fiber arts techniques, yarn selection, and project planning are available at https://fibertools.app/blog.

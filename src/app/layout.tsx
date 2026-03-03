@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import InstallPrompt from "@/components/InstallPrompt";
 import CookieConsent from "@/components/CookieConsent";
+import { OrganizationSchema } from "@/components/StructuredData";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -17,6 +19,7 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://fibertools.app"),
   title: {
@@ -25,6 +28,9 @@ export const metadata: Metadata = {
   },
   description:
     "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery. Yarn calculator, needle converter, gauge calculator, and more. No login. Works offline.",
+  icons: {
+    icon: "/favicon.svg",
+  },
   keywords: [
     "yarn calculator",
     "knitting calculator",
@@ -72,36 +78,22 @@ export const metadata: Metadata = {
     },
   },
 };
+
 const websiteSchema = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://fibertools.app/#website",
-      url: "https://fibertools.app",
-      name: "FiberTools",
-      description: "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery.",
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: "https://fibertools.app/?q={search_term_string}",
-        },
-        "query-input": "required name=search_term_string",
-      },
+  "@type": "WebSite",
+  "@id": "https://fibertools.app/#website",
+  url: "https://fibertools.app",
+  name: "FiberTools",
+  description: "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery.",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://fibertools.app/?q={search_term_string}",
     },
-    {
-      "@type": "Organization",
-      "@id": "https://fibertools.app/#organization",
-      name: "FiberTools",
-      url: "https://fibertools.app",
-      logo: {
-        "@type": "ImageObject",
-        url: "https://fibertools.app/icon-512x512.png",
-      },
-      sameAs: [],
-    },
-  ],
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default function RootLayout({
@@ -118,6 +110,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
+        <OrganizationSchema />
         {/* Google Consent Mode v2 — set defaults BEFORE gtag loads */}
         <Script id="consent-mode-defaults" strategy="beforeInteractive">
           {`

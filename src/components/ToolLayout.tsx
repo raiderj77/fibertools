@@ -3,63 +3,8 @@ import { getToolBySlug, getRelatedTools, CATEGORY_LABELS, CATEGORY_COLORS } from
 import { toolFaqs } from "@/lib/faqs";
 import FAQSection from "./FAQSection";
 import PrintShareButtons from "./PrintShareButtons";
-
-function BreadcrumbSchema({ name, slug }: { name: string; slug: string }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://fibertools.app",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name,
-        item: `https://fibertools.app/${slug}`,
-      },
-    ],
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
-
-function SoftwareApplicationSchema({ name, description, url }: { name: string; description: string; url: string }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name,
-    description,
-    url: `https://fibertools.app/${url}`,
-    applicationCategory: "UtilitiesApplication",
-    operatingSystem: "Any",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    creator: {
-      "@type": "Organization",
-      name: "FiberTools",
-      url: "https://fibertools.app",
-    },
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
+import AdSlot from "./AdSlot";
+import { ToolSchema } from "./StructuredData";
 
 interface ToolLayoutProps {
   slug: string;
@@ -71,20 +16,19 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
   if (!tool) return null;
 
   const related = getRelatedTools(slug, 4);
+  const faqs = toolFaqs[slug] || [];
 
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
-      {/* SoftwareApplication JSON-LD */}
-      <SoftwareApplicationSchema name={tool.name} description={tool.description} url={tool.slug} />
-      {/* BreadcrumbList JSON-LD */}
-      <BreadcrumbSchema name={tool.name} slug={tool.slug} />
+      {/* Structured Data for SEO (SoftwareApplication + FAQPage + BreadcrumbList) */}
+      <ToolSchema tool={tool} faqs={faqs} />
 
       {/* Breadcrumbs */}
-      <nav className="flex items-center gap-2 text-sm text-bark-400 dark:text-bark-500 mb-4">
+      <nav className="flex items-center gap-2 text-sm text-bark-400 dark:text-bark-500 mb-4" aria-label="Breadcrumb">
         <Link href="/" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">
           Home
         </Link>
-        <span>/</span>
+        <span aria-hidden="true">/</span>
         <span className="text-bark-600 dark:text-cream-400">{tool.name}</span>
       </nav>
 
@@ -92,7 +36,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
       <div className="mb-8">
         <div className="flex items-center justify-between gap-3 mb-2">
           <div className="flex items-center gap-3">
-            <span className="text-3xl">{tool.icon}</span>
+            <span className="text-3xl" aria-hidden="true">{tool.icon}</span>
             <h1 className="text-2xl sm:text-3xl font-display font-bold text-bark-800 dark:text-cream-100">
               {tool.name}
             </h1>
@@ -111,6 +55,8 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
 
       {/* === TOOL UI === */}
       {children}
+
+      <AdSlot position="after-tool" />
 
       {/* Related tools */}
       <section className="mt-12">
@@ -134,8 +80,10 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
         </div>
       </section>
 
+      <AdSlot position="mid-content" />
+
       {/* FAQ */}
-      <FAQSection faqs={toolFaqs[slug] || []} toolName={tool.name} />
+      <FAQSection faqs={faqs} toolName={tool.name} />
 
       {/* Project tracking callout */}
       <section className="mt-12">
@@ -169,6 +117,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
         </div>
       </section>
 
+      <AdSlot position="before-footer" />
     </main>
   );
 }

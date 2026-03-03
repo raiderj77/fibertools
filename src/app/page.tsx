@@ -36,12 +36,75 @@ export default function HomePage() {
   const tier2 = tools.filter((t) => t.tier === 2);
   const tier3 = tools.filter((t) => t.tier === 3);
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "FiberTools",
+    url: "https://fibertools.app",
+    logo: "https://fibertools.app/icon-512x512.png",
+    description:
+      "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery.",
+    sameAs: [],
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "FiberTools",
+    url: "https://fibertools.app",
+    description:
+      "Free calculators and references for every fiber crafter. No login required. Works offline.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://fibertools.app/?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+
+  const toolsCollectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Free Fiber Arts Calculators & Tools",
+    url: "https://fibertools.app",
+    description:
+      "A comprehensive collection of free calculators for knitting, crochet, weaving, spinning, and embroidery.",
+    hasPart: tools
+      .filter((t) => t.ready)
+      .map((t) => ({
+        "@type": "WebApplication",
+        name: t.name,
+        url: `https://fibertools.app/${t.slug}`,
+        applicationCategory: "UtilityApplication",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      })),
+  };
+
   return (
     <main>
+      {/* Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(toolsCollectionSchema),
+        }}
+      />
+
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-sage-50 via-cream-50 to-cream-50 dark:from-bark-900 dark:via-bark-900 dark:to-bark-900">
+      <section className="relative overflow-hidden bg-gradient-to-b from-sage-50 via-cream-50 to-cream-50 dark:from-bark-900 dark:via-bark-900 dark:to-bark-900 grain-overlay">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-20 sm:pt-24 sm:pb-28">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-sage-100 dark:bg-sage-900/30 border border-sage-200 dark:border-sage-800 rounded-full text-sm text-sage-700 dark:text-sage-300 mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-sage-500 animate-pulse" />
+              {tools.filter((t) => t.ready).length} free tools — no login required
+            </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight">
               Free tools for
               <span className="text-sage-600 dark:text-sage-400"> every fiber crafter</span>
@@ -69,10 +132,11 @@ export default function HomePage() {
               { icon: "🔒", text: "100% private" },
               { icon: "📴", text: "Works offline" },
               { icon: "🆓", text: "Always free" },
-            ].map(({ icon, text }) => (
+            ].map(({ icon, text }, i) => (
               <span
                 key={text}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/70 dark:bg-bark-800/70 border border-cream-300 dark:border-bark-700 rounded-full text-sm text-bark-600 dark:text-cream-300"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/70 dark:bg-bark-800/70 border border-cream-300 dark:border-bark-700 rounded-full text-sm text-bark-600 dark:text-cream-300 animate-slide-up"
+                style={{ animationDelay: `${0.3 + i * 0.08}s` }}
               >
                 <span>{icon}</span>
                 {text}
@@ -81,9 +145,10 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Decorative yarn ball */}
-        <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-sage-200/30 dark:bg-sage-900/20 blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-rose-200/20 dark:bg-rose-900/10 blur-3xl pointer-events-none" />
+        {/* Decorative shapes */}
+        <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-sage-200/30 dark:bg-sage-900/20 blur-3xl pointer-events-none animate-float" />
+        <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-rose-200/20 dark:bg-rose-900/10 blur-3xl pointer-events-none animate-float" style={{ animationDelay: "3s" }} />
+        <div className="absolute top-1/2 right-1/4 w-32 h-32 rounded-full bg-amber-200/15 dark:bg-amber-900/10 blur-3xl pointer-events-none animate-float" style={{ animationDelay: "1.5s" }} />
       </section>
 
       {/* Tool Grid */}
@@ -158,10 +223,11 @@ export default function HomePage() {
                 title: "No login, ever",
                 desc: "Just use the tools. No accounts, no subscriptions, no email required.",
               },
-            ].map(({ icon, title, desc }) => (
+            ].map(({ icon, title, desc }, i) => (
               <div
                 key={title}
-                className="text-center sm:text-left bg-white dark:bg-bark-800 rounded-2xl p-6 border border-cream-200 dark:border-bark-700"
+                className="text-center sm:text-left bg-white dark:bg-bark-800 rounded-2xl p-6 border border-cream-200 dark:border-bark-700 hover:border-sage-300 dark:hover:border-sage-700 hover:shadow-md transition-all duration-200 animate-slide-up"
+                style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <span className="text-3xl mb-3 block">{icon}</span>
                 <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-1">
