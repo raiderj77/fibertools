@@ -3,7 +3,7 @@ import ToolLayout from "@/components/ToolLayout";
 import YarnCalculatorTool from "./YarnCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Free Yarn Yardage Calculator",
+  title: "Yarn Yardage Calculator — Free Online",
   description:
     "Calculate how much yarn you need for any knitting or crochet project. Enter your gauge and dimensions for instant yardage estimates. Free, no signup.",
   keywords: [

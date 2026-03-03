@@ -3,7 +3,7 @@ import ToolLayout from "@/components/ToolLayout";
 import IncDecCalculatorTool from "./IncDecCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Knitting & Crochet Inc/Dec Calculator",
+  title: "Increase & Decrease Calculator — Free",
   description:
     "Get exact stitch-by-stitch instructions to distribute increases or decreases evenly across any row or round. Free tool for knitting and crochet.",
   keywords: [

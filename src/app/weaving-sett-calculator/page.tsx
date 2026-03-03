@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import WeavingSettCalculatorTool from "./WeavingSettCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Free Weaving Sett & EPI Calculator",
+  title: "Weaving Sett & EPI Calculator — Free",
   description:
-    "Calculate the right sett (ends per inch) for your yarn and weave structure. Warp length calculator with loom waste, shrinkage, and reed substitution.",
+    "Calculate the right sett (EPI) for your yarn and weave structure. Includes warp length, loom waste, and reed substitution. Free, no signup.",
   keywords: [
     "weaving sett calculator", "warp sett chart", "ends per inch calculator",
     "reed substitution chart", "weaving yarn calculator", "how many ends per inch for weaving",

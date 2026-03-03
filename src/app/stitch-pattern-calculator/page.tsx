@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import StitchPatternCalculatorTool from "./StitchPatternCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Stitch Pattern Calculator",
+  title: "Stitch Pattern Calculator — Free Online",
   description:
-    "Find compatible stitch counts for sampler blankets. Enter multiples, calculate the LCM, and browse 50+ stitch patterns. Free online tool.",
+    "Find compatible stitch counts for sampler blankets. Browse 50+ stitch patterns and calculate the LCM instantly. Free — no signup required.",
   keywords: [
     "stitch pattern calculator",
     "crochet stitch multiple calculator",

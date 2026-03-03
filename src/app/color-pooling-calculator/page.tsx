@@ -3,7 +3,7 @@ import ToolLayout from "@/components/ToolLayout";
 import ColorPoolingCalculatorTool from "./ColorPoolingCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Planned Color Pooling Calculator",
+  title: "Color Pooling Calculator — Free Live Preview",
   description:
     "Calculate the exact stitch count for variegated yarn color pooling. Live preview of argyle and plaid patterns before you start. Free, no login needed.",
   keywords: [

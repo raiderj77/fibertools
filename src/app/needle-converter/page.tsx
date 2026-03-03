@@ -3,7 +3,7 @@ import ToolLayout from "@/components/ToolLayout";
 import NeedleConverterTool from "./NeedleConverterTool";
 
 export const metadata: Metadata = {
-  title: "Free Needle & Hook Size Converter",
+  title: "Needle & Hook Size Converter — Free",
   description:
     "Convert knitting needle and crochet hook sizes between US, UK, metric, and Japanese — instantly. Covers all 23 needle sizes and 24 hook sizes. Free.",
   keywords: [

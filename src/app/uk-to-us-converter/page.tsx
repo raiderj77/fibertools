@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import UKToUSConverterTool from "./UKToUSConverterTool";
 
 export const metadata: Metadata = {
-  title: "UK to US Crochet Term Converter",
+  title: "UK to US Crochet Terms — Free Converter",
   description:
-    "Convert UK crochet patterns to US terms and back. Paste your pattern for automatic conversion of abbreviations, vintage terms, and stitch names.",
+    "Instantly convert UK crochet patterns to US terms and back. Paste your pattern for automatic conversion of abbreviations and stitch names. Free.",
   keywords: [
     "uk to us crochet terms",
     "crochet term converter",

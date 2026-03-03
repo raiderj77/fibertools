@@ -3,7 +3,7 @@ import ToolLayout from "@/components/ToolLayout";
 import StripeGeneratorTool from "./StripeGeneratorTool";
 
 export const metadata: Metadata = {
-  title: "Free Stripe Pattern Generator",
+  title: "Stripe Pattern Generator — Free Online",
   description:
     "Generate random or custom stripe patterns with a live color preview. Control widths, color weights, and get per-color yardage estimates. Free, no login.",
   keywords: [

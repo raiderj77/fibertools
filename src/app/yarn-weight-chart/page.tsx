@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import YarnWeightChartTool from "./YarnWeightChartTool";
 
 export const metadata: Metadata = {
-  title: "Yarn Weight Chart & Substitution",
+  title: "Yarn Weight Chart & Substitution — Free",
   description:
-    "Interactive yarn weight chart with US, UK, and Australian names. Check substitution compatibility and browse fiber properties for every yarn type.",
+    "Interactive yarn weight chart with US, UK, and Australian names. Check substitution compatibility and fiber properties. Free, instant — no signup.",
   keywords: [
     "yarn weight chart",
     "yarn weight conversion",
