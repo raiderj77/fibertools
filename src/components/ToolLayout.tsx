@@ -4,6 +4,34 @@ import { toolFaqs } from "@/lib/faqs";
 import FAQSection from "./FAQSection";
 import PrintShareButtons from "./PrintShareButtons";
 
+function BreadcrumbSchema({ name, slug }: { name: string; slug: string }) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://fibertools.app",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name,
+        item: `https://fibertools.app/${slug}`,
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 function SoftwareApplicationSchema({ name, description, url }: { name: string; description: string; url: string }) {
   const schema = {
     "@context": "https://schema.org",
@@ -48,6 +76,8 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
     <main className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
       {/* SoftwareApplication JSON-LD */}
       <SoftwareApplicationSchema name={tool.name} description={tool.description} url={tool.slug} />
+      {/* BreadcrumbList JSON-LD */}
+      <BreadcrumbSchema name={tool.name} slug={tool.slug} />
 
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-2 text-sm text-bark-400 dark:text-bark-500 mb-4">

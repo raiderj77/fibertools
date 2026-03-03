@@ -152,17 +152,20 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "My circle is cupping into a bowl shape. What do I do?", a: "Your tension is too tight. Try going up one hook size, or add 1-2 extra increases per round." },
     { q: "Can I use this for hats?", a: "Yes! A hat crown is a flat circle. Follow this pattern for the top, then stop increasing and work even rounds for the sides." },
     { q: "How big will my circle be?", a: "That depends on your yarn weight and gauge. A 10-round single crochet circle in worsted weight is roughly 5-6 inches across." },
+    { q: "Do I have to use a magic ring to start?", a: "No. You can chain 2 and work 6 single crochets into the second chain from the hook instead. The magic ring method closes the center hole more neatly, but the chain method works just as well and is easier for beginners." },
   ],
   "needle-guide": [
     { q: "What needle should I use to weave in crochet ends?", a: "A tapestry needle (also called a yarn needle). The blunt tip slides between stitches without splitting your yarn." },
     { q: "What is the difference between a tapestry needle and a chenille needle?", a: "Both have large eyes, but a tapestry needle has a blunt tip while a chenille needle is sharp. Use tapestry for yarn work, chenille for piercing tightly woven fabric." },
     { q: "Can I use a regular sewing needle for crochet?", a: "You can in a pinch, but the small eye makes threading yarn difficult and the sharp tip will split your stitches. A tapestry needle is much easier." },
     { q: "What needle do I need to add beads to my crochet?", a: "A beading needle. They are thin enough to fit through seed bead holes. Pre-string your beads onto the yarn before you start crocheting." },
+    { q: "What size tapestry needle should I use for different yarn weights?", a: "Match needle eye size to your yarn thickness. For lace and fingering weight, use a size 18–20 tapestry needle. For DK and worsted, a size 14–16 works well. For bulky and super bulky yarn, use a size 13 or larger. The needle should thread easily without bending the yarn." },
   ],
   "amigurumi-shapes": [
     { q: "What hook size should I use for amigurumi?", a: "Use a hook 1-2 sizes smaller than your yarn label recommends. This creates a tighter fabric that holds stuffing without showing through." },
     { q: "Do I need to join rounds in amigurumi?", a: "No. Most amigurumi is worked in continuous spirals without joining or turning chains. Use a stitch marker to track round starts." },
     { q: "How do I make a bigger sphere?", a: "Increase the number of rounds. More increase rounds before the even section creates a wider sphere. You can also use thicker yarn." },
     { q: "What is sc2tog?", a: "Single crochet two together — a decrease. Insert hook in next stitch, pull up a loop, insert in following stitch, pull up a loop, yarn over and pull through all 3 loops." },
+    { q: "How do I close the last round of amigurumi neatly?", a: "After working all decrease rounds until about 6 stitches remain, stuff the piece firmly. Cut the yarn leaving a 6-inch tail, thread it onto a tapestry needle, and slip through the front loops of the remaining stitches one at a time. Pull tight to close the hole and weave the tail through several stitches on the inside to secure." },
   ],
 };

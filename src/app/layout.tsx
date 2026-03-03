@@ -72,6 +72,38 @@ export const metadata: Metadata = {
     },
   },
 };
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://fibertools.app/#website",
+      url: "https://fibertools.app",
+      name: "FiberTools",
+      description: "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery.",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: "https://fibertools.app/?q={search_term_string}",
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://fibertools.app/#organization",
+      name: "FiberTools",
+      url: "https://fibertools.app",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://fibertools.app/icon-512x512.png",
+      },
+      sameAs: [],
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -82,6 +114,10 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#6b8e6d" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
         {/* Google Consent Mode v2 — set defaults BEFORE gtag loads */}
         <Script id="consent-mode-defaults" strategy="beforeInteractive">
           {`
