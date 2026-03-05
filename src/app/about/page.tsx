@@ -1,16 +1,39 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About FiberTools",
   description:
-    "FiberTools provides free online calculators and references for knitters, crocheters, weavers, spinners, and embroiderers. All tools run in your browser.",
+    "Free crochet and knitting calculators built by a fiber arts maker. No signup, no fees, no data collected. New tools added regularly.",
   alternates: { canonical: "/about" },
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://fibertools.app",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "About",
+      item: "https://fibertools.app/about",
+    },
+  ],
 };
 
 export default function AboutPage() {
   return (
     <main className="max-w-3xl mx-auto px-4 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+
       <h1 className="text-3xl font-bold text-bark-800 dark:text-cream-100 mb-8">
         About FiberTools
       </h1>
@@ -18,80 +41,100 @@ export default function AboutPage() {
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            What We Do
+            Made by a Maker, for Makers
           </h2>
           <p>
-            FiberTools is a free collection of calculators and references built
-            for the fiber arts community. Whether you knit, crochet, weave,
-            spin, or embroider, our tools help you plan projects, convert
-            measurements, and solve the math so you can focus on creating.
+            FiberTools started because I was frustrated. I picked up fiber arts
+            a couple of months ago and quickly realized that the tools and
+            references scattered across the internet were either clunky, buried
+            in ads, or locked behind a signup wall. I wanted something
+            better&mdash;fast, accurate calculators that work the way crafters
+            actually think.
+          </p>
+          <p>So I built them myself.</p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
+            What You&rsquo;ll Find Here
+          </h2>
+          <p>
+            FiberTools is a growing collection of{" "}
+            <strong>free calculators and references</strong> for crochet,
+            knitting, weaving, spinning, and embroidery:
+          </p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>
+              <strong>Yarn &amp; fiber</strong> &mdash; yarn weight, yardage
+              estimates, fiber content
+            </li>
+            <li>
+              <strong>Gauge &amp; sizing</strong> &mdash; gauge calculators,
+              blanket sizing, hat sizing
+            </li>
+            <li>
+              <strong>Needles &amp; hooks</strong> &mdash; size converters, hook
+              guides, needle comparisons
+            </li>
+            <li>
+              <strong>Specialty crafts</strong> &mdash; weaving sett, spinning
+              ratios, tapestry planning
+            </li>
+            <li>
+              <strong>Stitch tools</strong> &mdash; stitch counters,
+              increase/decrease calculators
+            </li>
+          </ul>
+          <p>
+            New tools are added regularly, and I&rsquo;m always looking for
+            ideas on what to build next.
           </p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            How It Works
+            How I Build
           </h2>
-          <ul className="list-disc pl-6 space-y-1">
+          <ul className="list-disc pl-6 space-y-2">
             <li>
-              <strong>100% client-side.</strong> Every calculation runs in your
-              browser. Your data never leaves your device.
+              <strong>Accuracy first.</strong> Fiber arts math matters. I
+              double-check every formula and test with real-world values.
             </li>
             <li>
-              <strong>Works offline.</strong> Once loaded, the tools work without
-              an internet connection.
+              <strong>No gatekeeping.</strong> No signup walls, no premium tiers,
+              no email harvesting. Open the page, use the tool.
             </li>
             <li>
-              <strong>No account required.</strong> No signup, no login, no
-              tracking of your projects.
+              <strong>Mobile-ready.</strong> Most of us reach for our phone
+              mid-project. Every tool works on any screen size.
             </li>
             <li>
-              <strong>Mobile-first.</strong> Designed to work on your phone at
-              the yarn store or on the couch.
+              <strong>Privacy by design.</strong> All calculations happen in your
+              browser. I don&rsquo;t collect or store your project data.
             </li>
           </ul>
         </section>
 
-        <section>
+        <section id="contact">
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Our Tools
+            Get in Touch
           </h2>
           <p>
-            We offer 15+ tools covering yarn yardage calculation, needle and
-            hook size conversion, gauge calculation, blanket sizing, stitch
-            counting, stripe pattern generation, spinning ratios, weaving sett,
-            cross stitch sizing, thread conversion, and more. See the full list
-            on our{" "}
-            <Link
-              href="/"
-              className="text-sage-600 dark:text-sage-400 underline"
-            >
-              homepage
-            </Link>
-            .
+            Have a suggestion, found a bug, or want to request a new tool?
+            I&rsquo;d love to hear from you. Your feedback is what makes
+            FiberTools better for everyone.
           </p>
-        </section>
-
-        <section>
-          <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Contact
-          </h2>
           <p>
-            Have a question, suggestion, or bug report? Reach us at{" "}
+            <strong>Email:</strong>{" "}
             <a
               href="mailto:hello@fibertools.app"
               className="text-sage-600 dark:text-sage-400 underline"
             >
               hello@fibertools.app
-            </a>{" "}
-            or visit our{" "}
-            <Link
-              href="/contact"
-              className="text-sage-600 dark:text-sage-400 underline"
-            >
-              contact page
-            </Link>
-            .
+            </a>
+          </p>
+          <p>
+            I read every message and do my best to respond within a few days.
           </p>
         </section>
       </div>
