@@ -20,10 +20,10 @@ function JsonLd({ data }: JsonLdProps) {
 }
 
 /**
- * WebApplication schema — for tool pages.
- * Tells Google this page is a web app, not just a blog post.
+ * SoftwareApplication schema — for tool pages.
+ * Tells Google this page is a software application, not just a blog post.
  */
-export function WebAppSchema({
+export function SoftwareAppSchema({
   name,
   description,
   url,
@@ -36,12 +36,12 @@ export function WebAppSchema({
     <JsonLd
       data={{
         "@context": "https://schema.org",
-        "@type": "WebApplication",
+        "@type": "SoftwareApplication",
         name,
         description,
         url,
-        applicationCategory: "UtilityApplication",
-        operatingSystem: "All",
+        applicationCategory: "UtilitiesApplication",
+        operatingSystem: "Web",
         offers: {
           "@type": "Offer",
           price: "0",
@@ -128,7 +128,7 @@ export function ToolSchema({ tool, faqs }: { tool: Tool; faqs: Array<{ q: string
   
   return (
     <>
-      <WebAppSchema
+      <SoftwareAppSchema
         name={tool.name}
         description={tool.description}
         url={`${SITE_URL}/${tool.slug}`}

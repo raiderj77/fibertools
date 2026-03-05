@@ -20,7 +20,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
 
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
-      {/* Structured Data for SEO (SoftwareApplication + FAQPage + BreadcrumbList) */}
+      {/* Structured Data: SoftwareApplication + FAQPage + BreadcrumbList */}
       <ToolSchema tool={tool} faqs={faqs} />
 
       {/* Breadcrumbs */}
