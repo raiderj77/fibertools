@@ -36,9 +36,25 @@ FiberTools is a suite of free, browser-based calculators and references for fibe
 ### Embroidery
 - [Thread Converter](https://fibertools.app/thread-converter): Convert between DMC, Anchor, Cosmo, and Sulky embroidery thread numbers.
 
-## Blog
+## Blog Posts
 
-Guides and tutorials about fiber arts techniques, yarn selection, and project planning are available at https://fibertools.app/blog.
+- [How Much Yarn Do I Need?](https://fibertools.app/blog/yarn-calculator-guide): The complete guide to calculating yarn for any project — blankets, sweaters, scarves, and more.
+- [Knitting Needle & Crochet Hook Size Chart](https://fibertools.app/blog/needle-size-chart-guide): US, Metric, UK & Japanese size conversion chart for needles and hooks.
+- [How to Calculate and Adjust Gauge](https://fibertools.app/blog/gauge-calculator-guide): Why gauge matters, how to measure it, and how to resize patterns.
+- [Yarn Weight Chart](https://fibertools.app/blog/yarn-weight-chart-guide): From lace to jumbo with needle sizes and gauge ranges.
+- [How to Count Stitches and Rows](https://fibertools.app/blog/stitch-counter-guide): Tips for accurate stitch and row tracking in knitting and crochet.
+- [Blanket Size Guide](https://fibertools.app/blog/blanket-size-guide): Standard dimensions for baby, throw, and bed blankets.
+- [How to Increase and Decrease Evenly](https://fibertools.app/blog/increase-decrease-guide): The math made easy for distributing increases or decreases across a row.
+- [How to Plan Stripe Patterns](https://fibertools.app/blog/stripe-pattern-guide): Random, weighted, and sequence stripes with yardage planning.
+- [Knitting and Crochet Abbreviations](https://fibertools.app/blog/knitting-abbreviations-guide): The complete reference guide to abbreviations.
+- [Spinning Wheel Ratios Explained](https://fibertools.app/blog/spinning-wheel-guide): How to calculate drive ratio and TPI for handspinning.
+- [Cross Stitch Fabric Calculator](https://fibertools.app/blog/cross-stitch-fabric-guide): How to figure out the right size Aida cloth.
+- [How to Calculate Sett for Weaving](https://fibertools.app/blog/weaving-sett-guide): EPI guide for every yarn weight.
+- [How Much Does It Cost to Crochet a Blanket?](https://fibertools.app/blog/project-cost-guide): The honest price breakdown for handmade projects.
+- [Color Pooling Calculator Guide](https://fibertools.app/blog/color-pooling-guide): How to plan pooling with variegated yarn.
+- [DMC to Anchor Thread Conversion](https://fibertools.app/blog/thread-conversion-guide): The complete searchable embroidery thread conversion chart.
+- [Stitch Multiples for Sampler Blankets](https://fibertools.app/blog/stitch-multiples-sampler-blanket-guide): How to calculate compatible stitch counts for sampler blankets.
+- [Crochet Stitch Quick Reference](https://fibertools.app/blog/crochet-stitch-quick-reference-guide): Yarn overs, pull-throughs, and turning chains explained.
 
 ## Guides
 

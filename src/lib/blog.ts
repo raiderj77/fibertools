@@ -250,6 +250,24 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
+export function getBlogPostByToolSlug(toolSlug: string): BlogPost | undefined {
+  return blogPosts.find((p) => p.toolSlug === toolSlug);
+}
+
+export function getRelatedBlogPosts(currentSlug: string, count = 4): BlogPost[] {
+  const current = getBlogPost(currentSlug);
+  if (!current) return blogPosts.slice(0, count);
+  const currentTool = current.toolSlug;
+  return blogPosts
+    .filter((p) => p.slug !== currentSlug)
+    .sort((a, b) => {
+      const aScore = a.toolSlug === currentTool ? 10 : 0;
+      const bScore = b.toolSlug === currentTool ? 10 : 0;
+      return bScore - aScore;
+    })
+    .slice(0, count);
+}
+
 export function getBlogPost(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);
 }

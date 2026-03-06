@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { blogPosts, getBlogPost } from "@/lib/blog";
+import { blogPosts, getBlogPost, getRelatedBlogPosts } from "@/lib/blog";
+import { getGuideByToolSlug } from "@/lib/guides";
 import { getToolBySlug } from "@/lib/tools";
 
 // Generate all blog paths at build time
@@ -34,15 +35,29 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
 
   const tool = getToolBySlug(post.toolSlug);
 
+  const companionGuide = getGuideByToolSlug(post.toolSlug);
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.description,
     datePublished: post.date,
-    author: { "@type": "Organization", name: "FiberTools" },
+    url: `https://fibertools.app/blog/${post.slug}`,
+    mainEntityOfPage: `https://fibertools.app/blog/${post.slug}`,
+    author: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     keywords: post.keywords.join(", "),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://fibertools.app" },
+      { "@type": "ListItem", position: 2, name: "Guides", item: "https://fibertools.app/blog" },
+      { "@type": "ListItem", position: 3, name: post.title },
+    ],
   };
 
   return (
@@ -50,6 +65,10 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Breadcrumbs */}
@@ -109,34 +128,56 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
         </div>
       )}
 
+      {/* Companion guide */}
+      {companionGuide && (
+        <section className="mt-12">
+          <h2 className="text-xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
+            Related Guide
+          </h2>
+          <Link
+            href={`/guides/${companionGuide.slug}`}
+            className="tool-card group block"
+          >
+            <div className="flex items-start gap-3">
+              <span className="text-2xl flex-shrink-0">📖</span>
+              <div>
+                <h3 className="font-medium text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
+                  {companionGuide.title}
+                </h3>
+                <p className="text-sm text-bark-400 dark:text-bark-500 mt-1 line-clamp-2">
+                  {companionGuide.description}
+                </p>
+              </div>
+            </div>
+          </Link>
+        </section>
+      )}
+
       {/* Related posts */}
       <section className="mt-12">
         <h2 className="text-xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
           More Guides
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {blogPosts
-            .filter((p) => p.slug !== post.slug)
-            .slice(0, 4)
-            .map((p) => {
-              const t = getToolBySlug(p.toolSlug);
-              return (
-                <Link
-                  key={p.slug}
-                  href={`/blog/${p.slug}`}
-                  className="tool-card group"
-                >
-                  <div className="flex items-start gap-3">
-                    {t && <span className="text-2xl flex-shrink-0">{t.icon}</span>}
-                    <div>
-                      <h3 className="text-sm font-medium text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors line-clamp-2">
-                        {p.title}
-                      </h3>
-                    </div>
+          {getRelatedBlogPosts(post.slug, 4).map((p) => {
+            const t = getToolBySlug(p.toolSlug);
+            return (
+              <Link
+                key={p.slug}
+                href={`/blog/${p.slug}`}
+                className="tool-card group"
+              >
+                <div className="flex items-start gap-3">
+                  {t && <span className="text-2xl flex-shrink-0">{t.icon}</span>}
+                  <div>
+                    <h3 className="text-sm font-medium text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors line-clamp-2">
+                      {p.title}
+                    </h3>
                   </div>
-                </Link>
-              );
-            })}
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
     </main>

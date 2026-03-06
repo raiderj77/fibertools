@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { tools, CATEGORY_LABELS, CATEGORY_COLORS, type Tool } from "@/lib/tools";
+import { tools, CATEGORY_LABELS, CATEGORY_COLORS, type Tool, getToolBySlug } from "@/lib/tools";
+import { blogPosts } from "@/lib/blog";
+import { getAllGuides } from "@/lib/guides";
 
 function ToolCard({ tool }: { tool: Tool }) {
   return (
@@ -192,6 +194,56 @@ export default function HomePage() {
               <ToolCard key={tool.slug} tool={tool} />
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Latest Guides & Tutorials */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100">
+            Guides & Tutorials
+          </h2>
+          <Link href="/blog" className="text-sm text-sage-600 dark:text-sage-400 hover:underline font-medium">
+            View all →
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {blogPosts.slice(0, 3).map((post) => {
+            const tool = getToolBySlug(post.toolSlug);
+            return (
+              <Link key={post.slug} href={`/blog/${post.slug}`} className="tool-card group">
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-2">
+                    {tool && <span className="text-2xl">{tool.icon}</span>}
+                    <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-bark-500 dark:text-bark-400 line-clamp-2">
+                    {post.description}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
+          {getAllGuides().slice(0, 3).map((guide) => {
+            const tool = getToolBySlug(guide.toolSlug);
+            return (
+              <Link key={guide.slug} href={`/guides/${guide.slug}`} className="tool-card group">
+                <div className="flex flex-col gap-3">
+                  <div className="flex items-center gap-2">
+                    {tool && <span className="text-2xl">{tool.icon}</span>}
+                    <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors line-clamp-2">
+                      {guide.title}
+                    </h3>
+                  </div>
+                  <p className="text-xs text-bark-500 dark:text-bark-400 line-clamp-2">
+                    {guide.description}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 

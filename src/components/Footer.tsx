@@ -70,6 +70,11 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/blog" className="text-sm text-bark-500 dark:text-bark-400 hover:text-sage-600 dark:hover:text-sage-400 transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/guides" className="text-sm text-bark-500 dark:text-bark-400 hover:text-sage-600 dark:hover:text-sage-400 transition-colors">
                   Guides &amp; Tutorials
                 </Link>
               </li>

@@ -315,6 +315,10 @@ export const guides: Guide[] = [
   }
 ];
 
+export function getGuideByToolSlug(toolSlug: string): Guide | undefined {
+  return guides.find((g) => g.toolSlug === toolSlug);
+}
+
 export function getGuideBySlug(slug: string): Guide | undefined {
   return guides.find((guide) => guide.slug === slug);
 }

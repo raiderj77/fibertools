@@ -2,6 +2,8 @@ import Link from "next/link";
 import { getToolBySlug, getRelatedTools, CATEGORY_LABELS, CATEGORY_COLORS } from "@/lib/tools";
 import { toolFaqs } from "@/lib/faqs";
 import { toolContent } from "@/lib/toolContent";
+import { getBlogPostByToolSlug } from "@/lib/blog";
+import { getGuideByToolSlug } from "@/lib/guides";
 import FAQSection from "./FAQSection";
 import PrintShareButtons from "./PrintShareButtons";
 import AdSlot from "./AdSlot";
@@ -19,6 +21,8 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
   const related = getRelatedTools(slug, 4);
   const faqs = toolFaqs[slug] || [];
   const content = toolContent[slug];
+  const companionBlog = getBlogPostByToolSlug(slug);
+  const companionGuide = getGuideByToolSlug(slug);
 
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
@@ -93,6 +97,51 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
             </ul>
           </section>
         </>
+      )}
+
+      {/* Companion guides */}
+      {(companionBlog || companionGuide) && (
+        <section className="mt-12">
+          <h2 className="section-heading">Learn More</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {companionBlog && (
+              <Link
+                href={`/blog/${companionBlog.slug}`}
+                className="tool-card group"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl flex-shrink-0">📝</span>
+                  <div>
+                    <h3 className="font-medium text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
+                      {companionBlog.title}
+                    </h3>
+                    <p className="text-sm text-bark-400 dark:text-bark-500 mt-1 line-clamp-2">
+                      {companionBlog.description}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            )}
+            {companionGuide && (
+              <Link
+                href={`/guides/${companionGuide.slug}`}
+                className="tool-card group"
+              >
+                <div className="flex items-start gap-3">
+                  <span className="text-2xl flex-shrink-0">📖</span>
+                  <div>
+                    <h3 className="font-medium text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
+                      {companionGuide.title}
+                    </h3>
+                    <p className="text-sm text-bark-400 dark:text-bark-500 mt-1 line-clamp-2">
+                      {companionGuide.description}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            )}
+          </div>
+        </section>
       )}
 
       {/* Related tools */}

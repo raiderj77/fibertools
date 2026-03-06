@@ -113,6 +113,9 @@ export default function Header() {
             </div>
 
             <Link href="/blog" className="px-4 py-2 text-sm font-medium text-bark-600 dark:text-cream-300 hover:text-sage-600 dark:hover:text-sage-400 transition-colors">
+              Blog
+            </Link>
+            <Link href="/guides" className="px-4 py-2 text-sm font-medium text-bark-600 dark:text-cream-300 hover:text-sage-600 dark:hover:text-sage-400 transition-colors">
               Guides
             </Link>
           </nav>
@@ -193,6 +196,22 @@ export default function Header() {
                 {tool.shortName}
               </Link>
             ))}
+            <div className="border-t border-cream-200 dark:border-bark-700 mt-3 pt-3">
+              <Link
+                href="/blog"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-3 px-3 py-2.5 text-base font-medium text-bark-600 dark:text-cream-300 hover:bg-sage-50 dark:hover:bg-sage-900/20 rounded-lg transition-colors"
+              >
+                Blog
+              </Link>
+              <Link
+                href="/guides"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-3 px-3 py-2.5 text-base font-medium text-bark-600 dark:text-cream-300 hover:bg-sage-50 dark:hover:bg-sage-900/20 rounded-lg transition-colors"
+              >
+                Guides
+              </Link>
+            </div>
           </nav>
         )}
       </div>

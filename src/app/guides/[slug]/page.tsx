@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getGuideBySlug, getAllGuides } from "@/lib/guides";
+import { getBlogPostByToolSlug } from "@/lib/blog";
 import { getToolBySlug } from "@/lib/tools";
 
 // Generate all guide paths at build time
@@ -35,15 +36,29 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
 
   const tool = getToolBySlug(guide.toolSlug);
 
+  const companionBlog = getBlogPostByToolSlug(guide.toolSlug);
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: guide.title,
     description: guide.description,
     datePublished: guide.date,
-    author: { "@type": "Organization", name: "FiberTools" },
+    url: `https://fibertools.app/guides/${guide.slug}`,
+    mainEntityOfPage: `https://fibertools.app/guides/${guide.slug}`,
+    author: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     keywords: guide.keywords.join(", "),
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://fibertools.app" },
+      { "@type": "ListItem", position: 2, name: "Guides", item: "https://fibertools.app/guides" },
+      { "@type": "ListItem", position: 3, name: guide.title },
+    ],
   };
 
   return (
@@ -51,6 +66,10 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Breadcrumbs */}
@@ -108,6 +127,31 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
             {tool.icon} Open {tool.shortName}
           </Link>
         </div>
+      )}
+
+      {/* Companion blog post */}
+      {companionBlog && (
+        <section className="mt-12">
+          <h2 className="text-xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
+            Related Tutorial
+          </h2>
+          <Link
+            href={`/blog/${companionBlog.slug}`}
+            className="tool-card group block"
+          >
+            <div className="flex items-start gap-3">
+              <span className="text-2xl flex-shrink-0">📝</span>
+              <div>
+                <h3 className="font-medium text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
+                  {companionBlog.title}
+                </h3>
+                <p className="text-sm text-bark-400 dark:text-bark-500 mt-1 line-clamp-2">
+                  {companionBlog.description}
+                </p>
+              </div>
+            </div>
+          </Link>
+        </section>
       )}
 
       {/* Related guides */}
