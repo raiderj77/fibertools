@@ -1,13 +1,9 @@
-const CACHE_NAME = 'privacy-toolkit-v1';
+const CACHE_NAME = 'fibertools-v2';
 const STATIC_ASSETS = [
-  '/',
-  '/index.html',
-  '/assets/css/main.css',
-  '/assets/js/app.js',
   '/manifest.json'
 ];
 
-// Install — cache core shell
+// Install — cache core shell and take over immediately
 self.addEventListener('install', (e) => {
   e.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(STATIC_ASSETS))
@@ -15,7 +11,7 @@ self.addEventListener('install', (e) => {
   self.skipWaiting();
 });
 
-// Activate — clean old caches
+// Activate — clean old caches (including legacy 'privacy-toolkit-v1')
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys().then((keys) =>
@@ -25,24 +21,42 @@ self.addEventListener('activate', (e) => {
   self.clients.claim();
 });
 
-// Fetch — network-first for API calls, cache-first for static assets
+// Fetch strategy:
+// - Navigation requests (HTML pages): network-first with cache fallback
+// - Static assets (JS, CSS, images): stale-while-revalidate
+// - External requests: network-only
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
 
-  // Network-first for external APIs
-  if (url.origin !== location.origin) {
+  // Skip non-GET requests
+  if (e.request.method !== 'GET') return;
+
+  // External requests — network only, no caching
+  if (url.origin !== location.origin) return;
+
+  // Navigation requests (HTML pages) — always network-first
+  // This ensures users always see the latest content on page load
+  if (e.request.mode === 'navigate') {
     e.respondWith(
-      fetch(e.request).catch(() => caches.match(e.request))
+      fetch(e.request)
+        .then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+          return response;
+        })
+        .catch(() => caches.match(e.request))
     );
     return;
   }
 
-  // Cache-first for static assets
+  // Static assets (JS, CSS, fonts, images) — stale-while-revalidate
   e.respondWith(
     caches.match(e.request).then((cached) => {
       const networkFetch = fetch(e.request).then((response) => {
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+        if (response.ok) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(e.request, clone));
+        }
         return response;
       });
       return cached || networkFetch;
