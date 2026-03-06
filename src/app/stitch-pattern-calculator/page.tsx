@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     "crochet row repeat calculator",
     "stitch compatibility calculator",
   ],
+  alternates: { canonical: "/stitch-pattern-calculator" },
 };
 
 export default function StitchPatternCalculatorPage() {

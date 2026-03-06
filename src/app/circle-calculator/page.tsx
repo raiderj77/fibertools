@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "crochet circle instructions",
     "flat circle increase calculator",
   ],
+  alternates: { canonical: "/circle-calculator" },
 };
 
 export default function CircleCalculatorPage() {

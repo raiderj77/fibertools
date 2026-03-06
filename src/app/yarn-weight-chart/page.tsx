@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "wool vs cotton yarn",
     "yarn weight comparison",
   ],
+  alternates: { canonical: "/yarn-weight-chart" },
 };
 
 export default function YarnWeightChartPage() {

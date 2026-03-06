@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "needle size chart printable",
     "hook size chart",
   ],
+  alternates: { canonical: "/needle-converter" },
 };
 
 export default function NeedleConverterPage() {

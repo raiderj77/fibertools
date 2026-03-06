@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Guides & Tutorials — Fiber Arts Tips and How-Tos",
   description:
     "Free guides for knitting, crochet, weaving, spinning, and embroidery. Learn yarn calculation, gauge, needle sizing, and more.",
+  alternates: { canonical: "/blog" },
 };
 
 export default function BlogIndexPage() {

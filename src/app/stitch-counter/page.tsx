@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "row tracker knitting",
     "knitting row counter",
   ],
+  alternates: { canonical: "/stitch-counter" },
 };
 
 export default function StitchCounterPage() {

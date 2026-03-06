@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "sc2tog meaning", "ssk knitting abbreviation", "UK dc vs US dc crochet",
     "list of knitting abbreviations", "crochet terms glossary", "knitting stitch glossary",
   ],
+  alternates: { canonical: "/abbreviation-glossary" },
 };
 
 export default function AbbreviationGlossaryPage() {

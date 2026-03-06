@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "chenille needle uses",
     "tapestry needle uses",
   ],
+  alternates: { canonical: "/needle-guide" },
 };
 
 export default function NeedleGuidePage() {

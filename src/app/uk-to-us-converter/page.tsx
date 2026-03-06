@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "crochet term differences",
     "uk vs us crochet stitches",
   ],
+  alternates: { canonical: "/uk-to-us-converter" },
 };
 
 export default function UKToUSConverterPage() {

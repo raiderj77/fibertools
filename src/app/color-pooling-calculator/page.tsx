@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     "planned pooling argyle", "color pooling foundation chain",
     "planned pooling calculator", "yarn pooling pattern generator",
   ],
+  alternates: { canonical: "/color-pooling-calculator" },
 };
 
 export default function ColorPoolingCalculatorPage() {

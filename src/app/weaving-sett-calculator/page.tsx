@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "warp calculator weaving", "how to calculate warp length", "rigid heddle sett guide",
     "weaving EPI calculator", "warp length calculator",
   ],
+  alternates: { canonical: "/weaving-sett-calculator" },
 };
 
 export default function WeavingSettCalculatorPage() {

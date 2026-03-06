@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "aida 14 count how big", "cross stitch thread amount calculator", "how much floss do I need",
     "cross stitch finished size", "cross stitch fabric estimator",
   ],
+  alternates: { canonical: "/cross-stitch-calculator" },
 };
 
 export default function CrossStitchCalculatorPage() {

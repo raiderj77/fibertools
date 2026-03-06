@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     "magic ring instructions",
     "crochet stitches for beginners",
   ],
+  alternates: { canonical: "/stitch-quick-reference" },
 };
 
 export default function StitchQuickReferencePage() {

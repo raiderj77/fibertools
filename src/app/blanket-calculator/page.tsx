@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     "blanket yarn calculator", "crochet blanket calculator",
     "knitting blanket size guide", "blanket stitch count",
   ],
+  alternates: { canonical: "/blanket-calculator" },
 };
 
 export default function BlanketCalculatorPage() {

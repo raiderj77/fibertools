@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "stripe sequence generator", "color order for striped blanket", "scrap yarn stripe pattern",
     "stash busting stripe generator", "stripe planner knitting",
   ],
+  alternates: { canonical: "/stripe-generator" },
 };
 
 export default function StripeGeneratorPage() {

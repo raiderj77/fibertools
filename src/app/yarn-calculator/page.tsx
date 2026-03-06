@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "blanket yarn calculator",
     "crochet blanket yarn needed",
   ],
+  alternates: { canonical: "/yarn-calculator" },
 };
 
 export default function YarnCalculatorPage() {

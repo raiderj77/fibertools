@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "distribute decreases crochet", "increase 10 stitches evenly", "knitting math increase",
     "crochet increase calculator", "even decrease calculator", "stitch distribution calculator",
   ],
+  alternates: { canonical: "/increase-decrease-calculator" },
 };
 
 export default function IncDecCalculatorPage() {

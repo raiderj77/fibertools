@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "crochet round shapes",
     "amigurumi pattern generator",
   ],
+  alternates: { canonical: "/amigurumi-shapes" },
 };
 
 export default function AmigurumiShapesPage() {

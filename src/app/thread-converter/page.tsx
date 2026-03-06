@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     "embroidery thread converter online", "cross stitch thread conversion",
     "DMC anchor cosmo chart",
   ],
+  alternates: { canonical: "/thread-converter" },
 };
 
 export default function ThreadConverterPage() {

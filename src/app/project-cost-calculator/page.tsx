@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     "how much does it cost to knit a sweater", "yarn budget planner",
     "handmade pricing calculator", "craft project cost",
   ],
+  alternates: { canonical: "/project-cost-calculator" },
 };
 
 export default function ProjectCostCalculatorPage() {

@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     "plying twist calculator", "wraps per inch spinning",
     "handspinning calculator", "spinning fiber guide",
   ],
+  alternates: { canonical: "/spinning-ratio-calculator" },
 };
 
 export default function SpinningCalculatorPage() {

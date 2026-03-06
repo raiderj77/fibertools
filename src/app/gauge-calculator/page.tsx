@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     "gauge swatch calculator",
     "knitting math calculator",
   ],
+  alternates: { canonical: "/gauge-calculator" },
 };
 
 export default function GaugeCalculatorPage() {

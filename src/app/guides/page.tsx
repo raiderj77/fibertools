@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     "crochet hook sizes",
     "knitting needle conversion",
   ],
+  alternates: { canonical: "/guides" },
 };
 
 export default function GuidesPage() {
