@@ -39,3 +39,14 @@ FiberTools is a suite of free, browser-based calculators and references for fibe
 ## Blog
 
 Guides and tutorials about fiber arts techniques, yarn selection, and project planning are available at https://fibertools.app/blog.
+
+## Guides
+
+- [How to Read a Yarn Label](https://fibertools.app/guides/reading-yarn-labels): Complete guide to yarn weight symbols, care instructions, dye lots, and gauge information on yarn labels.
+- [Knitting Gauge: Why It Matters](https://fibertools.app/guides/knitting-gauge-guide): How to make a gauge swatch, block it, measure it, and resize patterns when your gauge doesn't match.
+- [How Much Yarn for a Blanket?](https://fibertools.app/guides/blanket-yarn-guide): Yardage estimates by blanket size and yarn weight, from baby blankets to king-size bedspreads.
+- [Knitting Needle Sizes Explained](https://fibertools.app/guides/needle-sizes-guide): US, UK, and metric needle sizing systems explained, plus how to identify unlabeled needles.
+- [UK vs US Crochet Terms](https://fibertools.app/guides/uk-us-crochet-terms-guide): Complete conversion guide between UK and US crochet terminology with full chart.
+- [What is WPI and How to Measure It](https://fibertools.app/guides/wpi-guide): How wraps per inch works, how to measure it, and WPI ranges for every yarn weight category.
+- [How to Price Handmade Knitting and Crochet](https://fibertools.app/guides/pricing-handmade-guide): Calculate the real cost of handmade items including materials, time, and pricing for commissions.
+- [Beginner's Guide to Amigurumi](https://fibertools.app/guides/amigurumi-beginners-guide): Shapes, sizes, and math for crochet amigurumi including magic ring, increases, and connecting parts.

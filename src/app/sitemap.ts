@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { tools } from "@/lib/tools";
+import { getAllGuides } from "@/lib/guides";
 
 const BASE_URL = "https://fibertools.app";
 
@@ -22,6 +23,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.6,
     }));
 
+  const guidePages = getAllGuides().map((g) => ({
+    url: `${BASE_URL}/guides/${g.slug}`,
+    lastModified: new Date(g.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
   return [
     {
       url: BASE_URL,
@@ -35,7 +43,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    {
+      url: `${BASE_URL}/guides`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
     ...toolPages,
     ...blogPages,
+    ...guidePages,
   ];
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getToolBySlug, getRelatedTools, CATEGORY_LABELS, CATEGORY_COLORS } from "@/lib/tools";
 import { toolFaqs } from "@/lib/faqs";
+import { toolContent } from "@/lib/toolContent";
 import FAQSection from "./FAQSection";
 import PrintShareButtons from "./PrintShareButtons";
 import AdSlot from "./AdSlot";
@@ -17,6 +18,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
 
   const related = getRelatedTools(slug, 4);
   const faqs = toolFaqs[slug] || [];
+  const content = toolContent[slug];
 
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
@@ -57,6 +59,41 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
       {children}
 
       <AdSlot position="after-tool" />
+
+      {/* Educational content */}
+      {content && (
+        <>
+          <section className="mt-12">
+            <h2 className="section-heading">{content.howToUse.title}</h2>
+            {content.howToUse.paragraphs.map((p, i) => (
+              <p key={i} className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
+                {p}
+              </p>
+            ))}
+          </section>
+
+          <section className="mt-10">
+            <h2 className="section-heading">{content.understandingResults.title}</h2>
+            {content.understandingResults.paragraphs.map((p, i) => (
+              <p key={i} className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
+                {p}
+              </p>
+            ))}
+          </section>
+
+          <section className="mt-10">
+            <h2 className="section-heading">{content.proTips.title}</h2>
+            <ul className="space-y-3">
+              {content.proTips.tips.map((tip, i) => (
+                <li key={i} className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+                  <span className="text-sage-500 dark:text-sage-400 mt-1 flex-shrink-0">&#10003;</span>
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </section>
+        </>
+      )}
 
       {/* Related tools */}
       <section className="mt-12">
