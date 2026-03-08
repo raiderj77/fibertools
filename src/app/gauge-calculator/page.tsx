@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import GaugeCalculatorTool from "./GaugeCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Gauge Calculator & Pattern Resizer — Free",
+  title: "Knitting Gauge Calculator — Stitches Per Inch",
   description:
-    "Calculate gauge from your swatch, resize patterns, and get exact stitch counts for knitting or crochet. Free, instant results — no signup required.",
+    "Enter your swatch measurements and get stitches per inch, row gauge, and resized stitch counts instantly. Free knitting and crochet gauge tool.",
   keywords: [
     "gauge calculator",
     "crochet gauge calculator",

@@ -155,10 +155,10 @@ export function OrganizationSchema() {
         "@type": "Organization",
         name: "FiberTools",
         url: "https://fibertools.app",
-        description: "Free online tools for knitters, crocheters, weavers, and fiber artists.",
+        description: "Free online calculators and tools for knitters, crocheters, weavers, spinners, and fiber artists.",
         logo: "https://fibertools.app/icon-192.png",
         sameAs: [
-          "https://github.com/yourusername/fibertools",
+          "https://github.com/raiderj77/fibertools",
         ],
       }}
     />

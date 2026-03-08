@@ -1,7 +1,9 @@
 # FiberTools — Free Calculators for Knitters, Crocheters & Weavers
 > https://fibertools.app
 
-FiberTools is a suite of free, browser-based calculators and references for fiber arts. All processing happens client-side — no data is sent to any server. No login required. Works offline.
+FiberTools is a suite of 21 free, browser-based calculators and references for fiber arts — knitting, crochet, weaving, spinning, embroidery, and cross stitch. Built with 30+ years of fiber arts expertise to ensure accurate terminology, correct math, and real-world usefulness.
+
+All processing happens client-side — no data is sent to any server. No login required. Works offline. Every tool includes educational content, expert tips, and FAQ sections.
 
 ## Tools
 
@@ -66,3 +68,6 @@ FiberTools is a suite of free, browser-based calculators and references for fibe
 - [What is WPI and How to Measure It](https://fibertools.app/guides/wpi-guide): How wraps per inch works, how to measure it, and WPI ranges for every yarn weight category.
 - [How to Price Handmade Knitting and Crochet](https://fibertools.app/guides/pricing-handmade-guide): Calculate the real cost of handmade items including materials, time, and pricing for commissions.
 - [Beginner's Guide to Amigurumi](https://fibertools.app/guides/amigurumi-beginners-guide): Shapes, sizes, and math for crochet amigurumi including magic ring, increases, and connecting parts.
+
+## About
+- [About FiberTools](https://fibertools.app/about): Learn about FiberTools and the fiber arts expertise behind these calculators.

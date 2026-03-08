@@ -63,11 +63,20 @@ export const metadata: Metadata = {
     description:
       "Free online calculators and tools for all fiber arts. No login required. Works offline.",
     url: "https://fibertools.app",
+    images: [
+      {
+        url: "https://fibertools.app/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "FiberTools — Free Calculators for Knitters, Crocheters & Weavers",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "FiberTools — Free Calculators for Fiber Crafters",
     description: "Free yarn calculators, gauge tools, needle converters & more. No login. Works offline.",
+    images: ["https://fibertools.app/og-image.png"],
   },
   robots: {
     index: true,
@@ -146,8 +155,11 @@ export default function RootLayout({
         />
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-sage-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+          Skip to main content
+        </a>
         <Header />
-        <div className="flex-1">{children}</div>
+        <div id="main-content" className="flex-1">{children}</div>
         <Footer />
         <ServiceWorkerRegistration />
         <InstallPrompt />

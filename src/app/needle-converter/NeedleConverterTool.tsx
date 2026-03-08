@@ -160,12 +160,14 @@ export default function NeedleConverterTool() {
             onChange={(e) => setSearch(e.target.value)}
             placeholder={tab === "needles" ? 'Search: "8", "5mm", "worsted"…' : 'Search: "H", "5mm", "DK"…'}
             className="input pl-10"
+            aria-label={tab === "needles" ? "Search needle sizes" : "Search hook sizes"}
           />
           {search && (
             <button
               type="button"
               onClick={() => setSearch("")}
               className="absolute right-3 top-1/2 -translate-y-1/2 text-bark-400 hover:text-bark-600 dark:hover:text-cream-300"
+              aria-label="Clear search"
             >
               ✕
             </button>

@@ -3,29 +3,6 @@
 import { useState } from "react";
 import type { FAQ } from "@/lib/faqs";
 
-function FAQSchema({ faqs, toolName }: { faqs: FAQ[]; toolName: string }) {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    name: toolName,
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: f.a,
-      },
-    })),
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
-
 function FAQItem({ faq }: { faq: FAQ }) {
   const [open, setOpen] = useState(false);
 
@@ -58,12 +35,11 @@ function FAQItem({ faq }: { faq: FAQ }) {
   );
 }
 
-export default function FAQSection({ faqs, toolName }: { faqs: FAQ[]; toolName: string }) {
+export default function FAQSection({ faqs }: { faqs: FAQ[] }) {
   if (!faqs || faqs.length === 0) return null;
 
   return (
     <section className="mt-12">
-      <FAQSchema faqs={faqs} toolName={toolName} />
       <h2 className="section-heading">Frequently Asked Questions</h2>
       <div className="bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700 px-6">
         {faqs.map((faq, i) => (

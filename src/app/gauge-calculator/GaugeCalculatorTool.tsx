@@ -283,6 +283,7 @@ export default function GaugeCalculatorTool() {
                     );
                   }}
                   className="btn-secondary text-sm"
+                  aria-label="Copy gauge to clipboard"
                 >
                   📋 Copy gauge
                 </button>

@@ -53,10 +53,13 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
           <span className={`inline-block px-2.5 py-0.5 text-xs font-medium rounded-full ${CATEGORY_COLORS[tool.category]}`}>
             {CATEGORY_LABELS[tool.category]}
           </span>
-          <p className="text-bark-500 dark:text-bark-400 text-sm">
-            {tool.description}
+          <p className="text-xs text-bark-400 dark:text-bark-500">
+            Last updated: March 2026
           </p>
         </div>
+        <p className="text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed mt-3">
+          {tool.description}
+        </p>
       </div>
 
       {/* === TOOL UI === */}
@@ -87,17 +90,47 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
 
           <section className="mt-10">
             <h2 className="section-heading">{content.proTips.title}</h2>
-            <ul className="space-y-3">
-              {content.proTips.tips.map((tip, i) => (
-                <li key={i} className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
-                  <span className="text-sage-500 dark:text-sage-400 mt-1 flex-shrink-0">&#10003;</span>
-                  {tip}
-                </li>
-              ))}
-            </ul>
+            <div className="bg-sage-50 dark:bg-sage-900/20 border border-sage-200 dark:border-sage-800 rounded-2xl p-6">
+              <p className="text-xs font-semibold uppercase tracking-wider text-sage-600 dark:text-sage-400 mb-4">
+                From 30+ years of fiber arts experience
+              </p>
+              <ul className="space-y-3">
+                {content.proTips.tips.map((tip, i) => (
+                  <li key={i} className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+                    <span className="text-sage-500 dark:text-sage-400 mt-1 flex-shrink-0">&#10003;</span>
+                    {tip}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </section>
         </>
       )}
+
+      {/* Authority references */}
+      <section className="mt-10">
+        <h2 className="section-heading">References & Standards</h2>
+        <ul className="space-y-2 text-sm text-bark-500 dark:text-bark-400">
+          <li>
+            <a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">
+              Craft Yarn Council — Yarn Weight System
+            </a>
+            {" — Industry-standard yarn weight categories and gauge ranges"}
+          </li>
+          <li>
+            <a href="https://www.craftyarncouncil.com/standards/needle-hook-sizes" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">
+              Craft Yarn Council — Needle & Hook Sizes
+            </a>
+            {" — Standard sizing charts for knitting needles and crochet hooks"}
+          </li>
+          <li>
+            <a href="https://www.ravelry.com" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">
+              Ravelry
+            </a>
+            {" — Yarn database, pattern library, and community for fiber artists"}
+          </li>
+        </ul>
+      </section>
 
       {/* Companion guides */}
       {(companionBlog || companionGuide) && (
@@ -169,7 +202,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
       <AdSlot position="mid-content" />
 
       {/* FAQ */}
-      <FAQSection faqs={faqs} toolName={tool.name} />
+      <FAQSection faqs={faqs} />
 
       {/* Project tracking callout */}
       <section className="mt-12">

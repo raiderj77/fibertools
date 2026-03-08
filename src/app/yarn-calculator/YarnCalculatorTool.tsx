@@ -560,6 +560,7 @@ export default function YarnCalculatorTool() {
                       navigator.clipboard.writeText(text);
                     }}
                     className="btn-secondary text-sm"
+                    aria-label="Copy results to clipboard"
                   >
                     📋 Copy
                   </button>
@@ -567,6 +568,7 @@ export default function YarnCalculatorTool() {
                     type="button"
                     onClick={() => window.print()}
                     className="btn-secondary text-sm"
+                    aria-label="Print results"
                   >
                     🖨️ Print
                   </button>

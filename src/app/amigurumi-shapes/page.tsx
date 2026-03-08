@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import AmigurumiShapesTool from "./AmigurumiShapesTool";
 
 export const metadata: Metadata = {
-  title: "Amigurumi Shapes — Free Crochet Patterns",
+  title: "Amigurumi Shape Calculator — Crochet Spheres",
   description:
-    "Crochet amigurumi shapes: sphere, cone, cylinder, and oval. Round-by-round increase and decrease instructions for each. Free, no signup.",
+    "Calculate round-by-round increases and decreases for crochet spheres, cones, cylinders, and ovals. Free amigurumi shape patterns — no signup.",
   keywords: [
     "amigurumi shapes",
     "crochet sphere pattern",

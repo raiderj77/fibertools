@@ -98,7 +98,7 @@ export default function Footer() {
 
         {/* Copyright */}
         <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-bark-400 dark:text-bark-500">&copy; {new Date().getFullYear()} FiberTools. All tools are free to use.</p>
+          <p className="text-xs text-bark-400 dark:text-bark-500">&copy; {new Date().getFullYear()} FiberTools. All tools are free to use. This site contains ads.</p>
           <p className="text-xs text-bark-400 dark:text-bark-500">Made with 🧶 for the fiber arts community</p>
         </div>
 

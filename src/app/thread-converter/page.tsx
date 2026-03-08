@@ -5,7 +5,7 @@ import ThreadConverterTool from "./ThreadConverterTool";
 export const metadata: Metadata = {
   title: "Embroidery Thread Converter — DMC & Anchor",
   description:
-    "Instantly convert DMC, Anchor, and Cosmo embroidery thread numbers. Build palettes and bulk-convert shopping lists in one click. Free tool.",
+    "Convert between DMC, Anchor, and Cosmo embroidery thread numbers instantly. Build palettes and bulk-convert for cross stitch shopping lists. Free.",
   keywords: [
     "DMC to anchor conversion", "thread conversion chart", "embroidery floss converter",
     "DMC color chart", "anchor to DMC", "DMC 310 anchor equivalent",

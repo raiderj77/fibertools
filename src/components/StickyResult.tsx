@@ -35,7 +35,7 @@ export default function StickyResult({ summary, visible, children }: StickyResul
 
   return (
     <>
-      <div ref={resultsRef}>{children}</div>
+      <div ref={resultsRef} aria-live="polite" aria-atomic="true">{children}</div>
 
       {visible && (
         <div

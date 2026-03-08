@@ -269,11 +269,45 @@ export const tools: Tool[] = [
   },
 ];
 
+/** Hand-curated related tool mappings for targeted internal linking. */
+const relatedToolMap: Record<string, string[]> = {
+  "yarn-calculator": ["yarn-weight-chart", "blanket-calculator", "project-cost-calculator", "gauge-calculator"],
+  "needle-converter": ["needle-guide", "uk-to-us-converter", "gauge-calculator"],
+  "gauge-calculator": ["yarn-calculator", "stitch-pattern-calculator", "blanket-calculator"],
+  "yarn-weight-chart": ["yarn-calculator", "needle-converter", "project-cost-calculator"],
+  "stitch-counter": ["increase-decrease-calculator", "stitch-pattern-calculator", "stitch-quick-reference"],
+  "blanket-calculator": ["yarn-calculator", "stripe-generator", "gauge-calculator", "stitch-pattern-calculator"],
+  "increase-decrease-calculator": ["gauge-calculator", "stitch-counter", "circle-calculator"],
+  "stripe-generator": ["color-pooling-calculator", "blanket-calculator", "yarn-calculator"],
+  "abbreviation-glossary": ["uk-to-us-converter", "stitch-quick-reference", "needle-converter"],
+  "spinning-ratio-calculator": ["yarn-weight-chart", "yarn-calculator", "weaving-sett-calculator"],
+  "stitch-pattern-calculator": ["blanket-calculator", "gauge-calculator", "stitch-quick-reference"],
+  "stitch-quick-reference": ["abbreviation-glossary", "stitch-counter", "stitch-pattern-calculator"],
+  "uk-to-us-converter": ["abbreviation-glossary", "stitch-quick-reference", "needle-converter"],
+  "circle-calculator": ["amigurumi-shapes", "increase-decrease-calculator", "blanket-calculator"],
+  "needle-guide": ["needle-converter", "cross-stitch-calculator", "thread-converter"],
+  "amigurumi-shapes": ["circle-calculator", "yarn-calculator", "increase-decrease-calculator"],
+  "cross-stitch-calculator": ["thread-converter", "needle-guide", "gauge-calculator"],
+  "weaving-sett-calculator": ["spinning-ratio-calculator", "yarn-weight-chart", "stripe-generator"],
+  "project-cost-calculator": ["yarn-calculator", "blanket-calculator", "yarn-weight-chart"],
+  "color-pooling-calculator": ["stripe-generator", "yarn-calculator", "gauge-calculator"],
+  "thread-converter": ["cross-stitch-calculator", "needle-guide", "abbreviation-glossary"],
+};
+
 export function getToolBySlug(slug: string): Tool | undefined {
   return tools.find((t) => t.slug === slug);
 }
 
 export function getRelatedTools(slug: string, count = 4): Tool[] {
+  const mapped = relatedToolMap[slug];
+  if (mapped) {
+    const result = mapped
+      .map((s) => tools.find((t) => t.slug === s))
+      .filter((t): t is Tool => t !== undefined)
+      .slice(0, count);
+    if (result.length > 0) return result;
+  }
+  // Fallback: score by category and tier
   const current = getToolBySlug(slug);
   if (!current) return tools.slice(0, count);
   return tools

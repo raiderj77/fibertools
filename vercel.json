@@ -1,1 +1,11 @@
-{ "framework": "nextjs" }
+{
+  "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.fibertools.app" }],
+      "destination": "https://fibertools.app/$1",
+      "permanent": true
+    }
+  ]
+}

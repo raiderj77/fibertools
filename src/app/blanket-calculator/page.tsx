@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import BlanketCalculatorTool from "./BlanketCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Blanket Size & Yarn Calculator — Free",
+  title: "Blanket Yarn Calculator — How Much Do I Need?",
   description:
-    "Calculate stitch count, row count, and yarn yardage for any blanket — baby to king. Free instant results with overhang and stitch adjustments.",
+    "Calculate how much yarn you need for any blanket — baby to king size. Get stitch count, row count, and total yardage instantly. Free.",
   keywords: [
     "blanket size chart", "crochet blanket sizes", "blanket size calculator",
     "how big should a blanket be", "baby blanket size crochet", "throw blanket dimensions",

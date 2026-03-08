@@ -148,6 +148,7 @@ export default function IncDecCalculatorTool() {
       </div>
 
       {/* Results */}
+      <div aria-live="polite" aria-atomic="true">
       {result && "error" in result ? (
         <div className="p-4 bg-rose-50 dark:bg-rose-900/10 border border-rose-200 dark:border-rose-800 rounded-xl text-rose-600 dark:text-rose-400 text-sm">
           {result.error}
@@ -172,7 +173,7 @@ export default function IncDecCalculatorTool() {
               <div className="flex items-center justify-between mb-2">
                 <p className="font-medium text-bark-700 dark:text-cream-200 text-sm">🪡 Knitting</p>
                 <button type="button" onClick={() => navigator.clipboard.writeText(result.knitInstructions)}
-                  className="text-sage-600 dark:text-sage-400 text-xs hover:underline">Copy</button>
+                  className="text-sage-600 dark:text-sage-400 text-xs hover:underline" aria-label="Copy knitting instructions">Copy</button>
               </div>
               <p className="text-sm text-bark-600 dark:text-cream-300 font-mono leading-relaxed">
                 {result.knitInstructions}
@@ -182,7 +183,7 @@ export default function IncDecCalculatorTool() {
               <div className="flex items-center justify-between mb-2">
                 <p className="font-medium text-bark-700 dark:text-cream-200 text-sm">🧶 Crochet</p>
                 <button type="button" onClick={() => navigator.clipboard.writeText(result.crochetInstructions)}
-                  className="text-sage-600 dark:text-sage-400 text-xs hover:underline">Copy</button>
+                  className="text-sage-600 dark:text-sage-400 text-xs hover:underline" aria-label="Copy crochet instructions">Copy</button>
               </div>
               <p className="text-sm text-bark-600 dark:text-cream-300 font-mono leading-relaxed">
                 {result.crochetInstructions}
@@ -223,6 +224,7 @@ export default function IncDecCalculatorTool() {
           Enter your current and target stitch counts above to get instructions.
         </p>
       )}
+      </div>
 
       {/* Tips */}
       <div className="result-card mt-8">
