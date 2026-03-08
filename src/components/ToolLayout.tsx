@@ -63,6 +63,40 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
         </p>
       </div>
 
+      {/* Pre-tool educational content */}
+      {content?.introduction && (
+        <section className="mb-10">
+          <h2 className="section-heading">{content.introduction.title}</h2>
+          {content.introduction.paragraphs.map((p, i) => (
+            <p key={i} className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
+              {p}
+            </p>
+          ))}
+        </section>
+      )}
+
+      {content?.whatIs && (
+        <section className="mb-10">
+          <h2 className="section-heading">{content.whatIs.title}</h2>
+          {content.whatIs.paragraphs.map((p, i) => (
+            <p key={i} className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
+              {p}
+            </p>
+          ))}
+        </section>
+      )}
+
+      {content?.howCalculated && (
+        <section className="mb-10">
+          <h2 className="section-heading">{content.howCalculated.title}</h2>
+          {content.howCalculated.paragraphs.map((p, i) => (
+            <p key={i} className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
+              {p}
+            </p>
+          ))}
+        </section>
+      )}
+
       {/* === TOOL UI === */}
       {children}
 
