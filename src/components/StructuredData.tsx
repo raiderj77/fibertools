@@ -20,8 +20,8 @@ function JsonLd({ data }: JsonLdProps) {
 }
 
 /**
- * SoftwareApplication schema — for tool pages.
- * Tells Google this page is a software application, not just a blog post.
+ * WebApplication schema — for tool pages.
+ * Tells Google this page is a web application, not just a blog post.
  */
 export function SoftwareAppSchema({
   name,
@@ -36,7 +36,7 @@ export function SoftwareAppSchema({
     <JsonLd
       data={{
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
+        "@type": "WebApplication",
         name,
         description,
         url,
