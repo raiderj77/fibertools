@@ -12,6 +12,20 @@ export const metadata: Metadata = {
     "how much does it cost to knit a sweater", "yarn budget planner",
     "handmade pricing calculator", "craft project cost",
   ],
+  openGraph: {
+    title: "Yarn & Project Cost Calculator — Free",
+    description:
+      "Calculate the total cost of any knitting or crochet project — yarn, notions, and time. See your hourly rate for selling. Free, no signup needed.",
+    url: "https://fibertools.app/project-cost-calculator",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Yarn & Project Cost Calculator — Free" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yarn & Project Cost Calculator — Free",
+    description:
+      "Calculate the total cost of any knitting or crochet project — yarn, notions, and time. See your hourly rate for selling. Free, no signup needed.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/project-cost-calculator" },
 };
 

@@ -12,6 +12,20 @@ export const metadata: Metadata = {
     "distribute decreases crochet", "increase 10 stitches evenly", "knitting math increase",
     "crochet increase calculator", "even decrease calculator", "stitch distribution calculator",
   ],
+  openGraph: {
+    title: "Evenly Spaced Increase & Decrease Calculator",
+    description:
+      "Calculate exactly where to place increases or decreases evenly across any row or round. Step-by-step instructions for knitting and crochet. Free.",
+    url: "https://fibertools.app/increase-decrease-calculator",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Evenly Spaced Increase & Decrease Calculator" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Evenly Spaced Increase & Decrease Calculator",
+    description:
+      "Calculate exactly where to place increases or decreases evenly across any row or round. Step-by-step instructions for knitting and crochet. Free.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/increase-decrease-calculator" },
 };
 

@@ -7,6 +7,21 @@ export const metadata: Metadata = {
   title: "Guides & Tutorials — Fiber Arts Tips and How-Tos",
   description:
     "Free guides for knitting, crochet, weaving, spinning, and embroidery. Learn yarn calculation, gauge, needle sizing, and more.",
+  keywords: ["fiber arts blog", "knitting guides", "crochet tutorials", "yarn tips"],
+  openGraph: {
+    title: "Guides & Tutorials — Fiber Arts Tips and How-Tos",
+    description:
+      "Free guides for knitting, crochet, weaving, spinning, and embroidery. Learn yarn calculation, gauge, needle sizing, and more.",
+    url: "https://fibertools.app/blog",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Guides & Tutorials — Fiber Arts Tips and How-Tos" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Guides & Tutorials — Fiber Arts Tips and How-Tos",
+    description:
+      "Free guides for knitting, crochet, weaving, spinning, and embroidery. Learn yarn calculation, gauge, needle sizing, and more.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/blog" },
 };
 

@@ -26,6 +26,20 @@ export const metadata: Metadata = {
     "magic ring instructions",
     "crochet stitches for beginners",
   ],
+  openGraph: {
+    title: "Stitch Quick Reference — Crochet & Knitting",
+    description:
+      "Visual step-by-step guide for every basic crochet and knitting stitch. Yarn overs, pull-throughs, turning chains, and loop counts at a glance. Free.",
+    url: "https://fibertools.app/stitch-quick-reference",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Stitch Quick Reference — Crochet & Knitting" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stitch Quick Reference — Crochet & Knitting",
+    description:
+      "Visual step-by-step guide for every basic crochet and knitting stitch. Yarn overs, pull-throughs, turning chains, and loop counts at a glance. Free.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/stitch-quick-reference" },
 };
 

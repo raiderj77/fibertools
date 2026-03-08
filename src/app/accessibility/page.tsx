@@ -4,6 +4,21 @@ export const metadata: Metadata = {
   title: "Accessibility Statement",
   description:
     "FiberTools is committed to making our calculators and tools accessible to everyone, including people with disabilities.",
+  keywords: ["accessibility", "WCAG", "accessible calculators", "FiberTools accessibility"],
+  openGraph: {
+    title: "Accessibility Statement",
+    description:
+      "FiberTools is committed to making our calculators and tools accessible to everyone, including people with disabilities.",
+    url: "https://fibertools.app/accessibility",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Accessibility Statement" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Accessibility Statement",
+    description:
+      "FiberTools is committed to making our calculators and tools accessible to everyone, including people with disabilities.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/accessibility" },
 };
 

@@ -23,6 +23,20 @@ export const metadata: Metadata = {
     "needle size chart printable",
     "hook size chart",
   ],
+  openGraph: {
+    title: "Knitting Needle & Hook Size Converter — Free",
+    description:
+      "Convert knitting needle and crochet hook sizes between US, metric, UK, and Japanese systems. All 23 needle sizes and 24 hook sizes. Free.",
+    url: "https://fibertools.app/needle-converter",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Knitting Needle & Hook Size Converter — Free" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Knitting Needle & Hook Size Converter — Free",
+    description:
+      "Convert knitting needle and crochet hook sizes between US, metric, UK, and Japanese systems. All 23 needle sizes and 24 hook sizes. Free.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/needle-converter" },
 };
 

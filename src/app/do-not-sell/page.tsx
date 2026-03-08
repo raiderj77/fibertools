@@ -4,6 +4,21 @@ export const metadata: Metadata = {
   title: "Do Not Sell My Personal Information",
   description:
     "FiberTools does not sell your personal information. Learn about your rights under the California Consumer Privacy Act (CCPA).",
+  keywords: ["do not sell", "CCPA", "privacy rights", "personal information"],
+  openGraph: {
+    title: "Do Not Sell My Personal Information",
+    description:
+      "FiberTools does not sell your personal information. Learn about your rights under the California Consumer Privacy Act (CCPA).",
+    url: "https://fibertools.app/do-not-sell",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Do Not Sell My Personal Information" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Do Not Sell My Personal Information",
+    description:
+      "FiberTools does not sell your personal information. Learn about your rights under the California Consumer Privacy Act (CCPA).",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/do-not-sell" },
 };
 

@@ -23,6 +23,20 @@ export const metadata: Metadata = {
     "wool vs cotton yarn",
     "yarn weight comparison",
   ],
+  openGraph: {
+    title: "Yarn Weight Chart & Substitution — Free",
+    description:
+      "Interactive yarn weight chart with US, UK, and Australian names. Check substitution compatibility and fiber properties. Free, instant — no signup.",
+    url: "https://fibertools.app/yarn-weight-chart",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Yarn Weight Chart & Substitution — Free" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yarn Weight Chart & Substitution — Free",
+    description:
+      "Interactive yarn weight chart with US, UK, and Australian names. Check substitution compatibility and fiber properties. Free, instant — no signup.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/yarn-weight-chart" },
 };
 

@@ -14,6 +14,20 @@ export const metadata: Metadata = {
     "blanket yarn calculator", "crochet blanket calculator",
     "knitting blanket size guide", "blanket stitch count",
   ],
+  openGraph: {
+    title: "Blanket Yarn Calculator — How Much Do I Need?",
+    description:
+      "Calculate how much yarn you need for any blanket — baby to king size. Get stitch count, row count, and total yardage instantly. Free.",
+    url: "https://fibertools.app/blanket-calculator",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Blanket Yarn Calculator — How Much Do I Need?" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blanket Yarn Calculator — How Much Do I Need?",
+    description:
+      "Calculate how much yarn you need for any blanket — baby to king size. Get stitch count, row count, and total yardage instantly. Free.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/blanket-calculator" },
 };
 

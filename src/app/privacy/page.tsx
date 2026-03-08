@@ -4,6 +4,21 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "How FiberTools handles your data. We collect minimal analytics, run no ads tracking without consent, and never sell your personal information.",
+  keywords: ["privacy policy", "data protection", "fiber arts tools privacy", "FiberTools privacy"],
+  openGraph: {
+    title: "Privacy Policy",
+    description:
+      "How FiberTools handles your data. We collect minimal analytics, run no ads tracking without consent, and never sell your personal information.",
+    url: "https://fibertools.app/privacy",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Privacy Policy" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy",
+    description:
+      "How FiberTools handles your data. We collect minimal analytics, run no ads tracking without consent, and never sell your personal information.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/privacy" },
 };
 

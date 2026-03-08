@@ -23,6 +23,20 @@ export const metadata: Metadata = {
     "row tracker knitting",
     "knitting row counter",
   ],
+  openGraph: {
+    title: "Free Stitch & Row Counter for Knitting Online",
+    description:
+      "Free online row counter for knitting and crochet. Track stitches, rows, and repeats with undo/redo. Works offline — no login required.",
+    url: "https://fibertools.app/stitch-counter",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Free Stitch & Row Counter for Knitting Online" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Stitch & Row Counter for Knitting Online",
+    description:
+      "Free online row counter for knitting and crochet. Track stitches, rows, and repeats with undo/redo. Works offline — no login required.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/stitch-counter" },
 };
 
