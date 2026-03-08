@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <style>
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #292524; }
+      .yarn { stroke: #7FA67F; }
+      .core { fill: #FAF0E4; }
+    }
+  </style>
+  <rect class="bg" width="32" height="32" rx="6" fill="#5E8A5E"/>
+  <!-- Yarn ball: circle with wrap lines -->
+  <circle class="core" cx="16" cy="16" r="9" fill="#FEFDFB"/>
+  <path class="yarn" d="M9 20 Q16 8 23 20" fill="none" stroke="#5E8A5E" stroke-width="1.8" stroke-linecap="round"/>
+  <path class="yarn" d="M8 16 Q16 26 24 16" fill="none" stroke="#5E8A5E" stroke-width="1.8" stroke-linecap="round"/>
+  <path class="yarn" d="M12 8 Q14 22 20 25" fill="none" stroke="#5E8A5E" stroke-width="1.8" stroke-linecap="round"/>
+</svg>
