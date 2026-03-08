@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   creator: "FiberTools",
   publisher: "FiberTools",
   other: {
-    "google-adsense-account": "ca-pub-7171402107622932",
+    "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_ID || "",
   },
   alternates: {
     canonical: "/",
@@ -147,12 +147,14 @@ export default function RootLayout({
           `}
         </Script>
         {/* Google AdSense — auto ads */}
-        <Script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
+        {process.env.NEXT_PUBLIC_ADSENSE_ID && (
+          <Script
+            async
+            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
+            crossOrigin="anonymous"
+            strategy="afterInteractive"
+          />
+        )}
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-sage-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">

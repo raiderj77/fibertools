@@ -6,7 +6,8 @@ import { getBlogPostByToolSlug } from "@/lib/blog";
 import { getGuideByToolSlug } from "@/lib/guides";
 import FAQSection from "./FAQSection";
 import PrintShareButtons from "./PrintShareButtons";
-import AdSlot from "./AdSlot";
+import AdUnit from "./AdUnit";
+import LazyAdUnit from "./LazyAdUnit";
 import { ToolSchema } from "./StructuredData";
 
 interface ToolLayoutProps {
@@ -65,7 +66,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
       {/* === TOOL UI === */}
       {children}
 
-      <AdSlot position="after-tool" />
+      <AdUnit slot="" id="ad-after-tool" />
 
       {/* Educational content */}
       {content && (
@@ -199,8 +200,6 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
         </div>
       </section>
 
-      <AdSlot position="mid-content" />
-
       {/* FAQ */}
       <FAQSection faqs={faqs} />
 
@@ -236,7 +235,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
         </div>
       </section>
 
-      <AdSlot position="before-footer" />
+      <LazyAdUnit slot="" id="ad-before-footer" />
     </main>
   );
 }

@@ -93,13 +93,6 @@
            rounded-2xl p-6;
   }
 
-  /* Ad slot placeholder */
-  .ad-slot {
-    @apply w-full bg-cream-100 dark:bg-bark-800 border border-dashed border-cream-400 dark:border-bark-600
-           rounded-xl flex items-center justify-center text-bark-400 dark:text-bark-500 text-sm
-           min-h-[90px] my-8;
-  }
-
   /* Tooltip */
   .tooltip-trigger {
     @apply inline-flex items-center justify-center w-5 h-5 rounded-full
@@ -111,6 +104,23 @@
   /* Section heading */
   .section-heading {
     @apply text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-6;
+  }
+}
+
+/* Ad containers — ID selectors so AdSense cannot strip min-height */
+#ad-after-tool {
+  min-height: 250px;
+  width: 100%;
+  contain: layout style;
+}
+#ad-before-footer {
+  min-height: 250px;
+  width: 100%;
+  contain: layout style;
+}
+@media (max-width: 768px) {
+  #ad-after-tool {
+    min-height: 250px;
   }
 }
 
