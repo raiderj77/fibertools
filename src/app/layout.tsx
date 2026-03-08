@@ -51,6 +51,7 @@ export const metadata: Metadata = {
   publisher: "FiberTools",
   other: {
     "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_ID || "",
+    "msvalidate.01": "C4C9B6256BDEDED169E4DE01CA953390",
   },
   alternates: {
     canonical: "/",
