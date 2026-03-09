@@ -1049,4 +1049,510 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       ],
     },
   },
+
+  "wpi-calculator": {
+    introduction: {
+      title: "Why You Need a WPI Calculator",
+      paragraphs: [
+        "You have found a gorgeous skein at a yard sale, inherited a bag of unlabeled yarn from a fellow crafter, or peeled off a ball band only to lose it before starting your project. Now you are holding mystery yarn with no idea what weight it is. Wraps per inch (WPI) is the fastest and most reliable way to identify it.",
+        "WPI measurement is a technique every fiber artist should have in their toolkit. It requires nothing more than a ruler and a few seconds of your time, yet it gives you the information you need to select the right needles, hooks, and patterns for any yarn in your stash. This calculator takes your WPI reading and instantly maps it to the Craft Yarn Council weight system with all the details you need to start crafting.",
+      ],
+    },
+    whatIs: {
+      title: "What Is Wraps Per Inch?",
+      paragraphs: [
+        "Wraps per inch is a standardized measurement of yarn thickness. You wrap the yarn around a ruler, dowel, or dedicated WPI tool for exactly one inch, keeping wraps snug and side by side without overlapping or stretching. The number of wraps that fit in that inch tells you the yarn's relative thickness.",
+        "Thinner yarns produce more wraps per inch — lace weight yarn wraps 30 or more times in an inch, while jumbo yarn may only wrap 1 to 4 times. The Craft Yarn Council has established WPI ranges for each of the eight standard yarn weight categories (0 through 7), giving crafters a universal reference for identifying unlabeled yarn.",
+        "It is important to understand that WPI ranges overlap between adjacent weight categories. A yarn that measures 12 WPI could be a tightly plied sport weight or a loosely spun worsted. This overlap is normal and reflects the natural variation in yarn construction. When your measurement falls in an overlap zone, the only definitive way to confirm the weight is to swatch and compare your stitch count against the standard gauge ranges.",
+      ],
+    },
+    howCalculated: {
+      title: "How the WPI Converter Works",
+      paragraphs: [
+        "The converter uses the Craft Yarn Council's official WPI ranges to map your measurement to one or more yarn weight categories. Each category has a defined WPI range: Lace is 30 and above, Super Fine is 14 to 30, Fine or Sport is 12 to 18, Light or DK is 11 to 15, Medium or Worsted is 9 to 12, Bulky is 6 to 9, Super Bulky is 5 to 6, and Jumbo is 1 to 4.",
+        "When your WPI falls within a single category, the converter displays that weight with its corresponding needle sizes, hook sizes, gauge range, typical yardage per 100 grams, and suggested project types. When your WPI falls in an overlap zone — for example, 12 WPI matches both Fine/Sport and Medium/Worsted — the converter shows all matching categories and recommends swatching to confirm which weight best describes your yarn's behavior.",
+        "The recommended needle and hook sizes come directly from the Craft Yarn Council's published standards. The yardage estimates are typical values across common fiber types, though actual yardage varies by fiber content — cotton is heavier per yard than wool, and silk is heavier than alpaca.",
+      ],
+    },
+    howToUse: {
+      title: "How to Use the WPI Calculator",
+      paragraphs: [
+        "Start by measuring your yarn. Hold a ruler horizontally and wrap the yarn around it without stretching, pulling, or overlapping. Each wrap should sit snugly against the last, touching but not compressed. Count the wraps in exactly one inch. For the most accurate reading, measure in the middle of the ruler where edge effects are minimal.",
+        "For handspun or textured yarn, measure in two or three different spots along the skein and average the results. Handspun thickness can vary, and averaging gives a more representative WPI. For plied yarns, wrap the plied yarn as it comes — do not separate the plies.",
+        "Enter your WPI count into the calculator. The tool displays your matching yarn weight category (or categories if you are in an overlap zone) along with recommended needle sizes in US and metric, hook sizes in US letter and metric, the standard gauge range in stitches per 4 inches, typical yardage per 100 grams, and project suggestions suited to that weight.",
+      ],
+    },
+    understandingResults: {
+      title: "Understanding Your Results",
+      paragraphs: [
+        "If your WPI matches a single weight category, the results are straightforward — use the recommended needle or hook size as a starting point and swatch to confirm your gauge. If you see multiple categories, your yarn sits in an overlap zone and could work as either weight. Swatch with needles for both categories and decide which fabric you prefer.",
+        "The yardage per 100 grams is an average across common fibers. Wool and acrylic yarns tend to fall near the typical value, while cotton and linen yarns yield fewer yards per 100 grams due to their higher density. Silk falls in between. Use the yardage estimate as a planning guide, not an exact figure.",
+      ],
+    },
+    proTips: {
+      title: "Pro Tips",
+      tips: [
+        "Wrap on a smooth surface like a pencil, dowel, or knitting needle rather than a flat ruler — the wraps sit more naturally and give a more accurate count.",
+        "Do not push wraps together or spread them apart. The natural resting position of the yarn is what you want to measure.",
+        "If your WPI falls right on a boundary (like exactly 9 WPI between worsted and bulky), swatch with both the lighter and heavier weight needle suggestions. The fabric you prefer determines which category to treat the yarn as.",
+        "Keep a WPI cheat card in your yarn stash for quick reference at fiber festivals and thrift stores. Knowing your WPI ranges lets you evaluate mystery yarn on the spot.",
+      ],
+    },
+  },
+
+  "c2c-calculator": {
+    introduction: {
+      title: "Why You Need a C2C Calculator",
+      paragraphs: [
+        "Corner-to-corner crochet creates stunning blankets, but the diagonal construction makes sizing tricky. Unlike traditional row-by-row crochet where you simply count stitches for width, C2C builds block by block at an angle. Without a calculator, figuring out how many blocks you need — and how many diagonal rows that translates to — involves math that is easy to get wrong.",
+        "This calculator takes the guesswork out of C2C planning. Enter your gauge swatch measurements and desired blanket dimensions, and it tells you exactly how many blocks wide and tall to work, how many diagonal rows from start to finish, and how much yarn you will need. Plan with confidence before you pick up your hook.",
+      ],
+    },
+    whatIs: {
+      title: "What Is Corner-to-Corner (C2C) Crochet?",
+      paragraphs: [
+        "C2C is a crochet technique where you work diagonally across the fabric. Each unit — called a block or tile — is typically a small cluster of chain stitches and double crochets. You start with one block in a corner, add one block per diagonal row on the increase side until you reach the maximum width, then decrease back down to a single block in the opposite corner.",
+        "The technique is beloved for graphgan blankets (blankets with pixel-art images), because each block acts like a pixel. It also produces a beautiful texture with subtle diagonal lines. C2C works up quickly once you get the rhythm, and the small, repetitive blocks make it an excellent travel or TV project.",
+        "Because C2C blocks are often not perfectly square — they tend to be slightly wider than they are tall, or vice versa depending on your yarn and tension — measuring a gauge swatch in both directions is essential for accurate sizing. This calculator accounts for that asymmetry automatically.",
+      ],
+    },
+    howCalculated: {
+      title: "How the C2C Calculator Works",
+      paragraphs: [
+        "The calculator starts with your gauge swatch. You crochet a small test piece (at least 5 by 5 blocks), measure its width and height in inches, and enter those along with the block counts. The calculator divides to find the width and height of each individual block.",
+        "Next, it divides your desired blanket dimensions by the per-block measurements and rounds to the nearest whole number. This gives you the number of blocks wide and blocks tall. The total block count is simply blocks wide times blocks tall.",
+        "The diagonal row count — how many rows you work from the first corner to the last — equals blocks wide plus blocks tall minus one. If you provided a yarn-per-block measurement, the calculator multiplies total blocks by that value, converts inches to yards, and adds a 10 percent buffer for tails and joining.",
+      ],
+    },
+    howToUse: {
+      title: "How to Use the C2C Calculator",
+      paragraphs: [
+        "Start by crocheting a gauge swatch of at least 5 by 5 blocks using your chosen yarn and hook. Measure the width and height of the swatch in inches. Enter the block counts and measurements into the gauge section of the calculator.",
+        "Then enter your desired blanket width and height in inches. The calculator converts these to block counts and shows you the actual finished dimensions after rounding. If the actual size differs from your target by more than an inch or two, adjust your target or try a different hook size to change your block dimensions.",
+        "For yardage estimation, crochet one complete block, unravel it, and measure the length of yarn in inches. Enter this in the optional yarn-per-block field. The calculator uses this to estimate total yardage with a 10 percent buffer for safety. If you skip this field, you will still get all the block and row counts — just not the yardage estimate.",
+      ],
+    },
+    understandingResults: {
+      title: "Understanding Your Results",
+      paragraphs: [
+        "The layout shows your blanket as X blocks wide by Y blocks tall. The actual finished dimensions may differ slightly from your target because block counts must be whole numbers. Review the actual dimensions shown in the results and decide if the rounding is acceptable.",
+        "The diagonal row count tells you how many rows you will work from start to finish. On the increase half, you add one block per row. On the decrease half, you remove one block per row. For rectangular blankets, there is also a middle section where you increase on one end and decrease on the other to maintain the row length.",
+        "The yardage estimate includes a 10 percent buffer for tails, color changes, and minor tension variations. If you are doing a multi-color graphgan, you will need to calculate yardage per color based on how many blocks each color occupies in your chart. The total yardage shown assumes a single color.",
+      ],
+    },
+    proTips: {
+      title: "Pro Tips",
+      tips: [
+        "C2C blocks are almost never perfectly square. Always measure your swatch in both directions — do not assume a 2-inch-wide block is also 2 inches tall.",
+        "For graphgan blankets, subtract your planned border width from the target dimensions before calculating blocks. The border adds to the finished size.",
+        "Use stitch markers to count blocks every 10 rows on long diagonal rows. It is easy to lose count on rows with 50 or more blocks.",
+        "When changing colors frequently (as in a graphgan), carry unused colors along the top of the row rather than cutting and rejoining. This saves yarn and reduces the number of ends to weave in.",
+      ],
+    },
+  },
+
+  "cast-on-calculator": {
+    introduction: {
+      title: "Why You Need a Cast On Calculator",
+      paragraphs: [
+        "Every knitting and crochet project begins with a simple question: how many stitches do I start with? Cast on too few and your piece will be too narrow. Cast on too many and it will be too wide. The math itself is straightforward — multiply desired width by stitches per inch — but stitch pattern multiples, edge stitches, and gauge variation add complexity that catches even experienced knitters off guard.",
+        "This calculator handles all of it. Enter your gauge, desired width, and optional stitch pattern multiple, and you get an exact cast-on count that works for your pattern. No more ripping back row one because you forgot to account for a cable repeat.",
+      ],
+    },
+    whatIs: {
+      title: "What Is a Cast On Count?",
+      paragraphs: [
+        "The cast-on count is the number of stitches you place on your needle (in knitting) or the number of foundation chains you create (in crochet) at the very start of a project. It determines the width of your finished piece. Getting this number right at the beginning saves hours of frogging and frustration later.",
+        "For simple stockinette or single crochet, the math is a direct multiplication: desired width in inches times stitches per inch. But most projects use patterned stitches that repeat over a fixed number of stitches — a stitch multiple. A 2x2 rib repeats every 4 stitches. A honeycomb cable might repeat every 12. Your cast-on count must accommodate these multiples, or the pattern will not work out evenly across the row.",
+        "Edge stitches add another consideration. Many knitters add one or two selvedge stitches on each side for cleaner seaming. These extra stitches sit outside the pattern repeat and need to be factored into the total. This calculator accounts for all of these variables in one step.",
+      ],
+    },
+    howCalculated: {
+      title: "How the Cast On Count Is Calculated",
+      paragraphs: [
+        "The core formula divides your gauge stitches by the gauge measurement to find stitches per inch, then multiplies by your desired width. For example, if your gauge is 20 stitches over 4 inches, that is 5 stitches per inch. For a 10-inch-wide scarf, the base count is 50 stitches.",
+        "When you enter a stitch pattern multiple, the calculator rounds the base count up to the nearest multiple of that number. If your base count is 50 and your pattern repeats every 6 stitches, the calculator rounds up to 54 (the next multiple of 6). This ensures your pattern fits evenly across the row.",
+        "The calculator also shows you the actual finished width after rounding, so you can see exactly how the rounding affects your dimensions. If the width difference is unacceptable, you can adjust your gauge by changing needle or hook size, or choose a pattern with a more accommodating multiple.",
+      ],
+    },
+    howToUse: {
+      title: "How to Use the Cast On Calculator",
+      paragraphs: [
+        "First, knit or crochet a gauge swatch and measure it. Enter the number of stitches and the width of your swatch — the default is stitches over 4 inches, the most common gauge format. Next, enter the desired width of your project in inches.",
+        "If your pattern uses a stitch repeat, enter the multiple in the optional field. For example, if your pattern says 'multiple of 8 plus 2,' enter 8 as the multiple. The calculator rounds up to the nearest multiple and displays the adjusted count.",
+        "Review the results. The calculator shows your cast-on count, the actual width that count produces, and a note about edge stitches. Many knitters add 2 selvedge stitches (one on each side) for seaming — adjust the total as needed for your project construction.",
+      ],
+    },
+    understandingResults: {
+      title: "Understanding Your Results",
+      paragraphs: [
+        "The primary output is your cast-on stitch count. If you entered a stitch multiple, this count has been rounded up to accommodate the pattern repeat. The actual width is recalculated from this rounded count so you can see exactly how wide your piece will be.",
+        "The reference table below the calculator shows common project widths — scarves, cowls, blankets, dishcloths — so you can quickly sanity-check your number. If your count seems very different from what you expected, double-check your gauge swatch measurement. Even a small error in gauge has a big impact on the final count.",
+      ],
+    },
+    proTips: {
+      title: "Pro Tips",
+      tips: [
+        "Always swatch in the stitch pattern you plan to use, not just stockinette. Cable patterns pull in the width, so your stitches-per-inch in cables will be higher than in plain knitting.",
+        "For pieces knit in the round, your gauge may differ from flat knitting. Many knitters purl more loosely than they knit, which changes the stitch width. Swatch in the round if that is how you will work the project.",
+        "When a pattern says 'multiple of 6 plus 2,' the plus 2 are usually edge or balance stitches. Enter only the base multiple (6) into the calculator — the extra 2 are already part of the pattern instructions.",
+        "Foundation chains in crochet tend to be tighter than the body of the fabric. Size up your hook for the chain row only, or use a foundation single crochet or chainless foundation for a more flexible edge.",
+      ],
+    },
+  },
+
+  "hat-calculator": {
+    introduction: {
+      title: "Why You Need a Hat Size Calculator",
+      paragraphs: [
+        "Hats are one of the most popular knitting and crochet projects — fast to finish, endlessly customizable, and always appreciated as gifts. But getting the right fit requires more than picking a head size from a chart. The stitch pattern, yarn weight, and your personal tension all affect how the finished hat fits. A hat that is even half an inch too large will slide over the wearer's eyes; too small and it perches on top of the head.",
+        "This calculator combines head circumference, negative ease for your chosen stitch type, and your gauge to produce an exact cast-on count rounded for a clean 8-point crown decrease. It takes the math out of hat design so you can focus on choosing colors and stitch patterns.",
+      ],
+    },
+    whatIs: {
+      title: "What Is Negative Ease in Hats?",
+      paragraphs: [
+        "Negative ease means making the hat slightly smaller than the actual head measurement. Knit and crochet fabrics stretch, and a hat must grip the head to stay in place. The amount of negative ease depends on the stitch pattern because different stitches have different amounts of stretch.",
+        "Stockinette stitch has moderate stretch and uses 10 percent negative ease. Ribbing (1x1 or 2x2) has much more stretch and uses 15 percent negative ease — the hat starts smaller but expands to fit. Colorwork (stranded knitting) has very little stretch because the floats on the back limit the fabric's elasticity, so it uses only 5 percent negative ease.",
+        "The calculator applies the appropriate ease based on your stitch type selection, then multiplies the resulting circumference by your stitch gauge to determine the cast-on count. This count is rounded to the nearest multiple of 8 to ensure a clean, symmetrical crown decrease.",
+      ],
+    },
+    howCalculated: {
+      title: "How Hat Sizing Is Calculated",
+      paragraphs: [
+        "The calculator takes your head circumference (from measurement or the size chart dropdown) and multiplies it by the ease factor: 0.90 for stockinette, 0.85 for ribbing, or 0.95 for colorwork. This produces the target circumference of the hat.",
+        "Next, it multiplies the target circumference by your stitches per inch (gauge stitches divided by gauge measurement) to get the raw stitch count. This count is rounded to the nearest multiple of 8, because the standard 8-point crown decrease divides the hat into 8 equal sections.",
+        "The crown decrease schedule is generated from the rounded count. Each decrease round removes 8 stitches (one per section), and a plain round is worked between each decrease round. This continues until 8 stitches remain, which are drawn together to close the top. The number of decrease rounds equals the stitches per section minus one.",
+      ],
+    },
+    howToUse: {
+      title: "How to Use the Hat Calculator",
+      paragraphs: [
+        "Start by entering the head circumference. You can type a custom measurement or select a standard size from the dropdown. The standard sizes use the midpoint of each range — for example, Average Adult uses 22 inches, the midpoint of the 21 to 23 inch range.",
+        "Select your stitch type. This determines the negative ease: 10 percent for stockinette, 15 percent for ribbing, or 5 percent for colorwork. Then enter your gauge — how many stitches you get over 4 inches with your chosen yarn and needles or hook.",
+        "The calculator outputs your cast-on count (rounded to the nearest multiple of 8), a complete crown decrease schedule showing what to do on each round, the recommended hat height for the selected size, and a yardage estimate. Review the cast-on count against your gauge to make sure it produces a circumference close to your target.",
+      ],
+    },
+    understandingResults: {
+      title: "Understanding Your Results",
+      paragraphs: [
+        "The cast-on count is your starting stitch count for a bottom-up hat worked in the round. If you are working a top-down hat (starting from the crown), reverse the decrease schedule into an increase schedule. If you are crocheting, the total stitch count at the widest point (the brim) is the same number.",
+        "The crown decrease schedule shows every round from the first decrease to the last. It assumes you work decreases on odd-numbered rounds and knit plain on even-numbered rounds. The pattern uses K2tog decreases — for crochet, substitute SC2tog or DC2tog.",
+        "The hat height range is a guideline based on the head size. Slouchy hats need additional length (add 2 to 4 inches). Beanies that sit above the ears need less height than the range shown. Adjust based on the style you want.",
+      ],
+    },
+    proTips: {
+      title: "Pro Tips",
+      tips: [
+        "Measure the head at the widest point — across the forehead, above the ears, and around the back of the head. If you are making a gift, use the size chart as a guide.",
+        "For ribbed brims on an otherwise stockinette hat, cast on using the stockinette ease (10 percent). The ribbing will stretch to fit, and the body will be the right circumference.",
+        "Try on the hat before starting crown decreases. The body should reach from the cast-on edge to the top of the ears. If it does not, add or subtract rounds.",
+        "Use a different needle size for the ribbed brim (one or two sizes smaller) to keep the brim snug and prevent it from flaring out.",
+      ],
+    },
+  },
+
+  "sock-calculator": {
+    introduction: {
+      title: "Why You Need a Sock Calculator",
+      paragraphs: [
+        "Sock knitting has a devoted following for good reason — handknit socks fit better, last longer, and feel luxurious compared to store-bought options. But socks involve more construction math than most other projects. You need to calculate stitch counts for the leg, heel, gusset, foot, and toe, and all of those numbers derive from just two measurements and your gauge.",
+        "This calculator handles both top-down (cuff to toe) and toe-up construction methods. Enter your foot measurements and gauge, and it generates every number you need: cast-on count, heel flap rows, gusset pickup, short-row heel details, and toe shaping. No more scribbling math on scrap paper mid-project.",
+      ],
+    },
+    whatIs: {
+      title: "What Is Sock Construction?",
+      paragraphs: [
+        "A sock is a tube with a shaped heel pocket and a tapered toe. The two main construction methods — top-down and toe-up — build the sock in opposite directions but produce the same result. Top-down socks cast on at the cuff and work downward, shaping the heel with a heel flap and gusset. Toe-up socks start with a small number of stitches at the toe, increase to the full foot circumference, then shape the heel with short rows.",
+        "Both methods use negative ease — making the sock 10 percent smaller than the actual foot circumference — so the knit fabric stretches to grip the foot. This prevents bunching, slipping, and premature wear. The calculator applies this 10 percent ease automatically.",
+        "Socks are typically knit on small double-pointed needles or a long circular needle using the magic loop technique. The stitch count is rounded to a multiple of 4 for even distribution across needles and to accommodate common ribbing patterns (K2P2 or K1P1).",
+      ],
+    },
+    howCalculated: {
+      title: "How Sock Measurements Are Calculated",
+      paragraphs: [
+        "For top-down socks, the calculator applies 10 percent negative ease to your foot circumference, multiplies by your stitch gauge, and rounds to the nearest multiple of 4. This is your cast-on count. Half those stitches form the heel flap — the flap is worked back and forth over this half, with the same number of rows as stitches to create a square. Gusset pickup is half the heel flap rows on each side. Foot length is calculated by subtracting 2 inches (for the toe) from total foot length and converting to rows.",
+        "For toe-up socks, the total stitch count is calculated the same way. The toe starts with approximately 15 percent of the total stitches per needle (rounded to an even number, minimum 8), then increases by 4 stitches every other round until reaching the full count. The short-row heel divides the heel stitches into thirds — the center third stays and the side thirds are shaped with short rows. Foot length is adjusted for heel depth.",
+        "Both methods produce a sock with the same total stitch count and the same fit — the difference is purely in construction order and heel style. Many knitters prefer top-down for the heel flap's durability, while others prefer toe-up for the ability to try on as they go.",
+      ],
+    },
+    howToUse: {
+      title: "How to Use the Sock Calculator",
+      paragraphs: [
+        "Measure your foot: wrap a tape measure around the ball of your foot for circumference, and measure from heel to longest toe for length. Enter both measurements in inches. Then enter your gauge — stitches per 4 inches and rows per 4 inches from a gauge swatch knit in your sock yarn on your sock needles.",
+        "Select the Top-Down or Toe-Up tab depending on your preferred construction method. The calculator generates all the numbers you need for that method, including heel and toe shaping details.",
+        "Review the results and compare the cast-on count against your expected range. For fingering weight sock yarn at a typical 32 stitches per 4 inches gauge, most adult socks have 56 to 72 stitches. If your number is very different, double-check your gauge swatch.",
+      ],
+    },
+    understandingResults: {
+      title: "Understanding Your Results",
+      paragraphs: [
+        "The cast-on count (top-down) or total stitch count (toe-up) is the number of stitches around the full circumference of the sock. Divide this by 4 for the number of stitches per needle on double-pointed needles.",
+        "For top-down socks, the heel flap rows and gusset pickup numbers work together. The flap creates a cup when turned, and the gusset stitches picked up along the flap edges taper back down to the original foot stitch count over several rounds of decreasing. For toe-up socks, the short-row heel creates the cup by working progressively shorter rows — no gusset picking up needed.",
+        "The foot rows number tells you how many rounds to work the plain foot tube before starting the toe (top-down) or after finishing the toe (toe-up). This is based on your row gauge and accounts for the 2-inch toe or the heel depth respectively.",
+      ],
+    },
+    proTips: {
+      title: "Pro Tips",
+      tips: [
+        "Knit both socks at once using magic loop or two circulars to avoid 'second sock syndrome' — the dreaded loss of motivation to knit the matching sock after finishing the first.",
+        "Reinforce heel and toe sections with a strand of reinforcing thread held alongside your sock yarn. This doubles the durability in the highest-wear areas.",
+        "If your socks feel too tight across the instep, add 4 to 8 stitches to the cast-on count. High insteps often need extra ease that the standard 10 percent does not account for.",
+        "For your first pair of socks, use a solid or semi-solid yarn so you can see the stitch construction clearly. Save variegated and self-striping yarns for after you are comfortable with the heel and toe techniques.",
+      ],
+    },
+  },
+
+  "granny-square-planner": {
+    introduction: {
+      title: "Why You Need a Granny Square Planner",
+      paragraphs: [
+        "Granny square blankets are a crochet tradition — colorful, customizable, and endlessly satisfying to make. But the planning stage trips up many crafters. How many squares do you actually need? How much yarn per color? And how much extra for joining? Without a plan, you end up either short on squares or drowning in leftover yarn.",
+        "This planner does the math for you. Enter your target blanket dimensions and square size, and it calculates the exact number of squares, finished dimensions, per-color yardage, and joining yarn estimate. Plan your blanket once, then enjoy the meditative rhythm of crocheting squares without worrying about running short.",
+      ],
+    },
+    whatIs: {
+      title: "What Is a Granny Square Blanket?",
+      paragraphs: [
+        "A granny square blanket is made by crocheting individual squares and then joining them together into a larger fabric. The classic granny square uses clusters of double crochets separated by chain spaces, worked in rounds from the center outward. Each round adds another ring of clusters, and color changes between rounds create the traditional striped look.",
+        "Granny square blankets are beloved for their versatility. You can make every square identical for a uniform look, use different colors in each square for a scrappy stash-busting project, or vary the center pattern for a sampler blanket. The modular construction means each square is a small, portable project — perfect for crafting on the go.",
+        "Square sizes range from 4-inch mini squares to 12-inch or larger afghan squares. Smaller squares create more visual interest and use more colors, but require more joining. Larger squares work up faster and need less assembly, but show less variety. The most popular size is the classic 6-inch granny square — a good balance of detail, portability, and assembly time.",
+      ],
+    },
+    howCalculated: {
+      title: "How the Granny Square Planner Works",
+      paragraphs: [
+        "The planner divides your target blanket width and height by your chosen square size and rounds to the nearest whole number. Multiplying these two numbers gives the total square count. The actual finished dimensions are recalculated from the rounded block counts, so you can see exactly how close the finished blanket will be to your target.",
+        "For yardage, the planner multiplies total squares by the yarn consumed per square (which you enter based on your own test square), then adds a 10 percent buffer for tails, tension variation, and inevitable frogging. If you are using multiple colors, total yardage is divided evenly among the colors as a starting estimate.",
+        "The joining yardage estimate assumes approximately 1.5 times the perimeter of one square per join, multiplied by the total number of squares, converted from inches to yards, with a 10 percent buffer. Actual joining yarn varies by method — slip stitch joining uses more than whip stitch, and join-as-you-go uses less than any separate joining method.",
+      ],
+    },
+    howToUse: {
+      title: "How to Use the Granny Square Planner",
+      paragraphs: [
+        "Enter your desired blanket width and height in inches, then enter your square size. Common sizes are 4, 6, 8, or 12 inches. If you have not decided on a size yet, try 6 inches as a starting point — it is the most popular for good reason.",
+        "For yardage estimates, crochet one complete square with your chosen yarn and hook, then unravel it and measure the total yarn length in yards. Enter this in the yarn-per-square field. If you are using multiple colors, enter the total number of colors. The planner divides yardage evenly — adjust manually if some colors appear more than others.",
+        "Review the results. The planner shows your grid layout, total squares, actual finished dimensions, and yardage breakdown. If the actual dimensions are too far from your target, try a different square size or adjust your target dimensions to match the grid.",
+      ],
+    },
+    understandingResults: {
+      title: "Understanding Your Results",
+      paragraphs: [
+        "The grid layout tells you how many squares across and how many squares down. Total squares is the product of these two numbers. For a 50 by 60 inch throw with 6-inch squares, that is 8 across by 10 down, or 80 squares total.",
+        "The yardage per color is an even split of the total yarn needed. In practice, if certain colors appear in more rounds or more squares, they will need proportionally more yarn. Use the per-color estimate as a minimum and buy one extra skein of any color that appears heavily.",
+        "The joining yardage is separate from the square yardage. You will need this yarn in addition to the yarn for the squares themselves. Many crafters use a single color for all joining to create a cohesive frame around each square. Others match each join to the outer round of the adjacent square. Plan your joining color and include it in your yarn purchase.",
+      ],
+    },
+    proTips: {
+      title: "Pro Tips",
+      tips: [
+        "Block every square to the exact same dimensions before joining. Uneven squares make assembly frustrating and produce a wavy, unprofessional blanket.",
+        "Crochet a few extra squares as insurance. If one square has a tension problem or a color you decide you dislike, you can swap it out without interrupting the assembly.",
+        "For stash-busting projects, weigh your leftover yarn and divide by the yarn-per-square amount to see how many squares each leftover can produce before you start.",
+        "Consider your joining method before you start crocheting squares. Join-as-you-go integrates assembly into the last round of each square, saving time and producing a flat, seamless look.",
+      ],
+    },
+  },
+
+  "sleeve-calculator": {
+    introduction: {
+      title: "Why You Need a Sleeve Shaping Calculator",
+      paragraphs: [
+        "Sleeves are where many sweater projects stall. The body is finished, the excitement is fading, and now you have to figure out how to taper from the wide upper arm to the narrow cuff with decreases spaced evenly over dozens of rows. Uneven shaping creates visible jogs and bumps in the fabric. Too many decreases too fast produces a cinched look; too few too slowly leaves a baggy sleeve.",
+        "This calculator distributes your decreases mathematically across the available shaping rows. It accounts for the cuff ribbing, leaves buffer zones at each end, and handles the remainder when the rows do not divide evenly. The result is a smooth, professional taper with row-by-row instructions you can follow without thinking.",
+      ],
+    },
+    whatIs: {
+      title: "What Is Sleeve Shaping?",
+      paragraphs: [
+        "Sleeve shaping refers to the gradual narrowing (or widening, if working bottom-up) of a sleeve from the upper arm to the wrist. In a standard tapered sleeve, you start with the number of stitches needed for the upper arm circumference and decrease evenly until you reach the number of stitches needed for the wrist or cuff.",
+        "Decreases are always worked in pairs — one at each end of the row — so that the shaping is symmetrical. In knitting, the standard technique is SSK at the beginning of the row (leans left) and K2tog at the end (leans right), creating mirrored decreases. In crochet, SC2tog or DC2tog is worked at each end.",
+        "The shaping zone does not extend the full length of the sleeve. Typically, you leave a 1-inch buffer below the underarm seam for a smooth join and another 1-inch buffer above the cuff ribbing so the last decrease is not immediately next to the ribbing transition. The calculator accounts for both buffers and for the cuff ribbing length you specify.",
+      ],
+    },
+    howCalculated: {
+      title: "How Sleeve Shaping Is Calculated",
+      paragraphs: [
+        "The calculator converts your upper arm and wrist circumferences into stitch counts using your stitch gauge, rounding both to even numbers. The difference between these counts divided by 2 gives the number of decrease events needed, since each event removes 2 stitches (one at each end).",
+        "The shaping zone in inches equals the sleeve length minus 1 inch (top buffer) minus the cuff ribbing length minus 1 inch (bottom buffer). This zone is converted to rows using your row gauge and rounded to an even number.",
+        "The calculator then divides shaping rows by decrease events. If the division is exact, you decrease every N rows for the entire shaping zone. If there is a remainder, the decreases are split into two groups: some worked every N rows and the rest every N+1 rows. This two-rate approach distributes the shaping smoothly without bunching decreases at one end.",
+      ],
+    },
+    howToUse: {
+      title: "How to Use the Sleeve Calculator",
+      paragraphs: [
+        "Enter your upper arm circumference (measure the fullest part, about 1 inch below the armpit, and add 1 to 2 inches for ease) and your wrist or cuff circumference. Enter the total sleeve length from underarm to wrist, and the length of cuff ribbing you plan to work.",
+        "Enter your stitch gauge (stitches per inch) and row gauge (rows per inch). These should come from a swatch worked in the same stitch pattern you plan to use for the sleeve body — not the ribbing.",
+        "The calculator outputs the upper arm and cuff stitch counts, the total stitches to decrease, the shaping instruction (every N rows for X times, then every N+1 rows for Y times), and both knitting and crochet notation for the decrease technique.",
+      ],
+    },
+    understandingResults: {
+      title: "Understanding Your Results",
+      paragraphs: [
+        "The shaping instruction is the key output. A simple result like 'Decrease 1 st each end every 6 rows, 12 times' means you work 5 plain rows, then a decrease row, and repeat 12 times. A split result like 'every 6 rows 8 times, then every 7 rows 4 times' means you start at the faster rate and switch to the slower rate for the remaining decreases.",
+        "The total shaping rows should fit within your sleeve length. If the calculator shows more shaping rows than available rows, your sleeve is too short for the amount of taper needed. Either lengthen the sleeve, reduce the upper arm ease, or increase the cuff width.",
+      ],
+    },
+    proTips: {
+      title: "Pro Tips",
+      tips: [
+        "Work decreases 2 to 3 stitches in from each edge rather than right at the edge. This creates a visible decrease line (called fully-fashioned shaping) that looks professional and is easier to seam.",
+        "If working the sleeve bottom-up (from cuff to upper arm), reverse the instructions — increase instead of decrease at the same intervals.",
+        "Knit both sleeves at the same time on a long circular needle or from two balls of yarn on separate sections of one needle. This ensures both sleeves have identical shaping and length.",
+        "Always try on or measure the sleeve against the body before binding off. The upper arm stitches should match the armhole depth of your garment body.",
+      ],
+    },
+  },
+
+  "raglan-calculator": {
+    introduction: {
+      title: "Why You Need a Raglan Calculator",
+      paragraphs: [
+        "Top-down raglan sweaters are one of the most popular garment constructions in knitting and crochet. You start at the neck and work outward, which means you can try on the sweater as you go and adjust the fit in real time. But the yoke math — distributing stitches between front, back, and sleeves, then calculating how many increase rounds to reach your chest circumference — requires careful arithmetic.",
+        "This calculator does the stitch distribution for you using the standard 30/30/15/15 raglan ratio and computes exactly how many increase rounds you need. It gives you a complete starting framework so you can focus on the enjoyable parts: choosing yarn, picking stitch patterns, and watching the yoke grow round by round.",
+      ],
+    },
+    whatIs: {
+      title: "What Is a Top-Down Raglan?",
+      paragraphs: [
+        "A raglan sweater is characterized by four diagonal seam lines running from the neckline to the underarm. Unlike set-in sleeve construction, where the body and sleeves are knit separately and seamed together, a raglan is knit as one piece from the top down. The yoke forms a continuous circle of fabric that expands with every increase round.",
+        "The standard construction increases at four points (the raglan lines) every other round, adding 8 stitches per increase round — 2 at each raglan point. As the yoke grows, the front, back, and sleeve sections all expand proportionally until the yoke is deep enough to reach the underarm. At that point, the sleeve stitches are placed on hold, the body sections are joined, and the body is worked downward as a tube.",
+        "The standard stitch distribution is 30 percent for the back, 30 percent for the front, and 15 percent for each sleeve, plus 4 raglan seam stitches (one at each raglan line). This ratio produces balanced proportions for most body types, though experienced knitters may adjust the ratio for specific fit preferences.",
+      ],
+    },
+    howCalculated: {
+      title: "How the Raglan Calculator Works",
+      paragraphs: [
+        "The calculator starts with your desired chest circumference and converts it to total chest stitches using your stitch gauge. It then distributes the initial neck cast-on using the 30/30/15/15 ratio plus 4 raglan seam stitches.",
+        "The difference between the total chest stitches and the neck cast-on is divided by 8 (since each increase round adds 8 stitches) to determine the number of increase rounds. The total yoke rows is twice the increase rounds because you work one plain round between each increase round. Dividing yoke rows by your row gauge gives the estimated yoke depth in inches.",
+        "This yoke depth should roughly match the distance from the base of your neck to your underarm. If the calculated depth is significantly shorter or longer than your body measurement, you may need to adjust the neck cast-on, add or remove plain rounds between increases, or modify the chest circumference input to account for ease.",
+      ],
+    },
+    howToUse: {
+      title: "How to Use the Raglan Calculator",
+      paragraphs: [
+        "Enter your desired chest circumference in inches. This should include any ease you want — typically 2 to 4 inches of positive ease for a standard fit, or 4 to 8 inches for a relaxed fit. Enter your stitch gauge and row gauge, either per inch or per 4 inches.",
+        "Review the stitch distribution. The calculator shows how many stitches to assign to the back, front, each sleeve, and the 4 raglan seam stitches. The total of all sections is your neck cast-on count.",
+        "Check the yoke depth against your body. Measure from the base of your neck (where a crew neck would sit) straight down to your underarm. The calculated yoke depth should be close to this measurement. If it is off by more than an inch, consider adjusting your inputs or planning to add extra plain rounds in the yoke.",
+      ],
+    },
+    understandingResults: {
+      title: "Understanding Your Results",
+      paragraphs: [
+        "The neck cast-on is the total number of stitches you start with. For a crew neck, this is typically placed on a circular needle and joined for working in the round. For a V-neck or cardigan, you would work flat and adjust the front stitch count.",
+        "The stitch distribution shows where to place markers. Cast on all stitches, then place 4 markers to separate the sections: front, raglan stitch, sleeve, raglan stitch, back, raglan stitch, sleeve, raglan stitch. Increase on each side of every marker on increase rounds.",
+        "The note about separating body and sleeves at the underarm is critical. When the yoke is complete, place all sleeve stitches on waste yarn, cast on a few underarm stitches (typically 2 to 6) to bridge the gap between front and back, and continue the body downward. The sleeves are picked up and knit later.",
+      ],
+    },
+    proTips: {
+      title: "Pro Tips",
+      tips: [
+        "Try the yoke on before separating body and sleeves. The raglan lines should end right at the underarm point. If they are too high, work more increase rounds. If too low, the sweater will have oversized sleeves.",
+        "For a better neckline, add short rows across the back neck before starting raglan increases. This raises the back neck relative to the front, preventing the sweater from pulling backward.",
+        "The 30/30/15/15 ratio is a starting point. Knitters with broader shoulders may want to increase the back and front percentages; those with larger arms may increase the sleeve percentages.",
+        "When casting on underarm stitches, pick up a few extra stitches from the body on each side of the gap to prevent holes. Decrease back to the target body stitch count over the next few rounds.",
+      ],
+    },
+  },
+
+  "blocking-calculator": {
+    introduction: {
+      title: "Why You Need a Blocking Calculator",
+      paragraphs: [
+        "Blocking transforms handknit and crocheted pieces from homemade-looking to professional-quality. Unblocked fabric has uneven stitches, curling edges, and dimensions that may not match your pattern. Blocking evens everything out, opens up lace, relaxes cable crossings, and sets the finished shape. It is the single most impactful finishing step you can take.",
+        "But blocking incorrectly can damage your work. Steaming acrylic permanently ruins the fibers. Hot water felts non-superwash wool. Aggressive stretching on delicate alpaca can cause permanent sagging. This calculator tells you the right method for your fiber type, shows you how much stretch is feasible, and gives step-by-step instructions so you block with confidence.",
+      ],
+    },
+    whatIs: {
+      title: "What Is Blocking?",
+      paragraphs: [
+        "Blocking is the process of setting your finished knit or crochet piece to its final dimensions using water, steam, or a combination of both. The fiber absorbs moisture, relaxes, and can be gently shaped to the desired measurements. When it dries in that position, the fibers remember the shape — at least until the next washing.",
+        "There are three main blocking methods. Wet blocking involves fully submerging the piece in water with a wool wash, gently squeezing out excess moisture (never wringing), and pinning it to blocking mats at the target dimensions. Spray blocking pins the piece first, then sprays it with water until damp. Steam blocking pins the piece and holds a steam iron above it without touching the fabric.",
+        "Different fibers respond differently to each method. Wool is the most blockable fiber — it can stretch dramatically when wet and holds its blocked shape beautifully. Cotton and linen respond well to wet blocking and steam. Acrylic must never be steamed, as heat permanently damages the synthetic fibers. The right method depends entirely on your fiber content.",
+      ],
+    },
+    howCalculated: {
+      title: "How the Blocking Calculator Works",
+      paragraphs: [
+        "The calculator compares your current piece dimensions to your target dimensions and computes the stretch percentage in each direction. The formula is straightforward: the target dimension minus the current dimension, divided by the current dimension, times 100.",
+        "It then rates the feasibility of that stretch based on established fiber behavior. Less than 5 percent stretch is easy for virtually any fiber. Five to 15 percent is moderate — natural fibers handle it well, but synthetics are unlikely to hold. Fifteen to 30 percent is significant — achievable with wool lace but not with most other fibers. Over 30 percent is very aggressive and may not be achievable even with wool.",
+        "The fiber lookup table maps each fiber type to its recommended blocking method and any critical warnings. For example, non-superwash wool should only be blocked with cool water to avoid felting, alpaca should be spray-blocked to prevent irreversible stretching, and acrylic should never be exposed to steam or high heat.",
+      ],
+    },
+    howToUse: {
+      title: "How to Use the Blocking Calculator",
+      paragraphs: [
+        "Select your fiber type from the dropdown. If your yarn is a blend, choose the fiber that requires the most gentle treatment — for an acrylic/wool blend, treat it as acrylic. If you are unsure of the fiber content, start with spray blocking, which is the safest method for unknown fibers.",
+        "Enter the current width and length of your piece as it comes off the needles or hook, without stretching. Then enter your target width and length — the dimensions you want the finished piece to be.",
+        "The calculator displays the recommended blocking method, any fiber-specific warnings, the stretch percentage in each direction, a feasibility rating, and step-by-step instructions for the recommended method. Follow the instructions carefully, especially the warnings about water temperature and steam.",
+      ],
+    },
+    understandingResults: {
+      title: "Understanding Your Results",
+      paragraphs: [
+        "The stretch percentages tell you how much the piece needs to grow in each direction. If both percentages are under 5 percent, blocking will be easy and low-risk. If either percentage is over 15 percent, pay close attention to the feasibility rating — you may need to adjust your expectations or accept that the piece cannot reach the target dimensions.",
+        "The feasibility rating is based on general fiber behavior, not a guarantee. Your specific yarn, stitch pattern, and tension all affect how much stretch is achievable. Lace patterns stretch dramatically because the open stitches have room to expand. Dense stockinette or textured stitches have less room to move.",
+        "If the calculator shows a warning about your fiber type, take it seriously. Felting non-superwash wool and killing acrylic are irreversible. When in doubt, test your blocking method on your gauge swatch before committing to the full piece.",
+      ],
+    },
+    proTips: {
+      title: "Pro Tips",
+      tips: [
+        "Always test your blocking method on your gauge swatch before blocking the finished piece. This is especially important for unknown fibers or blends.",
+        "Use rustproof T-pins or dedicated blocking pins. Regular straight pins can rust and stain your work.",
+        "For straight edges on shawls and blankets, invest in blocking wires. They create a smooth, even edge without the scalloped look that individual pins create.",
+        "Never hang a wet blocked item to dry. The weight of the water will stretch the piece unevenly. Always dry flat on blocking mats or a towel.",
+      ],
+    },
+  },
+
+  "stash-estimator": {
+    introduction: {
+      title: "Why You Need a Yarn Stash Estimator",
+      paragraphs: [
+        "Every crafter accumulates partial skeins. They sit in bins, bags, and baskets — leftovers from finished projects, impulse purchases that lost their ball band, and skeins inherited from fellow crafters. The question is always the same: is there enough here for another project? Without a way to estimate the remaining yardage, those partial skeins stay in limbo — too much to throw away, too uncertain to use.",
+        "This estimator solves the mystery. Weigh your partial skein on a kitchen scale, enter the original skein specs, and get an immediate yardage estimate. For completely unlabeled yarn, the reference table maps yarn weight categories to typical yardage per 100 grams so you can estimate what you have even without a ball band.",
+      ],
+    },
+    whatIs: {
+      title: "What Is Yarn Stash Estimation?",
+      paragraphs: [
+        "Yarn stash estimation is the process of determining how much usable yardage remains in your leftover yarn. The most reliable method is weight-based: if you know the original skein's full weight and yardage, you can calculate the remaining yardage by weighing what you have and applying a simple proportion.",
+        "The formula is straightforward. If a full skein weighs 100 grams and contains 220 yards, and your partial skein weighs 40 grams, then you have approximately 88 yards remaining. This works because yarn density is consistent within a single skein — every gram contains the same amount of yardage.",
+        "For yarn with no label information at all, you can estimate yardage using the Craft Yarn Council's typical yardage ranges by weight category. A 100-gram ball of worsted weight yarn typically contains about 200 yards, while the same weight of lace yarn might contain 800 yards or more. These are averages — actual yardage varies by fiber content and spin — but they give you a useful ballpark for planning.",
+      ],
+    },
+    howCalculated: {
+      title: "How the Stash Estimator Works",
+      paragraphs: [
+        "Mode 1 uses a direct proportion. Divide the partial skein weight by the full skein weight, then multiply by the full skein yardage. This gives you the estimated remaining yardage. The calculation assumes uniform density throughout the skein, which is true for commercially spun yarn.",
+        "Mode 2 uses reference values from the Craft Yarn Council's weight categories. Each category has a typical yardage per 100 grams — for example, worsted weight averages about 200 yards per 100 grams. Multiply the partial skein weight (in grams) by the yardage per gram for that category to get an estimate.",
+        "Both modes produce estimates, not exact measurements. Fiber content significantly affects the weight-to-yardage ratio. Cotton is denser than wool, so a 100-gram ball of cotton worsted contains fewer yards than a 100-gram ball of wool worsted. Silk and bamboo fall somewhere in between. The estimates are most accurate when the fiber content is consistent with typical values for the weight category.",
+      ],
+    },
+    howToUse: {
+      title: "How to Use the Stash Estimator",
+      paragraphs: [
+        "For Mode 1, you need three pieces of information from the original ball band: the full skein weight in grams, the full skein yardage, and the partial skein weight from your kitchen scale. Enter all three values and the calculator shows your estimated remaining yardage instantly.",
+        "For Mode 2, identify your yarn weight category. If you are unsure, use the WPI (wraps per inch) method — wrap the yarn around a ruler for one inch and count the wraps. Enter the weight category and your partial skein weight in grams. The calculator multiplies by the typical yardage per 100 grams for that category.",
+        "If you have no idea what the yarn weight or fiber is, start by measuring WPI to identify the weight, then use Mode 2 with that weight category. The reference table also shows the full range of typical yardages for each category, so you can see the possible spread and plan conservatively.",
+      ],
+    },
+    understandingResults: {
+      title: "Understanding Your Results",
+      paragraphs: [
+        "The estimated yardage is just that — an estimate. For Mode 1 with known skein specs, the estimate is quite accurate for commercial yarn. For Mode 2 with reference values, the actual yardage could be anywhere within the range shown for that weight category. Plan conservatively — if the typical value says 200 yards per 100 grams but the range is 180 to 240, assume the lower end if you cannot afford to run short.",
+        "Fiber content is the biggest variable. Cotton is about 50 percent denser than wool, so a 50-gram ball of cotton DK weight might have 100 yards while a 50-gram ball of wool DK has 125 yards. Acrylic is similar in density to wool, while silk and bamboo are closer to cotton. If you know the fiber content, factor this into your planning.",
+      ],
+    },
+    proTips: {
+      title: "Pro Tips",
+      tips: [
+        "Invest in an inexpensive kitchen scale that reads in grams. It pays for itself the first time it saves you from buying yarn you do not need.",
+        "Weigh your project periodically as you work. Subtract the project weight from the starting skein weight to track how much yarn you have left without winding it off.",
+        "When buying yarn for a project, weigh one skein to verify the label weight. Manufacturing tolerances mean some skeins may be slightly over or under the stated weight.",
+        "For stash organization, weigh each partial skein and write the weight and original yardage on a tag attached to the yarn. This makes future project planning much faster.",
+      ],
+    },
+  },
 };
