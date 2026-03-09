@@ -1,7 +1,7 @@
 # FiberTools — Free Calculators for Knitters, Crocheters & Weavers
 > https://fibertools.app
 
-FiberTools is a suite of 21 free, browser-based calculators and references for fiber arts — knitting, crochet, weaving, spinning, embroidery, and cross stitch. Built with 30+ years of fiber arts expertise to ensure accurate terminology, correct math, and real-world usefulness.
+FiberTools is a suite of 31 free, browser-based calculators and references for fiber arts — knitting, crochet, weaving, spinning, embroidery, and cross stitch. Built with 30+ years of fiber arts expertise to ensure accurate terminology, correct math, and real-world usefulness.
 
 All processing happens client-side — no data is sent to any server. No login required. Works offline. Every tool includes educational content, expert tips, and FAQ sections.
 
@@ -25,6 +25,18 @@ All processing happens client-side — no data is sent to any server. No login r
 - [Amigurumi Shapes Guide](https://fibertools.app/amigurumi-shapes): Round-by-round instructions for sphere, cone, cylinder, and oval shapes.
 - [Project Cost Calculator](https://fibertools.app/project-cost-calculator): Calculate the total cost of your project including yarn, notions, and time estimate.
 - [Color Pooling Calculator](https://fibertools.app/color-pooling-calculator): Calculate the exact stitch count to make variegated yarn pool into argyle and plaid patterns.
+- [WPI to Yarn Weight Converter](https://fibertools.app/wpi-calculator): Enter wraps per inch to identify yarn weight, recommended needles, hooks, gauge range, and project ideas.
+- [Cast On Calculator](https://fibertools.app/cast-on-calculator): Calculate how many stitches to cast on for any width with stitch pattern multiple rounding.
+- [Hat Size Calculator](https://fibertools.app/hat-calculator): Get cast-on count, crown decrease schedule, and yardage for any head size from preemie to large adult.
+- [Sock Knitting Calculator](https://fibertools.app/sock-calculator): Calculate sock stitch counts for top-down or toe-up with heel flap, gusset, and short-row heel instructions.
+- [Sleeve Shaping Calculator](https://fibertools.app/sleeve-calculator): Get row-by-row decrease instructions for tapered sleeves in knit or crochet.
+- [Raglan Calculator](https://fibertools.app/raglan-calculator): Calculate neck cast-on, stitch distribution, and increase rounds for a top-down raglan sweater.
+- [Blocking Calculator](https://fibertools.app/blocking-calculator): Get the right blocking method for your fiber type with stretch feasibility ratings and step-by-step instructions.
+- [Yarn Stash Estimator](https://fibertools.app/stash-estimator): Estimate remaining yardage in partial skeins by weight, plus a yardage reference table for unlabeled yarn.
+
+### Crochet
+- [C2C Blanket Calculator](https://fibertools.app/c2c-calculator): Plan your corner-to-corner crochet blanket with block counts, diagonal rows, and yardage estimates.
+- [Granny Square Planner](https://fibertools.app/granny-square-planner): Plan a granny square blanket with grid layout, total squares, per-color yardage, and joining yarn estimates.
 
 ### Spinning
 - [Spinning Ratio Calculator](https://fibertools.app/spinning-ratio-calculator): Calculate drive ratios, twists per inch, and plying ratios for handspinning.
