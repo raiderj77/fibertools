@@ -14,10 +14,12 @@ interface ConsentState {
 function updateGoogleConsent(analytics: ConsentStatus, ads: ConsentStatus) {
   if (typeof window !== "undefined" && typeof window.gtag === "function") {
     window.gtag("consent", "update", {
-      analytics_storage: analytics,
       ad_storage: ads,
       ad_user_data: ads,
       ad_personalization: ads,
+      analytics_storage: analytics,
+      functionality_storage: analytics,
+      personalization_storage: analytics,
     });
   }
 }
@@ -26,7 +28,7 @@ export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const stored = localStorage.getItem("cookie-consent");
+    const stored = localStorage.getItem("cookie_consent");
     if (!stored) {
       // First visit — show banner after a short delay
       const timer = setTimeout(() => setVisible(true), 1000);
@@ -39,7 +41,7 @@ export default function CookieConsent() {
       updateGoogleConsent(consent.analytics, consent.ads);
     } catch {
       // Corrupted data, show banner again
-      localStorage.removeItem("cookie-consent");
+      localStorage.removeItem("cookie_consent");
       setVisible(true);
     }
   }, []);
@@ -50,7 +52,7 @@ export default function CookieConsent() {
       ads: "granted",
       timestamp: new Date().toISOString(),
     };
-    localStorage.setItem("cookie-consent", JSON.stringify(consent));
+    localStorage.setItem("cookie_consent", JSON.stringify(consent));
     updateGoogleConsent("granted", "granted");
     setVisible(false);
   }
@@ -61,7 +63,7 @@ export default function CookieConsent() {
       ads: "denied",
       timestamp: new Date().toISOString(),
     };
-    localStorage.setItem("cookie-consent", JSON.stringify(consent));
+    localStorage.setItem("cookie_consent", JSON.stringify(consent));
     updateGoogleConsent("denied", "denied");
     setVisible(false);
   }

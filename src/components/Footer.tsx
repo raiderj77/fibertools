@@ -111,6 +111,10 @@ export default function Footer() {
             <a href="https://flipmycase.com" target="_blank" rel="noopener noreferrer" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">FlipMyCase</a>
             {" · "}
             <a href="https://creatorrevenuecalculator.com" target="_blank" rel="noopener noreferrer" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">Creator Revenue Calculator</a>
+            {" · "}
+            <a href="https://contractextract.com" target="_blank" rel="noopener noreferrer" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">ContractExtract</a>
+            {" · "}
+            <a href="https://medicalbillreader.com" target="_blank" rel="noopener noreferrer" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">Medical Bill Reader</a>
           </p>
         </div>
       </div>

@@ -67,6 +67,9 @@ export default function AboutPage() {
             actually think.
           </p>
           <p>So I built them myself.</p>
+          <p>
+            Created by a fiber arts expert with 30+ years of experience.
+          </p>
         </section>
 
         <section>
