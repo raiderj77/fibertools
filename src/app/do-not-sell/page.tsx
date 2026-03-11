@@ -29,7 +29,7 @@ export default function DoNotSellPage() {
         Do Not Sell My Personal Information
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: February 17, 2026
+        Last updated: March 11, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -108,8 +108,8 @@ export default function DoNotSellPage() {
               </a>
             </li>
             <li>
-              Enable &ldquo;Do Not Track&rdquo; or Global Privacy Control (GPC)
-              in your browser
+              Enable Global Privacy Control (GPC) in your browser — we honor GPC
+              as a valid opt-out request
             </li>
           </ul>
         </section>
@@ -128,8 +128,16 @@ export default function DoNotSellPage() {
               <strong>Delete</strong> personal information we hold about you
             </li>
             <li>
+              <strong>Correct</strong> inaccurate personal information
+            </li>
+            <li>
               <strong>Opt out</strong> of the sale or sharing of personal
               information
+            </li>
+            <li>
+              <strong>Limit use of sensitive data</strong> — request we limit
+              the use of any sensitive personal information (note: FiberTools
+              does not collect sensitive personal information)
             </li>
             <li>
               <strong>Non-discrimination</strong> for exercising your rights

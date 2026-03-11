@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         Privacy Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: February 17, 2026
+        Last updated: March 11, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -165,6 +165,33 @@ export default function PrivacyPolicyPage() {
               </a>
               )
             </li>
+            <li>
+              <strong>Microsoft Clarity</strong> — heatmaps and session recordings
+              to understand how visitors interact with the site (
+              <a
+                href="https://privacy.microsoft.com/en-us/privacystatement"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sage-600 dark:text-sage-400 underline"
+              >
+                Microsoft Privacy Statement
+              </a>
+              )
+            </li>
+            <li>
+              <strong>Amazon Associates</strong> — affiliate product links. We may
+              earn a small commission when you purchase through our links. This does
+              not affect the price you pay. (
+              <a
+                href="https://www.amazon.com/gp/help/customer/display.html?nodeId=468496"
+                target="_blank"
+                rel="noopener noreferrer nofollow sponsored"
+                className="text-sage-600 dark:text-sage-400 underline"
+              >
+                Amazon Privacy Notice
+              </a>
+              )
+            </li>
           </ul>
         </section>
 
@@ -180,10 +207,13 @@ export default function PrivacyPolicyPage() {
             questions.
           </p>
           <p>
-            <strong>CCPA (California users):</strong> You have the right to know
-            what personal information we collect, to request deletion, and to opt
-            out of the sale of personal information. We do not sell personal
-            information. See our{" "}
+            <strong>CCPA/CPRA (California users):</strong> You have the right to
+            know what personal information we collect, to request deletion, to
+            request correction of inaccurate data, to opt out of the sale or
+            sharing of personal information, and to limit the use of sensitive
+            personal information. We do not sell personal information. We honor
+            Global Privacy Control (GPC) signals as a valid opt-out request. See
+            our{" "}
             <a
               href="/do-not-sell"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -212,8 +242,27 @@ export default function PrivacyPolicyPage() {
           </h2>
           <p>
             Analytics data is retained according to Google Analytics default
-            settings (14 months). We do not maintain any separate database of
+            settings (14 months). Microsoft Clarity session data is retained for
+            up to 30 days. We do not maintain any separate database of
             user information.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
+            Sensitive Personal Information
+          </h2>
+          <p>
+            Effective January 1, 2026, the CCPA/CPRA defines expanded categories
+            of sensitive personal information including: mental and physical
+            health data, biometric and genetic data, precise geolocation, and
+            citizenship or immigration status.
+          </p>
+          <p>
+            FiberTools does <strong>not</strong> collect, process, or store any
+            of these sensitive data categories. Our tools are browser-based
+            calculators for fiber arts and do not request, access, or infer any
+            sensitive personal information.
           </p>
         </section>
 
