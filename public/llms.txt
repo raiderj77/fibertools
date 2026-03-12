@@ -80,6 +80,19 @@ All processing happens client-side — no data is sent to any server. No login r
 - [What is WPI and How to Measure It](https://fibertools.app/guides/wpi-guide): How wraps per inch works, how to measure it, and WPI ranges for every yarn weight category.
 - [How to Price Handmade Knitting and Crochet](https://fibertools.app/guides/pricing-handmade-guide): Calculate the real cost of handmade items including materials, time, and pricing for commissions.
 - [Beginner's Guide to Amigurumi](https://fibertools.app/guides/amigurumi-beginners-guide): Shapes, sizes, and math for crochet amigurumi including magic ring, increases, and connecting parts.
+- [How to Crochet a Flat Circle](https://fibertools.app/guides/flat-circle-crochet-guide): Why you increase by 6 every round, how to fix cupping and ruffling, and round-by-round stitch counts.
+- [Sewing & Craft Needle Types](https://fibertools.app/guides/sewing-craft-needle-guide): Tapestry, chenille, sharps, betweens, and other needle types explained with use cases.
+- [Hat Sizing Guide](https://fibertools.app/guides/knit-crochet-hat-sizing-guide): Head circumference charts, negative ease, crown shaping methods, and brim options.
+- [Knitting Socks: Sizing & Construction](https://fibertools.app/guides/knitting-socks-sizing-guide): Sock anatomy, heel construction options, top-down vs toe-up, and yarn recommendations.
+- [Sleeve Shaping Guide](https://fibertools.app/guides/knitting-sleeve-shaping-guide): How to calculate tapers, sleeve lengths by size, and sleeve cap shaping for set-in sleeves.
+- [Top-Down Raglan Sweaters](https://fibertools.app/guides/raglan-sweater-guide): Raglan increase math, neckline options, stitch distribution, and sizing from measurements.
+- [How to Block Knitting & Crochet](https://fibertools.app/guides/blocking-fiber-guide): Wet, steam, and spray blocking methods with fiber-specific recommendations.
+- [Yarn Stash Management](https://fibertools.app/guides/yarn-stash-management-guide): Estimating yardage from partial skeins, organizing your stash, and scrap yarn project ideas.
+- [Corner-to-Corner Crochet (C2C)](https://fibertools.app/guides/c2c-crochet-guide): How C2C construction works, increase and decrease rows, and sizing for graphghans.
+- [Granny Square Blankets](https://fibertools.app/guides/granny-square-blanket-guide): Layout planning, square counts, joining methods, and border finishing.
+- [Knitting Cast-On Methods](https://fibertools.app/guides/cast-on-methods-guide): Long-tail, cable, tubular, and more — stretch levels, difficulty, and best use cases.
+- [Crochet Stitch Reference](https://fibertools.app/guides/crochet-stitch-reference-guide): Basic stitches, stitch height, reading diagrams, and common stitch combinations.
+- [Yarn Stripe Patterns](https://fibertools.app/guides/yarn-stripe-patterns-guide): Color planning, carrying yarn vs cutting, weaving in ends, and yardage calculation.
 
 ## Category Landing Pages
 
