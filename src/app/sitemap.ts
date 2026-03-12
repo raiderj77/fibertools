@@ -43,6 +43,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/crochet-tools", priority: 0.85, freq: "monthly" as const },
     { path: "/knitting-tools", priority: 0.85, freq: "monthly" as const },
     { path: "/weaving-tools", priority: 0.85, freq: "monthly" as const },
+    { path: "/best-yarn-for-beginners", priority: 0.85, freq: "monthly" as const },
+    { path: "/best-knitting-needles", priority: 0.85, freq: "monthly" as const },
+    { path: "/best-crochet-hooks", priority: 0.85, freq: "monthly" as const },
+    { path: "/best-yarn-for-blankets", priority: 0.85, freq: "monthly" as const },
+    { path: "/best-yarn-for-amigurumi", priority: 0.85, freq: "monthly" as const },
   ].map((p) => ({
     url: `${BASE_URL}${p.path}`,
     lastModified: new Date(TODAY),

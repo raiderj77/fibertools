@@ -87,5 +87,13 @@ All processing happens client-side — no data is sent to any server. No login r
 - [Free Knitting Calculators & Tools](https://fibertools.app/knitting-tools): All knitting-relevant calculators in one place — yarn, gauge, needles, sweaters, socks, hats, and more.
 - [Free Weaving & Spinning Calculators](https://fibertools.app/weaving-tools): Calculators for weavers and spinners — sett, EPI, drive ratio, TPI, and yarn weight.
 
+## Buying Guides
+
+- [Best Yarn for Beginners (2026)](https://fibertools.app/best-yarn-for-beginners): Expert picks for the best beginner yarn — smooth, affordable worsted weight acrylic for knitting and crochet.
+- [Best Knitting Needles (2026)](https://fibertools.app/best-knitting-needles): Straight, circular, and interchangeable needle recommendations for every budget and skill level.
+- [Best Crochet Hooks (2026)](https://fibertools.app/best-crochet-hooks): Ergonomic, aluminum, and steel crochet hook recommendations for beginners and experienced crocheters.
+- [Best Yarn for Blankets (2026)](https://fibertools.app/best-yarn-for-blankets): Soft, washable, budget-friendly yarn picks for throw, baby, and chunky blankets.
+- [Best Yarn for Amigurumi (2026)](https://fibertools.app/best-yarn-for-amigurumi): Cotton and acrylic yarn picks for tight gauge, clean stitch definition, and vibrant amigurumi colors.
+
 ## About
 - [About FiberTools](https://fibertools.app/about): Learn about FiberTools and the fiber arts expertise behind these calculators.
