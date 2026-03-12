@@ -81,5 +81,11 @@ All processing happens client-side — no data is sent to any server. No login r
 - [How to Price Handmade Knitting and Crochet](https://fibertools.app/guides/pricing-handmade-guide): Calculate the real cost of handmade items including materials, time, and pricing for commissions.
 - [Beginner's Guide to Amigurumi](https://fibertools.app/guides/amigurumi-beginners-guide): Shapes, sizes, and math for crochet amigurumi including magic ring, increases, and connecting parts.
 
+## Category Landing Pages
+
+- [Free Crochet Calculators & Tools](https://fibertools.app/crochet-tools): All crochet-relevant calculators in one place — yarn, gauge, hooks, amigurumi, granny squares, C2C, and more.
+- [Free Knitting Calculators & Tools](https://fibertools.app/knitting-tools): All knitting-relevant calculators in one place — yarn, gauge, needles, sweaters, socks, hats, and more.
+- [Free Weaving & Spinning Calculators](https://fibertools.app/weaving-tools): Calculators for weavers and spinners — sett, EPI, drive ratio, TPI, and yarn weight.
+
 ## About
 - [About FiberTools](https://fibertools.app/about): Learn about FiberTools and the fiber arts expertise behind these calculators.
