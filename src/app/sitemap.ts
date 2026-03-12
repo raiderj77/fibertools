@@ -4,7 +4,7 @@ import { blogPosts } from "@/lib/blog";
 import { getAllGuides } from "@/lib/guides";
 
 const BASE_URL = "https://fibertools.app";
-const TODAY = "2026-03-06";
+const TODAY = new Date().toISOString().split("T")[0];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const toolPages = tools
