@@ -35,6 +35,21 @@ export const metadata: Metadata = {
 export default function GuidesPage() {
   const guides = getAllGuides();
 
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Fiber Arts Guides — FiberTools.app",
+    description:
+      "In-depth knitting and crochet guides from FiberTools.app",
+    url: "https://fibertools.app/guides",
+    numberOfItems: guides.length,
+    hasPart: guides.map((g) => ({
+      "@type": "Article",
+      name: g.title,
+      url: `https://fibertools.app/guides/${g.slug}`,
+    })),
+  };
+
   const guidesByCategory = guides.reduce((acc, guide) => {
     const tool = getToolBySlug(guide.toolSlug);
     const category = tool?.category || "both";
@@ -65,6 +80,10 @@ export default function GuidesPage() {
 
   return (
     <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+      />
       {/* Header */}
       <div className="text-center mb-12">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">

@@ -26,8 +26,27 @@ export const metadata: Metadata = {
 };
 
 export default function BlogIndexPage() {
+  const collectionSchema = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: "Fiber Arts Blog — FiberTools.app",
+    description:
+      "Knitting, crochet, and fiber arts guides and tutorials from FiberTools.app",
+    url: "https://fibertools.app/blog",
+    numberOfItems: blogPosts.length,
+    hasPart: blogPosts.map((post) => ({
+      "@type": "Article",
+      name: post.title,
+      url: `https://fibertools.app/blog/${post.slug}`,
+    })),
+  };
+
   return (
     <main className="max-w-4xl mx-auto px-4 sm:px-6 py-10">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+      />
       <h1 className="text-3xl sm:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 mb-3">
         Guides &amp; Tutorials
       </h1>
