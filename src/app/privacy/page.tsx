@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         Privacy Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: March 11, 2026
+        Effective Date: January 1, 2026 | Last Reviewed: March 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -206,22 +206,6 @@ export default function PrivacyPolicyPage() {
             of these rights are satisfied by default. Contact us if you have
             questions.
           </p>
-          <p>
-            <strong>CCPA/CPRA (California users):</strong> You have the right to
-            know what personal information we collect, to request deletion, to
-            request correction of inaccurate data, to opt out of the sale or
-            sharing of personal information, and to limit the use of sensitive
-            personal information. We do not sell personal information. We honor
-            Global Privacy Control (GPC) signals as a valid opt-out request. See
-            our{" "}
-            <a
-              href="/do-not-sell"
-              className="text-sage-600 dark:text-sage-400 underline"
-            >
-              Do Not Sell My Personal Information
-            </a>{" "}
-            page.
-          </p>
         </section>
 
         <section>
@@ -248,22 +232,95 @@ export default function PrivacyPolicyPage() {
           </p>
         </section>
 
-        <section>
-          <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Sensitive Personal Information
+        <section id="california-privacy" aria-labelledby="california-heading">
+          <h2 id="california-heading" className="text-xl font-semibold text-bark-800 dark:text-cream-100">
+            California Privacy Rights (CCPA/CPRA)
           </h2>
+
           <p>
-            Effective January 1, 2026, the CCPA/CPRA defines expanded categories
-            of sensitive personal information including: mental and physical
-            health data, biometric and genetic data, precise geolocation, and
-            citizenship or immigration status.
+            If you are a California resident, the California Consumer Privacy Act (CCPA) as amended
+            by the California Privacy Rights Act (CPRA) grants you specific rights regarding your
+            personal information. These rights are effective as of January 1, 2026.
           </p>
+
+          <h3>Information We Collect</h3>
+          <p>In the past 12 months we have collected the following categories of personal information:</p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li><strong>Identifiers:</strong> IP address, browser type, device identifiers collected via analytics and advertising.</li>
+            <li><strong>Internet or network activity:</strong> Pages visited, tools used, time on site, referring URLs.</li>
+            <li><strong>Commercial information:</strong> Product interactions inferred from tool usage (e.g., yarn-related interests) used for affiliate advertising targeting.</li>
+            <li><strong>Inferred data:</strong> Interests or preferences inferred from browsing behavior via advertising and affiliate partners.</li>
+          </ul>
+
+          <h3>Sensitive Personal Information</h3>
           <p>
-            FiberTools does <strong>not</strong> collect, process, or store any
-            of these sensitive data categories. Our tools are browser-based
-            calculators for fiber arts and do not request, access, or infer any
-            sensitive personal information.
+            As of January 1, 2026, California law defines an expanded category of sensitive personal
+            information. <strong>FiberTools does not collect sensitive personal information</strong>
+            {" "}as defined under CPRA, which includes: precise geolocation data, racial or ethnic origin,
+            religious beliefs, union membership, contents of private communications, genetic data,
+            biometric data, health or medical information, sexual orientation, or financial account data.
           </p>
+
+          <h3>Data Minimization</h3>
+          <p>
+            We collect only the minimum personal information necessary to operate this service and
+            serve relevant advertising. We do not collect personal information beyond what is
+            reasonably necessary and proportionate to the purposes disclosed in this policy.
+          </p>
+
+          <h3>How We Use Your Information</h3>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>To display advertising through Google AdSense</li>
+            <li>To serve relevant product recommendations through Amazon Associates and other affiliate programs</li>
+            <li>To analyze site traffic and improve tool functionality via analytics</li>
+            <li>To maintain site security and prevent fraud</li>
+          </ul>
+          <p>We do not sell your personal information as defined under CCPA. Sharing data with advertising partners for targeted advertising may constitute &ldquo;sharing&rdquo; under CPRA — you may opt out using the methods below.</p>
+
+          <h3>Your Rights as a California Resident</h3>
+          <ul className="list-disc pl-6 space-y-1">
+            <li><strong>Right to Know:</strong> Request disclosure of categories and specific pieces of personal information collected in the past 12 months.</li>
+            <li><strong>Right to Delete:</strong> Request deletion of personal information we have collected, subject to certain exceptions.</li>
+            <li><strong>Right to Correct:</strong> Request correction of inaccurate personal information.</li>
+            <li><strong>Right to Opt-Out:</strong> Opt out of the sale or sharing of your personal information. You may also use a Global Privacy Control (GPC) signal, which we honor automatically.</li>
+            <li><strong>Right to Limit Use of Sensitive Information:</strong> Direct us to limit use of sensitive personal information to necessary service functions.</li>
+            <li><strong>Right to Non-Discrimination:</strong> We will not discriminate against you for exercising any of these rights.</li>
+          </ul>
+
+          <h3>Do Not Sell or Share My Personal Information</h3>
+          <p>
+            To opt out of sharing for advertising purposes, use a{" "}
+            <a
+              href="https://globalprivacycontrol.org/"
+              rel="noopener noreferrer"
+              className="text-sage-600 dark:text-sage-400 underline"
+            >
+              Global Privacy Control (GPC)
+            </a>-enabled
+            browser, or contact us via the{" "}
+            <a
+              href="/contact"
+              className="text-sage-600 dark:text-sage-400 underline"
+            >
+              Contact page
+            </a>{" "}
+            to submit a manual opt-out request.
+          </p>
+
+          <h3>How to Submit a Request</h3>
+          <p>
+            Contact us via the{" "}
+            <a
+              href="/contact"
+              className="text-sage-600 dark:text-sage-400 underline"
+            >
+              Contact page
+            </a>
+            . We will respond within 45 days. Identity verification may be required.
+          </p>
+
+          <h3>Data Retention</h3>
+          <p>Analytics data is retained for 26 months. Server logs are retained for 90 days. We do not retain tool calculation inputs beyond your browser session.</p>
         </section>
 
         <section>
