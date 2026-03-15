@@ -63,6 +63,24 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
         </p>
       </div>
 
+      {/* YMYL Disclaimer */}
+      {content?.disclaimer && (
+        <div className="mb-8 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl">
+          <p className="text-sm text-amber-800 dark:text-amber-200 leading-relaxed">
+            {content.disclaimer}
+          </p>
+        </div>
+      )}
+
+      {/* Answer capsule */}
+      {content?.answerCapsule && (
+        <div className="mb-8 p-5 bg-sage-50 dark:bg-sage-900/20 border border-sage-200 dark:border-sage-800 rounded-xl">
+          <p className="text-bark-700 dark:text-cream-200 leading-relaxed text-[15px]">
+            {content.answerCapsule}
+          </p>
+        </div>
+      )}
+
       {/* Pre-tool educational content */}
       {content?.introduction && (
         <section className="mb-10">
@@ -140,6 +158,24 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
             </div>
           </section>
         </>
+      )}
+
+      {/* Internal links */}
+      {content?.internalLinks && content.internalLinks.length > 0 && (
+        <section className="mt-10">
+          <h2 className="section-heading">Explore Related Tools</h2>
+          <ul className="space-y-3">
+            {content.internalLinks.map((link, i) => (
+              <li key={i}>
+                <Link href={link.href} className="text-sage-600 dark:text-sage-400 hover:underline font-medium">
+                  {link.label}
+                </Link>
+                {" — "}
+                <span className="text-bark-500 dark:text-bark-400 text-sm">{link.description}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
       )}
 
       {/* Authority references */}

@@ -115,6 +115,8 @@ export default function Footer() {
             <a href="https://contractextract.com" target="_blank" rel="noopener noreferrer" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">ContractExtract</a>
             {" · "}
             <a href="https://medicalbillreader.com" target="_blank" rel="noopener noreferrer" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">Medical Bill Reader</a>
+            {" · "}
+            <a href="https://524tracker.com" target="_blank" rel="noopener noreferrer" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">524 Tracker</a>
           </p>
         </div>
       </div>

@@ -1,4 +1,7 @@
 export interface ToolEducationalContent {
+  disclaimer?: string;
+  answerCapsule?: string;
+  internalLinks?: Array<{ label: string; href: string; description: string }>;
   introduction: {
     title: string;
     paragraphs: string[];
@@ -27,6 +30,12 @@ export interface ToolEducationalContent {
 
 export const toolContent: Record<string, ToolEducationalContent> = {
   "yarn-calculator": {
+    answerCapsule: "Calculate exactly how much yarn you need for any knitting or crochet project. Enter your project type, dimensions, and yarn weight to get total yardage and skein count with a built-in safety buffer.",
+    internalLinks: [
+      { label: "Yarn Weight Chart", href: "/yarn-weight-chart", description: "Compare yarn weights and find substitution options" },
+      { label: "Gauge Calculator", href: "/gauge-calculator", description: "Measure your gauge for more accurate yardage estimates" },
+      { label: "Blanket Calculator", href: "/blanket-calculator", description: "Get precise yarn estimates for blankets of any size" },
+    ],
     introduction: {
       title: "Why You Need a Yarn Yardage Calculator",
       paragraphs: [
@@ -76,6 +85,11 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "needle-converter": {
+    answerCapsule: "Crochet hook sizes vary by country. US sizes use letters and numbers, while metric sizes use millimeters. Use this converter to find the equivalent hook size for any international standard. It also covers all knitting needle sizes across US, UK, metric, and Japanese systems.",
+    internalLinks: [
+      { label: "Yarn Weight Chart", href: "/yarn-weight-chart", description: "See recommended needle and hook sizes for each yarn weight" },
+      { label: "Gauge Calculator", href: "/gauge-calculator", description: "Check your gauge after selecting your needle or hook size" },
+    ],
     introduction: {
       title: "Why You Need a Knitting Needle Size Converter",
       paragraphs: [
@@ -125,6 +139,12 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "gauge-calculator": {
+    answerCapsule: "Gauge is the number of stitches and rows per inch in your knitted or crocheted fabric. Enter your swatch measurements to calculate stitches per inch, compare against your pattern's gauge, and resize stitch counts to match your actual tension.",
+    internalLinks: [
+      { label: "Stitch Pattern Calculator", href: "/stitch-pattern-calculator", description: "Find compatible stitch counts for your gauge" },
+      { label: "Yarn Weight Chart", href: "/yarn-weight-chart", description: "Check recommended gauge ranges for each yarn weight" },
+      { label: "Needle & Hook Converter", href: "/needle-converter", description: "Adjust needle size to match your target gauge" },
+    ],
     introduction: {
       title: "Why Gauge Matters in Knitting and Crochet",
       paragraphs: [
@@ -175,6 +195,13 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "yarn-weight-chart": {
+    disclaimer: "Yarn substitution recommendations are provided as guidance only. Fiber content, twist, and construction vary between brands. Always swatch to verify gauge before substituting yarns in a pattern.",
+    answerCapsule: "This interactive chart compares all eight Craft Yarn Council yarn weight categories across US, UK, and Australian naming systems. Use it to identify yarn weights, check substitution compatibility, and find recommended needle and hook sizes for any weight category.",
+    internalLinks: [
+      { label: "Gauge Calculator", href: "/gauge-calculator", description: "Verify your gauge after substituting yarn" },
+      { label: "Yarn Yardage Calculator", href: "/yarn-calculator", description: "Calculate how much substitute yarn you need" },
+      { label: "Needle & Hook Converter", href: "/needle-converter", description: "Find the right needle or hook size for your yarn weight" },
+    ],
     introduction: {
       title: "Why You Need a Yarn Weight Reference Chart",
       paragraphs: [
@@ -517,6 +544,12 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "stitch-pattern-calculator": {
+    answerCapsule: "This calculator finds compatible stitch counts for sampler blankets and multi-pattern projects. Browse 50+ stitch patterns, enter their multiples, and get exact cast-on counts that work for every pattern section — no manual arithmetic needed.",
+    internalLinks: [
+      { label: "Gauge Calculator", href: "/gauge-calculator", description: "Calculate your stitches per inch to determine target width" },
+      { label: "Yarn Weight Chart", href: "/yarn-weight-chart", description: "Check yarn weight compatibility for your project" },
+      { label: "Needle & Hook Converter", href: "/needle-converter", description: "Find the right hook or needle size for your yarn" },
+    ],
     introduction: {
       title: "Why You Need a Stitch Pattern Calculator",
       paragraphs: [
