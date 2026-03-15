@@ -123,6 +123,14 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <OrganizationSchema />
+        {/* Cookiebot CMP — must load before any tracking scripts */}
+        <Script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="a9a99ccb-4863-4e33-a895-a6d5642f408d"
+          data-blockingmode="auto"
+          strategy="beforeInteractive"
+        />
         {/* Google Consent Mode v2 — set defaults BEFORE gtag loads */}
         <Script id="consent-mode-defaults" strategy="beforeInteractive">
           {`
