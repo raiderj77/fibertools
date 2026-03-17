@@ -102,7 +102,7 @@ export default function AccessibilityPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Known Accessibility Limitations
+            Known Accessibility Limitations and Workarounds
           </h2>
           <p>
             While we strive for full accessibility, some areas may have
@@ -126,7 +126,7 @@ export default function AccessibilityPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Assistive Technology Compatibility
+            Assistive Technology Compatibility and Support
           </h2>
           <p>FiberTools is designed to be compatible with:</p>
           <ul className="list-disc pl-6 space-y-1">
