@@ -178,7 +178,7 @@ export default function KnittingToolsPage() {
       {/* Accessory & Project Tools */}
       <section className="mb-12">
         <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-2">
-          Project Planning & Finishing
+          Project Planning and Finishing Tools
         </h2>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-6 max-w-2xl">
           Blanket sizing, stripe patterns, blocking methods, stash yardage estimation, and project costing.

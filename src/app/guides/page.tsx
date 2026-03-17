@@ -59,13 +59,13 @@ export default function GuidesPage() {
   }, {} as Record<string, typeof guides>);
 
   const CATEGORY_LABELS: Record<string, string> = {
-    knitting: "Knitting Guides",
-    crochet: "Crochet Guides",
-    both: "Knitting & Crochet",
-    weaving: "Weaving Guides",
-    spinning: "Spinning Guides",
-    embroidery: "Embroidery Guides",
-    "cross-stitch": "Cross Stitch Guides",
+    knitting: "Knitting Pattern Guides",
+    crochet: "Crochet Pattern Guides",
+    both: "Knitting & Crochet Guides",
+    weaving: "Weaving Technique Guides",
+    spinning: "Spinning Technique Guides",
+    embroidery: "Embroidery Technique Guides",
+    "cross-stitch": "Cross Stitch Pattern Guides",
   };
 
   const CATEGORY_COLORS: Record<string, string> = {
@@ -104,7 +104,7 @@ export default function GuidesPage() {
               {CATEGORY_LABELS[category] || CATEGORY_LABELS.both}
             </span>
             <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200">
-              {categoryGuides.length} {categoryGuides.length === 1 ? 'Guide Available' : 'Guides Available'}
+              {categoryGuides.length} {categoryGuides.length === 1 ? 'Guide Available Here' : 'Guides Available Here'}
             </h2>
           </div>
 
