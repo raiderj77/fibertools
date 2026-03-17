@@ -222,10 +222,10 @@ export default function BestKnittingNeedlesPage() {
           </p>
         </section>
 
-        {/* Best Circular Needles */}
+        {/* Best Circular Knitting Needles */}
         <section className="mb-10">
           <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-            Best Circular Needles
+            Best Circular Knitting Needles
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             Circular needles are the most versatile type — they handle flat and in-the-round knitting, distribute weight across the cable, and come in every size. The cable quality matters as much as the tips: a stiff, kinky cable fights you on every row.
@@ -335,10 +335,10 @@ export default function BestKnittingNeedlesPage() {
           </p>
         </section>
 
-        {/* Needle Material Comparison */}
+        {/* Knitting Needle Material Comparison */}
         <section className="mb-10">
           <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-            Needle Material Comparison
+            Knitting Needle Material Comparison
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             The material of your needles affects how yarn moves across the surface, how the needles feel in your hands, and how long they last. Here is how the most common materials compare.
@@ -399,7 +399,7 @@ export default function BestKnittingNeedlesPage() {
       {/* FAQ */}
       <section className="mt-12">
         <h2 className="text-xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
-          Frequently Asked Questions
+          Frequently Asked Questions About Knitting Needles
         </h2>
         <div className="bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700 divide-y divide-cream-200 dark:divide-bark-700">
           {[
