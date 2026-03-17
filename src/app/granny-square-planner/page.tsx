@@ -19,6 +19,11 @@ export const metadata: Metadata = {
 export default function GrannySquarePlannerPage() {
   return (
     <ToolLayout slug="granny-square-planner">
+      <div className="sr-only">
+        <h2>Granny Square Planner Tool</h2>
+        <h2>How to Plan a Granny Square Blanket</h2>
+        <h2>Granny Square Layout and Yardage Estimates</h2>
+      </div>
       <GrannySquarePlannerTool />
     </ToolLayout>
   );

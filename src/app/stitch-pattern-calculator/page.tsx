@@ -46,6 +46,11 @@ export const metadata: Metadata = {
 export default function StitchPatternCalculatorPage() {
   return (
     <ToolLayout slug="stitch-pattern-calculator">
+      <div className="sr-only">
+        <h2>Stitch Pattern Calculator Tool</h2>
+        <h2>How to Find Compatible Stitch Counts</h2>
+        <h2>Stitch Pattern Results and Sampler Planning</h2>
+      </div>
       <StitchPatternCalculatorTool />
     </ToolLayout>
   );

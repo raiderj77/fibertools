@@ -47,9 +47,10 @@ export default function BlogIndexPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
       />
-      <h1 className="text-3xl sm:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 mb-3">
+      <h1 className="text-3xl sm:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 mb-1">
         Guides &amp; Tutorials
       </h1>
+      <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
       <p className="text-bark-500 dark:text-bark-400 mb-10 max-w-2xl">
         In-depth guides for every fiber craft. Each guide pairs with one of our
         free tools to help you put the knowledge into practice.

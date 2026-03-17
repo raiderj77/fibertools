@@ -43,6 +43,11 @@ export const metadata: Metadata = {
 export default function UKToUSConverterPage() {
   return (
     <ToolLayout slug="uk-to-us-converter">
+      <div className="sr-only">
+        <h2>UK to US Crochet Terms Converter</h2>
+        <h2>How to Convert Crochet Terminology</h2>
+        <h2>Crochet Term Conversion Results and Reference</h2>
+      </div>
       <UKToUSConverterTool />
     </ToolLayout>
   );

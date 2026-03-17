@@ -46,6 +46,11 @@ export const metadata: Metadata = {
 export default function StitchQuickReferencePage() {
   return (
     <ToolLayout slug="stitch-quick-reference">
+      <div className="sr-only">
+        <h2>Stitch Quick Reference Guide</h2>
+        <h2>How to Use the Stitch Reference</h2>
+        <h2>Step-by-Step Stitch Instructions and Diagrams</h2>
+      </div>
       <StitchQuickReferenceTool />
     </ToolLayout>
   );

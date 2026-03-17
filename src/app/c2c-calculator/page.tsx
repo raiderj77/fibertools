@@ -20,6 +20,11 @@ export const metadata: Metadata = {
 export default function C2cCalculatorPage() {
   return (
     <ToolLayout slug="c2c-calculator">
+      <div className="sr-only">
+        <h2>Corner-to-Corner Blanket Calculator</h2>
+        <h2>How to Plan a C2C Crochet Blanket</h2>
+        <h2>C2C Block Counts and Yardage Estimates</h2>
+      </div>
       <C2cCalculatorTool />
     </ToolLayout>
   );

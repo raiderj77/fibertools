@@ -32,6 +32,11 @@ export const metadata: Metadata = {
 export default function StripeGeneratorPage() {
   return (
     <ToolLayout slug="stripe-generator">
+      <div className="sr-only">
+        <h2>Stripe Pattern Generator Tool</h2>
+        <h2>How to Generate Stripe Patterns</h2>
+        <h2>Stripe Pattern Results and Yardage Estimates</h2>
+      </div>
       <StripeGeneratorTool />
     </ToolLayout>
   );

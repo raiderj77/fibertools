@@ -49,9 +49,10 @@ export default function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      <h1 className="text-3xl font-bold text-bark-800 dark:text-cream-100 mb-8">
+      <h1 className="text-3xl font-bold text-bark-800 dark:text-cream-100 mb-2">
         About FiberTools
       </h1>
+      <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
         <section>
@@ -111,7 +112,7 @@ export default function AboutPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            How I Build
+            How FiberTools Is Built
           </h2>
           <ul className="list-disc pl-6 space-y-2">
             <li>
@@ -135,7 +136,7 @@ export default function AboutPage() {
 
         <section id="contact">
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Get in Touch
+            Get in Touch With FiberTools
           </h2>
           <p>
             Have a suggestion, found a bug, or want to request a new tool?

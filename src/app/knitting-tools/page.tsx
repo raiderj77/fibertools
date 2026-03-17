@@ -149,9 +149,10 @@ export default function KnittingToolsPage() {
 
       {/* Header */}
       <div className="mb-12">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-1">
           Free Knitting Calculators & Tools
         </h1>
+        <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
         <p className="text-lg text-bark-600 dark:text-cream-300 max-w-3xl leading-relaxed">
           Knitting is precision craft — every stitch count, needle size, and yardage estimate matters.
           These free calculators take the guesswork out of your projects, from cast-on to bind-off.
@@ -162,7 +163,7 @@ export default function KnittingToolsPage() {
       {/* Garment Tools */}
       <section className="mb-12">
         <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-2">
-          Garment Calculators
+          Knitting Garment Calculators
         </h2>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-6 max-w-2xl">
           Cast-on counts, hat crowns, sock construction, sleeve shaping, and raglan yoke math — everything you need for fitted knitting.
@@ -192,7 +193,7 @@ export default function KnittingToolsPage() {
       {/* Reference Tools */}
       <section className="mb-12">
         <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-2">
-          Reference & Essentials
+          Reference and Essential Knitting Tools
         </h2>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-6 max-w-2xl">
           Yarn estimation, gauge calculation, needle conversion, WPI identification, and stitch abbreviations — the tools you need on every project.

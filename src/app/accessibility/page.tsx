@@ -29,13 +29,13 @@ export default function AccessibilityPage() {
         Accessibility Statement
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: February 17, 2026
+        Last updated: March 16, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Our Commitment
+            Our Commitment to Accessibility
           </h2>
           <p>
             FiberTools is committed to ensuring digital accessibility for people
@@ -46,7 +46,7 @@ export default function AccessibilityPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Standards We Follow
+            Accessibility Standards We Follow
           </h2>
           <p>
             We aim to conform to the{" "}
@@ -65,7 +65,7 @@ export default function AccessibilityPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            What We&apos;ve Done
+            What We&apos;ve Done for Accessibility
           </h2>
           <ul className="list-disc pl-6 space-y-1">
             <li>
@@ -102,7 +102,7 @@ export default function AccessibilityPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Known Limitations
+            Known Accessibility Limitations
           </h2>
           <p>
             While we strive for full accessibility, some areas may have
@@ -126,7 +126,7 @@ export default function AccessibilityPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Assistive Technology
+            Assistive Technology Compatibility
           </h2>
           <p>FiberTools is designed to be compatible with:</p>
           <ul className="list-disc pl-6 space-y-1">
@@ -139,7 +139,7 @@ export default function AccessibilityPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Feedback
+            Accessibility Feedback and Contact
           </h2>
           <p>
             We welcome your feedback on the accessibility of FiberTools. If you

@@ -21,6 +21,11 @@ export const metadata: Metadata = {
 export default function BlockingCalculatorPage() {
   return (
     <ToolLayout slug="blocking-calculator">
+      <div className="sr-only">
+        <h2>Blocking Calculator Tool</h2>
+        <h2>How to Choose a Blocking Method</h2>
+        <h2>Blocking Method Results and Step-by-Step Guide</h2>
+      </div>
       <BlockingCalculatorTool />
     </ToolLayout>
   );

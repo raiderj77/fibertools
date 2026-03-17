@@ -33,6 +33,11 @@ export const metadata: Metadata = {
 export default function SpinningCalculatorPage() {
   return (
     <ToolLayout slug="spinning-ratio-calculator">
+      <div className="sr-only">
+        <h2>Spinning Wheel Ratio Calculator</h2>
+        <h2>How to Calculate Drive Ratios</h2>
+        <h2>Spinning Ratio Results and Plying Guide</h2>
+      </div>
       <SpinningCalculatorTool />
     </ToolLayout>
   );

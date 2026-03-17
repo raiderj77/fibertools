@@ -19,6 +19,11 @@ export const metadata: Metadata = {
 export default function RaglanCalculatorPage() {
   return (
     <ToolLayout slug="raglan-calculator">
+      <div className="sr-only">
+        <h2>Raglan Calculator Tool</h2>
+        <h2>How to Calculate Raglan Shaping</h2>
+        <h2>Raglan Results and Increase Round Schedule</h2>
+      </div>
       <RaglanCalculatorTool />
     </ToolLayout>
   );

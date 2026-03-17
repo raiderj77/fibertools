@@ -128,9 +128,10 @@ export default function WeavingToolsPage() {
 
       {/* Header */}
       <div className="mb-12">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-1">
           Free Weaving & Spinning Calculators
         </h1>
+        <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
         <p className="text-lg text-bark-600 dark:text-cream-300 max-w-3xl leading-relaxed">
           Weaving and spinning involve precise ratios — sett, EPI, TPI, and drive ratios all need
           to be right before you start. These free calculators handle the math for weavers and

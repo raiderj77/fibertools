@@ -20,6 +20,11 @@ export const metadata: Metadata = {
 export default function SockCalculatorPage() {
   return (
     <ToolLayout slug="sock-calculator">
+      <div className="sr-only">
+        <h2>Sock Foot Calculator Tool</h2>
+        <h2>How to Calculate Sock Stitches</h2>
+        <h2>Sock Construction Results and Heel Instructions</h2>
+      </div>
       <SockCalculatorTool />
     </ToolLayout>
   );

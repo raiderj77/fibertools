@@ -43,6 +43,11 @@ export const metadata: Metadata = {
 export default function YarnCalculatorPage() {
   return (
     <ToolLayout slug="yarn-calculator">
+      <div className="sr-only">
+        <h2>Yarn Yardage Calculator</h2>
+        <h2>How to Calculate Yarn Yardage</h2>
+        <h2>Yarn Estimation Results and Tips</h2>
+      </div>
       <YarnCalculatorTool />
     </ToolLayout>
   );

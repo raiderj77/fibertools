@@ -29,13 +29,13 @@ export default function TermsPage() {
         Terms of Use
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: February 17, 2026
+        Last updated: March 16, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Acceptance of Terms
+            Acceptance of Terms of Use
           </h2>
           <p>
             By accessing or using FiberTools (
@@ -52,7 +52,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Description of Service
+            Description of FiberTools Service
           </h2>
           <p>
             FiberTools provides free, browser-based calculators and reference
@@ -64,7 +64,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Disclaimer of Warranties
+            Disclaimer of Warranties and Accuracy
           </h2>
           <p>
             FiberTools is provided &ldquo;as is&rdquo; and &ldquo;as
@@ -82,7 +82,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Limitation of Liability
+            Limitation of Liability for Calculations
           </h2>
           <p>
             To the fullest extent permitted by law, FiberTools and its
@@ -95,7 +95,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Intellectual Property
+            Intellectual Property and Copyright
           </h2>
           <p>
             All content on FiberTools — including text, graphics, logos, icons,
@@ -108,7 +108,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Acceptable Use
+            Acceptable Use of FiberTools
           </h2>
           <p>You agree not to:</p>
           <ul className="list-disc pl-6 space-y-1">
@@ -129,7 +129,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Third-Party Links
+            Third-Party Links and Resources
           </h2>
           <p>
             FiberTools may contain links to third-party websites (such as yarn
@@ -140,7 +140,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Advertising
+            Advertising on FiberTools
           </h2>
           <p>
             FiberTools is a free service supported by advertising. Ads are served
@@ -164,7 +164,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Privacy
+            Privacy and Data Protection
           </h2>
           <p>
             Your use of FiberTools is also governed by our{" "}
@@ -191,7 +191,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Modifications
+            Modifications to These Terms
           </h2>
           <p>
             We reserve the right to modify these terms at any time. Changes will
@@ -202,7 +202,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Governing Law
+            Governing Law and Jurisdiction
           </h2>
           <p>
             These terms are governed by the laws of the State of California,
@@ -212,7 +212,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Contact
+            Contact Us About Terms
           </h2>
           <p>
             Questions about these terms? Email us at{" "}

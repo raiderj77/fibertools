@@ -148,9 +148,10 @@ export default function CrochetToolsPage() {
 
       {/* Header */}
       <div className="mb-12">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-1">
           Free Crochet Calculators & Tools
         </h1>
+        <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
         <p className="text-lg text-bark-600 dark:text-cream-300 max-w-3xl leading-relaxed">
           Every crochet project starts with math — how much yarn, what hook size, how many stitches.
           These free calculators handle the numbers so you can focus on your craft. From amigurumi
@@ -162,7 +163,7 @@ export default function CrochetToolsPage() {
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-2">
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100">
-            Essentials & Reference
+            Crochet Essentials and Reference Tools
           </h2>
         </div>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-6 max-w-2xl">
@@ -178,7 +179,7 @@ export default function CrochetToolsPage() {
       {/* Shapes & Construction */}
       <section className="mb-12">
         <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-2">
-          Shapes & Construction
+          Crochet Shapes and Construction Calculators
         </h2>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-6 max-w-2xl">
           Calculators for amigurumi, flat circles, increase/decrease spacing, granny squares, and corner-to-corner blankets.

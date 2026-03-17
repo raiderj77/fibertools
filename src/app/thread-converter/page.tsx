@@ -33,6 +33,11 @@ export const metadata: Metadata = {
 export default function ThreadConverterPage() {
   return (
     <ToolLayout slug="thread-converter">
+      <div className="sr-only">
+        <h2>Embroidery Thread Converter Tool</h2>
+        <h2>How to Convert Thread Numbers</h2>
+        <h2>Thread Conversion Results Across Brands</h2>
+      </div>
       <ThreadConverterTool />
     </ToolLayout>
   );

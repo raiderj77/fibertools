@@ -43,6 +43,11 @@ export const metadata: Metadata = {
 export default function NeedleGuidePage() {
   return (
     <ToolLayout slug="needle-guide">
+      <div className="sr-only">
+        <h2>Sewing and Craft Needle Guide</h2>
+        <h2>How to Choose the Right Needle</h2>
+        <h2>Needle Types and Recommended Uses</h2>
+      </div>
       <NeedleGuideTool />
     </ToolLayout>
   );

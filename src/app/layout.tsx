@@ -23,11 +23,11 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL("https://fibertools.app"),
   title: {
-    default: "FiberTools — Free Calculators for Knitters, Crocheters & Weavers",
+    default: "FiberTools — Free Fiber Arts Calculators",
     template: "%s | FiberTools",
   },
   description:
-    "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery. Yarn calculator, needle converter, gauge calculator, and more. No login. Works offline.",
+    "Free online calculators for knitting, crochet, weaving, spinning & embroidery. Yarn calculator, gauge tools & more. No login. Works offline.",
   icons: {
     icon: "/favicon.svg",
   },
@@ -60,9 +60,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "FiberTools",
-    title: "FiberTools — Free Calculators for Knitters, Crocheters & Weavers",
+    title: "FiberTools — Free Fiber Arts Calculators",
     description:
-      "Free online calculators and tools for all fiber arts. No login required. Works offline.",
+      "Free online calculators for knitting, crochet, weaving, spinning & embroidery. No login. Works offline.",
     url: "https://fibertools.app",
     images: [
       {

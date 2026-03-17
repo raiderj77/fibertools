@@ -19,6 +19,11 @@ export const metadata: Metadata = {
 export default function StashEstimatorPage() {
   return (
     <ToolLayout slug="stash-estimator">
+      <div className="sr-only">
+        <h2>Yarn Stash Estimator Tool</h2>
+        <h2>How to Estimate Remaining Yardage</h2>
+        <h2>Stash Estimation Results and Yardage Reference</h2>
+      </div>
       <StashEstimatorTool />
     </ToolLayout>
   );

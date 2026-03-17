@@ -111,6 +111,7 @@ export default function HomePage() {
               Free tools for
               <span className="text-sage-600 dark:text-sage-400"> every fiber crafter</span>
             </h1>
+            <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
             <p className="mt-5 text-lg sm:text-xl text-bark-500 dark:text-bark-400 max-w-2xl leading-relaxed">
               Yarn calculators, needle converters, gauge tools, and more — for
               knitting, crochet, weaving, spinning, and embroidery. No login. No
@@ -159,7 +160,7 @@ export default function HomePage() {
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-6">
             <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100">
-              Essential Tools
+              Essential Fiber Arts Tools
             </h2>
             <span className="text-xs font-medium text-sage-600 dark:text-sage-400 bg-sage-100 dark:bg-sage-900/30 px-2.5 py-0.5 rounded-full">
               Most popular
@@ -175,7 +176,7 @@ export default function HomePage() {
         {/* More Calculators */}
         <div className="mb-12">
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-6">
-            More Calculators
+            More Fiber Arts Calculators
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {tier2.map((tool) => (
@@ -187,7 +188,7 @@ export default function HomePage() {
         {/* Specialty Tools */}
         <div>
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-6">
-            Specialty Tools
+            Specialty Fiber Arts Tools
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {tier3.map((tool) => (
@@ -201,7 +202,7 @@ export default function HomePage() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100">
-            Guides & Tutorials
+            Fiber Arts Guides & Tutorials
           </h2>
           <Link href="/blog" className="text-sm text-sage-600 dark:text-sage-400 hover:underline font-medium">
             View all →

@@ -86,9 +86,10 @@ export default function GuidesPage() {
       />
       {/* Header */}
       <div className="text-center mb-12">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-1">
           Fiber Arts Guides & Tutorials
         </h1>
+        <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
         <p className="text-lg text-bark-600 dark:text-cream-300 max-w-3xl mx-auto">
           Comprehensive guides for knitters, crocheters, weavers, spinners, and embroiderers. 
           Learn everything from reading yarn labels to mastering gauge and needle conversions.
@@ -103,7 +104,7 @@ export default function GuidesPage() {
               {CATEGORY_LABELS[category] || CATEGORY_LABELS.both}
             </span>
             <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200">
-              {categoryGuides.length} {categoryGuides.length === 1 ? 'Guide' : 'Guides'}
+              {categoryGuides.length} {categoryGuides.length === 1 ? 'Guide Available' : 'Guides Available'}
             </h2>
           </div>
 
@@ -154,7 +155,7 @@ export default function GuidesPage() {
         <div className="text-center py-12">
           <div className="text-4xl mb-4">🧶</div>
           <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-2">
-            Guides Coming Soon
+            Fiber Arts Guides Coming Soon
           </h2>
           <p className="text-bark-500 dark:text-bark-400 max-w-md mx-auto">
             We&apos;re working on comprehensive guides for all fiber arts topics. 

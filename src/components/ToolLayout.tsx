@@ -55,7 +55,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
             {CATEGORY_LABELS[tool.category]}
           </span>
           <p className="text-xs text-bark-400 dark:text-bark-500">
-            Last updated: March 2026
+            Last updated: March 16, 2026
           </p>
         </div>
         <p className="text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed mt-3">
@@ -163,7 +163,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
       {/* Internal links */}
       {content?.internalLinks && content.internalLinks.length > 0 && (
         <section className="mt-10">
-          <h2 className="section-heading">Explore Related Tools</h2>
+          <h2 className="section-heading">Explore Related Fiber Arts Tools</h2>
           <ul className="space-y-3">
             {content.internalLinks.map((link, i) => (
               <li key={i}>
@@ -180,7 +180,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
 
       {/* Authority references */}
       <section className="mt-10">
-        <h2 className="section-heading">References & Standards</h2>
+        <h2 className="section-heading">References and Industry Standards</h2>
         <ul className="space-y-2 text-sm text-bark-500 dark:text-bark-400">
           <li>
             <a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">
@@ -206,7 +206,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
       {/* Companion guides */}
       {(companionBlog || companionGuide) && (
         <section className="mt-12">
-          <h2 className="section-heading">Learn More</h2>
+          <h2 className="section-heading">Learn More About This Topic</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {companionBlog && (
               <Link
@@ -250,7 +250,7 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
 
       {/* Related tools */}
       <section className="mt-12">
-        <h2 className="section-heading">Related Tools</h2>
+        <h2 className="section-heading">Related Fiber Arts Tools</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {related.map((t) => (
             <Link key={t.slug} href={`/${t.slug}`} className="tool-card group">

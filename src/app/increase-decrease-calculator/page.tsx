@@ -32,6 +32,11 @@ export const metadata: Metadata = {
 export default function IncDecCalculatorPage() {
   return (
     <ToolLayout slug="increase-decrease-calculator">
+      <div className="sr-only">
+        <h2>Increase and Decrease Calculator</h2>
+        <h2>How to Distribute Increases Evenly</h2>
+        <h2>Increase and Decrease Stitch Instructions</h2>
+      </div>
       <IncDecCalculatorTool />
     </ToolLayout>
   );

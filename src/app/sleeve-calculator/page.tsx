@@ -19,6 +19,11 @@ export const metadata: Metadata = {
 export default function SleeveCalculatorPage() {
   return (
     <ToolLayout slug="sleeve-calculator">
+      <div className="sr-only">
+        <h2>Sleeve Shaping Calculator Tool</h2>
+        <h2>How to Calculate Sleeve Decreases</h2>
+        <h2>Sleeve Shaping Results and Row Instructions</h2>
+      </div>
       <SleeveCalculatorTool />
     </ToolLayout>
   );

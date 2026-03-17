@@ -26,9 +26,10 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="max-w-3xl mx-auto px-4 py-12">
-      <h1 className="text-3xl font-bold text-bark-800 dark:text-cream-100 mb-8">
+      <h1 className="text-3xl font-bold text-bark-800 dark:text-cream-100 mb-2">
         Contact Us
       </h1>
+      <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-8 text-bark-700 dark:text-cream-300">
         <section>
@@ -52,7 +53,7 @@ export default function ContactPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Get in Touch
+            Get in Touch With FiberTools
           </h2>
           <p>
             The best way to reach us is by email. Send your message to the
@@ -119,7 +120,7 @@ export default function ContactPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Response Time
+            Our Response Time and Process
           </h2>
           <p>
             FiberTools is maintained by a small, dedicated team, so we
@@ -180,7 +181,7 @@ export default function ContactPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Frequently Asked Questions
+            Frequently Asked Questions About FiberTools
           </h2>
 
           <h3 className="text-lg font-medium text-bark-800 dark:text-cream-100 mt-4">

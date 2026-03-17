@@ -20,6 +20,11 @@ export const metadata: Metadata = {
 export default function WpiCalculatorPage() {
   return (
     <ToolLayout slug="wpi-calculator">
+      <div className="sr-only">
+        <h2>WPI to Yarn Weight Converter</h2>
+        <h2>How to Measure Wraps Per Inch</h2>
+        <h2>Yarn Weight Identification Results and Recommendations</h2>
+      </div>
       <WpiCalculatorTool />
     </ToolLayout>
   );

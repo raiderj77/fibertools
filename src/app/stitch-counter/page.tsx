@@ -43,6 +43,11 @@ export const metadata: Metadata = {
 export default function StitchCounterPage() {
   return (
     <ToolLayout slug="stitch-counter">
+      <div className="sr-only">
+        <h2>Stitch and Row Counter Tool</h2>
+        <h2>How to Use the Stitch Counter</h2>
+        <h2>Stitch Counter Features and Offline Support</h2>
+      </div>
       <StitchCounterTool />
     </ToolLayout>
   );

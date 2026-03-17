@@ -32,6 +32,11 @@ export const metadata: Metadata = {
 export default function ProjectCostCalculatorPage() {
   return (
     <ToolLayout slug="project-cost-calculator">
+      <div className="sr-only">
+        <h2>Project Cost Calculator Tool</h2>
+        <h2>How to Estimate Project Costs</h2>
+        <h2>Project Cost Breakdown and Time Estimates</h2>
+      </div>
       <ProjectCostCalculatorTool />
     </ToolLayout>
   );

@@ -32,6 +32,11 @@ export const metadata: Metadata = {
 export default function CrossStitchCalculatorPage() {
   return (
     <ToolLayout slug="cross-stitch-calculator">
+      <div className="sr-only">
+        <h2>Cross Stitch Size and Thread Calculator</h2>
+        <h2>How to Calculate Cross Stitch Dimensions</h2>
+        <h2>Cross Stitch Size Results and Thread Estimates</h2>
+      </div>
       <CrossStitchCalculatorTool />
     </ToolLayout>
   );

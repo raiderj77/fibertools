@@ -33,6 +33,11 @@ export const metadata: Metadata = {
 export default function ColorPoolingCalculatorPage() {
   return (
     <ToolLayout slug="color-pooling-calculator">
+      <div className="sr-only">
+        <h2>Color Pooling Calculator Tool</h2>
+        <h2>How to Calculate Color Pooling</h2>
+        <h2>Color Pooling Results and Pattern Preview</h2>
+      </div>
       <ColorPoolingCalculatorTool />
     </ToolLayout>
   );

@@ -43,6 +43,11 @@ export const metadata: Metadata = {
 export default function CircleCalculatorPage() {
   return (
     <ToolLayout slug="circle-calculator">
+      <div className="sr-only">
+        <h2>Perfect Circle Calculator Tool</h2>
+        <h2>How to Crochet a Flat Circle</h2>
+        <h2>Circle Pattern Results and Increase Schedule</h2>
+      </div>
       <CircleCalculatorTool />
     </ToolLayout>
   );

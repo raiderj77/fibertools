@@ -29,6 +29,11 @@ export const metadata: Metadata = {
 export default function GaugeCalculatorPage() {
   return (
     <ToolLayout slug="gauge-calculator">
+      <div className="sr-only">
+        <h2>Gauge Calculator and Pattern Resizer</h2>
+        <h2>How to Calculate Your Gauge</h2>
+        <h2>Gauge Calculation Results and Adjustments</h2>
+      </div>
       <GaugeCalculatorTool />
     </ToolLayout>
   );

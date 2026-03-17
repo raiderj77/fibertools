@@ -43,6 +43,11 @@ export const metadata: Metadata = {
 export default function YarnWeightChartPage() {
   return (
     <ToolLayout slug="yarn-weight-chart">
+      <div className="sr-only">
+        <h2>Yarn Weight and Substitution Guide</h2>
+        <h2>How to Identify Yarn Weights</h2>
+        <h2>Yarn Weight Comparison and Substitution Results</h2>
+      </div>
       <YarnWeightChartTool />
     </ToolLayout>
   );

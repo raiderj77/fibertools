@@ -29,13 +29,13 @@ export default function CookiePolicyPage() {
         Cookie Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: February 17, 2026
+        Last updated: March 16, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            What Are Cookies
+            What Are Browser Cookies
           </h2>
           <p>
             Cookies are small text files stored on your device when you visit a
@@ -46,7 +46,7 @@ export default function CookiePolicyPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Cookies We Use
+            Cookies Used on FiberTools
           </h2>
 
           <div className="overflow-x-auto">
@@ -95,7 +95,7 @@ export default function CookiePolicyPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Local Storage
+            Local Storage and Preferences
           </h2>
           <p>
             In addition to cookies, FiberTools uses your browser&apos;s
@@ -187,7 +187,7 @@ export default function CookiePolicyPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Contact
+            Contact Us About Cookies
           </h2>
           <p>
             Questions about cookies? Email us at{" "}

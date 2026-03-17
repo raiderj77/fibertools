@@ -32,6 +32,11 @@ export const metadata: Metadata = {
 export default function WeavingSettCalculatorPage() {
   return (
     <ToolLayout slug="weaving-sett-calculator">
+      <div className="sr-only">
+        <h2>Weaving Sett Calculator Tool</h2>
+        <h2>How to Calculate Sett and EPI</h2>
+        <h2>Weaving Sett Results and Reed Substitution</h2>
+      </div>
       <WeavingSettCalculatorTool />
     </ToolLayout>
   );

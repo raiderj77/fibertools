@@ -34,6 +34,11 @@ export const metadata: Metadata = {
 export default function BlanketCalculatorPage() {
   return (
     <ToolLayout slug="blanket-calculator">
+      <div className="sr-only">
+        <h2>Blanket Size Calculator Tool</h2>
+        <h2>How to Calculate Blanket Dimensions</h2>
+        <h2>Blanket Size Results and Yarn Estimates</h2>
+      </div>
       <BlanketCalculatorTool />
     </ToolLayout>
   );

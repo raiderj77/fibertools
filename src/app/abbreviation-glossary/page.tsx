@@ -32,6 +32,11 @@ export const metadata: Metadata = {
 export default function AbbreviationGlossaryPage() {
   return (
     <ToolLayout slug="abbreviation-glossary">
+      <div className="sr-only">
+        <h2>Abbreviation and Stitch Glossary</h2>
+        <h2>How to Search Knitting Abbreviations</h2>
+        <h2>Stitch Abbreviation Reference and Definitions</h2>
+      </div>
       <AbbreviationGlossaryTool />
     </ToolLayout>
   );

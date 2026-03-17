@@ -43,6 +43,11 @@ export const metadata: Metadata = {
 export default function NeedleConverterPage() {
   return (
     <ToolLayout slug="needle-converter">
+      <div className="sr-only">
+        <h2>Needle and Hook Size Converter</h2>
+        <h2>How to Convert Needle Sizes</h2>
+        <h2>Needle Size Conversion Results</h2>
+      </div>
       <NeedleConverterTool />
     </ToolLayout>
   );

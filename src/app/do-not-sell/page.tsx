@@ -29,7 +29,7 @@ export default function DoNotSellPage() {
         Do Not Sell My Personal Information
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: March 11, 2026
+        Last updated: March 16, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -47,7 +47,7 @@ export default function DoNotSellPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            What We Collect
+            What Data We Collect
           </h2>
           <p>
             FiberTools collects minimal data. All calculators run in your
@@ -72,7 +72,7 @@ export default function DoNotSellPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Advertising &amp; Sharing
+            Advertising and Data Sharing
           </h2>
           <p>
             Under CCPA, sharing personal information for cross-context
@@ -116,7 +116,7 @@ export default function DoNotSellPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Your CCPA Rights
+            Your CCPA Privacy Rights
           </h2>
           <p>As a California resident, you have the right to:</p>
           <ul className="list-disc pl-6 space-y-1">

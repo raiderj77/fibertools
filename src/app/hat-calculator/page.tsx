@@ -20,6 +20,11 @@ export const metadata: Metadata = {
 export default function HatCalculatorPage() {
   return (
     <ToolLayout slug="hat-calculator">
+      <div className="sr-only">
+        <h2>Hat Size Calculator Tool</h2>
+        <h2>How to Calculate Hat Dimensions</h2>
+        <h2>Hat Size Results and Crown Decrease Schedule</h2>
+      </div>
       <HatCalculatorTool />
     </ToolLayout>
   );

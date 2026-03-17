@@ -20,6 +20,11 @@ export const metadata: Metadata = {
 export default function CastOnCalculatorPage() {
   return (
     <ToolLayout slug="cast-on-calculator">
+      <div className="sr-only">
+        <h2>Cast On Calculator Tool</h2>
+        <h2>How to Calculate Cast On Stitches</h2>
+        <h2>Cast On Results and Pattern Multiple Adjustments</h2>
+      </div>
       <CastOnCalculatorTool />
     </ToolLayout>
   );

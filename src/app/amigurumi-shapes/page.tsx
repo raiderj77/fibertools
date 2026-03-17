@@ -43,6 +43,11 @@ export const metadata: Metadata = {
 export default function AmigurumiShapesPage() {
   return (
     <ToolLayout slug="amigurumi-shapes">
+      <div className="sr-only">
+        <h2>Amigurumi Shapes Guide Tool</h2>
+        <h2>How to Crochet Basic Amigurumi Shapes</h2>
+        <h2>Shape Patterns and Round-by-Round Instructions</h2>
+      </div>
       <AmigurumiShapesTool />
     </ToolLayout>
   );
