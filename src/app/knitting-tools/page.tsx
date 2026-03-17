@@ -163,7 +163,7 @@ export default function KnittingToolsPage() {
       {/* Garment Tools */}
       <section className="mb-12">
         <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-2">
-          Knitting Garment Calculators
+          Knitting Garment and Construction Calculators
         </h2>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-6 max-w-2xl">
           Cast-on counts, hat crowns, sock construction, sleeve shaping, and raglan yoke math — everything you need for fitted knitting.
