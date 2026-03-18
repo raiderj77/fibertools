@@ -118,16 +118,20 @@ As a rule of thumb, if your LCM exceeds 30, your blanket width options start get
 A stitch multiple is the number of stitches in one complete repeat of a pattern. For example, if a pattern is a "multiple of 4," your total stitch count must be divisible by 4. Many patterns also have a "plus" value (like "multiple of 4 plus 1") for edge symmetry.
 
 ### How do I find a stitch count that works for multiple patterns?
-Calculate the least common multiple (LCM) of all your pattern multiples. Any multiple of the LCM will work for all patterns. Use our [Stitch Pattern Calculator](/stitch-pattern-calculator) to do this automatically with plus-value support.
+Calculate the least common multiple (LCM) of all your pattern multiples. Any multiple of the LCM will work for every pattern in your project. If your patterns also have "plus" values, the math gets trickier. Use our [Stitch Pattern Calculator](/stitch-pattern-calculator) to find compatible counts automatically.
 
 ### What is the LCM and why does it matter for blankets?
-The LCM (Least Common Multiple) is the smallest number that all your pattern multiples divide into evenly. It determines the spacing between compatible stitch counts. A smaller LCM gives you more flexibility in choosing your blanket width.
+The LCM (Least Common Multiple) is the smallest number that all your pattern multiples divide into evenly. It determines the spacing between compatible stitch counts — a smaller LCM gives you more width options to choose from, while a large LCM limits your choices significantly.
 
 ### How many rows do I need for a complete stitch repeat?
-It depends on the stitch. Simple stitches like SC need just 1 row. Waffle stitch needs 4 rows. Celtic weave needs 4. Catherine wheel needs 4. Always complete full repeats so your pattern doesn't get cut off mid-repeat.
+It depends on the stitch pattern. Simple stitches like SC need just 1 row to complete a repeat. Waffle stitch, Celtic weave, and Catherine wheel each need 4 rows. Always work full repeats in your sampler sections so the pattern doesn't get cut off mid-repeat and look unfinished.
 
 ### Can I combine stitches with different multiples in a sampler blanket?
-Yes — that's exactly what a sampler blanket is. The key is finding a stitch count that works for every pattern in your sampler. The calculator finds all compatible counts within your desired width range.
+Yes — that's exactly what a sampler blanket is. The key is finding a single stitch count that works for every pattern in your sampler. Enter all your pattern multiples into the [Stitch Pattern Calculator](/stitch-pattern-calculator), and it'll show every compatible count within your desired width range.
 
 ### What if no stitch count works for all my patterns?
-This usually happens when "plus" values conflict. Try swapping one pattern for a similar one with a different plus value, or adjust your edge stitch count. Sometimes adding or removing 1 edge stitch solves the conflict.
+This usually happens when "plus" values conflict. Try swapping one pattern for a similar one with a different plus value, or adjust your edge stitch count. Sometimes adding or removing just 1 edge stitch solves the whole conflict and opens up new compatible counts.
+
+## Plan Your Sampler Blanket
+
+Planning a sampler blanket doesn't have to mean drowning in arithmetic. Once you understand how stitch multiples work and how to find the LCM, the math becomes straightforward — and the [Stitch Pattern Calculator](/stitch-pattern-calculator) handles the tedious parts for you. Pick your stitch patterns, plug in the multiples, choose a compatible count, and start crocheting with confidence. Your sampler blanket will look polished from the first section to the last, with every pattern repeat landing exactly where it should.

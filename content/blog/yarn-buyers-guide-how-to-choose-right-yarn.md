@@ -25,7 +25,7 @@ keywords:
 
 Stepping into a yarn shop or scrolling through online stores can feel overwhelming. With countless colors, fibers, weights, and brands available, selecting the perfect yarn seems daunting. According to Craft Yarn Council research, choosing inappropriate yarn remains the primary reason projects fail among crafters.
 
-This comprehensive buyer's guide will help you navigate the yarn aisle with confidence. We'll cover fiber types, yarn weights, project matching, budget considerations, and expert tips to ensure your next project turns out perfectly.
+This buyer's guide will help you navigate the yarn aisle with confidence. We'll cover fiber types, yarn weights, project matching, budget considerations, and expert tips to ensure your next project turns out perfectly.
 
 ## Understanding Yarn Fibers: The Foundation of Your Project
 
@@ -163,15 +163,29 @@ For environmentally conscious crafters:
 - **Local/Small Batch:** Support small farms and dyers
 - **Natural Dyes:** Yarns colored with plant-based dyes
 
+## FAQ
+
+### How do I know which yarn weight to choose for my project?
+Start with your pattern's recommendation — it'll specify a yarn weight (0-7 on the CYC standard scale). If you're designing from scratch, consider the project's purpose. Worsted (4) works for most garments and blankets. Fingering (1) suits lightweight accessories. Bulky (5-6) is great for quick, cozy projects.
+
+### Can I substitute a different yarn than what my pattern calls for?
+Yes, but you'll need to match the yarn weight, gauge, and yardage carefully. Swapping fiber types changes drape and stretch — cotton doesn't bounce back like wool. Always knit or crochet a gauge swatch with your substitute yarn before starting. Use our [Gauge Calculator](/gauge-calculator) to verify your swatch matches the pattern.
+
+### What's the best yarn for a beginner's first project?
+A medium-weight acrylic in a light, solid color is the easiest to work with. It's forgiving, affordable, and shows your stitches clearly. Brands like Caron Simply Soft or Red Heart Super Saver are widely available. Avoid dark colors, fuzzy textures, and slippery fibers until you're comfortable with tension.
+
+### How much yarn should I buy for a blanket?
+It depends on blanket size, yarn weight, and stitch pattern. A throw-size blanket in worsted weight typically needs 2,000-3,000 yards. Always buy 10-20% extra to account for gauge differences and pattern adjustments. Use our [Yardage Estimator](/yardage-estimator) to calculate your exact needs before purchasing.
+
 ## Final Checklist Before You Buy
 
-✓ **Project Type Matched:** Is this yarn suitable for what I'm making?
-✓ **Fiber Appropriate:** Will it wear well for this item's intended use?
-✓ **Care Requirements:** Am I willing to care for it properly?
-✓ **Budget Aligned:** Does it fit my project budget?
-✓ **Dye Lots Consistent:** Do I have enough from the same lot?
-✓ **Gauge Swatch Planned:** Will I test before starting the full project?
-✓ **Extra Purchased:** Did I buy 10-20% more than needed?
+- **Project Type Matched:** Is this yarn suitable for what I'm making?
+- **Fiber Appropriate:** Will it wear well for this item's intended use?
+- **Care Requirements:** Am I willing to care for it properly?
+- **Budget Aligned:** Does it fit my project budget?
+- **Dye Lots Consistent:** Do I have enough from the same lot?
+- **Gauge Swatch Planned:** Will I test before starting the full project?
+- **Extra Purchased:** Did I buy 10-20% more than needed?
 
 Choosing the right yarn is both an art and a science. By considering fiber content, weight, project requirements, and care needs, you'll set yourself up for success. Remember: the perfect yarn for your project is one that not only looks beautiful but also performs well throughout the life of the item.
 

@@ -141,16 +141,16 @@ Another culprit: inconsistent tension between rounds. If your first few rounds a
 
 ## Frequently Asked Questions
 
-**Why does my crochet circle turn into a hexagon?**
+### Why does my crochet circle turn into a hexagon?
 That hexagonal shape happens when you place increases in the same position every round (aligned increases). The six increase points create straight edges between them. Switch to staggered increases — offset the increase position within each repeat — and the circle rounds out. Most pattern generators, including ours, offer a staggered option.
 
-**Can I use the flat circle formula for hdc or dc too?**
+### Can I use the flat circle formula for hdc or dc too?
 Yes, but the increase count changes. For half double crochet, increase 8 stitches per round (start with 8 in the magic ring). For double crochet, increase 12 per round. For treble, it's 16. The formula scales with stitch height — taller stitches need more increases because they cover more vertical space per round.
 
-**How do I start a circle without a magic ring?**
+### How do I start a circle without a magic ring?
 Chain 2 and work your starting stitches into the first chain. For single crochet, that's 6 sc into the chain. Pull the tail tight to close the small hole. This method works fine, though the center hole is usually slightly larger than a magic ring. Some crocheters prefer chain 4, slip stitch to join, then work into the ring.
 
-**How many rounds do I need for a specific diameter?**
+### How many rounds do I need for a specific diameter?
 Divide your target diameter by 2 to get the radius. Multiply the radius by your row gauge (rounds per inch). For example, a 10-inch circle at 4 rounds per inch needs 20 rounds. The [Circle Calculator](/circle-calculator) handles this math automatically — enter your gauge and target size, and it tells you the exact round count.
 
 ## Start Your Next Circle Project

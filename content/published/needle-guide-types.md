@@ -173,10 +173,10 @@ The point. Tapestry needles have a blunt, rounded tip that slides between fabric
 A tapestry needle in size 16-20, depending on your yarn weight. For Worsted (CYC 4) or Bulky (CYC 5) yarn, a size 16 or 18 works well. For DK (CYC 3) or lighter, go with size 20-22. The blunt tip is essential — a sharp needle will split your yarn plies and create a messy finish on the wrong side.
 
 **Do beading needles break easily?**
-Yes, and that's expected. Beading needles are intentionally thin to fit through tiny bead holes, which makes them flexible but fragile. They bend with use and can snap if forced through a tight bead. Most beaders buy them in packs of 25 and consider them semi-disposable. Bending a used needle back straight usually weakens it further, so it's better to grab a fresh one.
+Yes, and that's expected. Beading needles are intentionally thin to fit through tiny bead holes, which makes them flexible but fragile. They bend with use and can snap if forced through a tight bead. Most beaders buy them in packs of 25 and consider them semi-disposable. Bending a needle back straight weakens it, so grab a fresh one instead.
 
 **What size needle do I need for hand quilting?**
-Start with a size 8 between (quilting needle) if you're new to hand quilting. As your technique improves, move to size 9 or 10 for smaller, more even stitches. The shorter length of betweens gives you better control for the rocking stitch motion that pushes the needle through quilt top, batting, and backing. Size 12 is expert territory — very small and hard to grip.
+Start with a size 8 between (quilting needle) if you're new to hand quilting. As your technique improves, move to size 9 or 10 for smaller, more even stitches. The shorter length gives you better control for the rocking motion through quilt top, batting, and backing. Size 12 is expert territory — very small and hard to grip.
 
 ## Find Your Needle Match
 

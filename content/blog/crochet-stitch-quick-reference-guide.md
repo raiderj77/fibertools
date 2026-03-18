@@ -64,7 +64,7 @@ For DC: After pulling up a loop you should have 3 loops. After the first "pull t
 
 For TR: After pulling up a loop you should have 4 loops. Each "pull through 2" removes one loop until you're back to 1.
 
-If you count and the number is wrong, you missed a yarn-over or accidentally pulled through too many. Our [Stitch Quick Reference](/stitch-quick-reference) tool shows the loop count at every step for every stitch.
+If you count and the number is wrong, you missed a yarn-over or accidentally pulled through too many. Our [Stitch Counter](/stitch-counter) tool helps you track your loop count at every step for every stitch. Pair it with the [Row Counter](/row-counter) to keep your place in complex stitch patterns where the repeat changes from row to row.
 
 ## Turning Chains: Do They Count?
 
@@ -95,7 +95,7 @@ A double crochet has a total of 4 yarn-overs: 1 before inserting the hook, 1 whe
 The only difference is where you insert the hook. In a regular DC, you insert into the top loops of the stitch. In a front post DC (FPdc), you insert around the vertical post of the stitch from front to back to front. The yarn-overs and pull-throughs are identical.
 
 ### Why does my half double crochet look different from my double crochet?
-HDC pulls through all 3 loops at once, while DC pulls through 2 loops twice. This gives HDC a distinctive third horizontal bar across the top that DC doesn't have. HDC is also slightly shorter.
+HDC pulls through all 3 loops at once, while DC pulls through 2 loops twice. This gives HDC a distinctive third horizontal bar across the top that DC doesn't have. HDC is also slightly shorter and produces a denser fabric with less drape than DC.
 
 ### How do I remember which crochet stitch is which?
 Use the height and turning chain as your anchor: SC = 1 chain, HDC = 2 chains, DC = 3 chains, TR = 4 chains. The turning chain number tells you the stitch height, and the number of "pull through 2" steps at the end always matches the number of initial yarn-overs.
@@ -105,3 +105,33 @@ Both are single decreases that reduce 2 stitches to 1. K2tog leans to the right 
 
 ### Is a slip stitch the same in knitting and crochet?
 No. In crochet, a slip stitch means insert hook, yarn over, and pull through both the stitch and the loop on hook in one motion. In knitting, slipping means moving a stitch from one needle to the other without working it at all.
+
+## Using FiberTools to Master Your Stitches
+
+Having a reference guide is great, but pairing it with the right tools makes your crafting sessions smoother. The [Stitch Counter](/stitch-counter) keeps a running tally as you work, so you don't lose your place in a long row of double crochets or trebles. If you're working a pattern that changes stitch types across rows, the [Row Counter](/row-counter) tracks which row you're on and what stitch you should be using.
+
+When you're starting a new project and need to figure out how many stitches to cast on or chain, the [Gauge Calculator](/gauge-calculator) takes the guesswork out of the equation. Measure your swatch, enter the numbers, and it'll tell you the exact stitch count for your desired width. And if you're switching between yarn weights — say, adapting a worsted-weight pattern to DK — the [Yarn Weight Calculator](/yarn-weight-calculator) helps you understand how that change affects your gauge and yardage needs.
+
+## Common Mistakes When Learning New Stitches
+
+Even experienced crocheters make these errors when trying unfamiliar stitches:
+
+**Forgetting the initial yarn-over on taller stitches.** When you move from SC to DC, it's easy to forget that yarn-over before inserting the hook. Without it, you'll end up with an SC instead of a DC, and your row height will be off.
+
+**Pulling through too many loops at once.** This happens most often with treble crochet. You should pull through two loops at a time, three separate times. Rushing through and pulling through three loops at once turns your TR into something closer to an HDC.
+
+**Inconsistent turning chains.** If your pattern counts the turning chain as a stitch but you also work into the first stitch, you'll gain a stitch every row. Your edges will flare out. Count carefully at the end of each row until you've internalized the pattern's convention.
+
+**Twisting post stitches.** When working FPdc or BPdc, make sure you're going around the post in the correct direction. Going the wrong way twists the stitch and changes how it looks on the fabric face.
+
+## Real-World Examples: Putting Stitches Together
+
+Understanding individual stitches matters most when you combine them in real projects. Here are common scenarios where stitch knowledge pays off:
+
+**Ribbed hat brim using FPdc/BPdc:** You alternate front post and back post double crochets to create stretchy ribbing. Knowing that the only difference is insertion point (not yarn-overs or pull-throughs) means you can work these at the same speed as regular DC once you get the rhythm.
+
+**Granny square transitions:** A classic granny square uses chains and DC clusters. The DC is always the same — one yarn-over, insert, pull through two twice. What changes is where you insert (into chain spaces rather than stitch tops). The stitch mechanics stay constant.
+
+**Textured baby blanket with mixed stitches:** Many baby blanket patterns alternate between SC sections (for density) and DC sections (for drape). Knowing the height difference — SC is about half the height of DC — helps you plan how many rows of each you'll need to keep your sections looking proportional.
+
+Crochet stitches aren't mysterious — they're a logical progression of yarn-overs and pull-throughs. Once you see the pattern (each stitch adds one more yarn-over and one more "pull through two" step), the whole system clicks into place. Keep this reference handy for those mid-project brain blanks, and use the [Stitch Counter](/stitch-counter) to track your work in real time. The more you practice, the less you'll need to look anything up — but it's always nice to have a backup when your hands are moving faster than your memory.

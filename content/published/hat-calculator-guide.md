@@ -168,17 +168,21 @@ Crochet uses roughly 20-30% more yarn than knitting for the same dimensions beca
 
 ## Frequently Asked Questions
 
-**How many stitches do I cast on for an adult hat?**
+### How many stitches do I cast on for an adult hat?
+
 That depends on your gauge. At 5 stitches per inch with a target circumference of 20 inches, you'd cast on 100 stitches. At 4 stitches per inch, it's 80. Always round to the nearest number divisible by your decrease sections (usually 8 for knit, 6 for crochet). The [Hat Calculator](/hat-calculator) handles this rounding automatically.
 
-**How much negative ease should a beanie have?**
+### How much negative ease should a beanie have?
+
 For a standard fitted beanie, aim for 8-10% negative ease — about 1-2 inches smaller than the actual head circumference. A 22-inch head gets a 20-inch hat. Slouchy styles use less ease (0-5%), and super-tight watch caps can go up to 12%. Stretchy yarns like wool tolerate more ease than cotton or linen.
 
-**Why is my hat too short even though the circumference is right?**
+### Why is my hat too short even though the circumference is right?
+
 Most likely you didn't account for the crown's height. The decrease section typically adds 2-3 inches to the hat. If you knit 6 inches of body and then 2.5 inches of decreases, the total height is 8.5 inches. Check the height column in the size chart and subtract your crown depth to find how long the body section should be.
 
-**Can I use a flat circle for a crochet hat crown?**
-Yes — a crochet hat crown is just a flat circle. Start with 6 sc in a magic ring and increase 6 per round until the circle's diameter matches the crown of the head (usually 5-7 inches depending on hat size). Then stop increasing and work even rounds until the hat reaches the correct length. The flat circle formula applies directly.
+### Can I use a flat circle for a crochet hat crown?
+
+Yes — a crochet hat crown is just a flat circle. Start with 6 sc in a magic ring and increase 6 per round until the circle's diameter matches the crown of the head (usually 5-7 inches depending on size). Then stop increasing and work even rounds until the hat reaches the correct length. The flat circle formula applies directly.
 
 ## Get Your Hat Math Right
 

@@ -160,7 +160,7 @@ The "no. 9 hook" is UK sizing (3.5mm), and "dc" with a 1-chain turning chain is 
 
 ### Why doesn't the UK have a single crochet stitch?
 
-The UK system starts its named stitches at "double crochet" (dc), which is the shortest standard working stitch — equivalent to US single crochet. The UK considers the slip stitch as the simplest stitch and begins naming real stitches at "double." The US system added "single crochet" as a name for that shortest stitch, pushing all other names up by one.
+The UK system starts its named stitches at "double crochet" (dc), which is the shortest standard working stitch — equivalent to US single crochet. The UK considers the slip stitch as the simplest stitch and begins naming working stitches at "double." The US system added "single crochet" for that shortest stitch, pushing all other names up by one.
 
 ### Do Australian crochet patterns use UK or US terms?
 
