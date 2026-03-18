@@ -53,6 +53,9 @@ export const metadata: Metadata = {
     "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_ID || "",
     "msvalidate.01": "C4C9B6256BDEDED169E4DE01CA953390",
   },
+  verification: {
+    google: "zHstgdeTG-ikPMO_fbH78ZIsky_3abLWtZlJf3_8gRc",
+  },
   alternates: {
     canonical: "/",
   },
