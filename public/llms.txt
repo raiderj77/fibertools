@@ -69,6 +69,19 @@ All processing happens client-side — no data is sent to any server. No login r
 - [DMC to Anchor Thread Conversion](https://fibertools.app/blog/thread-conversion-guide): The complete searchable embroidery thread conversion chart.
 - [Stitch Multiples for Sampler Blankets](https://fibertools.app/blog/stitch-multiples-sampler-blanket-guide): How to calculate compatible stitch counts for sampler blankets.
 - [Crochet Stitch Quick Reference](https://fibertools.app/blog/crochet-stitch-quick-reference-guide): Yarn overs, pull-throughs, and turning chains explained.
+- [How to Crochet Basic Amigurumi Shapes](https://fibertools.app/blog/amigurumi-shapes-guide): How to crochet basic amigurumi shapes including spheres, cones, cylinders, and ovals with round-by-round instructions.
+- [How to Block Knitting and Crochet](https://fibertools.app/blog/blocking-calculator-guide): How to block knitting and crochet projects by fiber type with stretch ratings and step-by-step instructions.
+- [Corner-to-Corner Crochet (C2C) Guide](https://fibertools.app/blog/c2c-crochet-guide): How to plan a corner-to-corner crochet blanket with block counts, diagonal rows, and yardage estimates.
+- [How Many Stitches to Cast On](https://fibertools.app/blog/cast-on-guide): How to calculate the right cast-on stitch count for any width with stitch pattern multiples and edge stitches.
+- [How to Crochet a Perfect Flat Circle](https://fibertools.app/blog/crochet-circle-guide): How to crochet a flat circle using staggered increases for any stitch type and size.
+- [How to Plan a Granny Square Blanket](https://fibertools.app/blog/granny-square-guide): How to plan a granny square blanket with grid layout, total squares, per-color yardage, and joining estimates.
+- [How to Calculate Hat Size for Knitting and Crochet](https://fibertools.app/blog/hat-calculator-guide): How to calculate cast-on count, crown decreases, and yardage for any head size from preemie to adult.
+- [Sewing and Craft Needle Types Explained](https://fibertools.app/blog/needle-guide-types): A visual guide to every needle type for fiber arts including tapestry, embroidery, chenille, and beading needles.
+- [How to Calculate a Top-Down Raglan Sweater](https://fibertools.app/blog/raglan-sweater-guide): How to calculate neck cast-on, stitch distribution, and increase rounds for a top-down raglan sweater.
+- [How to Calculate Sleeve Shaping](https://fibertools.app/blog/sleeve-calculator-guide): How to calculate row-by-row decrease instructions for tapered knit and crochet sleeves.
+- [Sock Knitting Calculator Guide](https://fibertools.app/blog/sock-knitting-guide): How to calculate sock stitch counts for top-down or toe-up construction with heel and gusset instructions.
+- [How to Estimate Yarn Yardage in Partial Skeins](https://fibertools.app/blog/stash-estimator-guide): How to estimate remaining yardage in partial skeins by weight with a yardage reference table.
+- [UK vs US Crochet Terms Conversion](https://fibertools.app/blog/uk-us-crochet-terms-guide): How to convert UK crochet patterns to US terminology including abbreviations and vintage terms.
 
 ## Guides
 
