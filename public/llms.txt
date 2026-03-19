@@ -112,6 +112,16 @@ All processing happens client-side — no data is sent to any server. No login r
 - [How to Plan and Crochet a Wearable Top](https://fibertools.app/blog/crochet-top-guide): Sizing, yarn selection, construction methods, and yardage for crochet tank tops, crop tops, and blouses.
 - [How to Knit and Crochet with Handspun Yarn](https://fibertools.app/blog/handspun-yarn-projects-guide): Gauge management, yarn characterization, project selection, and yardage estimation for handspun fiber.
 - [How to Calculate Yarn for Ponchos and Capes](https://fibertools.app/blog/poncho-yarn-calculation-guide): Construction methods, sizing, and yarn estimation for knit and crochet ponchos and capes.
+- [Brioche Knitting for Beginners](https://fibertools.app/blog/brioche-knitting-guide): Brioche stitch basics, two-color brioche, gauge differences, and yarn estimation for this plush technique.
+- [Knitting vs Crochet: How to Choose](https://fibertools.app/blog/knitting-vs-crochet-guide): Side-by-side comparison of speed, fabric, tools, yarn usage, and best project types for each craft.
+- [Lace Knitting and Crochet Guide](https://fibertools.app/blog/lace-knitting-crochet-guide): Yarn overs, chart reading, blocking techniques, and yarn selection for knit and crochet lace.
+- [How to Plan a Cable Knitting Project](https://fibertools.app/blog/cable-knitting-guide): Rope cables, braids, honeycomb patterns with stitch multiples, gauge adjustments, and extra yarn estimation.
+- [Arm Knitting and Finger Knitting Guide](https://fibertools.app/blog/arm-knitting-guide): Chunky blankets, scarves, and home decor with no needles required. Technique and yarn estimation.
+- [How to Calculate Warp for Weaving](https://fibertools.app/blog/weaving-warp-calculation-guide): Warp ends, length, loom waste, take-up, shrinkage, and total yardage formulas for any weaving project.
+- [How to Plan and Crochet a Market Bag](https://fibertools.app/blog/crochet-market-bag-guide): Mesh, solid, and granny stitch market bags with sizing, yarn selection, and handle construction.
+- [How to Add Eyes and Features to Amigurumi](https://fibertools.app/blog/amigurumi-features-guide): Safety eyes, embroidered features, placement rules, and expression techniques for crochet amigurumi.
+- [How to Knit or Crochet a Blanket Scarf](https://fibertools.app/blog/blanket-scarf-guide): Sizing, stitch patterns, and yardage for oversized blanket scarves and wraps.
+- [How to Work Short Rows in Knitting and Crochet](https://fibertools.app/blog/short-rows-guide): Wrap and turn, German short rows, and crochet short rows for heels, shoulders, and bust darts.
 
 ## Guides
 
