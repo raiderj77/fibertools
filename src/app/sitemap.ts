@@ -39,6 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/terms", priority: 0.3, freq: "yearly" as const },
     { path: "/cookies", priority: 0.3, freq: "yearly" as const },
     { path: "/accessibility", priority: 0.3, freq: "yearly" as const },
+    { path: "/do-not-sell", priority: 0.3, freq: "yearly" as const },
     { path: "/contact", priority: 0.4, freq: "yearly" as const },
     { path: "/crochet-tools", priority: 0.85, freq: "monthly" as const },
     { path: "/knitting-tools", priority: 0.85, freq: "monthly" as const },
