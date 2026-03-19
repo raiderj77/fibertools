@@ -82,6 +82,16 @@ All processing happens client-side — no data is sent to any server. No login r
 - [Sock Knitting Calculator Guide](https://fibertools.app/blog/sock-knitting-guide): How to calculate sock stitch counts for top-down or toe-up construction with heel and gusset instructions.
 - [How to Estimate Yarn Yardage in Partial Skeins](https://fibertools.app/blog/stash-estimator-guide): How to estimate remaining yardage in partial skeins by weight with a yardage reference table.
 - [UK vs US Crochet Terms Conversion](https://fibertools.app/blog/uk-us-crochet-terms-guide): How to convert UK crochet patterns to US terminology including abbreviations and vintage terms.
+- [How to Identify Mystery Yarn Using WPI](https://fibertools.app/blog/mystery-yarn-wpi-guide): How to measure wraps per inch to identify unknown yarn weight, plus burn and water tests for fiber content.
+- [How to Plan a Temperature Blanket](https://fibertools.app/blog/temperature-blanket-planning-guide): Color assignments, yarn estimation, and size calculations for a year-long temperature blanket project.
+- [How to Convert Knitting Patterns to Crochet](https://fibertools.app/blog/knitting-to-crochet-conversion-guide): Step-by-step conversion guide with gauge ratios, stitch equivalents, and yarn adjustments between crafts.
+- [Beginner's Guide to Rigid Heddle Weaving](https://fibertools.app/blog/rigid-heddle-weaving-guide): Learn rigid heddle weaving from warping to finishing with sett calculations and first project ideas.
+- [How to Choose the Right Crochet Hook Size](https://fibertools.app/blog/crochet-hook-size-guide): US, metric, and UK hook size chart with yarn weight matching and gauge adjustment tips.
+- [How to Estimate Knitting and Crochet Project Time](https://fibertools.app/blog/project-time-estimation-guide): Calculate stitches per minute, total project time, and realistic deadlines for any fiber arts project.
+- [How to Work with Variegated and Self-Striping Yarn](https://fibertools.app/blog/variegated-yarn-guide): Best stitches, planned pooling technique, and tips for getting beautiful results from multicolor yarn.
+- [How to Add Borders to Knit and Crochet Projects](https://fibertools.app/blog/knit-crochet-borders-guide): Stitch pickup ratios, corner math, popular border styles, and yarn estimation for edgings.
+- [How to Calculate Yarn for Crochet Garments](https://fibertools.app/blog/crochet-garment-yarn-guide): Yardage charts for crochet tops, cardigans, and dresses with the crochet yarn multiplier explained.
+- [How to Plan a Color-Block Blanket](https://fibertools.app/blog/color-block-blanket-guide): Color selection, block proportions, per-color yarn estimation, and construction methods for modern blankets.
 
 ## Guides
 
