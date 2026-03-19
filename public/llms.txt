@@ -122,6 +122,16 @@ All processing happens client-side — no data is sent to any server. No login r
 - [How to Add Eyes and Features to Amigurumi](https://fibertools.app/blog/amigurumi-features-guide): Safety eyes, embroidered features, placement rules, and expression techniques for crochet amigurumi.
 - [How to Knit or Crochet a Blanket Scarf](https://fibertools.app/blog/blanket-scarf-guide): Sizing, stitch patterns, and yardage for oversized blanket scarves and wraps.
 - [How to Work Short Rows in Knitting and Crochet](https://fibertools.app/blog/short-rows-guide): Wrap and turn, German short rows, and crochet short rows for heels, shoulders, and bust darts.
+- [Double Knitting for Beginners](https://fibertools.app/blog/double-knitting-guide): Two-sided reversible colorwork knitting with chart reading, tension tips, and yarn estimation.
+- [Entrelac Knitting and Crochet Guide](https://fibertools.app/blog/entrelac-knitting-crochet-guide): Modular knitting and crochet creating a woven-basket look from interlocking squares and rectangles.
+- [How to Plan a Filet Crochet Project](https://fibertools.app/blog/filet-crochet-guide): Open mesh and filled blocks to create pictures and patterns with thread selection and chart reading.
+- [Chainless Foundation Stitches in Crochet](https://fibertools.app/blog/chainless-foundation-crochet-guide): FSC, FDC, and FHDC techniques for stretchy foundations that replace the traditional chain.
+- [How to Graft with Kitchener Stitch](https://fibertools.app/blog/kitchener-stitch-grafting-guide): Invisible grafting for sock toes, mitten tips, and shoulder seams with step-by-step instructions.
+- [How to Read Knitting Charts and Symbol Diagrams](https://fibertools.app/blog/reading-knitting-charts-guide): Reading direction, common symbols, cable charts, and colorwork charts for lace and pattern knitting.
+- [Provisional Cast-On Methods for Knitting](https://fibertools.app/blog/provisional-cast-on-guide): Crochet provisional and invisible provisional cast-ons for live stitches you can work from later.
+- [How to Choose the Best Yarn for Socks](https://fibertools.app/blog/sock-yarn-guide): Fiber content, durability, yarn weight, and care guide for sock knitting yarn selection.
+- [Fiber Arts Ergonomics: Avoiding Pain While Crafting](https://fibertools.app/blog/fiber-arts-ergonomics-guide): Hand and wrist pain prevention, posture, stretches, and ergonomic tool selection for knitters and crocheters.
+- [How to Plan a Crochet Ripple and Chevron Blanket](https://fibertools.app/blog/crochet-ripple-chevron-guide): Stitch multiples, increase and decrease mechanics, color planning, and yarn estimation for zigzag blankets.
 
 ## Guides
 
