@@ -92,6 +92,16 @@ All processing happens client-side — no data is sent to any server. No login r
 - [How to Add Borders to Knit and Crochet Projects](https://fibertools.app/blog/knit-crochet-borders-guide): Stitch pickup ratios, corner math, popular border styles, and yarn estimation for edgings.
 - [How to Calculate Yarn for Crochet Garments](https://fibertools.app/blog/crochet-garment-yarn-guide): Yardage charts for crochet tops, cardigans, and dresses with the crochet yarn multiplier explained.
 - [How to Plan a Color-Block Blanket](https://fibertools.app/blog/color-block-blanket-guide): Color selection, block proportions, per-color yarn estimation, and construction methods for modern blankets.
+- [How to Crochet a Graphghan (Picture Blanket)](https://fibertools.app/blog/graphghan-crochet-guide): Plan a graphghan with pixel charts, per-color yarn estimation, and C2C stitch technique.
+- [How to Choose Yarn for Baby Projects](https://fibertools.app/blog/baby-yarn-guide): Fiber safety, washability, softness, and yardage guide for baby blankets, clothing, and accessories.
+- [How to Calculate Yarn for Shawls and Wraps](https://fibertools.app/blog/shawl-yarn-calculation-guide): Yardage calculation for triangular, rectangular, and crescent shawls by yarn weight.
+- [How to Plan a Mosaic Crochet Project](https://fibertools.app/blog/mosaic-crochet-guide): Mosaic crochet technique with stitch multiples, chart reading, and overlay vs inset methods.
+- [How to Use Stitch Markers in Knitting and Crochet](https://fibertools.app/blog/stitch-markers-guide): Types, placement techniques, and strategies for tracking pattern repeats, shaping, and rounds.
+- [How to Seam Knit and Crochet Pieces Together](https://fibertools.app/blog/seaming-knit-crochet-guide): Mattress stitch, whip stitch, slip stitch join, and three-needle bind-off with yarn estimation.
+- [How to Fix Common Crochet Mistakes](https://fibertools.app/blog/fix-crochet-mistakes-guide): Troubleshooting wrong stitch count, uneven edges, skewed fabric, and tension problems.
+- [How to Estimate Thread for Cross Stitch Projects](https://fibertools.app/blog/cross-stitch-thread-guide): Thread per stitch by fabric count, per-color estimation, and specialty stitch calculations.
+- [How to Plan Knit and Crochet Gifts on a Deadline](https://fibertools.app/blog/gift-knitting-deadline-guide): Project selection by timeline, time estimation, and strategies to finish handmade gifts on time.
+- [How to Calculate Yarn for Accessories](https://fibertools.app/blog/accessories-yarn-guide): Yardage charts for hats, mittens, cowls, scarves, and fingerless gloves by yarn weight and size.
 
 ## Guides
 
