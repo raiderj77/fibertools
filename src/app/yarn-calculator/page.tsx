@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import YarnCalculatorTool from "./YarnCalculatorTool";
 
 export const metadata: Metadata = {
@@ -43,6 +44,12 @@ export const metadata: Metadata = {
 export default function YarnCalculatorPage() {
   return (
     <ToolLayout slug="yarn-calculator">
+      <AnswerBlock
+        what="A yardage estimator that calculates how much yarn you need for any knitting or crochet project based on your gauge, dimensions, and yarn weight (CYC Lace 0 through Jumbo 7)."
+        who="Any knitter or crocheter planning a project — especially if you're buying yarn and need to know how many skeins to get before you start."
+        bottomLine="Enter your gauge swatch numbers and project size to get an instant yardage estimate, so you buy the right amount of yarn the first time."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Yarn Yardage Calculator</h2>
         <h2>How to Calculate Yarn Yardage</h2>

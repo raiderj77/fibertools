@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import GaugeCalculatorTool from "./GaugeCalculatorTool";
 
 export const metadata: Metadata = {
@@ -29,6 +30,12 @@ export const metadata: Metadata = {
 export default function GaugeCalculatorPage() {
   return (
     <ToolLayout slug="gauge-calculator">
+      <AnswerBlock
+        what="A gauge calculator that converts your swatch measurements into stitches and rows per inch, then resizes pattern stitch counts to match your actual gauge."
+        who="Knitters and crocheters who need to check whether their swatch matches a pattern's gauge — or resize a pattern for a different yarn weight."
+        bottomLine="Measure your swatch, enter the numbers, and get your exact gauge plus adjusted stitch counts so your finished project comes out the right size."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Gauge Calculator and Pattern Resizer</h2>
         <h2>How to Calculate Your Gauge</h2>
