@@ -9,6 +9,7 @@ import PrintShareButtons from "./PrintShareButtons";
 import AdUnit from "./AdUnit";
 import LazyAdUnit from "./LazyAdUnit";
 import { ToolSchema } from "./StructuredData";
+import EmailCapture from "./EmailCapture";
 
 interface ToolLayoutProps {
   slug: string;
@@ -117,6 +118,18 @@ export default function ToolLayout({ slug, children }: ToolLayoutProps) {
 
       {/* === TOOL UI === */}
       {children}
+
+      {/* Email capture */}
+      <div className="mt-10">
+        <EmailCapture
+          headline="Get this buying guide in your inbox"
+          subtext="We'll email you the full recommendation plus our top picks by budget"
+          buttonText="Send My Guide"
+          source="fibertools-results"
+          leadMagnet="fiber-buying-guide"
+          variant="inline"
+        />
+      </div>
 
       <AdUnit slot="" id="ad-after-tool" />
 
