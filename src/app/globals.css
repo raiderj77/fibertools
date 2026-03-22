@@ -13,16 +13,6 @@
     --color-accent-hover: #4A6F4A;
   }
 
-  .dark {
-    --color-bg: #1C1917;
-    --color-bg-secondary: #292524;
-    --color-text: #FAF0E4;
-    --color-text-muted: #C5B8AA;
-    --color-border: #44403C;
-    --color-accent: #7FA67F;
-    --color-accent-hover: #A8C1A8;
-  }
-
   html {
     @apply scroll-smooth;
   }

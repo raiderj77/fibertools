@@ -156,10 +156,15 @@ export function OrganizationSchema() {
         name: "FiberTools",
         url: "https://fibertools.app",
         description: "Free online calculators and tools for knitters, crocheters, weavers, spinners, and fiber artists.",
-        logo: "https://fibertools.app/icon-192.png",
+        logo: "https://fibertools.app/icon-192x192.png",
         sameAs: [
           "https://github.com/raiderj77/fibertools",
         ],
+        contactPoint: {
+          "@type": "ContactPoint",
+          contactType: "customer support",
+          url: "https://fibertools.app/contact",
+        },
       }}
     />
   );
