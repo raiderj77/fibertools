@@ -6,6 +6,22 @@
       "has": [{ "type": "host", "value": "www.fibertools.app" }],
       "destination": "https://fibertools.app/$1",
       "permanent": true
-    }
+    },
+    { "source": "/tools/yarn-weight-calculator", "destination": "/yarn-calculator", "permanent": true },
+    { "source": "/tools/gauge-calculator", "destination": "/gauge-calculator", "permanent": true },
+    { "source": "/tools/yardage-calculator", "destination": "/yarn-calculator", "permanent": true },
+    { "source": "/tools/knitting-needle-converter", "destination": "/needle-converter", "permanent": true },
+    { "source": "/tools/crochet-hook-converter", "destination": "/needle-converter", "permanent": true },
+    { "source": "/tools/vintage-pattern-decoder", "destination": "/abbreviation-glossary", "permanent": true },
+    { "source": "/tools/wpi-calculator", "destination": "/spinning-ratio-calculator", "permanent": true },
+    { "source": "/tools/shrinkage-calculator", "destination": "/yarn-calculator", "permanent": true },
+    { "source": "/tools/fiber-content-calculator", "destination": "/yarn-calculator", "permanent": true },
+    { "source": "/tools/stitch-counter", "destination": "/stitch-counter", "permanent": true },
+    { "source": "/tools/blanket-calculator", "destination": "/blanket-calculator", "permanent": true },
+    { "source": "/tools/stripe-generator", "destination": "/stripe-generator", "permanent": true },
+    { "source": "/tools/stitch-pattern-calculator", "destination": "/stitch-pattern-calculator", "permanent": true },
+    { "source": "/tools/increase-decrease-calculator", "destination": "/increase-decrease-calculator", "permanent": true },
+    { "source": "/tools/abbreviation-glossary", "destination": "/abbreviation-glossary", "permanent": true },
+    { "source": "/tools", "destination": "/", "permanent": true }
   ]
 }
