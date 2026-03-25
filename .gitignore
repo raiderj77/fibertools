@@ -34,3 +34,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Empire SEO Machine
+data_sources/config/
+data_sources/cache/
+content/drafts/
+content/review-required/

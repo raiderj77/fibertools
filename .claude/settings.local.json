@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd C:/Users/jason/empire/fibertools && npm run build 2>&1)",
+      "Bash(cd C:/Users/jason/empire/fibertools && npx next build 2>&1)",
+      "Bash(cd C:/Users/jason/empire/fibertools && npm install 2>&1 | tail -5)",
+      "Bash(cd C:/Users/jason/empire/fibertools && ./node_modules/.bin/next build 2>&1)",
+      "Bash(npm run:*)",
+      "Bash(git add:*)",
+      "Bash(cd \"C:/Users/jason/empire/fibertools\" && npx tsc --noEmit src/app/best-knitting-needles/page.tsx 2>&1 | head -20)",
+      "Bash(npx next:*)",
+      "Bash(cd \"C:/Users/jason/empire/fibertools\" && npx tsc --noEmit src/app/best-yarn-for-amigurumi/page.tsx 2>&1 | head -20)",
+      "Bash(git push:*)",
+      "Bash(node:*)",
+      "Bash(git status:*)",
+      "Bash(git commit:*)",
+      "Bash(curl:*)",
+      "Bash(find /c/Users/jason/empire/fibertools/src -type f \\\\\\(-name *.mdx -o -name *.md \\\\\\))",
+      "Bash(find /c/Users/jason/empire/fibertools -type f \\\\\\(-name *.md -o -name *.mdx \\\\\\))",
+      "Bash(grep:*)",
+      "WebSearch",
+      "Bash(python -c \":*)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Bash(sed -n '/^---$/,/^---$/d; p' \"$f\")",
+      "Bash(done)",
+      "Bash(sed -n '/^---$/,/^---$/d;p' \"$f\")",
+      "Bash(while read:*)",
+      "Bash(ls -la /c/Users/jason/empire/fibertools/content/published/*.md)",
+      "Bash(python:*)",
+      "Bash(python3 -c \":*)",
+      "Bash(find /c/Users/jason/empire/fibertools/content -name *.md)",
+      "Bash(do sed:*)",
+      "Bash(npx tsc:*)",
+      "Bash(wc:*)",
+      "Bash(ls .next/server/app/blog/*.html)",
+      "Bash(python3:*)",
+      "Bash(git rm:*)",
+      "Bash(git restore:*)"
+    ]
+  }
+}
