@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import StitchCounterTool from "./StitchCounterTool";
 
 export const metadata: Metadata = {
@@ -43,6 +44,12 @@ export const metadata: Metadata = {
 export default function StitchCounterPage() {
   return (
     <ToolLayout slug="stitch-counter">
+      <AnswerBlock
+        what="A free online stitch and row counter for knitting and crochet with undo/redo, multiple counters, and offline support."
+        who="Knitters and crocheters who need a digital tally counter to track stitches, rows, and pattern repeats while working."
+        bottomLine="Tap to count stitches and rows — your progress saves automatically and works without an internet connection."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Stitch and Row Counter Tool</h2>
         <h2>How to Use the Stitch Counter</h2>

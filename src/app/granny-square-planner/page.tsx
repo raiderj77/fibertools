@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import GrannySquarePlannerTool from "./GrannySquarePlannerTool";
 
 export const metadata: Metadata = {
@@ -19,6 +20,12 @@ export const metadata: Metadata = {
 export default function GrannySquarePlannerPage() {
   return (
     <ToolLayout slug="granny-square-planner">
+      <AnswerBlock
+        what="A planner that calculates how many granny squares you need for a blanket, with grid layout, per-color yardage, and joining yarn estimates."
+        who="Crocheters assembling a granny square blanket who need to plan color quantities and total square count before starting."
+        bottomLine="Enter your blanket size and square dimensions to get an exact count and yarn budget for the entire project."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Granny Square Planner Tool</h2>
         <h2>How to Plan a Granny Square Blanket</h2>

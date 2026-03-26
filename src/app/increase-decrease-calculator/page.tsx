@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import IncDecCalculatorTool from "./IncDecCalculatorTool";
 
 export const metadata: Metadata = {
@@ -32,6 +33,12 @@ export const metadata: Metadata = {
 export default function IncDecCalculatorPage() {
   return (
     <ToolLayout slug="increase-decrease-calculator">
+      <AnswerBlock
+        what="A calculator that tells you exactly where to place increases or decreases evenly across a row or round with step-by-step instructions."
+        who="Knitters and crocheters following a pattern that says 'increase X stitches evenly' without telling you where to place them."
+        bottomLine="Enter your current stitch count and how many to add or remove — the tool shows you the exact placement for each one."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Increase and Decrease Calculator</h2>
         <h2>How to Distribute Increases Evenly</h2>

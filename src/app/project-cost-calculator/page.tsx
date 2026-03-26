@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import ProjectCostCalculatorTool from "./ProjectCostCalculatorTool";
 
 export const metadata: Metadata = {
@@ -32,6 +33,12 @@ export const metadata: Metadata = {
 export default function ProjectCostCalculatorPage() {
   return (
     <ToolLayout slug="project-cost-calculator">
+      <AnswerBlock
+        what="A calculator that totals yarn, notions, and time costs for any knitting or crochet project, plus shows your effective hourly rate if selling."
+        who="Fiber artists who want to know the true cost of a project before buying supplies or setting a sale price for finished items."
+        bottomLine="Enter your yarn quantities, prices, and estimated hours to see total project cost and a realistic pricing guide."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Project Cost Calculator Tool</h2>
         <h2>How to Estimate Project Costs</h2>

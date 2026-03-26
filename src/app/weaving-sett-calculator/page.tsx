@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import WeavingSettCalculatorTool from "./WeavingSettCalculatorTool";
 
 export const metadata: Metadata = {
@@ -32,6 +33,12 @@ export const metadata: Metadata = {
 export default function WeavingSettCalculatorPage() {
   return (
     <ToolLayout slug="weaving-sett-calculator">
+      <AnswerBlock
+        what="A calculator that determines the correct sett (ends per inch) for your yarn and weave structure, with warp length, loom waste, and reed substitution."
+        who="Weavers planning a new project who need to calculate how many warp ends to wind and which reed dent to use."
+        bottomLine="Enter your yarn WPI and weave structure to get the recommended sett, total warp ends, and warp yardage."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Weaving Sett Calculator Tool</h2>
         <h2>How to Calculate Sett and EPI</h2>

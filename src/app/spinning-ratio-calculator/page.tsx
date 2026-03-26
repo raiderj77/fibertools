@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import SpinningCalculatorTool from "./SpinningCalculatorTool";
 
 export const metadata: Metadata = {
@@ -33,6 +34,12 @@ export const metadata: Metadata = {
 export default function SpinningCalculatorPage() {
   return (
     <ToolLayout slug="spinning-ratio-calculator">
+      <AnswerBlock
+        what="A calculator for handspinners that computes drive ratios, twists per inch, and plying twist with a fiber guide showing recommended TPI ranges."
+        who="Handspinners who need to dial in their spinning wheel settings for a specific yarn weight or fiber type."
+        bottomLine="Enter your whorl and drive wheel measurements to calculate your ratio, then match it to the TPI your target yarn needs."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Spinning Wheel Ratio Calculator</h2>
         <h2>How to Calculate Drive Ratios</h2>

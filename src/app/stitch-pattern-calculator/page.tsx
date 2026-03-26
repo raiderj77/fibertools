@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import StitchPatternCalculatorTool from "./StitchPatternCalculatorTool";
 
 export const metadata: Metadata = {
@@ -46,6 +47,12 @@ export const metadata: Metadata = {
 export default function StitchPatternCalculatorPage() {
   return (
     <ToolLayout slug="stitch-pattern-calculator">
+      <AnswerBlock
+        what="A calculator that finds compatible stitch counts for sampler blankets by computing the LCM across 50+ stitch patterns you select."
+        who="Crocheters and knitters planning sampler blankets who need a stitch count that works with multiple pattern repeats."
+        bottomLine="Select the stitch patterns you want to combine and get the smallest stitch count that divides evenly into all of them."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Stitch Pattern Calculator Tool</h2>
         <h2>How to Find Compatible Stitch Counts</h2>

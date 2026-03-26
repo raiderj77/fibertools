@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import UKToUSConverterTool from "./UKToUSConverterTool";
 
 export const metadata: Metadata = {
@@ -43,6 +44,12 @@ export const metadata: Metadata = {
 export default function UKToUSConverterPage() {
   return (
     <ToolLayout slug="uk-to-us-converter">
+      <AnswerBlock
+        what="A converter that translates UK knitting and crochet terminology to US terms, including automatic pattern text conversion."
+        who="Crafters working from a British pattern who need to convert stitch names and abbreviations to their US equivalents."
+        bottomLine="Paste any UK pattern text and get an instant US-terms translation — or use the reference table for individual terms."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>UK to US Crochet Terms Converter</h2>
         <h2>How to Convert Crochet Terminology</h2>

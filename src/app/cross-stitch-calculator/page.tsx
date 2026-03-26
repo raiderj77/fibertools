@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import CrossStitchCalculatorTool from "./CrossStitchCalculatorTool";
 
 export const metadata: Metadata = {
@@ -32,6 +33,12 @@ export const metadata: Metadata = {
 export default function CrossStitchCalculatorPage() {
   return (
     <ToolLayout slug="cross-stitch-calculator">
+      <AnswerBlock
+        what="A calculator that determines finished dimensions and DMC thread amounts for cross stitch projects on any Aida count fabric with framing margins."
+        who="Cross stitchers who need to know how much fabric and floss to buy before starting a pattern."
+        bottomLine="Enter your pattern stitch count and fabric count to get exact dimensions and thread estimates."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Cross Stitch Size and Thread Calculator</h2>
         <h2>How to Calculate Cross Stitch Dimensions</h2>

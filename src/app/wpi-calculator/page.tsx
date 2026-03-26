@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import WpiCalculatorTool from "./WpiCalculatorTool";
 
 export const metadata: Metadata = {
@@ -20,6 +21,12 @@ export const metadata: Metadata = {
 export default function WpiCalculatorPage() {
   return (
     <ToolLayout slug="wpi-calculator">
+      <AnswerBlock
+        what="A converter that identifies yarn weight from your wraps-per-inch measurement, with recommended needles, hooks, gauge range, and project ideas."
+        who="Fiber artists with unlabeled yarn who need to determine the weight category before starting a project."
+        bottomLine="Wrap your yarn around a ruler, count the wraps per inch, and enter the number to identify the yarn weight instantly."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>WPI to Yarn Weight Converter</h2>
         <h2>How to Measure Wraps Per Inch</h2>

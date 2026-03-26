@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import AmigurumiShapesTool from "./AmigurumiShapesTool";
 
 export const metadata: Metadata = {
@@ -43,6 +44,12 @@ export const metadata: Metadata = {
 export default function AmigurumiShapesPage() {
   return (
     <ToolLayout slug="amigurumi-shapes">
+      <AnswerBlock
+        what="A calculator that generates round-by-round increase and decrease instructions for crochet spheres, cones, cylinders, and ovals."
+        who="Amigurumi makers who need custom shape patterns without guessing at stitch counts for each round."
+        bottomLine="Select your shape, enter your starting stitch count, and get a complete round-by-round pattern instantly."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Amigurumi Shapes Guide Tool</h2>
         <h2>How to Crochet Basic Amigurumi Shapes</h2>

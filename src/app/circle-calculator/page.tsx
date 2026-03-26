@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import CircleCalculatorTool from "./CircleCalculatorTool";
 
 export const metadata: Metadata = {
@@ -43,6 +44,12 @@ export const metadata: Metadata = {
 export default function CircleCalculatorPage() {
   return (
     <ToolLayout slug="circle-calculator">
+      <AnswerBlock
+        what="A pattern generator that creates round-by-round increase instructions for flat crochet circles in any stitch type with staggered placement."
+        who="Crocheters making hats, rugs, mandalas, or any project that starts with a flat circle and needs even increases."
+        bottomLine="Choose your stitch type and number of rounds to get a complete flat circle pattern with no curling or ruffling."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Perfect Circle Calculator Tool</h2>
         <h2>How to Crochet a Flat Circle</h2>

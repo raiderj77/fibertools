@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ToolLayout from "@/components/ToolLayout";
+import AnswerBlock from "@/components/AnswerBlock";
 import ThreadConverterTool from "./ThreadConverterTool";
 
 export const metadata: Metadata = {
@@ -33,6 +34,12 @@ export const metadata: Metadata = {
 export default function ThreadConverterPage() {
   return (
     <ToolLayout slug="thread-converter">
+      <AnswerBlock
+        what="A converter that translates between DMC, Anchor, and Cosmo embroidery thread numbers with palette building and bulk conversion for shopping lists."
+        who="Cross stitchers and embroiderers who need to substitute thread brands when their preferred brand is unavailable."
+        bottomLine="Enter any DMC, Anchor, or Cosmo number to find the closest match in the other brands instantly."
+        lastUpdated="2026-03-16"
+      />
       <div className="sr-only">
         <h2>Embroidery Thread Converter Tool</h2>
         <h2>How to Convert Thread Numbers</h2>

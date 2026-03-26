@@ -41,7 +41,8 @@
       "Read(//c/Users/jason/empire/$dir/src/**)",
       "Read(//c/Users/jason/empire/$dir/**)",
       "Read(//c/Users/jason/empire/$dir/src/app/**)",
-      "Read(//c/Users/jason/empire/$dir/app/**)"
+      "Read(//c/Users/jason/empire/$dir/app/**)",
+      "Bash(bash /tmp/gen-ce-posts.sh 2>&1)"
     ]
   }
 }
