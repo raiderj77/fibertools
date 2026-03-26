@@ -198,6 +198,36 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Buying Guides */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+        <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-6">
+          Buying Guides
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {[
+            { href: "/best-crochet-hooks", icon: "🪝", title: "Best Crochet Hooks", desc: "Top-rated hooks for every skill level and budget." },
+            { href: "/best-knitting-needles", icon: "🥢", title: "Best Knitting Needles", desc: "Find the perfect needles for your next project." },
+            { href: "/best-yarn-for-amigurumi", icon: "🧸", title: "Best Yarn for Amigurumi", desc: "Yarns that hold shape and show stitch definition." },
+            { href: "/best-yarn-for-beginners", icon: "🌱", title: "Best Yarn for Beginners", desc: "Forgiving, easy-to-work yarns for new crafters." },
+            { href: "/best-yarn-for-blankets", icon: "🛏️", title: "Best Yarn for Blankets", desc: "Soft, durable yarns perfect for cozy blankets." },
+          ].map((guide) => (
+            <Link key={guide.href} href={guide.href} className="tool-card group">
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl">{guide.icon}</span>
+                  <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
+                    {guide.title}
+                  </h3>
+                </div>
+                <p className="text-xs text-bark-500 dark:text-bark-400">
+                  {guide.desc}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* Latest Guides & Tutorials */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
         <div className="flex items-center justify-between mb-6">
