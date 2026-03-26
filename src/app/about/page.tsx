@@ -60,14 +60,13 @@ export default function AboutPage() {
             Made by a Maker, for Makers
           </h2>
           <p>
-            FiberTools started because I was frustrated. I picked up fiber arts
-            a couple of months ago and quickly realized that the tools and
-            references scattered across the internet were either clunky, buried
-            in ads, or locked behind a signup wall. I wanted something
-            better&mdash;fast, accurate calculators that work the way crafters
-            actually think.
+            FiberTools started because the tools and references scattered across
+            the internet were either clunky, buried in ads, or locked behind a
+            signup wall. After 30+ years in fiber arts, I knew exactly what
+            crafters actually need&mdash;fast, accurate calculators that work
+            the way we think.
           </p>
-          <p>So I built them myself.</p>
+          <p>So I built them.</p>
           <p>
             Created by a fiber arts expert with 30+ years of experience.
           </p>
