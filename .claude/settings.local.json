@@ -36,7 +36,12 @@
       "Bash(ls .next/server/app/blog/*.html)",
       "Bash(python3:*)",
       "Bash(git rm:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(for dir:*)",
+      "Read(//c/Users/jason/empire/$dir/src/**)",
+      "Read(//c/Users/jason/empire/$dir/**)",
+      "Read(//c/Users/jason/empire/$dir/src/app/**)",
+      "Read(//c/Users/jason/empire/$dir/app/**)"
     ]
   }
 }
