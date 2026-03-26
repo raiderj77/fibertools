@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   creator: "FiberTools",
   publisher: "FiberTools",
   other: {
-    "google-adsense-account": process.env.NEXT_PUBLIC_ADSENSE_ID || "",
+    "google-adsense-account": "ca-pub-7171402107622932",
     "msvalidate.01": "C4C9B6256BDEDED169E4DE01CA953390",
   },
   verification: {
@@ -163,14 +163,12 @@ export default function RootLayout({
           `}
         </Script>
         {/* Google AdSense — auto ads */}
-        {process.env.NEXT_PUBLIC_ADSENSE_ID && (
-          <Script
-            async
-            src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
-            crossOrigin="anonymous"
-            strategy="afterInteractive"
-          />
-        )}
+        <Script
+          id="adsense"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
         {/* Microsoft Clarity — heatmaps & session recordings */}
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
