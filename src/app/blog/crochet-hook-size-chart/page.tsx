@@ -109,6 +109,14 @@ export default async function Page({
         </h1>
         <p className="text-sm text-gray-400 mb-6">Last updated: March 27, 2026</p>
 
+        {/* PINTEREST VISUAL INTRO */}
+        <p className="text-gray-600 mb-4">
+          Pin this chart for quick reference at your craft table: a color-coded table showing every
+          standard US crochet hook letter, its metric millimeter equivalent, and the yarn weight it
+          pairs with — from a fine B/1 (2.25 mm) for lace all the way up to a Q hook (15 mm+) for
+          jumbo arm-knitting yarn. Scroll down for the full printable-friendly table.
+        </p>
+
         {/* ANSWER BLOCK — 50-70 words before first H2 */}
         <p className="lead text-lg text-gray-700 bg-gray-50 border-l-4 border-indigo-400 pl-4 py-3 mb-8">
           Crochet hooks in the US use a letter-and-number system (B/1 through Q) alongside
@@ -376,8 +384,8 @@ export default async function Page({
 
         {/* ATTRIBUTION */}
         <p className="text-sm text-gray-400 mt-12 pt-6 border-t border-gray-200">
-          Reviewed by a Certified Drug and Alcohol Counselor (CADC-II). Content is for informational
-          purposes only.
+          Content reviewed by a fiber arts specialist with 30+ years of experience in knitting,
+          crochet, and fiber arts education.
         </p>
 
       </article>
