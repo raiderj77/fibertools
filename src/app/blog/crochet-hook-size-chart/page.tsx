@@ -9,7 +9,7 @@ export async function generateStaticParams() {
 export async function generateMetadata(
   props: { params: Params }
 ): Promise<Metadata> {
-  const { slug } = await props.params;
+  await props.params;
   return {
     title: 'Crochet Hook Size Chart — US & Metric Guide | FiberTools',
     description:
@@ -24,7 +24,7 @@ export default async function Page({
 }: {
   params: Params;
 }) {
-  const { slug } = await params;
+  await params;
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
@@ -131,7 +131,7 @@ export default async function Page({
           Most patterns published in the United States use the letter-and-number system alongside
           metric sizes. International patterns almost always use millimeters. The chart below covers
           every standard size. Note that the letter system is <em>not</em> perfectly standardized
-          across manufacturers — a J hook from one brand may be 5.50 mm while another brand's J
+          across manufacturers — a J hook from one brand may be 5.50 mm while another brand&apos;s J
           is 6.00 mm. Always verify by millimeter size.
         </p>
 
@@ -366,7 +366,7 @@ export default async function Page({
             <p>
               For worsted weight amigurumi, use a G/6 (4.0 mm) — smaller than the yarn label
               recommends. The tighter fabric prevents stuffing from showing through gaps. Check your
-              pattern's gauge note; some patterns specify 12–14 sc per 4 inches, which gives you a
+              pattern&apos;s gauge note; some patterns specify 12–14 sc per 4 inches, which gives you a
               precise target.
             </p>
           </div>
