@@ -1,0 +1,21 @@
+name: IndexNow Submit
+on:
+  push:
+    branches: [main]
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Submit to IndexNow
+        run: |
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "host": "fibertools.app",
+              "key": "5d98bdb6572da2ef47481ef768fb59db",
+              "keyLocation": "https://fibertools.app/5d98bdb6572da2ef47481ef768fb59db.txt",
+              "urlList": ["https://fibertools.app/"]
+            }')
+          echo "IndexNow response: $RESPONSE"
+          exit 0
