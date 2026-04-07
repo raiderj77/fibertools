@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         Privacy Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: March 16, 2026
+        Last updated: April 6, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -104,6 +104,30 @@ export default function PrivacyPolicyPage() {
             </a>
             . You can manage your cookie preferences at any time through the
             cookie consent banner or your browser settings.
+          </p>
+          <p>
+            We work with third-party advertising partners, including Google, who
+            may use cookies to serve ads based on your prior visits to this
+            website or other websites. You can opt out of personalized
+            advertising at{" "}
+            <a
+              href="https://ads.google.com/settings"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sage-600 dark:text-sage-400 underline"
+            >
+              Google Ad Settings
+            </a>{" "}
+            or the{" "}
+            <a
+              href="https://optout.aboutads.info"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sage-600 dark:text-sage-400 underline"
+            >
+              Digital Advertising Alliance opt-out portal
+            </a>
+            .
           </p>
         </section>
 
