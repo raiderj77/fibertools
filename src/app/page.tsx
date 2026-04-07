@@ -47,6 +47,7 @@ export default function HomePage() {
     description:
       "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery.",
     sameAs: [],
+    dateModified: "2026-04-07",
   };
 
   const websiteSchema = {
@@ -61,6 +62,32 @@ export default function HomePage() {
       target: "https://fibertools.app/?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
+    dateModified: "2026-04-07",
+  };
+
+  const webApplicationSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: "FiberTools — Free Fiber Arts Calculators",
+    url: "https://fibertools.app",
+    applicationCategory: "UtilityApplication",
+    operatingSystem: "All",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    dateModified: "2026-04-07",
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "FiberTools Home",
+        item: "https://fibertools.app",
+      },
+    ],
+    dateModified: "2026-04-07",
   };
 
   const toolsCollectionSchema = {
@@ -70,6 +97,7 @@ export default function HomePage() {
     url: "https://fibertools.app",
     description:
       "A comprehensive collection of free calculators for knitting, crochet, weaving, spinning, and embroidery.",
+    dateModified: "2026-04-07",
     hasPart: tools
       .filter((t) => t.ready)
       .map((t) => ({
@@ -79,6 +107,54 @@ export default function HomePage() {
         applicationCategory: "UtilityApplication",
         offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
       })),
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    dateModified: "2026-04-07",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What is a yarn weight calculator?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "A yarn weight calculator helps knitters and crocheters determine the correct yarn weight for a pattern or substitute yarn. Enter your gauge swatch measurements and the tool identifies whether your yarn is lace, fingering, sport, DK, worsted, bulky, super bulky, or jumbo weight using CYC standard classifications.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do I calculate gauge for a knitting or crochet pattern?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Knit or crochet a 6-inch swatch in your chosen stitch pattern, then count the stitches and rows within a 4-inch section. Enter those numbers into the gauge calculator to see if your tension matches the pattern. Adjust needle or hook size if your gauge is off — too many stitches means go up a size, too few means go down.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is the difference between US and UK crochet terminology?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "US and UK crochet terms use the same names for different stitches. A US single crochet equals a UK double crochet, a US double crochet equals a UK treble crochet, and so on. Always check whether a pattern uses US or UK terminology before starting to avoid working the wrong stitches.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do I substitute yarn in a knitting pattern?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Match the yarn weight category first, then check that your gauge swatch with the substitute yarn matches the pattern gauge. Weight alone is not enough — fiber content affects drape and stitch definition, so swatch before committing to a full project. FiberTools calculators help you verify gauge and yardage requirements for substitutions.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What yarn weight should beginners start with?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Worsted weight (CYC 4) is the best starting yarn weight for beginners. It is thick enough to see individual stitches clearly, works up quickly, and is widely available. Pair it with a US size 7–9 knitting needle or a 5mm crochet hook for most beginner patterns.",
+        },
+      },
+    ],
   };
 
   return (
@@ -91,6 +167,18 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <script
         type="application/ld+json"
