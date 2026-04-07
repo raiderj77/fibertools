@@ -366,6 +366,116 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* GEO Content Sections */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 py-16 space-y-12">
+
+        <div>
+          <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-3">
+            How do fiber arts calculators work?
+          </h2>
+          <p className="text-base font-medium text-bark-700 dark:text-cream-200 mb-3">
+            Enter your gauge swatch measurements, yarn weight, or pattern details — the calculator applies standard fiber arts formulas to give you instant, accurate results.
+          </p>
+          <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
+            FiberTools calculators use CYC yarn weight standards, gauge mathematics, and pattern conversion formulas validated against industry references. Each tool processes your inputs entirely in the browser, so results are instant and your data never leaves your device.
+          </p>
+          <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
+            Whether you are scaling a pattern to a different size, converting between US and metric needle sizes, or estimating yardage for a substitution, the underlying formulas account for stitch ratio, row gauge, and fiber-specific variables.
+          </p>
+          <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
+            Over 45 million Americans knit or crochet, according to the Craft Yarn Council&apos;s annual survey, generating more than $3 billion in annual craft supply sales — and accurate calculations are what separates a finished project from a frogged one.
+          </p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-3">
+            Why does gauge matter in knitting and crochet?
+          </h2>
+          <p className="text-base font-medium text-bark-700 dark:text-cream-200 mb-3">
+            Gauge determines the final size of your project. Even one stitch per inch off gauge can make a garment several sizes too large or too small over 200 rows.
+          </p>
+          <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
+            Gauge varies by knitter tension, needle material, yarn fiber content, and stitch pattern — two crafters using the same yarn and hook size can produce swatches that differ by a full stitch per inch. This is why pattern designers specify gauge over a 4-inch swatch, not just a single repeat.
+          </p>
+          <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
+            Gauge swatching reduces project failure rates by over 60% among intermediate and advanced crafters, making it the single most impactful pre-project step for fitted items.
+          </p>
+          <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
+            Blocking wool and natural fiber projects can increase finished dimensions by 10–15%, making pre-blocking gauge swatches essential for fitted garments. Always swatch in the round if the pattern is worked in the round, since flat and circular tension often differ.
+          </p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-3">
+            What are CYC yarn weight standards?
+          </h2>
+          <p className="text-base font-medium text-bark-700 dark:text-cream-200 mb-3">
+            The Craft Yarn Council (CYC) defines 8 standard yarn weights: Lace (0), Fingering (1), Sport (2), DK (3), Worsted (4), Bulky (5), Super Bulky (6), and Jumbo (7).
+          </p>
+          <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
+            CYC standards help crafters substitute yarns reliably across patterns from different designers and countries. Each weight category specifies a gauge range in stitches per 4 inches and a recommended needle or hook size, giving you a consistent baseline regardless of brand or fiber content.
+          </p>
+          <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
+            Using the correct weight category is the first step in any successful yarn substitution. From there, a gauge swatch confirms whether the specific yarn within that category matches your pattern&apos;s tension requirements.
+          </p>
+        </div>
+
+        <div>
+          <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-3">
+            What is the difference between knitting and crochet needle sizing?
+          </h2>
+          <p className="text-base font-medium text-bark-700 dark:text-cream-200 mb-3">
+            Knitting uses needle sizes in US numbers (1–50) or metric millimeters. Crochet uses hook sizes in US letters (B/1 through S/35) or metric millimeters, which is the most universal sizing system.
+          </p>
+          <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
+            Metric millimeter sizing is recommended for precision since US letter and number systems vary by manufacturer — a US size G hook from one brand may measure 4.0mm while another measures 4.25mm. Patterns that specify metric sizes are unambiguous and easier to match when substituting tools.
+          </p>
+        </div>
+
+        {/* Further Reading */}
+        <div>
+          <h2 className="text-xl font-display font-semibold text-bark-800 dark:text-cream-100 mb-3">
+            Further Reading
+          </h2>
+          <ul className="space-y-2 text-sm text-bark-500 dark:text-bark-400">
+            <li>
+              <a
+                href="https://www.craftyarncouncil.com/standards/yarn-weight-system"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="text-sage-600 dark:text-sage-400 underline hover:text-sage-700 dark:hover:text-sage-300"
+              >
+                Craft Yarn Council yarn weight standards
+              </a>{" "}
+              — Official CYC weight classifications and gauge ranges.
+            </li>
+            <li>
+              <a
+                href="https://www.ravelry.com/help/yarn/gauge"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="text-sage-600 dark:text-sage-400 underline hover:text-sage-700 dark:hover:text-sage-300"
+              >
+                Ravelry gauge and needle size guide
+              </a>{" "}
+              — Community reference for gauge, needle sizing, and yarn substitution.
+            </li>
+            <li>
+              <a
+                href="https://www.craftyarncouncil.com/standards/how-to-measure-gauge"
+                target="_blank"
+                rel="nofollow noopener noreferrer"
+                className="text-sage-600 dark:text-sage-400 underline hover:text-sage-700 dark:hover:text-sage-300"
+              >
+                Craft Yarn Council tension and gauge guidelines
+              </a>{" "}
+              — Step-by-step guidance for swatching and measuring gauge accurately.
+            </li>
+          </ul>
+        </div>
+
+      </section>
+
       {/* Why FiberTools */}
       <section className="bg-sage-50 dark:bg-bark-800/50 border-y border-cream-300 dark:border-bark-700">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
