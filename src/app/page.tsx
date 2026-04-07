@@ -190,7 +190,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-sage-50 via-cream-50 to-cream-50 dark:from-bark-900 dark:via-bark-900 dark:to-bark-900 grain-overlay">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-20 sm:pt-24 sm:pb-28">
-          <div className="max-w-3xl animate-fade-in">
+          <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-sage-100 dark:bg-sage-900/30 border border-sage-200 dark:border-sage-800 rounded-full text-sm text-sage-700 dark:text-sage-300 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-sage-500 animate-pulse" />
               {tools.filter((t) => t.ready).length} free tools — no login required
