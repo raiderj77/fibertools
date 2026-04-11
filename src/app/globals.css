@@ -224,3 +224,102 @@
 .result-card .result-number {
   @apply text-3xl font-bold text-sage-600 dark:text-sage-400 tabular-nums;
 }
+
+/* ── Blog / Markdown prose ── */
+.prose-fiber {
+  @apply text-bark-600 dark:text-cream-300 leading-relaxed;
+}
+
+.prose-fiber h1 {
+  @apply text-2xl sm:text-3xl font-display font-bold text-bark-800 dark:text-cream-100 mt-10 mb-4 leading-tight;
+}
+
+.prose-fiber h2 {
+  @apply text-xl font-display font-bold text-bark-700 dark:text-cream-200 mt-8 mb-3;
+}
+
+.prose-fiber h3 {
+  @apply text-lg font-semibold text-bark-700 dark:text-cream-200 mt-6 mb-2;
+}
+
+.prose-fiber h4 {
+  @apply text-base font-semibold text-bark-700 dark:text-cream-200 mt-5 mb-1;
+}
+
+.prose-fiber p {
+  @apply text-[15px] mb-4;
+}
+
+.prose-fiber a {
+  @apply text-sage-600 dark:text-sage-400 underline underline-offset-2
+         hover:text-sage-700 dark:hover:text-sage-300 transition-colors;
+}
+
+.prose-fiber ul {
+  @apply list-disc list-outside pl-5 mb-4 space-y-1;
+}
+
+.prose-fiber ol {
+  @apply list-decimal list-outside pl-5 mb-4 space-y-1;
+}
+
+.prose-fiber li {
+  @apply text-[15px] text-bark-600 dark:text-cream-300;
+}
+
+.prose-fiber li > ul,
+.prose-fiber li > ol {
+  @apply mt-1 mb-0;
+}
+
+.prose-fiber strong {
+  @apply font-semibold text-bark-700 dark:text-cream-200;
+}
+
+.prose-fiber em {
+  @apply italic;
+}
+
+.prose-fiber blockquote {
+  @apply border-l-4 border-sage-300 dark:border-sage-700 pl-4 py-1 my-6
+         italic text-bark-500 dark:text-bark-400;
+}
+
+.prose-fiber code {
+  @apply bg-cream-200 dark:bg-bark-700 text-bark-700 dark:text-cream-200
+         px-1.5 py-0.5 rounded text-[13px] font-mono;
+}
+
+.prose-fiber pre {
+  @apply bg-bark-800 dark:bg-bark-900 text-cream-200 rounded-xl p-4 overflow-x-auto my-6;
+}
+
+.prose-fiber pre code {
+  @apply bg-transparent p-0 rounded-none text-[13px];
+}
+
+.prose-fiber table {
+  @apply w-full border-collapse my-6 text-sm;
+}
+
+.prose-fiber thead th {
+  @apply bg-cream-200 dark:bg-bark-700 text-bark-700 dark:text-cream-200
+         font-semibold px-4 py-2 text-left border border-cream-300 dark:border-bark-600;
+}
+
+.prose-fiber tbody td {
+  @apply px-4 py-2 border border-cream-300 dark:border-bark-600
+         text-bark-600 dark:text-cream-300;
+}
+
+.prose-fiber tbody tr:nth-child(even) td {
+  @apply bg-cream-50/50 dark:bg-bark-800/50;
+}
+
+.prose-fiber hr {
+  @apply border-cream-300 dark:border-bark-700 my-8;
+}
+
+.prose-fiber img {
+  @apply rounded-xl my-6 max-w-full h-auto;
+}

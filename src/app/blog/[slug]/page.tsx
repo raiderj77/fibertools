@@ -1,52 +1,81 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { blogPosts, getBlogPost, getRelatedBlogPosts } from "@/lib/blog";
-import { getGuideByToolSlug } from "@/lib/guides";
+import { getAllMarkdownPosts, getMarkdownPost } from "@/lib/blog-markdown";
 import { getToolBySlug } from "@/lib/tools";
 
-// Generate all blog paths at build time
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  return getAllMarkdownPosts().map((post) => ({ slug: post.slug }));
 }
 
-// Dynamic metadata per post
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const post = getBlogPost(params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const post = await getMarkdownPost(params.slug);
   if (!post) return {};
 
   return {
     title: post.title,
-    description: post.description,
-    keywords: post.keywords,
+    description: post.description || undefined,
+    keywords: post.keywords.length ? post.keywords : undefined,
+    robots: { index: true, follow: true, googleBot: { "max-snippet": -1 } },
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
       type: "article",
       title: post.title,
-      description: post.description,
+      description: post.description || undefined,
       publishedTime: post.date,
+      url: `https://fibertools.app/blog/${post.slug}`,
+      images: [
+        {
+          url: "https://fibertools.app/og-image.png",
+          width: 1200,
+          height: 630,
+          alt: post.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description || undefined,
+      images: ["https://fibertools.app/og-image.png"],
     },
   };
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getBlogPost(params.slug);
+export default async function BlogPostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const post = await getMarkdownPost(params.slug);
   if (!post) notFound();
 
-  const tool = getToolBySlug(post.toolSlug);
+  const tool = post.toolSlug ? getToolBySlug(post.toolSlug) : null;
 
-  const companionGuide = getGuideByToolSlug(post.toolSlug);
-
-  const articleSchema = {
+  const blogPostingSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: post.title,
-    description: post.description,
+    description: post.description || undefined,
     datePublished: post.date,
+    dateModified: post.date,
     url: `https://fibertools.app/blog/${post.slug}`,
     mainEntityOfPage: `https://fibertools.app/blog/${post.slug}`,
-    author: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
-    publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
+    image: "https://fibertools.app/og-image.png",
+    author: {
+      "@type": "Organization",
+      name: "FiberTools",
+      url: "https://fibertools.app",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "FiberTools",
+      url: "https://fibertools.app",
+    },
     keywords: post.keywords.join(", "),
   };
 
@@ -54,9 +83,24 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://fibertools.app" },
-      { "@type": "ListItem", position: 2, name: "Guides", item: "https://fibertools.app/blog" },
-      { "@type": "ListItem", position: 3, name: post.title },
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://fibertools.app",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: "https://fibertools.app/blog",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: post.title,
+        item: `https://fibertools.app/blog/${post.slug}`,
+      },
     ],
   };
 
@@ -64,7 +108,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
     <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingSchema) }}
       />
       <script
         type="application/ld+json"
@@ -72,49 +116,67 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       />
 
       {/* Breadcrumbs */}
-      <nav className="flex items-center gap-2 text-sm text-bark-400 dark:text-bark-500 mb-6">
-        <Link href="/" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">Home</Link>
-        <span>/</span>
-        <Link href="/blog" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">Guides</Link>
-        <span>/</span>
-        <span className="text-bark-600 dark:text-cream-400 truncate">{post.title}</span>
+      <nav
+        aria-label="Breadcrumb"
+        className="flex items-center gap-2 text-sm text-bark-400 dark:text-bark-500 mb-6"
+      >
+        <Link
+          href="/"
+          className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors"
+        >
+          Home
+        </Link>
+        <span aria-hidden="true">/</span>
+        <Link
+          href="/blog"
+          className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors"
+        >
+          Blog
+        </Link>
+        <span aria-hidden="true">/</span>
+        <span className="text-bark-600 dark:text-cream-400 truncate">
+          {post.title}
+        </span>
       </nav>
 
       {/* Title */}
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-1">
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-3">
         {post.title}
       </h1>
-      <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
 
-      <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
-        <span>{new Date(post.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+      {/* Meta row */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-8 text-sm text-bark-400 dark:text-bark-500">
+        {post.date && (
+          <time dateTime={post.date}>
+            {new Date(post.date).toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
+          </time>
+        )}
+        <span aria-hidden="true">&middot;</span>
+        <span>By a fiber arts expert with 30+ years experience</span>
         {tool && (
           <>
-            <span>&middot;</span>
-            <Link href={`/${tool.slug}`} className="text-sage-600 dark:text-sage-400 hover:underline">
+            <span aria-hidden="true">&middot;</span>
+            <Link
+              href={`/${tool.slug}`}
+              className="text-sage-600 dark:text-sage-400 hover:underline"
+            >
               {tool.icon} Try the {tool.shortName}
             </Link>
           </>
         )}
       </div>
 
-      {/* Content */}
-      <article className="prose-fiber">
-        {post.sections.map((section, i) => (
-          <div key={i} className="mb-8">
-            <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-              {section.heading}
-            </h2>
-            {section.content.split("\n\n").map((paragraph, j) => (
-              <p key={j} className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        ))}
-      </article>
+      {/* Rendered markdown content */}
+      <article
+        className="prose-fiber"
+        dangerouslySetInnerHTML={{ __html: post.htmlContent }}
+      />
 
-      {/* CTA to tool */}
+      {/* Companion tool CTA */}
       {tool && (
         <div className="mt-12 p-6 bg-sage-50 dark:bg-sage-900/20 rounded-2xl border border-sage-200 dark:border-sage-800 text-center">
           <p className="text-lg font-semibold text-bark-700 dark:text-cream-200 mb-2">
@@ -128,59 +190,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           </Link>
         </div>
       )}
-
-      {/* Companion guide */}
-      {companionGuide && (
-        <section className="mt-12">
-          <h2 className="text-xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
-            Related Guide
-          </h2>
-          <Link
-            href={`/guides/${companionGuide.slug}`}
-            className="tool-card group block"
-          >
-            <div className="flex items-start gap-3">
-              <span className="text-2xl flex-shrink-0">📖</span>
-              <div>
-                <h3 className="font-medium text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
-                  {companionGuide.title}
-                </h3>
-                <p className="text-sm text-bark-400 dark:text-bark-500 mt-1 line-clamp-2">
-                  {companionGuide.description}
-                </p>
-              </div>
-            </div>
-          </Link>
-        </section>
-      )}
-
-      {/* Related posts */}
-      <section className="mt-12">
-        <h2 className="text-xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
-          More Guides
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {getRelatedBlogPosts(post.slug, 4).map((p) => {
-            const t = getToolBySlug(p.toolSlug);
-            return (
-              <Link
-                key={p.slug}
-                href={`/blog/${p.slug}`}
-                className="tool-card group"
-              >
-                <div className="flex items-start gap-3">
-                  {t && <span className="text-2xl flex-shrink-0">{t.icon}</span>}
-                  <div>
-                    <h3 className="text-sm font-medium text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors line-clamp-2">
-                      {p.title}
-                    </h3>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
     </main>
   );
 }

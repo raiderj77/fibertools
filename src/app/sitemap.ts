@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { tools } from "@/lib/tools";
-import { blogPosts } from "@/lib/blog";
+import { getAllMarkdownPosts } from "@/lib/blog-markdown";
 import { getAllGuides } from "@/lib/guides";
 
 const BASE_URL = "https://fibertools.app";
@@ -16,9 +16,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: t.tier === 1 ? 0.9 : t.tier === 2 ? 0.8 : 0.7,
     }));
 
-  const blogPages = blogPosts.map((post) => ({
+  const blogPages = getAllMarkdownPosts().map((post) => ({
     url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: post.date ? new Date(post.date) : new Date(TODAY),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
