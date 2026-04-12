@@ -16,7 +16,7 @@ function ToolCard({ tool }: { tool: Tool }) {
           </span>
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors mb-1.5">
+          <h3 className="text-lg font-semibold text-bark-700 dark:text-cream-200 group-hover:text-plum-500 transition-colors mb-1.5">
             {tool.shortName}
           </h3>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
@@ -188,24 +188,24 @@ export default function HomePage() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-sage-50 via-cream-50 to-cream-50 dark:from-bark-900 dark:via-bark-900 dark:to-bark-900 grain-overlay">
+      <section className="relative overflow-hidden bg-gradient-to-br from-cream-100 via-cream-50 to-plum-50 grain-overlay">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 pb-20 sm:pt-24 sm:pb-28">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-sage-100 dark:bg-sage-900/30 border border-sage-200 dark:border-sage-800 rounded-full text-sm text-sage-700 dark:text-sage-300 mb-5">
-              <span className="w-1.5 h-1.5 rounded-full bg-sage-500 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-plum-100 border border-plum-200 rounded-full text-sm text-plum-600 mb-5">
+              <span className="w-1.5 h-1.5 rounded-full bg-plum-500 animate-pulse" />
               {tools.filter((t) => t.ready).length} free tools — no login required
             </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display text-bark-800 leading-[1.1] tracking-tight">
               Free tools for
-              <span className="text-sage-600 dark:text-sage-400"> every fiber crafter</span>
+              <span className="text-plum-500"> every fiber crafter</span>
             </h1>
             <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
-            <p className="mt-5 text-lg sm:text-xl text-bark-500 dark:text-bark-400 max-w-2xl leading-relaxed">
+            <p className="mt-6 text-lg sm:text-xl text-bark-500 max-w-xl leading-relaxed">
               Yarn calculators, needle converters, gauge tools, and more — for
               knitting, crochet, weaving, spinning, and embroidery. No login. No
               ads wall. Works offline.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-4">
               <Link href="#all-tools" className="btn-primary">
                 Browse All Tools
               </Link>
@@ -226,7 +226,7 @@ export default function HomePage() {
             ].map(({ icon, text }, i) => (
               <span
                 key={text}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/70 dark:bg-bark-800/70 border border-cream-300 dark:border-bark-700 rounded-full text-sm text-bark-600 dark:text-cream-300 animate-slide-up"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/80 border border-cream-300 rounded-full text-sm text-bark-600 shadow-sm animate-slide-up"
                 style={{ animationDelay: `${0.3 + i * 0.08}s` }}
               >
                 <span>{icon}</span>
@@ -237,9 +237,9 @@ export default function HomePage() {
         </div>
 
         {/* Decorative shapes */}
-        <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-sage-200/30 dark:bg-sage-900/20 blur-3xl pointer-events-none animate-float" />
-        <div className="absolute -bottom-10 -left-10 w-48 h-48 rounded-full bg-rose-200/20 dark:bg-rose-900/10 blur-3xl pointer-events-none animate-float" style={{ animationDelay: "3s" }} />
-        <div className="absolute top-1/2 right-1/4 w-32 h-32 rounded-full bg-amber-200/15 dark:bg-amber-900/10 blur-3xl pointer-events-none animate-float" style={{ animationDelay: "1.5s" }} />
+        <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full bg-plum-200/25 blur-3xl pointer-events-none animate-float" />
+        <div className="absolute -bottom-10 -left-10 w-56 h-56 rounded-full bg-amber-300/20 blur-3xl pointer-events-none animate-float" style={{ animationDelay: "3s" }} />
+        <div className="absolute top-1/2 right-1/4 w-40 h-40 rounded-full bg-cream-300/40 blur-3xl pointer-events-none animate-float" style={{ animationDelay: "1.5s" }} />
       </section>
 
       {/* Tool Grid */}
@@ -250,7 +250,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100">
               Essential Fiber Arts Tools
             </h2>
-            <span className="text-xs font-medium text-sage-600 dark:text-sage-400 bg-sage-100 dark:bg-sage-900/30 px-2.5 py-0.5 rounded-full">
+            <span className="text-xs font-medium text-plum-600 bg-plum-100 px-2.5 py-0.5 rounded-full">
               Most popular
             </span>
           </div>
@@ -303,7 +303,7 @@ export default function HomePage() {
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-2">
                   <span className="text-2xl">{guide.icon}</span>
-                  <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
+                  <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-plum-500 transition-colors">
                     {guide.title}
                   </h3>
                 </div>
@@ -322,7 +322,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100">
             Fiber Arts Guides & Tutorials
           </h2>
-          <Link href="/blog" className="text-sm text-sage-600 dark:text-sage-400 hover:underline font-medium">
+          <Link href="/blog" className="text-sm text-plum-500 hover:text-plum-600 hover:underline font-medium">
             View all →
           </Link>
         </div>
@@ -334,7 +334,7 @@ export default function HomePage() {
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center gap-2">
                     {tool && <span className="text-2xl">{tool.icon}</span>}
-                    <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors line-clamp-2">
+                    <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-plum-500 transition-colors line-clamp-2">
                       {post.title}
                     </h3>
                   </div>
@@ -352,7 +352,7 @@ export default function HomePage() {
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center gap-2">
                     {tool && <span className="text-2xl">{tool.icon}</span>}
-                    <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors line-clamp-2">
+                    <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-plum-500 transition-colors line-clamp-2">
                       {guide.title}
                     </h3>
                   </div>
@@ -443,7 +443,7 @@ export default function HomePage() {
                 href="https://www.craftyarncouncil.com/standards/yarn-weight-system"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                className="text-sage-600 dark:text-sage-400 underline hover:text-sage-700 dark:hover:text-sage-300"
+                className="text-plum-500 underline hover:text-plum-600"
               >
                 Craft Yarn Council yarn weight standards
               </a>{" "}
@@ -454,7 +454,7 @@ export default function HomePage() {
                 href="https://www.ravelry.com/help/yarn/gauge"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                className="text-sage-600 dark:text-sage-400 underline hover:text-sage-700 dark:hover:text-sage-300"
+                className="text-plum-500 underline hover:text-plum-600"
               >
                 Ravelry gauge and needle size guide
               </a>{" "}
@@ -465,7 +465,7 @@ export default function HomePage() {
                 href="https://www.craftyarncouncil.com/standards/how-to-measure-gauge"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
-                className="text-sage-600 dark:text-sage-400 underline hover:text-sage-700 dark:hover:text-sage-300"
+                className="text-plum-500 underline hover:text-plum-600"
               >
                 Craft Yarn Council tension and gauge guidelines
               </a>{" "}
@@ -477,7 +477,7 @@ export default function HomePage() {
       </section>
 
       {/* Why FiberTools */}
-      <section className="bg-sage-50 dark:bg-bark-800/50 border-y border-cream-300 dark:border-bark-700">
+      <section className="bg-cream-200/60 border-y border-cream-300">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-8 text-center">
             Why crafters love FiberTools
@@ -507,7 +507,7 @@ export default function HomePage() {
             ].map(({ icon, title, desc }, i) => (
               <div
                 key={title}
-                className="text-center sm:text-left bg-white dark:bg-bark-800 rounded-2xl p-6 border border-cream-200 dark:border-bark-700 hover:border-sage-300 dark:hover:border-sage-700 hover:shadow-md transition-all duration-200 animate-slide-up"
+                className="text-center sm:text-left bg-white rounded-2xl p-6 border border-cream-200 hover:border-plum-300 hover:shadow-md transition-all duration-200 animate-slide-up"
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <span className="text-3xl mb-3 block">{icon}</span>
