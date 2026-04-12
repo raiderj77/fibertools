@@ -50,7 +50,17 @@ const nextConfig = {
     return [
       {
         source: '/blog/needle-guide-guide',
-        destination: '/needle-guide',
+        destination: '/blog/needle-guide-types',
+        permanent: true,
+      },
+      {
+        source: '/blog/needle-converter-guide',
+        destination: '/blog/needle-guide-types',
+        permanent: true,
+      },
+      {
+        source: '/blog/abbreviation-glossary-guide',
+        destination: '/blog/reading-crochet-patterns-guide',
         permanent: true,
       },
     ];
