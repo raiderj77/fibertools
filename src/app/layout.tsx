@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { DM_Serif_Display, Nunito, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -9,19 +9,25 @@ import InstallPrompt from "@/components/InstallPrompt";
 import CookieConsent from "@/components/CookieConsent";
 import { OrganizationSchema } from "@/components/StructuredData";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const dmSerifDisplay = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-display",
   display: "swap",
-  preload: true,
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
   display: "swap",
-  preload: false,
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -123,7 +129,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${dmSerifDisplay.variable} ${nunito.variable} ${jetbrainsMono.variable}`}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#6b8e6d" />

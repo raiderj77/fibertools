@@ -4,17 +4,24 @@
 
 @layer base {
   :root {
-    --color-bg: #FEFDFB;
-    --color-bg-secondary: #FDF9F3;
-    --color-text: #3D352E;
-    --color-text-muted: #746454;
-    --color-border: #EDE8E3;
-    --color-accent: #5E8A5E;
-    --color-accent-hover: #4A6F4A;
+    --color-bg:           #FAF6F1;
+    --color-bg-secondary: #F7F0F5;
+    --color-text:         #2D2A2E;
+    --color-text-muted:   #6B5A45;
+    --color-border:       #EDE0D0;
+    --color-accent:       #7C5A6D;
+    --color-accent-hover: #634858;
+    --color-cta:          #D4915E;
+    --color-cta-hover:    #B8723E;
+    --color-sage:         #8FAE8B;
   }
 
   html {
     @apply scroll-smooth;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display), 'DM Serif Display', Georgia, serif;
   }
 
   body {
@@ -26,30 +33,46 @@
 @layer components {
   /* Tool card on homepage */
   .tool-card {
-    @apply relative bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700
-           p-7 transition-all duration-200 hover:shadow-lg hover:shadow-sage-200/40 dark:hover:shadow-sage-900/30
-           hover:-translate-y-0.5 hover:border-sage-300 dark:hover:border-sage-700;
+    @apply relative rounded-xl p-7 transition-all duration-200;
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 1px 4px rgba(124, 90, 109, 0.08);
+  }
+
+  .tool-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 4px 16px rgba(124, 90, 109, 0.14);
   }
 
   /* Primary CTA button */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 px-6 py-3 
-           bg-sage-500 hover:bg-sage-600 active:bg-sage-700
-           text-white font-medium rounded-xl
-           transition-all duration-150 
-           focus:outline-none focus:ring-2 focus:ring-sage-400 focus:ring-offset-2 dark:focus:ring-offset-bark-900
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3
+           font-medium rounded-xl
+           transition-all duration-150
+           focus:outline-none focus:ring-2 focus:ring-plum-400 focus:ring-offset-2
            disabled:opacity-50 disabled:cursor-not-allowed
            text-base min-h-[48px];
+    background-color: var(--color-cta);
+    color: #ffffff;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-cta-hover);
   }
 
   /* Secondary button */
   .btn-secondary {
     @apply inline-flex items-center justify-center gap-2 px-5 py-2.5
-           bg-cream-200 hover:bg-cream-300 dark:bg-bark-700 dark:hover:bg-bark-600
-           text-bark-700 dark:text-cream-200 font-medium rounded-xl
+           font-medium rounded-xl border
            transition-all duration-150
-           focus:outline-none focus:ring-2 focus:ring-sage-400 focus:ring-offset-2 dark:focus:ring-offset-bark-900
+           focus:outline-none focus:ring-2 focus:ring-plum-400 focus:ring-offset-2
            text-base min-h-[44px];
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-bg-secondary);
   }
 
   /* Form input */
