@@ -4,6 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import YarnCalculatorTool from "./YarnCalculatorTool";
 
 export const metadata: Metadata = {
+  lastModified: new Date('2026-03-16'),
   title: "Yarn Yardage Calculator — Free Online",
   description:
     "Calculate how much yarn you need for any knitting or crochet project. Enter your gauge and dimensions for instant yardage estimates. Free, no signup.",
@@ -43,6 +44,34 @@ export const metadata: Metadata = {
 
 export default function YarnCalculatorPage() {
   return (
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: 'How much yarn do I need for my project?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'Use this calculator to enter your gauge, dimensions, and yarn weight to get an instant yardage estimate.',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'What is a gauge swatch?',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: 'A gauge swatch is a small knitted or crocheted sample made with your yarn and needles to measure stitches and rows per inch.',
+                },
+              },
+            ],
+            dateModified: '2026-03-16',
+          }),
+        }}
+      />
     <ToolLayout slug="yarn-calculator">
       <AnswerBlock
         what="A yardage estimator that calculates how much yarn you need for any knitting or crochet project based on your gauge, dimensions, and yarn weight (CYC Lace 0 through Jumbo 7)."
