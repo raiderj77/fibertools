@@ -148,8 +148,8 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     introduction: {
       title: "Why Gauge Matters in Knitting and Crochet",
       paragraphs: [
-        "Gauge is the single most important measurement in fitted knitting and crochet. Even half a stitch per inch difference from the pattern specification can mean a sweater that is three sizes too large or impossibly tight. Skipping the gauge swatch is the most common — and most costly — mistake crafters make.",
-        "Professional designers spend significant time establishing gauge because every pattern instruction depends on it. Stitch counts, shaping calculations, and yarn estimates all derive from this foundational measurement. Getting gauge right before you begin saves hours of ripping out and reworking later.",
+        "Gauge is the single most important measurement in fitted knitting and crochet. Even half a stitch per inch difference from the pattern specification can mean a sweater that is three sizes too large or impossibly tight. Incorrect gauge is one of the most commonly cited reasons for frogging (unraveling) finished garments in the knitting community.",
+        "Professional designers spend significant time establishing gauge because every pattern instruction depends on it. Stitch counts, shaping calculations, and yarn estimates all derive from this foundational measurement. Getting gauge right before you begin saves significant time that would otherwise be spent ripping out and reworking later.",
       ],
     },
     whatIs: {
@@ -205,14 +205,14 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     introduction: {
       title: "Why You Need a Yarn Weight Reference Chart",
       paragraphs: [
-        "A pattern calls for DK weight yarn, but the label on your skein says 8-ply — are they the same thing? Different countries and manufacturers use different naming conventions for yarn thickness, and the confusion can lead to purchasing the wrong weight entirely and producing fabric with incorrect drape and gauge.",
-        "Australian and British patterns use ply counts, North American patterns use category names, and European labels often list only recommended needle size in millimeters. A comprehensive reference chart bridges these systems so you can substitute yarns confidently across international patterns.",
+        "A pattern calls for DK weight yarn, but the label on your skein says 8-ply — are they the same thing? According to the Craft Yarn Council, over 38 million Americans knit or crochet, yet different countries and manufacturers use different naming conventions for yarn thickness. The confusion can lead to purchasing the wrong weight entirely and producing fabric with incorrect drape and gauge.",
+        "Australian and British patterns use ply counts, North American patterns use category names, and European labels often list only recommended needle size in millimeters. Despite the Craft Yarn Council's standardized weight system (categories 0–7), there is still no universal international labeling standard. A comprehensive reference chart bridges these systems so you can substitute yarns confidently across international patterns.",
       ],
     },
     whatIs: {
       title: "What Are Yarn Weight Categories?",
       paragraphs: [
-        "The Craft Yarn Council established a standardized system of eight weight categories numbered 0 through 7, from lace weight at the finest end to jumbo at the heaviest. Each category defines a range of acceptable gauges, recommended needle or hook sizes, and common project applications.",
+        "The Craft Yarn Council (CYC), a trade association of yarn manufacturers and distributors, established a standardized system of eight weight categories numbered 0 through 7, from lace weight at the finest end to jumbo at the heaviest. Each category defines a range of acceptable gauges, recommended needle or hook sizes, and common project applications. Worsted weight (category 4) is widely considered the most popular weight category in North America.",
         "These categories provide a universal language for yarn thickness. Category 3, called DK or light worsted, is the same as 8-ply in Australian terminology and roughly corresponds to what many European brands label as suitable for 4.0mm needles. The chart maps all these naming systems together.",
         "Within each category there is still variation — a loosely spun DK and a tightly plied DK will behave differently despite sharing a label. The weight category is a starting point for selection, and swatching confirms whether a specific yarn performs as expected for your chosen pattern.",
       ],
