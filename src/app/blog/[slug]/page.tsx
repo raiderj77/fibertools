@@ -62,7 +62,7 @@ export default async function BlogPostPage({
     headline: post.title,
     description: post.description || undefined,
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: "2026-04-16",
     url: `https://fibertools.app/blog/${post.slug}`,
     mainEntityOfPage: `https://fibertools.app/blog/${post.slug}`,
     image: "https://fibertools.app/og-image.png",
@@ -156,7 +156,13 @@ export default async function BlogPostPage({
           </time>
         )}
         <span aria-hidden="true">&middot;</span>
-        <span>By a fiber arts expert with 30+ years experience</span>
+        <span>By <strong className="text-bark-600 dark:text-cream-400">The FiberTools Editorial Team</strong></span>
+        <span aria-hidden="true">&middot;</span>
+        <span>Fiber arts experts with 30+ years of experience</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>Last reviewed: April 2026</span>
+        <span aria-hidden="true">&middot;</span>
+        <Link href="/about" className="text-sage-600 dark:text-sage-400 hover:underline">About us</Link>
         {tool && (
           <>
             <span aria-hidden="true">&middot;</span>

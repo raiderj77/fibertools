@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function RaglanCalculatorPage() {
   return (
-    <ToolLayout slug="raglan-calculator">
+    <ToolLayout slug="raglan-calculator" widgetFirst>
       <AnswerBlock
         what="A calculator for top-down raglan sweater construction that provides neck cast-on count, stitch distribution across sections, and increase round scheduling."
         who="Knitters designing or modifying a top-down raglan sweater who need the math for neck, yoke, and body proportions."

@@ -47,7 +47,7 @@ export default function BestYarnForBlanketsPage() {
     description:
       "The best yarn for knitting and crochet blankets in 2026. Soft, washable, and budget-friendly options for throw, baby, and chunky blankets.",
     datePublished: "2026-03-11",
-    dateModified: "2026-03-11",
+    dateModified: "2026-04-16",
     url: "https://fibertools.app/best-yarn-for-blankets",
     mainEntityOfPage: "https://fibertools.app/best-yarn-for-blankets",
     author: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
@@ -148,7 +148,7 @@ export default function BestYarnForBlanketsPage() {
       </p>
 
       <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
-        <span>Last updated: March 16, 2026</span>
+        <span>Last updated: April 16, 2026</span>
         <span>&middot;</span>
         <span>Written by the FiberTools Team — fiber arts experts with 30+ years of combined experience</span>
       </div>
@@ -344,6 +344,27 @@ export default function BestYarnForBlanketsPage() {
             for general yardage estimates across any project type.
           </p>
         </section>
+
+        {/* Common Buying Mistakes */}
+        <section className="mb-10">
+          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-4">
+            Common Buying Mistakes
+          </h2>
+          <ul className="space-y-4">
+            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+              <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
+              <span><strong>Not buying all skeins from the same dye lot.</strong> Blankets require 10–30 skeins of the same color. Dye lots vary between production runs — even yarn labeled the same color number from the same brand can shift noticeably between lots. Always buy your entire project quantity at once from a single dye lot, printed on the yarn label&apos;s small number or letter.</span>
+            </li>
+            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+              <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
+              <span><strong>Underestimating how many skeins you need.</strong> Blankets are the largest and most yarn-hungry fiber arts projects. A queen-size throw in worsted weight requires 2,500–4,000 yards. Always use a blanket yardage calculator before purchasing, buy one extra skein as a buffer, and check that your LYS or online retailer still has the same dye lot available if you run short.</span>
+            </li>
+            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+              <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
+              <span><strong>Choosing non-machine-washable yarn for a functional blanket.</strong> Blankets used for lounging, babies, or pets get washed frequently. A blanket that requires hand-washing becomes a chore within a year. Unless the blanket is purely decorative or display-only, choose machine-washable superwash wool or acrylic. Save delicate fibers for wall hangings and heirloom pieces.</span>
+            </li>
+          </ul>
+        </section>
       </article>
 
       {/* FAQ */}
@@ -351,34 +372,42 @@ export default function BestYarnForBlanketsPage() {
         <h2 className="text-xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
           Frequently Asked Questions
         </h2>
-        <div className="bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700 divide-y divide-cream-200 dark:divide-bark-700">
-          {[
-            {
-              q: "How many skeins do I need for a throw blanket?",
-              a: "6–10 skeins of worsted weight yarn for a standard throw blanket. Use our Blanket Calculator for an accurate estimate based on your exact dimensions and yarn weight.",
-            },
-            {
-              q: "What is the best yarn for a beginner blanket?",
-              a: "Bernat Blanket or Lion Brand Pound of Love — both are soft, machine washable, and widely available. Bernat Blanket works up fast in Super Bulky weight, while Pound of Love gives great yardage in worsted weight.",
-            },
-            {
-              q: "Is acrylic yarn good for blankets?",
-              a: "Yes — acrylic is machine washable, durable, affordable, and available in hundreds of colors. It is the most popular fiber choice for blankets, especially for everyday use and baby blankets.",
-            },
-            {
-              q: "What weight yarn is best for a chunky blanket?",
-              a: "Super Bulky (CYC 6) or Jumbo (CYC 7) on large needles or hooks. These weights create thick, cozy blankets that work up quickly — a throw can be finished in a weekend.",
-            },
-            {
-              q: "How do I avoid running out of yarn mid-blanket?",
-              a: "Buy all your yarn at once from the same dye lot. Always buy one extra skein as insurance. Use our Blanket Calculator to get an accurate yardage estimate before you start.",
-            },
-          ].map((faq, i) => (
-            <div key={i} className="px-6 py-4">
-              <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 mb-1">{faq.q}</h3>
-              <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">{faq.a}</p>
-            </div>
-          ))}
+        <div className="bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700 px-6 divide-y divide-cream-200 dark:divide-bark-700">
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">How many skeins do I need for a throw blanket?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">6–10 skeins of worsted weight yarn for a standard throw blanket. Use our Blanket Calculator for an accurate estimate based on your exact dimensions and yarn weight.</p></div>
+          </details>
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">What is the best yarn for a beginner blanket?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Bernat Blanket or Lion Brand Pound of Love — both are soft, machine washable, and widely available. Bernat Blanket works up fast in Super Bulky weight, while Pound of Love gives great yardage in worsted weight.</p></div>
+          </details>
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Is acrylic yarn good for blankets?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Yes — acrylic is machine washable, durable, affordable, and available in hundreds of colors. It is the most popular fiber choice for blankets, especially for everyday use and baby blankets.</p></div>
+          </details>
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">What weight yarn is best for a chunky blanket?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Super Bulky (CYC 6) or Jumbo (CYC 7) on large needles or hooks. These weights create thick, cozy blankets that work up quickly — a throw can be finished in a weekend.</p></div>
+          </details>
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">How do I avoid running out of yarn mid-blanket?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Buy all your yarn at once from the same dye lot. Always buy one extra skein as insurance. Use our Blanket Calculator to get an accurate yardage estimate before you start.</p></div>
+          </details>
         </div>
       </section>
 

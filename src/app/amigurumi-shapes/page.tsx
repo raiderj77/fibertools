@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 
 export default function AmigurumiShapesPage() {
   return (
-    <ToolLayout slug="amigurumi-shapes">
+    <ToolLayout slug="amigurumi-shapes" widgetFirst>
       <AnswerBlock
         what="A calculator that generates round-by-round increase and decrease instructions for crochet spheres, cones, cylinders, and ovals."
         who="Amigurumi makers who need custom shape patterns without guessing at stitch counts for each round."

@@ -46,7 +46,7 @@ export default function BestCrochetHooksPage() {
     description:
       "The best crochet hooks for beginners and experienced crocheters in 2026. Ergonomic, aluminum, and steel hook recommendations.",
     datePublished: "2026-03-11",
-    dateModified: "2026-03-11",
+    dateModified: "2026-04-16",
     url: "https://fibertools.app/best-crochet-hooks",
     mainEntityOfPage: "https://fibertools.app/best-crochet-hooks",
     author: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
@@ -147,7 +147,7 @@ export default function BestCrochetHooksPage() {
       </p>
 
       <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
-        <span>Last updated: March 16, 2026</span>
+        <span>Last updated: April 16, 2026</span>
         <span>&middot;</span>
         <span>Written by the FiberTools Team — fiber arts experts with 30+ years of combined experience</span>
       </div>
@@ -339,6 +339,52 @@ export default function BestCrochetHooksPage() {
             Neither style is objectively better — it comes down to personal preference and how you hold your hook. Many crocheters try both and develop a clear favorite. If you are just starting out, pick whichever is available and affordable. You can always try the other style later.
           </p>
         </section>
+
+        {/* What to Look For */}
+        <section className="mb-10">
+          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-4">
+            What to Look For When Buying Crochet Hooks
+          </h2>
+          <ul className="space-y-3">
+            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+              <span className="text-sage-500 mt-1 flex-shrink-0 font-bold">1.</span>
+              <span><strong>Handle comfort and grip style.</strong> Ergonomic rubber grips reduce hand fatigue during long sessions. If you crochet for more than 30 minutes at a time, prioritize this feature. Test how the handle feels when held in your natural crocheting position.</span>
+            </li>
+            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+              <span className="text-sage-500 mt-1 flex-shrink-0 font-bold">2.</span>
+              <span><strong>Hook head style (inline vs. tapered).</strong> Inline hooks (Bates-style) have a more defined throat and grab yarn consistently. Tapered hooks (Boye-style) have a rounded head that slides through tight stitches more easily. Neither is objectively better — your tension and holding style determine which works best for you.</span>
+            </li>
+            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+              <span className="text-sage-500 mt-1 flex-shrink-0 font-bold">3.</span>
+              <span><strong>Material (aluminum, bamboo, or steel).</strong> Aluminum hooks are lightweight, smooth, and versatile for most yarn weights. Bamboo and wood hooks have a slight grip that prevents slipping — ideal for slippery fibers like silk or bamboo yarn. Steel hooks are for fine thread crochet (sizes 0–14) only.</span>
+            </li>
+            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+              <span className="text-sage-500 mt-1 flex-shrink-0 font-bold">4.</span>
+              <span><strong>Size range and completeness.</strong> Most crocheters need US B–N (2.25mm–9mm) for standard yarn weights. If you crochet with a variety of yarn weights, buy a complete set rather than individual hooks — sets are significantly cheaper per hook than buying individually.</span>
+            </li>
+          </ul>
+        </section>
+
+        {/* Common Buying Mistakes */}
+        <section className="mb-10">
+          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-4">
+            Common Buying Mistakes
+          </h2>
+          <ul className="space-y-4">
+            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+              <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
+              <span><strong>Buying a set with unfamiliar hook sizes.</strong> Many beginners buy a complete aluminum set but only use three sizes. Before purchasing a large set, confirm your planned projects actually need the range. A single 5mm ergonomic hook beats an unused 12-piece set gathering dust.</span>
+            </li>
+            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+              <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
+              <span><strong>Choosing handle style before testing both head styles.</strong> Many crocheters buy ergonomic hooks based solely on grip comfort, then discover the inline or tapered head style doesn&apos;t match their tension. If possible, borrow or try before committing to a full ergonomic set.</span>
+            </li>
+            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
+              <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
+              <span><strong>Ignoring the metric millimeter size.</strong> US letter designations are not consistent across brands — a Clover H may measure 5.0mm while a budget H measures 4.75mm. Always check the millimeter measurement, especially when your gauge is critical to a project&apos;s fit.</span>
+            </li>
+          </ul>
+        </section>
       </article>
 
       {/* FAQ */}
@@ -346,34 +392,42 @@ export default function BestCrochetHooksPage() {
         <h2 className="text-xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
           Frequently Asked Questions
         </h2>
-        <div className="bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700 divide-y divide-cream-200 dark:divide-bark-700">
-          {[
-            {
-              q: "What size crochet hook should a beginner start with?",
-              a: "US H-8 (5mm) with medium worsted weight yarn is best. This size is comfortable to hold and works up quickly so you see progress fast.",
-            },
-            {
-              q: "Are ergonomic crochet hooks worth it?",
-              a: "Yes, especially for long sessions. Ergonomic hooks reduce wrist and hand fatigue significantly. If you crochet for more than 30 minutes at a time, an ergonomic hook is a worthwhile investment.",
-            },
-            {
-              q: "What is the difference between inline and tapered crochet hooks?",
-              a: "Inline hooks have the throat cut straight in line with the shaft, creating a more defined hook shape. Tapered hooks have a rounded, gradually narrowing head. Neither is objectively better — try both to see which feels more natural.",
-            },
-            {
-              q: "Do I need different hooks for different yarn weights?",
-              a: "Yes. Each yarn weight has a recommended hook size range. Using the wrong size affects gauge and fabric drape. Check the Needle Converter for size equivalents across US, metric, and UK systems.",
-            },
-            {
-              q: "Can I use knitting needles for crochet?",
-              a: "No. Crochet hooks have a specific hook shape that catches and pulls yarn through loops. Knitting needles are straight or circular without a hook, making them unsuitable for crochet stitches.",
-            },
-          ].map((faq, i) => (
-            <div key={i} className="px-6 py-4">
-              <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 mb-1">{faq.q}</h3>
-              <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">{faq.a}</p>
-            </div>
-          ))}
+        <div className="bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700 px-6 divide-y divide-cream-200 dark:divide-bark-700">
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">What size crochet hook should a beginner start with?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">US H-8 (5mm) with medium worsted weight yarn is best. This size is comfortable to hold and works up quickly so you see progress fast.</p></div>
+          </details>
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Are ergonomic crochet hooks worth it?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Yes, especially for long sessions. Ergonomic hooks reduce wrist and hand fatigue significantly. If you crochet for more than 30 minutes at a time, an ergonomic hook is a worthwhile investment.</p></div>
+          </details>
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">What is the difference between inline and tapered crochet hooks?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Inline hooks have the throat cut straight in line with the shaft, creating a more defined hook shape. Tapered hooks have a rounded, gradually narrowing head. Neither is objectively better — try both to see which feels more natural.</p></div>
+          </details>
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Do I need different hooks for different yarn weights?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Yes. Each yarn weight has a recommended hook size range. Using the wrong size affects gauge and fabric drape. Check the Needle Converter for size equivalents across US, metric, and UK systems.</p></div>
+          </details>
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Can I use knitting needles for crochet?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">No. Crochet hooks have a specific hook shape that catches and pulls yarn through loops. Knitting needles are straight or circular without a hook, making them unsuitable for crochet stitches.</p></div>
+          </details>
         </div>
       </section>
 

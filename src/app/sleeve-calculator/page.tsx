@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function SleeveCalculatorPage() {
   return (
-    <ToolLayout slug="sleeve-calculator">
+    <ToolLayout slug="sleeve-calculator" widgetFirst>
       <AnswerBlock
         what="A calculator that generates row-by-row decrease instructions for tapered sleeves with evenly distributed shaping."
         who="Knitters and crocheters who need to taper a sleeve from upper arm to cuff and want the math done for them."

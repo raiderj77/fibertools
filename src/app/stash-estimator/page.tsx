@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function StashEstimatorPage() {
   return (
-    <ToolLayout slug="stash-estimator">
+    <ToolLayout slug="stash-estimator" widgetFirst>
       <AnswerBlock
         what="A tool that estimates remaining yardage in partial skeins by weight, with a reference table for unlabeled yarn by weight category."
         who="Yarn crafters with partial skeins who need to know if they have enough yarn left for a project."

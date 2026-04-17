@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 
 export default function CircleCalculatorPage() {
   return (
-    <ToolLayout slug="circle-calculator">
+    <ToolLayout slug="circle-calculator" widgetFirst>
       <AnswerBlock
         what="A pattern generator that creates round-by-round increase instructions for flat crochet circles in any stitch type with staggered placement."
         who="Crocheters making hats, rugs, mandalas, or any project that starts with a flat circle and needs even increases."

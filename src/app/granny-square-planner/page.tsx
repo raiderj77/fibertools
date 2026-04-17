@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function GrannySquarePlannerPage() {
   return (
-    <ToolLayout slug="granny-square-planner">
+    <ToolLayout slug="granny-square-planner" widgetFirst>
       <AnswerBlock
         what="A planner that calculates how many granny squares you need for a blanket, with grid layout, per-color yardage, and joining yarn estimates."
         who="Crocheters assembling a granny square blanket who need to plan color quantities and total square count before starting."

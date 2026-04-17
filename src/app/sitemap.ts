@@ -49,6 +49,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/best-crochet-hooks", priority: 0.85, freq: "monthly" as const },
     { path: "/best-yarn-for-blankets", priority: 0.85, freq: "monthly" as const },
     { path: "/best-yarn-for-amigurumi", priority: 0.85, freq: "monthly" as const },
+    { path: "/blog/stitch-counter-guide", priority: 0.75, freq: "monthly" as const },
+    { path: "/blog/crochet-hook-size-chart", priority: 0.75, freq: "monthly" as const },
   ].map((p) => ({
     url: `${BASE_URL}${p.path}`,
     lastModified: new Date(TODAY),

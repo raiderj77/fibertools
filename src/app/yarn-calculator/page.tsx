@@ -4,7 +4,6 @@ import AnswerBlock from "@/components/AnswerBlock";
 import YarnCalculatorTool from "./YarnCalculatorTool";
 
 export const metadata: Metadata = {
-  lastModified: new Date('2026-03-16'),
   title: "Yarn Yardage Calculator — Free Online",
   description:
     "Calculate how much yarn you need for any knitting or crochet project. Enter your gauge and dimensions for instant yardage estimates. Free, no signup.",
@@ -44,6 +43,7 @@ export const metadata: Metadata = {
 
 export default function YarnCalculatorPage() {
   return (
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -68,11 +68,11 @@ export default function YarnCalculatorPage() {
                 },
               },
             ],
-            dateModified: '2026-03-16',
+            dateModified: '2026-04-16',
           }),
         }}
       />
-    <ToolLayout slug="yarn-calculator">
+      <ToolLayout slug="yarn-calculator" widgetFirst>
       <AnswerBlock
         what="A yardage estimator that calculates how much yarn you need for any knitting or crochet project based on your gauge, dimensions, and yarn weight (CYC Lace 0 through Jumbo 7)."
         who="Any knitter or crocheter planning a project — especially if you're buying yarn and need to know how many skeins to get before you start."
@@ -86,5 +86,6 @@ export default function YarnCalculatorPage() {
       </div>
       <YarnCalculatorTool />
     </ToolLayout>
+    </>
   );
 }

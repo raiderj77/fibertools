@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function ProjectCostCalculatorPage() {
   return (
-    <ToolLayout slug="project-cost-calculator">
+    <ToolLayout slug="project-cost-calculator" widgetFirst>
       <AnswerBlock
         what="A calculator that totals yarn, notions, and time costs for any knitting or crochet project, plus shows your effective hourly rate if selling."
         who="Fiber artists who want to know the true cost of a project before buying supplies or setting a sale price for finished items."

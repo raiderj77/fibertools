@@ -34,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function BlanketCalculatorPage() {
   return (
-    <ToolLayout slug="blanket-calculator">
+    <ToolLayout slug="blanket-calculator" widgetFirst>
       <AnswerBlock
         what="A calculator that determines how much yarn you need for any blanket size, from baby to king, with stitch counts, row counts, and total yardage."
         who="Knitters and crocheters planning a blanket project who want to buy the right amount of yarn before starting."

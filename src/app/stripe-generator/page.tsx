@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function StripeGeneratorPage() {
   return (
-    <ToolLayout slug="stripe-generator">
+    <ToolLayout slug="stripe-generator" widgetFirst>
       <AnswerBlock
         what="A stripe pattern generator that creates random or custom color sequences with a live preview, adjustable widths, and per-color yardage estimates."
         who="Knitters and crocheters making striped projects who want to visualize color combinations before committing to a pattern."

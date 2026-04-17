@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         Privacy Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: April 6, 2026
+        Last updated: April 16, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">

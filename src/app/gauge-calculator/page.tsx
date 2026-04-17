@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function GaugeCalculatorPage() {
   return (
-    <ToolLayout slug="gauge-calculator">
+    <ToolLayout slug="gauge-calculator" widgetFirst>
       <AnswerBlock
         what="A gauge calculator that converts your swatch measurements into stitches and rows per inch, then resizes pattern stitch counts to match your actual gauge."
         who="Knitters and crocheters who need to check whether their swatch matches a pattern's gauge — or resize a pattern for a different yarn weight."

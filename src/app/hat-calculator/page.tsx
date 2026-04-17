@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function HatCalculatorPage() {
   return (
-    <ToolLayout slug="hat-calculator">
+    <ToolLayout slug="hat-calculator" widgetFirst>
       <AnswerBlock
         what="A calculator that provides cast-on count, crown decrease schedule, and yardage for any head size from preemie to large adult with ease adjustments."
         who="Knitters and crocheters making hats who need accurate stitch counts and shaping instructions for a specific head circumference."

@@ -47,7 +47,7 @@ export default function HomePage() {
     description:
       "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery.",
     sameAs: [],
-    dateModified: "2026-04-07",
+    dateModified: "2026-04-16",
   };
 
   const websiteSchema = {
@@ -62,7 +62,7 @@ export default function HomePage() {
       target: "https://fibertools.app/?q={search_term_string}",
       "query-input": "required name=search_term_string",
     },
-    dateModified: "2026-04-07",
+    dateModified: "2026-04-16",
   };
 
   const webApplicationSchema = {
@@ -73,7 +73,7 @@ export default function HomePage() {
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    dateModified: "2026-04-07",
+    dateModified: "2026-04-16",
   };
 
   const breadcrumbSchema = {
@@ -87,7 +87,7 @@ export default function HomePage() {
         item: "https://fibertools.app",
       },
     ],
-    dateModified: "2026-04-07",
+    dateModified: "2026-04-16",
   };
 
   const toolsCollectionSchema = {
@@ -97,7 +97,7 @@ export default function HomePage() {
     url: "https://fibertools.app",
     description:
       "A comprehensive collection of free calculators for knitting, crochet, weaving, spinning, and embroidery.",
-    dateModified: "2026-04-07",
+    dateModified: "2026-04-16",
     hasPart: tools
       .filter((t) => t.ready)
       .map((t) => ({
@@ -112,7 +112,7 @@ export default function HomePage() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    dateModified: "2026-04-07",
+    dateModified: "2026-04-16",
     mainEntity: [
       {
         "@type": "Question",
@@ -152,6 +152,30 @@ export default function HomePage() {
         acceptedAnswer: {
           "@type": "Answer",
           text: "Worsted weight (CYC 4) is the best starting yarn weight for beginners. It is thick enough to see individual stitches clearly, works up quickly, and is widely available. Pair it with a US size 7–9 knitting needle or a 5mm crochet hook for most beginner patterns.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do I read a crochet pattern as a beginner?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Start by identifying whether the pattern uses US or UK crochet terminology — they use the same words for different stitches. Then read through the entire pattern before you start, noting the yarn weight, hook size, gauge, finished measurements, and abbreviations used. Work the pattern in sections, checking your stitch count at the end of each row or round against the pattern's count.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is blocking in knitting and crochet?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Blocking is the process of washing and shaping a finished piece to its intended dimensions. Wet blocking involves soaking the item in water, gently squeezing out moisture, and pinning or shaping it flat to dry. Blocking evens out stitches, opens up lace patterns, and can increase finished dimensions by 10–15% for natural fibers like wool and alpaca.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is amigurumi and what yarn do I use?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Amigurumi is the Japanese art of crocheting small stuffed animals and characters using single crochet worked in a continuous spiral. Use worsted weight (CYC 4) or DK weight (CYC 3) yarn for most amigurumi, with a hook one to two sizes smaller than the yarn label recommends. The tighter fabric prevents stuffing from showing through the stitch gaps.",
         },
       },
     ],
@@ -199,7 +223,7 @@ export default function HomePage() {
               Free tools for
               <span className="text-plum-500"> every fiber crafter</span>
             </h1>
-            <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
+            <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: April 16, 2026</p>
             <p className="mt-6 text-lg sm:text-xl text-bark-500 max-w-xl leading-relaxed">
               Yarn calculators, needle converters, gauge tools, and more — for
               knitting, crochet, weaving, spinning, and embroidery. No login. No
@@ -366,8 +390,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* GEO Content Sections */}
+      {/* Fiber Arts Fundamentals */}
       <section className="max-w-3xl mx-auto px-4 sm:px-6 py-16 space-y-12">
+        <div>
+          <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-1">
+            Fiber Arts Fundamentals
+          </h2>
+          <p className="text-sm text-bark-400 dark:text-bark-500 mb-8">Reference answers for knitting, crochet, weaving, and yarn selection — sourced from 30+ years of fiber arts expertise.</p>
+        </div>
 
         <div>
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-3">
@@ -474,6 +504,78 @@ export default function HomePage() {
           </ul>
         </div>
 
+      </section>
+
+      {/* About FiberTools */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 pb-16">
+        <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
+          About FiberTools
+        </h2>
+        <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
+          FiberTools is a free collection of calculators and references built by fiber artists, for fiber artists. Every tool on this site was designed to solve a real problem we faced in our own craft practice — from buying the wrong amount of yarn, to struggling with UK-to-US pattern conversions, to losing track of rows mid-project at 2am.
+        </p>
+        <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
+          Our tools are grounded in industry standards. Yarn weight classifications follow the Craft Yarn Council CYC system. Needle and hook sizing follows US, metric, and UK conventions. Gauge formulas are derived from standard knitting and crochet mathematics, not approximations. The team behind FiberTools has over 30 years of combined fiber arts experience across knitting, crochet, weaving, and spinning.
+        </p>
+        <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
+          Everything on FiberTools is free and always will be. No login. No subscription. No paywall for the next calculator tab. We believe tools that make craft more accessible should be available to everyone — whether you are a beginner knitting your first scarf or an experienced designer working on a complex colorwork sweater.
+        </p>
+        <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed">
+          All calculations happen in your browser. We do not store your inputs, sell your data, or require an account. Use FiberTools at the yarn shop, at a craft fair, or on the couch — it works offline once loaded.
+        </p>
+      </section>
+
+      {/* Visible FAQ */}
+      <section className="max-w-3xl mx-auto px-4 sm:px-6 pb-16">
+        <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-6">
+          Frequently Asked Questions
+        </h2>
+        <div className="bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700 px-6 divide-y divide-cream-200 dark:divide-bark-700">
+          {[
+            {
+              q: "What is a yarn weight calculator?",
+              a: "A yarn weight calculator helps knitters and crocheters determine the correct yarn weight for a pattern or substitute yarn. Enter your gauge swatch measurements and the tool identifies whether your yarn is lace, fingering, sport, DK, worsted, bulky, super bulky, or jumbo weight using CYC standard classifications.",
+            },
+            {
+              q: "How do I calculate gauge for a knitting or crochet pattern?",
+              a: "Knit or crochet a 6-inch swatch in your chosen stitch pattern, then count the stitches and rows within a 4-inch section. Enter those numbers into the gauge calculator to see if your tension matches the pattern. Adjust needle or hook size if your gauge is off — too many stitches means go up a size, too few means go down.",
+            },
+            {
+              q: "What is the difference between US and UK crochet terminology?",
+              a: "US and UK crochet terms use the same names for different stitches. A US single crochet equals a UK double crochet, a US double crochet equals a UK treble crochet, and so on. Always check whether a pattern uses US or UK terminology before starting to avoid working the wrong stitches.",
+            },
+            {
+              q: "How do I substitute yarn in a knitting pattern?",
+              a: "Match the yarn weight category first, then check that your gauge swatch with the substitute yarn matches the pattern gauge. Weight alone is not enough — fiber content affects drape and stitch definition, so swatch before committing to a full project. FiberTools calculators help you verify gauge and yardage requirements for substitutions.",
+            },
+            {
+              q: "What yarn weight should beginners start with?",
+              a: "Worsted weight (CYC 4) is the best starting yarn weight for beginners. It is thick enough to see individual stitches clearly, works up quickly, and is widely available. Pair it with a US size 7–9 knitting needle or a 5mm crochet hook for most beginner patterns.",
+            },
+            {
+              q: "How do I read a crochet pattern as a beginner?",
+              a: "Start by identifying whether the pattern uses US or UK crochet terminology. Then read the entire pattern before you start, noting the yarn weight, hook size, gauge, finished measurements, and abbreviations used. Work in sections, checking your stitch count at the end of each row or round against the pattern's count.",
+            },
+            {
+              q: "What is blocking in knitting and crochet?",
+              a: "Blocking is the process of washing and shaping a finished piece to its intended dimensions. Wet blocking involves soaking the item in water, gently squeezing out moisture, and pinning it flat to dry. Blocking evens out stitches, opens up lace patterns, and can increase finished dimensions by 10–15% for natural fibers like wool and alpaca.",
+            },
+            {
+              q: "What is amigurumi and what yarn do I use?",
+              a: "Amigurumi is the Japanese art of crocheting small stuffed animals and characters using single crochet worked in a continuous spiral. Use worsted weight (CYC 4) or DK weight (CYC 3) yarn with a hook one to two sizes smaller than the yarn label recommends. The tighter fabric prevents stuffing from showing through the stitch gaps.",
+            },
+          ].map((faq, i) => (
+            <details key={i} className="group py-1">
+              <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+                <span className="text-sm font-medium text-bark-700 dark:text-cream-200 group-hover:text-plum-500 dark:group-hover:text-plum-400 transition-colors">{faq.q}</span>
+                <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+              </summary>
+              <div className="pb-4 pr-8">
+                <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">{faq.a}</p>
+              </div>
+            </details>
+          ))}
+        </div>
       </section>
 
       {/* Why FiberTools */}

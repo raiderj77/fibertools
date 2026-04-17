@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function CastOnCalculatorPage() {
   return (
-    <ToolLayout slug="cast-on-calculator">
+    <ToolLayout slug="cast-on-calculator" widgetFirst>
       <AnswerBlock
         what="A calculator that determines how many stitches to cast on for any target width, with stitch pattern multiple rounding and edge stitch adjustments."
         who="Knitters who need the exact cast-on count for a custom-width project or when substituting yarn at a different gauge."

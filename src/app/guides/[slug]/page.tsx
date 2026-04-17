@@ -44,6 +44,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     headline: guide.title,
     description: guide.description,
     datePublished: guide.date,
+    dateModified: "2026-04-16",
     url: `https://fibertools.app/guides/${guide.slug}`,
     mainEntityOfPage: `https://fibertools.app/guides/${guide.slug}`,
     author: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
@@ -85,13 +86,19 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-1">
         {guide.title}
       </h1>
-      <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
-
-      <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
-        <span>{new Date(guide.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-8 text-sm text-bark-400 dark:text-bark-500">
+        <time dateTime={guide.date}>{new Date(guide.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</time>
+        <span aria-hidden="true">&middot;</span>
+        <span>By <strong className="text-bark-600 dark:text-cream-400">The FiberTools Editorial Team</strong></span>
+        <span aria-hidden="true">&middot;</span>
+        <span>Fiber arts experts with 30+ years of experience</span>
+        <span aria-hidden="true">&middot;</span>
+        <span>Last reviewed: April 2026</span>
+        <span aria-hidden="true">&middot;</span>
+        <Link href="/about" className="text-sage-600 dark:text-sage-400 hover:underline">About us</Link>
         {tool && (
           <>
-            <span>&middot;</span>
+            <span aria-hidden="true">&middot;</span>
             <Link href={`/${tool.slug}`} className="text-sage-600 dark:text-sage-400 hover:underline">
               {tool.icon} Try the {tool.shortName}
             </Link>
@@ -99,20 +106,40 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
         )}
       </div>
 
+      {/* In this guide TOC */}
+      <nav className="bg-cream-50 dark:bg-bark-800 border border-cream-300 dark:border-bark-700 rounded-2xl p-5 mb-8" aria-label="In this guide">
+        <p className="text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-500 mb-3">In this guide</p>
+        <ol className="space-y-1 list-decimal list-inside">
+          {guide.sections.map((section, i) => {
+            const id = section.heading.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            return (
+              <li key={i}>
+                <a href={`#${id}`} className="text-sm text-sage-600 dark:text-sage-400 hover:underline">
+                  {section.heading}
+                </a>
+              </li>
+            );
+          })}
+        </ol>
+      </nav>
+
       {/* Content */}
       <article className="prose-fiber">
-        {guide.sections.map((section, i) => (
-          <div key={i} className="mb-8">
-            <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-              {section.heading}
-            </h2>
-            {section.content.split("\n\n").map((paragraph, j) => (
-              <p key={j} className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        ))}
+        {guide.sections.map((section, i) => {
+          const id = section.heading.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+          return (
+            <div key={i} className="mb-8">
+              <h2 id={id} className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
+                {section.heading}
+              </h2>
+              {section.content.split("\n\n").map((paragraph, j) => (
+                <p key={j} className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          );
+        })}
       </article>
 
       {/* CTA to tool */}

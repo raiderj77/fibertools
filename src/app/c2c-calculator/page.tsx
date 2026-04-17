@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function C2cCalculatorPage() {
   return (
-    <ToolLayout slug="c2c-calculator">
+    <ToolLayout slug="c2c-calculator" widgetFirst>
       <AnswerBlock
         what="A corner-to-corner crochet planner that calculates block counts, diagonal rows, and yardage estimates from your gauge swatch."
         who="Crocheters planning a C2C blanket or project who need to know how many blocks and how much yarn the design requires."

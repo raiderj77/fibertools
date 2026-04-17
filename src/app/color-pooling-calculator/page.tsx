@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function ColorPoolingCalculatorPage() {
   return (
-    <ToolLayout slug="color-pooling-calculator">
+    <ToolLayout slug="color-pooling-calculator" widgetFirst>
       <AnswerBlock
         what="A calculator that determines the exact stitch count and foundation chain length for planned pooling with variegated yarn, with a live argyle preview."
         who="Crocheters who want to create intentional argyle or plaid patterns from variegated yarn by controlling stitch placement."

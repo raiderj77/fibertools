@@ -2,6 +2,23 @@ export interface ToolEducationalContent {
   disclaimer?: string;
   answerCapsule?: string;
   internalLinks?: Array<{ label: string; href: string; description: string }>;
+  // Archetype A — Calculator First
+  commonMistakes?: string[];
+  projectExample?: string;
+  useCases?: string[];
+  // Archetype B — Reference + Tool
+  chartGuide?: string;
+  industryStandards?: string;
+  manufacturerNote?: string;
+  // Archetype C — Pattern Generator
+  designPrinciples?: string;
+  patternVariations?: string[];
+  // Archetype D — Technique Guide + Tool
+  skillLevel?: string;
+  techniqueEffect?: string;
+  techniqueSteps?: string[];
+  fiberNotes?: string;
+  practiceProject?: string;
   introduction: {
     title: string;
     paragraphs: string[];
@@ -26,11 +43,26 @@ export interface ToolEducationalContent {
     title: string;
     tips: string[];
   };
+  projectIdeas?: {
+    title: string;
+    ideas: string[];
+  };
 }
 
 export const toolContent: Record<string, ToolEducationalContent> = {
   "yarn-calculator": {
     answerCapsule: "Calculate exactly how much yarn you need for any knitting or crochet project. Enter your project type, dimensions, and yarn weight to get total yardage and skein count with a built-in safety buffer.",
+    commonMistakes: [
+      "Forgetting to account for weaving in ends and gauge variation. Many crafters subtract only the base yardage but forget that knitting in tails, blocking adjustments, and tension differences eat 100–200 extra yards on a large project like a sweater or throw blanket.",
+      "Confusing yardage per skein with the stated skein weight. A 50g skein of fingering weight contains 200+ yards, while a 50g skein of bulky weight contains only 50–60 yards. Using the weight instead of yardage in your calculations results in buying far too little yarn.",
+      "Calculating cable sweaters at stockinette consumption rates. Cable patterns use 15–20% more yarn than stockinette due to the twisted stitches consuming extra length. A cable pullover using the stockinette rate will run short by a full skein or more.",
+    ],
+    projectExample: "A crafter wants to make a throw blanket measuring 50 by 60 inches in worsted weight (220 yards per 100g skein). Using the calculator with a gauge of 4 stitches per inch and 5 rows per inch in stockinette, the tool estimates approximately 2,160 yards for the base fabric. Adding the 10% buffer produces 2,376 yards. At 220 yards per standard skein, that is 11 skeins. Purchasing 12 skeins from the same dye lot ensures enough for weaving in ends and any tension variation.",
+    useCases: [
+      "Planning a multi-pattern sweater where cable panels, ribbing, and stockinette sections consume yarn at different rates — enter each section separately and sum the totals.",
+      "Buying yarn for a large project like a queen-size blanket where running short means hunting for a discontinued dye lot. The calculator's buffer prevents that mid-project panic.",
+      "Converting between yarn brands with different yardage per skein specs. Enter the total yardage needed, then divide by your chosen yarn's yards-per-skein to find how many skeins to buy.",
+    ],
     internalLinks: [
       { label: "Yarn Weight Chart", href: "/yarn-weight-chart", description: "Compare yarn weights and find substitution options" },
       { label: "Gauge Calculator", href: "/gauge-calculator", description: "Measure your gauge for more accurate yardage estimates" },
@@ -85,6 +117,9 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "needle-converter": {
+    chartGuide: "This converter maps knitting needle sizes across four major systems: US numbered sizes, UK old-system numbered sizes (which run in reverse of US), metric millimeter measurements, and Japanese numbered sizes. Each row shows how one size appears across all four systems — for example, US 8 equals 5.0mm, UK 6, and Japanese size 8. Metric millimeters are the universal standard, so use those as your reference point when systems conflict. US sizes run from 0 to 50; UK sizes run in the opposite direction (larger numbers = smaller needles); metric sizes go from 2.0mm to 25mm; Japanese sizes use a distinct numbering system that doesn't directly correlate with US numbers despite overlapping values. For crochet hooks, separate tables cover US letter designations (B through S), metric, and UK sizes.",
+    industryStandards: "Knitting needle sizing standards evolved from multiple regional systems that developed independently. ISO 4035 serves as the international standard, measuring in millimeters. The US system runs from 0 (smallest) to 50 (largest). The UK old-system, officially obsolete since metric adoption in the 1970s, runs in reverse — UK 14 is 2.0mm while US 14 is 10.0mm, the exact opposite ends of the spectrum. Japanese needles use their own numbered system that originated from US sizing but diverges enough to require conversion. ISO standardization in the 1970s–80s moved most manufacturers toward metric labeling, though US, UK, and Japanese systems persist in vintage needles and region-specific patterns.",
+    manufacturerNote: "In practice, needle tolerance varies between manufacturers — a needle labeled 5.0mm may measure 4.9mm or 5.1mm depending on quality control. European manufacturers typically maintain tighter tolerances than budget-brand Asian manufacturers. Vintage UK needles can be troublesome because old UK system numbers don't map perfectly to modern metric standards. Some needle materials (bamboo, wood) vary fractionally in diameter with humidity and temperature. Japanese needles are often labeled with both Japanese and metric sizes but occasionally contain errors in the metric conversion. Always verify sizing with a physical needle gauge tool before starting any critical project.",
     answerCapsule: "Crochet hook sizes vary by country. US sizes use letters and numbers, while metric sizes use millimeters. Use this converter to find the equivalent hook size for any international standard. It also covers all knitting needle sizes across US, UK, metric, and Japanese systems.",
     internalLinks: [
       { label: "Yarn Weight Chart", href: "/yarn-weight-chart", description: "See recommended needle and hook sizes for each yarn weight" },
@@ -140,6 +175,17 @@ export const toolContent: Record<string, ToolEducationalContent> = {
 
   "gauge-calculator": {
     answerCapsule: "Gauge is the number of stitches and rows per inch in your knitted or crocheted fabric. Enter your swatch measurements to calculate stitches per inch, compare against your pattern's gauge, and resize stitch counts to match your actual tension.",
+    commonMistakes: [
+      "Measuring gauge on stockinette swatch edges instead of the center. The first and last few stitches distort due to edge tension and loose casting on, throwing off the gauge reading by a quarter to a half stitch per inch — compounding into a sweater 2–3 inches wrong in width.",
+      "Swatching in a different stitch than the project. Many crafters swatch in stockinette for speed, then knit the project in cable or colorwork. These patterns pull in width dramatically, so the finished dimensions are completely off despite matching the stated pattern gauge.",
+      "Measuring gauge on a blocked swatch when the project will be worn unblocked (or vice versa). Blocking relaxes fiber and can change stitch dimensions by a quarter inch per inch or more. A gauge of 5 stitches per inch unblocked becomes 4.75 when blocked, producing a sweater 1–2 inches too large.",
+    ],
+    projectExample: "A knitter wants to knit a fitted pullover that calls for 5 stitches per inch. Their swatch shows 22 stitches over 4 inches — actual gauge 5.5 stitches per inch. The pattern requires 200 stitches across 40 inches at the correct gauge. At 5.5 stitches per inch, those same 200 stitches produce only 36.4 inches — 3.5 inches too narrow. Using resize mode, the calculator shows 220 stitches are needed to achieve the intended 40-inch width.",
+    useCases: [
+      "Adjusting a pattern's stitch count when your gauge differs from the designer's specification — essential for every fitted garment.",
+      "Determining whether to go up or down a needle size to match a pattern gauge. The calculator shows exactly how far off you are (0.25 stitches per inch? Half a stitch?) to guide the decision.",
+      "Checking a new yarn's gauge in a specific stitch pattern before committing 50+ hours to a project.",
+    ],
     internalLinks: [
       { label: "Stitch Pattern Calculator", href: "/stitch-pattern-calculator", description: "Find compatible stitch counts for your gauge" },
       { label: "Yarn Weight Chart", href: "/yarn-weight-chart", description: "Check recommended gauge ranges for each yarn weight" },
@@ -197,6 +243,9 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   "yarn-weight-chart": {
     disclaimer: "Yarn substitution recommendations are provided as guidance only. Fiber content, twist, and construction vary between brands. Always swatch to verify gauge before substituting yarns in a pattern.",
     answerCapsule: "This interactive chart compares all eight Craft Yarn Council yarn weight categories across US, UK, and Australian naming systems. Use it to identify yarn weights, check substitution compatibility, and find recommended needle and hook sizes for any weight category.",
+    chartGuide: "This chart displays all eight CYC yarn weight categories (0–7) with their standard specifications. Each row shows the weight number, common names in US, UK, and Australian terminology, the standard gauge range in stitches per 4 inches, recommended needle and hook sizes in both US and metric, and typical project types. Use the chart to identify unlabeled yarn by comparing wraps-per-inch (WPI) against the listed ranges, then verify by swatching against the gauge standards. Australian ply-count names (4-ply, 8-ply, 10-ply) map directly to specific CYC categories, enabling seamless translation of international patterns.",
+    industryStandards: "The Craft Yarn Council (CYC) established the eight-category weight system in 2002 to standardize the inconsistent labeling practices of the global fiber industry. Before CYC standardization, yarn weights were named differently in nearly every country — what North Americans called 'worsted' might be 'aran' in the UK or '10-ply' in Australia. The four-inch gauge square became the standard test measurement because it provides sufficient accuracy while remaining practical for hand-measurement. CYC categories are endorsed by major yarn manufacturers and pattern publishers worldwide, though boutique mills and handspinners still use alternative nomenclature. The system remains the most recognized weight standard in English-language fiber arts communities.",
+    manufacturerNote: "In practice, yarn manufacturers often label weights inconsistently within the CYC system, and variations in twist, ply structure, and fiber content cause functionally identical-weight yarns to behave differently. Two yarns both labeled 'DK weight' may produce different gauges on identical needles — a tightly plied merino DK knits tighter than a loosely spun single-ply DK. Some manufacturers round labels to the nearest category, placing a yarn that technically measures 11.5 WPI (between categories 2 and 3) wherever it feels marketable. Yardage per 100 grams also varies significantly within the same category because fiber density differs — cotton yields fewer yards per 100g than wool or acrylic of the same weight. Always swatch before substituting.",
     internalLinks: [
       { label: "Gauge Calculator", href: "/gauge-calculator", description: "Verify your gauge after substituting yarn" },
       { label: "Yarn Yardage Calculator", href: "/yarn-calculator", description: "Calculate how much substitute yarn you need" },
@@ -251,6 +300,16 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "stitch-counter": {
+    skillLevel: "Beginner",
+    techniqueEffect: "Digital stitch counting prevents the physical and cognitive load of tracking position within a complex pattern, eliminating anxiety and frogging. Unlike mental counting (which fails the moment attention lapses) or physical counters (which get lost or fall apart), a persistent digital counter survives interruptions and remains always accessible. The technique improves accuracy on patterns with repeating rows, variable row types, or multiple parallel counts — a sweater body might require three simultaneous counters (total rows, pattern repeats, decrease intervals). The psychological effect is significant: knowing exact position at any moment builds confidence and allows longer, uninterrupted knitting sessions. This is especially critical for reversible or non-obvious patterns where a single miscounted row becomes invisible until the finished piece is too far along to frog.",
+    techniqueSteps: [
+      "Before beginning your project, list all rows or rounds that require special attention (decreases on rows 12, 14, 16; color changes at row 24; pattern repeats every 8 rows).",
+      "Create one counter for each distinct tracking need — do not try to track everything with a single counter.",
+      "Name each counter descriptively (\"Body Rows,\" \"Decrease Rows,\" \"Pattern Repeat\") before starting.",
+      "Tap or click the counter at the end of each relevant row or round, and use the reminder feature to alert you to special rows in advance."
+    ],
+    fiberNotes: "Stitch counting affects all fibers equally — it is a cognitive tracking tool, not a fiber-dependent technique. However, understanding your yarn's characteristics can help you plan resets: wool's elasticity means you can safely rip back several rows and reknit if a miscount is discovered, while brittle fibers like some acrylics may show permanent damage if ripped. Smooth yarns (silk, cotton) are easier to reknit smoothly; textured or fluffy yarns (mohair, eyelash) show rips and damage more noticeably.",
+    practiceProject: "Work a simple lace baby blanket pattern (any 8-row repeat lace) using DK weight yarn, setting up three counters: one for total rows, one for the row position within the lace repeat (1-8), and one for reminder rows when the lace chart resets. This practice establishes the habit of accurate tracking without the consequences of a garment.",
     introduction: {
       title: "Why You Need a Digital Stitch and Row Counter",
       paragraphs: [
@@ -299,6 +358,17 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "blanket-calculator": {
+    commonMistakes: [
+      "Forgetting to account for overhang on bed blankets. A queen mattress is 60 inches wide, but a blanket without drape looks skimpy. Standard drape is 10–15 inches on each side; leaving it out produces a blanket 20–30 inches too narrow for proper coverage.",
+      "Using row gauge instead of stitch gauge to calculate blanket width. Width is determined by the number of stitches cast on (stitch gauge × width), not by row gauge. Using row gauge here produces a completely wrong starting stitch count.",
+      "Calculating yardage for a single stitch pattern when the blanket uses multiple sections or a border. A granny square blanket or sampler with different stitch patterns in different sections cannot use a single consumption rate.",
+    ],
+    projectExample: "A crocheter wants a queen-size throw with 12-inch overhang on three sides. Queen mattress: 60 × 80 inches. Finished size: 84 × 100 inches. At a gauge of 4 stitches per inch and 5 rows per inch in worsted weight, the calculator returns: 336 stitches to chain, 500 rows, approximately 3,300 yards including the 10% buffer — about 15 standard 220-yard skeins.",
+    useCases: [
+      "Planning a bed blanket that actually fits with proper drape — the calculator handles mattress dimensions, custom overhang, and stitch counts together.",
+      "Estimating total yarn cost before purchasing. If you know yardage and price per skein, you can calculate budget before committing.",
+      "Determining stitch counts that work with your chosen stitch pattern — verify that your width divides evenly into your pattern repeat before casting on.",
+    ],
     introduction: {
       title: "Why You Need a Blanket Size Calculator",
       paragraphs: [
@@ -348,6 +418,16 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "increase-decrease-calculator": {
+    skillLevel: "Intermediate",
+    techniqueEffect: "Evenly spaced increases and decreases create smooth, gradual shaping that is visually invisible in the finished fabric. When distributed correctly, shaping appears as a subtle narrowing or widening that follows the contour of the body, creating garments that fit well without visible jogs or puckers. The technique affects fabric density — each decrease removes yarn from the row and can slightly compress adjacent stitches, while increases add yarn that may appear slightly looser than surrounding stitches if not worked tightly. The visual effect depends on stitch choice: paired decreases (like SSK and K2tog) in knitting create a visible decrease line on either side that emphasizes the shaping, while centered or invisible decreases create seamless tapering. Proper distribution prevents the catastrophic visual failure of bunched shaping: all decreases worked consecutively creates a dramatic jog and irregular fabric distortion.",
+    techniqueSteps: [
+      "Determine your starting stitch count (current stitches on needle) and target stitch count (desired final width).",
+      "Calculate the difference between starting and target counts — this is the total number of stitches to increase or decrease.",
+      "Divide the total stitches to change by the number of shaping rows or rounds to get the base interval (e.g., decrease every 6th row).",
+      "If the division leaves a remainder, split the increases or decreases into two groups: some at the base interval and some at the interval plus one, distributing remainders evenly across the total rows."
+    ],
+    fiberNotes: "Wool, being elastic, accommodates both increases and decreases beautifully without stress — the fibers stretch and compress easily, making even tightly worked shaping blend seamlessly. Cotton and linen, being inelastic and stiffer, show shaping more obviously; decreases appear as visible lines and increases may create loose-looking spots that block out somewhat but remain perceptible. Acrylic's moderate elasticity means shaping appears visible but recovers reasonably well with blocking. Alpaca and mohair, being delicate and prone to stretching, require gentle handling during shaping — avoid over-tightening decreases, which can permanently weaken the yarn fibers. Blends behave according to their dominant fiber: a 70% wool/30% acrylic blend shapes more like pure wool, while a 50/50 blend shows characteristics of both fibers.",
+    practiceProject: "Make a simple decrease practice rectangle: cast on 40 stitches in stockinette using worsted weight yarn on size 7 needles. Work 8 rows even, then distribute 10 decreases evenly over the next 20 rows (one decrease at each end every 4 rows, evenly spaced). Bind off the remaining 20 stitches. Block lightly and examine how evenly the shaping tapers from 40 to 20 stitches. The edges should narrow smoothly with no visible bunching.",
     introduction: {
       title: "Why You Need an Increase and Decrease Calculator",
       paragraphs: [
@@ -398,6 +478,12 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "stripe-generator": {
+    designPrinciples: "Stripe patterns rely on the principle of color repetition and visual rhythm. The width and sequence of colors create optical patterns that the human eye perceives as either balanced or dynamic depending on the ratio of color areas. Striping follows the mathematical concept of Fibonacci-inspired ratios — sequences like 1-2-3 or 2-3-5 create more visually interesting results than uniform widths because the eye expects variation. The alternation between warm and cool tones affects perceived width: light colors appear to expand, while dark colors appear to recede. Strategic color placement exploits these optical illusions to create depth and movement in flat fabric. Stripe patterns work because they leverage both mathematical harmony and color theory, allowing even a single yarn to become visually complex through deliberate sequencing.",
+    patternVariations: [
+      "Gradient fade variation — arrange colors from light to dark across the stripe sequence to create a subtle ombré effect where colors transition smoothly rather than appearing in distinct blocks, producing an elegant, high-fashion aesthetic.",
+      "Bold colorblock variation — use alternating solid colors in equal-width stripes, moving from high-contrast color pairs (black and white, navy and cream) for maximum visual impact, ideal for modern blankets and bags.",
+      "Random scrap variation — distribute colors with weighted probability based on leftover yardage amounts, ensuring all colors appear equally across the project while creating an organic, chaotic-looking finish that disguises the stash-busting origins."
+    ],
     introduction: {
       title: "Why You Need a Stripe Pattern Generator",
       paragraphs: [
@@ -444,9 +530,23 @@ export const toolContent: Record<string, ToolEducationalContent> = {
         "For stash-busting, weigh your leftover yarn and enter the yardage for each color. The generator can work backward from your available yardage to determine stripe widths."
       ],
     },
+    projectIdeas: {
+      title: "Project Ideas for Striped Patterns",
+      ideas: [
+        "Stash-busting scrappy blanket — use random mode with 6–10 colors and all leftover DK or worsted weight to create a unique throw that uses up every partial skein.",
+        "Baby blanket with 3-color pastel sequence — enter a 1-2-1 structured stripe for a clean, modern look that works in fingering or DK weight.",
+        "Striped market bag — generate a 4-color sequence with narrow 2-row stripes for a bold candy-stripe tote in cotton yarn.",
+        "Fair Isle-inspired color blocking — use graduated mode with one dominant neutral and two accent colors to create tonal stripes that mimic traditional colorwork.",
+        "Dishcloth sampler set — run the generator 6 times with the same colors but different stripe widths to create a coordinated set where no two cloths are identical.",
+        "Striped socks — enter a sock-height row count and 2–3 colors for a classic handknit look; the generator ensures you have enough of each color for both socks.",
+      ],
+    },
   },
 
   "abbreviation-glossary": {
+    chartGuide: "This glossary contains searchable entries for over 100 standard knitting and crochet abbreviations paired with their full stitch names and execution instructions. Each entry shows the abbreviation (such as 'dc' for double crochet), the full stitch name, the complete sequence of movements to execute the stitch, the chart symbol, and any special technique variations. The US/UK toggle switches all entries between American and British terminology — selecting 'UK' remaps every crochet abbreviation, because 'dc' means double crochet in US but single crochet in UK. Categories organize by stitch family (basic stitches, increases, decreases, cables, colorwork, lace) for browsing by type. Each entry shows yarn overs before insertion, loops on hook at each stage, and turning chain counts for crochet stitches.",
+    industryStandards: "The Craft Yarn Council (CYC) publishes the official standard abbreviations for North American knitting and crochet patterns, establishing the baseline set used by nearly all commercial US and Canadian patterns. In the UK, similar standards follow British fiber publications. The most significant divergence is UK crochet terminology, which systematically offsets stitch names by one step from the US system — UK 'double crochet' equals US 'single crochet,' UK 'treble' equals US 'double crochet.' This offset dates to early 20th-century pattern-writing traditions where the two countries counted hooks and loops differently. Individual designer shorthand for complex stitch sequences is common in indie patterns and vintage sources, which is why every pattern should include an abbreviation key.",
+    manufacturerNote: "Although CYC publishes standard abbreviations, individual designers and publishers sometimes deviate, particularly for complex stitches or specialty techniques. Vintage patterns from the mid-20th century often use abbreviations since redefined — 'yo' (yarn over) once appeared as '* yo' with an asterisk in some older sources. Regional knitting styles also create variations — continental European patterns sometimes use completely different shorthand than UK or US sources. Some abbreviations appear in one craft but not the other, or mean different things in each — 'sl st' (slip stitch) is executed completely differently in knitting versus crochet. Published pattern abbreviation keys should always be your primary reference.",
     introduction: {
       title: "Why You Need an Abbreviation & Stitch Glossary",
       paragraphs: [
@@ -495,6 +595,16 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "spinning-ratio-calculator": {
+    skillLevel: "Advanced",
+    techniqueEffect: "Understanding and controlling wheel ratios transforms handspinning from intuitive guesswork to reproducible science. Changing the ratio directly changes the twist per inch delivered to the drafting zone, affecting yarn character: higher TPI creates strong, smooth, densely structured yarn with less loft; lower TPI creates soft, lofty, more fragile yarn. The technique's effect on fabric is profound — identical fiber content spun at different TPI ratios produces visually distinct yarns suitable for different purposes. A combed top spun at 6 TPI becomes silky worsted yarn; the same top at 12 TPI becomes a tight, durable fingering yarn. Plying amplifies the effect: overtwisting the singles relative to the ply ratio creates yarn that kinks and coils back on itself; undertwisting creates a limp, weak yarn.",
+    techniqueSteps: [
+      "Measure your drive wheel and whorl diameter in inches using a ruler or calipers.",
+      "Divide the drive wheel diameter by the whorl diameter to calculate the drive ratio.",
+      "Multiply the ratio by your treadling speed (in revolutions per second) to determine the twist input rate.",
+      "Measure a sample of your spun singles by wrapping it around a ruler and counting twists per inch to confirm the ratio matches your target TPI."
+    ],
+    fiberNotes: "Different fibers respond to twist differently. Merino wool accepts moderate twist (6-12 TPI) beautifully and springs back with resilience. Long-staple wools like longwool or Leicester can support high twist (10-15 TPI) without becoming harsh, while short-staple fibers like fine merino become overtwisted and crispy-textured at the same levels. Plant fibers (cotton, linen, flax) need slightly higher twist (1-2 TPI more than wool) to bind fiber ends securely; too little twist and the fibers shift under tension. Alpaca and mohair benefit from lower twist (4-8 TPI) to showcase their softness and loft; excessive twist locks them into a dense, felt-like character.",
+    practiceProject: "On a wheel with multiple whorls, spin a series of test samples using the same fiber but different whorl sizes: one sample at 8:1 ratio, another at 10:1, another at 12:1. Record TPI for each. After spinning and plying, knit swatches from each ply and compare how they knit, their finished hand, and their appearance. This hands-on comparison builds intuition for ratio-to-character translation.",
     introduction: {
       title: "Why You Need a Spinning Wheel Ratio Calculator",
       paragraphs: [
@@ -544,6 +654,12 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "stitch-pattern-calculator": {
+    designPrinciples: "Stitch pattern compatibility relies on the least common multiple (LCM) mathematical principle — finding the smallest number divisible by all input multiples. Every stitch pattern repeats over a fixed number of stitches (the multiple) plus optional edge or balancing stitches (the offset). When combining patterns, the cast-on count must satisfy all patterns simultaneously, which means it must be divisible by the LCM of all the multiples. This prevents partial pattern repeats at edges, which appear unfinished and break the visual rhythm. The offset (the +1 or +2) accounts for stitches that sit outside the pattern repeat and ensure the pattern is optically centered or balanced. Understanding LCM allows crafters to mix any number of patterns in a single project without tedious manual calculation.",
+    patternVariations: [
+      "Modular panel variation — crochet or knit multiple rectangular panels using different stitch patterns that all share the same stitch multiple, then seam them together edge-to-edge with no transition rows needed.",
+      "Border transition variation — use one stitch pattern for the main body and a different pattern for a border, calculating a stitch count where the body pattern divides evenly and the border pattern also divides evenly at the join line.",
+      "Central motif variation — work a centered focal pattern (cable, lace, or colorwork) and surround it with a simple filler pattern (stockinette, garter, or single crochet) that can accommodate any stitch count."
+    ],
     answerCapsule: "This calculator finds compatible stitch counts for sampler blankets and multi-pattern projects. Browse 50+ stitch patterns, enter their multiples, and get exact cast-on counts that work for every pattern section — no manual arithmetic needed.",
     internalLinks: [
       { label: "Gauge Calculator", href: "/gauge-calculator", description: "Calculate your stitches per inch to determine target width" },
@@ -596,9 +712,22 @@ export const toolContent: Record<string, ToolEducationalContent> = {
         "If a pattern lists its multiple as \"6 + 1\" and you want to add a border, calculate the border width in stitches and add it to the \"+1\" portion."
       ],
     },
+    projectIdeas: {
+      title: "Project Ideas Using the Stitch Pattern Calculator",
+      ideas: [
+        "Sampler blanket — combine 5–8 stitch panels (seed stitch, waffle, shell, chevron, moss) by entering all their multiples to find a single compatible cast-on count that works for every section.",
+        "Cable panel sweater yoke — use the calculator to find a stitch count that accommodates both your cable repeat and the body's stockinette multiple before casting on.",
+        "Striped stitch dishcloth set — pick two complementary stitch patterns and find compatible counts for a set of matching dishcloths with different texture in each half.",
+        "Modular scarf — calculate compatible stitch counts across three different lace or texture patterns so each section transitions cleanly without a visible count adjustment row.",
+        "Textured pillow cover — combine a cable panel (multiple of 8) with a seed stitch border (any count) using the calculator to find an exact cast-on that balances both elements.",
+      ],
+    },
   },
 
   "stitch-quick-reference": {
+    chartGuide: "This visual reference breaks down every foundational knitting and crochet stitch into step-by-step mechanical movements. Each stitch card shows the action sequence: where to insert the needle or hook, when to wrap yarn, how many loops remain at each stage, and the final stitch appearance. For crochet stitches, each card marks the starting chain height, each yarn over point, loops on hook at every stage, and the turning chain requirement. For knitting stitches, the cards show whether the stitch is worked through the front or back loop, whether new loops are created or existing ones manipulated, and the resulting column appearance in stockinette. Cards are organized by stitch family — single crochet progresses logically to half-double crochet and double crochet, showing how each additional yarn over adds height.",
+    industryStandards: "Stitch construction standards are maintained by craft organizations including the Craft Yarn Council and long-standing knitting and crochet publishers. The fundamental stitch definitions have remained virtually unchanged for over a century — single crochet, double crochet, and treble crochet are worked identically today as they were in 1920s instructions. These definitions are grounded in yarn mechanics: each yarn over added before hook insertion increases stitch height by a predictable amount based on how loops interact. Lace and specialty stitches (puff, popcorn, bobble) are less standardized and often have multiple accepted variations; established stitch dictionaries like Barbara Walker's provide authoritative definitions for knitting.",
+    manufacturerNote: "In practice, individual knitting and crochet execution varies subtly between crafters even when following the same mechanical instruction, leading to minor gauge differences. A 'tight' crochet tension produces denser, stiffer fabric than 'loose' tension with identical stitches. Yarn texture affects how clearly stitch structure shows — fuzzy novelty yarns obscure stitch definition that would be obvious in smooth worsted. Some crocheters work tighter in the foundation chain than subsequent rows, creating visible width changes the stitch definition doesn't account for. Left-handed crafters work mirror-image movements that sometimes create subtle differences in how stitches sit. The reference shows standard execution, but your personal gauge and yarn choices will produce slightly different results.",
     introduction: {
       title: "Why You Need a Stitch Quick Reference",
       paragraphs: [
@@ -647,6 +776,9 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "uk-to-us-converter": {
+    chartGuide: "This converter maps UK crochet terminology to its US equivalent, showing the systematic one-step offset between the two systems. UK 'double crochet' (DC) equals US 'single crochet' (SC), UK 'half treble' (HTR) equals US 'half double crochet' (HDC), UK 'treble' (TR) equals US 'double crochet' (DC), and the pattern continues upward for taller stitches. You can enter individual terms for quick lookup or paste an entire pattern row instruction to convert all UK terms to US simultaneously, preserving numbers, punctuation, and non-stitch words. Search covers both abbreviated and full stitch names.",
+    industryStandards: "The UK/US crochet terminology split originated in the early 20th century and reflects a difference in how the two countries named stitches. The US system names stitches based on yarn overs before hook insertion — single crochet has zero yarn overs before inserting. The UK system names stitches based on the number of loops created on the hook — double crochet creates two loops. This counting-system difference creates the systematic one-rung offset. Modern UK and US standards are maintained by respective craft organizations, and the terminology divide is internationally recognized. Nearly every UK pattern published since 1970 includes a note acknowledging the UK/US difference.",
+    manufacturerNote: "Although the one-step offset is consistent and predictable, some vintage UK patterns (particularly 1940s–1960s) use terminology that differs even from modern UK usage, requiring guesswork about intent. Some non-English-speaking countries adopted UK terminology when standardizing their own crochet (Australia, India, South Africa) but occasionally made regional variations that don't map cleanly to either system. Yarn companies that import patterns sometimes create hybrid terminology, leaving ambiguity about whether a pattern was written for US or UK standards. The converter flags ambiguous vintage terminology where interpretations diverge.",
     introduction: {
       title: "Why You Need a UK to US Crochet Terms Converter",
       paragraphs: [
@@ -695,6 +827,12 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "circle-calculator": {
+    designPrinciples: "Flat circles require precise increase mathematics based on stitch height and the geometry of circumference expansion. Every stitch has an inherent height-to-width ratio: single crochet is nearly square, half-double is taller-than-wide, and double crochet is significantly taller. To keep a circle flat as it grows outward, the number of increases per round must match this ratio. Single crochet needs six increases per round; half-double needs eight; double needs twelve. This is not arbitrary — it emerges from the mathematical relationship between the circumference growth and the stitch dimensions. Staggering increases (offsetting them each round so they do not stack) prevents the visible ridges and hexagonal points that arise when increases align vertically, distributing the expansion evenly around the full circumference.",
+    patternVariations: [
+      "Tightly cupped disk variation — use one hook size smaller than yarn weight recommends and work all planned rounds without modification, creating a fabric that naturally cups slightly; useful for hat crowns, basket bottoms, or decorative elements.",
+      "Flat medallion variation — increase consistently round by round without ever beginning to decrease, creating a completely flat, growing circular disc that can reach any desired diameter; perfect for blanket centers or decorative wall hangings.",
+      "Rippled edge variation — maintain the standard increase rate but switch to a stitch with more height (like treble) in the final few rounds, causing the edges to naturally ruffle and wave, creating a decorative scalloped appearance."
+    ],
     introduction: {
       title: "Why You Need a Perfect Circle Calculator",
       paragraphs: [
@@ -741,9 +879,23 @@ export const toolContent: Record<string, ToolEducationalContent> = {
         "For oval shapes, add a foundation chain between the starting increases. The calculator generates true circles — ovals require a different construction method."
       ],
     },
+    projectIdeas: {
+      title: "Project Ideas Using Crochet Circles",
+      ideas: [
+        "Coasters — a 5-round single crochet circle in cotton yarn makes a firm, absorbent coaster. Work 8–10 rounds for a placemat.",
+        "Basket base — generate a 12-round double crochet circle for a sturdy basket bottom, then continue without increases for the sides.",
+        "Circular bag base — a 15-round half double crochet circle in a sturdy cotton-linen blend creates a flat base for a market bag or bucket bag.",
+        "Amigurumi sphere — combine two matching circles and decrease back down to the center for a perfectly round stuffed ball or head.",
+        "Circular blanket — work a large-scale double crochet circle using bulky yarn and a 12mm hook for a lap blanket that grows from the center.",
+        "Hat crown — generate a 7-round single crochet circle as the starting point for a top-down hat, then stop increases and continue even for the body.",
+      ],
+    },
   },
 
   "needle-guide": {
+    chartGuide: "This guide categorizes finishing and sewing needles by three defining characteristics: tip profile (blunt for passing between fibers, sharp for piercing fabric, or ball-point for knit fabrics), eye size and shape (large round for thick yarns, tiny for beads, elongated for multiple floss strands), and intended materials. Each needle type includes its purpose, available sizes, recommended materials, and tasks it handles poorly. The guide covers tapestry needles (blunt, large eye for yarn ends), chenille needles (sharp, large eye for embellishing), embroidery crewel needles (elongated eye for multiple floss strands), sharps (traditional sewing for woven fabrics), betweens (short for fine close stitching), and beading needles (extremely thin for tiny bead holes). Size numbering is counterintuitive — larger numbers mean smaller needles.",
+    industryStandards: "Needle classifications are maintained by sewing and craft supply manufacturers and standards organizations. The blunt/sharp tip distinction originated in the textile industry centuries ago — a blunt tip cannot split yarn plies, while a sharp tip must pierce woven fabric. Eye sizes are standardized by ASTM and ISO standards that define measurements across sizes. The Craft Yarn Council references standard needle types in pattern guidelines, specifying characteristics for specific materials. Tapestry needle standardization comes from historical embroidery and tapestry-making traditions where blunt needles were essential to protect fine decorative yarns.",
+    manufacturerNote: "In practice, needle sizing numbers vary between manufacturers — a size 18 tapestry needle from Boye may measure fractionally different from a budget-brand size 18. Needle material affects functionality: bamboo grips yarn better than metal, reducing slippage; wooden needles are gentler on delicate threads but wear faster; metal needles are durable but can damage some fragile fibers. Needle eye filing quality varies enormously — a poorly finished eye can snag and shred delicate thread, while a premium manufacturer's eye glides smoothly. Some 'embroidery needles' and 'crewel needles' are used interchangeably in practice though technically intended for slightly different materials.",
     introduction: {
       title: "Why You Need a Sewing & Craft Needle Guide",
       paragraphs: [
@@ -792,6 +944,12 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "amigurumi-shapes": {
+    designPrinciples: "Amigurumi shapes rely on sphere mathematics and controlled increase/decrease schedules to transform flat crochet into three-dimensional forms. A sphere requires exactly six increases per round to maintain flatness — this ratio emerges from the circumference-to-radius relationship in geometry. Each stitch height (single crochet, half-double crochet) has an inherent height-to-width ratio that determines how many increases are needed per round to keep the fabric lying flat rather than cupping or ruffling. Cones and cylinders use the same six-per-round increase rate but vary whether decreases are applied. The tight gauge and continuous spiral construction create dense, seamless fabric that holds stuffing without showing gaps. Understanding these geometric principles lets makers scale shapes up or down and adjust proportions without consulting patterns.",
+    patternVariations: [
+      "Tapered cone variation — increase consistently without ever decreasing, creating a smooth cone from tip to base; vary the number of rounds to control the slope steepness and final circumference.",
+      "Pear shape variation — increase to a point, work several even rounds, then decrease slightly (but not back to the starting point), creating an asymmetrical bulge useful for bodies, heads with chins, or organic character shapes.",
+      "Weighted ball variation — stuff firmly and evenly, then decrease more aggressively in the final rounds before closing, creating a dense, heavy ball that sits stably rather than rolling; useful for weighted bases and soles."
+    ],
     introduction: {
       title: "Why You Need an Amigurumi Shapes Guide",
       paragraphs: [
@@ -838,9 +996,30 @@ export const toolContent: Record<string, ToolEducationalContent> = {
         "Stuff shapes as you go, adding filling every few rounds. Trying to stuff a nearly-closed sphere through a tiny opening results in uneven, lumpy filling."
       ],
     },
+    projectIdeas: {
+      title: "Project Ideas Using Amigurumi Shapes",
+      ideas: [
+        "Simple stuffed ball — create a single sphere (one 10-round pattern) stuffed with fiberfill for a cat toy, rattle, or juggling ball; use DK or worsted weight for a ball 2-3 inches in diameter.",
+        "Basic teddy bear character — combine two spheres (one for the head, one larger for the body), four cones (limbs), and two small spheres (ears) to create a simple bear; add embroidered or button eyes.",
+        "Amigurumi mushroom — crochet one large sphere and one cone in contrasting colors, then seam the cone base to the top of the sphere; make multiple with different color combinations for a whimsical woodland scene.",
+        "Keychain charm set — make five to six small amigurumi shapes (1-2 inches), stuff lightly, and attach keyring hardware; perfect for gift sets or personal collection.",
+        "Amigurumi octopus toy — crochet one medium sphere for the head and eight long cones for tentacles, then seam all eight legs to the base of the sphere; add a curl by running the cone tip through embroidery thread.",
+        "Weighted decorative pebbles — create small smooth spheres in various yarn colors, stuff very firmly, and display in a bowl; useful for sensory play or decorative scatter."
+      ],
+    },
   },
 
   "cross-stitch-calculator": {
+    skillLevel: "Beginner",
+    techniqueEffect: "Cross stitch's visual effect is determined almost entirely by fabric count — it controls the finished size, the apparent detail level, and the visual fidelity of the design. Higher counts (18, 22 Aida) produce smaller, finer stitches with photographic detail and smoother color transitions; lower counts (11, 14 Aida) produce larger stitches with blocky, pixelated detail. The technique is uniquely visual: the same pattern on different counts produces dramatically different aesthetic results without changing the design itself. Aida 14 might look cartoony and bold; the same design on Aida 22 appears refined and detailed. The fabric count also affects thread consumption — higher counts use proportionally more thread per stitch because stitches are smaller and more densely packed.",
+    techniqueSteps: [
+      "Determine your pattern dimensions in stitch count (width and height) from the pattern documentation.",
+      "Select your fabric count based on desired finished size and detail level.",
+      "Divide pattern width by fabric count to calculate finished width in inches; repeat for height.",
+      "Add appropriate borders (3-4 inches for framing, 4-6 inches for hooping) and purchase fabric to those dimensions."
+    ],
+    fiberNotes: "Fabric content (Aida cotton versus linen versus hand-dyed aida) does not affect the size calculation, but it affects stitch appearance and experience. Cotton Aida is stiff, predictable, and easiest for beginners; linen is softer and more elegant but has subtle weave variation that requires more attention to keep stitches even. Hand-dyed fabrics add visual richness but require careful thread color selection to ensure contrast. Regardless of content, higher thread count fabrics (18 and above) demand finer thread — using thick thread on 18-count creates bunching and distorted stitches.",
+    practiceProject: "Stitch a small test sampler (50 x 50 stitches) on 14-count Aida using a simple design (a small geometric or floral motif). This creates a finished piece about 3.5 x 3.5 inches, giving you experience with the medium without committing to a large project. Repeat the same design on 18-count Aida and compare how the higher count changes the appearance and finished size.",
     introduction: {
       title: "Why You Need a Cross Stitch Size Calculator",
       paragraphs: [
@@ -889,6 +1068,16 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "weaving-sett-calculator": {
+    skillLevel: "Advanced",
+    techniqueEffect: "Weaving sett directly controls fabric hand and durability. Correct sett creates cloth that is neither sleazy (threads shift and gaps appear) nor stiff (threads pack so tightly the fabric loses drape). The visual effect is profound: too-loose sett produces open fabric where warp and weft are clearly visible as separate systems; correct sett balances the two so they appear visually integrated; too-tight sett produces dense, stiff fabric suitable only for rugs or upholstery. Sett also affects shrinkage percentage and wet-finish behavior — tightly set fabric shrinks less (threads are already compressed and have less room to move), while loosely set fabric shrinks more. The technique determines whether your finished cloth drapes beautifully or stands away from the body stiffly.",
+    techniqueSteps: [
+      "Wrap the target yarn around a ruler for one inch, keeping wraps touching but not overlapping, and count the wraps per inch (WPI).",
+      "Select your weave structure (plain weave, twill, satin, or lace) based on your project.",
+      "Apply the structure-specific multiplier: plain weave = 50% of WPI, twill = 60% of WPI, satin = 70% of WPI, lace = 40% of WPI.",
+      "Round the result to the nearest whole number for your ends per inch (EPI) sett recommendation."
+    ],
+    fiberNotes: "Different fibers behave dramatically differently at various setts. Wool accepts both tight and loose setts gracefully, producing beautiful cloth across a range. Cotton needs slightly tighter sett than wool for the same yarn weight — the lack of elasticity means loose sett produces obviously gappy fabric. Linen accepts very dense sett beautifully without becoming stiff because of its natural smoothness; linen cloth can be tightly set and still drape. Alpaca and mohair require careful consideration of sett — tight sett can compress the loft out of these fibers, while loose sett makes them appear fuzzy and uncontrolled. Blended fibers (wool/silk, cotton/linen) sett according to the dominant fiber's characteristics.",
+    practiceProject: "On a rigid heddle loom (which has fixed sett teeth), measure the WPI of a worsted weight yarn, calculate what sett you would need for plain weave, and identify which heddle dent (8, 10, or 12) is closest. Warp the loom and weave a 12-inch sampler, noting how the fabric hand and appearance compares to your expectations based on the sett calculation.",
     introduction: {
       title: "Why You Need a Weaving Sett Calculator",
       paragraphs: [
@@ -938,6 +1127,17 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "project-cost-calculator": {
+    commonMistakes: [
+      "Underestimating project time. Many crafters estimate a sweater at 40 hours when it actually takes 60–80. At $20/hour, that's a $400–$800 difference in true cost — enough to completely change pricing decisions.",
+      "Forgetting notions costs like buttons, zippers, stitch markers, blocking supplies, and finishing materials. A $60 sweater in yarn may need $25 in notions, adding 40% to material cost.",
+      "Using an unrealistic hourly rate for commission work. Many makers charge $10–15/hour when their time value should be $25–40/hour based on skill and customer expectations, leading to burnout and unsustainable pricing.",
+    ],
+    projectExample: "A crocheter calculates the true cost of a throw blanket: 12 skeins of worsted at $8 each = $96. Notions = $8. Labor: 45 hours × $18/hour = $810. Total: $914. Fair retail price would be $1,200–1,400. At $400, they'd be undercharging by over 50%. The cost-per-use metric shows: 2,600 uses over 10 years = $0.35/use — justifying the heirloom price.",
+    useCases: [
+      "Setting fair prices for commission work so you don't undervalue your labor and materials — many talented makers underprice and burn out.",
+      "Deciding whether a personal project is worth the investment. A $1,200 sweater worn 200 times ($6/wear) is reasonable; the same worn 10 times ($120/wear) may not be.",
+      "Comparing the true cost of making versus buying — a handmade blanket typically costs 3–5× a store-bought one, putting the value into perspective.",
+    ],
     introduction: {
       title: "Why You Need a Project Cost Calculator",
       paragraphs: [
@@ -986,6 +1186,12 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "color-pooling-calculator": {
+    designPrinciples: "Color pooling operates on the principle of pattern intersection — the convergence of two patterns (the variegated yarn's color repeat and the stitch grid) to create emergent geometry. The yarn's color repeat is fixed; the stitch count is variable. When these align, colors stack vertically into stripes. A one-stitch shift per row creates diagonals. This exploits the mathematical relationship between circumference and row height. The phenomenon resembles Moiré patterns in textiles and digital displays — the interaction of two grids creates unexpected visual results. Unlike random variegation that reads as speckled, planned pooling demonstrates how precise control of stitch count transforms apparent chaos into order. The color repeat acts as a hidden measurement system that the knitter or crocheter makes visible through deliberate stitch placement.",
+    patternVariations: [
+      "Vertical argyle variation — choose a stitch count that is an exact multiple of the color repeat length, causing each color to stack directly above itself and creating crisp vertical stripes; use complementary colors in the yarn's sequence to maximize visual impact.",
+      "Diagonal shift variation — set the stitch count one stitch wider or narrower than a clean multiple of the color repeat, forcing each color to shift position per row and creating a diagonal pooling effect; the shift direction depends on whether the count is higher or lower than the multiple.",
+      "Random antipool variation — intentionally choose a stitch count that does not align with the color repeat, scrambling the color positions into a seemingly random speckled pattern that appears similar to how the yarn looks on a ball but was created through deliberate planning."
+    ],
     introduction: {
       title: "Why You Need a Color Pooling Calculator",
       paragraphs: [
@@ -1032,9 +1238,23 @@ export const toolContent: Record<string, ToolEducationalContent> = {
         "If pooling breaks partway through your project, your tension has shifted. Check your gauge and adjust hook or needle size before continuing."
       ],
     },
+    projectIdeas: {
+      title: "Project Ideas Using Color Pooling",
+      ideas: [
+        "Pooling socks — find a variegated fingering weight yarn with 8-12 distinct colors per repeat, calculate the perfect stitch count for vertical pooling, and create socks where the colors align into bold stripes.",
+        "Argyle market bag — use a worsted-weight variegated yarn in a single-crochet rectangle with a stitch count that produces argyle-pattern pooling; the diamond geometry gives a sophisticated, deliberately designed appearance.",
+        "Baby blanket with pooled diamonds — crochet a blanket where the main color is a carefully selected variegated yarn set to pooling, with a contrasting solid-color border that frames the intentional color patterns inside.",
+        "Pooled sweater yoke — work the yoke in a simple stockinette stitch using a semi-variegated yarn whose color repeat length matches your yoke stitch count, allowing the colors to stack vertically and create invisible patterning.",
+        "Diagonal-pooling throw blanket — choose a variegated yarn and a stitch count one stitch off from a multiple of the color repeat to create diagonal color shifts that move across the blanket as you work rows.",
+        "Scarf with controlled color blocking — plan a long scarf where different sections use different stitch counts (all still supporting pooling), creating multiple distinct color effects in a single project."
+      ],
+    },
   },
 
   "thread-converter": {
+    chartGuide: "This converter maps embroidery thread colors between the four major 6-strand floss brands — DMC (the industry standard), Anchor, Cosmo, and Sulky — by numerical codes unique to each brand. The converter displays the source thread number, its full color name (when available), and the closest-matching equivalent number in each target brand. For example, DMC 310 (Black) converts to Anchor 403. The converter accepts batch input — paste an entire project thread list separated by commas and receive full palette conversions in one pass. Toggle lets you convert from any brand to any other. Entries where no exact match exists show the two or three closest options so you can choose which direction to lean in hue, value, or saturation.",
+    industryStandards: "The three major embroidery floss manufacturers — DMC, Anchor, and Cosmo — each maintain proprietary color palettes and numbering systems developed independently. DMC, a French manufacturer founded in 1746, is the market leader and reference standard against which other brands are compared; most commercial patterns use DMC numbers. Color conversion uses systematic measurement under controlled lighting — color samples are compared under standardized daylight illumination (typically D65 standard). Conversion databases are maintained by major thread retailers and craft organizations, updated when manufacturers discontinue colors or add new shades. No standard organization certifies conversions as 'official,' so slight variations between published conversion charts are normal.",
+    manufacturerNote: "Thread conversions represent 'closest visual matches' rather than identical dye formulas — two brands may both produce a medium blue, but the DMC and Anchor versions will differ in hue, saturation, value, or undertone when compared directly. Fluorescent and LED lighting can mask subtle differences obvious in natural daylight. Some colors have no reasonable equivalent in a target brand and are marked 'approximate.' Slight dye lot variations between production runs of the same color number can create visible differences in large color areas even within the same brand. Silk blends and specialty floss types (metallic, iridescent, variegated) have different conversion logic than standard 6-strand floss. Color conversion reliability is highest for neutrals and primaries, lower for pastels and complex blends.",
     introduction: {
       title: "Why You Need an Embroidery Thread Converter",
       paragraphs: [
@@ -1084,6 +1304,16 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "wpi-calculator": {
+    skillLevel: "Beginner",
+    techniqueEffect: "Measuring wraps per inch reveals yarn thickness without requiring expensive tools or experience. The technique creates a standardized measurement that translates directly to the Craft Yarn Council's weight categories, giving mystery yarn a definitive identity. WPI measurement has limits — it measures apparent thickness, not construction or fiber character — but it eliminates the guesswork of needle and hook selection. Once you know a yarn's WPI category, you can reference standard gauge recommendations and select appropriate projects. The technique is non-destructive (you never remove yarn from the ball), quick (under one minute), and requires only a ruler and steady hands.",
+    techniqueSteps: [
+      "Place a ruler on a flat surface with inches clearly marked.",
+      "Starting at the 1-inch mark, wrap the target yarn around the ruler for exactly one inch, keeping wraps side by side without overlapping or gaps.",
+      "Count the number of complete wraps within the one-inch space.",
+      "Cross-reference the wrap count against the Craft Yarn Council's WPI ranges (Lace 30+, Super Fine 14-30, Sport 12-18, DK 11-15, Worsted 9-12, Bulky 6-9, Super Bulky 5-6, Jumbo 1-4)."
+    ],
+    fiberNotes: "Wraps per inch measures physical thickness, which varies by fiber, construction, and processing. A tightly twisted wool yarn may have the same WPI as a loosely plied acrylic of different fiber content — the WPI alone does not tell you the full story. Wool tends to compress slightly when wrapped (reducing apparent thickness), while fluffier fibers like mohair appear thicker than their measured WPI. Superwash processing can slightly increase WPI compared to untreated wool. Single-ply yarn of the same WPI as a tightly twisted two-ply will have very different performance and drape once worked into fabric.",
+    practiceProject: "Gather 5-10 mystery yarns or leftover skeins without labels. Measure the WPI of each using a ruler, record the results, then look up each in the CYC standard ranges. Create a small swatch with each yarn on a recommended needle size for its category. Compare how similarly (or differently) they knit despite having similar WPI — this reveals the limits of WPI as a sole identifier.",
     introduction: {
       title: "Why You Need a WPI Calculator",
       paragraphs: [
@@ -1134,6 +1364,12 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "c2c-calculator": {
+    designPrinciples: "Corner-to-corner crochet operates on diagonal geometry — each small block unit sits at a 45-degree angle to the overall fabric grid. This diagonal construction means the blanket grows outward in all directions simultaneously from the starting corner, reaching maximum width at the midpoint, then decreasing symmetrically to the opposite corner. The blocks themselves are rarely perfectly square; the height-to-width ratio depends on hook size, yarn weight, and individual tension, making gauge swatching essential for accurate sizing. The pixel-like nature of each block makes C2C ideal for graphgan charting — each block represents one unit of a digital image. The mathematical elegance is that the block count can be easily calculated from dimensions without worrying about stitch repeats or gauge compensation.",
+    patternVariations: [
+      "Graphgan pixel art variation — plan a simple image (portrait, landscape, logo) on graph paper with one color per block, creating a digitized version of the desired design with precise visual control.",
+      "Solid color with texture variation — crochet each block in the main color but vary the interior stitch pattern (all blocks could use different textures like popcorn stitch or bobbles), creating visual interest within color blocks.",
+      "Gradient colorway variation — assign blocks a color based on their position in the grid, creating a smooth transition from one corner's color family through the center to the opposite corner's color family."
+    ],
     introduction: {
       title: "Why You Need a C2C Calculator",
       paragraphs: [
@@ -1182,9 +1418,30 @@ export const toolContent: Record<string, ToolEducationalContent> = {
         "When changing colors frequently (as in a graphgan), carry unused colors along the top of the row rather than cutting and rejoining. This saves yarn and reduces the number of ends to weave in.",
       ],
     },
+    projectIdeas: {
+      title: "Project Ideas for Corner-to-Corner Crochet",
+      ideas: [
+        "Graphgan pixel blanket — plan your block count first with the calculator, then use graph paper (or a pixel art program) to lay out a simple image like a mountain, heart, or initial using 2–3 colors.",
+        "Baby blanket in pastel stripes — enter a 36x36 inch target and work diagonal rows in alternating soft colors for a modern, gender-neutral baby gift.",
+        "Pillow cover — calculate a 16x16 inch block count and crochet two matching panels in a solid color or simple two-color design; join with single crochet along three sides.",
+        "Lap throw in bulky yarn — use a 6mm or larger hook with bulky weight to create a quick 40x50 inch blanket where each diagonal row works up in 15–20 minutes.",
+        "Colorblock wall hanging — work a small 12x12 inch C2C panel in high-contrast colors and mount on a wooden dowel for a graphic textile art piece.",
+      ],
+    },
   },
 
   "cast-on-calculator": {
+    commonMistakes: [
+      "Entering gauge as stitches per inch instead of stitches over 4 inches. The most common gauge is listed as '20 stitches over 4 inches' (5 stitches per inch), but crafters sometimes enter 20 directly, producing a cast-on five times too large.",
+      "Forgetting to account for stitch pattern multiples. A sweater body looks correct until waist shaping reveals the stitch count doesn't accommodate the cable repeat, forcing a restart.",
+      "Adding selvedge stitches on top of the calculator output when the multiple already includes edge adjustments. A '6 stitch repeat + 2 edge stitches' pattern means enter 6 as the multiple — adding extra edge stitches produces too many stitches.",
+    ],
+    projectExample: "A knitter wants a 40-inch-wide sweater body at a gauge of 5 stitches per inch. Base count: 200 stitches. Their cable pattern uses a 6-stitch repeat, so they enter 6 as the multiple. The calculator rounds up to 204 (the next multiple of 6), producing an actual width of 40.8 inches — close to the target with all cables fitting evenly.",
+    useCases: [
+      "Starting any fitted or patterned project confidently. The cast-on count is the most foundational number in knitting and crochet; getting it wrong wastes hours.",
+      "Comparing cast-on counts across gauge options. Needle size 5 might give 200 stitches while size 6 gives 195 — one may fit the stitch pattern multiple better.",
+      "Planning exact finished width before casting on. Enter gauge and the calculator shows the actual width after stitch multiple rounding, preventing surprises.",
+    ],
     introduction: {
       title: "Why You Need a Cast On Calculator",
       paragraphs: [
@@ -1235,6 +1492,17 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "hat-calculator": {
+    commonMistakes: [
+      "Casting on for the head circumference instead of applying negative ease. A hat cast on at 22 inches for an actual 22-inch head will fit like a swimming cap once stretched over the head. Standard 10% negative ease produces a 19.8-inch circumference that stretches comfortably.",
+      "Using stockinette ease (10%) for ribbed hats. Ribbing has much more stretch than stockinette and needs 15% negative ease instead. A ribbed hat with only 10% negative ease will be loose and slouchy.",
+      "Forgetting to round the cast-on count to a multiple of 8 for symmetrical crown decreases. A count not divisible by 8 produces uneven decreases at the crown, with visible lumps in the hat point.",
+    ],
+    projectExample: "A crocheter making a beanie for an adult with a 22-inch head using worsted weight yarn at 4 stitches per inch applies 10% negative ease: 22 × 0.9 = 19.8 inches × 4 = 79.2 stitches, rounded to 80 (nearest multiple of 8). They work the hat in the round at 80 stitches, then work an 8-point crown decrease removing 8 stitches every other round until 8 remain, drawn together to close.",
+    useCases: [
+      "Designing a hat for any head size using your gauge — the calculator handles negative ease and crown rounding automatically.",
+      "Switching yarn weights or stitch patterns mid-design. Ribbed versus stockinette construction needs different cast-on counts because ease requirements differ.",
+      "Creating matching hats for family members with different head sizes — enter each circumference separately for perfectly fitting hats from one yarn.",
+    ],
     introduction: {
       title: "Why You Need a Hat Size Calculator",
       paragraphs: [
@@ -1286,6 +1554,17 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "sock-calculator": {
+    commonMistakes: [
+      "Not applying 10% negative ease to the foot circumference. New sock knitters who cast on for the exact circumference get socks that sag around the foot. The 10% ease makes the sock grip properly without being uncomfortably tight.",
+      "Measuring the foot circumference over the top of the foot (narrow dimension) instead of around the ball of the foot (widest part). This produces a cast-on too small, making the sock impossible to pull on or too tight across the instep.",
+      "Miscalculating heel flap rows in top-down socks. The flap should have the same number of rows as stitches to create a square, but knitters who skip rows or pick up the wrong number of stitches along the edge create an asymmetrical gusset and a lumpy sock.",
+    ],
+    projectExample: "A knitter with an 8-inch foot circumference and 9-inch length, using fingering weight at 8 stitches per inch, applies 10% negative ease: 8 × 0.9 = 7.2 × 8 = 57.6 stitches, rounded to 56 (multiple of 4). For top-down, they cast on 56, work the cuff, use 28 stitches for a 28-row heel flap, pick up 14 stitches each side, work the gusset back to 56 stitches, work the foot tube, then start toe decreases.",
+    useCases: [
+      "Knitting both top-down and toe-up socks with the same fit — the calculator handles both constructions so you can choose your preferred method.",
+      "Making socks in different yarn weights for different purposes — fingering for dress socks versus bulky for camp socks each require different cast-on counts.",
+      "Designing custom socks for family members with different foot sizes — enter each person's measurements for perfectly fitting socks every time.",
+    ],
     introduction: {
       title: "Why You Need a Sock Calculator",
       paragraphs: [
@@ -1337,6 +1616,12 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "granny-square-planner": {
+    designPrinciples: "Granny squares exemplify modular design — individual units that combine into larger wholes without requiring structural planning during construction. The traditional four-round square (12-stitch clusters around the perimeter with chain spaces between) creates a unit that is approximately square when blocked, allowing infinite tiling possibilities. The mathematical elegance lies in the independent nature of each square: stitch counts, yarn requirements, and construction can be varied without affecting adjacent squares, as long as side lengths remain consistent at blocking. This modularity enables rapid iteration, scrap-busting, and collaborative projects. Granny squares also demonstrate color theory's power — the nested rounds create visual depth, and strategic color placement in different square positions can create secondary patterns (stripes, checkerboards, gradients) when squares are arranged in a grid.",
+    patternVariations: [
+      "Rainbow sampler variation — crochet each square in a different color combination, using the full spectrum to create a diagonal or random color flow across the blanket layout; arrange by color family or create completely random placement for visual interest.",
+      "Monochrome ombré variation — use the same color family in multiple shades, arranging light, medium, and dark squares in a gradient from one corner to the opposite diagonal, creating a sophisticated tonal effect with subtle visual depth.",
+      "Colorwork border variation — keep all squares in a single neutral base color but change the joining color or add a contrasting single-crochet border around each square after assembly, creating a uniform grid with bold outline definition."
+    ],
     introduction: {
       title: "Why You Need a Granny Square Planner",
       paragraphs: [
@@ -1385,9 +1670,30 @@ export const toolContent: Record<string, ToolEducationalContent> = {
         "Consider your joining method before you start crocheting squares. Join-as-you-go integrates assembly into the last round of each square, saving time and producing a flat, seamless look.",
       ],
     },
+    projectIdeas: {
+      title: "Project Ideas for Granny Square Blankets",
+      ideas: [
+        "Classic rainbow throw — plan an 8x10 grid in DK weight with 7 color families, one per diagonal stripe across the layout for a vibrant, modern look.",
+        "Scrap-busting mini-square blanket — use 3-inch squares with 10+ leftover colors to create a patchwork lap blanket with no two adjacent squares the same color.",
+        "Monochrome texture blanket — choose a single neutral yarn in 3 shades (light, medium, dark) arranged in a gradient from one corner to the opposite.",
+        "Baby blanket with border — plan a 5x7 grid for a 30x42 inch baby blanket, using the planner to calculate the single-color joining yarn that creates a frame between every square.",
+        "Tote bag panels — plan two matching 4x6 panels (front and back) and join the sides for a structured carry bag; the planner tells you exactly how many squares and how much yarn each color needs.",
+      ],
+    },
   },
 
   "sleeve-calculator": {
+    commonMistakes: [
+      "Using the full sleeve length for shaping instead of accounting for underarm and cuff buffers. Decreases that extend into the armhole seam or cuff ribbing create harsh lines; the calculator reserves 1 inch at each end for smooth transitions.",
+      "Working all decreases on the same side of the sleeve instead of symmetrically. Decreases must be at each edge every decrease round to create balanced, professional-looking tapering.",
+      "Miscalculating shaping rows using stockinette row gauge when the sleeve uses a different stitch pattern. Row gauge changes with different stitches, throwing off the decrease count.",
+    ],
+    projectExample: "A knitter shapes a sleeve from 12-inch upper arm to 7-inch wrist over 18 inches (2 inches of cuff ribbing). At 5 stitches per inch and 6 rows per inch: 60 stitches at top, 35 at wrist, 25-stitch difference = 13 decrease events. Shaping zone: 18 − 1 − 2 − 1 = 14 inches × 6 rows = 84 rows ÷ 13 ≈ 6.5. The calculator outputs: decrease every 6 rows ten times, then every 7 rows three times.",
+    useCases: [
+      "Creating a seamless, professional sleeve taper for any gauge. The calculator distributes decreases evenly so no single area looks bunched.",
+      "Comparing sleeve shaping across different arm circumferences — a fitted sleeve tapers more than a relaxed one, and the calculator shows the exact difference in decrease schedule.",
+      "Working sleeves top-down or bottom-up. Reverse the increase/decrease direction and the math works the same way.",
+    ],
     introduction: {
       title: "Why You Need a Sleeve Shaping Calculator",
       paragraphs: [
@@ -1438,6 +1744,17 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "raglan-calculator": {
+    commonMistakes: [
+      "Miscalculating the neck cast-on by guessing instead of using the 30/30/15/15 ratio (back/front/sleeve/sleeve plus 4 raglan seam stitches). A wrong starting count produces a yoke that is too shallow or too deep for the body.",
+      "Forgetting that yoke depth must match the actual body measurement from neck base to underarm. A calculated yoke of 6 inches that doesn't match the 8-inch body measurement produces shoulders that bunch or sleeves that start too far down the arm.",
+      "Placing too many or too few increase rounds in the yoke. Increasing every other round forever creates a flared sweater; too-infrequent increases leave the yoke too small for the intended chest.",
+    ],
+    projectExample: "A knitter wants a 40-inch chest sweater with a 22-inch neck and 8-inch yoke depth at a gauge of 5 stitches per inch and 6 rows per inch. Chest: 200 stitches total. Using 30/30/15/15 ratio + 4 seam stitches = 188 cast-on. Difference: 12 stitches. At 8 stitches per increase round and 6 rows per inch × 8 inches = 48 yoke rows, the calculator distributes the increase rounds correctly to reach exactly 200 stitches at underarm depth.",
+    useCases: [
+      "Designing top-down raglan sweaters in any gauge — the calculator ensures the yoke expands to the right chest circumference at the right depth.",
+      "Comparing stitch gauges to see how yoke depth changes. A looser gauge requires fewer increase rounds than a tighter gauge.",
+      "Experimenting with the 30/30/15/15 ratio for specific fit preferences — broad shoulders or larger arms can use 35/35/15/15 or 30/30/20/20.",
+    ],
     introduction: {
       title: "Why You Need a Raglan Calculator",
       paragraphs: [
@@ -1489,6 +1806,16 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "blocking-calculator": {
+    skillLevel: "Intermediate",
+    techniqueEffect: "Blocking transforms unfinished handwork into polished, professional-quality pieces by relaxing fibers and setting them into the intended shape and dimensions. The technique smooths uneven stitches, opens lace patterns so motifs become visible, relaxes cable crossings into their proper relief, and evens edges that curl or wave. The visual transformation is dramatic: an unblocked piece looks homemade; the same piece after blocking looks like commercial knitwear. Blocking also reveals mistakes and fixing opportunities — distorted stitches, dropped stitches, and gauge issues become obvious once the piece is pinned flat. The technique is reversible: blocked garments will gradually return toward their original shape as humidity and wear alter the fiber memory, though superwash treatment makes blocking effects more permanent.",
+    techniqueSteps: [
+      "Before wetting, measure your unblocked piece in multiple places (length, width, and any pattern-specific dimensions) to establish starting dimensions.",
+      "Choose a blocking method appropriate to your fiber: wet blocking for wool and natural fibers, spray blocking for most fibers, steam blocking for robust fibers only.",
+      "If wet blocking, submerge the piece in cool water with wool wash, gently squeeze (never wring), and carefully remove excess water by rolling in a towel.",
+      "Pin the piece to blocking mats at target dimensions, shaping as needed, and allow to dry completely (12-24 hours) before removing pins."
+    ],
+    fiberNotes: "Wool is the most forgiving fiber for blocking — it stretches dramatically when wet and holds its blocked shape beautifully. Superwash wool behaves similarly but the anti-felt treatment may affect stitch appearance slightly. Non-superwash wool requires cool water to prevent accidental felting; hot water or aggressive agitation will permanently damage it. Cotton and linen respond well to both wet and steam blocking and can stretch moderately without permanent damage. Acrylic must never be steamed — heat permanently damages the synthetic fibers, causing stiffness and color changes. Alpaca is delicate and stretches easily; use spray blocking to avoid overstretch that becomes permanent. Silk requires gentle handling; use cool water and lay flat to dry rather than pinning, as pins can create permanent holes in the delicate fibers.",
+    practiceProject: "Knit a simple stockinette swatch (12 x 12 inches unblocked) in wool, then block it wet to exact finished dimensions (the swatch will grow, potentially to 14 x 14 or larger). Measure how much the piece stretched. Repeat with a second identical swatch in acrylic using only spray blocking. Compare the final dimensions and note how much more dramatically wool stretches than acrylic.",
     introduction: {
       title: "Why You Need a Blocking Calculator",
       paragraphs: [
@@ -1540,6 +1867,17 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "stash-estimator": {
+    commonMistakes: [
+      "Weighing a damp or 'air-fluffed' partial skein instead of a consistently dry one. Yarn weight varies with humidity, throwing off the yardage estimate by 5–10%.",
+      "Using reference yardage ranges (Mode 2) when the original ball band is available. Mode 1 using original skein weight and yardage is significantly more accurate than category averages.",
+      "Forgetting to subtract the weight of the ball band or yarn label before weighing. A printed label adds 2–5 grams, inflating the estimate by 5–20 yards.",
+    ],
+    projectExample: "A crafter finds a partial skein of worsted weight yarn with its original band: 100g = 220 yards. Scale shows 42g remaining. Calculation: (42 ÷ 100) × 220 = 92.4 yards. That's enough for a small hat or cowl, but not a pair of socks. Paired with another partial of similar color, 92 yards becomes part of a coordinated set.",
+    useCases: [
+      "Organizing a yarn stash by weighing partial skeins so you always know what yardage is available for small projects.",
+      "Determining whether leftover yarn from one project is enough for another without buying more.",
+      "Evaluating mystery yarn at sales or from donations. Use WPI to determine weight, then Mode 2 to estimate yardage.",
+    ],
     introduction: {
       title: "Why You Need a Yarn Stash Estimator",
       paragraphs: [

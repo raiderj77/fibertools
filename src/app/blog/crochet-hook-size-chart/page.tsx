@@ -33,7 +33,7 @@ export default async function Page({
     description:
       'Complete crochet hook size chart covering US letter sizes, metric millimeters, yarn weight pairings, and steel hooks for thread crochet.',
     datePublished: '2026-03-27',
-    dateModified: '2026-03-27',
+    dateModified: '2026-04-16',
     author: {
       '@type': 'Organization',
       name: 'FiberTools',
@@ -107,7 +107,34 @@ export default async function Page({
         <h1 className="text-3xl font-bold mb-2">
           Crochet Hook Size Chart — Complete US and Metric Guide
         </h1>
-        <p className="text-sm text-gray-400 mb-6">Last updated: March 27, 2026</p>
+        <p className="text-sm text-gray-400 mb-2">Last updated: April 16, 2026</p>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 mb-6">
+          <span>By <strong className="text-gray-700">The FiberTools Editorial Team</strong></span>
+          <span aria-hidden="true">&middot;</span>
+          <span>Fiber arts experts with 30+ years of experience</span>
+          <span aria-hidden="true">&middot;</span>
+          <a href="/about" className="text-indigo-600 hover:underline">About us</a>
+        </div>
+
+        {/* IN THIS GUIDE */}
+        <nav className="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-8" aria-label="In this guide">
+          <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">In this guide</p>
+          <ol className="space-y-1 list-decimal list-inside">
+            {[
+              ['#us-chart', 'US Letter Size to Metric Conversion Chart'],
+              ['#by-yarn-weight', 'Hook Size by Yarn Weight'],
+              ['#steel-hooks', 'Steel Hooks for Thread Crochet'],
+              ['#inline-vs-tapered', 'Inline vs Tapered Hooks'],
+              ['#ergonomic', 'Ergonomic Handles'],
+              ['#unlabeled', 'How to Identify an Unlabeled Hook'],
+              ['#by-project', 'Hook Recommendations by Project Type'],
+            ].map(([href, label]) => (
+              <li key={href as string}>
+                <a href={href as string} className="text-sm text-indigo-600 hover:underline">{label as string}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
 
         {/* PINTEREST VISUAL INTRO */}
         <p className="text-gray-600 mb-4">
@@ -125,7 +152,7 @@ export default async function Page({
           steel hooks for thread work, and which hook size to use for each yarn weight category.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-8 mb-4">US Letter Size to Metric Conversion Chart</h2>
+        <h2 id="us-chart" className="text-2xl font-semibold mt-8 mb-4">US Letter Size to Metric Conversion Chart</h2>
 
         <p>
           Most patterns published in the United States use the letter-and-number system alongside
@@ -185,7 +212,7 @@ export default async function Page({
           also converts between US, metric, and UK sizes in one place.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-10 mb-4">Hook Size by Yarn Weight</h2>
+        <h2 id="by-yarn-weight" className="text-2xl font-semibold mt-10 mb-4">Hook Size by Yarn Weight</h2>
 
         <p>
           The{' '}
@@ -242,7 +269,7 @@ export default async function Page({
           from different brands can have noticeably different thicknesses.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-10 mb-4">Steel Hooks for Thread Crochet</h2>
+        <h2 id="steel-hooks" className="text-2xl font-semibold mt-10 mb-4">Steel Hooks for Thread Crochet</h2>
 
         <p>
           Steel hooks are a separate system for crochet thread (size 10 cotton, lace yarn, bedspread
@@ -259,7 +286,7 @@ export default async function Page({
           classic filet crochet, a Steel 6 or 7 with size 10 thread is the most common combination.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-10 mb-4">Inline vs Tapered Hooks</h2>
+        <h2 id="inline-vs-tapered" className="text-2xl font-semibold mt-10 mb-4">Inline vs Tapered Hooks</h2>
 
         <p>
           Beyond size, hook design affects how you crochet. The two main styles are inline (Boye
@@ -275,7 +302,7 @@ export default async function Page({
           preference depends on your tension and grip style.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-10 mb-4">Ergonomic Handles: Worth the Investment</h2>
+        <h2 id="ergonomic" className="text-2xl font-semibold mt-10 mb-4">Ergonomic Handles: Worth the Investment</h2>
 
         <p>
           Standard aluminum hooks are thin cylinders — effective but hard on the hands during long
@@ -299,7 +326,7 @@ export default async function Page({
           you already have a set you love.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-10 mb-4">How to Identify an Unlabeled Hook</h2>
+        <h2 id="unlabeled" className="text-2xl font-semibold mt-10 mb-4">How to Identify an Unlabeled Hook</h2>
 
         <p>
           Hook markings wear off. Secondhand sets, inherited collections, and unlabeled craft store
@@ -317,7 +344,7 @@ export default async function Page({
           provides the full size reference without any tools at all.
         </p>
 
-        <h2 className="text-2xl font-semibold mt-10 mb-4">Hook Recommendations by Project Type</h2>
+        <h2 id="by-project" className="text-2xl font-semibold mt-10 mb-4">Hook Recommendations by Project Type</h2>
 
         <p>
           Different project types benefit from specific hook choices beyond just matching yarn weight.
@@ -337,49 +364,69 @@ export default async function Page({
           project.
         </p>
 
+        {/* KEY TAKEAWAYS */}
+        <div className="bg-indigo-50 border border-indigo-200 rounded-2xl p-6 mt-10 mb-2">
+          <p className="text-xs font-semibold uppercase tracking-wider text-indigo-600 mb-4">Key Takeaways</p>
+          <ul className="space-y-2">
+            {[
+              'US hook sizes use a letter-and-number system (B/1 – Q); metric mm sizes are universally standardized — always verify by mm.',
+              'G/6 (4.0 mm) with worsted weight (CYC 4) is the standard beginner combination.',
+              'Steel hooks use a reverse numbering system — higher numbers are smaller hooks; used for thread crochet and doilies.',
+              'Inline hooks (Boye) keep yarn in a defined groove; tapered hooks (Susan Bates) let stitches slide off faster — neither is objectively better.',
+              'For amigurumi, go 1–2 sizes smaller than the yarn label recommends to create a dense, stuffing-hiding fabric.',
+              'Ergonomic handles significantly reduce hand fatigue for sessions over one hour.',
+            ].map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-indigo-800">
+                <span className="text-indigo-400 font-bold flex-shrink-0 mt-0.5">&#10003;</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
         {/* FAQ SECTION */}
         <h2 className="text-2xl font-semibold mt-10 mb-4">Frequently Asked Questions</h2>
 
-        <div className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-lg">What size crochet hook is best for beginners?</h3>
-            <p>
-              A G/6 (4.0 mm) or H/8 (5.0 mm) hook paired with worsted weight (CYC 4) yarn is the
-              best starting combination. The medium size is comfortable to hold, stitches are easy to
-              see and count, and worsted yarn is widely available and inexpensive. Avoid very fine or
-              very bulky yarn until you are comfortable with basic stitches.
-            </p>
-          </div>
+        <div className="bg-white rounded-2xl border border-gray-200 px-6 divide-y divide-gray-100">
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-gray-700 group-hover:text-indigo-600 transition-colors">What size crochet hook is best for beginners?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-gray-600 leading-relaxed">A G/6 (4.0 mm) or H/8 (5.0 mm) hook paired with worsted weight (CYC 4) yarn is the best starting combination. The medium size is comfortable to hold, stitches are easy to see and count, and worsted yarn is widely available and inexpensive. Avoid very fine or very bulky yarn until you are comfortable with basic stitches.</p></div>
+          </details>
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-gray-700 group-hover:text-indigo-600 transition-colors">What is the difference between US and metric crochet hook sizes?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-gray-600 leading-relaxed">US sizes use a letter-and-number system (B/1 through Q). Metric sizes are measured in millimeters and are universally standardized. The US letter system is not consistent across all manufacturers — always check the millimeter size when purchasing hooks or following international patterns.</p></div>
+          </details>
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-gray-700 group-hover:text-indigo-600 transition-colors">What hook size do I use for amigurumi?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-gray-600 leading-relaxed">For worsted weight amigurumi, use a G/6 (4.0 mm) — smaller than the yarn label recommends. The tighter fabric prevents stuffing from showing through gaps. Check your pattern&apos;s gauge note; some patterns specify 12–14 sc per 4 inches, which gives you a precise target.</p></div>
+          </details>
+          <details className="group py-1">
+            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
+              <span className="text-sm font-semibold text-gray-700 group-hover:text-indigo-600 transition-colors">What are steel crochet hooks used for?</span>
+              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
+            </summary>
+            <div className="pb-4 pr-8"><p className="text-sm text-gray-600 leading-relaxed">Steel hooks are used for crochet thread — size 10 cotton, lace yarn, or fine bedspread weight — for projects like doilies, filet crochet curtains, and decorative edgings. They use a reverse numbering system where higher numbers are smaller hooks. A Steel 6 or 7 is the standard starting point for size 10 thread.</p></div>
+          </details>
+        </div>
 
-          <div>
-            <h3 className="font-semibold text-lg">What is the difference between US and metric crochet hook sizes?</h3>
-            <p>
-              US sizes use a letter-and-number system (B/1 through Q). Metric sizes are measured in
-              millimeters and are universally standardized. The US letter system is not consistent
-              across all manufacturers — always check the millimeter size when purchasing hooks or
-              following international patterns.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-lg">What hook size do I use for amigurumi?</h3>
-            <p>
-              For worsted weight amigurumi, use a G/6 (4.0 mm) — smaller than the yarn label
-              recommends. The tighter fabric prevents stuffing from showing through gaps. Check your
-              pattern&apos;s gauge note; some patterns specify 12–14 sc per 4 inches, which gives you a
-              precise target.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="font-semibold text-lg">What are steel crochet hooks used for?</h3>
-            <p>
-              Steel hooks are used for crochet thread — size 10 cotton, lace yarn, or fine bedspread
-              weight — for projects like doilies, filet crochet curtains, and decorative edgings.
-              They use a reverse numbering system where higher numbers are smaller hooks. A Steel 6
-              or 7 is the standard starting point for size 10 thread.
-            </p>
-          </div>
+        {/* TRY THE TOOL CTA */}
+        <div className="bg-indigo-50 border border-indigo-200 rounded-2xl p-6 mt-10 text-center">
+          <p className="text-lg font-semibold text-indigo-800 mb-2">Need to convert needle or hook sizes?</p>
+          <p className="text-sm text-indigo-700 mb-4">
+            Use the free Needle &amp; Hook Size Converter — translates between US, metric, UK, and Japanese systems instantly.
+          </p>
+          <a href="/needle-converter" className="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-indigo-700 transition-colors">
+            Open Needle Converter &rarr;
+          </a>
         </div>
 
         {/* ATTRIBUTION */}

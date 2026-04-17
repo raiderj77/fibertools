@@ -46,7 +46,7 @@ export const metadata: Metadata = {
 
 export default function StitchPatternCalculatorPage() {
   return (
-    <ToolLayout slug="stitch-pattern-calculator">
+    <ToolLayout slug="stitch-pattern-calculator" widgetFirst>
       <AnswerBlock
         what="A calculator that finds compatible stitch counts for sampler blankets by computing the LCM across 50+ stitch patterns you select."
         who="Crocheters and knitters planning sampler blankets who need a stitch count that works with multiple pattern repeats."

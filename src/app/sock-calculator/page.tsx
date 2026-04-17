@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 
 export default function SockCalculatorPage() {
   return (
-    <ToolLayout slug="sock-calculator">
+    <ToolLayout slug="sock-calculator" widgetFirst>
       <AnswerBlock
         what="A sock calculator that provides stitch counts for top-down or toe-up construction with heel flap, gusset, and short-row heel instructions."
         who="Sock knitters who need accurate stitch counts for any foot size and want shaping instructions for their preferred heel style."
