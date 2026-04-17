@@ -41,11 +41,21 @@ function getFiles(dir, extensions) {
 // Rules
 // ---------------------------------------------------------------------------
 
+// Pages where "Jason Ramirez" is intentionally present for E-E-A-T / AdSense compliance.
+const PERSONAL_NAME_EXEMPT = [
+  "src/app/about/page.tsx",
+  "src/app/about/jason-ramirez/page.tsx",
+];
+
 /**
  * Check for personal name exposure.
- * The site owner's name must never appear in public content or code.
+ * The site owner's name must never appear in public content or code,
+ * except on pages listed in PERSONAL_NAME_EXEMPT.
  */
 function checkPersonalName(file, lines) {
+  const rel = relative(ROOT, file).replace(/\\/g, "/");
+  if (PERSONAL_NAME_EXEMPT.some((exempt) => rel.endsWith(exempt))) return;
+
   const namePattern = /\bJason\s+Ramirez\b/i;
   for (let i = 0; i < lines.length; i++) {
     if (namePattern.test(lines[i])) {
