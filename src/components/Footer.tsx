@@ -33,7 +33,9 @@ export default function Footer() {
     { href: "https://creatorrevenuecalculator.com", label: "Creator Revenue Calculator" },
     { href: "https://contractextract.com", label: "ContractExtract" },
     { href: "https://medicalbillreader.com", label: "Medical Bill Reader" },
+    { href: "https://taxbreaktools.com", label: "TaxBreakTools" },
     { href: "https://524tracker.com", label: "524 Tracker" },
+    { href: "https://aibusinessalternative.com", label: "AI Business Alternative" },
   ];
 
   return (
