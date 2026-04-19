@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, Nunito, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
+import { headers } from "next/headers";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -128,6 +129,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gpcHeader = headers().get('sec-gpc') === '1';
   return (
     <html lang="en" className={`${dmSerifDisplay.variable} ${nunito.variable} ${jetbrainsMono.variable}`}>
       <head>
@@ -144,13 +146,31 @@ export default function RootLayout({
         />
         <OrganizationSchema />
         {/* Cookiebot CMP — loads after interactive; consent defaults above block tracking until it fires */}
-        <Script
-          id="Cookiebot"
-          src="https://consent.cookiebot.com/uc.js"
-          data-cbid="a9a99ccb-4863-4e33-a895-a6d5642f408d"
-          data-blockingmode="auto"
-          strategy="afterInteractive"
-        />
+        {!gpcHeader && (
+          <Script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="a9a99ccb-4863-4e33-a895-a6d5642f408d"
+            data-blockingmode="auto"
+            strategy="afterInteractive"
+          />
+        )}
+        {!gpcHeader && (
+          <Script
+            id="gpc-auto-decline"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.addEventListener('CookiebotOnLoad', function () {
+                  try {
+                    var gpcActive = !!navigator.globalPrivacyControl || document.cookie.indexOf('empire_gpc=1') !== -1;
+                    if (gpcActive && window.Cookiebot) window.Cookiebot.decline();
+                  } catch(e) {}
+                });
+              `,
+            }}
+          />
+        )}
         {/* Google Consent Mode v2 — set defaults BEFORE gtag loads */}
         <Script id="consent-mode-defaults" strategy="beforeInteractive">
           {`

@@ -376,7 +376,7 @@ export default function PrivacyPolicyPage() {
               <tr><td>Oregon</td><td>OCPA</td><td>Jul 2024</td><td>Access, delete, correct, opt-out, portability</td></tr>
               <tr><td>Tennessee</td><td>TIPA</td><td>Jul 2025</td><td>Access, delete, correct, opt-out</td></tr>
               <tr><td>Minnesota</td><td>MNDPA</td><td>Jul 2025</td><td>Access, delete, correct, opt-out, portability</td></tr>
-              <tr><td>Maryland</td><td>MODPA</td><td>Oct 2025</td><td>Access, delete, correct, opt-out; bans sale of sensitive data</td></tr>
+              <tr><td>Maryland</td><td>MODPA</td><td>Apr 2026</td><td>Access, delete, correct, opt-out, portability; bans sale of sensitive data; honors GPC</td></tr>
               <tr><td>Indiana</td><td>IDCPA</td><td>Jan 2026</td><td>Access, delete, correct, opt-out</td></tr>
               <tr><td>Kentucky</td><td>KYCPA</td><td>Jan 2026</td><td>Access, delete, correct, opt-out</td></tr>
               <tr><td>Rhode Island</td><td>RIDPA</td><td>Jan 2026</td><td>Access, delete, correct, opt-out</td></tr>
@@ -386,6 +386,31 @@ export default function PrivacyPolicyPage() {
             We honor Global Privacy Control (GPC) signals from all states that require it.
             We do not sell personal information to third parties. We do not engage in targeted
             advertising using sensitive personal information.
+          </p>
+
+          <h3>Maryland Online Data Privacy Act (MODPA) — Effective April 1, 2026</h3>
+          <p>
+            Maryland&apos;s Online Data Privacy Act (MODPA, Commercial Law § 14-4604) grants Maryland residents enhanced privacy rights, including:
+          </p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li><strong>Right to Access:</strong> Request disclosure of personal data we collect and process.</li>
+            <li><strong>Right to Delete:</strong> Request deletion of personal data, subject to certain legal exceptions.</li>
+            <li><strong>Right to Correct:</strong> Request correction of inaccurate personal data.</li>
+            <li><strong>Right to Opt-Out:</strong> Opt out of the sale, sharing, or targeted advertising of personal data.</li>
+            <li><strong>Right to Portability:</strong> Request a copy of your personal data in a portable, machine-readable format.</li>
+            <li><strong>GPC Honoring:</strong> We automatically honor Global Privacy Control (GPC) signals and treat them as a valid opt-out request.</li>
+          </ul>
+          <p>
+            <strong>Response Timeframe:</strong> We will respond to MODPA requests within 45 days of receipt. If verification is required, the clock restarts after we receive sufficient information. You may contact us via the{" "}
+            <a
+              href="/contact"
+              className="text-sage-600 dark:text-sage-400 underline"
+            >
+              Contact page
+            </a>.
+          </p>
+          <p>
+            <strong>Sensitive Data:</strong> MODPA bans the sale of sensitive personal information. FiberTools does not collect or process sensitive personal information as defined under MODPA.
           </p>
         </section>
 
