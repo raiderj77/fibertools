@@ -44,6 +44,31 @@ const nextConfig = {
         source: '/(.*)',
         headers: securityHeaders,
       },
+      {
+        source: '/blog/yarn-calculator-guide',
+        destination: '/yarn-calculator',
+        permanent: true,
+      },
+      {
+        source: '/blog/cross-stitch-calculator-guide',
+        destination: '/blog/cross-stitch-fabric-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/stitch-quick-reference-guide',
+        destination: '/blog/crochet-stitch-quick-reference-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/stitch-pattern-calculator-guide',
+        destination: '/stitch-pattern-calculator',
+        permanent: true,
+      },
+      {
+        source: '/blog/uk-to-us-converter-guide',
+        destination: '/uk-to-us-converter',
+        permanent: true,
+      },
     ];
   },
   async redirects() {
