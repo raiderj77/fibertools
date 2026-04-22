@@ -44,6 +44,25 @@ const nextConfig = {
         source: '/(.*)',
         headers: securityHeaders,
       },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: '/blog/needle-guide-guide',
+        destination: '/blog/needle-guide-types',
+        permanent: true,
+      },
+      {
+        source: '/blog/needle-converter-guide',
+        destination: '/blog/needle-guide-types',
+        permanent: true,
+      },
+      {
+        source: '/blog/abbreviation-glossary-guide',
+        destination: '/blog/reading-crochet-patterns-guide',
+        permanent: true,
+      },
       {
         source: '/blog/yarn-calculator-guide',
         destination: '/yarn-calculator',
@@ -67,25 +86,6 @@ const nextConfig = {
       {
         source: '/blog/uk-to-us-converter-guide',
         destination: '/uk-to-us-converter',
-        permanent: true,
-      },
-    ];
-  },
-  async redirects() {
-    return [
-      {
-        source: '/blog/needle-guide-guide',
-        destination: '/blog/needle-guide-types',
-        permanent: true,
-      },
-      {
-        source: '/blog/needle-converter-guide',
-        destination: '/blog/needle-guide-types',
-        permanent: true,
-      },
-      {
-        source: '/blog/abbreviation-glossary-guide',
-        destination: '/blog/reading-crochet-patterns-guide',
         permanent: true,
       },
     ];
