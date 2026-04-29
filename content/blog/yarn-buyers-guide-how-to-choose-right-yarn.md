@@ -175,7 +175,7 @@ Yes, but you'll need to match the yarn weight, gauge, and yardage carefully. Swa
 A medium-weight acrylic in a light, solid color is the easiest to work with. It's forgiving, affordable, and shows your stitches clearly. Brands like Caron Simply Soft or Red Heart Super Saver are widely available. Avoid dark colors, fuzzy textures, and slippery fibers until you're comfortable with tension.
 
 ### How much yarn should I buy for a blanket?
-It depends on blanket size, yarn weight, and stitch pattern. A throw-size blanket in worsted weight typically needs 2,000-3,000 yards. Always buy 10-20% extra to account for gauge differences and pattern adjustments. Use our [Yardage Estimator](/yardage-estimator) to calculate your exact needs before purchasing.
+It depends on blanket size, yarn weight, and stitch pattern. A throw-size blanket in worsted weight typically needs 2,000-3,000 yards. Always buy 10-20% extra to account for gauge differences and pattern adjustments. Use our [Yarn Calculator](/yarn-calculator) to calculate your exact needs before purchasing.
 
 ## Final Checklist Before You Buy
 

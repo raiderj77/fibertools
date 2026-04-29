@@ -74,7 +74,7 @@ Pick 4-8 stitch patterns for your sampler. A good mix includes a solid section f
 
 Enter all five patterns into the calculator. The multiples are 2, 3, 2, 3, and 6 — the LCM is 6. But the V-stitch needs plus 1 and the shell stitch also needs plus 1, so you need a number that's a multiple of 6 plus 1: 7, 13, 19, 25, 31, 37... up through your target width.
 
-For a throw blanket around 50 inches wide at a worsted-weight gauge of roughly 3.5 stitches per inch, you need about 175 stitches. The nearest compatible counts would be 169 (6×28+1) or 175 (6×29+1). Lucky — 175 works perfectly.
+For a throw blanket around 50 inches wide at a worsted-weight gauge of roughly 3.5 stitches per inch, you need about 175 stitches. (Not sure what finished dimensions to target? The [blanket calculator](/blanket-calculator) lists standard throw, lap, and bed sizes so you can pick a target width before doing the stitch math.) The nearest compatible counts would be 169 (6×28+1) or 175 (6×29+1). Lucky — 175 works perfectly.
 
 ### Step 3: Account for Edge Stitches
 

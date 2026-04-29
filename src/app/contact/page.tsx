@@ -63,7 +63,9 @@ export default function ContactPage() {
             <strong>Email:</strong>{" "}
             <a
               href="mailto:hello@fibertools.app"
-              className="text-sage-600 dark:text-sage-400 underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sage-600 dark:text-sage-400 underline hover:text-sage-800 transition-colors cursor-pointer"
             >
               hello@fibertools.app
             </a>
@@ -215,7 +217,9 @@ export default function ContactPage() {
             find yourself doing by hand over and over, send us an email at{" "}
             <a
               href="mailto:hello@fibertools.app"
-              className="text-sage-600 dark:text-sage-400 underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sage-600 dark:text-sage-400 underline hover:text-sage-800 transition-colors cursor-pointer"
             >
               hello@fibertools.app
             </a>{" "}

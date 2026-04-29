@@ -64,7 +64,7 @@ For DC: After pulling up a loop you should have 3 loops. After the first "pull t
 
 For TR: After pulling up a loop you should have 4 loops. Each "pull through 2" removes one loop until you're back to 1.
 
-If you count and the number is wrong, you missed a yarn-over or accidentally pulled through too many. Our [Stitch Counter](/stitch-counter) tool helps you track your loop count at every step for every stitch. Pair it with the [Row Counter](/row-counter) to keep your place in complex stitch patterns where the repeat changes from row to row.
+If you count and the number is wrong, you missed a yarn-over or accidentally pulled through too many. Our [Stitch Counter](/stitch-counter) tool helps you track your loop count at every step for every stitch — it also keeps a running row tally so you never lose your place in complex patterns where the repeat changes from row to row.
 
 ## Turning Chains: Do They Count?
 
@@ -108,9 +108,9 @@ No. In crochet, a slip stitch means insert hook, yarn over, and pull through bot
 
 ## Using FiberTools to Master Your Stitches
 
-Having a reference guide is great, but pairing it with the right tools makes your crafting sessions smoother. The [Stitch Counter](/stitch-counter) keeps a running tally as you work, so you don't lose your place in a long row of double crochets or trebles. If you're working a pattern that changes stitch types across rows, the [Row Counter](/row-counter) tracks which row you're on and what stitch you should be using.
+Having a reference guide is great, but pairing it with the right tools makes your crafting sessions smoother. The [Stitch Counter](/stitch-counter) keeps a running tally as you work, so you don't lose your place in a long row of double crochets or trebles — it also tracks your row count when working patterns that change stitch types from row to row.
 
-When you're starting a new project and need to figure out how many stitches to cast on or chain, the [Gauge Calculator](/gauge-calculator) takes the guesswork out of the equation. Measure your swatch, enter the numbers, and it'll tell you the exact stitch count for your desired width. And if you're switching between yarn weights — say, adapting a worsted-weight pattern to DK — the [Yarn Weight Calculator](/yarn-weight-calculator) helps you understand how that change affects your gauge and yardage needs.
+When you're starting a new project and need to figure out how many stitches to cast on or chain, the [Gauge Calculator](/gauge-calculator) takes the guesswork out of the equation. Measure your swatch, enter the numbers, and it'll tell you the exact stitch count for your desired width. And if you're switching between yarn weights — say, adapting a worsted-weight pattern to DK — the [Yarn Weight Chart](/yarn-weight-chart) helps you understand how that change affects your gauge and yardage needs.
 
 ## Common Mistakes When Learning New Stitches
 
