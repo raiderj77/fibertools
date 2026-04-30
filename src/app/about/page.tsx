@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "About — Your Friendly Developer",
+  title: "About Jason Ramirez — Your Friendly Developer",
   description:
-    "The real story behind FiberTools. Built by Jason Ramirez, a self-taught developer and CADC-II counselor from Prunedale, California.",
+    "The real story behind FiberTools. Built by Jason Ramirez, Fiber Arts Expert and Founder of Your Friendly Developer.",
   keywords: [
     "about FiberTools",
     "Your Friendly Developer",
@@ -13,10 +13,11 @@ export const metadata: Metadata = {
     "knitting tools",
     "crochet tools",
   ],
+  authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
   openGraph: {
-    title: "About — Your Friendly Developer",
+    title: "About Jason Ramirez — Your Friendly Developer",
     description:
-      "The real story behind FiberTools. Built by Jason Ramirez, a self-taught developer and CADC-II counselor from Prunedale, California.",
+      "The real story behind FiberTools. Built by Jason Ramirez, Fiber Arts Expert and Founder of Your Friendly Developer.",
     url: "https://fibertools.app/about",
     images: [
       {
@@ -29,9 +30,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "About — Your Friendly Developer",
+    title: "About Jason Ramirez — Your Friendly Developer",
     description:
-      "The real story behind FiberTools. Built by Jason Ramirez, a self-taught developer and CADC-II counselor from Prunedale, California.",
+      "The real story behind FiberTools. Built by Jason Ramirez, Fiber Arts Expert and Founder of Your Friendly Developer.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/about" },
@@ -60,15 +61,10 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Jason Ramirez",
-  jobTitle: "Web Developer, CADC-II Counselor",
+  jobTitle: "Fiber Arts Expert",
   worksFor: {
     "@type": "Organization",
     name: "Your Friendly Developer LLC",
-  },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Prunedale",
-    addressRegion: "California",
   },
   url: "https://fibertools.app/about",
 };
@@ -96,7 +92,7 @@ export default function AboutPage() {
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
         <p>
-          Hi. I&rsquo;m the person behind this. This is why I built this.
+          Hi. I&rsquo;m Jason Ramirez. This is why I built this.
         </p>
 
         <p>
@@ -178,7 +174,7 @@ export default function AboutPage() {
 
         <p>
           If you&rsquo;re looking for the person behind these sites, it&rsquo;s
-          me. A CADC-II counselor, a self-taught web builder, a recovering addict
+          me. A self-taught web builder and Fiber Arts Expert, a recovering addict
           with over twelve years of sobriety, a person who fixed their own credit
           and figured out their own taxes and is still figuring out everything
           else one day at a time.
@@ -207,8 +203,36 @@ export default function AboutPage() {
           <p>
             I built this the same way I&rsquo;ve built everything: researching
             until I understood it well enough to make it useful for someone else.
-            Every calculator here is based on established CYC standards and
-            industry conventions. Every tool is free.
+            Every calculator is grounded in Craft Yarn Council (CYC) standards
+            &mdash; the same classification system used by yarn manufacturers
+            worldwide. The yarn weight system (0&ndash;7, Lace through Jumbo),
+            recommended hook and needle sizes, and gauge ranges all follow CYC
+            published specifications. The needle and hook conversion tables map
+            US, metric, and UK sizing using manufacturer standards, not
+            approximations.
+          </p>
+
+          <p>
+            I verified every formula by hand before deploying it. Each calculator
+            was tested against edge cases: extreme blanket dimensions, non-standard
+            swatch sizes, stitch patterns that don&rsquo;t divide evenly into the
+            target count. The increase/decrease calculator&rsquo;s distribution
+            logic &mdash; spreading leftover stitches evenly so the spacing looks
+            balanced rather than lumped at one end &mdash; took three rewrites to
+            get right, because the naive approach produces results that experienced
+            knitters immediately notice are wrong. The blocking calculator accounts
+            for fiber-specific growth rates, because wool blocks differently than
+            cotton, and a tool that ignores that distinction isn&rsquo;t actually
+            useful.
+          </p>
+
+          <p>
+            I&rsquo;m not a fiber artist. But I spent real time learning the craft
+            well enough to build tools that fiber artists trust. That gap between
+            &ldquo;technically correct math&rdquo; and &ldquo;actually useful for
+            someone holding hooks and needles&rdquo; is where every design
+            decision in this project lives. Every tool is free, ad-supported, and
+            built to stay free.
           </p>
 
           <p>
@@ -240,8 +264,7 @@ export default function AboutPage() {
         <hr className="border-bark-200 dark:border-bark-700 my-8" />
 
         <p className="text-sm text-bark-500 dark:text-cream-500">
-          Jason Ramirez &mdash; Your Friendly Developer LLC &mdash; Prunedale,
-          California
+          Jason Ramirez / Your Friendly Developer LLC
         </p>
       </div>
     </main>

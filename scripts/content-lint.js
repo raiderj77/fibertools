@@ -45,6 +45,7 @@ function getFiles(dir, extensions) {
 const PERSONAL_NAME_EXEMPT = [
   "src/app/about/page.tsx",
   "src/app/about/jason-ramirez/page.tsx",
+  "src/app/blog/[slug]/page.tsx",
 ];
 
 /**
