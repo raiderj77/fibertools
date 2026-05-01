@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ToolLayout from "@/components/ToolLayout";
 import YarnWeightChartTool from "./YarnWeightChartTool";
 
@@ -49,6 +50,13 @@ export default function YarnWeightChartPage() {
         <h2>Yarn Weight Comparison and Substitution Results</h2>
       </div>
       <YarnWeightChartTool />
+      <p style={{ marginTop: "1.5rem", fontSize: "0.95rem" }}>
+        Choosing a weight for your next project? See{" "}
+        <Link href="/blog/crochet-color-trends-2026">
+          Crochet Color Trends 2026
+        </Link>{" "}
+        for which palettes pair best with each yarn weight this season.
+      </p>
     </ToolLayout>
   );
 }

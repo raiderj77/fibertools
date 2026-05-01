@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ToolLayout from "@/components/ToolLayout";
 import AnswerBlock from "@/components/AnswerBlock";
 import YarnCalculatorTool from "./YarnCalculatorTool";
@@ -85,6 +86,13 @@ export default function YarnCalculatorPage() {
         <h2>Yarn Estimation Results and Tips</h2>
       </div>
       <YarnCalculatorTool />
+      <p style={{ marginTop: "1.5rem", fontSize: "0.95rem" }}>
+        Planning a bigger project? Check out{" "}
+        <Link href="/blog/crochet-color-trends-2026">
+          Crochet Color Trends 2026
+        </Link>{" "}
+        for palette ideas and fiber recommendations before you buy your yarn.
+      </p>
     </ToolLayout>
     </>
   );
