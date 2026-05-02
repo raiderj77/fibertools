@@ -31,7 +31,7 @@ Blocking is also a must for knitters who work with large, complex projects like 
 There are many benefits to blocking, including:
 
 * **Improved drape**: Blocking can create a more even, relaxed fabric that hangs better and looks more elegant.
-* **Better fit**: By adjusting the fabric's shape and size, blocking can make a garment fit better and more comfortably.
+* **Better fit**: By adjusting the fabric's shape and size, blocking can make a garment fit better and more comfortably. The [blocking calculator](/blocking-calculator) estimates how much your finished piece will grow after wet blocking — useful for planning your cast-on dimensions when the blocked size is what actually matters.
 * **Enhanced texture**: Blocking can bring out the natural texture of the stitches and yarn, creating a more visually appealing fabric.
 * **Reduced purl ridges**: Blocking can reduce the appearance of purl ridges, making the fabric look smoother and more even.
 

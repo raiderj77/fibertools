@@ -8,6 +8,7 @@ interface AdUnitProps {
   id: string;
   format?: string;
   style?: React.CSSProperties;
+  wrapperClassName?: string;
 }
 
 export default function AdUnit({
@@ -15,6 +16,7 @@ export default function AdUnit({
   id,
   format = "auto",
   style,
+  wrapperClassName,
 }: AdUnitProps) {
   const pathname = usePathname();
 
@@ -36,7 +38,7 @@ export default function AdUnit({
   if (!pubId) return null;
 
   return (
-    <div id={id} className="my-10" aria-hidden="true">
+    <div id={id} className={`my-10${wrapperClassName ? ` ${wrapperClassName}` : ""}`} aria-hidden="true">
       <ins
         className="adsbygoogle"
         style={style || { display: "block" }}

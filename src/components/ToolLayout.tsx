@@ -184,7 +184,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </>
       )}
 
-      <AdUnit slot="" id="ad-after-tool" />
+      <AdUnit slot="" id="ad-after-tool" wrapperClassName="max-h-[100px] overflow-hidden sm:max-h-none sm:overflow-visible" />
 
       {/* Educational content */}
       {content && (

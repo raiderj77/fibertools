@@ -132,11 +132,38 @@ export default function WeavingToolsPage() {
           Free Weaving & Spinning Calculators
         </h1>
         <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
-        <p className="text-lg text-bark-600 dark:text-cream-300 max-w-3xl leading-relaxed">
-          Weaving and spinning involve precise ratios — sett, EPI, TPI, and drive ratios all need
-          to be right before you start. These free calculators handle the math for weavers and
-          handspinners so you can focus on fiber, not formulas. No signup required.
-        </p>
+        <div className="space-y-4 text-bark-600 dark:text-cream-300 max-w-3xl">
+          <p className="text-lg leading-relaxed">
+            Weaving and spinning involve some of the most calculation-heavy math in fiber arts. Before
+            a weaver throws the first shuttle, they need to know the correct ends per inch (EPI) for
+            their yarn and intended sett, how many yards to wind onto the warp beam, and how much loom
+            waste to factor in. Before a handspinner winds off the bobbin, they need to confirm their
+            drive ratio and whorl size are producing the twist-per-inch their target yarn weight
+            requires. Get this math wrong and you waste fiber, warp thread, and hours of setup time.
+          </p>
+          <p className="leading-relaxed">
+            FiberTools weaving and spinning calculators are built on the technical specifications used
+            by the handweaving and handspinning communities. The sett calculator uses the standard
+            formula — sett equals WPI divided by 2 for plain weave, divided by 1.5 for twill — to
+            generate a recommended EPI from your actual yarn rather than a generic chart value. The WPI
+            calculator walks you through the wrapping procedure to measure your yarn&rsquo;s true weight
+            category, which is the necessary first step before any other weaving calculation. The
+            spinning ratio calculator handles multi-whorl wheel setups so you can compare drive
+            combinations on paper before committing at the wheel.
+          </p>
+          <p className="leading-relaxed">
+            The thread converter bridges the gap between commercial weaving thread systems: denier,
+            tex, and yards-per-pound all appear on thread labels from different manufacturers with no
+            direct comparison, and this tool converts between all three in both directions. For
+            finished yarn, the standard yarn calculator estimates yardage requirements from sett and
+            project dimensions.
+          </p>
+          <p className="leading-relaxed">
+            These calculators are built for weavers, spinners, and fiber artists who need accurate
+            technical math without digging through handbooks or spreadsheets. All tools are free, work
+            on any device, and require no account or login.
+          </p>
+        </div>
       </div>
 
       {/* All Weaving & Spinning Tools */}

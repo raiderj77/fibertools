@@ -16,7 +16,7 @@ Crochet enthusiasts have long been enchanted by the whimsical world of amigurumi
 
 When it comes to amigurumi, selecting the right hook and yarn is crucial. For beginners, it's best to start with a medium-weight yarn and a hook size that corresponds to the weight of the yarn. Here are some general guidelines to help you choose the right hook and yarn:
 
-* **Hook Size:** For medium-weight yarn, use a hook size between H (5mm) and I (5.5mm). This will ensure that your stitches are not too tight or too loose, allowing for a smooth, even fabric.
+* **Hook Size:** For medium-weight yarn, use a hook size between H (5mm) and I (5.5mm). This will ensure that your stitches are not too tight or too loose, allowing for a smooth, even fabric. If your pattern specifies a metric size and you need the US equivalent, the [needle and hook size converter](/needle-converter) translates between all three systems instantly.
 * **Yarn Weight:** Medium-weight yarn is ideal for amigurumi, as it provides the right balance of softness and durability. Look for yarns made from cotton, acrylic, or blends that offer excellent stitch definition.
 
 ## Understanding the Essential Stitches
@@ -40,7 +40,7 @@ The magic ring is a fundamental technique in amigurumi, allowing you to create s
 
 Once you've mastered the essential stitches, you can begin to explore various amigurumi techniques, including:
 
-* **Shaping:** Manipulating crochet stitches to create curved shapes, such as eyes or mouths.
+* **Shaping:** Manipulating crochet stitches to create curved shapes, such as eyes or mouths. The [amigurumi shapes calculator](/amigurumi-shapes) generates the exact increase and decrease schedules for spheres, ovals, and cones — so you always know how many stitches to add or remove each round.
 * **Joining:** Connecting different components, like arms or legs, to a central body.
 
 To shape and join amigurumi components:

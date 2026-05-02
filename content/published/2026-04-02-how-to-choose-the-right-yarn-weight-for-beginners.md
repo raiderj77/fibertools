@@ -18,7 +18,7 @@ Yarn weight, also known as yarn thickness, refers to the thickness of the yarn. 
 
 ### The Craft Yarn Council's Yarn Weight System
 
-The Craft Yarn Council's System of Yarn Weight Classification is widely adopted by yarn manufacturers and creators alike. This system categorizes yarns into six categories, each denoted by a letter: 0 (Lace), 1 (Super Fine), 2 (Fine), 3 (Light), 4 (Medium), 5 (Bulky), and 6 (Super Bulky). This system makes it easy to compare yarn weights from different manufacturers.
+The Craft Yarn Council's System of Yarn Weight Classification is widely adopted by yarn manufacturers and creators alike. This system categorizes yarns into eight categories numbered 0–7: Lace, Super Fine, Fine, Light, Medium, Bulky, Super Bulky, and Jumbo. This system makes it easy to compare yarn weights from different manufacturers. For a complete reference, the [yarn weight chart](/yarn-weight-chart) lists every category with its recommended needle size, hook size, and gauge range in one place.
 
 ### Understanding Yarn Types
 
@@ -53,7 +53,7 @@ Before starting your project, always swatch the yarn to ensure the gauge (tensio
 
 ### Checking Yarn Labels
 
-Always check the yarn labels for recommended yarn weights and recommended needle or hook sizes.
+Always check the yarn labels for recommended yarn weights and recommended needle or hook sizes. If you have an unlabeled yarn and need to identify its weight, the [WPI calculator](/wpi-calculator) lets you measure wraps per inch with a ruler and a pencil — the result maps directly to a CYC weight category.
 
 ### Choosing the Right Tools
 

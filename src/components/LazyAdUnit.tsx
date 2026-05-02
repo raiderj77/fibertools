@@ -13,8 +13,14 @@ interface LazyAdUnitProps {
 export default function LazyAdUnit({ slot, id, format, style }: LazyAdUnitProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [hasConsent, setHasConsent] = useState(false);
 
   useEffect(() => {
+    setHasConsent(localStorage.getItem("fiberTools_ad_consent") === "true");
+  }, []);
+
+  useEffect(() => {
+    if (!hasConsent) return;
     const el = ref.current;
     if (!el) return;
 
@@ -30,7 +36,9 @@ export default function LazyAdUnit({ slot, id, format, style }: LazyAdUnitProps)
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, []);
+  }, [hasConsent]);
+
+  if (!hasConsent) return null;
 
   return (
     <div ref={ref}>

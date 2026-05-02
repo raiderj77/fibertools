@@ -153,11 +153,38 @@ export default function KnittingToolsPage() {
           Free Knitting Calculators & Tools
         </h1>
         <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
-        <p className="text-lg text-bark-600 dark:text-cream-300 max-w-3xl leading-relaxed">
-          Knitting is precision craft — every stitch count, needle size, and yardage estimate matters.
-          These free calculators take the guesswork out of your projects, from cast-on to bind-off.
-          Plan sweaters, socks, hats, and blankets with accurate math and no signup required.
-        </p>
+        <div className="space-y-4 text-bark-600 dark:text-cream-300 max-w-3xl">
+          <p className="text-lg leading-relaxed">
+            Knitting is precision craft at its core. A sweater worked at the wrong gauge can be two
+            sizes off. A sock heel miscalculated by ten stitches won&rsquo;t fit. A raglan yoke with
+            incorrect shaping math produces a garment that bunches at the shoulders. The arithmetic
+            behind knitting isn&rsquo;t complicated — but it has to be exact, and doing it by hand
+            mid-project is where most mistakes happen.
+          </p>
+          <p className="leading-relaxed">
+            FiberTools knitting calculators are built on Craft Yarn Council (CYC) standards and
+            verified against industry measurement conventions. The gauge calculator is the foundation:
+            enter your swatch measurements and your pattern&rsquo;s target gauge, and it shows you
+            exactly how far off you are and what needle adjustment to try. The yarn calculator uses your
+            actual stitches-per-inch and skein yardage to produce an estimate based on your real
+            tension, not a chart approximation.
+          </p>
+          <p className="leading-relaxed">
+            The garment tools handle calculations that trip up even experienced knitters. The raglan
+            calculator generates a full shaping schedule — increase frequency, stitch distribution, and
+            body/sleeve split — from nothing more than your gauge and target finished measurements. The
+            sock calculator covers heel turn and gusset math for both top-down and toe-up construction.
+            The hat calculator handles crown shaping from bulky beanies through fingering-weight
+            colorwork projects with multiple decreasing methods.
+          </p>
+          <p className="leading-relaxed">
+            For finishing and project planning, the blocking calculator estimates how much your fabric
+            will grow after wet blocking — essential for lace and fitted garments where blocked
+            dimensions differ significantly from needles-off measurements. The cast-on calculator
+            adjusts your stitch count to the nearest stitch multiple for your chosen pattern. All tools
+            are free, require no account, and work on any device.
+          </p>
+        </div>
       </div>
 
       {/* Garment Tools */}

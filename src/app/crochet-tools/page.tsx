@@ -152,11 +152,38 @@ export default function CrochetToolsPage() {
           Free Crochet Calculators & Tools
         </h1>
         <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
-        <p className="text-lg text-bark-600 dark:text-cream-300 max-w-3xl leading-relaxed">
-          Every crochet project starts with math — how much yarn, what hook size, how many stitches.
-          These free calculators handle the numbers so you can focus on your craft. From amigurumi
-          shapes to granny square blankets, get accurate results instantly with no signup required.
-        </p>
+        <div className="space-y-4 text-bark-600 dark:text-cream-300 max-w-3xl">
+          <p className="text-lg leading-relaxed">
+            Every crochet project starts with numbers: how much yarn to buy, what hook size to use,
+            how many chains to start, how many rounds to increase before a flat circle becomes a sphere.
+            These calculations are straightforward in principle but tedious to do by hand — especially
+            mid-project when your gauge turns out different from the pattern&rsquo;s assumption.
+          </p>
+          <p className="leading-relaxed">
+            FiberTools crochet calculators are built on established Craft Yarn Council (CYC) standards
+            and cross-referenced against published industry measurements. The yarn yardage calculator
+            uses your actual gauge swatch data — stitches per inch, rows per inch, and skein yardage —
+            so every estimate reflects your real tension rather than a generic chart number. The gauge
+            calculator works bidirectionally: give it your swatch measurement and your target stitch
+            count, and it tells you exactly what hook size adjustment to make. Blanket sizes use
+            standard dimensions from baby (30&times;36&rdquo;) through queen (60&times;80&rdquo;) with
+            an automatic 10% buffer calculation built in for swatching and border waste.
+          </p>
+          <p className="leading-relaxed">
+            The construction tools are purpose-built for crochet geometry. The amigurumi shapes
+            calculator generates the spherical increase and decrease schedules that every amigurumi
+            pattern uses but rarely explains step by step. The circle calculator produces round-by-round
+            stitch counts for flat circles, oval foundations, and worked bases. The granny square
+            planner calculates per-color yardage and final layout dimensions for projects assembled from
+            individual squares.
+          </p>
+          <p className="leading-relaxed">
+            Whether you&rsquo;re planning your first baby blanket or calculating the exact yarn
+            requirement for a corner-to-corner king-size afghan in three colors, these tools give you a
+            precise number rather than a rough estimate. No signup required, no app to install, and
+            every tool is free.
+          </p>
+        </div>
       </div>
 
       {/* Reference & Essentials */}

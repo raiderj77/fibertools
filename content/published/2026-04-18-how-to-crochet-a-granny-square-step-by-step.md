@@ -98,4 +98,4 @@ A: The best way to store a granny square is to lay it flat in a breathable bag o
 
 Crocheting a granny square is a fun and rewarding experience that allows you to practice and improve your crochet skills while creating a beautiful and cozy project. Whether you're a beginner or an experienced crocheter, the granny square pattern is a great way to relax, unwind, and express your creativity.
 
-With this step-by-step guide, you can now create your own granny square from scratch. So why not give it a try? With the help of Fibertools.app, you can find the perfect tools and resources to create your own granny square and a wide range of other fiber crafts.
+With this step-by-step guide, you can now create your own granny square from scratch. When you're ready to plan a full project — whether a lap blanket, throw, or full-bed afghan — the [granny square planner](/granny-square-planner) calculates how many squares you need, the total yardage per color, and the finished layout dimensions. If you want to size the whole blanket first, the [blanket calculator](/blanket-calculator) gives you standard dimensions and starting chain counts for every bed and throw size.

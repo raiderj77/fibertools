@@ -112,9 +112,6 @@ A: No, while you can adjust your hook or needle size to some extent, using an in
 ### Q: How often should I test my gauge?
 A: It's essential to test your gauge with every new yarn, hook, or needle to ensure that you're getting the correct gauge.
 
-## Getting the Right Gauge with Fibertools.app
-----------------------------------------------
+## Get the Right Gauge with Free Calculators
 
-At Fibertools.app, we understand the importance of gauge in knitting and crochet. That's why we've made it our mission to provide the best tools and resources to help you master gauge and achieve stunning results. From gauge calculators to stitch markers, we have everything you need to take your projects to the next level. Try us out today and experience the difference for yourself.
-
-[Insert a call-to-action button: "Get Started with Fibertools.app"]
+Once you have your swatch measurements, our free [gauge calculator](/gauge-calculator) handles the math for you — enter your actual swatch dimensions and your pattern's target gauge, and it tells you exactly how many stitches off you are and which direction to adjust. If your gauge is off because of hook or needle size, the [needle size converter](/needle-converter) can help you identify the equivalent sizes across US, metric, and UK systems so you know what to try next.

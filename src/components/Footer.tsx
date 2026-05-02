@@ -23,6 +23,8 @@ export default function Footer() {
     { href: "/about", label: "About" },
     { href: "/privacy", label: "Privacy Policy" },
     { href: "/terms", label: "Terms" },
+    { href: "/cookies", label: "Cookie Policy" },
+    { href: "/do-not-sell", label: "Do Not Sell My Info" },
     { href: "/contact", label: "Contact" },
     { href: "/accessibility", label: "Accessibility" },
   ];

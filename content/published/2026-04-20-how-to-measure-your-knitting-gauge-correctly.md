@@ -108,8 +108,4 @@ A: Measure your gauge for each new yarn and needle combination to ensure accurat
 
 Measuring your knitting gauge is a simple process that makes a big difference in the success of your projects. By following these steps and tips, you'll be able to achieve accurate gauge measurements and enjoy the satisfaction of creating perfectly made garments. Remember to choose the right yarn and needles, block your swatch, and maintain consistency when measuring your gauge.
 
-**Join the Fibertools Community**
-
-At Fibertools, we're passionate about helping you create beautiful, perfectly made projects. Join our community to connect with other fiber enthusiasts, share tips and tricks, and get exclusive access to tutorials and resources. Download the Fibertools app today and start knitting your way to perfection!
-
-[Insert Call-to-Action Button: Download the Fibertools app]
+Once you have your swatch measurements, the free [gauge calculator](/gauge-calculator) does the comparison for you — enter your actual stitches-per-4-inches and your pattern's target, and it calculates the exact percentage difference and whether you need to go up or down a needle size. If you need to identify an unlabeled yarn's weight before you start, the [WPI calculator](/wpi-calculator) gives you the category from a simple wrapping test.
