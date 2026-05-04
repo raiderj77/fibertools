@@ -1,6 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
+// ── PDF.JS CDN ─────────────────────────────────────────────────────
+const PDFJS_VERSION = "3.11.174";
+const PDFJS_CDN = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.min.js`;
+const PDFJS_WORKER_CDN = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${PDFJS_VERSION}/pdf.worker.min.js`;
 
 // ── TYPES ─────────────────────────────────────────────────────────
 
@@ -38,6 +43,22 @@ interface DecodeResult {
   warnings: Warning[];
   era: string | null;
 }
+
+type UploadMsg = { kind: "ok" | "warn" | "err"; text: string };
+
+type PdfjsLib = {
+  getDocument: (opts: { data: ArrayBuffer }) => {
+    promise: Promise<{
+      numPages: number;
+      getPage: (n: number) => Promise<{
+        getTextContent: () => Promise<{ items: Array<{ str?: string }> }>;
+      }>;
+    }>;
+  };
+  GlobalWorkerOptions: { workerSrc: string };
+};
+
+type PdfjsWindow = Window & { pdfjsLib?: PdfjsLib };
 
 // ── LOOKUP TABLE ──────────────────────────────────────────────────
 // Longest / most-specific patterns listed first within each group
@@ -273,7 +294,6 @@ function detectEra(text: string): string | null {
 // ── CORE DECODE LOGIC ─────────────────────────────────────────────
 
 function runDecode(text: string): DecodeResult {
-  // Collect every regex match across all patterns
   const allMatches: {
     start: number;
     end: number;
@@ -296,13 +316,11 @@ function runDecode(text: string): DecodeResult {
     }
   }
 
-  // Sort by position, then by match length descending (longest wins on tie)
   allMatches.sort(
     (a, b) =>
       a.start - b.start || b.end - b.start - (a.end - a.start)
   );
 
-  // Greedy non-overlapping selection
   const chosen: typeof allMatches = [];
   let cursor = 0;
   for (const m of allMatches) {
@@ -312,7 +330,6 @@ function runDecode(text: string): DecodeResult {
     }
   }
 
-  // Build text segments for highlighted rendering
   const segments: TextSegment[] = [];
   let pos = 0;
   for (const m of chosen) {
@@ -330,7 +347,6 @@ function runDecode(text: string): DecodeResult {
     segments.push({ type: "text", content: text.slice(pos) });
   }
 
-  // Build deduplicated terms table
   const termMap = new Map<string, TermMatch>();
   for (const m of chosen) {
     const key = m.entry.label;
@@ -352,10 +368,8 @@ function runDecode(text: string): DecodeResult {
   }
   const terms = Array.from(termMap.values());
 
-  // Build warnings
   const warnings: Warning[] = [];
 
-  // Needle sizes: "No." followed by a digit
   const needleRe = /\bno\.?\s*(\d+)\b/gi;
   let nm: RegExpExecArray | null;
   const seenNeedles = new Set<string>();
@@ -370,7 +384,6 @@ function runDecode(text: string): DecodeResult {
     }
   }
 
-  // "size" near needle/hook
   if (
     /\bsize\s+\d+\b/i.test(text) &&
     /\b(needle|hook)\b/i.test(text) &&
@@ -382,7 +395,6 @@ function runDecode(text: string): DecodeResult {
     });
   }
 
-  // Yarn in ounces
   if (/\b\d+\s*oz(s)?\b/i.test(text)) {
     warnings.push({
       text: "Yarn amount listed in ounces",
@@ -390,7 +402,6 @@ function runDecode(text: string): DecodeResult {
     });
   }
 
-  // Ambiguous short abbreviations in UK context
   const hasUKSignals =
     /\b(tension|treble|cast\s+off|work\s+straight|miss)\b/i.test(text);
   if (hasUKSignals && /\bdc\b/i.test(text)) {
@@ -415,6 +426,24 @@ function runDecode(text: string): DecodeResult {
 export default function VintagePatternDecoderTool() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState<DecodeResult | null>(null);
+  const [uploadMsg, setUploadMsg] = useState<UploadMsg | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Load pdf.js from CDN once on mount
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if ((window as PdfjsWindow).pdfjsLib) return;
+    const script = document.createElement("script");
+    script.src = PDFJS_CDN;
+    script.async = true;
+    script.onload = () => {
+      const pdfjs = (window as PdfjsWindow).pdfjsLib;
+      if (pdfjs) {
+        pdfjs.GlobalWorkerOptions.workerSrc = PDFJS_WORKER_CDN;
+      }
+    };
+    document.head.appendChild(script);
+  }, []);
 
   function handleDecode() {
     if (!input.trim()) return;
@@ -424,268 +453,452 @@ export default function VintagePatternDecoderTool() {
   function handleClear() {
     setInput("");
     setResult(null);
+    setUploadMsg(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    e.target.value = ""; // allow re-selecting same file
+
+    const ext = file.name.split(".").pop()?.toLowerCase() ?? "";
+
+    if (ext === "txt") {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setInput(reader.result as string);
+        setResult(null);
+        setUploadMsg({ kind: "ok", text: `Loaded: ${file.name}` });
+      };
+      reader.onerror = () => {
+        setUploadMsg({ kind: "err", text: "Could not read the file. Please try again." });
+      };
+      reader.readAsText(file);
+      return;
+    }
+
+    if (ext === "pdf") {
+      const pdfjs = (window as PdfjsWindow).pdfjsLib;
+      if (!pdfjs) {
+        setUploadMsg({ kind: "err", text: "PDF support is still loading — please wait a moment and try again." });
+        return;
+      }
+      setUploadMsg({ kind: "ok", text: "Extracting text from PDF…" });
+      try {
+        const buffer = await file.arrayBuffer();
+        const doc = await pdfjs.getDocument({ data: buffer }).promise;
+        let text = "";
+        for (let i = 1; i <= doc.numPages; i++) {
+          const page = await doc.getPage(i);
+          const content = await page.getTextContent();
+          const pageText = (content.items as Array<{ str?: string }>)
+            .map((item) => item.str ?? "")
+            .join(" ");
+          text += pageText + "\n\n";
+        }
+        const extracted = text.trim();
+        setInput(extracted);
+        setResult(null);
+        setUploadMsg({
+          kind: "ok",
+          text: `Loaded: ${file.name} (${doc.numPages} page${doc.numPages > 1 ? "s" : ""})`,
+        });
+      } catch {
+        setUploadMsg({
+          kind: "err",
+          text: "Could not extract text from this PDF. The file may be image-based or password-protected. Copy the text manually.",
+        });
+      }
+      return;
+    }
+
+    if (["jpg", "jpeg", "png", "gif", "webp"].includes(ext)) {
+      setUploadMsg({
+        kind: "warn",
+        text: "Image OCR is not supported. Please type or copy the pattern text from the image manually into the text area below.",
+      });
+      return;
+    }
+
+    setUploadMsg({
+      kind: "err",
+      text: `Unsupported file type (.${ext}). Please upload a .txt or .pdf file.`,
+    });
+  }
+
+  function handleCopyDecoded() {
+    if (!result) return;
+    const decoded = result.segments.map((s) => s.content).join("");
+    navigator.clipboard.writeText(decoded);
+  }
+
+  function handleDownload() {
+    if (!result) return;
+    const decoded = result.segments.map((s) => s.content).join("");
+    const blob = new Blob([decoded], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "decoded-pattern.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   }
 
   const hasOutput = result !== null;
 
   return (
-    <div className="space-y-6">
-      {/* Input */}
-      <div>
-        <label
-          className="label"
-          htmlFor="vintage-pattern-input"
-        >
-          Paste your vintage pattern text
-        </label>
-        <textarea
-          id="vintage-pattern-input"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          rows={8}
-          placeholder={
-            "Paste your vintage pattern text here...\n\nExample:\nCast on 48 sts. Work 4 rows in moss st.\nRow 5: K2, wl fwd, sl1, wl bk, *k6, wl fwd, sl1, wl bk; rep from * to last 2 sts, k2.\nTension: 20 sts and 28 rows = 4 in on No. 9 needles.\nMaterials: 6 oz 4-ply wool."
+    <>
+      {/* Print styles — only the decoded output renders when printing */}
+      <style>{`
+        @media print {
+          body > * { visibility: hidden !important; }
+          .vintage-print-output,
+          .vintage-print-output * { visibility: visible !important; }
+          .vintage-print-output {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 24px;
+            background: #fff;
+            color: #000;
+            font-family: Georgia, serif;
           }
-          className="w-full rounded-xl border border-cream-300 dark:border-bark-600 bg-white dark:bg-bark-800 px-3 py-2.5 text-sm font-mono text-bark-800 dark:text-cream-100 placeholder:text-bark-300 dark:placeholder:text-bark-500 focus:outline-none focus:ring-2 focus:ring-plum-300 dark:focus:ring-plum-700 resize-y leading-relaxed"
-          aria-describedby="input-hint"
-        />
-        <p
-          id="input-hint"
-          className="text-xs text-bark-400 dark:text-bark-500 mt-1"
-        >
-          Best with UK vintage knitting or crochet patterns from 1940–1990. Paste a row, section, or the full pattern.
-        </p>
-      </div>
+          .vintage-print-output mark {
+            background: #fef3c7 !important;
+            color: #78350f !important;
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+          }
+          .vintage-print-hide { display: none !important; }
+        }
+      `}</style>
 
-      {/* Action buttons */}
-      <div className="flex flex-wrap gap-3">
-        <button
-          type="button"
-          onClick={handleDecode}
-          disabled={!input.trim()}
-          className="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 active:bg-amber-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-colors text-sm"
-        >
-          🔍 Decode Pattern
-        </button>
-        {(input || hasOutput) && (
+      <div className="space-y-6">
+
+        {/* ── File upload ─────────────────────────────────────────── */}
+        <div>
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".txt,.pdf,.jpg,.jpeg,.png"
+            onChange={handleFileChange}
+            className="sr-only"
+            aria-label="Upload a pattern file"
+            tabIndex={-1}
+          />
           <button
             type="button"
-            onClick={handleClear}
-            className="btn-secondary text-sm"
+            onClick={() => fileInputRef.current?.click()}
+            className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border-2 border-dashed border-cream-300 dark:border-bark-600 bg-cream-50 dark:bg-bark-800/50 text-sm font-medium text-bark-600 dark:text-bark-300 hover:border-amber-400 dark:hover:border-amber-600 hover:bg-amber-50 dark:hover:bg-amber-900/10 transition-colors"
+            aria-describedby="upload-hint"
           >
-            Clear
+            <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+            </svg>
+            Upload Pattern File
           </button>
-        )}
-      </div>
+          <p id="upload-hint" className="text-xs text-bark-400 dark:text-bark-500 mt-1.5">
+            Supports .txt and .pdf files. Images (.jpg, .png) are not supported for OCR.
+          </p>
 
-      {/* Results */}
-      {result && (
-        <div className="space-y-6">
-
-          {/* Era detection banner */}
-          {result.era && (
-            <div className="p-4 bg-plum-50 dark:bg-plum-900/10 border border-plum-200 dark:border-plum-800 rounded-xl">
-              <p className="text-xs font-semibold uppercase tracking-wider text-plum-500 dark:text-plum-400 mb-1">
-                🕰️ Era Detection
-              </p>
-              <p className="text-sm text-plum-700 dark:text-plum-300 leading-relaxed">
-                {result.era}
-              </p>
-            </div>
-          )}
-
-          {/* Decoded Pattern */}
-          <div>
-            <h2 className="section-heading">Decoded Pattern</h2>
+          {/* Upload status message */}
+          {uploadMsg && (
             <div
-              className="font-mono text-sm p-4 bg-cream-50 dark:bg-bark-800 border border-cream-300 dark:border-bark-600 rounded-xl whitespace-pre-wrap leading-relaxed"
-              role="region"
-              aria-label="Decoded pattern output"
+              role="status"
+              aria-live="polite"
+              className={`mt-2 flex items-start gap-2 text-sm rounded-lg px-3 py-2 ${
+                uploadMsg.kind === "ok"
+                  ? "bg-sage-50 dark:bg-sage-900/10 text-sage-700 dark:text-sage-300 border border-sage-200 dark:border-sage-800"
+                  : uploadMsg.kind === "warn"
+                  ? "bg-amber-50 dark:bg-amber-900/10 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-800"
+                  : "bg-red-50 dark:bg-red-900/10 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800"
+              }`}
             >
-              {result.segments.length > 0 &&
-                result.segments.map((seg, i) =>
-                  seg.type === "text" ? (
-                    <span key={i}>{seg.content}</span>
-                  ) : (
-                    <mark
-                      key={i}
-                      className="bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 rounded px-0.5 not-italic"
-                      title={`Original: "${seg.original}"`}
-                    >
-                      {seg.content}
-                    </mark>
-                  )
-                )}
-              {result.terms.length === 0 && (
-                <span className="text-bark-400 dark:text-bark-500 not-italic">
-                  No vintage or UK terms were detected in this text.
-                </span>
-              )}
-            </div>
-            {result.terms.length > 0 && (
-              <p className="text-xs text-bark-400 dark:text-bark-500 mt-1.5">
-                Substituted terms are highlighted in amber. Hover to see the original.
-              </p>
-            )}
-          </div>
-
-          {/* Terms Found table */}
-          {result.terms.length > 0 && (
-            <div>
-              <h2 className="section-heading">
-                Terms Found ({result.terms.length})
-              </h2>
-              <div className="overflow-x-auto rounded-xl border border-cream-300 dark:border-bark-600">
-                <table className="w-full text-sm border-collapse">
-                  <thead>
-                    <tr className="bg-cream-100 dark:bg-bark-700 border-b border-cream-300 dark:border-bark-600">
-                      <th className="text-left px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-400">
-                        Original
-                      </th>
-                      <th className="text-left px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-400">
-                        Modern Equivalent
-                      </th>
-                      <th className="text-left px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-400 hidden sm:table-cell">
-                        Note
-                      </th>
-                      <th className="text-right px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-400 hidden md:table-cell">
-                        Count
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {result.terms.map((term, i) => (
-                      <tr
-                        key={i}
-                        className="border-b last:border-b-0 border-cream-200 dark:border-bark-700 hover:bg-cream-50 dark:hover:bg-bark-800/50"
-                      >
-                        <td className="px-4 py-3 text-bark-700 dark:text-cream-200 font-medium font-mono text-xs">
-                          {term.examples.join(" / ")}
-                        </td>
-                        <td className="px-4 py-3">
-                          <span className="inline-block px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 rounded text-xs font-medium">
-                            {term.modern}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3 text-bark-500 dark:text-bark-400 text-xs hidden sm:table-cell leading-snug">
-                          {term.note}
-                        </td>
-                        <td className="px-4 py-3 text-bark-400 dark:text-bark-500 text-xs text-right hidden md:table-cell">
-                          {term.count > 1 ? `×${term.count}` : "—"}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+              <span aria-hidden="true" className="shrink-0 mt-px">
+                {uploadMsg.kind === "ok" ? "✓" : uploadMsg.kind === "warn" ? "ℹ" : "✕"}
+              </span>
+              <span>{uploadMsg.text}</span>
             </div>
           )}
+        </div>
 
-          {/* Warnings */}
-          {result.warnings.length > 0 && (
-            <div>
-              <h2 className="section-heading">
-                ⚠️ Manual Verification Needed ({result.warnings.length})
-              </h2>
-              <div className="space-y-3">
-                {result.warnings.map((w, i) => (
-                  <div
-                    key={i}
-                    className="p-4 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl"
-                  >
-                    <p className="text-sm font-semibold text-amber-700 dark:text-amber-300 mb-1">
-                      {w.text}
-                    </p>
-                    <p className="text-sm text-amber-700 dark:text-amber-400 leading-relaxed">
-                      {w.note}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
+        {/* Divider */}
+        <div className="flex items-center gap-3 text-xs text-bark-300 dark:text-bark-600 select-none">
+          <span className="flex-1 border-t border-cream-200 dark:border-bark-700" aria-hidden="true" />
+          or paste text below
+          <span className="flex-1 border-t border-cream-200 dark:border-bark-700" aria-hidden="true" />
+        </div>
+
+        {/* ── Textarea input ──────────────────────────────────────── */}
+        <div>
+          <label className="label" htmlFor="vintage-pattern-input">
+            Pattern text
+          </label>
+          <textarea
+            id="vintage-pattern-input"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            rows={8}
+            placeholder={
+              "Paste your vintage pattern text here...\n\nExample:\nCast on 48 sts. Work 4 rows in moss st.\nRow 5: K2, wl fwd, sl1, wl bk, *k6, wl fwd, sl1, wl bk; rep from * to last 2 sts, k2.\nTension: 20 sts and 28 rows = 4 in on No. 9 needles.\nMaterials: 6 oz 4-ply wool."
+            }
+            className="w-full rounded-xl border border-cream-300 dark:border-bark-600 bg-white dark:bg-bark-800 px-3 py-2.5 text-sm font-mono text-bark-800 dark:text-cream-100 placeholder:text-bark-300 dark:placeholder:text-bark-500 focus:outline-none focus:ring-2 focus:ring-plum-300 dark:focus:ring-plum-700 resize-y leading-relaxed"
+            aria-describedby="input-hint"
+          />
+          <p id="input-hint" className="text-xs text-bark-400 dark:text-bark-500 mt-1">
+            Best with UK vintage knitting or crochet patterns from 1940–1990. Paste a row, section, or the full pattern.
+          </p>
+        </div>
+
+        {/* ── Action buttons ─────────────────────────────────────── */}
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={handleDecode}
+            disabled={!input.trim()}
+            className="px-6 py-2.5 bg-amber-500 hover:bg-amber-600 active:bg-amber-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-semibold rounded-xl transition-colors text-sm"
+          >
+            🔍 Decode Pattern
+          </button>
+          {(input || hasOutput) && (
+            <button
+              type="button"
+              onClick={handleClear}
+              className="btn-secondary text-sm"
+            >
+              Clear
+            </button>
           )}
+        </div>
 
-          {/* No matches at all */}
-          {result.terms.length === 0 &&
-            result.warnings.length === 0 &&
-            !result.era && (
-              <div className="p-4 bg-sage-50 dark:bg-sage-900/10 border border-sage-200 dark:border-sage-800 rounded-xl">
-                <p className="text-sm text-sage-700 dark:text-sage-300 leading-relaxed">
-                  No vintage or UK terms were detected. This pattern may already use modern US terminology, or it may contain terms outside this decoder&apos;s lookup table. Try pasting a section that includes gauge, stitch instructions, or material requirements.
+        {/* ── Results ────────────────────────────────────────────── */}
+        {result && (
+          <div className="vintage-print-output space-y-6">
+
+            {/* Era detection banner */}
+            {result.era && (
+              <div className="p-4 bg-plum-50 dark:bg-plum-900/10 border border-plum-200 dark:border-plum-800 rounded-xl">
+                <p className="text-xs font-semibold uppercase tracking-wider text-plum-500 dark:text-plum-400 mb-1">
+                  🕰️ Era Detection
+                </p>
+                <p className="text-sm text-plum-700 dark:text-plum-300 leading-relaxed">
+                  {result.era}
                 </p>
               </div>
             )}
 
-          {/* Copy decoded text */}
-          {result.terms.length > 0 && (
-            <button
-              type="button"
-              onClick={() => {
-                const decoded = result.segments.map((s) => s.content).join("");
-                navigator.clipboard.writeText(decoded);
-              }}
-              className="btn-secondary text-sm"
-              aria-label="Copy decoded pattern text to clipboard"
-            >
-              📋 Copy decoded text
-            </button>
-          )}
-        </div>
-      )}
+            {/* Decoded Pattern */}
+            <div>
+              <h2 className="section-heading">Decoded Pattern</h2>
+              <div
+                className="font-mono text-sm p-4 bg-cream-50 dark:bg-bark-800 border border-cream-300 dark:border-bark-600 rounded-xl whitespace-pre-wrap leading-relaxed"
+                role="region"
+                aria-label="Decoded pattern output"
+              >
+                {result.segments.length > 0 &&
+                  result.segments.map((seg, i) =>
+                    seg.type === "text" ? (
+                      <span key={i}>{seg.content}</span>
+                    ) : (
+                      <mark
+                        key={i}
+                        className="bg-amber-100 dark:bg-amber-900/40 text-amber-900 dark:text-amber-200 rounded px-0.5 not-italic"
+                        title={`Original: "${seg.original}"`}
+                      >
+                        {seg.content}
+                      </mark>
+                    )
+                  )}
+                {result.terms.length === 0 && (
+                  <span className="text-bark-400 dark:text-bark-500 not-italic">
+                    No vintage or UK terms were detected in this text.
+                  </span>
+                )}
+              </div>
+              {result.terms.length > 0 && (
+                <p className="text-xs text-bark-400 dark:text-bark-500 mt-1.5 vintage-print-hide">
+                  Substituted terms are highlighted in amber. Hover to see the original.
+                </p>
+              )}
+            </div>
 
-      {/* Quick reference card */}
-      <div className="result-card">
-        <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-4">
-          💡 What This Decoder Handles
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm">
-          <div>
-            <p className="font-medium text-bark-600 dark:text-bark-300 mb-2">
-              UK → US Crochet
-            </p>
-            <ul className="space-y-1 text-xs text-bark-500 dark:text-bark-400">
-              <li>double crochet → single crochet (sc)</li>
-              <li>treble → double crochet (dc)</li>
-              <li>half treble → half double crochet (hdc)</li>
-              <li>double treble → treble crochet (tr)</li>
-              <li>miss → skip</li>
-            </ul>
+            {/* Terms Found table */}
+            {result.terms.length > 0 && (
+              <div>
+                <h2 className="section-heading">
+                  Terms Found ({result.terms.length})
+                </h2>
+                <div className="overflow-x-auto rounded-xl border border-cream-300 dark:border-bark-600">
+                  <table className="w-full text-sm border-collapse">
+                    <thead>
+                      <tr className="bg-cream-100 dark:bg-bark-700 border-b border-cream-300 dark:border-bark-600">
+                        <th className="text-left px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-400">
+                          Original
+                        </th>
+                        <th className="text-left px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-400">
+                          Modern Equivalent
+                        </th>
+                        <th className="text-left px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-400 hidden sm:table-cell">
+                          Note
+                        </th>
+                        <th className="text-right px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-400 hidden md:table-cell">
+                          Count
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {result.terms.map((term, i) => (
+                        <tr
+                          key={i}
+                          className="border-b last:border-b-0 border-cream-200 dark:border-bark-700 hover:bg-cream-50 dark:hover:bg-bark-800/50"
+                        >
+                          <td className="px-4 py-3 text-bark-700 dark:text-cream-200 font-medium font-mono text-xs">
+                            {term.examples.join(" / ")}
+                          </td>
+                          <td className="px-4 py-3">
+                            <span className="inline-block px-2 py-0.5 bg-amber-100 dark:bg-amber-900/30 text-amber-800 dark:text-amber-200 rounded text-xs font-medium">
+                              {term.modern}
+                            </span>
+                          </td>
+                          <td className="px-4 py-3 text-bark-500 dark:text-bark-400 text-xs hidden sm:table-cell leading-snug">
+                            {term.note}
+                          </td>
+                          <td className="px-4 py-3 text-bark-400 dark:text-bark-500 text-xs text-right hidden md:table-cell">
+                            {term.count > 1 ? `×${term.count}` : "—"}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* Warnings */}
+            {result.warnings.length > 0 && (
+              <div>
+                <h2 className="section-heading">
+                  ⚠️ Manual Verification Needed ({result.warnings.length})
+                </h2>
+                <div className="space-y-3">
+                  {result.warnings.map((w, i) => (
+                    <div
+                      key={i}
+                      className="p-4 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl"
+                    >
+                      <p className="text-sm font-semibold text-amber-700 dark:text-amber-300 mb-1">
+                        {w.text}
+                      </p>
+                      <p className="text-sm text-amber-700 dark:text-amber-400 leading-relaxed">
+                        {w.note}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* No matches at all */}
+            {result.terms.length === 0 &&
+              result.warnings.length === 0 &&
+              !result.era && (
+                <div className="p-4 bg-sage-50 dark:bg-sage-900/10 border border-sage-200 dark:border-sage-800 rounded-xl">
+                  <p className="text-sm text-sage-700 dark:text-sage-300 leading-relaxed">
+                    No vintage or UK terms were detected. This pattern may already use modern US terminology, or it may contain terms outside this decoder&apos;s lookup table. Try pasting a section that includes gauge, stitch instructions, or material requirements.
+                  </p>
+                </div>
+              )}
+
+            {/* Export / share buttons */}
+            {result.terms.length > 0 && (
+              <div className="flex flex-wrap gap-2 vintage-print-hide">
+                <button
+                  type="button"
+                  onClick={handleCopyDecoded}
+                  className="btn-secondary text-sm"
+                  aria-label="Copy decoded pattern text to clipboard"
+                >
+                  📋 Copy
+                </button>
+                <button
+                  type="button"
+                  onClick={handleDownload}
+                  className="btn-secondary text-sm"
+                  aria-label="Download decoded pattern as a text file"
+                >
+                  ⬇ Download .txt
+                </button>
+                <button
+                  type="button"
+                  onClick={() => window.print()}
+                  className="btn-secondary text-sm"
+                  aria-label="Print decoded pattern"
+                >
+                  🖨 Print
+                </button>
+              </div>
+            )}
           </div>
-          <div>
-            <p className="font-medium text-bark-600 dark:text-bark-300 mb-2">
-              UK → US Knitting
-            </p>
-            <ul className="space-y-1 text-xs text-bark-500 dark:text-bark-400">
-              <li>tension → gauge</li>
-              <li>cast off → bind off</li>
-              <li>wool over / forward → yarn over (yo)</li>
-              <li>work straight → work even</li>
-            </ul>
-          </div>
-          <div>
-            <p className="font-medium text-bark-600 dark:text-bark-300 mb-2">
-              Vintage Abbreviations
-            </p>
-            <ul className="space-y-1 text-xs text-bark-500 dark:text-bark-400">
-              <li>wl fwd → yarn forward (yf)</li>
-              <li>wl bk → yarn back (yb)</li>
-              <li>psso → pass slipped stitch over</li>
-              <li>tbl → through back loop</li>
-              <li>sl1, m1, inc, dec, alt, cont, rem, beg, approx</li>
-            </ul>
-          </div>
-          <div>
-            <p className="font-medium text-bark-600 dark:text-bark-300 mb-2">
-              Flagged for Manual Check
-            </p>
-            <ul className="space-y-1 text-xs text-bark-500 dark:text-bark-400">
-              <li>Needle/hook sizes (No. X)</li>
-              <li>Yarn amounts in ounces</li>
-              <li>&apos;dc&apos; / &apos;tr&apos; in UK-detected context</li>
-            </ul>
+        )}
+
+        {/* ── Quick reference card ────────────────────────────────── */}
+        <div className="result-card vintage-print-hide">
+          <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-4">
+            💡 What This Decoder Handles
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 text-sm">
+            <div>
+              <p className="font-medium text-bark-600 dark:text-bark-300 mb-2">
+                UK → US Crochet
+              </p>
+              <ul className="space-y-1 text-xs text-bark-500 dark:text-bark-400">
+                <li>double crochet → single crochet (sc)</li>
+                <li>treble → double crochet (dc)</li>
+                <li>half treble → half double crochet (hdc)</li>
+                <li>double treble → treble crochet (tr)</li>
+                <li>miss → skip</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-bark-600 dark:text-bark-300 mb-2">
+                UK → US Knitting
+              </p>
+              <ul className="space-y-1 text-xs text-bark-500 dark:text-bark-400">
+                <li>tension → gauge</li>
+                <li>cast off → bind off</li>
+                <li>wool over / forward → yarn over (yo)</li>
+                <li>work straight → work even</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-bark-600 dark:text-bark-300 mb-2">
+                Vintage Abbreviations
+              </p>
+              <ul className="space-y-1 text-xs text-bark-500 dark:text-bark-400">
+                <li>wl fwd → yarn forward (yf)</li>
+                <li>wl bk → yarn back (yb)</li>
+                <li>psso → pass slipped stitch over</li>
+                <li>tbl → through back loop</li>
+                <li>sl1, m1, inc, dec, alt, cont, rem, beg, approx</li>
+              </ul>
+            </div>
+            <div>
+              <p className="font-medium text-bark-600 dark:text-bark-300 mb-2">
+                Flagged for Manual Check
+              </p>
+              <ul className="space-y-1 text-xs text-bark-500 dark:text-bark-400">
+                <li>Needle/hook sizes (No. X)</li>
+                <li>Yarn amounts in ounces</li>
+                <li>&apos;dc&apos; / &apos;tr&apos; in UK-detected context</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

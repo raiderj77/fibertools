@@ -35,6 +35,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# next-pwa generated service worker (build artifact)
+/public/sw.js
+/public/workbox-*.js
+
 # Empire SEO Machine
 data_sources/config/
 data_sources/cache/
