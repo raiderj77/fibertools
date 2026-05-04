@@ -377,6 +377,17 @@ export const tools: Tool[] = [
     ready: true,
     keywords: ["yarn stash calculator", "partial skein yardage", "how much yarn is left", "yarn weight yardage chart"],
   },
+  {
+    slug: "vintage-pattern-decoder",
+    name: "Vintage Pattern Decoder",
+    shortName: "Pattern Decoder",
+    description: "Translate vintage and UK knitting and crochet patterns into modern US terminology. Converts UK-to-US stitch names, archaic abbreviations, and flags era-specific measurements.",
+    category: "both",
+    icon: "📜",
+    tier: 1,
+    ready: true,
+    keywords: ["vintage pattern decoder", "UK to US crochet conversion", "old crochet abbreviations", "vintage knitting pattern translator", "translate vintage pattern"],
+  },
 ];
 
 /** Hand-curated related tool mappings for targeted internal linking. */
@@ -412,6 +423,7 @@ const relatedToolMap: Record<string, string[]> = {
   "raglan-calculator": ["sleeve-calculator", "gauge-calculator", "yarn-calculator", "hat-calculator"],
   "blocking-calculator": ["yarn-weight-chart", "gauge-calculator", "stash-estimator", "wpi-calculator"],
   "stash-estimator": ["yarn-weight-chart", "wpi-calculator", "yarn-calculator", "project-cost-calculator"],
+  "vintage-pattern-decoder": ["uk-to-us-converter", "abbreviation-glossary", "stitch-quick-reference", "needle-converter"],
 };
 
 export function getToolBySlug(slug: string): Tool | undefined {

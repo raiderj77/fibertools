@@ -1926,4 +1926,77 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       ],
     },
   },
+  "vintage-pattern-decoder": {
+    answerCapsule: "Paste vintage or UK pattern text to get an instant decoded version with UK-to-US stitch substitutions, old abbreviation translations, era detection, and warnings about needle sizes or measurements that need conversion.",
+    skillLevel: "beginner",
+    introduction: {
+      title: "Why Vintage Patterns Are Hard to Follow",
+      paragraphs: [
+        "Vintage knitting and crochet patterns are a treasure trove of beautiful designs — but their terminology can read like a foreign language. A pattern that calls for 'double crochet' may mean something entirely different from what you expect, 'tension' replaces the word you know as gauge, and abbreviations like 'wl fwd' or 'psso' appear without explanation.",
+        "The Vintage Pattern Decoder translates all of this automatically so you can focus on making the project instead of deciphering the instructions.",
+      ],
+    },
+    whatIs: {
+      title: "What Is the Vintage Pattern Decoder?",
+      paragraphs: [
+        "The Vintage Pattern Decoder is a pattern translation tool that converts vintage and UK knitting and crochet terminology into modern US equivalents. It handles the most common source of confusion — the UK-to-US crochet stitch name offset — as well as archaic knitting abbreviations, era-specific measurement conventions, and needle sizing systems that predate current standards.",
+        "The tool highlights every substitution in your decoded text and shows a table of every term it found, so nothing gets missed.",
+      ],
+    },
+    howCalculated: {
+      title: "How Does Pattern Translation Work?",
+      paragraphs: [
+        "The decoder uses a lookup table of over twenty-five term patterns, ordered from longest to shortest so that multi-word phrases like 'double treble crochet' are caught before the shorter 'treble crochet' or standalone 'treble.' This ordering matters because crochet stitch names nest inside each other — catching the wrong level would produce an incorrect translation.",
+        "Once all matches are found, the tool uses a greedy non-overlapping selection algorithm: matches are sorted by their position in the text, and any match that overlaps a previously selected match is skipped. This ensures each part of your pattern is translated exactly once, with the most specific match winning.",
+        "The tool also runs a separate era-detection pass over the input. Signals like 'wool over,' 'wl fwd,' UK needle numbering (No. 10, No. 12), and yarn listed in ounces all contribute to an era estimate that appears as a banner above your decoded text.",
+      ],
+    },
+    howToUse: {
+      title: "How to Use the Vintage Pattern Decoder",
+      paragraphs: [
+        "Paste your vintage pattern text — or just the section you are working on — into the text area. You do not need to paste the entire pattern at once; decoding a single row or round at a time works just as well.",
+        "Click 'Decode Pattern.' The tool scans the text and highlights every substitution it made in amber so you can see exactly what changed at a glance. Review the Terms Found table for the original term, modern US equivalent, and a note explaining each conversion.",
+        "Check the Warnings section if it appears. Warnings flag items that need manual attention — vintage needle sizes, yarn listed in ounces, and short abbreviations like 'dc' or 'tr' that are genuinely ambiguous without knowing the pattern's origin.",
+      ],
+    },
+    understandingResults: {
+      title: "Understanding Your Results",
+      paragraphs: [
+        "The era banner at the top of your results gives a best estimate of when and where the pattern originated based on the terminology it uses. Use this as context, not a guarantee: many patterns mixed conventions or were reprinted without updating the terminology.",
+        "Highlighted terms in the decoded text are substitutions the decoder made with high confidence. The Terms Found table below lists every substitution with its original form, modern equivalent, and a brief explanatory note.",
+        "Warnings appear when the decoder finds something it cannot automatically fix. The most common warnings are vintage needle sizes (UK needle numbering runs in the opposite direction from US sizes — a UK No. 12 is approximately a US size 1, not a size 12), yarn listed in ounces instead of yards, and the abbreviations 'dc' and 'tr' in ambiguous context.",
+        "The quick reference card at the bottom of the tool shows the complete UK-to-US crochet stitch conversion table and the most common vintage abbreviations. Keep this visible when working through a long pattern.",
+      ],
+    },
+    proTips: {
+      title: "Pro Tips for Vintage Patterns",
+      tips: [
+        "Always check the publisher and publication date before you start. UK publishers like Patons, Sirdar, and Robin used UK terminology; American publishers like Coats and Clark used US terminology.",
+        "When a pattern says 'tension' and gives a stitch count over 10 cm (not 4 inches), it was published under UK/metric conventions. Recalculate your gauge swatch to match the metric measurement exactly.",
+        "Vintage needle sizes are especially tricky. UK steel crochet hook sizes run in reverse — a UK size 14 is tiny, not large. Always look up a conversion chart before choosing hooks.",
+        "For patterns that list yarn in ounces, note the fiber content. A 2-ounce ball of wool has different yardage than a 2-ounce ball of cotton. Use a yardage estimation tool to get an approximate yard count before substituting yarn.",
+        "If your decoded pattern still has confusing rows, try decoding just one row at a time. Shorter inputs make it easier to verify each substitution against the original before moving to the next row.",
+        "Make a paper copy of the decoded pattern and mark up each row as you complete it. Vintage patterns rarely include the row markers that modern patterns use, so tracking your place manually prevents costly mistakes.",
+      ],
+    },
+    commonMistakes: [
+      "Assuming 'dc' means US double crochet in every pattern — in UK and vintage patterns 'dc' is a single crochet (US sc). Check for the word 'tension' as a UK signal.",
+      "Skipping the tension/gauge swatch. Vintage patterns were written for yarns that no longer exist. Always swatch with your actual yarn before casting on.",
+      "Using vintage needle size numbers as US sizes. UK needle numbers run in reverse — a UK No. 12 knitting needle is roughly a US size 1.",
+      "Ignoring the era banner. Era detection gives context about other unlisted conventions that may be in use throughout the pattern.",
+    ],
+    useCases: [
+      "Working from a grandmother's handwritten pattern or a photocopied vintage booklet",
+      "Following a UK pattern bought on Etsy or Ravelry from a British designer",
+      "Reproducing a mid-century style garment using an original magazine pattern",
+      "Teaching a new crafter to understand why pattern books from different eras use different terms",
+      "Adapting a vintage design to modern yarn weights and hook sizes",
+    ],
+    internalLinks: [
+      { href: "/uk-to-us-converter", label: "UK to US Converter", description: "Full side-by-side stitch name reference for UK and US crochet terminology" },
+      { href: "/abbreviation-glossary", label: "Abbreviation Glossary", description: "Every modern knitting and crochet abbreviation explained" },
+      { href: "/needle-converter", label: "Needle Size Converter", description: "Convert between US, UK, metric, and vintage needle sizing systems" },
+      { href: "/stitch-quick-reference", label: "Stitch Quick Reference", description: "Visual guide to common stitches for knitting and crochet" },
+    ],
+  },
 };

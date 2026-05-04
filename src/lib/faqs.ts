@@ -255,4 +255,12 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "Can I use this for cakes and hanks?", a: "Yes. The formula works for any yarn put-up — skeins, balls, cakes, or hanks. You need the full weight and yardage from the label, plus the current weight of your partial amount." },
     { q: "How do I identify unlabeled yarn weight?", a: "Measure wraps per inch by wrapping yarn snugly around a ruler. 14+ WPI is fingering, 11–12 is DK, 9–10 is worsted, 6–8 is bulky. Our WPI Calculator gives a detailed breakdown with needle and hook recommendations." },
   ],
+  "vintage-pattern-decoder": [
+    { q: "Why do vintage crochet patterns use different stitch names?", a: "Most vintage crochet patterns used British (UK) terminology. In UK notation, a double crochet is the US single crochet, and a treble crochet is the US double crochet. This one-stitch offset is the most common source of confusion in old patterns." },
+    { q: "What does 'tension' mean in a vintage pattern?", a: "Tension is the vintage and British term for gauge — the number of stitches and rows per inch measured over a swatch. Matching tension is just as critical in vintage patterns as matching gauge is in modern ones." },
+    { q: "What does 'wl fwd' mean in a knitting pattern?", a: "'Wl fwd' (wool forward) is a vintage British abbreviation for yarn over (yo). It means bring the working yarn to the front before the next stitch, creating a new stitch and an eyelet. You will also see it written as 'wf' or 'wool forward.'" },
+    { q: "How do I tell if a vintage pattern uses UK or US crochet terms?", a: "Key UK signals: the word 'tension' instead of 'gauge,' needle sizes listed as 'No. 12' or similar UK numbering, yarn listed in ounces without metric, and UK publisher brands like Patons, Sirdar, or Robin. US patterns say 'gauge' and use US needle sizes." },
+    { q: "What does 'psso' mean in a vintage knitting pattern?", a: "'Psso' stands for 'pass slipped stitch over,' a left-leaning decrease. You slip one stitch knitwise, knit the next stitch, then lift the slipped stitch over the knitted stitch and off the needle. It is equivalent to SKP (slip, knit, pass over) in modern patterns." },
+    { q: "What is 'cast off' in a vintage pattern?", a: "'Cast off' is the vintage and British term for bind off. Both instructions tell you to close the live stitches at the end of a piece or section so they cannot unravel. The technique is identical — only the name differs." },
+  ],
 };
