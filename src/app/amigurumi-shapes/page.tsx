@@ -4,9 +4,9 @@ import AnswerBlock from "@/components/AnswerBlock";
 import AmigurumiShapesTool from "./AmigurumiShapesTool";
 
 export const metadata: Metadata = {
-  title: "Amigurumi Shape Calculator — Crochet Spheres",
+  title: "Crochet Sphere Calculator - Amigurumi Shapes Generator",
   description:
-    "Calculate round-by-round increases and decreases for crochet spheres, cones, cylinders, and ovals. Free amigurumi shape patterns — no signup.",
+    "Calculate increases and decreases for crochet spheres, cones, cylinders, and ovals. Free amigurumi shape calculator with round-by-round patterns.",
   keywords: [
     "amigurumi shapes",
     "crochet sphere pattern",
@@ -25,17 +25,17 @@ export const metadata: Metadata = {
     "amigurumi pattern generator",
   ],
   openGraph: {
-    title: "Amigurumi Shape Calculator — Crochet Spheres",
+    title: "Crochet Sphere Calculator - Amigurumi Shapes Generator",
     description:
-      "Calculate round-by-round increases and decreases for crochet spheres, cones, cylinders, and ovals. Free amigurumi shape patterns — no signup.",
+      "Calculate increases and decreases for crochet spheres, cones, cylinders, and ovals. Free amigurumi shape calculator with round-by-round patterns.",
     url: "https://fibertools.app/amigurumi-shapes",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Amigurumi Shape Calculator — Crochet Spheres" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Crochet Sphere Calculator - Amigurumi Shapes Generator" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Amigurumi Shape Calculator — Crochet Spheres",
+    title: "Crochet Sphere Calculator - Amigurumi Shapes Generator",
     description:
-      "Calculate round-by-round increases and decreases for crochet spheres, cones, cylinders, and ovals. Free amigurumi shape patterns — no signup.",
+      "Calculate increases and decreases for crochet spheres, cones, cylinders, and ovals. Free amigurumi shape calculator with round-by-round patterns.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/amigurumi-shapes" },

@@ -4,9 +4,9 @@ import AnswerBlock from "@/components/AnswerBlock";
 import SockCalculatorTool from "./SockCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Sock Knitting Calculator",
+  title: "Heel Flap & Gusset Sock Calculator - Free Knitting Tool",
   description:
-    "Calculate sock stitch counts for top-down or toe-up with heel flap, gusset, and short-row heel instructions.",
+    "Free heel flap and gusset calculator for sock knitting. Top-down or toe-up stitch counts with short-row heel option. No signup, instant results.",
   keywords: [
     "sock calculator",
     "sock knitting calculator",

@@ -4,9 +4,9 @@ import AnswerBlock from "@/components/AnswerBlock";
 import CircleCalculatorTool from "./CircleCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Crochet Circle Pattern Generator — Free",
+  title: "Crochet Circle Pattern Generator - Free Increase Calculator",
   description:
-    "Generate a flat circle crochet pattern for any stitch type. Round-by-round increase instructions with staggered placement. Free, no signup.",
+    "Generate flat circle crochet patterns for any stitch. Round-by-round increase instructions with staggered placement. Free, no signup, instant.",
   keywords: [
     "crochet circle pattern",
     "perfect circle crochet",
@@ -25,17 +25,17 @@ export const metadata: Metadata = {
     "flat circle increase calculator",
   ],
   openGraph: {
-    title: "Crochet Circle Pattern Generator — Free",
+    title: "Crochet Circle Pattern Generator - Free Increase Calculator",
     description:
-      "Generate a flat circle crochet pattern for any stitch type. Round-by-round increase instructions with staggered placement. Free, no signup.",
+      "Generate flat circle crochet patterns for any stitch. Round-by-round increase instructions with staggered placement. Free, no signup, instant.",
     url: "https://fibertools.app/circle-calculator",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Crochet Circle Pattern Generator — Free" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Crochet Circle Pattern Generator - Free Increase Calculator" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Crochet Circle Pattern Generator — Free",
+    title: "Crochet Circle Pattern Generator - Free Increase Calculator",
     description:
-      "Generate a flat circle crochet pattern for any stitch type. Round-by-round increase instructions with staggered placement. Free, no signup.",
+      "Generate flat circle crochet patterns for any stitch. Round-by-round increase instructions with staggered placement. Free, no signup, instant.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/circle-calculator" },
