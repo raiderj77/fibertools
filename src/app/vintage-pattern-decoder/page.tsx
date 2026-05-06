@@ -45,58 +45,6 @@ export const metadata: Metadata = {
 export default function VintagePatternDecoderPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: [
-              {
-                "@type": "Question",
-                name: "Why do vintage crochet patterns use different stitch names?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Most vintage crochet patterns published before the 1980s used British (UK) terminology. In UK notation, a double crochet is what Americans call a single crochet, and a treble crochet is what Americans call a double crochet. This terminology difference causes the most common confusion when following old patterns.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What does 'dc' mean in a vintage crochet pattern?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "In a vintage or UK pattern, 'dc' (double crochet) is equivalent to the US single crochet (sc). If the pattern was published in the United States and uses US terminology, 'dc' means US double crochet. Context clues like the word 'tension' (UK) versus 'gauge' (US) help identify which terminology the pattern uses.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What does 'tension' mean in a vintage knitting or crochet pattern?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "'Tension' in vintage patterns is the same as 'gauge' in modern US patterns. It refers to the number of stitches and rows per inch (or 10 cm) measured over a swatch of the specified stitch pattern. Matching tension is just as critical in vintage patterns as matching gauge in modern ones.",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "What does 'wl fwd' or 'wool forward' mean in a knitting pattern?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "'Wl fwd' (wool forward) and 'wf' are vintage British abbreviations for 'yarn over' (yo) in knitting. The instruction means to bring the working yarn to the front of the needle before the next stitch, creating a new stitch and an eyelet. The equivalent modern US abbreviation is 'yo' (yarn over).",
-                },
-              },
-              {
-                "@type": "Question",
-                name: "How do I know if a vintage pattern uses UK or US crochet terminology?",
-                acceptedAnswer: {
-                  "@type": "Answer",
-                  text: "Key signals that a pattern uses UK terminology: the word 'tension' instead of 'gauge,' needle sizes listed as 'No. 12' or similar numbered UK sizing, yarn listed in ounces without metric, and publication in the UK (Patons, Sirdar, Robin brands). US patterns typically say 'gauge,' use US needle sizes (US 0–50), and give yarn in ounces or yards.",
-                },
-              },
-            ],
-            dateModified: "2026-05-03",
-          }),
-        }}
-      />
       <ToolLayout slug="vintage-pattern-decoder" widgetFirst>
         <AnswerBlock
           what="A pattern translator that converts vintage and UK knitting and crochet abbreviations into modern US terminology — including all UK-to-US stitch name conversions, archaic abbreviations like 'wl fwd' and 'psso,' and era detection."
