@@ -35,9 +35,10 @@ export default async function Page({
     datePublished: '2026-03-27',
     dateModified: '2026-04-16',
     author: {
-      '@type': 'Organization',
-      name: 'FiberTools',
-      url: 'https://fibertools.app',
+      '@type': 'Person',
+      name: 'Jason Ramirez',
+      jobTitle: 'Founder of FiberTools',
+      url: 'https://fibertools.app/about',
     },
     publisher: {
       '@type': 'Organization',

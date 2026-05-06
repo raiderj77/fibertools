@@ -49,7 +49,7 @@ export default function BestKnittingNeedlesPage() {
     dateModified: "2026-04-16",
     url: "https://fibertools.app/best-knitting-needles",
     mainEntityOfPage: "https://fibertools.app/best-knitting-needles",
-    author: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
+    author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
     publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     keywords: "best knitting needles, knitting needles for beginners, circular knitting needles, interchangeable knitting needles",
   };

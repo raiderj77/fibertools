@@ -47,7 +47,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
     dateModified: "2026-04-16",
     url: `https://fibertools.app/guides/${guide.slug}`,
     mainEntityOfPage: `https://fibertools.app/guides/${guide.slug}`,
-    author: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
+    author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
     publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     keywords: guide.keywords.join(", "),
   };

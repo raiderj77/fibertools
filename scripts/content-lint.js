@@ -54,6 +54,7 @@ const BYLINE_ALLOWLIST = [
   /built by Jason Ramirez/i,
   /by Jason Ramirez,\s*founder/i,
   /Jason Ramirez,\s*founder/i,
+  /name:\s*["']Jason Ramirez["']/,
 ];
 
 /**

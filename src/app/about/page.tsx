@@ -4,7 +4,7 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "About Jason Ramirez — Your Friendly Developer",
   description:
-    "The real story behind FiberTools. Built by Jason Ramirez, Fiber Arts Expert and Founder of Your Friendly Developer.",
+    "The real story behind FiberTools. Built by Jason Ramirez, founder of FiberTools.",
   keywords: [
     "about FiberTools",
     "Your Friendly Developer",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About Jason Ramirez — Your Friendly Developer",
     description:
-      "The real story behind FiberTools. Built by Jason Ramirez, Fiber Arts Expert and Founder of Your Friendly Developer.",
+      "The real story behind FiberTools. Built by Jason Ramirez, founder of FiberTools.",
     url: "https://fibertools.app/about",
     images: [
       {
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "About Jason Ramirez — Your Friendly Developer",
     description:
-      "The real story behind FiberTools. Built by Jason Ramirez, Fiber Arts Expert and Founder of Your Friendly Developer.",
+      "The real story behind FiberTools. Built by Jason Ramirez, founder of FiberTools.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/about" },
@@ -61,7 +61,8 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Jason Ramirez",
-  jobTitle: "Fiber Arts Expert",
+  jobTitle: "Founder of FiberTools",
+  sameAs: ["https://bsky.app/profile/friendlydeveloper.bsky.social"],
   worksFor: {
     "@type": "Organization",
     name: "Your Friendly Developer LLC",
@@ -92,100 +93,22 @@ export default function AboutPage() {
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
         <p>
-          Hi. I&rsquo;m Jason Ramirez. This is why I built this.
+          Hi. I&rsquo;m Jason Ramirez, the founder and only developer behind FiberTools.
         </p>
 
         <p>
-          I&rsquo;m not going to pretend this started with a vision board or a
-          business plan. It started in a storage shed in Salinas in 2013, when I
-          was thirty-seven years old with nothing to my name and nowhere to be.
+          I built this site about a year ago for a simple reason: every fiber arts
+          calculator I tried solved one problem and ignored the rest. I was constantly
+          switching between five different tools &mdash; one for gauge, one for yardage,
+          one for pattern conversion, one for stitch counts. So I built one tool that
+          does all of it.
         </p>
 
         <p>
-          I&rsquo;d been homeless for two years. Living out of my truck, sleeping
-          in a shed behind my son&rsquo;s grandmother&rsquo;s house. The last two
-          years of my drinking and using looked like that. On September 27th,
-          2013, I got sober. Got a bed in a treatment facility. That&rsquo;s
-          where my life actually started.
+          FiberTools is a working maker&rsquo;s toolbox, not a content site with a
+          calculator bolted on. I use it every day. The pages get updated when I find
+          something missing.
         </p>
-
-        <p>
-          What nobody tells you about early recovery is how broke it is. Not just
-          financially broke, though that too. Broke in every way. No credit. No
-          savings. No plan. No idea what retirement even meant for someone like
-          me. I was going to work until I died. That was the whole plan.
-        </p>
-
-        <p>Then I got my first laptop.</p>
-
-        <p>
-          I&rsquo;d been working at the treatment center where I got sober. Went
-          from client to overnight staff when my old counselor, who had become
-          the director, offered me the job. He saw something in me I
-          couldn&rsquo;t see yet. I walked through that door feeling like a
-          complete fraud. I walked through it anyway.
-        </p>
-
-        <p>
-          On my days off I started trying to figure out how to make money online.
-          I tried probably a hundred different things over the next thirteen
-          years. None of them worked. Not because the ideas were bad, because
-          I&rsquo;m an addict, and addicts chase shiny objects. I&rsquo;d start
-          something, get excited about something else, abandon the first thing,
-          chase the new thing. Repeat. For over a decade.
-        </p>
-
-        <p>
-          What finally changed it wasn&rsquo;t willpower. It was everything
-          I&rsquo;d learned in recovery, and in the mental health field working
-          with clients, and fixing my own credit from scratch without
-          anyone&rsquo;s help, and figuring out the tax system after years of
-          not filing, and slowly, painfully, teaching myself SEO, then content
-          strategy, then AI and LLM optimization, then UI design that actual
-          humans enjoy using.
-        </p>
-
-        <p>
-          Thirteen years of self-education. Every skill on these sites I learned
-          the hard way because I had to.
-        </p>
-
-        <p>
-          I built these tools because people like me needed them and
-          couldn&rsquo;t afford them. People who are starting over. People who
-          are broke and scared and trying to figure out a system that was never
-          explained to them. People who need real information without the
-          paywall, without the condescension, without the assumption that they
-          already know what they&rsquo;re doing.
-        </p>
-
-        <p>
-          I still work a full-time job. I&rsquo;m pursuing my Bachelor of Social
-          Work with plans for my MSW. I take photos. And when I get home or get
-          done with school work, I come here. This is the other thing that turns
-          me on and settles me down at the same time. There&rsquo;s something
-          about building something useful that hits different when you spent years
-          building nothing.
-        </p>
-
-        <p>
-          Your Friendly Developer is my LLC. I am the developer. This is my work.
-        </p>
-
-        <p>
-          If you&rsquo;re looking for the person behind these sites, it&rsquo;s
-          me. A self-taught web builder and Fiber Arts Expert, a recovering addict
-          with over twelve years of sobriety, a person who fixed their own credit
-          and figured out their own taxes and is still figuring out everything
-          else one day at a time.
-        </p>
-
-        <p>
-          I&rsquo;m not a corporation. I&rsquo;m not a content farm. I&rsquo;m
-          one person who lived a lot of the things these tools are about.
-        </p>
-
-        <p>That&rsquo;s why I built them.</p>
 
         <section>
           <h2 className="text-2xl font-semibold text-bark-800 dark:text-cream-100 mt-10 mb-4">

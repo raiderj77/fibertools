@@ -70,7 +70,7 @@ export default async function BlogPostPage({
     author: {
       "@type": "Person",
       name: "Jason Ramirez",
-      jobTitle: "Fiber Arts Expert",
+      jobTitle: "Founder of FiberTools",
       url: "https://fibertools.app/about",
     },
     publisher: {
@@ -160,7 +160,7 @@ export default async function BlogPostPage({
         <span aria-hidden="true">&middot;</span>
         <Link href="/about" className="text-sage-600 dark:text-sage-400 hover:underline">Jason Ramirez</Link>
         <span aria-hidden="true">&middot;</span>
-        <span>Fiber Arts Expert</span>
+        <span>Founder of FiberTools</span>
         <span aria-hidden="true">&middot;</span>
         <span>Last reviewed: April 2026</span>
         {tool && (

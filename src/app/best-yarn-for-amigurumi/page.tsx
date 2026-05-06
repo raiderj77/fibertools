@@ -48,7 +48,7 @@ export default function BestYarnForAmigurumiPage() {
     dateModified: "2026-04-16",
     url: "https://fibertools.app/best-yarn-for-amigurumi",
     mainEntityOfPage: "https://fibertools.app/best-yarn-for-amigurumi",
-    author: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
+    author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
     publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     keywords: "best yarn for amigurumi, amigurumi yarn, cotton yarn for amigurumi, acrylic yarn for amigurumi, crochet toy yarn",
   };

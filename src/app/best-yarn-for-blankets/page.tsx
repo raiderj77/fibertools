@@ -50,7 +50,7 @@ export default function BestYarnForBlanketsPage() {
     dateModified: "2026-04-16",
     url: "https://fibertools.app/best-yarn-for-blankets",
     mainEntityOfPage: "https://fibertools.app/best-yarn-for-blankets",
-    author: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
+    author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
     publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     keywords: "best yarn for blankets, blanket yarn, crochet blanket yarn, knitting blanket yarn",
   };

@@ -31,7 +31,7 @@ export default async function Page({ params }: { params: Params }) {
       'Free Easter bunny amigurumi crochet pattern with hook size guide and yarn calculator tips.',
     datePublished: '2026-03-28',
     dateModified: '2026-04-16',
-    author: { '@type': 'Organization', name: 'FiberTools', url: 'https://fibertools.app' },
+    author: { '@type': 'Person', name: 'Jason Ramirez', jobTitle: 'Founder of FiberTools', url: 'https://fibertools.app/about' },
     publisher: { '@type': 'Organization', name: 'FiberTools', url: 'https://fibertools.app' },
     mainEntityOfPage: 'https://fibertools.app/blog/easter-amigurumi-bunny-pattern',
   };
