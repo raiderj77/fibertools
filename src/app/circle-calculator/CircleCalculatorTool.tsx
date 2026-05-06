@@ -195,23 +195,6 @@ export default function CircleCalculatorTool() {
         </p>
       </div>
 
-      {/* SEO Content */}
-      <div className="space-y-4">
-        <h2 className="text-lg font-bold text-bark-700 dark:text-cream-300">
-          How Crochet Circle Increases Work
-        </h2>
-        <p className="text-sm text-bark-500 dark:text-bark-400">
-          A flat circle needs a consistent number of increases per round based on the stitch height.
-          Single crochet uses 6 increases per round, half double uses 8, double crochet uses 12, and
-          treble uses 16. Taller stitches take up more vertical space, requiring more stitches to
-          keep the circle flat.
-        </p>
-        <p className="text-sm text-bark-500 dark:text-bark-400">
-          The magic ring start gives you a tight, clean center. Each subsequent round adds the same
-          number of increases, distributed evenly. Staggering the increase positions between rounds
-          prevents visible lines and creates a truly round shape instead of a hexagon.
-        </p>
-      </div>
     </div>
   );
 }
