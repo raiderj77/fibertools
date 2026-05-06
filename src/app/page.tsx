@@ -38,33 +38,6 @@ export default function HomePage() {
   const tier2 = tools.filter((t) => t.tier === 2);
   const tier3 = tools.filter((t) => t.tier === 3);
 
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "FiberTools",
-    url: "https://fibertools.app",
-    logo: "https://fibertools.app/icon-512x512.png",
-    description:
-      "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery.",
-    sameAs: [],
-    dateModified: "2026-04-16",
-  };
-
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "FiberTools",
-    url: "https://fibertools.app",
-    description:
-      "Free calculators and references for every fiber crafter. No login required. Works offline.",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://fibertools.app/?q={search_term_string}",
-      "query-input": "required name=search_term_string",
-    },
-    dateModified: "2026-04-16",
-  };
-
   const webApplicationSchema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -184,14 +157,6 @@ export default function HomePage() {
   return (
     <main>
       {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationSchema) }}
