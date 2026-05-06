@@ -48,6 +48,14 @@ const PERSONAL_NAME_EXEMPT = [
   "src/app/blog/[slug]/page.tsx",
 ];
 
+const BYLINE_ALLOWLIST = [
+  /Written by Jason Ramirez/i,
+  /Reviewed and maintained by Jason Ramirez/i,
+  /built by Jason Ramirez/i,
+  /by Jason Ramirez,\s*founder/i,
+  /Jason Ramirez,\s*founder/i,
+];
+
 /**
  * Check for personal name exposure.
  * The site owner's name must never appear in public content or code,
@@ -60,6 +68,7 @@ function checkPersonalName(file, lines) {
   const namePattern = /\bJason\s+Ramirez\b/i;
   for (let i = 0; i < lines.length; i++) {
     if (namePattern.test(lines[i])) {
+      if (BYLINE_ALLOWLIST.some((p) => p.test(lines[i]))) continue;
       fail(file, i + 1, "Personal name detected — never expose site owner's name");
     }
   }

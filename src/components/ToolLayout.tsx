@@ -213,7 +213,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
             <h2 className="section-heading">{content.proTips.title}</h2>
             <div className="bg-cream-100 border border-cream-300 rounded-2xl p-6">
               <p className="text-xs font-semibold uppercase tracking-wider text-plum-600 mb-4">
-                From 30+ years of fiber arts experience
+                From hands-on fiber arts use
               </p>
               <ul className="space-y-3">
                 {content.proTips.tips.map((tip, i) => (

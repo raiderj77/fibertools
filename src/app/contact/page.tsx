@@ -37,8 +37,7 @@ export default function ContactPage() {
             FiberTools is a free collection of online calculators and utilities
             built specifically for knitters, crocheters, weavers, spinners, and
             fiber artists of every skill level. Every tool on the site is
-            designed by someone with over 30 years of hands-on fiber arts
-            experience, so we understand the real-world problems crafters face
+            designed by someone who uses these tools every day, so we understand the real-world problems crafters face
             when planning projects, converting measurements, or adjusting
             patterns.
           </p>
@@ -201,8 +200,7 @@ export default function ContactPage() {
             Who creates these tools?
           </h3>
           <p>
-            FiberTools is created by a fiber arts expert with over 30 years of
-            experience in knitting, crochet, weaving, and other textile crafts.
+            FiberTools is built and maintained by Jason Ramirez, founder, who got tired of switching between fragmented fiber arts tools.
             Every calculator is built with real-world crafting scenarios in mind,
             tested against established references, and refined based on
             community feedback.

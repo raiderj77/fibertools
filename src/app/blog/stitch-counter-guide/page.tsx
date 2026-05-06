@@ -160,7 +160,7 @@ export default function StitchCounterGuidePage() {
       <div className="flex items-center gap-3 mb-8 text-sm text-bark-400 dark:text-bark-500">
         <span>By <strong className="text-bark-600 dark:text-cream-400">The FiberTools Editorial Team</strong></span>
         <span>&middot;</span>
-        <span>Fiber arts experts with 30+ years of experience</span>
+        <span>Built by a working maker, not a content team</span>
         <span>&middot;</span>
         <span>Last reviewed: April 2026</span>
         <span>&middot;</span>
@@ -360,7 +360,7 @@ export default function StitchCounterGuidePage() {
           </h2>
           <div className="bg-cream-100 border border-cream-300 rounded-2xl p-6">
             <p className="text-xs font-semibold uppercase tracking-wider text-plum-600 mb-4">
-              From 30+ years of fiber arts experience
+              From hands-on fiber arts use
             </p>
             <ul className="space-y-3">
               <li className="flex items-start gap-3 text-bark-600 text-[15px] leading-relaxed">

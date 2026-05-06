@@ -94,7 +94,7 @@ export default async function Page({ params }: { params: Params }) {
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 mb-6">
           <span>By <strong className="text-gray-700">The FiberTools Editorial Team</strong></span>
           <span aria-hidden="true">&middot;</span>
-          <span>Fiber arts experts with 30+ years of experience</span>
+          <span>Built by a working maker, not a content team</span>
           <span aria-hidden="true">&middot;</span>
           <span>Last reviewed: April 2026</span>
           <span aria-hidden="true">&middot;</span>
@@ -367,8 +367,7 @@ export default async function Page({ params }: { params: Params }) {
         </div>
 
         <p className="text-sm text-gray-400 mt-12 pt-6 border-t border-gray-200">
-          Content reviewed by a fiber arts specialist with 30+ years of experience in knitting,
-          crochet, and fiber arts education.
+          Reviewed and maintained by Jason Ramirez, founder.
         </p>
 
       </article>

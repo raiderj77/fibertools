@@ -361,7 +361,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-1">
             Fiber Arts Fundamentals
           </h2>
-          <p className="text-sm text-bark-400 dark:text-bark-500 mb-8">Reference answers for knitting, crochet, weaving, and yarn selection — sourced from 30+ years of fiber arts expertise.</p>
+          <p className="text-sm text-bark-400 dark:text-bark-500 mb-8">Reference answers for knitting, crochet, weaving, and yarn selection — built by a working maker who got tired of switching between five different calculators</p>
         </div>
 
         <div>
@@ -480,7 +480,7 @@ export default function HomePage() {
           FiberTools is a free collection of calculators and references built by fiber artists, for fiber artists. Every tool on this site was designed to solve a real problem we faced in our own craft practice — from buying the wrong amount of yarn, to struggling with UK-to-US pattern conversions, to losing track of rows mid-project at 2am.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
-          Our tools are grounded in industry standards. Yarn weight classifications follow the Craft Yarn Council CYC system. Needle and hook sizing follows US, metric, and UK conventions. Gauge formulas are derived from standard knitting and crochet mathematics, not approximations. The team behind FiberTools has over 30 years of combined fiber arts experience across knitting, crochet, weaving, and spinning.
+          Our tools are grounded in industry standards. Yarn weight classifications follow the Craft Yarn Council CYC system. Needle and hook sizing follows US, metric, and UK conventions. Gauge formulas are derived from standard knitting and crochet mathematics, not approximations. FiberTools was built by Jason Ramirez, who got tired of fragmented fiber arts tools and built one that does everything.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
           Everything on FiberTools is free and always will be. No login. No subscription. No paywall for the next calculator tab. We believe tools that make craft more accessible should be available to everyone — whether you are a beginner knitting your first scarf or an experienced designer working on a complex colorwork sweater.

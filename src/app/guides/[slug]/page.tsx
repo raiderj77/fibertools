@@ -91,7 +91,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
         <span aria-hidden="true">&middot;</span>
         <span>By <strong className="text-bark-600 dark:text-cream-400">The FiberTools Editorial Team</strong></span>
         <span aria-hidden="true">&middot;</span>
-        <span>Fiber arts experts with 30+ years of experience</span>
+        <span>Built by a working maker, not a content team</span>
         <span aria-hidden="true">&middot;</span>
         <span>Last reviewed: April 2026</span>
         <span aria-hidden="true">&middot;</span>

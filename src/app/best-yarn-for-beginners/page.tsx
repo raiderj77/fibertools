@@ -150,7 +150,7 @@ export default function BestYarnForBeginnersPage() {
       <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
         <span>Last updated: April 16, 2026</span>
         <span>&middot;</span>
-        <span>Written by the FiberTools Team — fiber arts experts with 30+ years of combined experience</span>
+        <span>Written by Jason Ramirez, founder of FiberTools</span>
       </div>
 
       <article className="prose-fiber">

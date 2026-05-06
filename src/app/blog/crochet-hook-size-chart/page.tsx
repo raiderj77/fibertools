@@ -111,7 +111,7 @@ export default async function Page({
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 mb-6">
           <span>By <strong className="text-gray-700">The FiberTools Editorial Team</strong></span>
           <span aria-hidden="true">&middot;</span>
-          <span>Fiber arts experts with 30+ years of experience</span>
+          <span>Built by a working maker, not a content team</span>
           <span aria-hidden="true">&middot;</span>
           <a href="/about" className="text-indigo-600 hover:underline">About us</a>
         </div>
@@ -431,8 +431,7 @@ export default async function Page({
 
         {/* ATTRIBUTION */}
         <p className="text-sm text-gray-400 mt-12 pt-6 border-t border-gray-200">
-          Content reviewed by a fiber arts specialist with 30+ years of experience in knitting,
-          crochet, and fiber arts education.
+          Reviewed and maintained by Jason Ramirez, founder.
         </p>
 
       </article>
