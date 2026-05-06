@@ -238,16 +238,6 @@ export default function AmigurumiShapesTool() {
         </ul>
       </div>
 
-      {/* SEO Content */}
-      <div className="space-y-4">
-        <h2 className="text-lg font-bold text-bark-700 dark:text-cream-300">Basic Amigurumi Shapes Explained</h2>
-        <p className="text-sm text-bark-500 dark:text-bark-400">
-          Every amigurumi figure is built from a handful of basic 3D shapes worked in the round with single crochet. A sphere is the foundation for heads and bodies. Cones make noses, horns, and carrots. Cylinders form arms, legs, and torsos. Ovals create feet, muzzles, and bases. Once you can make these four shapes, you can construct virtually any amigurumi character by combining and scaling them.
-        </p>
-        <p className="text-sm text-bark-500 dark:text-bark-400">
-          The key principle is simple: increasing makes fabric spread outward (wider), even rounds maintain the current width, and decreasing pulls fabric inward (narrower). A sphere increases to its widest point, holds for a round or two, then mirrors the increases with decreases. A cone increases gradually with even rounds between increase rounds. A cylinder is a flat circle followed by all even rounds.
-        </p>
-      </div>
     </div>
   );
 }
