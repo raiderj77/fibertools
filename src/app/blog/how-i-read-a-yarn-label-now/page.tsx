@@ -164,7 +164,9 @@ export default async function Page({ params }: { params: Params }) {
           My disaster project: bought four skeins of acrylic for a blanket, came back two weeks later for two
           more, didn&apos;t check the lot number. Finished blanket has a faint vertical color shift right where
           I switched skeins. Visible enough that the recipient noticed and asked if it was intentional. It was
-          not.
+          not. The dye-lot disaster I describe in{' '}
+          <Link href="/blog/why-i-built-fibertools" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">why I built FiberTools</Link>
+          {' '}happened exactly because I didn&apos;t check this number before paying.
         </p>
         <p>
           What I do now: buy all skeins for a project at once, from the same lot. If I have to buy more later,
@@ -199,7 +201,9 @@ export default async function Page({ params }: { params: Params }) {
           The wool hat lesson: I made a hat for a friend using 100% untreated wool, then machine washed it on
           warm to clean it before gifting. I discovered felting the hard way. The hat shrunk to about two-thirds
           its original size and the fibers matted into a solid puck. Untreated wool felts when it gets hot and
-          agitated. That&apos;s physics, not a defect.
+          agitated. That&apos;s physics, not a defect. It&apos;s one of the mistakes I cover in{' '}
+          <Link href="/blog/what-i-got-wrong-first-year-crochet" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">what I got wrong my first year of crochet</Link>
+          {' '}&mdash; though I left wool washing out of the original list because it deserved its own callout.
         </p>
         <p>
           The rule I follow now: superwash wool (labeled as such) can go in the machine on cold or wool cycle.

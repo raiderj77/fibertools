@@ -107,6 +107,8 @@ export default async function Page({ params }: { params: Params }) {
           it while learning. Both of those things are true. The problem is that Super Saver is a 4-ply yarn with
           a loose twist, which means the hook catches between the plies constantly. Every few stitches I was
           splitting the yarn instead of catching it cleanly, and I had no idea that was the problem.
+          Reading the label fully would have flagged the splitting issue too &mdash; I cover what I look for now in{' '}
+          <Link href="/blog/how-i-read-a-yarn-label-now" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">how I read a yarn label now</Link>.
         </p>
         <p>
           Frogging (unraveling and redoing) a section of Super Saver looks bad in a way that smooth yarn does

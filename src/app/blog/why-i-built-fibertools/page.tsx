@@ -157,7 +157,9 @@ export default async function Page({ params }: { params: Params }) {
           What I missed: basketweave consumes more yarn than plain single crochet at the same dimensions. I
           didn&apos;t know the multiplier existed, let alone what it was. I also bought from a craft store that
           turned out not to stock the same dye lot two weeks later. So when I ran short with about a third of
-          the blanket left, I was buying from whatever they had on the shelf that week.
+          the blanket left, I was buying from whatever they had on the shelf that week. If I had read the dye lot
+          number on the label, the whole disaster would have been preventable. I write more about{' '}
+          <Link href="/blog/how-i-read-a-yarn-label-now" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">what I now check on every yarn label</Link>.
         </p>
         <p>
           Result: 800 yards purchased, 1,400 yards needed. The last 600 yards came from a slightly different
