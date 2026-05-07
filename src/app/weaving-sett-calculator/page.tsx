@@ -202,7 +202,10 @@ export default function WeavingSettCalculatorPage() {
           on your actual intended structure, not a generic balanced-weave estimate.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          Buying extra of any singles yarn matters more in weaving than in knitting or crochet. Adjacent warp
+          Buying extra of any singles yarn matters more in weaving than in knitting or crochet; for
+          per-project yardage planning beyond weaving, the{' '}
+          <Link href="/yarn-calculator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">yarn calculator</Link>
+          {' '}covers knit and crochet projects with the same coverage-factor approach. Adjacent warp
           threads sit side by side for the entire length of the project, making dye lot variation immediately
           visible as a vertical stripe. Purchase all warp yarn from the same dye lot, and if you&rsquo;re
           uncertain, err toward buying an extra skein — most yarn shops accept returns of unopened skeins.

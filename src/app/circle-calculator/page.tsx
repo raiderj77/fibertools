@@ -142,7 +142,10 @@ export default function CircleCalculatorPage() {
           Bowl depth is controlled by when you stop increasing relative to the base diameter. A gradual
           transition (reducing increases slowly over several rounds) creates a shallow, wide bowl. An abrupt
           stop (going directly from full increases to none) creates a tighter, rounder curve. Most crochet
-          bowl patterns use the abrupt method for a clean shoulder.
+          bowl patterns use the abrupt method for a clean shoulder. For sphere and cone construction
+          specifically, the{' '}
+          <Link href="/amigurumi-shapes" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">amigurumi shapes calculator</Link>
+          {' '}generates round-by-round patterns for both.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           This curvature principle is also the basis for amigurumi sphere shapes. Work a flat circle to the

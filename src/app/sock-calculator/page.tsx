@@ -133,7 +133,10 @@ export default function SockCalculatorPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Going down a needle size from the yarn label recommendation is common for sock knitting. A denser
           fabric holds up better at the heel and ball of foot where abrasion is highest. If the label says
-          US 2&ndash;3, try US 1 for socks you intend to wear regularly rather than display.
+          US 2&ndash;3, try US 1 for socks you intend to wear regularly rather than display. If you need to
+          calculate cast-on stitches for a different project, the{' '}
+          <Link href="/cast-on-calculator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">cast-on calculator</Link>
+          {' '}uses the same gauge math.
         </p>
       </section>
 

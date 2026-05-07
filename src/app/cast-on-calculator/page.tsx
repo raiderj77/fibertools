@@ -199,7 +199,9 @@ export default function CastOnCalculatorPage() {
           Metal needles have a slippery surface that allows stitches to move freely, producing a slightly
           tighter fabric than wood or bamboo, which grip the yarn. The difference is subtle across 20 stitches
           but visible across 200. If you gauge-swatch on one needle material and knit the project on another,
-          expect a small gauge shift.
+          expect a small gauge shift. For sock-specific gauge considerations, the{' '}
+          <Link href="/sock-calculator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">sock calculator</Link>
+          {' '}handles foot circumference math with negative ease built in.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Row gauge matters as much as stitch gauge for fitted garments. A garment with correct stitch gauge but

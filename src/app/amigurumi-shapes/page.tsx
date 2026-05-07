@@ -74,7 +74,9 @@ export default function AmigurumiShapesPage() {
           The magic ring is essential for spheres because it closes the center hole completely. With a chain-2
           start, the top and bottom of the sphere have a small visible hole — acceptable for most shapes but
           noticeable on sphere tops where the poles are prominent. Pull the magic ring tail firmly before
-          continuing to the second round to lock it closed.
+          continuing to the second round to lock it closed. The{' '}
+          <Link href="/circle-calculator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">flat circle calculator</Link>
+          {' '}generates the increase pattern for either half independently if you want to vary stitch types.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           The equator round count determines sphere diameter predictably. Each additional increase round before

@@ -212,7 +212,9 @@ export default function YarnCalculatorPage() {
           from. Two skeins from different dye lots may look identical on the shelf but show a visible
           color shift mid-project under natural light. Always buy your full quantity from the same dye
           lot. If you run out, alternate one row of old and one row of new yarn for several inches to
-          blend the transition gradually.
+          blend the transition gradually. If you&rsquo;re calculating for a baby blanket specifically, the{' '}
+          <Link href="/blanket-calculator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">blanket calculator</Link>
+          {' '}includes preset sizes.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Buy two extra skeins for heavy colorwork, cable-dense patterns, or any project with significant

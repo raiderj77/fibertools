@@ -112,7 +112,9 @@ export default function BlanketCalculatorPage() {
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           For fingering weight baby blankets, double the yardage estimate — fingering covers roughly half the
-          square inches per yard compared to worsted. A fingering-weight lace baby blanket of the same
+          square inches per yard compared to worsted, and the{' '}
+          <Link href="/yarn-calculator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">yarn calculator</Link>
+          {' '}handles the per-stitch math automatically. A fingering-weight lace baby blanket of the same
           36×52 inch size typically consumes 1,800–2,400 yards.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
