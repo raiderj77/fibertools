@@ -89,7 +89,7 @@ export default function GuidePage({ params }: { params: { slug: string } }) {
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-8 text-sm text-bark-400 dark:text-bark-500">
         <time dateTime={guide.date}>{new Date(guide.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</time>
         <span aria-hidden="true">&middot;</span>
-        <span>By <strong className="text-bark-600 dark:text-cream-400">The FiberTools Editorial Team</strong></span>
+        <span>By <strong className="text-bark-600 dark:text-cream-400">Jason Ramirez</strong></span>
         <span aria-hidden="true">&middot;</span>
         <span>Built by a working maker, not a content team</span>
         <span aria-hidden="true">&middot;</span>

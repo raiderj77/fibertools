@@ -158,7 +158,7 @@ export default function StitchCounterGuidePage() {
 
       {/* Author byline */}
       <div className="flex items-center gap-3 mb-8 text-sm text-bark-400 dark:text-bark-500">
-        <span>By <strong className="text-bark-600 dark:text-cream-400">The FiberTools Editorial Team</strong></span>
+        <span>By <strong className="text-bark-600 dark:text-cream-400">Jason Ramirez</strong></span>
         <span>&middot;</span>
         <span>Built by a working maker, not a content team</span>
         <span>&middot;</span>
