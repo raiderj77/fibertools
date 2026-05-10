@@ -29,17 +29,6 @@ export default function Footer() {
     { href: "/accessibility", label: "Accessibility" },
   ];
 
-  const sisterSites = [
-    { href: "https://mindchecktools.com", label: "MindCheck Tools" },
-    { href: "https://flipmycase.com", label: "FlipMyCase" },
-    { href: "https://creatorrevenuecalculator.com", label: "Creator Revenue Calculator" },
-    { href: "https://contractextract.com", label: "ContractExtract" },
-    { href: "https://medicalbillreader.com", label: "Medical Bill Reader" },
-    { href: "https://taxbreaktools.com", label: "TaxBreakTools" },
-    { href: "https://524tracker.com", label: "524 Tracker" },
-    { href: "https://aibusinessalternative.com", label: "AI Business Alternative" },
-  ];
-
   return (
     <footer className="bg-bark-800 text-cream-100 pt-12 pb-6 no-print">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -115,7 +104,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4 — Info + Sister Sites */}
+          {/* Column 4 — Info */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3">
               Info
@@ -133,23 +122,6 @@ export default function Footer() {
               ))}
             </ul>
 
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3 mt-6">
-              Sister Sites
-            </h3>
-            <ul>
-              {sisterSites.map((site) => (
-                <li key={site.href}>
-                  <a
-                    href={site.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-cream-300 hover:text-amber-400 transition-colors block py-1"
-                  >
-                    {site.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
 
