@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, Nunito, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
-import { headers } from "next/headers";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
