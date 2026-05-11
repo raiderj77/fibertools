@@ -129,7 +129,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const gpcHeader = headers().get('sec-gpc') === '1';
   return (
     <html lang="en" className={`${dmSerifDisplay.variable} ${nunito.variable} ${jetbrainsMono.variable}`}>
       <head>
