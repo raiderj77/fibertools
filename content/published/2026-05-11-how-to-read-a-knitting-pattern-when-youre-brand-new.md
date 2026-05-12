@@ -10,7 +10,7 @@ reviewer: "Jason Ramirez, CADC-II"
 
 # How to Read a Knitting Pattern When You're Brand New
 
-Reading a knitting pattern is mostly about learning a compact shorthand. Patterns use abbreviations, asterisks, and brackets to avoid printing the same instruction forty times. Once you know that **k** means knit, **p** means purl, and brackets mean "repeat this chunk," about 80% of any beginner pattern unlocks itself.
+[Reading a knitting pattern is mostly about learning a compact shorthand](/blog/how-to-read-a-crochet-pattern-for-beginners/). Patterns use abbreviations, asterisks, and brackets to avoid printing the same instruction forty times. Once you know that **k** means knit, **p** means purl, and brackets mean "repeat this chunk," about 80% of any beginner pattern unlocks itself.
 
 ---
 
@@ -57,7 +57,7 @@ If you ever lose your place, use a row counter or a pencil mark on a printed cop
 
 ## What does the pattern mean by "gauge" and can I skip it?
 
-Gauge is the number of stitches and rows that fit into a 4-inch square using a specific yarn and needle size. Skipping it is the single fastest way to end up with a hat that fits a cantaloupe or a sweater meant for someone twice your size.
+Gauge is [the number of stitches and rows that fit into a 4-inch square](/blog/when-gauge-is-no-gauge-how-yarn-weight-impacts-crochet-fabri/) using [a specific yarn and needle size](/blog/demystifying-yarn-weights-for-crochet-using-the-yarn-weight-/). Skipping it is the single fastest way to end up with a hat that fits a cantaloupe or a sweater meant for someone twice your size.
 
 A pattern might say: **20 sts x 28 rows = 4 inches in stockinette on US 7 needles.** That is the designer's gauge. If your gauge swatch gives you 22 stitches over 4 inches, your stitches are smaller than the designer's, and your finished piece will come out narrower than intended. Go up a needle size and swatch again.
 
