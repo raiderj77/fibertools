@@ -4,8 +4,8 @@ date: "2026-05-11"
 slug: "how-to-read-a-knitting-pattern-when-youre-brand-new"
 description: ""
 status: published
-author: "Your Friendly Developer"
-reviewer: "Your Friendly Developer"
+author: "Jason Ramirez"
+reviewer: "Jason Ramirez, CADC-II"
 ---
 
 # How to Read a Knitting Pattern When You're Brand New
