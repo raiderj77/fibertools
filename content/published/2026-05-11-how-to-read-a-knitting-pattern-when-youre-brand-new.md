@@ -37,6 +37,9 @@ The [Craft Yarn Council maintains a standardized abbreviation list](https://www.
 
 ## What do the asterisks and brackets mean?
 
+Asterisks and brackets are repeat markers that tell you to work the same group of stitches multiple times. Instead of writing out every repetition, the pattern marks the chunk once and tells you how many times to do it. Brackets usually give you a count at the end, like [k3, p1] 4 times.
+
+
 Asterisks and brackets are repeat markers. They tell you to work a set of stitches more than once without the pattern having to write it out every single time.
 
 Here is what that looks like in practice:
@@ -86,6 +89,9 @@ If there is no schematic, measure a similar finished object you own, then pick t
 ---
 
 ## What should I actually do before I cast on?
+
+Read the whole pattern through once before you pick up your needles. It takes five minutes and saves you from hitting a surprise technique mid-row with no idea what is coming. Flag anything unfamiliar, look it up ahead of time, and you will knit with a lot more confidence from the first stitch.
+
 
 Read the entire pattern once through before you touch your yarn. This sounds obvious and almost nobody does it on their first project.
 
