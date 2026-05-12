@@ -24,6 +24,9 @@ If you tend to crochet tightly, an inline hook (think Susan Bates) gives you a m
 
 ## Which hook brands are actually worth buying?
 
+Clover Amour, Tulip Etimo, and Furls Streamline are worth the money for most working crocheters. Their handles reduce hand fatigue on long sessions, and the head geometry stays consistent across sizes. Boye and Susan Bates metal hooks are reliable budget options for beginners. Skip unbranded bulk packs entirely since sizing is unreliable.
+
+
 **Clover Amour, Tulip Etimo, and Furls Streamline are the three most recommended by working crocheters for a reason: they hold up, the handles reduce fatigue, and the heads are consistent across the size range.** Budget picks like Boye and Susan Bates metal hooks are solid for beginners. Avoid unbranded hooks from bulk packs if you care about consistent sizing.
 
 Here is how they break down practically:
@@ -37,6 +40,9 @@ Here is how they break down practically:
 ---
 
 ## What size hooks do I actually need?
+
+A set covering 3.5 mm to 8.0 mm handles the overwhelming majority of projects you will actually make. Most everyday yarn weights, worsted through bulky, land in the 4.0 to 6.0 mm range. Add smaller or larger hooks only when a specific project calls for them, rather than buying a full range upfront.
+
 
 **Start with a set covering 3.5 mm to 8.0 mm and you will handle the vast majority of yarn weights from fingering through bulky.** Most workhorse projects land in the 4.0–6.0 mm range.
 
@@ -55,6 +61,9 @@ That said, these are starting points. [Check your gauge against the pattern befo
 
 ## Do I need steel crochet hooks for thread crochet?
 
+Yes, steel hooks are necessary for thread size 10 and finer. Standard aluminum hooks flex too much at those tiny diameters to produce consistent stitches. Note that steel hook sizing runs opposite to standard hooks, so a higher number means a smaller hook, which catches a lot of people off guard when shopping.
+
+
 **Yes, for thread sizes 10 and finer, steel hooks are the right tool.** Standard aluminum hooks at those tiny sizes would bend or flex in ways that make consistent stitches nearly impossible.
 
 Steel hooks are sized differently from standard hooks, which trips up a lot of people. Steel size 7 is approximately 1.65 mm. The numbering runs in reverse: a higher number means a smaller hook. [Lion Brand's steel hook conversion chart](https://www.lionbrand.com/pages/yarn-hook-needle-size-chart) is a reliable reference for matching steel sizes to thread weights.
@@ -65,6 +74,9 @@ For doilies, thread appliques, or any project calling for size 10 crochet thread
 
 ## What about wooden or resin hooks?
 
+Wooden and resin hooks are the practical choice for slippery fibers like silk or bamboo, where metal lets yarn slide too fast to control. The natural friction slows things down just enough. The trade-off is durability since wood can crack if dropped, so these work best as targeted additions rather than your everyday hooks.
+
+
 **Wooden and resin hooks work well for slippery yarns like bamboo or silk, where a metal hook causes the yarn to slide too fast.** The slight friction of wood or resin gives you more control.
 
 Furls makes resin hooks in their Odyssey line (around $30–$40 each). ChiaoGoo offers wooden hooks that are well-regarded for smooth finishing. The trade-off is durability: wood can crack if dropped or stored carelessly, and some resin handles chip over time. For most everyday yarns (wool, acrylic, cotton), aluminum outperforms wood on speed and consistency.
@@ -73,6 +85,9 @@ Furls makes resin hooks in their Odyssey line (around $30–$40 each). ChiaoGoo 
 
 ## How do I store hooks so they actually stay organized?
 
+A zippered roll case with individual slots is the most practical storage solution for a working collection. Loose hooks in a bag bend tips and disappear constantly. A dedicated hook roll from Clover works well, and an art supply pencil roll does the same job for less money if you prefer to keep costs down.
+
+
 **A zippered roll case with individual slots is the most practical solution for a working hook collection.** Loose hooks in a bag means bent tips and lost sizes.
 
 Clover sells a hook case that holds about 10 hooks and lies flat. Alternatively, a pencil roll from any art supply store works identically for less money. If you travel with your hooks, a hard-shell case protects tips better than fabric rolls. Keep steel hooks separate from standard hooks since the size labeling systems are different enough to cause real confusion mid-project.
@@ -80,6 +95,9 @@ Clover sells a hook case that holds about 10 hooks and lies flat. Alternatively,
 ---
 
 ## What should a beginner buy first?
+
+One ergonomic set covering 3.5 to 9.0 mm is the right first purchase, full stop. The Clover Amour set in a 9 or 15 piece configuration covers nearly every common yarn weight and gives you a comfortable handle before you know your personal preferences. Budget around 40 to 60 dollars and add individual hooks later.
+
 
 **[One mid-range ergonomic set covering 3.5–9.0 mm is the right first purchase](/blog/best-crochet-hooks-for-beginners/).** The Clover Amour set (available in a 9-piece or 15-piece configuration) covers most yarn weights and gives you the ergonomic handle without buying individual hooks until you know your preferences.
 
