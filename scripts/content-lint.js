@@ -50,6 +50,8 @@ const PERSONAL_NAME_EXEMPT = [
 
 const BYLINE_ALLOWLIST = [
   /Written by Jason Ramirez/i,
+  /^author:\s*["']Jason Ramirez/i,
+  /^reviewer:\s*["']Jason Ramirez/i,
   /Reviewed and maintained by Jason Ramirez/i,
   /built by Jason Ramirez/i,
   /by Jason Ramirez,\s*founder/i,
