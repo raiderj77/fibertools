@@ -49,7 +49,7 @@ The [Craft Yarn Council's standard yarn weight system](https://www.craftyarncoun
 - Bulky: 6.5–9.0 mm
 - Super bulky: 9.0 mm and up
 
-That said, these are starting points. Check your gauge against the pattern before committing to a full project. A 5.0 mm hook in your hand might behave like a 5.5 mm hook in someone else's.
+That said, these are starting points. [Check your gauge against the pattern before committing to a full project](/blog/analyzing-the-impact-of-yarn-weight-and-fiber-content-on-gau/). A 5.0 mm hook in your hand might behave like a 5.5 mm hook in someone else's.
 
 ---
 
@@ -81,7 +81,7 @@ Clover sells a hook case that holds about 10 hooks and lies flat. Alternatively,
 
 ## What should a beginner buy first?
 
-**One mid-range ergonomic set covering 3.5–9.0 mm is the right first purchase.** The Clover Amour set (available in a 9-piece or 15-piece configuration) covers most yarn weights and gives you the ergonomic handle without buying individual hooks until you know your preferences.
+**[One mid-range ergonomic set covering 3.5–9.0 mm is the right first purchase](/blog/best-crochet-hooks-for-beginners/).** The Clover Amour set (available in a 9-piece or 15-piece configuration) covers most yarn weights and gives you the ergonomic handle without buying individual hooks until you know your preferences.
 
 Spend around $40–$60 on that set. Once you know whether you prefer inline or tapered, tight or loose tension, and which yarn weights you reach for most, then buy individual premium hooks in your most-used sizes. A 5.0 mm Furls Streamline makes more sense after six months of crocheting than on day one.
 
