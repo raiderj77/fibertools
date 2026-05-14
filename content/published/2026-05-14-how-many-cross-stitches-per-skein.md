@@ -14,7 +14,7 @@ reviewer: "Jason Ramirez, CADC-II"
 
 ---
 
-## What actually determines how much floss I need?
+## What actually determines [how much floss I need](/blog/accurately-calculating-your-yarn-yardage-with-a-customizable/)?
 
 Your stitch count is only one variable. The fabric count you're stitching on and the number of strands you pull from the skein matter just as much, and they interact in ways that can double or halve your yardage needs.
 
@@ -31,7 +31,7 @@ These are working estimates, not guarantees. Your tension, how you start and end
 
 ---
 
-## How do I calculate floss for a specific project?
+## How do I [calculate floss for a specific project](/blog/creating-a-realistic-yarn-yardage-estimate-incorporating-fib/)?
 
 Count your stitches in each color, then divide by your stitches-per-skein estimate. Round up and add a buffer skein for any color you use heavily.
 
@@ -67,7 +67,7 @@ If you're working from a pattern that lists DMC skein counts and you want to sub
 
 Keep a simple tally sheet -- color number, total stitches, skeins bought, skeins used. Update it as you go.
 
-For a sampler or large heirloom piece that takes months, it's easy to forget how many skeins of a color you started with. A small notebook or even a note in your phone with each color's running count saves real money and frustration. Some stitchers use the [Stitchbow or bobbins system](https://www.123stitch.com) to label each wound bobbin with the color number and how many skeins they started with.
+For a sampler or large heirloom piece that takes months, it's easy to forget how many skeins of a color you started with. A small notebook or even a note in your phone with each color's running count saves real money and frustration. Some stitchers use the [Stitchbow or bobbins system](https://www.123stitch.com) to label each wound bobbin with the color number and [how many skeins they started with](/blog/the-physics-of-yarn-yardage-why-fiber-properties-matter-in-y/).
 
 If you run out mid-project, try to buy from the same retailer batch if possible. For critical background colors especially, buy more than you think you need upfront. A skein of DMC 3865 (white) bought six months from now may read slightly different under your project lighting than the one you started with.
 
