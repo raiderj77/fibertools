@@ -51,6 +51,9 @@ For large projects, the [Stitch Fiddle calculator](https://www.stitchfiddle.com)
 
 ## Does the type of floss change the math?
 
+Yes, the thread type changes everything. Standard DMC and Anchor cotton both come on 8.7-yard skeins, so substituting between them is straightforward. Silk floss, pearl cotton, and specialty threads use completely different skein lengths, so you need to recalculate from scratch using the actual yardage on the label.
+
+
 Yes, significantly. DMC and Anchor standard 6-strand cotton floss come in 8.7-yard (8m) skeins, but that's where the standardization stops.
 
 [Anchor skeins](https://www.anchorcrafts.com) are also 8.7 yards, so the math transfers directly if you're substituting colors. Silk floss, pearl cotton, and specialty threads are a different story:
@@ -65,6 +68,9 @@ If you're working from a pattern that lists DMC skein counts and you want to sub
 
 ## What's the best way to track floss usage on a large project?
 
+Keep a running tally with color number, total stitches, skeins bought, and skeins used, and update it as you stitch. On a project spanning months, memory is unreliable. A phone note or small notebook costs nothing and prevents that frustrating moment when you run short of a discontinued colorway halfway through.
+
+
 Keep a simple tally sheet -- color number, total stitches, skeins bought, skeins used. Update it as you go.
 
 For a sampler or large heirloom piece that takes months, it's easy to forget how many skeins of a color you started with. A small notebook or even a note in your phone with each color's running count saves real money and frustration. Some stitchers use the [Stitchbow or bobbins system](https://www.123stitch.com) to label each wound bobbin with the color number and [how many skeins they started with](/blog/the-physics-of-yarn-yardage-why-fiber-properties-matter-in-y/).
@@ -74,6 +80,9 @@ If you run out mid-project, try to buy from the same retailer batch if possible.
 ---
 
 ## Can I use a leftover partial skein, and how do I measure what's left?
+
+Absolutely use partials, and measuring them is easier than it sounds. Wrap the thread around a six-inch ruler and count the wraps. Each wrap equals twelve inches, so twenty wraps gives you roughly 6.6 yards. That translates to around 115 stitches on 14-count with two strands, plenty for small accent areas.
+
 
 Yes, and it's worth doing. Wrap the partial skein around a ruler or bobbin and count the wraps, then multiply by the length per wrap.
 
