@@ -10,7 +10,7 @@ reviewer: "Jason Ramirez, CADC-II"
 
 # How to Handwash Knitwear Without Ruining It
 
-Handwash knitwear in cool water (60-85°F / 15-30°C) with a wool-safe soap, handling it gently with no wringing or twisting. Support the wet fabric at all times, squeeze out water, roll it in a towel, and block it flat to dry. The whole process takes about 20 minutes of active time.
+Handwash knitwear in cool water (60-85°F / 15-30°C) with a wool-safe soap, handling it gently with no wringing or twisting. Support the wet fabric at all times, squeeze out water, roll it in a towel, and [block it flat to dry](/blog/what-is-blocking-in-knitting-and-why-it-matters/). The whole process takes about 20 minutes of active time.
 
 ---
 
@@ -58,7 +58,7 @@ Drying time varies a lot. A lightweight lace shawl might be dry in four hours. A
 
 ## Can I ever machine wash handknits?
 
-Some yarns labeled superwash or machine-washable can handle a machine on the wool or delicate cycle in a mesh laundry bag with cold water. Always check your yarn label and check your gauge swatch first after washing it in the machine.
+Some yarns labeled superwash or machine-washable can handle a machine on the wool or delicate cycle in a mesh laundry bag with cold water. [Always check your yarn label](/blog/how-to-read-yarn-labels-everything-you-need-to-know/) and [check your gauge swatch first after washing it](/blog/analyzing-the-impact-of-yarn-weight-and-fiber-content-on-gau/) in the machine.
 
 That said, even superwash-treated yarns can grow significantly in the wash due to the way the scales are chemically removed or coated. [Superwash treatments change how wool absorbs water and responds to agitation](https://woolmark.com/industry/wool-processing/superwash/), and some superwash yarns will stretch out and not spring back. Wash your swatch in the machine before you commit a finished sweater to it. If the swatch grows or loses structure, stick to handwashing the finished piece.
 
