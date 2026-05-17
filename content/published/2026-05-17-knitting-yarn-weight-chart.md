@@ -10,7 +10,7 @@ reviewer: "Jason Ramirez, CADC-II"
 
 # Knitting Yarn Weight Chart: What Every Number and Label Actually Means
 
-Yarn weight describes how thick a strand is, which directly controls how many stitches fit in an inch and how fast a project works up. The [Craft Yarn Council](https://www.craftyarncouncil.com/standards/yarn-weight-system) standardized seven weight categories (0 through 7) so labels mean the same thing no matter which brand you buy. Check your gauge swatch before you commit to any pattern.
+Yarn weight describes how thick a strand is, which directly controls how many stitches fit in an inch and how fast a project works up. The [Craft Yarn Council](https://www.craftyarncouncil.com/standards/yarn-weight-system) standardized [seven weight categories (0 through 7) so labels mean the same thing](/blog/unlocking-yarn-weight-codes-understanding-the-standard-yarn-/) no matter which brand you buy. Check your gauge swatch before you commit to any pattern.
 
 ---
 
@@ -71,7 +71,7 @@ The project type is the fastest way to narrow it down. Here is what experienced 
 
 You can, but you are taking on real math. Substituting one weight up or down changes your gauge, which changes your stitch count, which changes your finished dimensions. A pattern written for Weight 4 at 18 stitches per 4 inches will not fit the same if you knit it in Weight 3 at 22 stitches per 4 inches without adjusting the stitch counts.
 
-The cleanest approach: swatch in your substitute yarn, calculate the ratio between your gauge and the pattern's gauge, and multiply every stitch count in the pattern by that ratio. If the pattern says cast on 80 stitches at 18 sts/4in and your gauge is 22 sts/4in, you need roughly 98 stitches to get the same width. That math applies to every section of the pattern.
+The cleanest approach: [swatch in your substitute yarn, calculate the ratio between your gauge](/blog/demystifying-yarn-weights-for-crochet-using-the-yarn-weight-/) and the pattern's gauge, and multiply every stitch count in the pattern by that ratio. If the pattern says cast on 80 stitches at 18 sts/4in and your gauge is 22 sts/4in, you need roughly 98 stitches to get the same width. That math applies to every section of the pattern.
 
 Going up a full weight category (say, from worsted to bulky) is a significant jump. The fabric structure changes, the drape changes, and seaming gets harder. A half-step substitution, like swapping worsted for a heavy DK, is much easier to manage.
 
@@ -79,7 +79,7 @@ Going up a full weight category (say, from worsted to bulky) is a significant ju
 
 ## Why Does Yardage Matter as Much as Weight?
 
-Two skeins can be the same weight but contain very different yardage, and yardage is what actually runs out mid-project. A 100g skein of fingering weight typically holds around 400 yards. A 100g skein of worsted holds around 200 yards. A 100g skein of bulky might give you only 100 yards.
+Two skeins can be the same weight but contain very different yardage, and [yardage is what actually runs out mid-project](/blog/yarn-weight-chart-how-to-ensure-proper-fiber-weight-selectio/). A 100g skein of fingering weight typically holds around 400 yards. A 100g skein of worsted holds around 200 yards. A 100g skein of bulky might give you only 100 yards.
 
 When a pattern lists yardage, use that number, not the skein count, to calculate how much yarn to buy. If a sweater pattern calls for 1,200 yards of worsted, check the yardage on your specific yarn's label and divide. Six skeins of a 200-yard worsted gets you there. Four skeins of a 280-yard worsted also gets you there with some left over for seaming and repairs.
 
