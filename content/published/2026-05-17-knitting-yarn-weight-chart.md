@@ -51,6 +51,9 @@ For example, a skein of Lion Brand Wool-Ease lists a gauge of 18 stitches and 24
 
 ## Which Weight Should I Use for Common Projects?
 
+Match the project to its demands first, then pick your weight. Socks need fingering for durability and fit. Sweaters land most often in DK or worsted. Blankets move fastest in bulky. Baby knits are forgiving in DK, which gives detail without being fussy to wash and wear.
+
+
 The project type is the fastest way to narrow it down. Here is what experienced knitters reach for most often:
 
 **Socks:** Weight 1 (Fingering). Usually 80/20 wool-nylon blend for durability. Expect 60-72 stitches for an average adult foot on US 1-2 needles.
