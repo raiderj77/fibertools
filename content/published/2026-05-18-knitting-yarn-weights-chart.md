@@ -10,7 +10,7 @@ reviewer: "Jason Ramirez, CADC-II"
 
 # Knitting Yarn Weights Chart: What Every Number and Label Actually Means
 
-Yarn weight describes how thick a strand is, which controls gauge, drape, and how fast a project works up. The Craft Yarn Council recognizes [seven standard weight categories](https://www.craftyarncouncil.com/standards/yarn-weight-system), numbered 0 through 7. Knowing where your yarn lands on that scale tells you which needle to grab and roughly how many stitches fit in an inch.
+Yarn [weight describes how thick a strand is, which controls gauge](/blog/knitting-yarn-weight-chart/), drape, and how fast a project works up. The Craft Yarn Council recognizes [seven standard weight categories](https://www.craftyarncouncil.com/standards/yarn-weight-system), numbered 0 through 7. Knowing where your yarn lands on that scale tells you which needle to grab and roughly how many stitches fit in an inch.
 
 ---
 
@@ -52,7 +52,7 @@ Here is a quick translation:
 
 ## Why does the same yarn weight feel different across brands?
 
-Yarn weight categories are guidelines, not regulated measurements. A "worsted" from one mill can be noticeably thicker or thinner than a "worsted" from another. Fiber type, twist, and ply structure all affect how a yarn behaves on the needle even when the label says the same thing.
+Yarn [weight categories are guidelines, not regulated measurements](/blog/demystifying-yarn-weights-for-crochet-using-the-yarn-weight-/). A "worsted" from one mill can be noticeably thicker or thinner than a "worsted" from another. Fiber type, twist, and ply structure all affect how a yarn behaves on the needle even when the label says the same thing.
 
 The most reliable check is wraps per inch (WPI). Wrap your yarn loosely around a ruler for one inch without overlapping or squishing. [According to the Craft Yarn Council](https://www.craftyarncouncil.com/standards/yarn-weight-system), a weight 4 worsted typically measures around 9–12 WPI. Lace weight can hit 30+ WPI. If you are substituting yarn in a pattern, matching WPI and then swatching gives you a much better shot at matching the original gauge than trusting the label alone.
 
