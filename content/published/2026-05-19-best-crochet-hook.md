@@ -10,7 +10,7 @@ reviewer: "Jason Ramirez, CADC-II"
 
 # Best Crochet Hook: What Actually Works at the Needle
 
-**The short answer:** For most crocheters, an ergonomic aluminum hook in a size H-8 (5.0 mm) or I-9 (5.5 mm) hits the sweet spot of versatility and hand comfort. Brands like Clover Amour, Tulip Etimo, and Furls Streamline consistently earn trust from working fiber artists. Your ideal hook depends on your yarn weight, grip style, and how long you crochet in a single sitting.
+**The short answer:** For most crocheters, an ergonomic aluminum hook in a size H-8 (5.0 mm) or I-9 (5.5 mm) hits the sweet spot of versatility and hand comfort. Brands like [Clover Amour, Tulip Etimo, and Furls Streamline consistently earn trust](/blog/best-crochet-hooks/) from working fiber artists. Your ideal hook depends on your yarn weight, grip style, and how long you crochet in a single sitting.
 
 ---
 
