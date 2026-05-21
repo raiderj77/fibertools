@@ -68,6 +68,9 @@ This matters for count comparisons. A 28-count evenweave stitched over two threa
 
 ## Does fabric count affect [how many strands of floss I use](/blog/how-many-cross-stitches-per-skein/)?
 
+Yes, fabric count directly determines how many strands fit cleanly through the holes. Higher counts need fewer strands, so 14-count typically takes 2 to 3 strands while 11-count handles 6. Too many strands on fine fabric crowds the holes, distorts the weave, and makes your stitches look lumpy instead of crisp.
+
+
 Yes, directly. The higher the count, the fewer strands you need for clean coverage without crowding the holes.
 
 General guidelines that most stitchers follow:
