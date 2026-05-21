@@ -66,7 +66,7 @@ This matters for count comparisons. A 28-count evenweave stitched over two threa
 
 ---
 
-## Does fabric count affect how many strands of floss I use?
+## Does fabric count affect [how many strands of floss I use](/blog/how-many-cross-stitches-per-skein/)?
 
 Yes, directly. The higher the count, the fewer strands you need for clean coverage without crowding the holes.
 
@@ -94,7 +94,7 @@ If you are adapting a pattern to a different count than specified, check that th
 
 Plastic canvas is sold by mesh count just like fabric. The most common is 7-count, which is why plastic canvas projects look chunky and graphic. 10-count and 14-count plastic canvas exist for finer work.
 
-The calculation is identical: stitch count ÷ mesh count = finished inches. The main difference is that plastic canvas does not fray, holds its shape without a hoop, and is used primarily for three-dimensional projects like boxes, ornaments, and coasters rather than framed pieces.
+The calculation is identical: [stitch count ÷ mesh count = finished inches](/blog/knitting-yarn-weights-chart/). The main difference is that plastic canvas does not fray, holds its shape without a hoop, and is used primarily for three-dimensional projects like boxes, ornaments, and coasters rather than framed pieces.
 
 ---
 
