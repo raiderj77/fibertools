@@ -26,7 +26,7 @@ A label recommendation is based on how the yarn manufacturer thinks most knitter
 
 Ignore it whenever the fabric coming off your hook is wrong for the project. That sounds obvious, but a lot of people feel like they're breaking a rule.
 
-Here are the situations where I routinely reach for a different hook than what's printed on the ball band:
+Here are the situations where I routinely [reach for a different hook than what's printed](/blog/best-crochet-hooks/) on the ball band:
 
 **When I'm making a bag or basket.** I drop down one or two hook sizes from the label recommendation. A tote bag made at the "correct" gauge for a cotton yarn will stretch out and lose its shape under weight. Going from a 5.0 mm to a 4.0 mm with the same yarn gives me a much denser fabric that holds structure.
 
@@ -42,7 +42,7 @@ Here are the situations where I routinely reach for a different hook than what's
 
 Not on its own. Yarn weight category is a broad label, and there's a lot of variation within each one.
 
-Two yarns both labeled "worsted" can behave completely differently. One might be a tightly spun, high-twist wool that crochets up firm and defined. Another might be a loosely plied, low-twist alpaca blend that blooms and softens after washing. The [Craft Yarn Council's weight categories](https://www.craftyarncouncil.com/standards/yarn-weight-system) are based on wraps per inch and gauge ranges, but they don't account for fiber content, twist, or how the yarn is constructed. You have to actually work with the yarn to know what it wants to do.
+Two yarns both labeled "worsted" can behave completely differently. One might be a tightly spun, high-twist wool that crochets up firm and defined. Another might be a loosely plied, low-twist alpaca blend that blooms and softens after washing. The [Craft Yarn Council's weight categories](https://www.craftyarncouncil.com/standards/yarn-weight-system) are based on wraps per inch and gauge ranges, but they don't account for [fiber content, twist, or how the yarn is constructed](/blog/when-gauge-is-no-gauge-how-yarn-weight-impacts-crochet-fabri/). You have to actually work with the yarn to know what it wants to do.
 
 Wraps per inch (WPI) is a more precise way to assess a yarn's actual thickness. A worsted weight yarn typically measures around 9 to 12 WPI. If you're substituting yarns and want to know if two yarns are truly equivalent, measuring WPI is more reliable than trusting the label category alone.
 
