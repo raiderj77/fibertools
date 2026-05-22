@@ -24,6 +24,9 @@ A label recommendation is based on how the yarn manufacturer thinks most knitter
 
 ## When should I actually ignore the label's hook suggestion?
 
+Ignore the label whenever the fabric coming off your hook is wrong for what you're making. A bag needs a tighter, stiffer fabric than a shawl, even if both use the same yarn. The label suggestion is a starting point for average drape, not a rule for every project type.
+
+
 Ignore it whenever the fabric coming off your hook is wrong for the project. That sounds obvious, but a lot of people feel like they're breaking a rule.
 
 Here are the situations where I routinely [reach for a different hook than what's printed](/blog/best-crochet-hooks/) on the ball band:
@@ -40,6 +43,9 @@ Here are the situations where I routinely [reach for a different hook than what'
 
 ## Does yarn weight category actually tell me what I need to know?
 
+Not really, because two yarns in the same weight category can behave completely differently at the hook. Twist, fiber content, and ply structure all affect how a yarn works up. The category gets you in the right neighborhood for hook size, but swatching tells you what you actually need to know.
+
+
 Not on its own. Yarn weight category is a broad label, and there's a lot of variation within each one.
 
 Two yarns both labeled "worsted" can behave completely differently. One might be a tightly spun, high-twist wool that crochets up firm and defined. Another might be a loosely plied, low-twist alpaca blend that blooms and softens after washing. The [Craft Yarn Council's weight categories](https://www.craftyarncouncil.com/standards/yarn-weight-system) are based on wraps per inch and gauge ranges, but they don't account for [fiber content, twist, or how the yarn is constructed](/blog/when-gauge-is-no-gauge-how-yarn-weight-impacts-crochet-fabri/). You have to actually work with the yarn to know what it wants to do.
@@ -49,6 +55,9 @@ Wraps per inch (WPI) is a more precise way to assess a yarn's actual thickness. 
 ---
 
 ## What happens to my stitch count and fit if I change hook sizes?
+
+Your gauge shifts, and if you're making something fitted, your stitch count has to shift with it. A larger hook gives you fewer stitches per inch, so the same stitch count produces a bigger piece. Always re-measure your gauge after switching hooks and recalculate before you commit to a full project.
+
 
 Your gauge changes, which means your stitch count needs to change too if you're following a pattern for fit.
 
