@@ -27,6 +27,9 @@ A simple example: if your color repeat is 24 inches and each row of your project
 
 ## What is flashing, and is it different from pooling?
 
+Flashing and pooling are related but not the same thing. Pooling creates blotchy color clumps, while flashing produces sharp diagonal or vertical color streaks across the fabric. Both happen when color repeats align with your stitch count, but flashing sits at a middle point where the alignment is partial rather than exact.
+
+
 Flashing is pooling's more organized cousin. Instead of a muddy blob, you get sharp diagonal or vertical streaks of color running through your fabric.
 
 Flashing tends to happen when the color repeat and stitch count line up just closely enough to create a repeating diagonal pattern but not so tightly that the colors fully stack. The result looks intentional from a distance but can feel jarring up close. Some knitters and crocheters love it. Others find it distracting. Either way, it is the same underlying cause: [stitch count and color repeat length are in a near-harmonic relationship](/blog/how-many-cross-stitches-per-skein/).
@@ -36,6 +39,9 @@ Flashing tends to happen when the color repeat and stitch count line up just clo
 ---
 
 ## Does stitch count actually matter that much?
+
+Yes, stitch count matters enormously, and the sensitivity surprises most knitters. A shift of just two or three stitches changes how much yarn each row consumes, which determines whether colors stack or scatter. That small adjustment can be the difference between a muddy pooled fabric and one where color distributes evenly across the whole piece.
+
 
 Yes, and the effect is more sensitive than most people expect. A difference of two or three stitches can flip a project from pooling to a scattered, heathered look.
 
@@ -56,6 +62,9 @@ Fiber content does not directly cause or prevent pooling, but it affects how vis
 ---
 
 ## Can the dye method change how a yarn pools?
+
+Yes, dye method directly affects pooling behavior. Machine-dyed yarn has a highly consistent repeat, which makes pooling more predictable and more pronounced when it occurs. Hand-dyed and kettle-dyed yarns have repeats that vary slightly skein to skein, and that natural irregularity disrupts the alignment that causes pooling in the first place.
+
 
 Yes. Hand-dyed and kettle-dyed yarns often have irregular color repeats, which actually works in your favor.
 
