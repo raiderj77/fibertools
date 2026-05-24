@@ -29,7 +29,7 @@ A simple example: if your color repeat is 24 inches and each row of your project
 
 Flashing is pooling's more organized cousin. Instead of a muddy blob, you get sharp diagonal or vertical streaks of color running through your fabric.
 
-Flashing tends to happen when the color repeat and stitch count line up just closely enough to create a repeating diagonal pattern but not so tightly that the colors fully stack. The result looks intentional from a distance but can feel jarring up close. Some knitters and crocheters love it. Others find it distracting. Either way, it is the same underlying cause: stitch count and color repeat length are in a near-harmonic relationship.
+Flashing tends to happen when the color repeat and stitch count line up just closely enough to create a repeating diagonal pattern but not so tightly that the colors fully stack. The result looks intentional from a distance but can feel jarring up close. Some knitters and crocheters love it. Others find it distracting. Either way, it is the same underlying cause: [stitch count and color repeat length are in a near-harmonic relationship](/blog/how-many-cross-stitches-per-skein/).
 
 [Knitty's deep dive into yarn behavior](https://knitty.com/ISSUEfall08/FEATfall08SC.php) explains that flashing is especially common in yarns with long color repeats (think 36 inches or more per color) worked on a needle or hook size that produces a fabric around 18 to 24 stitches wide. The repeat divides almost evenly into the row, and the diagonal appears.
 
@@ -41,7 +41,7 @@ Yes, and the effect is more sensitive than most people expect. A difference of t
 
 Here is why. If your color repeat is 30 inches and your row uses 30 inches of yarn, you get stacking. Add 5 stitches to your cast-on and your row now uses 35 inches. The colors no longer line up. They shift slightly with each row and scatter across the fabric. The math does not care that the difference feels small.
 
-This is why the same colorway can look completely different in two projects with different stitch counts, or even in the same project after a shaping section changes the width. If you have ever noticed a pool forming at the underarm of a sweater or in a section where you decreased heavily, that is the stitch count shifting into a harmonic relationship with the repeat.
+This is why [the same colorway can look completely different in two projects](/blog/crochet-color-trends-2026/) with different stitch counts, or even in the [same project after a shaping section changes the width](/blog/how-to-read-a-knitting-pattern-when-youre-brand-new/). If you have ever noticed a pool forming at the underarm of a sweater or in a section where you decreased heavily, that is the stitch count shifting into a harmonic relationship with the repeat.
 
 ---
 
