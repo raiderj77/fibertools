@@ -2,7 +2,7 @@
 title: "Pooling and flashing in variegated yarn: what causes it"
 date: "2026-05-24"
 slug: "pooling-and-flashing-in-variegated-yarn-what-causes-it"
-description: ""
+description: "Pooling and flashing in variegated yarn are caused by how your stitch count aligns with the color repeat. Learn how to predict and avoid both effects."
 status: published
 author: "Your Friendly Developer LLC"
 ---
@@ -29,10 +29,7 @@ A simple example: if your color repeat is 24 inches and each row of your project
 
 Flashing and pooling are related but not the same thing. Pooling creates blotchy color clumps, while flashing produces sharp diagonal or vertical color streaks across the fabric. Both happen when color repeats align with your stitch count, but flashing sits at a middle point where the alignment is partial rather than exact.
 
-
-Flashing is pooling's more organized cousin. Instead of a muddy blob, you get sharp diagonal or vertical streaks of color running through your fabric.
-
-Flashing tends to happen when the color repeat and stitch count line up just closely enough to create a repeating diagonal pattern but not so tightly that the colors fully stack. The result looks intentional from a distance but can feel jarring up close. Some knitters and crocheters love it. Others find it distracting. Either way, it is the same underlying cause: [stitch count and color repeat length are in a near-harmonic relationship](/blog/how-many-cross-stitches-per-skein/).
+Flashing tends to happen when the color repeat and stitch count line up just closely enough to create a repeating diagonal pattern but not so tightly that the colors fully stack. The result looks intentional from a distance but can feel jarring up close. Some knitters and crocheters love it. Others find it distracting. Either way, it is the same underlying cause: [stitch count and color repeat length are in a near-harmonic relationship](/blog/variegated-yarn-guide/).
 
 [Knitty's deep dive into yarn behavior](https://knitty.com/ISSUEfall08/FEATfall08SC.php) explains that flashing is especially common in yarns with long color repeats (think 36 inches or more per color) worked on a needle or hook size that produces a fabric around 18 to 24 stitches wide. The repeat divides almost evenly into the row, and the diagonal appears.
 
@@ -41,9 +38,6 @@ Flashing tends to happen when the color repeat and stitch count line up just clo
 ## Does stitch count actually matter that much?
 
 Yes, stitch count matters enormously, and the sensitivity surprises most knitters. A shift of just two or three stitches changes how much yarn each row consumes, which determines whether colors stack or scatter. That small adjustment can be the difference between a muddy pooled fabric and one where color distributes evenly across the whole piece.
-
-
-Yes, and the effect is more sensitive than most people expect. A difference of two or three stitches can flip a project from pooling to a scattered, heathered look.
 
 Here is why. If your color repeat is 30 inches and your row uses 30 inches of yarn, you get stacking. Add 5 stitches to your cast-on and your row now uses 35 inches. The colors no longer line up. They shift slightly with each row and scatter across the fabric. The math does not care that the difference feels small.
 
@@ -65,12 +59,9 @@ Fiber content does not directly cause or prevent pooling, but it affects how vis
 
 Yes, dye method directly affects pooling behavior. Machine-dyed yarn has a highly consistent repeat, which makes pooling more predictable and more pronounced when it occurs. Hand-dyed and kettle-dyed yarns have repeats that vary slightly skein to skein, and that natural irregularity disrupts the alignment that causes pooling in the first place.
 
-
-Yes. Hand-dyed and kettle-dyed yarns often have irregular color repeats, which actually works in your favor.
-
 A yarn dyed by machine will have a very consistent repeat, sometimes accurate to within half an inch across the whole skein. That consistency makes pooling more predictable and, when it happens, more pronounced. A hand-dyed yarn might have a repeat that varies by 3 to 5 inches from one cycle to the next. That variation disrupts the stacking because the math never quite lines up the same way twice.
 
-[The Yarn Council's standards for yarn labeling](https://www.craftyarncouncil.com/standards/yarn-weight-system) do not require dyers to disclose repeat length, which is part of why pooling can feel like a surprise. Most commercial variegated yarns do not list the color repeat on the label. You have to measure it yourself by winding off a length and tracking where each color starts and ends.
+Most commercial variegated yarns do not list the color repeat length on the label, which is part of why pooling can feel like a surprise. You have to measure it yourself by winding off a length and tracking where each color starts and ends.
 
 Measuring your repeat before you cast on takes about five minutes and tells you exactly what you are working with. Wind off a yard or two, mark where each color begins, and count. That number is your starting point for predicting and managing how the yarn will behave in your project.
 
