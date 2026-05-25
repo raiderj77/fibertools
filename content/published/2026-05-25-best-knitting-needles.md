@@ -15,7 +15,7 @@ author: "Your Friendly Developer LLC"
 
 ## What type of knitting needle should I start with?
 
-Start with a 16-inch or 24-inch fixed circular needle in US 7 (4.5mm) or US 8 (5.0mm) and a smooth, worsted-weight yarn. Fixed circulars are more stable than straights for new knitters because the cord holds your stitches while you work, and they handle both flat and in-the-round projects.
+Start with a 16-inch or 24-inch [fixed circular needle in US 7 (4.5mm) or US 8](/blog/best-circular-knitting-needles-for-beginners/) (5.0mm) and a smooth, worsted-weight yarn. Fixed circulars are more stable than straights for new knitters because the cord holds your stitches while you work, and they handle both flat and in-the-round projects.
 
 Straight needles get romanticized, but they're genuinely limiting. You can't use them for hats, sleeves, or any seamless construction. If you already own straights and love them, keep them for scarves and swatches. But if you're buying your first pair, skip straight to circulars and save yourself the re-buy later.
 
@@ -39,7 +39,7 @@ It changes your speed, your grip, and how your yarn behaves on the needle. Metal
 
 That friction is a feature, not a bug, when you're learning or working with slippery fibers like silk or bamboo yarn. A [2019 review of needle materials](https://www.ravelry.com/discuss/needle-and-hook-reviews) discussed extensively on Ravelry shows strong preferences breaking along yarn type: slick fibers on wood, sticky fibers like wool on metal. Most experienced knitters own both.
 
-Acrylic needles (Clover Takumi, for example) split the difference. They're lighter than metal and smoother than wood, which makes them a solid choice for knitters with hand fatigue or arthritis. Carbon fiber needles like the [Knitter's Pride Karbonz](https://www.knitterspr ide.com/karbonz/) are another option in this category: very light, very smooth, and they don't conduct cold the way metal does in a chilly room.
+Acrylic needles ([Clover Takumi, for example) split the difference](/blog/best-crochet-hooks/). They're lighter than metal and smoother than wood, which makes them a solid choice for knitters with hand fatigue or arthritis. Carbon fiber needles like the [Knitter's Pride Karbonz](https://www.knitterspr ide.com/karbonz/) are another option in this category: very light, very smooth, and they don't conduct cold the way metal does in a chilly room.
 
 ---
 
@@ -53,7 +53,7 @@ The Chiaogoo Red Lace and Addi Lace needles have notably sharp tips. The [Addi T
 
 ## What size needles do I actually need on hand?
 
-For a functional everyday kit, cover US 2 (2.75mm) through US 10.5 (6.5mm). That range handles fingering weight socks through bulky sweaters, which is where most knitters spend their time.
+For a functional everyday kit, cover US 2 (2.75mm) through US 10.5 (6.5mm). That range handles [fingering weight socks through bulky sweaters](/blog/knitting-yarn-weights-chart/), which is where most knitters spend their time.
 
 Specifically:
 - **US 2-3 (2.75-3.25mm):** Sock knitting, fine lace
