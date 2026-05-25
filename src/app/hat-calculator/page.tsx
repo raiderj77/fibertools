@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     "hat stitch count",
     "crochet hat calculator",
   ],
+  robots: { index: false, follow: true },
   alternates: { canonical: "/hat-calculator" },
 };
 

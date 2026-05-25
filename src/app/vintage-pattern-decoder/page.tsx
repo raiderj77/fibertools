@@ -39,6 +39,7 @@ export const metadata: Metadata = {
       "Translate vintage knitting and crochet patterns into modern terms. Converts UK to US crochet stitches, old abbreviations, and era-specific terminology. Free, instant, no signup.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/vintage-pattern-decoder" },
 };
 

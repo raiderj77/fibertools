@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     "yarn weight from WPI",
     "wraps per inch chart",
   ],
+  robots: { index: false, follow: true },
   alternates: { canonical: "/wpi-calculator" },
 };
 

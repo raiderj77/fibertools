@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       "Calculate the total cost of any knitting or crochet project — yarn, notions, and time. See your hourly rate for selling. Free, no signup needed.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/project-cost-calculator" },
 };
 

@@ -41,6 +41,7 @@ export const metadata: Metadata = {
       "Find compatible stitch counts for sampler blankets. Browse 50+ stitch patterns and calculate the LCM instantly. Free — no signup required.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/stitch-pattern-calculator" },
 };
 

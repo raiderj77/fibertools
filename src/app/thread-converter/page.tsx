@@ -28,6 +28,7 @@ export const metadata: Metadata = {
       "Convert between DMC, Anchor, and Cosmo embroidery thread numbers instantly. Build palettes and bulk-convert for cross stitch shopping lists. Free.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/thread-converter" },
 };
 

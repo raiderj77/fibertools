@@ -38,6 +38,7 @@ export const metadata: Metadata = {
       "Convert knitting needle and crochet hook sizes between US, metric, UK, and Japanese systems. All 23 needle sizes and 24 hook sizes. Free.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/needle-converter" },
 };
 

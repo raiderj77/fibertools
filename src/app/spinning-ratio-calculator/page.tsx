@@ -28,6 +28,7 @@ export const metadata: Metadata = {
       "Calculate drive ratios, twists per inch, and plying twist for handspinning. Includes fiber guide with TPI ranges. Free — no signup needed.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/spinning-ratio-calculator" },
 };
 

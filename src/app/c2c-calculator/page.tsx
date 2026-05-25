@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     "diagonal crochet planner",
     "corner to corner blanket",
   ],
+  robots: { index: false, follow: true },
   alternates: { canonical: "/c2c-calculator" },
 };
 

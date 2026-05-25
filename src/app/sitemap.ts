@@ -6,9 +6,32 @@ import { getAllGuides } from "@/lib/guides";
 const BASE_URL = "https://fibertools.app";
 const TODAY = new Date().toISOString().split("T")[0];
 
+const NOINDEX_TOOL_SLUGS = new Set([
+  "blocking-calculator",
+  "c2c-calculator",
+  "color-pooling-calculator",
+  "cross-stitch-calculator",
+  "gauge-calculator",
+  "granny-square-planner",
+  "hat-calculator",
+  "increase-decrease-calculator",
+  "needle-converter",
+  "project-cost-calculator",
+  "raglan-calculator",
+  "spinning-ratio-calculator",
+  "stash-estimator",
+  "stitch-counter",
+  "stitch-pattern-calculator",
+  "stripe-generator",
+  "thread-converter",
+  "uk-to-us-converter",
+  "vintage-pattern-decoder",
+  "wpi-calculator",
+]);
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const toolPages = tools
-    .filter((t) => t.ready)
+    .filter((t) => t.ready && !NOINDEX_TOOL_SLUGS.has(t.slug))
     .map((t) => ({
       url: `${BASE_URL}/${t.slug}`,
       lastModified: new Date(TODAY),

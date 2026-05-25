@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     "granny square yardage",
     "crochet blanket planner",
   ],
+  robots: { index: false, follow: true },
   alternates: { canonical: "/granny-square-planner" },
 };
 

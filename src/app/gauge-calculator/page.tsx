@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     "gauge swatch calculator",
     "knitting math calculator",
   ],
+  robots: { index: false, follow: true },
   alternates: { canonical: "/gauge-calculator" },
 };
 

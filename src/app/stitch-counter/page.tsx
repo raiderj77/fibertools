@@ -38,6 +38,7 @@ export const metadata: Metadata = {
       "Free online row counter for knitting and crochet. Track stitches, rows, and repeats with undo/redo. Works offline — no login required.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/stitch-counter" },
 };
 

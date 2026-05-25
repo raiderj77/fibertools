@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     "blocking crochet",
     "fiber blocking method",
   ],
+  robots: { index: false, follow: true },
   alternates: { canonical: "/blocking-calculator" },
 };
 

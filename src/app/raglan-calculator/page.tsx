@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     "raglan increase calculator",
     "yoke calculator",
   ],
+  robots: { index: false, follow: true },
   alternates: { canonical: "/raglan-calculator" },
 };
 

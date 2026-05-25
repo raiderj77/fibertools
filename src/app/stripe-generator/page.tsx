@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       "Generate random or custom stripe patterns with live color preview. Control widths, color weights, and get per-color yardage. Free, no login.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/stripe-generator" },
 };
 

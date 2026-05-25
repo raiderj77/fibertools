@@ -28,6 +28,7 @@ export const metadata: Metadata = {
       "Calculate exact stitch counts for planned pooling with variegated yarn. Live argyle and plaid preview before you start. Free, no login.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/color-pooling-calculator" },
 };
 

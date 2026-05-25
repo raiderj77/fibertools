@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       "Calculate exactly where to place increases or decreases evenly across any row or round. Step-by-step instructions for knitting and crochet. Free.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/increase-decrease-calculator" },
 };
 

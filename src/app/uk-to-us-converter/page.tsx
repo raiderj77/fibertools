@@ -38,6 +38,7 @@ export const metadata: Metadata = {
       "Convert UK to US knitting and crochet terms instantly. Paste any British pattern for automatic conversion of abbreviations and stitch names. Free.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/uk-to-us-converter" },
 };
 

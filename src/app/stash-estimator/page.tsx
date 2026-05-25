@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     "yarn weight yardage chart",
     "remaining yarn calculator",
   ],
+  robots: { index: false, follow: true },
   alternates: { canonical: "/stash-estimator" },
 };
 

@@ -27,6 +27,7 @@ export const metadata: Metadata = {
       "Calculate cross stitch dimensions for any Aida count. Estimate DMC thread amounts per color with framing margin. Free, instant results.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  robots: { index: false, follow: true },
   alternates: { canonical: "/cross-stitch-calculator" },
 };
 
