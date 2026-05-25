@@ -25,6 +25,9 @@ Single-pointed straights also shift weight to your wrists over long sessions. Ci
 
 ## Are interchangeable needle sets worth the money?
 
+Yes, if you knit more than a couple of projects a year, an interchangeable set is worth every dollar. One set replaces dozens of individual needle purchases, covers multiple cord lengths, and travels as a single case. The upfront cost of fifty to one hundred fifty dollars pays for itself faster than most knitters expect.
+
+
 Yes, if you knit more than two or three projects a year. A quality interchangeable set costs $50-$150 upfront but replaces dozens of individual needle purchases over time.
 
 The [KnitPicks Options Interchangeable set](https://www.knitpicks.com/options-interchangeable-knitting-needles/c/5640) runs around $60-$70 for the full set and covers US 4 through US 11 with multiple cord lengths. The [Chiaogoo Red Lace Interchangeable set](https://www.chiaogoo.com/collections/interchangeable-sets) sits closer to $120-$150 but uses a stainless steel tip that many knitters find sharper and more durable. Both use a screw-on connection; the Chiaogoo system uses a tiny key to tighten the join, which prevents the loosening mid-project problem that plagues cheaper sets.
@@ -44,6 +47,9 @@ Acrylic needles ([Clover Takumi, for example) split the difference](/blog/best-c
 ---
 
 ## What needle tip shape should I use?
+
+Use sharp tips for lace, colorwork, and decreases, and blunter tips for beginner projects or slippery bulky yarn. Tip shape changes how easily you enter a stitch, which matters most when you are working k2tog repeatedly or picking up from a crowded needle. Most experienced knitters keep both on hand.
+
 
 Sharp tips for lace and colorwork, blunter tips for beginners and bulky yarn. Tip sharpness affects how easily you can enter stitches, especially when working k2tog or complex decreases.
 
@@ -74,6 +80,9 @@ DPNs are still the most reliable tool for small circumference knitting like sock
 ---
 
 ## The actual short list
+
+A Chiaogoo Red Lace interchangeable set, a fixed 16-inch circular in US 7 and US 9, a DPN set in US 1 and US 2, and a few bamboo needles in US 4 through 6 will cover nearly everything. That combination handles socks, hats, sweaters, and slippery yarns without redundancy.
+
 
 If you want to build a solid kit without overthinking it:
 
