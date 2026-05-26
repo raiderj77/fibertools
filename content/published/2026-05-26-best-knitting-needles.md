@@ -49,6 +49,9 @@ I keep two sets for this reason. My Chiaogoo Red Lace tips stay on the project b
 
 ## What makes a good join between needle tip and cable?
 
+A smooth join is one where your fingernail slides across without catching. Run your nail from cable to tip: any ridge or lip means your yarn will snag on every single stitch. The best joins feel like one continuous surface, and that quality separates reliable interchangeable systems from frustrating ones.
+
+
 A smooth join with no lip or snag. That is the whole job. A bad join catches yarn on every stitch and will make you miserable by row 20.
 
 The join is the most common failure point in interchangeable systems. Cheaper sets often have a slight ridge where the metal tip threads onto the connector. Run your fingernail across the join: if you feel a catch, your yarn will feel it too.
@@ -70,6 +73,9 @@ For a first purchase: the Knitter's Pride Karbonz Interchangeable Set at around 
 ---
 
 ## Do I need different needles for different yarn weights?
+
+You need the right size, not a different brand for every weight. One good interchangeable set covering US 2 through US 15 handles fingering through bulky for most projects. Material matters more than people expect, so slippery metal tips suit slick yarns and grippy wood tips suit wool and loosely spun fibers.
+
 
 Yes, but not a separate brand for each weight. You need the right size and the right material for the fiber, not a whole new system.
 
