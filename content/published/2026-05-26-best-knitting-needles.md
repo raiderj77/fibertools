@@ -27,13 +27,13 @@ Carbon fiber needles like the Karbonz from Knitter's Pride weigh roughly 30-40% 
 
 ## Fixed circulars, interchangeable sets, or straight needles -- which should I actually buy?
 
-For most knitters, interchangeable circulars replace straights and most fixed circulars for about the same price as buying individual needles over time. Straights are still worth keeping for small flat projects. Fixed circulars are best for magic loop socks and sleeves where you need a very short cable.
+For most knitters, [interchangeable circulars replace straights and most fixed circulars](/blog/how-to-choose-knitting-needles/) for about the same price as buying individual needles over time. Straights are still worth keeping for small flat projects. Fixed circulars are best for magic loop socks and sleeves where you need a very short cable.
 
 A full interchangeable set from a mid-range brand like Knitter's Pride or Hiya Hiya runs $80-$150 and gives you tips from US 2 (2.75mm) through US 15 (10mm) plus multiple cable lengths. Compare that to buying individual fixed circulars at $8-$14 each: you hit the break-even point around needle size number five or six.
 
 Straight needles still earn a place on my desk for swatching flat and for teaching new knitters. A 9-inch straight is less intimidating than a cable with a join. But I would not build a whole collection around them.
 
-The one scenario where fixed circulars win: 9-inch or 12-inch fixed circulars for small circumference knitting. Most interchangeable systems do not go below a 24-inch total length, so for tight magic loop or two-at-a-time socks, a fixed Chiaogoo or Addi is the practical choice.
+The one scenario where fixed circulars win: 9-inch or 12-inch [fixed circulars for small circumference knitting](/blog/best-circular-knitting-needles-for-beginners/). Most interchangeable systems do not go below a 24-inch total length, so for tight magic loop or two-at-a-time socks, a fixed Chiaogoo or Addi is the practical choice.
 
 ---
 
