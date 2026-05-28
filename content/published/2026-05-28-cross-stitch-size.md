@@ -32,6 +32,9 @@ That last one trips people up constantly. When you stitch over two threads on 28
 
 ## How do I calculate the finished size of a cross stitch design?
 
+Divide the stitch count by the fabric count to get finished inches. A design that is 180 stitches wide on 14-count Aida finishes at roughly 12.9 inches wide. Do that for both dimensions, then add at least 3 inches of unstitched margin on every side before you cut your fabric.
+
+
 Divide the stitch count by the fabric count. That is the whole formula.
 
 **Width in inches = stitch width ÷ fabric count**
@@ -48,6 +51,9 @@ Then add at least 3 inches of margin on every side for framing or finishing. Tha
 
 ## Does the number of strands I use change the size?
 
+No, strand count does not change the physical size of your stitching. A cross stitch on 14-count Aida covers the same area whether you use one strand or four. What changes is how dense and saturated the color looks, not the dimensions of the finished piece.
+
+
 No, [strand count changes coverage and texture, not the physical dimensions](/blog/how-many-cross-stitches-per-skein/) of the stitch.
 
 A cross stitch on 14-count Aida is the same size whether you work it with one strand or four strands. What changes is how full and saturated the color looks. [The Spruce Crafts notes](https://www.thesprucecrafts.com/how-many-strands-of-embroidery-floss-4051117) that most patterns on 14-count call for two strands because it gives solid coverage without the thread becoming too bulky or the stitches losing their shape. On 18-count or higher, one strand is often enough. On 11-count, three strands can look better.
@@ -57,6 +63,9 @@ Where strand count does interact with size perception: if you use too many stran
 ---
 
 ## What if I want to resize a pattern to fit a specific space?
+
+Work backwards by dividing the stitch count by your target finished size to find the fabric count you need. A 200-stitch-wide design meant to finish at 8 inches requires 25-count fabric. From there, find the closest standard count and adjust your target size slightly to match what is actually available.
+
 
 Work backwards from the space to find the fabric count you need.
 
@@ -68,6 +77,9 @@ You can also use an online size calculator to run through multiple fabric counts
 
 ## Does framing or finishing change the size I need to plan for?
 
+Yes, always plan for more fabric than just the stitched area. Standard framing needs 2 to 3 inches of unstitched fabric on every side, and scroll frames or stretcher bars need even more to grip. If you are finishing into a pillow or bag, add seam allowance on top of that margin.
+
+
 Yes, and it matters more than most people think when they are cutting fabric.
 
 The visible stitched area is one measurement. The fabric you need to cut is a different, larger measurement. Standard framing typically requires a minimum of 2 to 3 inches of unstitched fabric on each side. Scroll frames and stretcher bars need even more to grip properly. If you are finishing into a pillow, a bag, or a hoop ornament, the required margin changes again based on your seam allowance or hoop depth.
@@ -77,6 +89,9 @@ A practical rule: always cut more fabric than you think you need. Fabric is chea
 ---
 
 ## What is the most beginner-friendly size to start with?
+
+A design around 50x70 stitches on 14-count Aida is a great first project. It finishes at roughly 3.6 by 5 inches, small enough to complete in a few evenings but large enough to practice tension and see how your coverage develops before committing to something larger.
+
 
 A design that is roughly 50x70 stitches on 14-count Aida is a solid first project.
 
