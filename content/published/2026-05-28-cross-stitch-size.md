@@ -15,7 +15,7 @@ author: "Your Friendly Developer LLC"
 
 ## What does "fabric count" actually mean?
 
-Fabric count is the number of holes (and therefore possible stitches) per inch. A higher count means smaller stitches and a smaller finished piece. A lower count means bigger stitches and a larger piece.
+Fabric count is [the number of holes (and therefore possible stitches) per inch](/blog/cross-stitch-fabric-count/). A higher count means smaller stitches and a smaller finished piece. A lower count means bigger stitches and a larger piece.
 
 The most common counts you will encounter are 11, 14, 18, and 28. [DMC's fabric guide](https://www.dmc.com/us/cross-stitch-fabric-c2051.html) describes 14-count Aida as the standard starting point for most beginners and intermediate stitchers, and that tracks with what you see in pattern kits. It gives you a stitch that is easy to see without being chunky.
 
@@ -48,7 +48,7 @@ Then add at least 3 inches of margin on every side for framing or finishing. Tha
 
 ## Does the number of strands I use change the size?
 
-No, strand count changes coverage and texture, not the physical dimensions of the stitch.
+No, [strand count changes coverage and texture, not the physical dimensions](/blog/how-many-cross-stitches-per-skein/) of the stitch.
 
 A cross stitch on 14-count Aida is the same size whether you work it with one strand or four strands. What changes is how full and saturated the color looks. [The Spruce Crafts notes](https://www.thesprucecrafts.com/how-many-strands-of-embroidery-floss-4051117) that most patterns on 14-count call for two strands because it gives solid coverage without the thread becoming too bulky or the stitches losing their shape. On 18-count or higher, one strand is often enough. On 11-count, three strands can look better.
 
