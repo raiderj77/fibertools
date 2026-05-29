@@ -15,7 +15,7 @@ author: "Your Friendly Developer LLC"
 
 ## What does "fabric count" actually mean?
 
-Fabric count is the number of stitches (or threads) per inch. Higher count means smaller stitches and a finer finished piece. Lower count means bigger, bolder work.
+Fabric count is [the number of stitches (or threads) per inch](/blog/cross-stitch-fabric-count/). Higher count means smaller stitches and a finer finished piece. Lower count means bigger, bolder work.
 
 The most common counts you'll encounter are 11, 14, 16, 18, and 28. Aida cloth comes in all of these. [DMC's fabric guide](https://www.dmc.com/us/fabric) lists 14-count as the standard recommendation for beginners because the holes are easy to see and the needle moves through cleanly. If you've been stitching for a while and want a more delicate result, 18-count or 28-count evenweave (stitched over two threads) gives you a noticeably finer look without changing your thread count or design.
 
@@ -72,7 +72,7 @@ So if your finished stitched area is 7" x 10", cut your fabric at minimum 13" x 
 
 ## Does thread count or number of strands change the finished size?
 
-No, strands don't change finished size. They change coverage and texture.
+No, [strands don't change finished size](/blog/how-many-cross-stitches-per-skein/). They change coverage and texture.
 
 The size of your piece is determined entirely by fabric count and stitch count. What strands do is affect how solid and raised the stitching looks. [DMC's standard recommendation](https://www.dmc.com/us/needlework-tips) is 2 strands on 14-count Aida for a clean, full look. On 11-count you might use 3 strands. On 18-count, 1 strand is often enough. Using more strands than recommended for your count makes the stitches look crowded and can distort the fabric over time.
 
@@ -88,7 +88,7 @@ The design itself doesn't change at all. You're just changing the physical size 
 
 ---
 
-## Quick reference: cross stitch size chart by stitch count and fabric count
+## Quick reference: cross stitch size chart by [stitch count and fabric count](/blog/cross-stitch-size/)
 
 | Stitch Count | 11-count | 14-count | 16-count | 18-count | 28-count (over 2) |
 |---|---|---|---|---|---|
