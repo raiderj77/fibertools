@@ -23,6 +23,9 @@ The most common counts you'll encounter are 11, 14, 16, 18, and 28. Aida cloth c
 
 ## How do I calculate finished size from stitch count?
 
+Divide your stitch count by the fabric count to get finished inches. A 50x70 design on 14-count Aida works out to 3.6 inches wide by 5 inches tall. The same design on 11-count grows to 4.5 by 6.4 inches, so fabric count is the single biggest size lever you have.
+
+
 Divide the stitch width by the fabric count to get width in inches. Do the same for height.
 
 **Formula:**
@@ -62,6 +65,9 @@ Here's a practical way to think about it:
 
 ## How much extra fabric do I need around my design?
 
+Add at least 3 inches on every side of your design dimensions before you cut. That extra fabric is what grips your hoop while you stitch and wraps around a frame when you mount the finished piece. Cutting tight saves nothing and usually ruins the project at the finishing stage.
+
+
 Add at least 3 inches on each side of your design dimensions. That gives you 6 extra inches in both width and height.
 
 This isn't decorative — it's functional. You need fabric to fit in a hoop or frame while you stitch, and you need it again when you mount or frame the finished piece. [Dimensions Crafts recommends](https://www.dimensionscrafts.com/) a minimum of 3 inches of border on all sides for framing. If you're planning to frame under glass with a mat, 4 inches gives you more flexibility.
@@ -71,6 +77,9 @@ So if your finished stitched area is 7" x 10", cut your fabric at minimum 13" x 
 ---
 
 ## Does thread count or number of strands change the finished size?
+
+No, strand count has zero effect on finished dimensions. Size is set entirely by your fabric count and stitch count. Strands only change how full and textured the stitching looks. Two strands on 14-count Aida is the standard starting point for solid, clean coverage on most everyday projects.
+
 
 No, [strands don't change finished size](/blog/how-many-cross-stitches-per-skein/). They change coverage and texture.
 
