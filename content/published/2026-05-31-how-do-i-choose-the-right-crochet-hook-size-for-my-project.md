@@ -31,6 +31,9 @@ Start with whatever hook the pattern recommends. Crochet a swatch at least 6 inc
 
 ## Does hook material actually change how my project turns out?
 
+Yes, hook material genuinely affects your tension and your hands. Aluminum hooks are slick and fast, which can loosen your stitches over time. Bamboo and wood grip the yarn more, which often tightens tension slightly. If you switch materials mid-project, swatch again before assuming your gauge held.
+
+
 Yes, and more than most people expect. The material affects both how the hook moves through yarn and how it affects your hand over a long session.
 
 Aluminum hooks are slick and fast, which can encourage a looser tension. Wooden and bamboo hooks have more grip, which tends to slow the yarn down and can tighten your stitches slightly. Inline hooks (where the throat is carved straight into the shaft, like a Bates-style hook) and tapered hooks (like a Boye-style, where the head tapers to a point) produce subtly different stitch definitions and suit different hand positions. [Research on ergonomic crochet tools](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6311558/) suggests that [hook shape and grip design meaningfully affect repetitive strain](/blog/best-crochet-hook/), so if you are working a large project, an ergonomic handle is worth considering beyond just aesthetics. If you switch from aluminum to wood mid-project, swatch again. Your gauge may shift.
@@ -38,6 +41,9 @@ Aluminum hooks are slick and fast, which can encourage a looser tension. Wooden 
 ---
 
 ## What if I want a different fabric than the pattern intends?
+
+Go ahead and choose a hook outside the recommended range on purpose. Dropping one or two sizes gives you denser, stiffer fabric, which is exactly what you want for bags or amigurumi. Sizing up creates more drape and softness, which suits shawls and garments meant to flow.
+
 
 Then deliberately choose a hook outside the recommended range. This is a legitimate technique, not a mistake.
 
@@ -60,6 +66,9 @@ Yes. Tunisian crochet requires a hook long enough to hold all your live loops, t
 ---
 
 ## A quick reference for where to start
+
+Use yarn weight category to find your starting hook size, then swatch from there. The table below maps each CYC category to its typical hook range. These are starting points, not rules. Your tension, your yarn's actual thickness, and your pattern's needs will all shift where you land.
+
 
 | Yarn Weight | CYC Category | Typical Hook Range |
 |---|---|---|
