@@ -33,7 +33,7 @@ Start with whatever hook the pattern recommends. Crochet a swatch at least 6 inc
 
 Yes, and more than most people expect. The material affects both how the hook moves through yarn and how it affects your hand over a long session.
 
-Aluminum hooks are slick and fast, which can encourage a looser tension. Wooden and bamboo hooks have more grip, which tends to slow the yarn down and can tighten your stitches slightly. Inline hooks (where the throat is carved straight into the shaft, like a Bates-style hook) and tapered hooks (like a Boye-style, where the head tapers to a point) produce subtly different stitch definitions and suit different hand positions. [Research on ergonomic crochet tools](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6311558/) suggests that hook shape and grip design meaningfully affect repetitive strain, so if you are working a large project, an ergonomic handle is worth considering beyond just aesthetics. If you switch from aluminum to wood mid-project, swatch again. Your gauge may shift.
+Aluminum hooks are slick and fast, which can encourage a looser tension. Wooden and bamboo hooks have more grip, which tends to slow the yarn down and can tighten your stitches slightly. Inline hooks (where the throat is carved straight into the shaft, like a Bates-style hook) and tapered hooks (like a Boye-style, where the head tapers to a point) produce subtly different stitch definitions and suit different hand positions. [Research on ergonomic crochet tools](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6311558/) suggests that [hook shape and grip design meaningfully affect repetitive strain](/blog/best-crochet-hook/), so if you are working a large project, an ergonomic handle is worth considering beyond just aesthetics. If you switch from aluminum to wood mid-project, swatch again. Your gauge may shift.
 
 ---
 
@@ -41,7 +41,7 @@ Aluminum hooks are slick and fast, which can encourage a looser tension. Wooden 
 
 Then deliberately choose a hook outside the recommended range. This is a legitimate technique, not a mistake.
 
-Going down one or two hook sizes from the label recommendation produces a denser, stiffer fabric with less drape. This is useful for amigurumi and bags, where you want the stuffing hidden and the structure firm. Going up one or two sizes opens the fabric, increases drape, and creates a lighter hand. This works well for shawls, market bags, and garments you want to flow. A DK yarn on a 6.0 mm hook instead of the recommended 4.0 mm will give you an airy, open fabric. That same DK on a 3.5 mm hook will give you something nearly felt-like in its density. Neither is wrong. Both are intentional choices.
+[Going down one or two hook sizes from the label recommendation](/blog/yarn-weight-vs-hook-size-when-the-suggested-combo-is-wrong/) produces a denser, stiffer fabric with less drape. This is useful for amigurumi and bags, where you want the stuffing hidden and the structure firm. Going up one or two sizes opens the fabric, increases drape, and creates a lighter hand. This works well for shawls, market bags, and garments you want to flow. A DK yarn on a 6.0 mm hook instead of the recommended 4.0 mm will give you an airy, open fabric. That same DK on a 3.5 mm hook will give you something nearly felt-like in its density. Neither is wrong. Both are intentional choices.
 
 ---
 
