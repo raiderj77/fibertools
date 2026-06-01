@@ -66,14 +66,14 @@ Make a swatch, do the math. It takes 20 minutes and saves you from running out m
 Here is the method I actually use:
 
 1. Knit or crochet a swatch at least 6 x 6 inches in your planned stitch pattern.
-2. Measure the exact yardage you used for that swatch. Wind it off and measure, or weigh the swatch and calculate based on the yards-per-gram of your yarn.
-3. Calculate the square inches of your swatch, then calculate the square inches of your finished blanket.
+2. Measure the exact yardage you used for that swatch. Wind it off and measure, or [weigh the swatch and calculate based on the yards-per-gram](/blog/creating-a-realistic-yarn-yardage-estimate-incorporating-fib/) of your yarn.
+3. Calculate the square inches of your swatch, then [calculate the square inches of your finished blanket](/blog/accurately-calculating-your-yarn-yardage-with-a-customizable/).
 4. Divide blanket square inches by swatch square inches, then multiply by the yardage used in your swatch.
 5. Add 10–15% as a buffer.
 
 Example: your 6 x 6 inch swatch used 40 yards. Your target blanket is 50 x 60 inches = 3,000 square inches. Your swatch was 36 square inches. 3,000 / 36 = 83.3. Multiply by 40 yards = 3,333 yards. Add 15% buffer = about 3,833 yards total.
 
-That math will get you much closer than any generic chart because it accounts for your specific yarn, your tension, and your stitch pattern all at once.
+That math will get you much closer than any generic chart because it accounts for [your specific yarn, your tension, and your stitch pattern](/blog/optimizing-yarn-yardage-calculation-with-a-dynamic-gauge-and/) all at once.
 
 ---
 
