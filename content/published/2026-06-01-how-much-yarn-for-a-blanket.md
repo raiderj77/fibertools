@@ -15,6 +15,9 @@ author: "Your Friendly Developer LLC"
 
 ## What size blanket are you actually making?
 
+Size is the single biggest driver of how much yarn you need, so nail this down before anything else. A baby blanket runs around 30 by 36 inches, a throw lands near 50 by 60, and a bed blanket can hit 60 by 80 or larger. That difference in square footage means wildly different yardage requirements.
+
+
 Size is the single biggest variable. A baby blanket and a queen-size bed blanket are not even in the same conversation.
 
 Here are the standard finished dimensions most knitters and crocheters work toward:
@@ -31,6 +34,9 @@ A practical example: a simple stockinette throw knit in worsted weight at around
 ---
 
 ## Does yarn weight change how much yardage I need?
+
+Yes, heavier yarn eats yardage faster because thicker strands cover less distance per yard. Two skeins can both weigh 100 grams but hold completely different yardage. A super bulky skein might give you 106 yards while a fingering skein gives you 400. Weight is the second biggest variable after size.
+
 
 Yes, significantly. Heavier yarn uses more yardage per square inch of fabric because the strands are thicker.
 
@@ -49,6 +55,9 @@ These numbers assume a relatively dense, solid stitch. Lacy or open patterns use
 
 ## Does the stitch pattern affect yardage?
 
+Yes, and it catches a lot of knitters off guard. Cables and dense textures can use 20 to 30 percent more yarn than plain stockinette at the same dimensions. Open lace or mesh patterns can use 15 to 20 percent less. Always swatch in your actual stitch pattern before estimating a final yardage number.
+
+
 Absolutely. Stitch pattern is often underestimated as a yardage factor.
 
 Cables, bobbles, and dense textured stitches use noticeably more yarn than stockinette or a basic double crochet grid. A heavily cabled blanket can use 20–30% more yarn than the same size in plain stockinette. Open lacework or mesh patterns can use 15–20% less.
@@ -60,6 +69,9 @@ If you are working from a pattern, trust the pattern's yardage recommendation as
 ---
 
 ## How do I calculate yardage without a pattern?
+
+Swatch first, then scale up. Knit or crochet at least a 6 by 6 inch swatch in your planned stitch, measure exactly how much yarn it used, then calculate how many of those swatches fit your finished blanket dimensions. Multiply and add a buffer. It takes twenty minutes and prevents running short.
+
 
 Make a swatch, do the math. It takes 20 minutes and saves you from running out mid-blanket.
 
@@ -79,6 +91,9 @@ That math will get you much closer than any generic chart because it accounts fo
 
 ## How much extra yarn should I buy?
 
+Buy at least one skein beyond your calculated total, and make sure it shares the same dye lot as the rest. Dye lots shift between production runs, and even the same colorway can look visibly different when knit up side by side. If your original lot sells out before you finish, matching it becomes genuinely difficult.
+
+
 Buy at least one extra skein beyond your calculation, and make sure it is from the same dye lot.
 
 Dye lots matter. [WEBS America's Yarn Store explains dye lots well](https://www.yarn.com/pages/understanding-dye-lots): even the same colorway from the same brand can look visibly different between dye lots when knit up together. If you run out and your original dye lot is gone, you may have a visible stripe across your blanket where the new lot starts.
@@ -90,6 +105,9 @@ For very large blankets or expensive yarn, it is worth contacting the yarn shop 
 ---
 
 ## Quick reference: yardage estimates by blanket size
+
+These numbers are starting points for solid, medium-density stitch patterns, not guarantees. Cables, colorwork, or unusually loose gauge will move you outside these ranges. Use them to get a ballpark skein count before you swatch, then recalculate once you have real yardage data from your actual yarn and stitch pattern.
+
 
 These are ballpark figures for solid, medium-density stitch patterns in each weight. Measure as you go and treat these as a starting point only.
 
