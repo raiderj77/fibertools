@@ -54,6 +54,9 @@ For yarn color matching to DMC, there is no single authoritative chart. What exi
 
 ## Can I use a cross stitch chart as a colorwork chart in knitting or crochet?
 
+Yes, but you'll likely need to edit it first. Cross stitch charts are already on a grid, so the structure translates directly to stranded colorwork. The catch is color count: traditional Fair Isle allows only two colors per row, and many cross stitch motifs use three or more in a single row.
+
+
 Yes, with some editing. Cross stitch charts are already drawn on a grid, which is exactly what stranded colorwork requires. The main limitation is color count per row.
 
 Traditional Fair Isle stranded knitting uses [no more than two colors per row](https://www.vogueknitting.com/pattern_help/how-to/beyond_the_basics/fair_isle_knitting). Many cross stitch motifs use three, four, or more colors in a single horizontal line. Before you commit to a cross stitch chart for a colorwork sweater, scan each row and count distinct colors. If any row has three or more, you either need to simplify the design, substitute intarsia for that section, or use duplicate stitch after the fact for accent colors.
