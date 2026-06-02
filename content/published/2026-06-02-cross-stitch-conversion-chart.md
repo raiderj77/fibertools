@@ -19,7 +19,7 @@ A cross stitch conversion chart can convert three different things depending on 
 
 The most common use is **thread brand conversion**. DMC and Anchor are the two dominant embroidery floss brands, and their color numbering systems are completely different. DMC 321 is a classic Christmas red; the [Anchor equivalent is 9046](https://www.dmc.com/us/color-conversion-chart-14301.html). If your pattern calls for one brand and your local shop only carries the other, a conversion chart gets you close. "Close" is the right word -- the match is rarely perfect because the dye lots differ, but it gets you into the right neighborhood.
 
-The second use is **fabric count translation**. Cross stitch fabric is sold by "count," meaning the number of stitches per inch. Common counts are 11, 14, 16, 18, and 28. A 14-count Aida cloth gives you 14 stitches per inch. A 28-count evenweave stitched over two threads also gives you 14 stitches per inch. That ratio matters when you want to scale a cross stitch chart to a knitting grid.
+The second use is **fabric count translation**. Cross stitch fabric is sold by "count," meaning [the number of stitches per inch](/blog/cross-stitch-fabric-count/). Common counts are 11, 14, 16, 18, and 28. A [14-count Aida cloth gives you 14 stitches per inch](/blog/cross-stitch-size/). A 28-count evenweave stitched over two threads also gives you 14 stitches per inch. That ratio matters when you want to scale a cross stitch chart to a knitting grid.
 
 The third use is **color-to-yarn matching**, which is where knitters and crocheters spend most of their time.
 
