@@ -15,7 +15,7 @@ author: "Your Friendly Developer LLC"
 
 ## What does "count" actually mean in cross stitch?
 
-Count refers to the number of stitches or threads per inch in your fabric. Higher count means smaller stitches and finer detail. Lower count means bigger stitches, faster coverage, and easier visibility for beginners or anyone stitching without magnification.
+Count refers to the [number of stitches or threads per inch in your fabric](/blog/cross-stitch-fabric-count/). Higher count means smaller stitches and finer detail. Lower count means bigger stitches, faster coverage, and easier visibility for beginners or anyone stitching without magnification.
 
 The most common fabric you will encounter is [Aida cloth](https://www.dmc.com/us/craft-basics/cross-stitch/what-is-aida-cloth), a woven cotton with visible square holes that make it easy to place each cross consistently. Aida comes in counts like 11, 14, 16, 18, and 28. A 14-count Aida is the industry workhorse. Most patterns sold commercially are charted with 14-count in mind.
 
@@ -23,11 +23,11 @@ Evenweave fabrics like linen and Jobelan are different. A 28-count linen has 28 
 
 ---
 
-## How do I calculate the finished size of a cross stitch project?
+## How do I [calculate the finished size of a cross stitch project](/blog/cross-stitch-size/)?
 
 Divide the stitch count of your design by the fabric count, then add margin. That is the whole formula.
 
-If your pattern is 140 stitches wide and 196 stitches tall, and you are using 14-count Aida:
+If your pattern is [140 stitches wide and 196 stitches tall](/blog/cross-stitch-size-chart/), and you are using 14-count Aida:
 
 - 140 divided by 14 = 10 inches wide
 - 196 divided by 14 = 14 inches tall
