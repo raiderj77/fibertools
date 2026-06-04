@@ -55,6 +55,9 @@ The practical test: hold your threaded needle up to the fabric hole. The thread 
 
 ## Can I use a cross stitch count chart for knitting or crochet planning?
 
+Not directly, but the underlying logic is the same grid math knitters already use for colorwork. Each square in a cross stitch chart equals one stitch, just like a stranded colorwork chart. Plug in your own gauge numbers and the size calculation works the same way, just swap fabric count for stitches per inch.
+
+
 Not directly, but the concept transfers. Cross stitch count is essentially a grid-based gauge system, and knitters use the same logic when working colorwork charts.
 
 A stranded colorwork chart is drawn on a grid where each square equals one knit stitch. If your gauge is 22 stitches and 28 rows per 4 inches (5.5 stitches per inch, 7 rows per inch), and your chart is 44 stitches wide, your motif will be 8 inches wide. Same division, same logic as cross stitch count.
@@ -67,6 +70,9 @@ For crochet, the same principle applies. If you are working a sc (single crochet
 
 ## What fabric count should a beginner start with?
 
+Start with 14-count Aida and 2 strands of floss. The holes are large enough to see without squinting, nearly every beginner pattern is charted for it, and the fabric is widely available. Finish a few small projects on 14-count before moving to finer counts where the margin for error shrinks fast.
+
+
 Start with 14-count Aida and 2 strands of floss. Full stop.
 
 The holes are large enough to see clearly, the count is standard so nearly every beginner pattern is charted for it, and the fabric is forgiving. You can find 14-count Aida at any craft store and from online suppliers like [Wichelt Imports](https://www.wichelt.com) or through major retailers.
@@ -76,6 +82,9 @@ Once you have finished two or three small pieces on 14-count, you will have a fe
 ---
 
 ## Quick reference: common counts and their uses
+
+Fabric count tells you how many stitches fit in one inch, so higher numbers mean smaller, finer work. Eleven-count suits beginners and bold designs, 14-count covers most commercial patterns, and 18-count or 28-count evenweave is where detail work lives. Match your count to the design scale, not to ambition alone.
+
 
 | Fabric Count | Stitches Per Inch | Best For |
 |---|---|---|
