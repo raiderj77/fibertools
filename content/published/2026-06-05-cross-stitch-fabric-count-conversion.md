@@ -25,6 +25,9 @@ Think of count the way a knitter thinks about gauge: stitches per inch. If you k
 
 ## How do I calculate finished size from stitch count?
 
+Divide your total stitch count by the fabric count to get finished inches. Do that separately for width and height. A 140 x 200 stitch design on 16-count aida works out to 8.75 x 12.5 inches of stitched area, before you add any framing or hoop margin.
+
+
 Divide your stitch count by the fabric count. That gives you inches. Do it for width and height separately.
 
 If your pattern is 140 stitches wide by 200 stitches tall, and you're working on 16-count aida:
@@ -37,6 +40,9 @@ Add at least 3 inches on each side for a hoop margin or framing allowance, so yo
 ---
 
 ## How do I convert a pattern from one count to another?
+
+Keep your stitch count exactly the same and just swap the fabric count number in the formula. The design does not change, only the finished size does. Moving that same 140 x 200 pattern from 14-count to 18-count shrinks the finished piece by roughly two inches in each direction.
+
 
 Keep the stitch count the same and change the divisor. The math is the same formula, just with a different count number.
 
@@ -87,6 +93,9 @@ Beyond that, most major pattern software like [PC Stitch](https://www.pcstitch.c
 ---
 
 ## Quick reference: common count conversions
+
+Every aida count has a direct evenweave equivalent stitched over two threads. Fourteen-count aida matches 28-count evenweave, 16-count matches 32-count, and so on. The stitch density stays identical, so your finished size calculation works the same way regardless of which fabric type you choose.
+
 
 | Aida Count | Evenweave Equivalent (over 2) | Stitches per inch |
 |---|---|---|
