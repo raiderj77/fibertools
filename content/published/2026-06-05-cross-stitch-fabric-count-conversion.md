@@ -9,13 +9,13 @@ author: "Your Friendly Developer LLC"
 
 # Cross Stitch Fabric Count Conversion: What the Numbers Actually Mean
 
-**The short answer:** Fabric count tells you how many stitches fit in one inch. To convert between counts, divide the count number into the total stitch width or height of your design. A 100-stitch-wide pattern on 14-count aida covers about 7.1 inches. The same pattern on 28-count evenweave stitched over two threads also covers 7.1 inches. Count and thread-over determine everything.
+**The short answer:** Fabric count tells you [how many stitches fit in one inch](/blog/cross-stitch-count/). To convert between counts, divide the count number into the total stitch width or height of your design. A 100-stitch-wide pattern on 14-count aida covers about 7.1 inches. The same pattern on 28-count evenweave stitched over two threads also covers 7.1 inches. Count and thread-over determine everything.
 
 ---
 
 ## What does "fabric count" actually mean?
 
-Fabric count is the number of holes (or threads) per inch in your ground fabric. On 14-count aida, you get 14 stitches per inch. On 18-count, 18 stitches per inch. That single number controls how large or small your finished piece will be.
+Fabric count is the [number of holes (or threads) per inch in your ground fabric](/blog/cross-stitch-fabric-count/). On 14-count aida, you get 14 stitches per inch. On 18-count, 18 stitches per inch. That single number controls how large or small your finished piece will be.
 
 This is not a loose approximation. The [Zweigart fabric specifications](https://www.zweigart.de/en/) for their standard 14-count aida list exactly 14 holes per inch, and their 18-count lists 18. When manufacturers say "count," they mean a consistent, measurable thread density. Your job is to use that number as a conversion factor.
 
@@ -97,7 +97,7 @@ Beyond that, most major pattern software like [PC Stitch](https://www.pcstitch.c
 | 22-count | 44-count | 22 |
 | 28-count | 56-count | 28 |
 
-The formula never changes: **finished inches = stitch count / fabric count**. Everything else in cross stitch sizing is just this equation applied in different directions.
+The formula never changes: **[finished inches = stitch count / fabric count](/blog/cross-stitch-size-chart/)**. Everything else in cross stitch sizing is just this equation applied in different directions.
 
 ## Frequently asked questions
 
