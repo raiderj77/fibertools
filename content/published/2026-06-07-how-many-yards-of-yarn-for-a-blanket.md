@@ -15,6 +15,9 @@ author: "Your Friendly Developer LLC"
 
 ## What size blanket am I actually making?
 
+The size you are making determines your yardage more than anything else. A baby blanket runs roughly 1,000 to 1,500 yards in worsted weight, while a throw lands around 3,000 to 4,000 yards and a full bed blanket can push past 6,000. Lock down your dimensions before estimating anything else.
+
+
 Size is the single biggest variable. A crib blanket and a king-sized bed blanket are not even in the same conversation.
 
 Here are the standard dimensions most knitters and crocheters work from, along with rough yardage ranges based on worsted-weight yarn at typical gauge:
@@ -33,6 +36,9 @@ These numbers assume a solid fabric with no lace panels or extreme texture. Your
 
 ## Does yarn weight change how much I need?
 
+Yes, yarn weight changes your yardage significantly, but not in the direction most people expect. Bulky yarn uses fewer total yards because each stitch covers more area. Fingering weight yarn has more yards per skein, but your blanket consumes more of them. Heavier yarn means fewer yards needed for the same finished size.
+
+
 Yes, dramatically. Thinner yarn means more yardage per ounce but also more yardage consumed per square inch of fabric.
 
 A bulky yarn might give you 100 yards per 100 grams. A fingering weight might give you 400 yards per 100 grams. But the fingering weight blanket will eat through yards faster in terms of stitch count, and a bulky blanket knits up quickly but uses fewer yards overall because each stitch covers more ground. For a 50" x 60" throw:
@@ -47,6 +53,9 @@ The [Craft Yarn Council's standard yarn weight system](https://www.craftyarncoun
 ---
 
 ## How does stitch pattern affect yardage?
+
+Your stitch pattern can shift your yardage estimate by 20 to 30 percent in either direction. Dense, textured stitches like seed stitch or moss stitch use noticeably more yarn than stockinette. Open lace patterns and mesh stitches use less. Always swatch your actual pattern, not just plain fabric, before buying yarn.
+
 
 A lot more than people expect. Dense stitches eat yarn; open stitches save it.
 
@@ -68,6 +77,9 @@ The math: (new length x new width) / (original length x original width) x origin
 
 ## Should I buy extra yarn, and how much?
 
+Always buy at least 10 to 15 percent more than your estimate, and round up to the next full skein. If your yarn has dye lots, that buffer becomes non-negotiable. Most yarn shops accept returns on unopened skeins, so one extra skein is cheap insurance against a frustrating, unfixable shortage near the bind-off.
+
+
 Buy more than you think you need, always. The standard advice is to add 10–15% to your estimate as a buffer.
 
 If you are working with a dye lot-sensitive yarn, the stakes are higher. Running out mid-project and finding that the new skein is a slightly different shade is a genuinely bad situation. Most yarn stores will let you return unopened skeins, so buying one extra skein is almost always the right call. Check the store's return policy before you buy.
@@ -77,6 +89,9 @@ If you are using a hand-dyed or small-batch yarn where a second dye lot may not 
 ---
 
 ## What if I am designing my own blanket without a pattern?
+
+Swatch first, then do the math. Knit or crochet a six-inch square, weigh it in grams, and use your yarn label to find yards per gram. Calculate how many swatches tile your finished blanket, multiply, then add 15 percent. This method works for any stitch pattern and gives you a real number, not a guess.
+
 
 Make a swatch first, and treat it like a math problem.
 
