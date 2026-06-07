@@ -52,15 +52,15 @@ A lot more than people expect. Dense stitches eat yarn; open stitches save it.
 
 In crochet, a fabric worked in all double crochet (dc) uses noticeably more yarn than the same size fabric in single crochet (sc), because dc stitches wrap the hook more times. Meanwhile, a lacy mesh pattern with lots of chain spaces can cut yardage by 20–30% compared to a solid stitch. In knitting, seed stitch and moss stitch use more yarn than stockinette because the yarn travels back and forth more frequently across the fabric surface.
 
-A practical test: knit or crochet a 4" x 4" swatch, weigh it on a kitchen scale in grams, then calculate how many of those swatches fit in your finished blanket. Multiply the swatch weight by that number, then convert to yardage using the yards-per-gram on your ball band. It is tedious, but it works.
+A practical test: knit or crochet a 4" x 4" swatch, weigh it on a kitchen scale in grams, then [calculate how many of those swatches fit in your finished blanket](/blog/accurately-calculating-your-yarn-yardage-with-a-customizable/). Multiply the swatch weight by that number, then convert to yardage using the yards-per-gram on your ball band. It is tedious, but it works.
 
 ---
 
 ## How do I calculate yardage for a pattern I found online?
 
-If the pattern lists materials, start there. Most published patterns will tell you exactly how many yards were used in the sample, and the sample size.
+If the pattern lists materials, start there. Most published patterns will tell you exactly [how many yards were used in the sample](/blog/how-much-yarn-for-a-blanket/), and the sample size.
 
-If you are scaling the pattern up or down, yardage scales roughly with area. A blanket that is twice as wide and twice as long needs four times the yarn, not two times. Area scales by the square, not linearly. So if a pattern calls for 1,500 yards for a 36" x 48" blanket and you want to make a 48" x 64" blanket, you are looking at roughly 2,667 yards, not 2,250.
+If you are scaling the pattern up or down, [yardage scales roughly with area](/blog/creating-a-realistic-yarn-yardage-estimate-incorporating-fib/). A blanket that is twice as wide and twice as long needs four times the yarn, not two times. Area scales by the square, not linearly. So if a pattern calls for 1,500 yards for a 36" x 48" blanket and you want to make a 48" x 64" blanket, you are looking at roughly 2,667 yards, not 2,250.
 
 The math: (new length x new width) / (original length x original width) x original yardage = estimated new yardage.
 
