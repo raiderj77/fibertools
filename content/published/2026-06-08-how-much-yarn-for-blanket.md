@@ -15,6 +15,9 @@ author: "Your Friendly Developer LLC"
 
 ## What size blanket are you actually making?
 
+Your finished dimensions are the first number you need before anything else matters. A baby blanket typically runs around 30 by 36 inches and needs roughly 800 to 1500 yards depending on weight. A throw sits around 50 by 60 inches. A king bed blanket can demand 4000 yards or more.
+
+
 Size is the single biggest variable. A baby blanket uses a fraction of what a king-size bed blanket needs, so nail down your dimensions before you buy anything.
 
 Here are the most common finished sizes and realistic yardage ranges you can use as starting points. These are estimates based on average stitch patterns and yarn weights, not guarantees. Your gauge will shift everything.
@@ -33,6 +36,9 @@ These numbers assume a fairly standard stockinette or single crochet fabric. Lac
 
 ## How does yarn weight change the math?
 
+Yarn weight changes your yardage estimate dramatically, sometimes by thousands of yards for the same blanket size. Bulky yarn finishes fast but each skein covers less square footage than you expect. Fingering weight requires far more yardage per project but each skein is dense with it, so the per-skein cost often balances out.
+
+
 Heavier yarn covers ground faster but each yard covers less area. Lighter yarn takes more yardage but each skein holds more of it.
 
 A bulky or super bulky yarn on a size 13-15 needle or a 10mm-12mm crochet hook will eat yardage fast because you need more physical fiber to fill the same space. A fingering weight on a size 2 needle works the opposite way. The math roughly shakes out like this for a 50x60 throw:
@@ -48,6 +54,9 @@ The reason super bulky looks like fewer yards is because each individual yard of
 ---
 
 ## Does stitch pattern really affect yardage that much?
+
+Yes, and underestimating this is one of the most common reasons knitters run short. Cables can consume 30 to 40 percent more yarn than stockinette at identical dimensions. Even seed stitch adds a noticeable amount. Always swatch your actual pattern, not just a plain square, before calculating how many skeins to buy.
+
 
 Yes, significantly. A cable panel can use 30-40% more yarn than a plain stockinette swatch of the same dimensions.
 
@@ -80,6 +89,9 @@ Then check your yarn's grams-per-skein and buy accordingly. This method beats an
 
 ## Should I buy all my yarn at once?
 
+Buy everything at once, from the same dye lot, full stop. Blankets are large enough that any color variation between lots will read as a visible stripe across the fabric. If your local shop is short on stock, ask them to check other locations or order the remainder before you cast on anything.
+
+
 Yes, whenever possible. Dye lots matter and they matter a lot in blankets.
 
 Even two skeins from the same colorway can look noticeably different if they come from different dye lots. On a small project you might get away with it. On a blanket with thousands of yards of solid or semi-solid color, a dye lot mismatch will show as a visible stripe or shift. [Most yarn manufacturers print dye lot numbers on the label](https://www.craftyarncouncil.com/standards/yarn-label) and retailers like [LoveCrafts](https://www.lovecrafts.com) and [Webs](https://www.yarn.com) will match lots if you call ahead or note it in your order.
@@ -89,6 +101,9 @@ Buy your full estimated amount from the same dye lot. If your retailer runs out,
 ---
 
 ## What if I have leftover yarn?
+
+Label it immediately with the weight, yardage, and fiber content before it goes into your stash. Leftover blanket yarn is genuinely useful. A few hundred worsted yards makes a hat. Collect enough remnants across projects and you have a scrappy striped throw waiting to happen, which is honestly one of the best blanket formats anyway.
+
 
 That is a good problem. Keep it.
 
