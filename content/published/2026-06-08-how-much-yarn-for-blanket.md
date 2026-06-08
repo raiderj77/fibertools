@@ -59,7 +59,7 @@ Lace works the opposite way. Open, airy patterns with lots of yarn overs and dec
 
 ## How do I calculate yarn for a pattern I made up myself?
 
-Make a gauge swatch, weigh it, and do the math. This is the most reliable method and it works for any fiber, needle size, or stitch pattern.
+[Make a gauge swatch, weigh it, and do the math](/blog/accurately-calculating-your-yarn-yardage-with-a-customizable/). This is the most reliable method and it works for any fiber, needle size, or stitch pattern.
 
 Here is the process:
 
@@ -99,7 +99,7 @@ The goal is to buy enough to finish without running out mid-project. Measure you
 ## Frequently asked questions
 
 ### How much yarn do I need for a baby blanket?
-A baby blanket typically requires 1,000–2,000 yards of yarn, depending on the stitch pattern and finished size. A standard baby blanket measures around 30×36 inches. Bulky yarn with simple stitches like garter or single crochet uses less yardage, while lacy or textured patterns consume more. Always check your pattern's yarn requirements and add a 10–15% buffer to avoid running short mid-project.
+[A baby blanket typically requires 1,000–2,000 yards of yarn](/blog/how-much-yarn-for-a-blanket/), depending on the stitch pattern and finished size. A standard baby blanket measures around 30×36 inches. Bulky yarn with simple stitches like garter or single crochet uses less yardage, while lacy or textured patterns consume more. Always check your pattern's yarn requirements and add a 10–15% buffer to avoid running short mid-project.
 
 ### How much yarn do I need for a throw blanket?
 A standard throw blanket (50×60 inches) generally requires 3,000–6,000 yards of worsted-weight yarn. Bulkier yarns reduce yardage needs significantly, while finer weights require more. Crochet stitches tend to use 30% more yarn than comparable knit stitches. Using a yardage calculator on a tool like fibertools.app helps you estimate accurately based on your specific yarn weight, gauge, and target dimensions.
