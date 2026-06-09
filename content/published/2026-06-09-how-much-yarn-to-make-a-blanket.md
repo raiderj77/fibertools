@@ -33,6 +33,9 @@ A lap throw has roughly 3,000 square inches of fabric. A king bed blanket has ne
 
 ## How does yarn weight change the yardage?
 
+Heavier yarn needs fewer yards because each yard covers more ground. A super bulky throw might need 600 to 1,200 yards while the same size blanket in worsted can run 1,500 to 2,200 yards. Yarn weight is the single biggest variable in any yardage estimate.
+
+
 Heavier yarn covers more area per yard, so you need fewer yards total. Lighter yarn is thinner, so you need more yards to fill the same square footage.
 
 Here are realistic yardage ranges for [a standard 50" x 60" throw blanket, broken down by weight](/blog/how-much-yarn-for-blanket/):
@@ -51,6 +54,9 @@ The [Craft Yarn Council's standard yarn weight system](https://www.craftyarncoun
 
 ## Does stitch pattern really affect yardage that much?
 
+Yes, stitch pattern can swing your yardage by 30 to 50 percent. Textured stitches like cables and seed stitch pull in the fabric and force the yarn to travel more distance per square inch. A cabled throw in worsted can easily need 1,000 more yards than a plain stockinette version.
+
+
 Yes, more than most people expect. Textured stitches use more yarn than flat ones because the yarn travels in and out of the fabric more times per inch.
 
 A few rough comparisons for knitters working in worsted on a 50" x 60" throw:
@@ -65,6 +71,9 @@ For crochet, the same logic applies. A simple single crochet (sc) fabric uses no
 ---
 
 ## How do I calculate yardage from a gauge swatch?
+
+Knit a swatch, weigh it in grams, then divide your yarn label yardage by the skein weight in grams to get yards per gram. Multiply that number by the grams your swatch used per square inch, then scale up to your full blanket dimensions. Real math beats guessing every time.
+
 
 Swatching gives you actual data instead of guesses. This is the method I use when I am working without a pattern.
 
@@ -82,6 +91,9 @@ It sounds like a lot of steps but it takes about five minutes once you have the 
 
 ## How many skeins is that?
 
+Divide your total yardage estimate by the yards in one skein of your chosen yarn. A 1,800 yard worsted blanket takes about nine standard indie skeins at 200 yards each, but only two skeins of a big box worsted sold at 840 yards. Always check the label, not just the weight.
+
+
 It depends on how the yarn is sold. Skeins vary wildly in yardage.
 
 Common skein sizes in the US:
@@ -98,6 +110,9 @@ The general rule most experienced makers follow: buy one extra skein beyond your
 ---
 
 ## Any tips for not running out mid-project?
+
+Buy one extra skein from the same dye lot and return it unopened if you finish without needing it. Weigh your remaining yarn at the halfway point of your blanket. If the math looks tight, adjust your dimensions now rather than after you have bound off three quarters of the fabric.
+
 
 A few habits that save blanket makers from the mid-project panic:
 
