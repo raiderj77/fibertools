@@ -35,7 +35,7 @@ A lap throw has roughly 3,000 square inches of fabric. A king bed blanket has ne
 
 Heavier yarn covers more area per yard, so you need fewer yards total. Lighter yarn is thinner, so you need more yards to fill the same square footage.
 
-Here are realistic yardage ranges for a standard 50" x 60" throw blanket, broken down by weight:
+Here are realistic yardage ranges for [a standard 50" x 60" throw blanket, broken down by weight](/blog/how-much-yarn-for-blanket/):
 
 - **Super Bulky (weight 6):** 600–1,200 yards
 - **Bulky (weight 5):** 1,000–1,800 yards
@@ -91,7 +91,7 @@ Common skein sizes in the US:
 - **Bulky indie skein:** 100–150 yards per skein
 - **Cake or cone yarn:** anywhere from 400 to 2,000+ yards
 
-For a worsted throw needing 2,000 yards, that is roughly two big-box skeins or nine to ten indie skeins at 220 yards each. Always round up. Dye lots change, yarn gets discontinued, and running short at row 200 of a 220-row blanket is genuinely painful.
+For [a worsted throw needing 2,000 yards](/blog/how-much-yarn-for-a-blanket/), that is roughly two big-box skeins or nine to ten indie skeins at 220 yards each. Always round up. Dye lots change, yarn gets discontinued, and running short at row 200 of a 220-row blanket is genuinely painful.
 
 The general rule most experienced makers follow: buy one extra skein beyond your estimate. If you do not use it, most local yarn stores will take returns on unused, unwound skeins within a reasonable window.
 
