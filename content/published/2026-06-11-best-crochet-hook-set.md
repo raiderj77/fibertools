@@ -27,7 +27,7 @@ If you work with thread (size 10 cotton, for instance), you need steel hooks, wh
 
 Yes, and it matters more than most beginners expect. Tapered (inline) hooks have the hook head in line with the shaft; ergonomic hooks have a flared handle and a slightly different head geometry. Neither is objectively better, but they produce a different stitch appearance for some crocheters, and they feel completely different after two hours of work.
 
-I switched to ergonomic handles after developing wrist fatigue during a large granny square blanket project. The Clover Amour and the Furls Streamline both have handles wide enough to reduce the pinching grip that causes that ache. The [Arthritis Foundation has noted](https://www.arthritis.org/living-with-arthritis/tools-resources/arthritis-today/features/crochet-with-arthritis.php) that wider, cushioned handles reduce joint strain for people with hand issues, and that applies to healthy hands doing high-volume work too.
+I switched to ergonomic handles after developing wrist fatigue during a large granny square blanket project. The Clover Amour and the [Furls Streamline both have handles wide enough](/blog/best-crochet-hooks/) to reduce the pinching grip that causes that ache. The [Arthritis Foundation has noted](https://www.arthritis.org/living-with-arthritis/tools-resources/arthritis-today/features/crochet-with-arthritis.php) that wider, cushioned handles reduce joint strain for people with hand issues, and that applies to healthy hands doing high-volume work too.
 
 Inline hooks (like the Susan Bates Silvalume) are what most older patterns were written with, and some crocheters find their stitches look tighter and more uniform with them. If you learned on inline hooks, switching to ergonomic mid-project can shift your tension. Measure as you go and check your gauge before committing to a hook style for a fitted garment.
 
@@ -61,7 +61,7 @@ Label your case with the mm size, not just the letter. When you are mid-project 
 
 ## Frequently asked questions
 
-### What is the best crochet hook set for beginners?
+### What is the [best crochet hook set for beginners](/blog/best-crochet-hooks-for-beginners/)?
 The best crochet hook set for beginners is one that includes a range of sizes (typically 2mm–10mm), ergonomic handles, and a storage case. Sets like those with soft-grip rubber handles reduce hand fatigue during long projects, making them ideal for newcomers still building technique. Look for sets that also include a few basic accessories like stitch markers and a tapestry needle to help you get started without buying extras separately.
 
 ### What size crochet hooks should a complete set include?
