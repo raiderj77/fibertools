@@ -35,6 +35,9 @@ Inline hooks (like the Susan Bates Silvalume) are what most older patterns were 
 
 ## Which crochet hook sets are worth buying at different price points?
 
+Under $15, the Boye Aluminum 11-Piece gets the job done for beginners or travel backups. For most crocheters, the Clover Amour set in the $30 to $50 range is the real sweet spot, offering ergonomic handles that hold up through long projects without punishing your hands.
+
+
 **Under $15: Boye Aluminum 11-Piece Set.** Covers B through K, all metal, no frills. The handles are thin, so high-volume work can get uncomfortable, but the hooks themselves are smooth and durable. Good starter kit or a backup set to keep in a travel bag.
 
 **$30-50: Clover Amour 9-Piece Set.** This is the set I actually recommend to people who ask me in person. The soft-grip handles are well-balanced, the sizing is printed clearly on each hook, and the hooks slide through yarn without catching. The set runs B through K in the standard configuration. Clover also sells individual hooks so you can fill in gaps.
