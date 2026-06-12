@@ -33,6 +33,9 @@ If you are charting your own design, count the filled squares on your grid from 
 
 ## What is the actual formula I should use?
 
+Divide your stitch count by the fabric count to get the stitched area in inches, then add your margin. So a 140-stitch-wide design on 14-count gives you 10 inches of stitching, plus 8 inches total margin, equals 18 inches of fabric. I use 4 inches per side for anything going into a hoop.
+
+
 Here it is, no fluff:
 
 **Fabric width needed = (stitch width ÷ fabric count) + margin**
@@ -79,6 +82,9 @@ If you are stitching from a chart without a marked center, count the total stitc
 ---
 
 ## Is there a quick reference for common stitch counts?
+
+Yes, and the short version is that fabric count makes less difference than most beginners expect. A 100x100 design ranges from about 13.6 inches on 18-count to 17.1 inches on 11-count, all with 4 inches of margin per side added. The count matters most when your design is large or detail-heavy.
+
 
 Here is a table I keep pinned above my stitching table. All numbers assume 4 inches margin per side (8 inches total added per dimension).
 
