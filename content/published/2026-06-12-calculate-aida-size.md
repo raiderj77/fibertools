@@ -9,13 +9,13 @@ author: "Your Friendly Developer LLC"
 
 # How to Calculate Aida Cloth Size for Cross Stitch Projects
 
-Aida size calculation comes down to two numbers: your stitch count and your fabric count. Divide the design's width in stitches by the fabric count (stitches per inch), then add at least 3 inches of margin on each side. Do the same for height. That gives you the minimum fabric rectangle you need to cut or order.
+Aida size calculation comes down to two numbers: your [stitch count and your fabric count](/blog/cross-stitch-size-chart/). Divide the design's width in stitches by the fabric count (stitches per inch), then add at least 3 inches of margin on each side. Do the same for height. That gives you the minimum fabric rectangle you need to cut or order.
 
 ---
 
 ## What exactly is "fabric count" and why does it matter?
 
-Fabric count is the number of holes (and therefore stitches) per inch. Common Aida counts are 11, 14, 16, 18, and 28. The higher the count, the smaller each stitch, and the smaller your finished design will be on the fabric.
+Fabric count is [the number of holes (and therefore stitches) per inch](/blog/cross-stitch-count/). Common Aida counts are 11, 14, 16, 18, and 28. The higher the count, the smaller each stitch, and the smaller your finished design will be on the fabric.
 
 If you stitch the same 140 x 140 stitch design on 14-count Aida, you get a 10 x 10 inch design. Stitch it on 18-count and the same design shrinks to roughly 7.8 x 7.8 inches. This single variable controls everything downstream, including how much fabric you buy.
 
