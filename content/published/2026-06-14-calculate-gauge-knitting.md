@@ -25,7 +25,7 @@ Every knitter's tension is different. Two people using the same yarn, the same n
 
 Knit a square that is at least 6 inches wide and 6 inches tall in your project stitch. Four inches is the measurement window, but you need extra fabric on the edges because the first and last few stitches pull in and distort the count. A 6-inch swatch gives you clean real estate in the center.
 
-Use the needle size the pattern recommends, but do not feel locked to it. If you are knitting in the round for your project, swatch in the round. Flat and circular knitting produce different tension for most people, sometimes by a full stitch over 4 inches. The [Craft Yarn Council](https://www.craftyarncouncil.com/standards/how-to-measure-gauge) recommends washing and blocking your swatch the same way you plan to wash the finished piece before you measure it. Wool especially changes size after a soak and a gentle press.
+Use the needle size the pattern recommends, but do not feel locked to it. If you are knitting in the round for your project, swatch in the round. Flat and circular knitting produce different tension for most people, sometimes by a full stitch over 4 inches. The [Craft Yarn Council](https://www.craftyarncouncil.com/standards/how-to-measure-gauge) recommends washing and blocking your swatch the same way you plan to wash the finished piece before you measure it. [Wool especially changes size after a soak and a gentle press](/blog/analyzing-the-impact-of-yarn-weight-and-fiber-content-on-gau/).
 
 Let the swatch dry completely and rest flat for at least an hour before you measure. Wet fiber is stretched. Measure it wet and your numbers will lie to you.
 
