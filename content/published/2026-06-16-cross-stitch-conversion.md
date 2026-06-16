@@ -74,6 +74,9 @@ Double crochet (dc) stitches are taller and create a more rectangular pixel, whi
 
 ## What software actually helps with this?
 
+A few tools do the math for you rather than making you work it out on paper. KG-Chart LE is free and designed specifically for knitting charts, while StitchFiddle handles both knitting and crochet in a browser.
+
+
 A few tools do the math for you rather than making you work it out on paper. Enter your gauge swatch results and they resize the chart automatically.
 
 - **[KG-Chart LE](https://kg-chart.com/)** - free, designed specifically for knitting charts, lets you import images and adjust for stitch ratio
