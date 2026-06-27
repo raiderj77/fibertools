@@ -2,6 +2,7 @@ import Link from "next/link";
 import { tools, CATEGORY_LABELS, CATEGORY_COLORS, type Tool, getToolBySlug } from "@/lib/tools";
 import { blogPosts } from "@/lib/blog";
 import { getAllGuides } from "@/lib/guides";
+import BeehiivSignup from "@/components/BeehiivSignup";
 
 function ToolCard({ tool }: { tool: Tool }) {
   return (
@@ -302,6 +303,20 @@ export default function HomePage() {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* Newsletter Signup */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
+        <div className="rounded-2xl bg-plum-50 dark:bg-bark-800 border border-plum-200 dark:border-bark-700 px-8 py-10 text-center">
+          <div className="text-3xl mb-3">🧶</div>
+          <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-2">
+            Get the free Yarn Crafters Survival Kit
+          </h2>
+          <p className="text-bark-500 dark:text-bark-400 text-sm mb-6 max-w-md mx-auto">
+            Yarn weight, gauge math, and needle sizing in one quick-reference guide. Free — delivered by email.
+          </p>
+          <BeehiivSignup />
         </div>
       </section>
 
