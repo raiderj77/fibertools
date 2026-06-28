@@ -4,9 +4,8 @@ export async function subscribeToNewsletter(email: string): Promise<{ success: b
   const apiKey = process.env.BEEHIIV_API_KEY;
   const pubId = process.env.BEEHIIV_PUBLICATION_ID;
 
-  if (!apiKey || !pubId) {
-    return { success: false, error: "Newsletter not configured." };
-  }
+  if (!apiKey) return { success: false, error: "Config error: missing API key." };
+  if (!pubId) return { success: false, error: "Config error: missing publication ID." };
 
   try {
     const res = await fetch(
@@ -27,12 +26,13 @@ export async function subscribeToNewsletter(email: string): Promise<{ success: b
 
     if (!res.ok) {
       const body = await res.text();
-      console.error("beehiiv API error", res.status, body);
-      return { success: false, error: "Something went wrong. Please try again." };
+      console.error("beehiiv error", res.status, body);
+      return { success: false, error: `API error ${res.status}` };
     }
 
     return { success: true };
-  } catch {
+  } catch (err) {
+    console.error("subscribe fetch error", err);
     return { success: false, error: "Network error. Please try again." };
   }
 }
