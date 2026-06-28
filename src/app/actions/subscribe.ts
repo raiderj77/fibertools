@@ -24,15 +24,14 @@ export async function subscribeToNewsletter(email: string): Promise<{ success: b
       }
     );
 
+    const body = await res.json().catch(() => ({}));
+
     if (!res.ok) {
-      const body = await res.text();
-      console.error("beehiiv error", res.status, body);
-      return { success: false, error: `API error ${res.status}` };
+      return { success: false, error: `beehiiv: ${JSON.stringify(body)}` };
     }
 
     return { success: true };
   } catch (err) {
-    console.error("subscribe fetch error", err);
-    return { success: false, error: "Network error. Please try again." };
+    return { success: false, error: `Network error: ${String(err)}` };
   }
 }
