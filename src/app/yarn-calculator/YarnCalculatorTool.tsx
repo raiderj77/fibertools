@@ -295,7 +295,7 @@ export default function YarnCalculatorTool() {
 
   // Sticky result summary for mobile
   const stickySummary = result
-    ? `${(units === "metric" ? result.meters : result.yardsWithBuffer).toLocaleString()} ${yardLabel} • ${result.skeins} ${result.skeins === 1 ? "skein" : "skeins"}`
+    ? `${(units === "metric" ? result.meters : result.yardsWithBuffer).toLocaleString()} ${yardLabel}${unlocked ? ` • ${result.skeins} ${result.skeins === 1 ? "skein" : "skeins"}` : ""}`
     : "";
 
   return (
@@ -625,7 +625,9 @@ export default function YarnCalculatorTool() {
                       See exact skein count, total weight, and bufferless yardage — free with the FiberTools newsletter.
                     </p>
                     <div className="flex gap-2">
+                      <label htmlFor="gate-email" className="sr-only">Email address</label>
                       <input
+                        id="gate-email"
                         type="email"
                         value={gateEmail}
                         onChange={(e) => setGateEmail(e.target.value)}
