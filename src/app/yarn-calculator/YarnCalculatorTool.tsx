@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { subscribeToNewsletter } from "@/app/actions/subscribe";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
@@ -179,6 +180,33 @@ export default function YarnCalculatorTool() {
   const [partialWeight, setPartialWeight] = useState("");
   const [partialSkeinWeight, setPartialSkeinWeight] = useState("");
   const [partialSkeinYards, setPartialSkeinYards] = useState("");
+
+  // Email gate
+  const [unlocked, setUnlocked] = useState(false);
+  const [gateEmail, setGateEmail] = useState("");
+  const [gateLoading, setGateLoading] = useState(false);
+  const [gateError, setGateError] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && localStorage.getItem("ft_calc_unlocked")) {
+      setUnlocked(true);
+    }
+  }, []);
+
+  async function handleGateSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!gateEmail) return;
+    setGateLoading(true);
+    setGateError("");
+    const res = await subscribeToNewsletter(gateEmail);
+    setGateLoading(false);
+    if (res.success) {
+      localStorage.setItem("ft_calc_unlocked", "1");
+      setUnlocked(true);
+    } else {
+      setGateError("Something went wrong. Please try again.");
+    }
+  }
 
   const yw = YARN_WEIGHTS[yarnWeight];
   const sp = STITCH_PATTERNS.find((s) => s.label === stitchPattern) || STITCH_PATTERNS[0];
@@ -517,62 +545,110 @@ export default function YarnCalculatorTool() {
                   You&apos;ll Need
                 </h3>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                      {units === "metric" ? result.meters.toLocaleString() : result.yardsWithBuffer.toLocaleString()}
-                    </p>
-                    <p className="text-sm text-bark-500 dark:text-bark-400">
-                      total {yardLabel}
-                      <span className="text-xs ml-1">(incl. 10% buffer)</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                      {result.skeins}
-                    </p>
-                    <p className="text-sm text-bark-500 dark:text-bark-400">
-                      {result.skeins === 1 ? "skein" : "skeins"}
-                      <span className="text-xs ml-1">
-                        ({units === "metric" ? result.skeinYds : result.skeinYds} {units === "metric" ? "m" : "yd"} each)
-                      </span>
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
-                      {units === "metric" ? result.grams.toLocaleString() : result.ounces} {units === "metric" ? "g" : "oz"}
-                    </p>
-                    <p className="text-sm text-bark-500 dark:text-bark-400">total weight</p>
-                  </div>
-                  <div>
-                    <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
-                      {units === "metric" ? Math.round(ydsToM(result.yardsNoBuffer)).toLocaleString() : result.yardsNoBuffer.toLocaleString()} {units === "metric" ? "m" : "yd"}
-                    </p>
-                    <p className="text-sm text-bark-500 dark:text-bark-400">without buffer</p>
-                  </div>
+                {/* Primary metric: always visible */}
+                <div>
+                  <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
+                    {(units === "metric" ? result.meters : result.yardsWithBuffer).toLocaleString()}
+                  </p>
+                  <p className="text-sm text-bark-500 dark:text-bark-400">
+                    total {yardLabel}
+                    <span className="text-xs ml-1">(incl. 10% buffer)</span>
+                  </p>
                 </div>
 
-                <div className="flex gap-2 pt-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const text = `Yarn estimate: ${result.yardsWithBuffer} yards (${result.meters} m) / ${result.skeins} skeins / ${result.grams}g — ${yw.label}, ${sp.label}`;
-                      navigator.clipboard.writeText(text);
-                    }}
-                    className="btn-secondary text-sm"
-                    aria-label="Copy results to clipboard"
+                {unlocked ? (
+                  <>
+                    {/* Full breakdown after unlock */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
+                          {result.skeins}
+                        </p>
+                        <p className="text-sm text-bark-500 dark:text-bark-400">
+                          {result.skeins === 1 ? "skein" : "skeins"}
+                          <span className="text-xs ml-1">
+                            ({result.skeinYds} {units === "metric" ? "m" : "yd"} each)
+                          </span>
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
+                          {units === "metric" ? result.grams.toLocaleString() : result.ounces}{" "}
+                          {units === "metric" ? "g" : "oz"}
+                        </p>
+                        <p className="text-sm text-bark-500 dark:text-bark-400">total weight</p>
+                      </div>
+                      <div>
+                        <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
+                          {(units === "metric"
+                            ? Math.round(ydsToM(result.yardsNoBuffer))
+                            : result.yardsNoBuffer
+                          ).toLocaleString()}{" "}
+                          {units === "metric" ? "m" : "yd"}
+                        </p>
+                        <p className="text-sm text-bark-500 dark:text-bark-400">without buffer</p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2 pt-2">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const text = `Yarn estimate: ${result.yardsWithBuffer} yards (${result.meters} m) / ${result.skeins} skeins / ${result.grams}g — ${yw.label}, ${sp.label}`;
+                          navigator.clipboard.writeText(text);
+                        }}
+                        className="btn-secondary text-sm"
+                        aria-label="Copy results to clipboard"
+                      >
+                        📋 Copy
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => window.print()}
+                        className="btn-secondary text-sm"
+                        aria-label="Print results"
+                      >
+                        🖨️ Print
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  /* Email gate */
+                  <form
+                    onSubmit={handleGateSubmit}
+                    className="border border-sage-300 dark:border-sage-700 rounded-xl p-4 bg-sage-50/70 dark:bg-sage-950/30 space-y-3"
                   >
-                    📋 Copy
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => window.print()}
-                    className="btn-secondary text-sm"
-                    aria-label="Print results"
-                  >
-                    🖨️ Print
-                  </button>
-                </div>
+                    <p className="text-sm font-semibold text-bark-700 dark:text-cream-200">
+                      🔓 Unlock your full breakdown
+                    </p>
+                    <p className="text-xs text-bark-500 dark:text-bark-400">
+                      See exact skein count, total weight, and bufferless yardage — free with the FiberTools newsletter.
+                    </p>
+                    <div className="flex gap-2">
+                      <input
+                        type="email"
+                        value={gateEmail}
+                        onChange={(e) => setGateEmail(e.target.value)}
+                        placeholder="your@email.com"
+                        required
+                        className="input flex-1 text-sm"
+                      />
+                      <button
+                        type="submit"
+                        disabled={gateLoading || !gateEmail}
+                        className="btn-primary text-sm whitespace-nowrap disabled:opacity-50"
+                      >
+                        {gateLoading ? "..." : "Unlock →"}
+                      </button>
+                    </div>
+                    {gateError && (
+                      <p className="text-xs text-red-500">{gateError}</p>
+                    )}
+                    <p className="text-xs text-bark-400 dark:text-bark-500">
+                      No spam. Unsubscribe any time.
+                    </p>
+                  </form>
+                )}
               </div>
             )}
           </StickyResult>
