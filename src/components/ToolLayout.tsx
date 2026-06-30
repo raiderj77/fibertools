@@ -27,7 +27,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
   const companionGuide = getGuideByToolSlug(slug);
 
   return (
-    <main className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
       {/* Structured Data: SoftwareApplication + FAQPage + BreadcrumbList */}
       <ToolSchema tool={tool} faqs={faqs} />
 
@@ -60,9 +60,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
               Skill level: {content.skillLevel}
             </span>
           )}
-          <p className="text-xs text-bark-400">
-            Last updated: April 16, 2026
-          </p>
+
         </div>
         <p className="text-bark-600 text-[15px] leading-relaxed mt-3">
           {tool.description}
@@ -212,9 +210,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
           <section className="mt-10">
             <h2 className="section-heading">{content.proTips.title}</h2>
             <div className="bg-cream-100 border border-cream-300 rounded-2xl p-6">
-              <p className="text-xs font-semibold uppercase tracking-wider text-plum-600 mb-4">
-                From hands-on fiber arts use
-              </p>
+
               <ul className="space-y-3">
                 {content.proTips.tips.map((tip, i) => (
                   <li key={i} className="flex items-start gap-3 text-bark-600 text-[15px] leading-relaxed">
@@ -524,6 +520,6 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
       </section>
 
       <LazyAdUnit slot="" id="ad-before-footer" />
-    </main>
+    </div>
   );
 }
