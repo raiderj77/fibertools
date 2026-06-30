@@ -16,6 +16,19 @@
     --color-sage:         #8FAE8B;
   }
 
+  .dark {
+    --color-bg:           #1C1917;
+    --color-bg-secondary: #231E2B;
+    --color-text:         #F5EDE4;
+    --color-text-muted:   #A89080;
+    --color-border:       #3D302A;
+    --color-accent:       #C49ABB;
+    --color-accent-hover: #D4AECE;
+    --color-cta:          #E8A87C;
+    --color-cta-hover:    #F0B88E;
+    --color-sage:         #9FBDA3;
+  }
+
   html {
     @apply scroll-smooth;
   }
