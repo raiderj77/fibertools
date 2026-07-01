@@ -59,13 +59,18 @@ export async function GET(request: Request) {
 
   try {
     const r = await fetch(`${RAVELRY_API}/patterns/search.json?${params.toString()}`, {
-      headers: { Authorization: `Basic ${auth}`, Accept: "application/json" },
+      headers: {
+        Authorization: `Basic ${auth}`,
+        Accept: "application/json",
+        "User-Agent": "FiberToolsApp/1.0 (+https://fibertools.app)",
+      },
       next: { revalidate: 86400 }, // cache 24h to respect rate limits
     });
 
     if (!r.ok) {
+      const detail = (await r.text()).slice(0, 300);
       return NextResponse.json(
-        { patterns: [], error: `ravelry_${r.status}` },
+        { patterns: [], error: `ravelry_${r.status}`, detail },
         { status: 200 }
       );
     }
