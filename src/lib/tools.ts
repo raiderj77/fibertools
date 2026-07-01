@@ -203,7 +203,7 @@ export const tools: Tool[] = [
   },
   {
     slug: "color-pooling-calculator",
-    name: "Color Pooling Calculator",
+    name: "Planned Pooling Crochet Calculator",
     shortName: "Color Pooling",
     description: "Calculate the exact stitch count to make variegated yarn pool into argyle and plaid patterns.",
     category: "both",
@@ -258,7 +258,7 @@ export const tools: Tool[] = [
   },
   {
     slug: "amigurumi-shapes",
-    name: "Amigurumi Shapes Guide",
+    name: "Crochet Sphere Calculator & Amigurumi Shapes",
     shortName: "Amigurumi Shapes",
     description: "Basic crochet shapes for amigurumi: sphere, cone, cylinder, and oval. Get round-by-round instructions for each shape.",
     category: "crochet",
