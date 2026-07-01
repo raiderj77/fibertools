@@ -13,6 +13,9 @@ const RAV_WEIGHT: Record<string, string> = {
   jumbo: "jumbo",
 };
 
+// Ravelry's craft filter expects "knitting"/"crochet", not the calculator's "knit".
+const RAV_CRAFT: Record<string, string> = { knit: "knitting", crochet: "crochet" };
+
 type Pattern = {
   name?: string;
   url?: string;
@@ -37,7 +40,7 @@ export default function RavelryPatterns({ weight, craft, query, visible }: Props
     const params = new URLSearchParams({ limit: "6" });
     const w = weight ? RAV_WEIGHT[weight] : "";
     if (w) params.set("weight", w);
-    if (craft) params.set("craft", craft);
+    if (craft) params.set("craft", RAV_CRAFT[craft] || craft);
     if (query) params.set("q", query);
 
     let cancelled = false;
