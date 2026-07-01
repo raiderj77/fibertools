@@ -5,6 +5,7 @@ import { subscribeToNewsletter } from "@/app/actions/subscribe";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
+import RavelryPatterns from "@/components/RavelryPatterns";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -656,6 +657,14 @@ export default function YarnCalculatorTool() {
           </StickyResult>
         </div>
       </div>
+
+      {/* Ravelry pattern suggestions — turns the result into a launchpad */}
+      <RavelryPatterns
+        weight={yarnWeight}
+        craft={sp.craft === "both" ? undefined : sp.craft}
+        query={projectType === "custom" ? "" : projectType}
+        visible={!!result}
+      />
 
       {/* Partial skein calculator */}
       <div className="border-t border-cream-300 dark:border-bark-700 pt-8">
