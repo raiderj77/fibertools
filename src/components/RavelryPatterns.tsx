@@ -16,6 +16,13 @@ const RAV_WEIGHT: Record<string, string> = {
 // Ravelry's craft filter expects "knitting"/"crochet", not the calculator's "knit".
 const RAV_CRAFT: Record<string, string> = { knit: "knitting", crochet: "crochet" };
 
+// Fire a GA4 event if analytics is loaded + consented (SSR-safe, no-op otherwise).
+function track(name: string, params: Record<string, unknown>) {
+  if (typeof window === "undefined") return;
+  const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+  w.gtag?.("event", name, params);
+}
+
 type Pattern = {
   name?: string;
   url?: string;
@@ -48,7 +55,16 @@ export default function RavelryPatterns({ weight, craft, query, visible }: Props
     fetch(`/api/ravelry/patterns?${params.toString()}`)
       .then((r) => r.json())
       .then((data) => {
-        if (!cancelled) setPatterns(Array.isArray(data.patterns) ? data.patterns : []);
+        if (cancelled) return;
+        const list: Pattern[] = Array.isArray(data.patterns) ? data.patterns : [];
+        setPatterns(list);
+        if (list.length > 0) {
+          track("ravelry_patterns_shown", {
+            craft: craft || "any",
+            weight: weight || "any",
+            count: list.length,
+          });
+        }
       })
       .catch(() => {
         if (!cancelled) setPatterns([]);
@@ -84,6 +100,13 @@ export default function RavelryPatterns({ weight, craft, query, visible }: Props
               href={p.url}
               target="_blank"
               rel="nofollow noopener"
+              onClick={() =>
+                track("ravelry_pattern_click", {
+                  pattern: p.name,
+                  craft: craft || "any",
+                  weight: weight || "any",
+                })
+              }
               className="group block rounded-lg border border-cream-300 dark:border-bark-700 overflow-hidden hover:border-sage-400 dark:hover:border-sage-500 transition-colors"
             >
               {p.thumbnail ? (
