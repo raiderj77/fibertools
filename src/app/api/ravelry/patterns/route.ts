@@ -10,8 +10,6 @@ import { NextResponse } from "next/server";
 // Query params: q (keyword), craft (knitting|crochet), weight (worsted|dk|...),
 //               pc (pattern category e.g. blanket, pullover), limit (default 6, max 12)
 
-export const dynamic = "force-dynamic"; // TEMP: no route caching while debugging
-
 const RAVELRY_API = "https://api.ravelry.com";
 
 type RavPhoto = {
@@ -66,7 +64,7 @@ export async function GET(request: Request) {
         Accept: "application/json",
         "User-Agent": "FiberToolsApp/1.0 (+https://fibertools.app)",
       },
-      cache: "no-store", // TEMP: live read while debugging auth (restore caching after)
+      next: { revalidate: 86400 }, // cache 24h to respect rate limits
     });
 
     if (!r.ok) {
