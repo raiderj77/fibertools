@@ -19,47 +19,47 @@ keywords:
 
 # How to Calculate Yarn for Crochet Garments
 
-Running out of yarn on the second sleeve of a crochet cardigan is a special kind of heartbreak, especially when you can't find the same dye lot. Crochet garments use more yarn than most crafters expect, and eyeballing it based on the skein count for a knit version of the same garment will leave you short every time.
+Running out of yarn on the second sleeve of a cardigan is heartbreaking. It is even worse when you cannot find the same dye lot. Crochet garments use more yarn than most people expect. Guessing based on a knitting pattern's skein count will leave you short every time.
 
-Crochet uses approximately 25-35% more yarn than knitting for the same finished dimensions. That's not a flaw, it's physics. Crochet stitches wrap the yarn around the hook more times per stitch than knitting wraps around a needle. The resulting fabric is thicker, warmer, and more structured, but it eats yarn faster.
+Crochet uses about 25 to 35% more yarn than knitting for the same finished size. That is not a flaw. It is just how crochet works. Crochet stitches wrap yarn around the hook more times per stitch than knitting does. The fabric ends up thicker, warmer, and more structured. But it uses more yarn.
 
-Here's how to calculate exactly what you need.
+Here is how to calculate exactly what you need.
 
 ## Why Do Crochet Garments Use More Yarn Than You Think?
 
-Three factors drive higher yarn consumption in crochet garments.
+Three things cause crochet to use more yarn.
 
-**Stitch structure.** A single crochet stitch uses about 25% more yarn than a knit stitch covering the same area. Double crochet uses about 35% more. Half double crochet falls in the middle at roughly 30%. The taller the stitch, the more yarn each one consumes.
+**Stitch structure.** A single crochet stitch uses about 25% more yarn than a knit stitch of the same size. Double crochet uses about 35% more. Half double crochet falls in the middle at about 30%. Taller stitches use more yarn.
 
-**Fabric thickness.** Crochet fabric is 1.5-2x thicker than knit fabric in the same yarn weight. That extra thickness means more yarn per square inch of finished garment.
+**Fabric thickness.** Crochet fabric is 1.5 to 2 times thicker than knit fabric in the same yarn weight. That extra thickness means more yarn per square inch.
 
-**Stitch gauge.** Crochet produces fewer stitches per inch than knitting at the same yarn weight (14-16 sc per 4 inches vs. 18-20 knit stitches per 4 inches in worsted). You use fewer stitches across, but each stitch takes more yarn, and the net result is higher total yardage.
+**Stitch gauge.** Crochet makes fewer stitches per inch than knitting at the same yarn weight. Worsted weight crochet makes 14 to 16 single crochets per 4 inches. Knitting makes 18 to 20 stitches per 4 inches. You use fewer stitches across, but each stitch takes more yarn. The result is more total yardage.
 
-**The bottom line:** If a knit pullover pattern calls for 1,200 yards, the crochet equivalent needs 1,550-1,620 yards. If you're adapting a knit pattern to crochet, multiply the yarn estimate by 1.3 and buy an extra 10% on top.
+**The bottom line:** A knit pullover that needs 1,200 yards will need 1,550 to 1,620 yards in crochet. If you are adapting a knitting pattern to crochet, multiply the yarn estimate by 1.3. Then buy an extra 10% on top of that.
 
 ## How Do You Calculate Yarn for a Crochet Garment Step by Step?
 
 ### Method 1: The Swatch Math Method (Most Accurate)
 
-1. **Swatch a 6-inch square** in your pattern stitch with your chosen yarn and hook.
-2. **Measure the yarn used.** Before swatching, mark your yarn at 3-yard intervals with small ties. After swatching, count how many yards you used for the swatch.
-3. **Calculate yarn per square inch.** If your 6x6 swatch (36 square inches) used 18 yards, that's 0.5 yards per square inch.
-4. **Calculate your garment's total surface area.** Break it into rectangles: front panel, back panel, two sleeves. Example: back panel 20 x 24 inches = 480 sq in, front panel same = 480 sq in, each sleeve 18 x 20 inches = 360 sq in x 2 = 720 sq in. Total: 1,680 square inches.
-5. **Multiply.** 1,680 sq in x 0.5 yards/sq in = 840 yards. Add 10-15% for seaming, borders, and safety margin: 840 x 1.12 = 940 yards.
+1. **Make a 6-inch square swatch** in your pattern stitch with your yarn and hook.
+2. **Measure the yarn used.** Before you swatch, mark your yarn every 3 yards with small ties. After swatching, count how many yards the swatch used.
+3. **Calculate yarn per square inch.** If your 6 by 6 inch swatch (36 square inches) used 18 yards, that is 0.5 yards per square inch.
+4. **Calculate your garment's total surface area.** Break it into rectangles. Use the front panel, back panel, and two sleeves. Example: back panel 20 by 24 inches equals 480 square inches. Front panel is the same, 480 square inches. Each sleeve is 18 by 20 inches, which equals 360 square inches. Two sleeves equal 720 square inches. Total: 1,680 square inches.
+5. **Multiply.** 1,680 square inches times 0.5 yards per square inch equals 840 yards. Add 10 to 15% for seaming, borders, and a safety margin. 840 times 1.12 equals 940 yards.
 
 ### Method 2: The Yardage Chart Method (Quick Estimate)
 
-Use the reference chart below for ballpark estimates, then fine-tune with the [Yarn Calculator](/yarn-calculator).
+Use the chart below for a ballpark estimate. Then fine-tune your number with the [Yarn Calculator](/yarn-calculator).
 
 ## How Does the FiberTools Yarn Calculator Help?
 
-The [Yarn Calculator](/yarn-calculator) handles the math for you. Enter your project type, dimensions, gauge, and yarn weight, and the tool calculates total yardage, including the crochet adjustment factor. It also converts between yards and meters and tells you how many skeins to buy based on your yarn's put-up (yards per skein).
+The [Yarn Calculator](/yarn-calculator) does the math for you. Enter your project type, dimensions, gauge, and yarn weight. The tool calculates total yardage and includes the crochet adjustment factor. It also converts between yards and meters. It tells you how many skeins to buy based on your yarn's yardage per skein.
 
-Pair it with the [Gauge Calculator](/gauge-calculator) to confirm your stitch and row gauge before calculating yardage. Getting gauge right before estimating yarn prevents the double disaster of wrong sizing and wrong yardage.
+Use it with the [Gauge Calculator](/gauge-calculator) to check your stitch and row gauge before you estimate yardage. Getting gauge right first prevents two problems at once. It stops wrong sizing and wrong yardage.
 
 ## How Much Yarn Do Common Crochet Garments Need?
 
-These estimates assume worsted weight (CYC 4) yarn in the listed stitch. Adjust up for larger sizes, taller stitches, or heavier yarn. Adjust down for smaller sizes, lighter yarn, or open stitch patterns.
+These estimates use worsted weight (CYC 4) yarn in the listed stitch. Adjust up for larger sizes, taller stitches, or heavier yarn. Adjust down for smaller sizes, lighter yarn, or open stitch patterns.
 
 | Garment | Stitch | Size S | Size M | Size L | Size XL |
 |---|---|---|---|---|---|
@@ -72,64 +72,64 @@ These estimates assume worsted weight (CYC 4) yarn in the listed stitch. Adjust 
 | Crochet Vest | sc | 700 yds | 850 yds | 1,000 yds | 1,150 yds |
 | Cropped Sweater | hdc | 900 yds | 1,100 yds | 1,300 yds | 1,500 yds |
 
-**For DK weight:** multiply these numbers by 1.15-1.25 (thinner yarn covers less area per stitch, needing more total stitches).
+**For DK weight:** multiply these numbers by 1.15 to 1.25. Thinner yarn covers less area per stitch, so you need more total stitches.
 
-**For bulky weight:** multiply by 0.7-0.8 (fewer stitches per inch, but each stitch uses more yarn, the net effect is less total yardage).
+**For bulky weight:** multiply by 0.7 to 0.8. You make fewer stitches per inch. Each stitch uses more yarn, but the total yardage is less.
 
 ## What's the Best Strategy for Buying Yarn?
 
-**Always buy 10-15% more than your calculation.** Yarn chicken (the game of racing to finish before running out) is stressful and frequently results in unfinished projects or mismatched dye lots. An extra skein costs $5-$12. The peace of mind is worth it.
+**Always buy 10 to 15% more than your calculation.** Running out of yarn before you finish is stressful. It often means an unfinished project or mismatched dye lots. An extra skein costs $5 to $12. The peace of mind is worth it.
 
-**Buy all your yarn at once.** Dye lots vary between production runs, even the same colorway from the same brand can look visibly different between lots. Check that every skein in your purchase has the same dye lot number printed on the label.
+**Buy all your yarn at once.** Dye lots change between production runs. Even the same colorway from the same brand can look different between lots. Check that every skein has the same dye lot number on the label.
 
-**Keep your receipt.** Most yarn stores and online retailers accept returns of unused, unwound skeins within 30-60 days. Buy the extra skein, keep it in the bag with the receipt, and return it when the garment is done.
+**Keep your receipt.** Most yarn stores and online shops accept returns of unused, unwound skeins within 30 to 60 days. Buy the extra skein. Keep it in the bag with the receipt. Return it when your garment is done.
 
-**Calculate per-piece yardage.** Don't just know the total, know how much each piece needs. If your cardigan needs 1,800 yards total, allocate: back 450, front left 250, front right 250, left sleeve 275, right sleeve 275, borders and finishing 300. This lets you track whether you're on pace as you work.
+**Calculate per-piece yardage.** Do not just know the total. Know how much each piece needs. If your cardigan needs 1,800 yards total, split it up. Back: 450 yards. Front left: 250 yards. Front right: 250 yards. Left sleeve: 275 yards. Right sleeve: 275 yards. Borders and finishing: 300 yards. This helps you track whether you are on pace as you work.
 
-**The dye lot disaster fix:** If you do run out mid-project and can't find the same dye lot, alternate rows from the old and new skeins for 3-4 inches at the transition point. The gradual blend makes dye lot differences nearly invisible.
+**The dye lot fix:** If you run out and cannot find the same dye lot, alternate rows from the old and new skeins for 3 to 4 inches at the transition point. The gradual blend makes the difference nearly invisible.
 
 ## What Are Common Yarn Estimation Mistakes?
 
-**Using knitting yardage estimates for crochet.** This is the #1 mistake. A knit pullover pattern that says "1,200 yards" means 1,200 yards for knitting. In crochet, you need 1,550-1,620 yards. Always apply the 1.25-1.35 multiplier.
+**Using knitting yardage for crochet.** This is the number one mistake. A knitting pattern that says "1,200 yards" means 1,200 yards for knitting. In crochet, you need 1,550 to 1,620 yards. Always multiply knitting yardage by 1.25 to 1.35.
 
-**Forgetting the border and finishing.** Necklines, button bands, hem borders, and seaming add 10-15% to total yardage. A cardigan with picked-up button bands and a crocheted collar can use 200-300 extra yards in worsted weight.
+**Forgetting borders and finishing.** Necklines, button bands, hem borders, and seaming add 10 to 15% to your total yardage. A cardigan with button bands and a crocheted collar can use 200 to 300 extra yards in worsted weight.
 
-**Not accounting for size.** The jump from size M to size L adds roughly 15-20% more yarn. From M to XL adds 30-40%. Pattern yardage listed for "S/M" won't work for XL without significant adjustment.
+**Not accounting for size.** Going from size M to size L adds about 15 to 20% more yarn. Going from size M to size XL adds 30 to 40% more. Pattern yardage listed for "S/M" will not work for XL without a big adjustment.
 
-**Skipping the gauge swatch.** If your gauge is off, even by half a stitch per inch, your yardage estimate is wrong. Tighter gauge uses more yarn per square inch. Looser gauge uses less. Confirm gauge first, then estimate yardage.
+**Skipping the gauge swatch.** If your gauge is off by even half a stitch per inch, your yardage estimate is wrong. Tighter gauge uses more yarn per square inch. Looser gauge uses less. Always check gauge before you estimate yardage.
 
-**Forgetting about stitch choice.** Double crochet uses roughly 10% more yarn than half double crochet for the same dimensions. Single crochet uses about 10% less than half double crochet but creates a denser, stiffer fabric. Your stitch choice changes the total.
+**Forgetting about stitch choice.** Double crochet uses about 10% more yarn than half double crochet for the same size. Single crochet uses about 10% less than half double crochet. But single crochet makes a denser, stiffer fabric. Your stitch choice changes the total yardage.
 
 ## What Do Real Garment Projects Look Like?
 
-**The planned cardigan.** A crocheter making a size M hip-length cardigan in worsted weight hdc calculated: body panels 1,100 yards, sleeves 500 yards, button bands and collar 200 yards = 1,800 yards total. She bought 2,000 yards (10 skeins at 200 yards each). She finished with 1.5 skeins left over, right on target with a comfortable margin.
+**The planned cardigan.** One crocheter made a size M hip-length cardigan in worsted weight half double crochet. She calculated: body panels 1,100 yards, sleeves 500 yards, button bands and collar 200 yards. That totaled 1,800 yards. She bought 2,000 yards, which was 10 skeins at 200 yards each. She finished with 1.5 skeins left over. That was right on target with a good margin.
 
-**The yarn chicken disaster.** A crocheter estimated 1,200 yards for a size L pullover based on a knitting pattern's yardage. She ran out 4 inches from finishing the second sleeve. The yarn was discontinued. She ended up frogging both sleeves and remaking them shorter (3/4 length) to stretch the remaining yarn. The crochet multiplier would have told her she needed 1,600 yards.
+**The yarn chicken disaster.** One crocheter estimated 1,200 yards for a size L pullover. She based it on a knitting pattern's yardage. She ran out 4 inches from finishing the second sleeve. The yarn was discontinued. She had to frog both sleeves and remake them shorter to use the yarn she had left. The crochet multiplier would have told her she needed 1,600 yards.
 
-**The oversized sweater.** A maker crocheting an oversized drop-shoulder pullover in size XL added 12 inches of positive ease. The extra width pushed yardage from the chart's 1,950 yards to 2,400 yards. She calculated the added fabric area, used the Yarn Calculator to confirm, and bought 2,600 yards. Finished with 180 yards to spare.
+**The oversized sweater.** One maker crocheted an oversized drop-shoulder pullover in size XL. She added 12 inches of positive ease. The extra width pushed the yardage from the chart's 1,950 yards up to 2,400 yards. She calculated the added fabric area and used the Yarn Calculator to confirm. She bought 2,600 yards and finished with 180 yards to spare.
 
 ## Frequently Asked Questions
 
 ### How much more yarn does crochet use than knitting?
 
-Crochet uses approximately 25-35% more yarn than knitting for the same finished dimensions. Single crochet adds about 25%, half double crochet about 30%, and double crochet about 35%. This applies to the same yarn weight and finished measurements. Always multiply knit yardage estimates by 1.25-1.35 when converting.
+Crochet uses about 25 to 35% more yarn than knitting for the same finished size. Single crochet adds about 25%. Half double crochet adds about 30%. Double crochet adds about 35%. This applies to the same yarn weight and finished measurements. Always multiply knitting yardage by 1.25 to 1.35 when converting.
 
 ### Does stitch height affect yarn usage?
 
-Yes. Taller crochet stitches use more yarn per stitch, double crochet uses about 10% more yarn than half double crochet per square inch of fabric. But taller stitches also produce fewer rows per inch, so the total difference is smaller than you'd expect. The bigger factor is gauge: tighter gauge always uses more yarn.
+Yes. Taller crochet stitches use more yarn per stitch. Double crochet uses about 10% more yarn than half double crochet per square inch of fabric. But taller stitches also make fewer rows per inch. So the total difference is smaller than you might expect. The bigger factor is gauge. Tighter gauge always uses more yarn.
 
 ### Should I buy extra yarn for my first garment?
 
-Absolutely. Buy 15-20% extra for your first garment project. First-time garment makers often need to frog and redo sections while learning construction techniques. That reworking uses yarn, and you'll be glad you have extra. Keep receipts so you can return unused skeins.
+Yes. Buy 15 to 20% extra for your first garment project. First-time garment makers often need to frog and redo sections while learning. That reworking uses yarn. You will be glad you have extra. Keep your receipts so you can return unused skeins.
 
 ### How do I estimate yarn for a custom-sized garment?
 
-Break the garment into rectangular pieces and calculate the area of each piece: width x length. Multiply total area by the yarn-per-square-inch number from your gauge swatch. Add 10-15% for seaming and borders. The [Yarn Calculator](/yarn-calculator) automates this process, enter your dimensions and gauge and it handles the rest.
+Break the garment into rectangular pieces. Calculate the area of each piece by multiplying width by length. Multiply the total area by the yarn-per-square-inch number from your gauge swatch. Add 10 to 15% for seaming and borders. The [Yarn Calculator](/yarn-calculator) does this for you. Enter your dimensions and gauge, and it handles the rest.
 
 ## Calculate Before You Crochet
 
-The 10 minutes you spend calculating yarn saves you from the worst moment in crochet: running out mid-project with no matching dye lot in sight. Measure your gauge, estimate your yardage, buy the extra skein, and crochet with confidence.
+Ten minutes of math can save you from the worst moment in crochet. That moment is running out of yarn mid-project with no matching dye lot in sight. Measure your gauge, estimate your yardage, buy the extra skein, and crochet with confidence.
 
-Head to the [Yarn Calculator](/yarn-calculator) to enter your garment dimensions and gauge. You'll get an exact yardage number, and you'll know exactly how many skeins to put in your cart.
+Go to the [Yarn Calculator](/yarn-calculator) and enter your garment dimensions and gauge. You will get an exact yardage number. You will know exactly how many skeins to put in your cart.
 
 *Published by the fibertools.app team*

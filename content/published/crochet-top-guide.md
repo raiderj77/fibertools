@@ -19,124 +19,124 @@ keywords:
 
 # How to Plan and Crochet a Wearable Top
 
-Crochet tops are the hottest trend in the fiber arts community, and for good reason. A well-made crochet top looks like a $200 boutique piece but costs $15-$30 in yarn. The catch: crochet fabric behaves differently from woven or knit fabric, and understanding those differences is what separates a top you wear from one that lives in the back of your closet.
+Crochet tops are very popular right now in the fiber arts world. A well-made crochet top can look like a $200 boutique piece but only costs $15 to $30 in yarn. The catch is that crochet fabric acts differently from woven or knit fabric. Understanding those differences is what helps you make a top you actually wear instead of one that sits in the back of your closet.
 
-Here's how to plan a crochet top that actually fits, flatters, and survives washing.
+Here is how to plan a crochet top that fits well, looks great, and holds up after washing.
 
 ## What Makes Crochet Tops Different from Knit Tops?
 
-Crochet fabric is thicker, denser, and less drapey than knit fabric. This affects fit and comfort in ways you need to plan for.
+Crochet fabric is thicker, denser, and less flowy than knit fabric. This changes how a top fits and feels, so you need to plan ahead.
 
-**Weight.** A crochet top weighs 30-50% more than a knit top in the same yarn. This means the fabric pulls down more at the shoulders. Use lighter yarn weights (DK or sport) for tops to keep the weight manageable.
+**Weight.** A crochet top weighs 30 to 50% more than a knit top made from the same yarn. That extra weight pulls the fabric down at the shoulders. Use lighter yarn weights like DK or sport for tops. This keeps the weight easy to manage.
 
-**Drape.** Dense crochet stitches like single crochet create stiff fabric. For a top that drapes against the body, use half double crochet, double crochet, or open stitch patterns (mesh, V-stitch, shells). A larger hook also increases drape.
+**Drape.** Dense crochet stitches like single crochet make stiff fabric. For a top that flows against the body, use half double crochet, double crochet, or open stitch patterns like mesh, V-stitch, or shells. A larger hook also helps the fabric drape better.
 
-**Stretch.** Crochet fabric doesn't stretch like knit fabric. Plan for 0-2 inches of positive ease (the top should be slightly larger than your body measurements, not the same size). Negative ease (smaller than measurements) doesn't work for most crochet tops because the fabric won't stretch to fit.
+**Stretch.** Crochet fabric does not stretch like knit fabric. Plan for 0 to 2 inches of positive ease. That means the top should be a little bigger than your body measurements, not the same size. Negative ease means making the top smaller than your measurements. That does not work for most crochet tops because the fabric will not stretch to fit.
 
-**Stitch visibility.** Crochet stitches show more texture than knit stitches. This is a feature for textured stitch patterns but can highlight fit issues. Smooth stitches (hdc, dc) are more forgiving for garment silhouettes.
+**Stitch visibility.** Crochet stitches show more texture than knit stitches. This looks great with textured stitch patterns. But it can also make fit problems easier to see. Smooth stitches like half double crochet and double crochet are more forgiving for garment shapes.
 
 ## How Do You Size a Crochet Top?
 
 ### Step 1: Take Body Measurements
 
-Measure yourself (or the recipient) in the following spots:
-- **Bust circumference** (fullest part, arms relaxed)
-- **Waist circumference** (natural waist)
-- **Hip circumference** (fullest part, if the top is hip-length)
-- **Shoulder width** (point to point across the back)
+Measure yourself or the person you are making the top for. Measure these spots:
+- **Bust circumference** (the fullest part, with arms relaxed)
+- **Waist circumference** (your natural waist)
+- **Hip circumference** (the fullest part, if the top reaches the hips)
+- **Shoulder width** (from point to point across the back)
 - **Desired length** (shoulder to hem for tanks, or underarm to hem)
 
 ### Step 2: Add Ease
 
-**Positive ease** is extra room beyond body measurements. For crochet tops:
-- Close-fitting: add 1-2 inches to bust
-- Standard fit: add 2-4 inches to bust
-- Relaxed/oversized: add 4-8 inches to bust
+**Positive ease** means adding extra room beyond your body measurements. For crochet tops:
+- Close-fitting: add 1 to 2 inches to the bust
+- Standard fit: add 2 to 4 inches to the bust
+- Relaxed or oversized: add 4 to 8 inches to the bust
 
-Don't use zero ease. Crochet fabric doesn't stretch enough for body-hugging fits (unlike knit jersey). A crochet top made to exact body measurements will feel tight and restrictive.
+Do not use zero ease. Crochet fabric does not stretch enough for a body-hugging fit like knit jersey does. A crochet top made to your exact measurements will feel tight and uncomfortable.
 
 ### Step 3: Choose Construction Method
 
-**Flat panels (easiest).** Crochet a front panel and a back panel separately. Seam at the shoulders and sides. Add straps or sleeves. This is the simplest construction and the best for beginners.
+**Flat panels (easiest).** Crochet a front panel and a back panel separately. Seam them at the shoulders and sides. Then add straps or sleeves. This is the simplest way to build a top and works great for beginners.
 
-**Top-down yoke.** Start at the neckline, increase outward to shoulder width, then split for front and back and work down. Seamless and adjustable. You can try on as you go.
+**Top-down yoke.** Start at the neckline and increase outward to the shoulder width. Then split the work for the front and back and work your way down. This method is seamless and easy to adjust. You can try it on as you go.
 
-**Bottom-up tube.** Crochet a tube from the hem up, split at the armholes, and work front and back separately. Good for fitted, shaped tops.
+**Bottom-up tube.** Crochet a tube starting at the hem and work up. Split the work at the armholes and finish the front and back separately. This works well for fitted, shaped tops.
 
 ## How Does the FiberTools Yarn Calculator Help?
 
-The [Yarn Calculator](/yarn-calculator) estimates yardage for your top based on dimensions and gauge. Enter your bust + ease measurement, desired length, gauge, and yarn weight. The tool returns total yardage and skeins.
+The [Yarn Calculator](/yarn-calculator) estimates how much yarn you need for your top. It uses your dimensions and gauge. Enter your bust measurement plus ease, your desired length, your gauge, and your yarn weight. The tool tells you the total yardage and how many skeins to buy.
 
-**Typical crochet top yardage (DK weight, hdc):**
+**Typical crochet top yardage (DK weight, half double crochet):**
 
 | Style | Size S | Size M | Size L | Size XL |
 |---|---|---|---|---|
-| Crop top | 400-550 yds | 500-650 yds | 600-800 yds | 750-950 yds |
-| Tank top | 550-750 yds | 700-900 yds | 850-1,050 yds | 1,000-1,200 yds |
-| Short sleeve | 750-950 yds | 900-1,100 yds | 1,050-1,300 yds | 1,250-1,500 yds |
-| Long sleeve | 1,000-1,300 yds | 1,200-1,500 yds | 1,400-1,700 yds | 1,650-2,000 yds |
+| Crop top | 400 to 550 yds | 500 to 650 yds | 600 to 800 yds | 750 to 950 yds |
+| Tank top | 550 to 750 yds | 700 to 900 yds | 850 to 1,050 yds | 1,000 to 1,200 yds |
+| Short sleeve | 750 to 950 yds | 900 to 1,100 yds | 1,050 to 1,300 yds | 1,250 to 1,500 yds |
+| Long sleeve | 1,000 to 1,300 yds | 1,200 to 1,500 yds | 1,400 to 1,700 yds | 1,650 to 2,000 yds |
 
-Use the [Gauge Calculator](/gauge-calculator) to verify your gauge matches the pattern before calculating yardage. A half-stitch-per-inch difference on a top can shift the bust measurement by 2-3 inches.
+Use the [Gauge Calculator](/gauge-calculator) to check that your gauge matches the pattern before you figure out yardage. A difference of just half a stitch per inch can shift your bust measurement by 2 to 3 inches.
 
 ## What Yarn Works Best for Crochet Tops?
 
-**DK weight cotton or cotton blends** are the most popular choice. Cotton breathes, drapes well after washing, and has enough weight to hang properly without being heavy. Cotton/acrylic blends (60/40 or 50/50) add softness and reduce stiffness.
+**DK weight cotton or cotton blends** are the most popular choice. Cotton breathes, drapes well after washing, and hangs nicely without being too heavy. Cotton and acrylic blends at 60/40 or 50/50 add softness and reduce stiffness.
 
-**Sport weight** creates a lighter, more delicate top. Good for lacy or open stitch patterns.
+**Sport weight** makes a lighter, more delicate top. It works well for lacy or open stitch patterns.
 
-**Worsted weight** is too heavy for most tops, especially in warm weather. Save worsted for cold-weather layers or structured items.
+**Worsted weight** is too heavy for most tops, especially in warm weather. Save worsted weight yarn for cold-weather layers or structured items.
 
-**Avoid:** Pure acrylic (too warm, doesn't breathe), bulky weight (too thick for garments), fuzzy yarns (hide stitch definition), 100% cotton (can be stiff; blend with something softer).
+**Avoid:** Pure acrylic (too warm and does not breathe), bulky weight (too thick for garments), fuzzy yarns (they hide stitch detail), and 100% cotton (can be stiff, so blend it with something softer).
 
-**Washing note:** Crochet tops need to survive regular washing. Choose machine-washable yarn. Check the label. A hand-wash-only top won't get worn because it's too much work to maintain.
+**Washing note:** Crochet tops need to survive regular washing. Choose machine-washable yarn and check the label. A hand-wash-only top will not get worn much because it takes too much work to care for.
 
 ## What Are Common Tips and Mistakes?
 
-**Swatch in the stitch pattern, not just single crochet.** If your top uses V-stitch or shell stitch, swatch in that pattern. Different stitches produce different gauges, different drape, and different fabric weights. Your plain sc gauge is irrelevant if the top is in dc mesh.
+**Swatch in the stitch pattern you will actually use, not just single crochet.** If your top uses V-stitch or shell stitch, make your swatch in that pattern. Different stitches give you different gauges, different drape, and different fabric weight. Your single crochet gauge does not matter if the top is made in double crochet mesh.
 
-**Block your swatch before measuring.** Cotton and cotton blends stretch and relax after washing. Your swatch gauge may change by 0.5-1 stitch per inch after blocking. Measure the post-blocked gauge for accurate sizing.
+**Block your swatch before measuring.** Cotton and cotton blends stretch and relax after washing. Your swatch gauge may change by 0.5 to 1 stitch per inch after blocking. Always measure the blocked swatch for accurate sizing.
 
-**Try it on during construction.** If you're working top-down, try the piece on after completing the yoke and again after the armhole split. Adjusting width is easy while you're still crocheting. After binding off and cutting yarn, it's frogging time.
+**Try it on while you work.** If you are working top-down, try the piece on after you finish the yoke. Try it on again after the armhole split. It is easy to adjust the width while you are still crocheting. After you bind off and cut the yarn, you will have to frog it and start over.
 
-**Account for gravity stretch.** Hanging on a body, a crochet top stretches 1-3 inches longer than when laid flat, especially in cotton. Make the body 1-2 inches shorter than your target length to account for this.
+**Plan for gravity stretch.** When worn on a body, a crochet top can stretch 1 to 3 inches longer than when it is laid flat. This happens a lot with cotton. Make the body 1 to 2 inches shorter than your target length to account for this.
 
 **Common mistakes:**
-- Zero ease (the top doesn't fit over the bust)
+- Zero ease (the top does not fit over the bust)
 - Too-heavy yarn weight (the top feels like a weighted vest)
-- Not swatching in the actual stitch pattern (gauge is wrong)
-- Not washing the swatch before measuring (cotton relaxes 5-10%)
-- Starting with a complex pattern (start with a simple tank in hdc)
+- Not swatching in the actual stitch pattern (gauge ends up wrong)
+- Not washing the swatch before measuring (cotton relaxes 5 to 10%)
+- Starting with a complex pattern (start simple with a tank top in half double crochet)
 
 ## What Do Real Crochet Top Projects Look Like?
 
-**The first tank.** A beginner crocheted a simple tank top with two flat panels in DK cotton blend using half double crochet. Front: 18 inches wide, 16 inches long. Back: same. She seamed the sides and shoulders, added 2 rows of sc around the neckline and armholes. Total yarn: 680 yards. The top fit well with 3 inches of positive ease. Project time: 15 hours.
+**The first tank.** A beginner made a simple tank top from two flat panels in DK cotton blend using half double crochet. The front panel was 18 inches wide and 16 inches long. The back panel was the same size. She seamed the sides and shoulders. Then she added 2 rows of single crochet around the neckline and armholes. Total yarn used: 680 yards. The top fit well with 3 inches of positive ease. It took about 15 hours to complete.
 
-**The granny square crop.** An intermediate crocheter made a crop top from 12 granny squares (6 front, 6 back) in sport weight cotton, joined with slip stitch. The open granny pattern provided natural ventilation. She added a simple chain-stitch strap. Total yarn: 420 yards across 3 colors. The top was a festival favorite.
+**The granny square crop.** An intermediate crocheter made a crop top from 12 granny squares. She used 6 squares for the front and 6 for the back. The yarn was sport weight cotton, and she joined the squares with slip stitch. The open granny pattern let air flow through naturally. She added a simple chain-stitch strap. Total yarn used: 420 yards across 3 colors. The top became a festival favorite.
 
-**The lacy summer blouse.** A crocheter made a V-stitch top in DK mercerized cotton with a top-down yoke construction. She tried it on after the yoke, adjusted the increase rate, and worked the body to hip length. Total yarn: 950 yards. The mesh stitch created a light, breezy fabric that draped beautifully after washing.
+**The lacy summer blouse.** A crocheter made a V-stitch top in DK mercerized cotton using a top-down yoke construction. She tried it on after the yoke, adjusted the increase rate, and worked the body down to hip length. Total yarn used: 950 yards. The mesh stitch created a light, breezy fabric that draped beautifully after washing.
 
 ## Frequently Asked Questions
 
 ### What's the easiest crochet top for beginners?
 
-A simple tank top made from two flat rectangular panels in half double crochet. Use DK weight cotton blend, crochet a front rectangle (bust width / 2 + 1 inch) and a back rectangle the same size. Seam at shoulders and sides, leaving armhole openings. Add a border of single crochet around the neckline and armholes. This teaches garment construction without complex shaping.
+A simple tank top made from two flat rectangular panels in half double crochet. Use DK weight cotton blend. Crochet a front rectangle that is bust width divided by 2, plus 1 inch. Make the back rectangle the same size. Seam at the shoulders and sides and leave openings for the armholes. Add a border of single crochet around the neckline and armholes. This project teaches you how garments are built without any complex shaping.
 
 ### Will a crochet top stretch out after wearing?
 
-Cotton and cotton-heavy blends can stretch 1-3 inches in length when worn, due to gravity pulling on the heavier crochet fabric. Make the body 1-2 inches shorter than your target length. After washing, the fabric returns to approximately its blocked dimensions. Acrylic and superwash wool stretch less.
+Cotton and cotton-heavy blends can stretch 1 to 3 inches longer when worn. Gravity pulls down on the heavier crochet fabric. Make the body 1 to 2 inches shorter than your target length to account for this. After washing, the fabric goes back to roughly its blocked dimensions. Acrylic and superwash wool stretch less.
 
 ### How do I make a crochet top that doesn't look handmade?
 
-Use a consistent gauge (swatch and measure), choose a clean stitch pattern (hdc or dc, not bulky texture), pick yarn with good stitch definition (mercerized cotton, smooth blends), and block the finished piece. Clean finishing makes the biggest difference: neat seams, even borders, and trimmed tails.
+Keep a consistent gauge by swatching and measuring carefully. Choose a clean stitch pattern like half double crochet or double crochet instead of bulky textures. Pick yarn with good stitch definition such as mercerized cotton or smooth blends. Block the finished piece. Clean finishing makes the biggest difference. Neat seams, even borders, and trimmed tails all help the top look polished.
 
 ### Can I line a crochet top?
 
-Yes. Cut lightweight jersey fabric to the same dimensions as your crochet panels and hand-stitch the lining to the inside along the seams and edges. Lining adds opacity (important for open stitch patterns), prevents stretching, and makes the top more comfortable against skin. Use a stretchy fabric so the lining doesn't restrict the crochet's natural movement.
+Yes. Cut lightweight jersey fabric to the same dimensions as your crochet panels. Hand-stitch the lining to the inside along the seams and edges. Lining adds opacity, which matters a lot with open stitch patterns. It also helps prevent stretching and makes the top more comfortable against your skin. Use a stretchy fabric so the lining does not limit the natural movement of the crochet.
 
 ## Crochet Your First Wearable Top
 
-A crochet top is the project that makes non-crafters say "You made that?" Start simple: two panels, basic stitches, good yarn. The fit and drape will surprise you.
+A crochet top is the project that makes people say "You made that?" Start simple. Use two panels, basic stitches, and good yarn. The fit and drape will surprise you.
 
-Use the [Yarn Calculator](/yarn-calculator) to plan your yardage and the [Gauge Calculator](/gauge-calculator) to verify your swatch before cutting into your yarn stash.
+Use the [Yarn Calculator](/yarn-calculator) to plan your yardage and the [Gauge Calculator](/gauge-calculator) to check your swatch before you dig into your yarn stash.
 
 *Published by the fibertools.app team*
