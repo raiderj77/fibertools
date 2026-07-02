@@ -162,7 +162,7 @@ export default function CastOnCalculatorTool() {
 
             <div className="border-t border-cream-300 dark:border-bark-600 pt-4">
               <p className="text-sm text-bark-600 dark:text-cream-300">
-                Many knitters add 2 edge/selvedge stitches for seaming &mdash; adjust as needed for your pattern.
+                Many knitters add 2 edge/selvedge stitches for seaming, adjust as needed for your pattern.
               </p>
             </div>
 

@@ -67,7 +67,7 @@ export default function YarnCalculatorPage() {
             Multiply finished area by your yarn weight&rsquo;s coverage factor. Worsted (CYC 4) covers
             approximately 1.3 yards per square inch; DK about 1.1; bulky about 0.95; lace about 2.5. Add
             a 10% buffer, then divide by skein yardage. A gauge swatch gives more accuracy than weight
-            averages alone &mdash; even a half-stitch difference per inch shifts total yardage by
+            averages alone, even a half-stitch difference per inch shifts total yardage by
             10&ndash;20%.<sup>1</sup>
           </p>
         </div>
@@ -86,7 +86,7 @@ export default function YarnCalculatorPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Multi-color projects need yardage tracked per color, not just in total. If a colorwork pattern
           uses five colors in unequal proportions, estimate each color&rsquo;s area separately and add
-          individual buffers &mdash; running out of one colorway mid-row is harder to recover from than
+          individual buffers, running out of one colorway mid-row is harder to recover from than
           running short on a solid project.
         </p>
       </section>
@@ -100,7 +100,7 @@ export default function YarnCalculatorPage() {
             Adult sweaters in worsted weight typically need 1,000&ndash;2,000 yards depending on size and
             length. A small fitted pullover runs 900&ndash;1,200 yards; a long oversized cardigan
             1,800&ndash;2,400. Children&rsquo;s sweaters need 400&ndash;900 yards. Always add a buffer
-            skein for sleeves and finishing &mdash; seams and cast-offs consume more yarn than most
+            skein for sleeves and finishing, seams and cast-offs consume more yarn than most
             patterns account for.<sup>2</sup>
           </p>
         </div>
@@ -114,7 +114,7 @@ export default function YarnCalculatorPage() {
           Fiber content affects apparent weight, not always yardage. Wool sweaters feel substantial at
           lower yardage because wool has more loft. Cotton at the same yardage feels heavier and drapier
           because cotton is denser. When substituting fiber types, match yards-per-100g on the label
-          rather than skein count &mdash; grams and yards diverge significantly across fiber families.
+          rather than skein count, grams and yards diverge significantly across fiber families.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Cables and colorwork stack directly onto base yardage. A cabled Aran sweater can run
@@ -133,13 +133,12 @@ export default function YarnCalculatorPage() {
             Yes, significantly. Cables consume 20&ndash;30% more yarn than stockinette. Bobbles and
             popcorns add similar overhead. Lace uses less yarn per square inch but more rows per inch.
             Slipped-stitch and mosaic colorwork save yarn but slow knitting. The calculator&rsquo;s stitch
-            pattern selector applies these multipliers automatically &mdash; always add 15% for heavily
+            pattern selector applies these multipliers automatically, always add 15% for heavily
             textured patterns.<sup>3</sup>
           </p>
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Brioche knitting is the most yarn-hungry common stitch at roughly 50% above stockinette &mdash;
-          every stitch is worked twice and the fabric is twice as thick. Garter stitch adds about 8% over
+          Brioche knitting is the most yarn-hungry common stitch at roughly 50% above stockinette, every stitch is worked twice and the fabric is twice as thick. Garter stitch adds about 8% over
           stockinette due to extra row height. Seed stitch adds 10&ndash;12%. Ribbing adds 10% but
           compresses fabric width, meaning you need more stitches to hit the same finished measurement.
         </p>
@@ -156,7 +155,7 @@ export default function YarnCalculatorPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Lace and cables are often compared because they appear in the same weight range. Given the same
           1,200-yard skein, a lace shawl typically finishes larger than a cabled version because lace uses
-          15% less yarn per square inch. The cabled version will be denser, warmer, and shorter &mdash; a
+          15% less yarn per square inch. The cabled version will be denser, warmer, and shorter, a
           real tradeoff worth calculating before you commit.
         </p>
       </section>
@@ -170,7 +169,7 @@ export default function YarnCalculatorPage() {
             Match yarn weight (CYC number) first, then fiber blend, then yards-per-100g for an accurate
             substitution. A pattern calling for 5 skeins of 200-yard worsted needs 1,000 total yards in
             any worsted-weight yarn. Check Ravelry&rsquo;s yarn database for community-verified
-            substitutions before buying &mdash; actual project results are more reliable than label
+            substitutions before buying, actual project results are more reliable than label
             comparisons alone.<sup>4</sup>
           </p>
         </div>
@@ -188,7 +187,7 @@ export default function YarnCalculatorPage() {
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Always swatch the substitute before committing to a full purchase. A 4&times;4 inch swatch
-          costs one partial skein and confirms gauge, drape, and hand &mdash; all three matter for a
+          costs one partial skein and confirms gauge, drape, and hand, all three matter for a
           finished garment. Fiber blends with synthetic content (acrylic, nylon) often have more
           consistent gauge than pure naturals but may block differently, which changes finished
           measurements.
@@ -201,7 +200,7 @@ export default function YarnCalculatorPage() {
         </h2>
         <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
           <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
-            Buy at least 10% more than your calculated total, or one extra skein &mdash; whichever is
+            Buy at least 10% more than your calculated total, or one extra skein, whichever is
             greater. Dye lots vary between production batches and matching one later is unreliable. For
             colorwork and detailed garments, buy 15&ndash;20% extra. Most yarn stores allow returns of
             unopened skeins with a receipt, so buying extra carries little risk.<sup>5</sup>
@@ -218,7 +217,7 @@ export default function YarnCalculatorPage() {
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Buy two extra skeins for heavy colorwork, cable-dense patterns, or any project with significant
-          finishing work &mdash; buttonbands, pockets, linings, and edgings consume more yarn than most
+          finishing work, buttonbands, pockets, linings, and edgings consume more yarn than most
           pattern yardage estimates include. Patterns written for a specific yarn brand are calibrated to
           that yarn&rsquo;s wraps-per-inch, which may not match a substitute exactly.
         </p>

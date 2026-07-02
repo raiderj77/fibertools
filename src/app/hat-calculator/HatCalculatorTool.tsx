@@ -140,7 +140,7 @@ export default function HatCalculatorTool() {
               <option value="">Custom measurement</option>
               {SIZES.map((s) => (
                 <option key={s.label} value={s.label}>
-                  {s.label} &mdash; {s.range}
+                  {s.label}, {s.range}
                 </option>
               ))}
             </select>

@@ -63,7 +63,7 @@ export default function CastOnCalculatorPage() {
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Gauge swatching matters more than yarn label gauge because label gauge is an industry average across many
-          knitters and conditions &mdash; your specific tension, needle material, and knitting style produce a
+          knitters and conditions, your specific tension, needle material, and knitting style produce a
           different result. A knitter who works tightly might get 5 stitches per inch on a yarn that labels at 4.5;
           a loose knitter might get 4. That half-stitch-per-inch difference across 50 inches adds up to 25 stitches,
           which is the difference between a blanket that fits and one that doesn&rsquo;t.
@@ -71,7 +71,7 @@ export default function CastOnCalculatorPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Flat gauge and in-the-round gauge differ for most knitters. When working flat, you purl on the wrong side;
           when working in the round, you knit every round. Most knitters purl more loosely than they knit, which
-          creates a slightly different gauge. The difference is often half a stitch per 4 inches &mdash; small
+          creates a slightly different gauge. The difference is often half a stitch per 4 inches, small
           enough to ignore for a dishcloth, meaningful for a fitted sweater. Swatch flat for flat projects and in
           the round for circular projects.
         </p>
@@ -106,13 +106,13 @@ export default function CastOnCalculatorPage() {
           &ldquo;Multiple of 8 + 3&rdquo; means you cast on a number divisible by 8, then add 3 additional
           stitches for selvedge or balance stitches at the edges. If the base calculation gives you 78 stitches,
           round up to the next multiple of 8 (80), then add 3 to reach 83. Those 3 extra stitches create
-          symmetry at both edges &mdash; often 1 or 2 at one end and the remainder at the other.
+          symmetry at both edges, often 1 or 2 at one end and the remainder at the other.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Ignoring the pattern multiple breaks pattern alignment in two ways. In flat knitting, the pattern
           won&rsquo;t end cleanly at the right edge, creating a partial repeat that looks unfinished. In the
           round, a misaligned multiple means the pattern repeat won&rsquo;t join cleanly at the end of the
-          round. Either problem requires ripping back &mdash; better to catch it at the cast-on stage.
+          round. Either problem requires ripping back, better to catch it at the cast-on stage.
         </p>
       </section>
 
@@ -123,7 +123,7 @@ export default function CastOnCalculatorPage() {
         <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
           <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
             Yes, if you&rsquo;re seaming pieces together. Add 1&ndash;2 selvedge stitches on each side of flat
-            pieces &mdash; these get absorbed into the seam and don&rsquo;t show in finished measurements.
+            pieces, these get absorbed into the seam and don&rsquo;t show in finished measurements.
             Knitting in the round doesn&rsquo;t need selvedges. Garter stitch borders (5&ndash;10 stitches per
             side) prevent stockinette curling but should be added to your cast-on count, not subtracted from
             project width.<sup>3</sup>
@@ -163,7 +163,7 @@ export default function CastOnCalculatorPage() {
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Blocking before measuring matters because most yarns relax 5&ndash;10% after wet-finishing. A wool
-          swatch that measures 20 stitches per 4 inches dry may measure 19 after blocking &mdash; that single
+          swatch that measures 20 stitches per 4 inches dry may measure 19 after blocking, that single
           stitch per 4 inches changes the cast-on count for a 50-inch blanket by more than 10 stitches. Block
           your swatch the same way you&rsquo;ll block the finished project: wet-finishing for wool, steam for
           acrylic, or just pinning for lace.
@@ -189,8 +189,7 @@ export default function CastOnCalculatorPage() {
         <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
           <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
             Gauge shifts between a 4-inch swatch and a full-width project. Knitters often work tighter when
-            concentrating on cables or colorwork than on plain stockinette. Blocking changes dimensions &mdash;
-            most natural fibers grow 5&ndash;10% during wet-finishing. Measure your project periodically as you
+            concentrating on cables or colorwork than on plain stockinette. Blocking changes dimensions, most natural fibers grow 5&ndash;10% during wet-finishing. Measure your project periodically as you
             knit and adjust if dimensions drift more than 5% from target.<sup>5</sup>
           </p>
         </div>
@@ -206,14 +205,14 @@ export default function CastOnCalculatorPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Row gauge matters as much as stitch gauge for fitted garments. A garment with correct stitch gauge but
           incorrect row gauge will have the right width but wrong length, even if you count rows precisely.
-          Row gauge is harder to adjust with needle size alone &mdash; a needle change that corrects stitch gauge
+          Row gauge is harder to adjust with needle size alone, a needle change that corrects stitch gauge
           usually shifts row gauge in the same direction but not proportionally. Measure both and flag any
           significant discrepancy before starting a fitted piece.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           A partial-skein test helps predict yarn behavior across a full project. Knit approximately 20% of the
           project yardage, then wet-finish that section and measure. A full project scales predictably from this
-          sample &mdash; if the test section grew 5% after blocking, the full project will too. This approach
+          sample, if the test section grew 5% after blocking, the full project will too. This approach
           surfaces both gauge drift and dye lot issues before you&rsquo;re committed to the entire project.
         </p>
       </section>

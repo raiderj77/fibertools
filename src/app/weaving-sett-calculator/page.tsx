@@ -88,7 +88,7 @@ export default function WeavingSettCalculatorPage() {
           <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
             The standard method is wraps per inch (WPI). Wrap your yarn around a ruler without overlap, count
             wraps in one inch, then divide by 2 for plain weave or use the full count for twill. Singles yarns
-            wrap differently than plied &mdash; singles need a slightly looser sett. Always weave a sample
+            wrap differently than plied, singles need a slightly looser sett. Always weave a sample
             header to verify before warping the full piece.<sup>2</sup>
           </p>
         </div>
@@ -119,7 +119,7 @@ export default function WeavingSettCalculatorPage() {
         </h2>
         <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
           <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
-            Loom waste is the unwoven warp yarn at both ends of the project &mdash; the portion that can&rsquo;t
+            Loom waste is the unwoven warp yarn at both ends of the project, the portion that can&rsquo;t
             be woven because of loom geometry. Plan 18&ndash;24 inches of loom waste for floor looms,
             12&ndash;18 inches for table looms, and 8&ndash;12 inches for rigid heddle. Add this to your warp
             length calculation, plus 10% for take-up and 5&ndash;10% for shrinkage during wet-finishing.<sup>3</sup>

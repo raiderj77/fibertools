@@ -274,7 +274,7 @@ export default async function Page({ params }: { params: Params }) {
         <p>
           Sew ears to top of head, angled slightly outward. Make a small pompom from white yarn
           (approximately 2 cm diameter) and sew to back of body as a tail. Add a small ribbon or
-          yarn bow at the neck. Weave in all ends securely &mdash; amigurumi gets handled and needs
+          yarn bow at the neck. Weave in all ends securely, amigurumi gets handled and needs
           well-secured ends.
         </p>
 
@@ -287,7 +287,7 @@ export default async function Page({ params }: { params: Params }) {
         <h2 id="gauge-notes" className="text-2xl font-semibold mt-10 mb-4">Hook Size and Gauge Notes</h2>
 
         <p>
-          Gauge is not critical for amigurumi since fit is not required &mdash; but density is.
+          Gauge is not critical for amigurumi since fit is not required, but density is.
           Your finished fabric should have no visible gaps between stitches when gently stretched.
           If you can see the stuffing through the fabric, go down one hook size.
         </p>

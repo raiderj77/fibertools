@@ -75,7 +75,7 @@ export default function SleeveCalculatorPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Knitting in the round changes the math slightly. Instead of decreasing at row edges, you place markers
           at two points on the round (typically at the beginning of the round and halfway through) and work
-          decreases on each side of each marker. The stitch counts and row intervals are identical &mdash; only
+          decreases on each side of each marker. The stitch counts and row intervals are identical, only
           the physical location of the decrease shifts from the edge to a marked column.
         </p>
       </section>
@@ -100,8 +100,8 @@ export default function SleeveCalculatorPage() {
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           The lean direction matters visually on fitted sleeves because the decrease columns are visible in the
-          finished fabric. On a stockinette sleeve, each decrease event creates a small diagonal line &mdash; one
-          leaning right, one leaning left &mdash; that frames the sleeve shaping. When worked correctly, these
+          finished fabric. On a stockinette sleeve, each decrease event creates a small diagonal line, one
+          leaning right, one leaning left, that frames the sleeve shaping. When worked correctly, these
           lines produce a clean, intentional-looking taper. When both decrease types lean the same direction,
           the shaping looks like a mistake rather than a design element.
         </p>
@@ -109,7 +109,7 @@ export default function SleeveCalculatorPage() {
           Using only k2tog at both ends makes both decrease columns lean right when viewed from the front of the
           sleeve. The left edge looks correct; the right edge looks as if the fabric is being pulled sideways.
           On a plain sleeve this might go unnoticed, but on a fitted garment or anything with visible stitch
-          definition &mdash; cables, twisted stitches, or high-twist yarns &mdash; the mismatched lean is
+          definition, cables, twisted stitches, or high-twist yarns, the mismatched lean is
           immediately visible.
         </p>
       </section>
@@ -133,7 +133,7 @@ export default function SleeveCalculatorPage() {
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           The wrist buffer keeps ribbing cleaner. Cuff ribbing is typically worked on fewer stitches than the
-          bottom of the shaping zone &mdash; that&rsquo;s the whole point of tapering. But the final decrease
+          bottom of the shaping zone, that&rsquo;s the whole point of tapering. But the final decrease
           should happen before the ribbing begins, not during it. Decreasing inside ribbing collapses the rib
           columns and makes the transition look uneven. The 1-inch buffer above the cuff gives you a straight
           section to close out the shaping before switching to the rib stitch.
@@ -160,21 +160,21 @@ export default function SleeveCalculatorPage() {
           </p>
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Choose set-in construction for fitted garments where shoulder fit matters &mdash; structured jackets,
+          Choose set-in construction for fitted garments where shoulder fit matters, structured jackets,
           tailored cardigans, sweaters worn close to the body. Choose raglan or drop shoulder for casual
           silhouettes, children&rsquo;s garments (easier to size up), or when you want to knit the body and
           sleeves in one piece without seaming. Drop shoulder is the most forgiving because the sleeve simply
           meets the body at a right angle with no curve matching required.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          This calculator handles the underarm taper for all sleeve types. The math &mdash; stitch difference
-          divided by two, spread across available rows &mdash; is identical whether you&rsquo;re knitting a
+          This calculator handles the underarm taper for all sleeve types. The math, stitch difference
+          divided by two, spread across available rows, is identical whether you&rsquo;re knitting a
           set-in sleeve or a raglan. Cap shaping for set-in sleeves is a separate calculation: a series of
           bound-off rows and short rows above the shaping zone that creates the dome of the cap.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Raglan sleeves don&rsquo;t need separate cap shaping because the diagonal raglan line replaces the cap
-          curve entirely. In a raglan, all four pieces &mdash; front, back, and two sleeves &mdash; are joined at
+          curve entirely. In a raglan, all four pieces, front, back, and two sleeves, are joined at
           the yoke and decreased simultaneously along the raglan lines until the neckline is reached. The sleeve
           taper and the yoke shaping happen in the same rows, which is why top-down raglans are often the first
           garment construction new knitters attempt.
@@ -197,7 +197,7 @@ export default function SleeveCalculatorPage() {
           Pattern designers split decrease groups for purely mathematical reasons, not visual ones. The goal is
           to spread all decrease events across the available rows without any large gaps or bunching. A split
           into &ldquo;every 7 rows 4 times, then every 8 rows 7 times&rdquo; uses exactly 80 rows
-          (4&times;7 + 7&times;8 = 28 + 56 = 84 &mdash; hmm, that doesn&rsquo;t work; the calculator solves
+          (4&times;7 + 7&times;8 = 28 + 56 = 84, hmm, that doesn&rsquo;t work; the calculator solves
           this precisely for your specific numbers). The result is a sleeve that tapers smoothly regardless of
           whether the math divides cleanly.
         </p>
@@ -209,8 +209,8 @@ export default function SleeveCalculatorPage() {
           individual decrease positions.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          Some patterns intentionally use non-split shaping &mdash; for example, &ldquo;decrease every 6th row
-          4 times, then every 4th row 6 times&rdquo; &mdash; to create a more pronounced taper near the wrist.
+          Some patterns intentionally use non-split shaping, for example, &ldquo;decrease every 6th row
+          4 times, then every 4th row 6 times&rdquo;, to create a more pronounced taper near the wrist.
           That&rsquo;s intentional non-linear shaping: the sleeve decreases slowly at first, then accelerates
           toward the cuff for a fitted wrist. This calculator uses mathematically even distribution; if your
           pattern calls for accelerating shaping, follow the pattern intervals rather than the calculator output.
@@ -223,7 +223,7 @@ export default function SleeveCalculatorPage() {
         <ol className="space-y-1.5 text-sm text-bark-500 dark:text-bark-400">
           <li>
             <span className="font-medium">1.</span>{" "}
-            Craft Yarn Council &mdash; Garment Sizing Standards.{" "}
+            Craft Yarn Council, Garment Sizing Standards.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/woman-size"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -235,7 +235,7 @@ export default function SleeveCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">2.</span>{" "}
-            Tin Can Knits &mdash; Decreases Tutorial.{" "}
+            Tin Can Knits, Decreases Tutorial.{" "}
             <Link
               href="https://www.tincanknits.com/blog/decreases"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -247,7 +247,7 @@ export default function SleeveCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">3.</span>{" "}
-            Tin Can Knits &mdash; How to Measure Gauge.{" "}
+            Tin Can Knits, How to Measure Gauge.{" "}
             <Link
               href="https://www.tincanknits.com/blog/how-to-measure-gauge"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -259,7 +259,7 @@ export default function SleeveCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">4.</span>{" "}
-            Craft Yarn Council &mdash; Yarn Weight System.{" "}
+            Craft Yarn Council, Yarn Weight System.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/yarn-weight-system"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -271,7 +271,7 @@ export default function SleeveCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">5.</span>{" "}
-            Schacht Spindle &mdash; Yarn Swatching 3 Ways.{" "}
+            Schacht Spindle, Yarn Swatching 3 Ways.{" "}
             <Link
               href="https://schachtspindle.com/blogs/archives/yarn-swatching-3-ways"
               className="text-sage-600 dark:text-sage-400 underline"

@@ -203,7 +203,7 @@ export default async function Page({ params }: { params: Params }) {
           its original size and the fibers matted into a solid puck. Untreated wool felts when it gets hot and
           agitated. That&apos;s physics, not a defect. It&apos;s one of the mistakes I cover in{' '}
           <Link href="/blog/what-i-got-wrong-first-year-crochet" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">what I got wrong my first year of crochet</Link>
-          {' '}&mdash; though I left wool washing out of the original list because it deserved its own callout.
+          {' '}, though I left wool washing out of the original list because it deserved its own callout.
         </p>
         <p>
           The rule I follow now: superwash wool (labeled as such) can go in the machine on cold or wool cycle.
