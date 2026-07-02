@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 If you are new to crochet, you may wonder which hooks are best for learning. Buy a set of good, ergonomic crochet hooks that feel comfortable in your hand. This will make learning easier and more fun.
 
+> **A mistake I made:** I used the wrong hook and blamed the yarn. Then I used the wrong yarn and blamed the hook. Matching your hook to your yarn and pattern fixes most of it. The [hook and needle guide](/needle-guide) helps you pick.
+
 ## Choosing the Right Hook Size
 
 Hook size matters a lot in crochet. It controls how tight or loose your stitches look. The American Crochet Guild recommends these hook sizes for beginners:

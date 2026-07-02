@@ -14,6 +14,8 @@ reviewer: "Jason Ramirez"
 
 Measuring your knitting gauge is very important. It helps you make a garment that fits just right. Good gauge is the difference between a great sweater and one that is too tight or too loose. Don't worry. Measuring gauge is easier than you think. With practice, you will get the hang of it.
 
+> **My honest confession:** I did not check my gauge and thought effort alone would make it work. It did not, and my project came out the wrong size. Make a swatch first and check it with the [gauge calculator](/gauge-calculator).
+
 ## What is Knitting Gauge?
 
 **Understanding Knitting Gauge**

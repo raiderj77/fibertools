@@ -27,6 +27,8 @@ Every amigurumi project breaks down into four basic shapes. Those shapes are sph
 
 This guide covers the stitch counts, increase and decrease formulas, and construction steps for each shape. You will also learn how to use the [Amigurumi Shapes Calculator](/amigurumi-shapes) to get custom stitch counts for any size you need.
 
+> **A mistake I made:** My circles curled into bowls and my bowls flattened into plates. A flat circle needs the right number of increases each round. The [circle calculator](/circle-calculator) gives you the counts, and the [amigurumi shapes guide](/amigurumi-shapes) helps with toys.
+
 ## What Are the Basic Amigurumi Shapes?
 
 Amigurumi uses single crochet (sc) worked in continuous spiral rounds. This creates a dense fabric that holds stuffing well. The shape of each piece depends on where you place your increases and decreases.

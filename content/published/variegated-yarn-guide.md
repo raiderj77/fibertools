@@ -23,6 +23,8 @@ Variegated yarn is the most beautiful yarn in the store. But it can also be the 
 
 The trick is not to avoid variegated yarn. The trick is to understand how color repeats work with your stitch count. Once you get that, multicolor yarns become your most exciting creative tool.
 
+> **A mistake I made:** I used fluffy yarn before I could read my stitches, and dark yarn too early, so I spent more time guessing than crocheting. Start with a smooth, light colored, medium weight yarn so you can see your stitches.
+
 ## What's the Difference Between Variegated, Self-Striping, and Ombre?
 
 People use these three terms like they mean the same thing. But they describe different color patterns in the yarn.

@@ -13,6 +13,8 @@ author: "Jason Ramirez"
 
 ---
 
+> **A mistake I made:** My circles curled into bowls and my bowls flattened into plates. A flat circle needs the right number of increases each round. The [circle calculator](/circle-calculator) gives you the counts, and the [amigurumi shapes guide](/amigurumi-shapes) helps with toys.
+
 ## What weight yarn should I use for amigurumi?
 
 Worsted weight (CYC 4) is the most common starting point. But the real answer depends on the size you want. Sport or DK weight gives you a smaller, firmer toy. Bulky yarn makes a large, squishy one. The weight matters less than how your yarn and hook size work together.

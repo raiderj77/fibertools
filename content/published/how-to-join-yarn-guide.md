@@ -25,6 +25,8 @@ You are halfway through a beautiful blanket when your skein runs out. You tie a 
 
 The good news? You never have to tie another ugly knot again. There are at least five reliable ways to join yarn. Each one creates a smooth, invisible connection in your finished fabric. Whether you are adding a new skein of the same color or switching to something bold and bright, the right join makes a big difference.
 
+> **A mistake I made:** I tied knots everywhere because I wanted my ends secure, and I weaved them in like I was hiding evidence. Loose ends still found a way out. Weave ends back through several stitches instead of knotting. Woven ends stay.
+
 ## What Is a Yarn Join and When Do You Need One?
 
 A yarn join connects two yarn ends so you can keep working. You might connect a new skein of the same yarn or a different color. You will need a join every time you run out of yarn. You will also need one when you start a new color for stripes or colorwork. You may also need one if you find a knot or defect in your skein and cut it out.

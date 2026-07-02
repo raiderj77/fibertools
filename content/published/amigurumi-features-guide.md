@@ -23,6 +23,8 @@ The shape of an amigurumi gives it a body. The features give it personality. Two
 
 Getting eyes and features right can feel scary for most amigurumi makers. Here is how to choose, place, and attach features that bring your creations to life.
 
+> **A mistake I made:** My circles curled into bowls and my bowls flattened into plates. A flat circle needs the right number of increases each round. The [circle calculator](/circle-calculator) gives you the counts, and the [amigurumi shapes guide](/amigurumi-shapes) helps with toys.
+
 ## What Are the Options for Amigurumi Eyes?
 
 ### Safety Eyes (Most Popular)

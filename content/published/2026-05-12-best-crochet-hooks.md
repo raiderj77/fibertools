@@ -14,6 +14,8 @@ reviewer: "Jason Ramirez"
 
 ---
 
+> **My honest confession:** I changed hooks halfway through a project and wondered why the size changed. The hook size really does matter. Check it against the [hook and needle guide](/needle-guide).
+
 ## What is the difference between inline and tapered hooks?
 
 Inline hooks have a throat that lines up with the shaft. This makes the diameter the same all the way through. Tapered hooks, also called Bates-style, have a throat that slopes more gradually into the shaft. Your tension style decides which one works better for you.

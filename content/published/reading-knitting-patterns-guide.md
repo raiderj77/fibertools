@@ -25,6 +25,8 @@ You found a great pattern. Maybe it is a cozy cabled hat, a delicate lace shawl,
 
 This guide walks through every section of a knitting pattern. It explains the most common abbreviations and shows how repeats work. It also shows you how the [Stitch Counter](/stitch-counter) and [Row Counter](/row-counter) keep you on track so you never lose your place.
 
+> **My honest confession:** I thought abbreviations were a secret language. Then I learned sc just means single crochet, not stay confused. Read the whole pattern first. The [abbreviation glossary](/abbreviation-glossary) explains the short codes.
+
 ## What a Knitting Pattern Actually Contains
 
 A well-written knitting pattern has the same sections every time. Learning each one before you pick up your needles saves a lot of confusion later.

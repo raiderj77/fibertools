@@ -23,6 +23,8 @@ Standing in the yarn aisle with 200 colors in front of you is hard. You need to 
 
 Choosing colors that work together is not just about taste. It is about contrast, value, and a few simple rules from color theory. You do not need an art degree. You need a system.
 
+> **When I started:** I thought all yarn worked for all patterns. I bought yarn because it was soft, then it split every time I touched it. I learned pretty yarn does not always mean easy yarn. Match your yarn to your pattern and your skill.
+
 ## Why Do Some Color Combinations Work and Others Don't?
 
 Two things decide whether colors look good together: **contrast** and **harmony**.

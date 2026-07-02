@@ -14,6 +14,8 @@ reviewer: "Jason Ramirez"
 
 Every fiber artist runs into the same problem sooner or later. You buy too much yarn, or you don't buy enough. Running out mid-project is painful. You have to stop everything and hunt for a matching dye lot that may not exist anymore. Buying too much leads to a pile of yarn you may never use. Generic estimates from a pattern don't always work. Your yarn, your gauge, or your stitch pattern might be different from what the pattern expects. That's why a customizable approach matters. One that looks at fiber type, your personal gauge, and your project's details gives you a much more accurate answer.
 
+> **A mistake I made:** I bought yarn without checking how much the pattern needed, then ran out near the end. I could not match the dye lot, so the colors were off. Now I use the [yarn calculator](/yarn-calculator) and buy a little extra from the same dye lot.
+
 ## Why Precise Yardage Calculations Are Essential for Every Maker
 
 Running out of yarn in the middle of a project is one of the worst feelings in crafting. You have to pause, search for more yarn, and sometimes settle for a different color or dye lot. For example, one baby blanket project came up about 100 yards short. The yarn was a discontinued variegated merino. Finding a good substitute was a real struggle. That experience showed just how risky it is to trust a pattern's yardage without thinking it through.

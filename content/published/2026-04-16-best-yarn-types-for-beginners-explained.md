@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 As a beginner in yarn crafts, picking the right yarn can feel confusing. There are so many choices. But some yarn types are great for beginners. They are easy to use and give good results.
 
+> **When I started:** I thought all yarn worked for all patterns. I bought yarn because it was soft, then it split every time I touched it. I learned pretty yarn does not always mean easy yarn. Match your yarn to your pattern and your skill.
+
 ## Understanding Yarn Fibers
 
 First, it helps to know about the different fibers used to make yarn. There are four main types:

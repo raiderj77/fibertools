@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 Joining yarn without knots is a great skill for any knitter or crocheter. It saves time and cuts down on frustration. When you learn this technique, your projects will look clean and professional.
 
+> **A mistake I made:** I tied knots everywhere because I wanted my ends secure, and I weaved them in like I was hiding evidence. Loose ends still found a way out. Weave ends back through several stitches instead of knotting. Woven ends stay.
+
 ## How Does Joining Yarn Without Knots Work?
 
 This technique uses a method called the "long-tail" method or something close to it. You leave a long tail of yarn when you start a new ball. Then you use the old tail to weave in. After that, you cut it and secure it carefully. The join ends up neat and almost invisible.

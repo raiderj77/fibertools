@@ -23,6 +23,8 @@ Shawls can fool you. The size is flexible, so they seem easy. But the triangle o
 
 Running out of yarn on the last 10 rows of a shawl is very common. Here is how to calculate yardage so that does not happen to you.
 
+> **My honest confession:** I bought one skein with no plan and ran out before I finished. That is when I learned dye lots exist. The [yarn calculator](/yarn-calculator) tells you how much you really need.
+
 ## Why Are Shawls Hard to Estimate?
 
 Most projects are rectangles. You multiply width by length, factor in gauge, and you have your yardage. Shawls break that formula because their shapes grow in uneven ways.

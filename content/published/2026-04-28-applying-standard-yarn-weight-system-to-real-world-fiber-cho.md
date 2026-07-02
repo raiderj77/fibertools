@@ -14,6 +14,8 @@ reviewer: "Jason Ramirez"
 
 You pick up a skein labeled "worsted." But it feels totally different from the last "worsted" you used. Or a pattern calls for a certain weight, and your yarn has the same label but gives you a different gauge. This happens to a lot of people. The standard yarn weight system is a great starting point. But true skill comes from understanding how yarn really behaves in your hands. It is not just about what the label says.
 
+> **When I started:** I thought all yarn worked for all patterns. I did not check yarn weight, and it changed how everything looked and fit. The [yarn weight chart](/yarn-weight-chart) shows what each weight is good for.
+
 ## Deciphering the Craft Yarn Council's Standard
 
 The [Craft Yarn Council (CYC)](https://www.craftyarncouncil.com/standards/yarn-weight-system) created a standard yarn weight system. It brought order to the sometimes confusing world of yarn. Before this system, comparing yarns from different brands or regions was hard. The CYC system gave everyone a shared language.

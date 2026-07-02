@@ -25,6 +25,8 @@ Have you ever followed a crochet pattern and ended up with fabric twice as tall 
 
 A UK double crochet is the same as a US single crochet. A UK treble is the same as a US double crochet. Every stitch name shifts by one position. This has confused crocheters for over a century.
 
+> **A mistake I made:** I forgot to check if my pattern used US or UK terms, and my stitches came out wrong the whole way through. Check first. The [UK to US converter](/uk-to-us-converter) sorts it out.
+
 ## Why Two Systems Exist and When It Matters
 
 Both systems describe the exact same stitches. They just use different words. The split happened in the early 1900s. American publishers started renaming stitches on their own, apart from British ones. Neither system is right or wrong. But mixing them up will ruin your project.

@@ -14,6 +14,8 @@ Yarn [weight describes how thick a strand is, which controls gauge](/blog/knitti
 
 ---
 
+> **A mistake I made:** I treated yarn weight like a suggestion. It is not. The wrong weight changed the whole size and feel of my project. Check it against the [yarn weight chart](/yarn-weight-chart).
+
 ## What are the official yarn weight categories?
 
 The Craft Yarn Council's numbering system runs from 0 (lace) to 7 (jumbo). Each category has a name, a suggested needle range, and an expected gauge over 4 inches in stockinette. Here is the full reference chart:

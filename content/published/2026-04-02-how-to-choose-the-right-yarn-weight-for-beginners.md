@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 Choosing the right yarn weight can feel overwhelming, especially for beginners. Don't worry. This simple guide will help you pick the right yarn weight for your next project.
 
+> **When I started:** I thought all yarn worked for all patterns. I did not check yarn weight, and it changed how everything looked and fit. The [yarn weight chart](/yarn-weight-chart) shows what each weight is good for.
+
 ## Understanding Yarn Weights
 
 Yarn weight means how thick the yarn is. Yarn can range from very thin lace weight all the way to thick, chunky rope. Understanding yarn weights helps your projects turn out the way you want.

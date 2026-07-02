@@ -13,6 +13,8 @@ Yarn weight describes how thick a strand is. Thickness controls how many stitche
 
 ---
 
+> **When I started:** I thought all yarn worked for all patterns. I did not check yarn weight, and it changed how everything looked and fit. The [yarn weight chart](/yarn-weight-chart) shows what each weight is good for.
+
 ## What do the yarn weight numbers actually mean?
 
 The numbers 0 through 7 are a standard system. They are not a brand code. Each number matches a thickness range, a recommended needle or hook size, and a gauge range. The higher the number, the thicker the yarn and the fewer stitches per inch.

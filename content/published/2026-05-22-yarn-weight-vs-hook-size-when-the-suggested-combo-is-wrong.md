@@ -14,6 +14,8 @@ The yarn label and the pattern are suggestions, not laws. If your fabric is too 
 
 ---
 
+> **My honest confession:** I changed hooks halfway through a project and wondered why the size changed. The hook size really does matter. Check it against the [hook and needle guide](/needle-guide).
+
 ## Why does my label say one hook size but the pattern says another?
 
 Yarn labels list a recommended hook size for a generic, average fabric. Patterns are written for one specific designer's gauge and style. Those two things rarely match perfectly. Neither one is automatically right for your hands.

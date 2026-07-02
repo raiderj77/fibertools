@@ -14,6 +14,8 @@ Blocking is the process of wetting, stretching, and pinning a knitted project. I
 
 Blocking is an important step in knitting. It can greatly change how a finished project looks and feels. When knitters understand blocking, they can make garments that fit better, drape nicely, and show off their stitches.
 
+> **A mistake I made:** I did not know blocking existed until my finished project came out wavy. I thought it was optional. Blocking makes a big difference. The [blocking calculator](/blocking-calculator) helps you get the size right.
+
 ## How Does Blocking Work?
 
 Blocking works by changing the fibers in the yarn. This changes the fabric's texture and shape. When a knitted project gets wet, the fibers relax and soften. This makes it easier to stretch and shape the fabric. You pin the fabric in the shape you want. Then the fibers dry in that new position. The result is a more even and balanced fabric.

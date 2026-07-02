@@ -13,6 +13,8 @@ author: "Jason Ramirez"
 
 ---
 
+> **A mistake I made:** I bought yarn without checking how much the pattern needed, then ran out near the end. I could not match the dye lot, so the colors were off. Now I use the [yarn calculator](/yarn-calculator) and buy a little extra from the same dye lot.
+
 ## What size blanket am I actually making?
 
 Size affects your yardage more than anything else. A baby blanket in worsted weight needs about 1,000 to 1,500 yards. A throw needs about 3,000 to 4,000 yards. A full bed blanket can need more than 6,000 yards. Figure out your dimensions before you estimate anything else.

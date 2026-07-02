@@ -23,6 +23,8 @@ A temperature blanket turns a year of weather into a one-of-a-kind piece of text
 
 This idea is very popular on Reddit, Instagram, and TikTok. But the planning part trips up a lot of crafters. How much yarn do you need? How many colors? How big will it turn out? Here is everything you need to figure out before you start.
 
+> **My honest confession:** I bought one skein with no plan and ran out before I finished. That is when I learned dye lots exist. The [yarn calculator](/yarn-calculator) tells you how much you really need.
+
 ## What Is a Temperature Blanket?
 
 A temperature blanket gives each temperature range its own yarn color. For example, dark blue might stand for anything below 20°F. Light blue could cover 21 to 30°F. Green might cover 31 to 40°F. The colors go up through reds and oranges for hot summer days. You work one row per day based on your local high, low, or average temperature.

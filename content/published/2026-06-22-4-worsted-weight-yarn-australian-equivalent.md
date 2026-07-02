@@ -13,6 +13,8 @@ author: "Jason Ramirez"
 
 ---
 
+> **A mistake I made:** I treated yarn weight like a suggestion. It is not. The wrong weight changed the whole size and feel of my project. Check it against the [yarn weight chart](/yarn-weight-chart).
+
 ## Why does the ply system confuse everyone?
 
 Australian yarn labels use a ply system. But the ply number no longer tells you how many strands are twisted together. Long ago, "8-ply" meant eight strands. Modern manufacturing changed that. Now the ply number is just a name for a weight category, not a literal strand count.

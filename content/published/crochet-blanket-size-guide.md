@@ -25,6 +25,8 @@ Running out of yarn at row 150 is no fun. Neither is finishing a "throw" that ba
 
 This guide covers every standard blanket size from lovey to king. You will find dimensions, stitch count estimates, and yardage needs broken down by yarn weight. Whether you are making a baby shower gift or a queen-size bedspread, you will know what you need before you buy a single skein.
 
+> **My honest confession:** I bought one skein with no plan and ran out before I finished. That is when I learned dye lots exist. The [yarn calculator](/yarn-calculator) tells you how much you really need.
+
 ## Standard Crochet Blanket Sizes
 
 Blanket sizes follow general bedding and gift standards. Crochet blankets often run a little smaller than store-bought ones. That is because people often use them as a decorative layer, not as main bedding.

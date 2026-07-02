@@ -23,6 +23,8 @@ A blanket scarf is exactly what it sounds like. It is a scarf big enough to work
 
 The big size makes it one of the most useful accessories you can make. The simple shape, a rectangle, makes it one of the easiest. The main thing to plan is the size and how much yarn you need.
 
+> **My honest confession:** I bought one skein with no plan and ran out before I finished. That is when I learned dye lots exist. The [yarn calculator](/yarn-calculator) tells you how much you really need.
+
 ## What Size Should a Blanket Scarf Be?
 
 Blanket scarves are wider and longer than regular scarves. The extra width is what makes them so useful.

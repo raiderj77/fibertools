@@ -29,6 +29,8 @@ Blocking means wetting or steaming your finished knit or crochet piece. You shap
 
 This guide covers the three main blocking methods. It also covers which fibers work with which method. Use the [Blocking Calculator](/blocking-calculator) to find your target size and stretch limits before you pin a single edge.
 
+> **A mistake I made:** I did not know blocking existed until my finished project came out wavy. I thought it was optional. Blocking makes a big difference. The [blocking calculator](/blocking-calculator) helps you get the size right.
+
 ## What Blocking Does and When You Need It
 
 Blocking relaxes the yarn fibers. They settle into their final position. Results vary by fiber type, but here is what you can expect:

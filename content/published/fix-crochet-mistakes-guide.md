@@ -25,6 +25,8 @@ Crochet has one advantage over knitting when things go wrong. You can frog (rip 
 
 Here are the most common crochet mistakes, how to find them, and how to fix each one.
 
+> **A mistake I made:** I kept dropping stitches without noticing, and my rectangles slowly became triangles. When something is wrong, pulling it out (crocheters call it frogging) is not failure. It is part of learning.
+
 ## How Do You Fix a Wrong Stitch Count?
 
 This is the number one crochet mistake. You started with 100 stitches, and now you have 98. Or 103. The fabric is slowly getting wider or narrower, and you did not notice for 10 rows.

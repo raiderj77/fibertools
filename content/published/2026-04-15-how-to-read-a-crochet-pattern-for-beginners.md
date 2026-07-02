@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 Starting crochet can feel hard at first. Reading a pattern may look confusing. But with patience and practice, you can learn to follow even tricky designs.
 
+> **My honest confession:** I thought abbreviations were a secret language. Then I learned sc just means single crochet, not stay confused. Read the whole pattern first. The [abbreviation glossary](/abbreviation-glossary) explains the short codes.
+
 ## What is a Crochet Pattern?
 
 A crochet pattern is a set of instructions. It guides you through making a crochet project. The pattern tells you what yarn and hook to use. It also shows the stitch pattern and the finished size of the project.

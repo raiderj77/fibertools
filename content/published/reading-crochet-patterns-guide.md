@@ -23,6 +23,8 @@ You found a crochet pattern online and opened it up. Then it hit you. Ch 3, sk 2
 
 The good news is that crochet patterns follow a clear, logical structure. Once you learn the building blocks, like abbreviations, symbols, and formatting, you can tackle any pattern. Let us go through it step by step.
 
+> **My honest confession:** I thought abbreviations were a secret language. Then I learned sc just means single crochet, not stay confused. Read the whole pattern first. The [abbreviation glossary](/abbreviation-glossary) explains the short codes.
+
 ## What Is a Crochet Pattern and When Do You Need One?
 
 A crochet pattern is a set of written or charted instructions. It tells you exactly how to make a specific item, stitch by stitch and row by row. Patterns can be as simple as a dishcloth or as complex as a lace shawl.

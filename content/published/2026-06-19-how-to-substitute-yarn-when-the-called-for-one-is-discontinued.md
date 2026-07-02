@@ -13,6 +13,8 @@ When a yarn is discontinued, find a replacement by matching three things in orde
 
 ---
 
+> **A mistake I made:** When my yarn was out of stock, I grabbed whatever looked close without checking the weight. It changed my whole gauge. Match the weight and fiber, and check the [yarn weight chart](/yarn-weight-chart) before you swap.
+
 ## Why does fiber content matter more than the label says?
 
 Fiber content drives how a yarn behaves on the needle, how it blocks, and how it wears. A 100% merino and a 100% cotton labeled the same weight will knit up differently, block differently, and feel different against your skin. Matching "worsted" to "worsted" without checking fiber is the fastest way to end up with a sweater that disappoints you.

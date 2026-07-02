@@ -21,6 +21,8 @@ Socks are the toughest test you can give a yarn. They get shoved into shoes, wal
 
 This guide breaks down everything that goes into a good sock yarn so you can make smart choices at the yarn shop. When you are ready to figure out how much to buy, the [Yarn Calculator](/yarn-calculator) will tell you exactly how many yards you need.
 
+> **When I started:** I thought all yarn worked for all patterns. I bought yarn because it was soft, then it split every time I touched it. I learned pretty yarn does not always mean easy yarn. Match your yarn to your pattern and your skill.
+
 ## What Makes Good Sock Yarn?
 
 Not every yarn can survive life inside a shoe. The qualities that matter most for socks are different from almost any other knitting project:

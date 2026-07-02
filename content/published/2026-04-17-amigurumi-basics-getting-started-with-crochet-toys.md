@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 Amigurumi is a style of crochet toy-making. You use colorful yarn to bring cute characters to life. If you want to learn, this beginner's guide will show you what you need. You will learn the basic stitches, tools, and techniques to get started.
 
+> **A mistake I made:** My circles curled into bowls and my bowls flattened into plates. A flat circle needs the right number of increases each round. The [circle calculator](/circle-calculator) gives you the counts, and the [amigurumi shapes guide](/amigurumi-shapes) helps with toys.
+
 ## Choosing the Right Hook and Yarn
 
 Picking the right hook and yarn matters a lot in amigurumi. Beginners should start with medium-weight yarn. Use a hook size that matches the weight of your yarn. Here are some simple guidelines:

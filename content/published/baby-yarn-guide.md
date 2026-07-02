@@ -23,6 +23,8 @@ Baby projects are different from adult projects. The yarn must be soft on newbor
 
 The right baby yarn does three things: it has safe fiber content, it is machine washable, and it is the right weight for the project. Here is how to pick the best yarn for every baby project, from blankets to booties.
 
+> **A mistake I made:** I used fluffy yarn before I could read my stitches, and dark yarn too early, so I spent more time guessing than crocheting. Start with a smooth, light colored, medium weight yarn so you can see your stitches.
+
 ## What Makes Yarn Baby-Safe?
 
 Baby yarn needs to meet three must-have requirements.

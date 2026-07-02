@@ -14,6 +14,8 @@ reviewer: "Jason Ramirez"
 
 When you first start crocheting, all the yarn choices can feel exciting and overwhelming at the same time. Labels say things like "lace" or "super bulky." You see numbers and symbols that look like a secret code. But here is the good news. Yarn weight is not about memorizing terms. It is about learning a simple system that helps you crochet with confidence. This guide will help you understand yarn weights, learn the standard, and use that knowledge to get great stitches every time.
 
+> **A mistake I made:** I treated yarn weight like a suggestion. It is not. The wrong weight changed the whole size and feel of my project. Check it against the [yarn weight chart](/yarn-weight-chart).
+
 ## What Exactly *Is* Yarn Weight, Anyway?
 
 In fiber arts, "yarn weight" does not mean how heavy a skein feels on a scale. It describes how thick the yarn is. That thickness affects which hook size to use, what the fabric looks like, and how stiff or floppy your finished piece will be. Thickness is sorted into a standard system. That system helps makers and designers talk about yarn clearly, no matter where they live or which brand they use.

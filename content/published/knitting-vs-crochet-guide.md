@@ -23,6 +23,8 @@ keywords:
 
 Here is a direct comparison so you can pick the right starting point.
 
+> **When I started:** I thought crochet should look perfect right away and got embarrassed when my stitches were uneven. I restarted the same project over and over because one mistake felt like failure. Small progress still counts, and your hands need patience.
+
 ## What's the Actual Difference?
 
 **Knitting** uses two needles, or circular needles. It keeps many live stitches on the needle at once. Each row moves stitches from one needle to the other by pulling loops through loops. The fabric comes out thin, drapey, and stretchy.

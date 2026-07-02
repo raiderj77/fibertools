@@ -14,6 +14,8 @@ reviewer: "Jason Ramirez"
 
 If you have spent serious time working with yarn, you have probably miscalculated how much you need. Running out of a discontinued dye lot just a few rows from the end is painful. So is ending up with three extra skeins of expensive yarn staring at you from the stash. The usual reason is relying only on the published yardage or pattern estimates. Those are helpful starting points, but they cannot account for all the variables in fiber arts. True yarn optimization comes from a dynamic understanding of gauge and a fiber ratio system.
 
+> **My honest confession:** I did not check my gauge and thought effort alone would make it work. It did not, and my project came out the wrong size. Make a swatch first and check it with the [gauge calculator](/gauge-calculator).
+
 ## The Myth of Universal Yarn Yardage
 
 Manufacturers and pattern designers work hard to give accurate yarn requirements. They often base these on averages and standard measurements. The Craft Yarn Council offers a great guide to yarn weights and recommended gauges. It is a very useful resource for consistency in the industry. [Craft Yarn Council](https://www.craftyarncouncil.com/standards/yarn-weight-system). However, these are general guidelines. These numbers are only a starting point. They are not the final word for every single maker.

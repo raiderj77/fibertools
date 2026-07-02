@@ -13,6 +13,8 @@ Gauge is the number of stitches and rows that fit into a measured area of your k
 
 ---
 
+> **A mistake I made:** I ignored gauge because I wanted to start right away. My hat came out big enough to fit a watermelon. A quick gauge swatch would have saved me hours. The [gauge calculator](/gauge-calculator) tells you if your size will come out right.
+
 ## Why does gauge even matter for my project?
 
 Gauge connects a pattern's instructions to your hands. If your gauge is off by even half a stitch per inch, a 40-inch sweater can come out 3 to 4 inches too wide or too narrow. That is not a small mistake. That is a sweater that does not fit.

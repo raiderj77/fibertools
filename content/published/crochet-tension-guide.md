@@ -18,6 +18,8 @@ keywords:
 
 # How to Fix Crochet Tension Problems: Even, Consistent Stitches Every Time
 
+> **A mistake I made:** I pulled my yarn too tight because I wanted clean stitches. They looked neat, but I could barely get my hook through them. Then I went too loose and got random holes. Relax your grip. Even beats tight, and your hands settle with practice.
+
 ## The Tension Struggle Is Real
 
 Have you ever looked at your crochet work and noticed some stitches are tight while others are loose and floppy? You are not alone. Uneven tension is the most common problem crocheters face. The good news is that tension is a skill, not a talent. You can get better at it with the right knowledge and a little practice.

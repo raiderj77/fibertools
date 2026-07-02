@@ -14,6 +14,8 @@ reviewer: "Jason Ramirez"
 
 ---
 
+> **A mistake I made:** I started a pattern without reading it first, and an easy beginner pattern humbled me by row three. Watching too many tutorials confused me more. Read slowly, and keep the [abbreviation glossary](/abbreviation-glossary) handy.
+
 ## What do all those abbreviations actually mean?
 
 Every abbreviation stands for a specific stitch or action. You do not need to memorize them before you start. Just keep a reference list open beside you until they stick.

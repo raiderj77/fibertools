@@ -23,6 +23,8 @@ You picked your pattern and bought your yarn. Now you are staring at a wall of c
 
 Here is how to match the right hook to your yarn, understand the sizing systems, and fix your gauge when it is wrong.
 
+> **A mistake I made:** I used the wrong hook and blamed the yarn. Then I used the wrong yarn and blamed the hook. Matching your hook to your yarn and pattern fixes most of it. The [hook and needle guide](/needle-guide) helps you pick.
+
 ## What Do Crochet Hook Size Numbers Mean?
 
 Crochet hooks use three different sizing systems. They do not always match up neatly.

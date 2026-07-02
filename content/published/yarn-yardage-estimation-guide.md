@@ -25,6 +25,8 @@ Running out of yarn before a project is done is a stressful feeling. The color m
 
 Estimating yardage before you buy is one of the most useful skills in knitting and crochet. Knowing how much yarn you need saves money, prevents problems mid-project, and keeps crafting fun.
 
+> **A mistake I made:** I bought yarn without checking how much the pattern needed, then ran out near the end. I could not match the dye lot, so the colors were off. Now I use the [yarn calculator](/yarn-calculator) and buy a little extra from the same dye lot.
+
 ## When You Need a Yardage Estimate
 
 You need a yardage estimate every time you start a project. This is true even when the pattern lists a yarn amount. Patterns list yardage for a specific yarn at a specific gauge. If you swap in a different yarn, those numbers no longer apply. You also need estimates when:

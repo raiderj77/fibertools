@@ -13,6 +13,8 @@ author: "Jason Ramirez"
 
 ---
 
+> **A mistake I made:** I did not know blocking existed until my finished project came out wavy. I thought it was optional. Blocking makes a big difference. The [blocking calculator](/blocking-calculator) helps you get the size right.
+
 ## Does acrylic even need blocking?
 
 Yes, most acrylic projects do better with at least a light wet block. Right off the needles, acrylic fabric often looks uneven. The stitches are squished, and the whole piece can feel stiff or plasticky. A simple wet block opens up the fabric, evens out the stitches, and makes your finished project look neat and polished.

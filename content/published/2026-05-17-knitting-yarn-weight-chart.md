@@ -14,6 +14,8 @@ Yarn weight describes how thick a strand is. It controls how many stitches fit i
 
 ---
 
+> **When I started:** I thought all yarn worked for all patterns. I did not check yarn weight, and it changed how everything looked and fit. The [yarn weight chart](/yarn-weight-chart) shows what each weight is good for.
+
 ## What Are the Seven Standard Yarn Weights?
 
 The Craft Yarn Council system runs from 0 (Lace) to 7 (Jumbo). Each category has a number, a name, and a typical gauge range. Gauge is measured in stockinette over 4 inches. Here is the full chart:

@@ -19,6 +19,8 @@ One thing worth knowing right away: crochet typically uses about 30% more yarn t
 
 Want the quick answer? [Use our free Yardage Estimator](/yardage-estimator) and get your number in seconds.
 
+> **My honest confession:** I bought one skein with no plan and ran out before I finished. That is when I learned dye lots exist. The [yarn calculator](/yarn-calculator) tells you how much you really need.
+
 ## How Much Yarn Do You Need for a Blanket? (Quick Reference)
 
 For a standard throw blanket (50" x 60") in worsted weight yarn, you'll need approximately 1,800 to 2,200 yards for knitting, or 2,300 to 2,800 yards for crochet. The exact amount depends on your stitch pattern and personal tension.

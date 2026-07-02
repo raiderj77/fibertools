@@ -13,6 +13,8 @@ author: "Jason Ramirez"
 
 ---
 
+> **My honest confession:** I bought one skein with no plan and ran out before I finished. That is when I learned dye lots exist. The [yarn calculator](/yarn-calculator) tells you how much you really need.
+
 ## What size blanket are you actually making?
 
 Size is the biggest factor in how much yarn you need. Figure this out before anything else. A baby blanket is about 30 by 36 inches. A throw is near 50 by 60 inches. A bed blanket can be 60 by 80 inches or larger. The bigger the blanket, the more yarn you need.

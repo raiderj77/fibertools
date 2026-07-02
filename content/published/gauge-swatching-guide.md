@@ -25,6 +25,8 @@ You found the perfect pattern and picked out great yarn. You are ready to start!
 
 A gauge swatch takes 30 minutes. Ripping out a sweater that does not fit takes hours. Let's make sure you never have to do that.
 
+> **My honest confession:** I did not check my gauge and thought effort alone would make it work. It did not, and my project came out the wrong size. Make a swatch first and check it with the [gauge calculator](/gauge-calculator).
+
 ## What Is Gauge and When Does It Matter?
 
 Gauge (sometimes called tension) is the number of stitches and rows you make per inch or per 4 inches of fabric. Every knitter and crocheter works at a slightly different tension. This is true even when two people use the same yarn and needles or hook. That is why two people can follow the exact same pattern and end up with different sizes.

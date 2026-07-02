@@ -13,6 +13,8 @@ author: "Jason Ramirez"
 
 ---
 
+> **A mistake I made:** I used the wrong hook and blamed the yarn. Then I used the wrong yarn and blamed the hook. Matching your hook to your yarn and pattern fixes most of it. The [hook and needle guide](/needle-guide) helps you pick.
+
 ## Why does hook handle shape matter so much?
 
 A narrow aluminum hook forces your fingers into a tight pinch grip. That puts stress on the tendons in your thumb and index finger with every single stitch. Ergonomic handles spread that pressure across a larger area. They also let you hold the hook with a looser, more natural wrist position.

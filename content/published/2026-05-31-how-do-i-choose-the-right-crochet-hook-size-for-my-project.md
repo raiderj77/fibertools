@@ -13,6 +13,8 @@ author: "Jason Ramirez"
 
 ---
 
+> **A mistake I made:** I used the wrong hook and blamed the yarn. Then I used the wrong yarn and blamed the hook. Matching your hook to your yarn and pattern fixes most of it. The [hook and needle guide](/needle-guide) helps you pick.
+
 ## What does the hook size on my yarn label actually mean?
 
 That number is the maker's suggestion for average gauge with that yarn weight. It is not a rule. It is a suggestion based on a made-up "average" crocheter. That person's tension may be nothing like yours.

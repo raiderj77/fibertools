@@ -25,6 +25,8 @@ You crocheted a dozen granny squares. They look great stacked on the coffee tabl
 
 A granny square blanket is one of the most fun crochet projects. But it falls apart fast without a plan. Running out of yarn 80% of the way through is a real problem. Ending up with a blanket that is 4 inches too narrow is a real problem too. A little basic math prevents both.
 
+> **True story:** I thought all four corners of my granny square would match. They did not. Even tension and careful counting fixed it. The [granny square planner](/granny-square-planner) helps.
+
 ## What Goes Into Planning a Granny Square Blanket
 
 Three numbers drive the whole project. They are your finished square size, your target blanket size, and your gauge. Everything else flows from those three numbers. That includes total squares, yardage per color, and border width.

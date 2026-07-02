@@ -14,6 +14,8 @@ reviewer: "Jason Ramirez"
 
 You pick up a skein labeled "worsted weight." You picture a soft, drapey garment. Then you start crocheting and the fabric comes out stiff. Or you grab a "chunky" yarn expecting a thick, warm fabric, but it works up light and airy. This happens to many crocheters. The yarn weight label is a helpful guide, but it does not tell the whole story. The real fabric you create depends on many things working together, not just a number on a tag.
 
+> **A mistake I made:** I ignored gauge because I wanted to start right away. My hat came out big enough to fit a watermelon. A quick gauge swatch would have saved me hours. The [gauge calculator](/gauge-calculator) tells you if your size will come out right.
+
 ## Beyond the Label: Why Yarn Weight Isn't Just a Number
 
 The Craft Yarn Council (CYC) yarn weight system puts yarns into groups. The groups go from 0 (Lace) to 7 (Jumbo). This gives makers and designers a shared language for talking about yarn thickness. But each group covers a range of thicknesses, not one exact size. Inside Category 4 (Medium/Worsted), yarns can vary a lot. A worsted acrylic from one brand may feel much thinner than a worsted wool blend from another brand. Both carry the "4" label, but they behave differently on the hook. Relying only on that number can lead to surprises.

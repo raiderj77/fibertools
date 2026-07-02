@@ -25,6 +25,8 @@ Running out of yarn while making a sweater is very frustrating. The good news is
 
 This guide gives you yardage tables, a step-by-step way to calculate yarn, and tips for when things go wrong.
 
+> **A mistake I made:** I bought yarn without checking how much the pattern needed, then ran out near the end. I could not match the dye lot, so the colors were off. Now I use the [yarn calculator](/yarn-calculator) and buy a little extra from the same dye lot.
+
 ## What Factors Affect Sweater Yarn Usage?
 
 Five things decide how much yarn a sweater needs. Getting even one wrong can leave you hundreds of yards short or with a pile of extra yarn.

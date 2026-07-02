@@ -25,6 +25,8 @@ A flat circle sounds easy. You work in the round and increase evenly. But anyone
 
 You might be making a hat crown, a round rug, an amigurumi base, or a coaster. No matter what you make, the number of increases per round depends on which stitch you use. Get that number wrong and you will fight your fabric the whole way.
 
+> **A mistake I made:** My circles curled into bowls and my bowls flattened into plates. A flat circle needs the right number of increases each round. The [circle calculator](/circle-calculator) gives you the counts, and the [amigurumi shapes guide](/amigurumi-shapes) helps with toys.
+
 ## Why the Increase Number Matters
 
 Every crochet stitch has a different height compared to its width. A taller stitch takes up more vertical space per row. So you need more increases per round to keep the fabric flat. Here is the breakdown:

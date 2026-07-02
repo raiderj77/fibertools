@@ -23,6 +23,8 @@ You've finished knitting or crocheting all your pieces. The front panel, the bac
 
 Seaming is the finishing step that turns a pile of flat pieces into a sweater, bag, or toy. A clean seam is invisible. A sloppy seam shows through the fabric, pulls the garment out of shape, and ruins weeks of careful work. The seaming technique matters just as much as the stitching you did before it.
 
+> **A mistake I made:** I tied knots everywhere because I wanted my ends secure, and I weaved them in like I was hiding evidence. Loose ends still found a way out. Weave ends back through several stitches instead of knotting. Woven ends stay.
+
 ## When Do You Need to Seam?
 
 Any project made in separate pieces needs seaming. This includes sweaters knit flat as front, back, and sleeve panels. It also includes amigurumi parts, blanket squares, bags made from rectangles, and garments with set-in sleeves.

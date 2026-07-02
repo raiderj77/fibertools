@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 Learning to read yarn labels is an important part of becoming a good fiber artist. When you understand what a label tells you, you can pick the right yarn for your project. You can also make smart choices about your crafting.
 
+> **A mistake I made:** I did not save my yarn labels. When I ran out, I could not match the dye lot to buy more. The label tells you the weight and the dye lot, so keep at least one.
+
 ## What Information Can You Expect to Find on a Yarn Label?
 
 A yarn label holds a lot of useful information. It can help you decide if a yarn is right for your project. You will usually find the fiber content, yarn weight, yardage, and care instructions. Knowing what each part of the label means helps you make better choices.

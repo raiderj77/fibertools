@@ -25,6 +25,8 @@ The magic ring is the most useful skill for starting crochet projects worked in 
 
 This guide walks you through the magic ring step by step. It explains how to lock it so it never comes undone. It also covers when to use it versus the chain method.
 
+> **My honest confession:** I thought a magic ring would feel magical. It felt personal. It took me many tries to get it right, and that is normal. Go slow the first few times.
+
 ## What Is a Magic Ring and When Do You Need One?
 
 A magic ring is also called an adjustable ring, magic circle, or magic loop. It lets you crochet your first round of stitches into an adjustable loop. Once the stitches are in place, you pull the tail to close the loop completely. No hole is left in the center.

@@ -23,6 +23,8 @@ Stitch markers are the cheapest tool that stops the most expensive mistakes. A $
 
 If you have been "just counting" without markers, you are making every project harder than it needs to be. Here is how to use markers for every situation.
 
+> **A mistake I made:** I skipped stitch markers, then acted shocked when I lost the start of my round every time. A scrap of yarn or a safety pin in the first stitch fixes it. Move it up as you go.
+
 ## What Are Stitch Markers and When Do You Need Them?
 
 Stitch markers are small rings or clips. They sit on your needle or attach to your stitches. They mark important spots. Think of them as reference points that say "something happens here." You do not have to count from the edge every single time.

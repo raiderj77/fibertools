@@ -14,6 +14,8 @@ reviewer: "Jason Ramirez"
 
 ---
 
+> **A mistake I made:** I used the wrong hook and blamed the yarn. Then I used the wrong yarn and blamed the hook. Matching your hook to your yarn and pattern fixes most of it. The [hook and needle guide](/needle-guide) helps you pick.
+
 ## What makes one crochet hook better than another?
 
 The shape of the hook's throat, the handle material, and the shape of the head all matter. These things affect how yarn moves through your stitches. They also affect how your hand feels after two hours of work. A hook that hurts your wrist is not a good hook for you, no matter how popular the brand is. These three things also work differently depending on how you hold your hook. Some people hold it like a pencil. Others hold it overhand, like a knife.

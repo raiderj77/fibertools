@@ -23,6 +23,8 @@ A knitting chart is a picture of your finished fabric. Each square represents on
 
 If written instructions are like reading a recipe word by word, charts are like looking at a photo of the finished dish. Both get you to the same place, but charts let you see the whole picture at once.
 
+> **A mistake I made:** I started a pattern without reading it first, and an easy beginner pattern humbled me by row three. Watching too many tutorials confused me more. Read slowly, and keep the [abbreviation glossary](/abbreviation-glossary) handy.
+
 ## What Are Knitting Charts and When Do You Use Them?
 
 A knitting chart is a grid where each cell represents one stitch and each row of cells represents one row of knitting. Symbols inside the cells tell you which stitch to work, a blank square might mean knit on the right side, a dot might mean purl, and a circle might mean yarn over. Every chart comes with a key (also called a legend) that defines what each symbol means.

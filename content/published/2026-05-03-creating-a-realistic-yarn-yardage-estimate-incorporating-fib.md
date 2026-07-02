@@ -14,6 +14,8 @@ reviewer: "Jason Ramirez"
 
 Every fiber artist knows the feeling. You cast on, you work along, and things are going great. Then you get close to the end of a skein with a lot of project still left. Or you finish with enough yarn left over to make a small hat, and you feel annoyed about the money you spent. Estimating yarn yardage is one of the hardest parts of this craft. The most common mistake is trusting only the numbers on the yarn label. Those numbers are a starting point. They do not tell the whole story. To get a realistic yarn estimate, you need to understand fiber quality.
 
+> **My honest confession:** I bought one skein with no plan and ran out before I finished. That is when I learned dye lots exist. The [yarn calculator](/yarn-calculator) tells you how much you really need.
+
 ## Why Ball Band Yardage Isn't the Whole Story
 
 A yarn ball band gives you useful information. It shows weight, fiber content, dye lot, care instructions, and often a suggested gauge and yardage. That stated yardage is an average. It is measured for a specific yarn weight and assumed density. Yarn makers try to give helpful guidance, but they cannot account for every variable in your process. Two yarns from the same maker can both be labeled "worsted weight" with the same yardage per 100g and still behave very differently on your needles or hook. One might bloom. Another might be dense. Each will use yarn at its own rate. This happens because of the specific traits of the fiber itself. The ball band is a suggestion, not a rule, especially when it comes to how much yarn your project will actually need.

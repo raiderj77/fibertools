@@ -13,6 +13,8 @@ author: "Jason Ramirez"
 
 ---
 
+> **My honest confession:** I changed hooks halfway through a project and wondered why the size changed. The hook size really does matter. Check it against the [hook and needle guide](/needle-guide).
+
 ## What sizes should a crochet hook set actually include?
 
 A good set needs to cover at least 2.25 mm through 6.5 mm. That range works for most worsted, DK, and sport weight patterns. Beyond that, you want a 9 mm and a 12 mm for bulky yarn. You also want something in the 1.5 to 1.75 mm range if you do thread crochet or Tunisian with fine yarn.

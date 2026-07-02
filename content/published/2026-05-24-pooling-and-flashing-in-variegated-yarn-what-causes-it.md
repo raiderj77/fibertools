@@ -13,6 +13,8 @@ Pooling happens when one color in a variegated yarn clumps together in blobs ins
 
 ---
 
+> **A mistake I made:** I used fluffy yarn before I could read my stitches, and dark yarn too early, so I spent more time guessing than crocheting. Start with a smooth, light colored, medium weight yarn so you can see your stitches.
+
 ## What actually is pooling, and why does it look so messy?
 
 Pooling happens when the same color lands in roughly the same spot row after row. It builds up a concentrated patch of color. It is not a defect in the yarn. It is math.

@@ -21,6 +21,8 @@ keywords:
 
 # Knitting Increases and Decreases: Every Method Explained
 
+> **True story:** I did not count my stitches, so my project kept growing. I added stitches at the ends of rows without noticing, and my rectangles turned into triangles. Count at the end of every row. The [increase and decrease calculator](/increase-decrease-calculator) helps when a pattern wants changes on purpose.
+
 ## Why Shaping Is the Heart of Every Knitted Project
 
 How does flat knitting become a fitted sleeve, a curved neckline, or a hat crown? The answer is shaping. Increases add stitches to make your fabric wider. Decreases remove stitches to make it narrower. Learning both gives you control over any project. It also gives you the confidence to change patterns.

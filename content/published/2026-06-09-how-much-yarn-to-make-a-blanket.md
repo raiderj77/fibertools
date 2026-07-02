@@ -13,6 +13,8 @@ author: "Jason Ramirez"
 
 ---
 
+> **A mistake I made:** I bought yarn without checking how much the pattern needed, then ran out near the end. I could not match the dye lot, so the colors were off. Now I use the [yarn calculator](/yarn-calculator) and buy a little extra from the same dye lot.
+
 ## What size blanket are you actually making?
 
 Size is the biggest factor. Before you look at any yarn label or pattern, decide on your dimensions. A baby blanket and a king bed blanket are very different projects.

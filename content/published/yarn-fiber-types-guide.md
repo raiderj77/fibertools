@@ -23,6 +23,8 @@ The yarn you choose affects everything. It changes how your finished piece feels
 
 Knowing what yarn is made of helps you make better choices. A cotton tank top that breathes in July. A wool sweater that blocks well and holds its shape for decades. An acrylic baby blanket that survives weekly machine washing. Every fiber has strengths. Matching those strengths to your project is how you make things you actually love.
 
+> **A mistake I made:** I used fluffy yarn before I could read my stitches, and dark yarn too early, so I spent more time guessing than crocheting. Start with a smooth, light colored, medium weight yarn so you can see your stitches.
+
 ## What Are the Main Yarn Fiber Types and When Does Fiber Choice Matter?
 
 Yarn fibers fall into three big groups: animal fibers, plant fibers, and synthetic fibers. Each group behaves differently. They differ in warmth, stretch, drape, durability, and care needs.

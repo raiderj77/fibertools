@@ -23,6 +23,8 @@ It happens to everyone. You find a sweater pattern you love. Then you check the 
 
 This guide walks you through five steps to swap yarn successfully. You will learn how to match weight and gauge, pick the right fiber, and figure out how much yarn to buy. Your finished project will look and feel just as good as the designer planned.
 
+> **A mistake I made:** When my yarn was out of stock, I grabbed whatever looked close without checking the weight. It changed my whole gauge. Match the weight and fiber, and check the [yarn weight chart](/yarn-weight-chart) before you swap.
+
 ## When and Why You Need to Substitute Yarn
 
 Yarn substitution is not just a workaround. Almost every crafter does it regularly for practical reasons.

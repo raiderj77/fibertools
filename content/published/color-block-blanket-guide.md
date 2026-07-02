@@ -23,6 +23,8 @@ Color-block blankets have a clean, modern look that never gets old. They use lar
 
 The look is simple, but the planning matters. How wide should each block be? How do you figure out yarn for 4 different colors? Should you work in one piece or seam separate panels? Here is how to plan a color-block blanket that looks like you meant every bit of it.
 
+> **A mistake I made:** I bought yarn without checking how much the pattern needed, then ran out near the end. I could not match the dye lot, so the colors were off. Now I use the [yarn calculator](/yarn-calculator) and buy a little extra from the same dye lot.
+
 ## What Makes a Color-Block Blanket Different?
 
 A color-block blanket uses large sections of solid color. Each block covers at least 10 to 20% of the total blanket area. This is different from stripes, which use narrow bands of color. It is also different from granny squares, which are small separate pieces. And it is different from gradient blankets, which fade slowly from one color to another.

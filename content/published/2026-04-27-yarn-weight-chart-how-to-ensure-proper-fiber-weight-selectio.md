@@ -14,6 +14,8 @@ reviewer: "Jason Ramirez"
 
 When you pick up a pattern, it usually calls for a specific yarn weight. Maybe it says "worsted" or "DK." But what do those words really mean for your project? Understanding yarn weight is not just about the number on the label. It is about how the fiber feels in your hands. It is about how it works with your hook or needles. It is about how it becomes your finished piece. Getting it right means your garment fits. Your blanket drapes the way you want. Your amigurumi stands up like it should. Skipping the swatch or ignoring yarn weight standards can leave you with a sweater that fits a teddy bear or a scarf as stiff as a board.
 
+> **A mistake I made:** I treated yarn weight like a suggestion. It is not. The wrong weight changed the whole size and feel of my project. Check it against the [yarn weight chart](/yarn-weight-chart).
+
 ## Demystifying Yarn Weight: More Than Just Thickness
 
 Yarn weight does not actually measure how heavy the yarn is. It refers to how thick the yarn is, also called its grist. For a long time, yarn companies all used different terms. One brand's "sport weight" might have been another brand's "DK." That made following patterns a nightmare, especially when buying yarn online. The Craft Yarn Council (CYC) helped fix this problem. They created a standard system that sorts yarn into categories numbered 0 (Lace) to 7 (Jumbo). This makes it much easier to talk about yarn across different brands and patterns.

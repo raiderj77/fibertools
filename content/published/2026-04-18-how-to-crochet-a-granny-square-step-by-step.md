@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 To crochet a granny square, start by making a center square with double crochet stitches. Then work outward in rounds. You will alternate between corner stitches and diagonal stitches.
 
+> **A mistake I made:** My first granny square had four different corner sizes. Keeping your corner stitches even matters a lot. Count your corners, and the [granny square planner](/granny-square-planner) keeps them the same.
+
 ## How Does a Granny Square Work?
 
 A granny square is a classic crochet pattern. You work in rounds to build a square shape. Each round adds new stitches on top of the round before it.

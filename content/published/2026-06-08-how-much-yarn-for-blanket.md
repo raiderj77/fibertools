@@ -13,6 +13,8 @@ author: "Jason Ramirez"
 
 ---
 
+> **My honest confession:** I bought one skein with no plan and ran out before I finished. That is when I learned dye lots exist. The [yarn calculator](/yarn-calculator) tells you how much you really need.
+
 ## What size blanket are you actually making?
 
 Your finished size is the first number you need. Nothing else matters until you know it. A baby blanket is usually around 30 by 36 inches. It needs roughly 800 to 1,500 yards depending on yarn weight. A throw is about 50 by 60 inches. A king bed blanket can need 4,000 yards or more.

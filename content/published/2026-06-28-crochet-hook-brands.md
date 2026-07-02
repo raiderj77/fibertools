@@ -13,6 +13,8 @@ The short answer: Clover Amour and Tulip Etimo are the two brands most working c
 
 ---
 
+> **My honest confession:** I changed hooks halfway through a project and wondered why the size changed. The hook size really does matter. Check it against the [hook and needle guide](/needle-guide).
+
 ## Does the brand of crochet hook actually matter?
 
 Yes, but not in every situation. Hook material and head shape affect how yarn slides, how your hand feels after two hours, and whether your tension stays consistent. For a quick 30-minute project, almost any hook will do. For a 200-hour blanket, the hook you're holding matters a lot.

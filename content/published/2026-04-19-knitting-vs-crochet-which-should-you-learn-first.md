@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 If you are new to fiber arts, you may wonder where to start. Should you pick up knitting needles or a crochet hook? Here is some good news: both crafts are fun and creative. This guide will help you choose.
 
+> **When I started:** I thought crochet should look perfect right away and got embarrassed when my stitches were uneven. I restarted the same project over and over because one mistake felt like failure. Small progress still counts, and your hands need patience.
+
 ## **Understanding the Basics: What Sets Knitting and Crochet Apart**
 
 Before you pick a craft, it helps to know how they are different. Here are the key facts about each one:

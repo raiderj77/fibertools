@@ -23,6 +23,8 @@ You have a bag of beautiful yarn with no label. Maybe you got it from a grandmot
 
 Wraps per inch (WPI) is the fastest and most reliable way to identify mystery yarn. All you need is a pencil, a ruler, and 60 seconds.
 
+> **A mistake I made:** When my yarn was out of stock, I grabbed whatever looked close without checking the weight. It changed my whole gauge. Match the weight and fiber, and check the [yarn weight chart](/yarn-weight-chart) before you swap.
+
 ## What Is WPI and Why Does It Work?
 
 WPI stands for wraps per inch. It is the number of times a strand of yarn wraps around a cylinder, like a pencil or dowel, within one inch. Thicker yarn makes fewer wraps. Thinner yarn makes more.

@@ -25,6 +25,8 @@ You are fifty rows into a cabled scarf. Then you spot it. A purl stitch where a 
 
 This guide covers every major fix technique. It also covers ways to prevent mistakes using the [Stitch Counter](/stitch-counter) and [Row Counter](/row-counter) so errors happen less often.
 
+> **A mistake I made:** I kept dropping stitches without noticing, and my rectangles slowly became triangles. When something is wrong, pulling it out (crocheters call it frogging) is not failure. It is part of learning.
+
 ## When You Need to Fix vs. When You Can Let It Go
 
 Not every mistake needs fixing. Before you grab your crochet hook, ask yourself three questions:

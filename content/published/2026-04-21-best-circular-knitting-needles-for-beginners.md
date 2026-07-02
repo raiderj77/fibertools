@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 Circular knitting needles are a must-have for beginners. They are easy to hold and comfortable to use. That means you can focus on your knitting. The good news is that you do not need to spend a lot of money to get a good pair.
 
+> **When I started:** I thought crochet should look perfect right away and got embarrassed when my stitches were uneven. I restarted the same project over and over because one mistake felt like failure. Small progress still counts, and your hands need patience.
+
 ## What are the essential features of circular knitting needles?
 
 The most important features for beginners are durability, adjustability, and comfort. Look for needles made from high-quality materials like aluminum or wood. These can handle regular use without breaking down. Adjustable tips and flexible cords are also important. They let you switch between projects easily and keep your grip comfortable.

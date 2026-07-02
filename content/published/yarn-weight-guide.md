@@ -25,6 +25,8 @@ Have you ever picked a beautiful skein of yarn and ended up with a stiff, board-
 
 The good news is that the Craft Yarn Council (CYC) made a numbered system to help. It takes the guesswork out of picking yarn. This guide covers every category. It starts with the thin, delicate lace weight and goes all the way up to the thick jumbo weight. You will be able to pick the right yarn every time.
 
+> **When I started:** I thought all yarn worked for all patterns. I did not check yarn weight, and it changed how everything looked and fit. The [yarn weight chart](/yarn-weight-chart) shows what each weight is good for.
+
 ## What Is Yarn Weight and When Does It Matter?
 
 Yarn weight does not describe how heavy a skein feels. It describes how thick the yarn strand is. A thicker strand makes a denser, warmer fabric with fewer stitches per inch. A thinner strand makes a lighter, more delicate fabric with more stitches per inch.

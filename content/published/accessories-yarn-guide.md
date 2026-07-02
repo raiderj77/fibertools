@@ -23,6 +23,8 @@ Accessories are some of the fastest and most fun fiber arts projects. A hat can 
 
 Here is the full yardage guide for every common accessory, plus the things that push your numbers up or down.
 
+> **When I started:** I thought all yarn worked for all patterns. I bought yarn because it was soft, then it split every time I touched it. I learned pretty yarn does not always mean easy yarn. Match your yarn to your pattern and your skill.
+
 ## How Much Yarn Do Hats Need?
 
 Hats are the most common accessory project. How much yarn you need depends on three things: head size, yarn weight, and hat style.

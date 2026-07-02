@@ -25,6 +25,8 @@ Crochet uses about 25 to 35% more yarn than knitting for the same finished size.
 
 Here is how to calculate exactly what you need.
 
+> **A mistake I made:** I bought yarn without checking how much the pattern needed, then ran out near the end. I could not match the dye lot, so the colors were off. Now I use the [yarn calculator](/yarn-calculator) and buy a little extra from the same dye lot.
+
 ## Why Do Crochet Garments Use More Yarn Than You Think?
 
 Three things cause crochet to use more yarn.

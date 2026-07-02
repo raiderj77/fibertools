@@ -23,6 +23,8 @@ Ponchos sit between shawls and sweaters. They are warmer and more structured tha
 
 But "big piece of fabric" means "lots of yarn." Ponchos use more yardage than most knitters and crocheters expect. The fabric covers your shoulders, chest, back, and upper arms all at once. Here is how to figure out exactly what you need.
 
+> **A mistake I made:** I bought yarn without checking how much the pattern needed, then ran out near the end. I could not match the dye lot, so the colors were off. Now I use the [yarn calculator](/yarn-calculator) and buy a little extra from the same dye lot.
+
 ## What Are the Common Poncho Construction Methods?
 
 ### Two-Rectangle Poncho (Easiest)

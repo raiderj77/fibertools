@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 As a knitter or crocheter, yarn weights can be confusing. This is especially true when you use yarn from another country. Here is a yarn weight conversion chart to help you move between US and UK standards with ease.
 
+> **My honest confession:** I did not know US and UK crochet terms are different. I followed the wrong terms and my stitches came out wrong. Now I always check which a pattern uses first. The [UK to US converter](/uk-to-us-converter) makes it easy.
+
 **Understanding Yarn Weights**
 -----------------------------
 

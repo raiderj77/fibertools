@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 Dropped stitches can be frustrating. But they do not have to ruin your project. With a little patience and practice, you can fix them and keep your fabric looking great.
 
+> **A mistake I made:** I kept dropping stitches without noticing, and my rectangles slowly became triangles. When something is wrong, pulling it out (crocheters call it frogging) is not failure. It is part of learning.
+
 ## What causes dropped stitches?
 A dropped stitch happens when a stitch falls off your needle. This is usually caused by uneven tension, a misplaced stitch marker, or a forgotten decrease or increase. To prevent dropped stitches, keep your tension even. Use stitch markers the right way. Count your stitches often.
 

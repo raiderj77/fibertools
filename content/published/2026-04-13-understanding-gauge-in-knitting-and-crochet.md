@@ -12,6 +12,8 @@ reviewer: "Jason Ramirez"
 
 When you work with yarn, gauge is one of the most important things to learn. It does not matter if you are a longtime knitter or a brand new crocheter. Gauge tells you how many stitches and rows fit into a set area. Getting your gauge right helps your finished project turn out the way you planned.
 
+> **A mistake I made:** I ignored gauge because I wanted to start right away. My hat came out big enough to fit a watermelon. A quick gauge swatch would have saved me hours. The [gauge calculator](/gauge-calculator) tells you if your size will come out right.
+
 ## What is Gauge and Why is it Important?
 
 Many people think gauge is just a suggestion. It is not. A project made with the wrong gauge can fit badly or not work at all. Gauge can change a lot based on your yarn, your hook or needle, and how tight or loose you stitch. That is why you should always check your gauge before you start any project.
