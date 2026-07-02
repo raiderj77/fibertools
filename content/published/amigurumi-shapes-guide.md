@@ -145,7 +145,7 @@ For a 3-inch by 1.5-inch oval at 5 sc per inch: chain (3 minus 1.5) plus 1, whic
 
 ## Tips, Variations, and Common Mistakes
 
-**Stitch count drift** is the most common problem. Count your stitches at the end of every round. Use a stitch marker to track the first stitch of each round. In spiral crochet, rounds blend together. It is easy to miss a stitch or add an extra one.
+**Stitch count drift** is the most common problem. Count your stitches at the end of every round. Use a stitch marker to track the first stitch of each round. In spiral crochet, rounds blend together. It is easy to skip a stitch or add an extra one.
 
 **Stuffing timing matters.** Stuff spheres and cones before the opening gets too small. For cylinders, stuff in sections as you go. Polyester fiberfill should feel firm but should not stretch the fabric.
 

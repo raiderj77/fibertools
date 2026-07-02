@@ -96,7 +96,7 @@ That said, budget matters. Natural fibers cost $20 to $30 per skein compared to 
 
 Vintage pattern revival is a big part of the 2026 fiber arts moment. Older patterns get new life with fresh color choices. A granny square blanket pattern from the 1970s looks completely different in a 2026 earthy palette than it did in the original avocado and harvest gold.
 
-The Vintage Pattern Decoder on [FiberTools](https://fibertools.app) handles terminology translation if you are working from an older UK-published pattern. US single crochet equals UK double crochet. US double crochet equals UK treble crochet. This terminology shift trips up a lot of makers working from vintage sources.
+The Vintage Pattern Decoder on [FiberTools](https://fibertools.app) handles UK to US terminology translation if you are working from an older UK-published pattern. US single crochet equals UK double crochet. US double crochet equals UK treble crochet. This terminology shift trips up a lot of makers working from vintage sources.
 
 For color substitution in vintage patterns, the original color calls are suggestions, not rules. Map the light, medium, and dark values from the original into your 2026 palette. A pattern that called for cream, tan, and brown translates naturally to sorrel beige, amber haze, and sienna.
 
