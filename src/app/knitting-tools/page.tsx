@@ -51,7 +51,7 @@ export const metadata: Metadata = {
         url: "https://fibertools.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Free Knitting Calculators & Tools — FiberTools",
+        alt: "Free Knitting Calculators & Tools, FiberTools",
       },
     ],
   },
@@ -158,7 +158,7 @@ export default function KnittingToolsPage() {
             Knitting is precision craft at its core. A sweater worked at the wrong gauge can be two
             sizes off. A sock heel miscalculated by ten stitches won&rsquo;t fit. A raglan yoke with
             incorrect shaping math produces a garment that bunches at the shoulders. The arithmetic
-            behind knitting isn&rsquo;t complicated — but it has to be exact, and doing it by hand
+            behind knitting isn&rsquo;t complicated, but it has to be exact, and doing it by hand
             mid-project is where most mistakes happen.
           </p>
           <p className="leading-relaxed">
@@ -171,15 +171,15 @@ export default function KnittingToolsPage() {
           </p>
           <p className="leading-relaxed">
             The garment tools handle calculations that trip up even experienced knitters. The raglan
-            calculator generates a full shaping schedule — increase frequency, stitch distribution, and
-            body/sleeve split — from nothing more than your gauge and target finished measurements. The
+            calculator generates a full shaping schedule, increase frequency, stitch distribution, and
+            body/sleeve split, from nothing more than your gauge and target finished measurements. The
             sock calculator covers heel turn and gusset math for both top-down and toe-up construction.
             The hat calculator handles crown shaping from bulky beanies through fingering-weight
             colorwork projects with multiple decreasing methods.
           </p>
           <p className="leading-relaxed">
             For finishing and project planning, the blocking calculator estimates how much your fabric
-            will grow after wet blocking — essential for lace and fitted garments where blocked
+            will grow after wet blocking, essential for lace and fitted garments where blocked
             dimensions differ significantly from needles-off measurements. The cast-on calculator
             adjusts your stitch count to the nearest stitch multiple for your chosen pattern. All tools
             are free, require no account, and work on any device.
@@ -193,7 +193,7 @@ export default function KnittingToolsPage() {
           Knitting Garment and Construction Calculators
         </h2>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-6 max-w-2xl">
-          Cast-on counts, hat crowns, sock construction, sleeve shaping, and raglan yoke math — everything you need for fitted knitting.
+          Cast-on counts, hat crowns, sock construction, sleeve shaping, and raglan yoke math, everything you need for fitted knitting.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {garmentTools.map((tool) => (
@@ -223,7 +223,7 @@ export default function KnittingToolsPage() {
           Reference and Essential Knitting Tools
         </h2>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-6 max-w-2xl">
-          Yarn estimation, gauge calculation, needle conversion, WPI identification, and stitch abbreviations — the tools you need on every project.
+          Yarn estimation, gauge calculation, needle conversion, WPI identification, and stitch abbreviations, the tools you need on every project.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {referenceTools.map((tool) => (

@@ -6,7 +6,7 @@ import YarnWeightCalculatorTool from "./YarnWeightCalculatorTool";
 // ── Metadata ──────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Yarn Weight Calculator — Identify CYC Category Free",
+  title: "Yarn Weight Calculator, Identify CYC Category Free",
   description:
     "Identify any yarn's CYC weight category from wraps per inch or stitch gauge. Covers all 8 weights: Lace through Jumbo. Free, instant, no signup.",
   keywords: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   robots: "index, follow, max-snippet:-1",
   alternates: { canonical: "/yarn-weight-calculator" },
   openGraph: {
-    title: "Yarn Weight Calculator — Identify CYC Category Free",
+    title: "Yarn Weight Calculator, Identify CYC Category Free",
     description:
       "Identify any yarn's CYC weight category from wraps per inch or stitch gauge. All 8 weights covered. Free and instant.",
     url: "https://fibertools.app/yarn-weight-calculator",
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
         url: "https://fibertools.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Yarn Weight Calculator — FiberTools",
+        alt: "Yarn Weight Calculator, FiberTools",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yarn Weight Calculator — Identify CYC Category Free",
+    title: "Yarn Weight Calculator, Identify CYC Category Free",
     description:
       "Identify any yarn's CYC weight category from wraps per inch or stitch gauge. Free, instant, no signup.",
     images: ["https://fibertools.app/og-image.png"],
@@ -56,7 +56,7 @@ const FAQS = [
   },
   {
     q: "How do US CYC yarn weights compare to UK terminology?",
-    a: "US worsted (CYC 4) is UK aran. US DK (CYC 3) is UK DK — one of the few consistent cross-market terms. US fingering (CYC 1) is UK 4-ply. US sport (CYC 2) is UK 5-ply or light DK. US bulky (CYC 5) is UK chunky. Note: US and UK crochet stitch names also differ — US single crochet equals UK double crochet.",
+    a: "US worsted (CYC 4) is UK aran. US DK (CYC 3) is UK DK, one of the few consistent cross-market terms. US fingering (CYC 1) is UK 4-ply. US sport (CYC 2) is UK 5-ply or light DK. US bulky (CYC 5) is UK chunky. Note: US and UK crochet stitch names also differ, US single crochet equals UK double crochet.",
   },
   {
     q: "What needle or hook size pairs with each yarn weight?",
@@ -143,8 +143,7 @@ export default function YarnWeightCalculatorPage() {
               Bottom line
             </span>
             <p className="text-sm text-bark-700 dark:text-bark-200 leading-relaxed">
-              Wrap yarn around a ruler, count wraps in one inch, enter the number —
-              your CYC category appears instantly.
+              Wrap yarn around a ruler, count wraps in one inch, enter the number, your CYC category appears instantly.
             </p>
           </div>
         </div>
@@ -157,7 +156,7 @@ export default function YarnWeightCalculatorPage() {
       <YarnWeightCalculatorTool />
 
       {/* ════════════════════════════════════════════════
-          GEO CONTENT SECTIONS — SSR static text
+          GEO CONTENT SECTIONS, SSR static text
           ════════════════════════════════════════════════ */}
 
       {/* ── Section 1: How the calculator works ── */}
@@ -181,7 +180,7 @@ export default function YarnWeightCalculatorPage() {
         </p>
         <p className="text-bark-600 text-[15px] leading-relaxed mt-4 mb-3">
           The WPI method is the fastest option for unlabeled yarn. Hold a ruler
-          horizontal and wrap your yarn around it for exactly one inch — snug but
+          horizontal and wrap your yarn around it for exactly one inch, snug but
           not stretched, no overlapping, no gaps. Count the wraps. That number maps
           directly to a CYC category: 30 or more wraps is Lace (0), around 10 wraps
           is Worsted (4), and 4 or fewer wraps is Jumbo (7). The Craft Yarn Council
@@ -193,7 +192,7 @@ export default function YarnWeightCalculatorPage() {
           a small test square with your yarn, measure across 4 inches, and count the
           stitches. Enter that number into the gauge tab. Lace weight produces 33 or
           more stitches across 4 inches, while Worsted produces 16 to 20. Note that
-          WPI ranges overlap between adjacent categories — if your result shows two
+          WPI ranges overlap between adjacent categories, if your result shows two
           possible weights, swatch with needles from both categories to decide which
           fabric you prefer.
         </p>
@@ -217,8 +216,7 @@ export default function YarnWeightCalculatorPage() {
         </p>
         <p className="text-bark-600 text-[15px] leading-relaxed mt-4 mb-3">
           Worsted weight (CYC 4) dominates beginner patterns for good reason. The
-          stitches are large enough to see clearly when you make a mistake —
-          essential when learning — and the yarn moves smoothly on standard-size
+          stitches are large enough to see clearly when you make a mistake, essential when learning, and the yarn moves smoothly on standard-size
           needles and hooks without splitting or snagging. A worsted-weight scarf
           or hat works up quickly enough to hold a beginner&apos;s attention through
           completion. The{" "}
@@ -238,7 +236,7 @@ export default function YarnWeightCalculatorPage() {
           Bulky weight (CYC 5) is a strong alternative for absolute beginners who
           want fast results. A bulky yarn scarf can be completed in a single evening,
           which builds the positive reinforcement needed to continue learning.
-          However, bulky weight is less forgiving of uneven tension — lumpy stitches
+          However, bulky weight is less forgiving of uneven tension, lumpy stitches
           are more visible at larger scale. Start with worsted, and once your tension
           is consistent, explore bulky for quick gift-making.
         </p>
@@ -274,19 +272,19 @@ export default function YarnWeightCalculatorPage() {
           was designed to resolve this by assigning numeric categories (0–7) that
           apply regardless of national naming convention. When a pattern specifies
           CYC 4, it means worsted in North America, aran in the UK, and 10-ply in
-          Australia — the same physical yarn thickness.
+          Australia, the same physical yarn thickness.
         </p>
         <p className="text-bark-600 text-[15px] leading-relaxed mb-3">
           US crochet terminology adds another layer of confusion when reading UK
           patterns. What the UK calls a double crochet (dc) is the same stitch as
           the US single crochet (sc). The UK treble crochet (tr) equals the US
           double crochet (dc). Always verify which terminology system a pattern uses
-          before following its stitch instructions — a mislabeled conversion can
+          before following its stitch instructions, a mislabeled conversion can
           produce a garment that is twice as long or half as wide as intended.
         </p>
         <p className="text-bark-600 text-[15px] leading-relaxed">
           The safest approach with international patterns is to cross-check the
-          recommended needle or hook size in millimeters — that measurement is
+          recommended needle or hook size in millimeters, that measurement is
           consistent worldwide. If the pattern recommends 5.0 mm needles, that is
           US 8 and approximately UK 6, regardless of what weight name is on the
           label.
@@ -314,7 +312,7 @@ export default function YarnWeightCalculatorPage() {
         </p>
         <p className="text-bark-600 text-[15px] leading-relaxed mt-4 mb-3">
           These are recommended starting sizes, not absolute rules. Your personal
-          tension — how tightly or loosely you hold the yarn — determines whether
+          tension, how tightly or loosely you hold the yarn, determines whether
           you need to go up or down a needle size to hit pattern gauge. A tight
           knitter working worsted weight may need US 8 or 9 needles where the
           pattern specifies US 7. A loose crocheter might use an H/8 hook where the
@@ -325,7 +323,7 @@ export default function YarnWeightCalculatorPage() {
           Crochet hooks follow US letter or number sizing. B/1 is the smallest
           standard size (2.25 mm), progressing through G/6, H/8, I/9, J/10,
           K/10.5, and M/13 up to jumbo sizes. The letter-based US system has no
-          consistent metric equivalent for all manufacturers — verify millimeter
+          consistent metric equivalent for all manufacturers, verify millimeter
           size when possible, especially for fine-weight projects where a fraction
           of a millimeter changes gauge noticeably.
         </p>
@@ -369,7 +367,7 @@ export default function YarnWeightCalculatorPage() {
           If the substitution is within the same CYC category, your main variables
           are fiber content and yardage per skein. A worsted-weight merino wool and
           a worsted-weight cotton are both CYC 4, but cotton has fewer yards per
-          100g due to its higher density — you will need more skeins. Wool has
+          100g due to its higher density, you will need more skeins. Wool has
           memory and elasticity; cotton does not. These differences affect drape,
           gauge stability over time, and how the finished fabric blocks and washes.
           Always swatch with the actual substitute yarn.
@@ -411,7 +409,7 @@ export default function YarnWeightCalculatorPage() {
           yarn labeled DK, but the pattern is written for 20 stitches at 4 inches
           in worsted, your finished piece will be about 10% smaller than intended
           in every direction. On a 20-inch-wide sweater body, that is a 2-inch
-          discrepancy — enough to change the fit entirely.
+          discrepancy, enough to change the fit entirely.
         </p>
         <p className="text-bark-600 text-[15px] leading-relaxed mb-3">
           Interweave and other major pattern publishers require a gauge swatch for
@@ -431,12 +429,12 @@ export default function YarnWeightCalculatorPage() {
           too-loose piece.
         </p>
         <p className="text-bark-600 text-[15px] leading-relaxed">
-          Wash and block your swatch before measuring — some yarns (especially
+          Wash and block your swatch before measuring, some yarns (especially
           natural fibers like wool and cotton) relax significantly after washing.
           Superwash wool, for instance, can grow noticeably in both dimensions after
           the first wash. Measuring an unwashed swatch against a pattern designed
           for washed fabric can add another source of sizing error. Swatching
-          completely — wash, dry, then measure — is the only reliable way to confirm
+          completely, wash, dry, then measure, is the only reliable way to confirm
           gauge.
         </p>
       </section>
@@ -452,9 +450,9 @@ export default function YarnWeightCalculatorPage() {
               rel="noopener noreferrer"
               className="text-plum-500 hover:underline"
             >
-              Craft Yarn Council — Yarn Weight System
+              Craft Yarn Council, Yarn Weight System
             </a>
-            {" — Official CYC categories 0–7 with gauge and needle ranges"}
+            {", Official CYC categories 0–7 with gauge and needle ranges"}
           </li>
           <li>
             <a
@@ -463,9 +461,9 @@ export default function YarnWeightCalculatorPage() {
               rel="noopener noreferrer"
               className="text-plum-500 hover:underline"
             >
-              Craft Yarn Council — Needle & Hook Size Chart
+              Craft Yarn Council, Needle & Hook Size Chart
             </a>
-            {" — US, metric, and UK needle sizes by CYC category"}
+            {", US, metric, and UK needle sizes by CYC category"}
           </li>
           <li>
             <a
@@ -474,9 +472,9 @@ export default function YarnWeightCalculatorPage() {
               rel="noopener noreferrer"
               className="text-plum-500 hover:underline"
             >
-              Ravelry — Yarn Weight Database
+              Ravelry, Yarn Weight Database
             </a>
-            {" — Browse yarn by CYC weight category across thousands of brands"}
+            {", Browse yarn by CYC weight category across thousands of brands"}
           </li>
           <li>
             <a
@@ -487,7 +485,7 @@ export default function YarnWeightCalculatorPage() {
             >
               YarnSub
             </a>
-            {" — Free yarn substitution finder matching by weight, fiber, and yardage"}
+            {", Free yarn substitution finder matching by weight, fiber, and yardage"}
           </li>
           <li>
             <a
@@ -496,9 +494,9 @@ export default function YarnWeightCalculatorPage() {
               rel="noopener noreferrer"
               className="text-plum-500 hover:underline"
             >
-              Interweave — How to Measure Knitting Gauge
+              Interweave, How to Measure Knitting Gauge
             </a>
-            {" — Practical guide to swatching and gauge adjustment"}
+            {", Practical guide to swatching and gauge adjustment"}
           </li>
         </ul>
       </section>

@@ -116,7 +116,7 @@ export default function SpinningCalculatorTool() {
             <div>
               <label className="label">
                 Drive wheel diameter
-                <Tooltip text="The large wheel. Measure across the widest point in inches or cm — units don't matter as long as both match." />
+                <Tooltip text="The large wheel. Measure across the widest point in inches or cm, units don't matter as long as both match." />
               </label>
               <input type="number" value={driveWheel} onChange={(e) => setDriveWheel(e.target.value)}
                 placeholder="e.g. 22" className="input" min="0" inputMode="decimal" />
@@ -278,7 +278,7 @@ export default function SpinningCalculatorTool() {
                   <th className="text-left py-2 px-3 font-semibold text-bark-700 dark:text-cream-200">Fiber</th>
                   <th className="text-left py-2 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     CPI
-                    <Tooltip text="Crimps per inch — a measure of the fiber's natural wave. More crimps = needs more twist." />
+                    <Tooltip text="Crimps per inch, a measure of the fiber's natural wave. More crimps = needs more twist." />
                   </th>
                   <th className="text-left py-2 px-3 font-semibold text-bark-700 dark:text-cream-200">Suggested TPI</th>
                   <th className="text-left py-2 px-3 font-semibold text-bark-700 dark:text-cream-200 hidden sm:table-cell">Notes</th>

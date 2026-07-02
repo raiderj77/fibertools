@@ -5,7 +5,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import WeavingSettCalculatorTool from "./WeavingSettCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Weaving Sett & EPI Calculator — Free",
+  title: "Weaving Sett & EPI Calculator, Free",
   description:
     "Calculate the right sett (EPI) for your yarn and weave structure. Includes warp length, loom waste, and reed substitution. Free, no signup.",
   keywords: [
@@ -16,15 +16,15 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
   openGraph: {
-    title: "Weaving Sett & EPI Calculator — Free",
+    title: "Weaving Sett & EPI Calculator, Free",
     description:
       "Calculate the right sett (EPI) for your yarn and weave structure. Includes warp length, loom waste, and reed substitution. Free, no signup.",
     url: "https://fibertools.app/weaving-sett-calculator",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Weaving Sett & EPI Calculator — Free" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Weaving Sett & EPI Calculator, Free" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Weaving Sett & EPI Calculator — Free",
+    title: "Weaving Sett & EPI Calculator, Free",
     description:
       "Calculate the right sett (EPI) for your yarn and weave structure. Includes warp length, loom waste, and reed substitution. Free, no signup.",
     images: ["https://fibertools.app/og-image.png"],
@@ -61,7 +61,7 @@ export default function WeavingSettCalculatorPage() {
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Sett interacts directly with weave structure. Plain weave (over one, under one) requires a looser
-          sett than twill for a balanced fabric — the warp and weft interlace more frequently, which means
+          sett than twill for a balanced fabric, the warp and weft interlace more frequently, which means
           they need more room to pass through each other without packing too tightly. Twill (over two, under
           two or similar) has fewer interlacement points per inch, allowing threads to sit closer together at
           a higher sett.
@@ -74,7 +74,7 @@ export default function WeavingSettCalculatorPage() {
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Always weave a sample warp of 6&ndash;12 inches before committing to a full project. Sample warps
-          reveal how a specific yarn-and-structure combination actually behaves at a given sett — and how
+          reveal how a specific yarn-and-structure combination actually behaves at a given sett, and how
           much it changes after wet-finishing. Adjusting sett after sampling is far easier than rethreading
           an entire loom mid-project.
         </p>
@@ -134,7 +134,7 @@ export default function WeavingSettCalculatorPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Take-up accounts for the warp length consumed by weft interlacement. As weft travels over and under
           warp threads, it forces the warp to zigzag, shortening the visible warp length by roughly 10%.
-          This is separate from shrinkage — take-up happens during weaving, shrinkage happens during
+          This is separate from shrinkage, take-up happens during weaving, shrinkage happens during
           wet-finishing, and both must be added to the warp length before you begin winding.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
@@ -164,8 +164,8 @@ export default function WeavingSettCalculatorPage() {
           skip-and-double threading in most cases.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Reed marks — subtle vertical lines visible in the finished cloth caused by uneven spacing between
-          thread groups — are minimized by using even sleying patterns. Threading two ends per dent evenly
+          Reed marks, subtle vertical lines visible in the finished cloth caused by uneven spacing between
+          thread groups, are minimized by using even sleying patterns. Threading two ends per dent evenly
           produces fewer marks than alternating one and two per dent. If reed marks appear in a sample, try
           a different reed dent that allows more even sleying for your target EPI.
         </p>
@@ -208,7 +208,7 @@ export default function WeavingSettCalculatorPage() {
           {' '}covers knit and crochet projects with the same coverage-factor approach. Adjacent warp
           threads sit side by side for the entire length of the project, making dye lot variation immediately
           visible as a vertical stripe. Purchase all warp yarn from the same dye lot, and if you&rsquo;re
-          uncertain, err toward buying an extra skein — most yarn shops accept returns of unopened skeins.
+          uncertain, err toward buying an extra skein, most yarn shops accept returns of unopened skeins.
         </p>
       </section>
 
@@ -218,7 +218,7 @@ export default function WeavingSettCalculatorPage() {
         <ol className="space-y-1.5 text-sm text-bark-500 dark:text-bark-400">
           <li>
             <span className="font-medium">1.</span>{" "}
-            Schacht Spindle — How to Choose the Right Sett.{" "}
+            Schacht Spindle, How to Choose the Right Sett.{" "}
             <Link
               href="https://schachtspindle.com/blogs/archives/how-to-choose-the-right-sett"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -230,7 +230,7 @@ export default function WeavingSettCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">2.</span>{" "}
-            Schacht Spindle — Measuring and Describing Yarn (WPI Reference).{" "}
+            Schacht Spindle, Measuring and Describing Yarn (WPI Reference).{" "}
             <Link
               href="https://schachtspindle.com/blogs/faqs/measuring-and-describing-yarn"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -242,7 +242,7 @@ export default function WeavingSettCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">3.</span>{" "}
-            Handwoven Magazine — Minimizing Warp Waste.{" "}
+            Handwoven Magazine, Minimizing Warp Waste.{" "}
             <Link
               href="https://handwovenmagazine.com/minimizing-warp-waste/"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -254,7 +254,7 @@ export default function WeavingSettCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">4.</span>{" "}
-            Schacht Spindle — Variable Dent Reeds Explained.{" "}
+            Schacht Spindle, Variable Dent Reeds Explained.{" "}
             <Link
               href="https://schachtspindle.com/blogs/faqs/what-is-a-variable-dent-reed-and-how-do-i-use-it"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -266,7 +266,7 @@ export default function WeavingSettCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">5.</span>{" "}
-            Handwoven Magazine — Calculating Yarn for Handweaving.{" "}
+            Handwoven Magazine, Calculating Yarn for Handweaving.{" "}
             <Link
               href="https://handwovenmagazine.com/calculating-yarn/"
               className="text-sage-600 dark:text-sage-400 underline"

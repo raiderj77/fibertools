@@ -28,7 +28,7 @@ export default function AdUnit({
         adsbygoogle.push({});
       }
     } catch {
-      // AdSense not loaded or blocked — fail silently
+      // AdSense not loaded or blocked, fail silently
     }
   }, [pathname]);
 

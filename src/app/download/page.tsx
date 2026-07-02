@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Your Free Yarn Crafters Survival Kit",
-  description: "Download your free Yarn Crafters Survival Kit — a quick-reference guide for knitters and crocheters.",
+  description: "Download your free Yarn Crafters Survival Kit, a quick-reference guide for knitters and crocheters.",
   alternates: { canonical: "/download" },
   robots: { index: false },
 };
@@ -32,12 +32,12 @@ export default function DownloadPage() {
         </a>
 
         <p className="text-stone-500 text-sm mb-12">
-          PDF opens in a new tab on some browsers — use the download button or right-click &rarr; Save As.
+          PDF opens in a new tab on some browsers, use the download button or right-click &rarr; Save As.
         </p>
 
         <div className="border-t border-stone-200 pt-10">
           <p className="text-stone-500 text-sm mb-4">
-            While you&rsquo;re here — explore the free tools:
+            While you&rsquo;re here, explore the free tools:
           </p>
           <div className="flex flex-wrap justify-center gap-3 text-sm">
             <Link href="/gauge-calculator" className="text-stone-700 underline hover:text-stone-900">Gauge Calculator</Link>

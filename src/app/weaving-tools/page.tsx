@@ -19,7 +19,7 @@ const weavingTools = WEAVING_SLUGS.map((s) => getToolBySlug(s)).filter(
 export const metadata: Metadata = {
   title: "Free Weaving & Spinning Calculators (2026)",
   description:
-    "Free online calculators for weavers and spinners — sett, EPI, drive ratio, TPI, and yarn weight. No signup required.",
+    "Free online calculators for weavers and spinners, sett, EPI, drive ratio, TPI, and yarn weight. No signup required.",
   keywords: [
     "weaving calculator",
     "sett calculator",
@@ -33,14 +33,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free Weaving & Spinning Calculators (2026)",
     description:
-      "Free online calculators for weavers and spinners — sett, EPI, drive ratio, TPI, and yarn weight. No signup required.",
+      "Free online calculators for weavers and spinners, sett, EPI, drive ratio, TPI, and yarn weight. No signup required.",
     url: "https://fibertools.app/weaving-tools",
     images: [
       {
         url: "https://fibertools.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Free Weaving & Spinning Calculators — FiberTools",
+        alt: "Free Weaving & Spinning Calculators, FiberTools",
       },
     ],
   },
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Weaving & Spinning Calculators (2026)",
     description:
-      "Free online calculators for weavers and spinners — sett, EPI, drive ratio, TPI, and yarn weight. No signup required.",
+      "Free online calculators for weavers and spinners, sett, EPI, drive ratio, TPI, and yarn weight. No signup required.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/weaving-tools" },
@@ -85,7 +85,7 @@ export default function WeavingToolsPage() {
     "@type": "CollectionPage",
     name: "Free Weaving & Spinning Calculators",
     description:
-      "Free online calculators for weavers and spinners — sett, EPI, drive ratio, TPI, and yarn weight.",
+      "Free online calculators for weavers and spinners, sett, EPI, drive ratio, TPI, and yarn weight.",
     url: "https://fibertools.app/weaving-tools",
     numberOfItems: weavingTools.length,
     hasPart: weavingTools.map((t) => ({
@@ -144,7 +144,7 @@ export default function WeavingToolsPage() {
           <p className="leading-relaxed">
             FiberTools weaving and spinning calculators are built on the technical specifications used
             by the handweaving and handspinning communities. The sett calculator uses the standard
-            formula — sett equals WPI divided by 2 for plain weave, divided by 1.5 for twill — to
+            formula, sett equals WPI divided by 2 for plain weave, divided by 1.5 for twill, to
             generate a recommended EPI from your actual yarn rather than a generic chart value. The WPI
             calculator walks you through the wrapping procedure to measure your yarn&rsquo;s true weight
             category, which is the necessary first step before any other weaving calculation. The

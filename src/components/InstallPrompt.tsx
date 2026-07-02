@@ -55,7 +55,7 @@ export default function InstallPrompt() {
             Install FiberTools
           </p>
           <p className="text-xs text-bark-500 dark:text-bark-400 mt-0.5">
-            Add to your home screen for offline access — no app store needed
+            Add to your home screen for offline access, no app store needed
           </p>
           <div className="flex gap-2 mt-2">
             <button

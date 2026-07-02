@@ -23,7 +23,7 @@ export default function IncDecCalculatorTool() {
 
     if (changes >= current && !isInc) return { error: "Cannot decrease more stitches than you have." };
     if (changes >= target && isInc) {
-      // Every stitch gets an increase — unusual but valid
+      // Every stitch gets an increase, unusual but valid
     }
 
     const base = isInc ? current : current;

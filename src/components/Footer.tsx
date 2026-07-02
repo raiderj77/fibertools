@@ -34,7 +34,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Top grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-10">
-          {/* Column 1 — Brand */}
+          {/* Column 1, Brand */}
           <div>
             <Link href="/" className="flex items-center gap-2 mb-2">
               <svg
@@ -66,7 +66,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Column 2 — Tools */}
+          {/* Column 2, Tools */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3">
               Tools
@@ -85,7 +85,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 — Explore */}
+          {/* Column 3, Explore */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3">
               Explore
@@ -104,7 +104,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4 — Info */}
+          {/* Column 4, Info */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3">
               Info

@@ -379,7 +379,7 @@ function runDecode(text: string): DecodeResult {
       seenNeedles.add(key);
       warnings.push({
         text: `Needle/hook size: "${nm[0]}"`,
-        note: `Old UK needle numbers run in reverse of US sizes — UK No. 14 = 2.0 mm (very fine), UK No. 1 = 7.5 mm (large). Cross-reference with a UK vintage needle conversion chart before starting.`,
+        note: `Old UK needle numbers run in reverse of US sizes, UK No. 14 = 2.0 mm (very fine), UK No. 1 = 7.5 mm (large). Cross-reference with a UK vintage needle conversion chart before starting.`,
       });
     }
   }
@@ -407,7 +407,7 @@ function runDecode(text: string): DecodeResult {
   if (hasUKSignals && /\bdc\b/i.test(text)) {
     warnings.push({
       text: "Abbreviation 'dc' in a likely UK pattern",
-      note: "In UK patterns, 'dc' = double crochet = US single crochet (sc). In US patterns, 'dc' = double crochet. This decoder converts full-word terms automatically but leaves short abbreviations like 'dc' and 'tr' unchanged — verify which system the pattern uses.",
+      note: "In UK patterns, 'dc' = double crochet = US single crochet (sc). In US patterns, 'dc' = double crochet. This decoder converts full-word terms automatically but leaves short abbreviations like 'dc' and 'tr' unchanged, verify which system the pattern uses.",
     });
   }
   if (hasUKSignals && /\btr\b/i.test(text)) {
@@ -481,7 +481,7 @@ export default function VintagePatternDecoderTool() {
     if (ext === "pdf") {
       const pdfjs = (window as PdfjsWindow).pdfjsLib;
       if (!pdfjs) {
-        setUploadMsg({ kind: "err", text: "PDF support is still loading — please wait a moment and try again." });
+        setUploadMsg({ kind: "err", text: "PDF support is still loading, please wait a moment and try again." });
         return;
       }
       setUploadMsg({ kind: "ok", text: "Extracting text from PDF…" });
@@ -551,7 +551,7 @@ export default function VintagePatternDecoderTool() {
 
   return (
     <>
-      {/* Print styles — only the decoded output renders when printing */}
+      {/* Print styles, only the decoded output renders when printing */}
       <style>{`
         @media print {
           body > * { visibility: hidden !important; }
@@ -768,7 +768,7 @@ export default function VintagePatternDecoderTool() {
                             {term.note}
                           </td>
                           <td className="px-4 py-3 text-bark-400 dark:text-bark-500 text-xs text-right hidden md:table-cell">
-                            {term.count > 1 ? `×${term.count}` : "—"}
+                            {term.count > 1 ? `×${term.count}` : ", "}
                           </td>
                         </tr>
                       ))}

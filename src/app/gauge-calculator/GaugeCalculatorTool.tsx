@@ -364,7 +364,7 @@ export default function GaugeCalculatorTool() {
           {/* What-if dimensions */}
           <div>
             <p className="label">
-              Original dimensions ({dim}) — optional &ldquo;what if&rdquo; comparison
+              Original dimensions ({dim}), optional &ldquo;what if&rdquo; comparison
               <Tooltip text="Enter the pattern's finished dimensions to see how your gauge changes the size." />
             </p>
             <div className="grid grid-cols-2 gap-3 max-w-xs">
@@ -408,7 +408,7 @@ export default function GaugeCalculatorTool() {
                 {(resizeResult.origW > 0 || resizeResult.origH > 0) && (
                   <div className="mt-4 p-4 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl">
                     <p className="text-sm font-medium text-amber-700 dark:text-amber-300 mb-2">
-                      ⚠️ &ldquo;What If&rdquo; — Size at your gauge WITHOUT resizing:
+                      ⚠️ &ldquo;What If&rdquo;, Size at your gauge WITHOUT resizing:
                     </p>
                     <div className="grid grid-cols-2 gap-4 text-sm">
                       {resizeResult.origW > 0 && (
@@ -601,10 +601,10 @@ export default function GaugeCalculatorTool() {
           💡 Gauge Tips
         </h3>
         <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
-          <li><strong>Always wash your swatch</strong> before measuring — many yarns grow or shrink after washing.</li>
+          <li><strong>Always wash your swatch</strong> before measuring, many yarns grow or shrink after washing.</li>
           <li><strong>Measure in the middle</strong> of the swatch, not at the edges, for the most accurate count.</li>
           <li><strong>Half stitches matter.</strong> A gauge of 18 vs 18.5 stitches can make a sweater 2 inches too small.</li>
-          <li><strong>Row gauge changes more</strong> between knitters than stitch gauge — check both if length matters.</li>
+          <li><strong>Row gauge changes more</strong> between knitters than stitch gauge, check both if length matters.</li>
         </ul>
       </div>
     </div>

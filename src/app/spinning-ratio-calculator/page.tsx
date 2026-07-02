@@ -4,9 +4,9 @@ import AnswerBlock from "@/components/AnswerBlock";
 import SpinningCalculatorTool from "./SpinningCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Spinning Wheel Ratio Calculator — Free",
+  title: "Spinning Wheel Ratio Calculator, Free",
   description:
-    "Calculate drive ratios, twists per inch, and plying twist for handspinning. Includes fiber guide with TPI ranges. Free — no signup needed.",
+    "Calculate drive ratios, twists per inch, and plying twist for handspinning. Includes fiber guide with TPI ranges. Free, no signup needed.",
   keywords: [
     "spinning wheel ratio", "spinning wheel drive ratio", "twist per inch calculator",
     "spinning wheel ratio chart", "TPI calculator", "what ratio for sock yarn spinning",
@@ -15,17 +15,17 @@ export const metadata: Metadata = {
     "handspinning calculator", "spinning fiber guide",
   ],
   openGraph: {
-    title: "Spinning Wheel Ratio Calculator — Free",
+    title: "Spinning Wheel Ratio Calculator, Free",
     description:
-      "Calculate drive ratios, twists per inch, and plying twist for handspinning. Includes fiber guide with TPI ranges. Free — no signup needed.",
+      "Calculate drive ratios, twists per inch, and plying twist for handspinning. Includes fiber guide with TPI ranges. Free, no signup needed.",
     url: "https://fibertools.app/spinning-ratio-calculator",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Spinning Wheel Ratio Calculator — Free" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Spinning Wheel Ratio Calculator, Free" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Spinning Wheel Ratio Calculator — Free",
+    title: "Spinning Wheel Ratio Calculator, Free",
     description:
-      "Calculate drive ratios, twists per inch, and plying twist for handspinning. Includes fiber guide with TPI ranges. Free — no signup needed.",
+      "Calculate drive ratios, twists per inch, and plying twist for handspinning. Includes fiber guide with TPI ranges. Free, no signup needed.",
     images: ["https://fibertools.app/og-image.png"],
   },
   robots: { index: false, follow: true },

@@ -224,7 +224,7 @@ export default function CastOnCalculatorPage() {
         <ol className="space-y-1.5 text-sm text-bark-500 dark:text-bark-400">
           <li>
             <span className="font-medium">1.</span>{" "}
-            Craft Yarn Council — How to Measure Wraps Per Inch.{" "}
+            Craft Yarn Council, How to Measure Wraps Per Inch.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/how-measure-wraps-inch-wpi"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -236,7 +236,7 @@ export default function CastOnCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">2.</span>{" "}
-            Tin Can Knits — Stitch Patterns Guide.{" "}
+            Tin Can Knits, Stitch Patterns Guide.{" "}
             <Link
               href="https://www.tincanknits.com/blog/stitch-patterns"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -248,7 +248,7 @@ export default function CastOnCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">3.</span>{" "}
-            Tin Can Knits — Selvedge Stitches.{" "}
+            Tin Can Knits, Selvedge Stitches.{" "}
             <Link
               href="https://www.tincanknits.com/blog/selvedge"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -260,7 +260,7 @@ export default function CastOnCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">4.</span>{" "}
-            Tin Can Knits — How to Measure Gauge.{" "}
+            Tin Can Knits, How to Measure Gauge.{" "}
             <Link
               href="https://www.tincanknits.com/blog/how-to-measure-gauge"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -272,7 +272,7 @@ export default function CastOnCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">5.</span>{" "}
-            Schacht Spindle — Yarn Swatching 3 Ways.{" "}
+            Schacht Spindle, Yarn Swatching 3 Ways.{" "}
             <Link
               href="https://schachtspindle.com/blogs/archives/yarn-swatching-3-ways"
               className="text-sage-600 dark:text-sage-400 underline"

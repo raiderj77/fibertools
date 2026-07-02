@@ -225,7 +225,7 @@ Check your tension: 15 sts x 10 rows = 10cm using a 4mm hook.`;
         </p>
         <p className="text-sm text-bark-500 dark:text-bark-400">
           This converter handles the full chain of conversions automatically. Paste an entire pattern
-          and every term gets swapped — including abbreviations like dc, htr, tr, and dtr. It also
+          and every term gets swapped, including abbreviations like dc, htr, tr, and dtr. It also
           catches non-stitch differences like &ldquo;tension&rdquo; vs &ldquo;gauge&rdquo; and
           &ldquo;miss&rdquo; vs &ldquo;skip.&rdquo;
         </p>

@@ -28,12 +28,12 @@ type Tab = "calculator" | "database" | "planner";
 // ── STITCH DATABASE ───────────────────────────────────────────────
 
 const STITCH_DATABASE: StitchPattern[] = [
-  // Crochet — Solid
+  // Crochet, Solid
   { name: "Single Crochet (SC)", multiple: 1, plus: 0, minRows: 1, craft: "crochet", category: "solid", difficulty: 1, notes: "Any stitch count works." },
   { name: "Half Double Crochet (HDC)", multiple: 1, plus: 0, minRows: 1, craft: "crochet", category: "solid", difficulty: 1, notes: "Any stitch count. Add 2 ch for turning." },
   { name: "Double Crochet (DC)", multiple: 1, plus: 0, minRows: 1, craft: "crochet", category: "solid", difficulty: 1, notes: "Any stitch count. Add 3 ch for turning." },
 
-  // Crochet — Textured
+  // Crochet, Textured
   { name: "Waffle Stitch", multiple: 3, plus: 0, minRows: 4, craft: "crochet", category: "textured", difficulty: 2, notes: "Front-post and back-post DC. Repeat shows after 4 rows." },
   { name: "Moss / Linen Stitch", multiple: 2, plus: 0, minRows: 2, craft: "crochet", category: "textured", difficulty: 1, notes: "SC + ch1 skip. Also called Granite stitch." },
   { name: "Basket Weave", multiple: 6, plus: 2, minRows: 8, craft: "crochet", category: "textured", difficulty: 2, notes: "Front-post and back-post DC blocks." },
@@ -48,7 +48,7 @@ const STITCH_DATABASE: StitchPattern[] = [
   { name: "Celtic Weave", multiple: 4, plus: 0, minRows: 4, craft: "crochet", category: "textured", difficulty: 3, notes: "Interlocking front-post stitches. Thick and warm." },
   { name: "Crocodile Stitch", multiple: 5, plus: 0, minRows: 4, craft: "crochet", category: "textured", difficulty: 3, notes: "Overlapping scales. Very yarn-hungry." },
 
-  // Crochet — Lacy
+  // Crochet, Lacy
   { name: "Shell Stitch", multiple: 6, plus: 1, minRows: 2, craft: "crochet", category: "lacy", difficulty: 2, notes: "5-DC shells with SC between. Classic blanket stitch." },
   { name: "V-Stitch", multiple: 2, plus: 1, minRows: 1, craft: "crochet", category: "lacy", difficulty: 1, notes: "DC + ch1 + DC in same stitch. Light and airy." },
   { name: "Granny Stripe", multiple: 3, plus: 0, minRows: 2, craft: "crochet", category: "lacy", difficulty: 1, notes: "3-DC clusters. Perfect for color changes." },
@@ -58,18 +58,18 @@ const STITCH_DATABASE: StitchPattern[] = [
   { name: "Offset Shell", multiple: 3, plus: 0, minRows: 2, craft: "crochet", category: "lacy", difficulty: 2, notes: "Staggered 3-DC clusters." },
   { name: "Iris Stitch", multiple: 2, plus: 0, minRows: 2, craft: "crochet", category: "lacy", difficulty: 2, notes: "Puff stitch + chain. Creates flower-like texture." },
 
-  // Crochet — Colorwork
+  // Crochet, Colorwork
   { name: "Spike Stitch", multiple: 2, plus: 0, minRows: 2, craft: "crochet", category: "colorwork", difficulty: 2, notes: "Insert hook into row(s) below. Great for stripes." },
   { name: "Plaid / Tartan", multiple: 4, plus: 0, minRows: 4, craft: "crochet", category: "colorwork", difficulty: 3, notes: "Interlocking SC blocks with surface chains." },
   { name: "C2C (Corner to Corner)", multiple: 1, plus: 0, minRows: 1, craft: "crochet", category: "colorwork", difficulty: 2, notes: "Diagonal squares. Multiple is per block, not per stitch." },
 
-  // Knitting — Ribbing
+  // Knitting, Ribbing
   { name: "1×1 Rib", multiple: 2, plus: 0, minRows: 1, craft: "knitting", category: "ribbing", difficulty: 1, notes: "K1, P1 repeat. Stretchy." },
   { name: "2×2 Rib", multiple: 4, plus: 0, minRows: 1, craft: "knitting", category: "ribbing", difficulty: 1, notes: "K2, P2 repeat." },
   { name: "Broken Rib", multiple: 2, plus: 0, minRows: 2, craft: "knitting", category: "ribbing", difficulty: 1, notes: "Rib on RS, knit on WS. Lies flat." },
   { name: "Fisherman's Rib", multiple: 2, plus: 1, minRows: 2, craft: "knitting", category: "ribbing", difficulty: 2, notes: "Knit-below creates thick, squishy fabric." },
 
-  // Knitting — Textured
+  // Knitting, Textured
   { name: "Seed / Moss Stitch", multiple: 2, plus: 0, minRows: 2, craft: "knitting", category: "textured", difficulty: 1, notes: "K1, P1 offset every row. Lies flat." },
   { name: "Double Seed Stitch", multiple: 4, plus: 0, minRows: 4, craft: "knitting", category: "textured", difficulty: 1, notes: "2 rows of 2×2 blocks. Chunkier seed stitch." },
   { name: "Basketweave", multiple: 8, plus: 5, minRows: 8, craft: "knitting", category: "textured", difficulty: 2, notes: "Blocks of stockinette and reverse stockinette." },
@@ -78,12 +78,12 @@ const STITCH_DATABASE: StitchPattern[] = [
   { name: "Waffle Stitch (knit)", multiple: 3, plus: 0, minRows: 4, craft: "knitting", category: "textured", difficulty: 2, notes: "K + sl wyif pattern. Creates waffle grid." },
   { name: "Hurdle Stitch", multiple: 2, plus: 0, minRows: 4, craft: "knitting", category: "textured", difficulty: 1, notes: "2 rows garter, 2 rows stockinette." },
 
-  // Knitting — Lacy
+  // Knitting, Lacy
   { name: "Feather and Fan", multiple: 18, plus: 0, minRows: 4, craft: "knitting", category: "lacy", difficulty: 2, notes: "Classic Old Shale. Wavy edges." },
   { name: "Simple Lace Chevron", multiple: 12, plus: 1, minRows: 2, craft: "knitting", category: "lacy", difficulty: 2, notes: "YO + K2tog creates zigzag lace." },
   { name: "Eyelet Rows", multiple: 2, plus: 0, minRows: 4, craft: "knitting", category: "lacy", difficulty: 1, notes: "YO, K2tog across one row. Subtle lace." },
 
-  // Knitting — Cable
+  // Knitting, Cable
   { name: "Simple 4-st Cable", multiple: 6, plus: 2, minRows: 6, craft: "knitting", category: "cable", difficulty: 2, notes: "C4F or C4B with purl background." },
   { name: "Cable & Rib Panel", multiple: 10, plus: 0, minRows: 8, craft: "knitting", category: "cable", difficulty: 2, notes: "Cable columns separated by ribbing." },
   { name: "Braided Cable", multiple: 12, plus: 2, minRows: 8, craft: "knitting", category: "cable", difficulty: 3, notes: "Three-strand braid effect." },
@@ -129,7 +129,7 @@ function findCompatibleCounts(
   const step = lcmArray(multOnly);
 
   // Find a starting base that satisfies all plus conditions
-  // Brute force within one LCM cycle — fine since LCMs are small
+  // Brute force within one LCM cycle, fine since LCMs are small
   let base = -1;
   for (let candidate = 0; candidate < step; candidate++) {
     const allMatch = patterns.every(
@@ -555,7 +555,7 @@ export default function StitchPatternCalculatorTool() {
             )}
           </div>
 
-          {/* Width range (manual — hidden when using gauge) */}
+          {/* Width range (manual, hidden when using gauge) */}
           {!useGauge && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>

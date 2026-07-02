@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import ColorPoolingCalculatorTool from "./ColorPoolingCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Planned Pooling Crochet Calculator — Free",
+  title: "Planned Pooling Crochet Calculator, Free",
   description:
     "Calculate exact stitch counts for planned pooling with variegated yarn. Live argyle and plaid preview before you start. Free, no login.",
   keywords: [
@@ -15,15 +15,15 @@ export const metadata: Metadata = {
     "planned pooling calculator", "yarn pooling pattern generator",
   ],
   openGraph: {
-    title: "Planned Pooling Crochet Calculator — Free",
+    title: "Planned Pooling Crochet Calculator, Free",
     description:
       "Calculate exact stitch counts for planned pooling with variegated yarn. Live argyle and plaid preview before you start. Free, no login.",
     url: "https://fibertools.app/color-pooling-calculator",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Planned Pooling Crochet Calculator — Free" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Planned Pooling Crochet Calculator, Free" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Planned Pooling Crochet Calculator — Free",
+    title: "Planned Pooling Crochet Calculator, Free",
     description:
       "Calculate exact stitch counts for planned pooling with variegated yarn. Live argyle and plaid preview before you start. Free, no login.",
     images: ["https://fibertools.app/og-image.png"],

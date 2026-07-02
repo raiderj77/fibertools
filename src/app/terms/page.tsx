@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Terms of Use",
   description:
-    "Terms and conditions for using FiberTools.app — free calculators for knitters, crocheters, and weavers.",
+    "Terms and conditions for using FiberTools.app, free calculators for knitters, crocheters, and weavers.",
   keywords: ["terms of use", "terms and conditions", "fiber arts tools terms", "FiberTools terms"],
   openGraph: {
     title: "Terms of Use",
     description:
-      "Terms and conditions for using FiberTools.app — free calculators for knitters, crocheters, and weavers.",
+      "Terms and conditions for using FiberTools.app, free calculators for knitters, crocheters, and weavers.",
     url: "https://fibertools.app/terms",
     images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Terms of Use" }],
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Terms of Use",
     description:
-      "Terms and conditions for using FiberTools.app — free calculators for knitters, crocheters, and weavers.",
+      "Terms and conditions for using FiberTools.app, free calculators for knitters, crocheters, and weavers.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/terms" },
@@ -57,7 +57,7 @@ export default function TermsPage() {
           <p>
             FiberTools provides free, browser-based calculators and reference
             tools for fiber arts including knitting, crochet, weaving, spinning,
-            and embroidery. All calculations run entirely in your browser — we do
+            and embroidery. All calculations run entirely in your browser, we do
             not process or store your inputs on our servers.
           </p>
         </section>
@@ -98,8 +98,8 @@ export default function TermsPage() {
             Intellectual Property and Copyright
           </h2>
           <p>
-            All content on FiberTools — including text, graphics, logos, icons,
-            and software — is the property of FiberTools or its content
+            All content on FiberTools, including text, graphics, logos, icons,
+            and software, is the property of FiberTools or its content
             suppliers and is protected by copyright law. You may use the tools
             for personal and commercial crafting purposes, but you may not
             reproduce, distribute, or create derivative works of the site itself.

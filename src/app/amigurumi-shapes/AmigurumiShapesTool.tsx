@@ -113,7 +113,7 @@ function generateOval(length: number): string[] {
   const rnd1Total = (length - 1) * 2 + 6; // sc along both sides + 3 in each end
 
   lines.push(`Ch ${chainCount}.`);
-  lines.push(`Rnd 1: Starting in 2nd ch from hook — sc ${length - 1}, 3 sc in last ch. Working along other side: sc ${length - 1}, 2 sc in last st. (${rnd1Total})`);
+  lines.push(`Rnd 1: Starting in 2nd ch from hook, sc ${length - 1}, 3 sc in last ch. Working along other side: sc ${length - 1}, 2 sc in last st. (${rnd1Total})`);
 
   let total = rnd1Total;
   const ovalRounds = Math.min(length, 6);

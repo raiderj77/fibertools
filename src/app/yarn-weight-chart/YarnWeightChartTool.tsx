@@ -141,11 +141,11 @@ const FIBERS: Fiber[] = [
   { name: "Wool (Merino)", emoji: "🐑", warmth: 5, drape: 3, care: "Hand wash", notes: "Elastic, warm, great stitch definition. Can felt if agitated." },
   { name: "Cotton", emoji: "🌿", warmth: 1, drape: 4, care: "Machine wash", notes: "Cool, heavy, no stretch. Great for summer and dishcloths. Grows with wear." },
   { name: "Acrylic", emoji: "🧪", warmth: 3, drape: 3, care: "Machine wash/dry", notes: "Budget-friendly, easy care, wide color range. Less breathable than natural fibers." },
-  { name: "Alpaca", emoji: "🦙", warmth: 5, drape: 5, care: "Hand wash", notes: "Incredibly soft and warm. Very drapey — size down on needles. No memory (stretches)." },
+  { name: "Alpaca", emoji: "🦙", warmth: 5, drape: 5, care: "Hand wash", notes: "Incredibly soft and warm. Very drapey, size down on needles. No memory (stretches)." },
   { name: "Silk", emoji: "✨", warmth: 2, drape: 5, care: "Hand wash", notes: "Beautiful sheen and drape. Strong but no elasticity. Often blended with wool." },
   { name: "Linen", emoji: "🌾", warmth: 1, drape: 4, care: "Machine wash", notes: "Stiff at first, softens beautifully with washing. Cool for summer. Crisp stitch definition." },
   { name: "Bamboo", emoji: "🎋", warmth: 2, drape: 5, care: "Machine wash gentle", notes: "Silky feel, good drape. Eco-friendly. Similar properties to rayon." },
-  { name: "Cashmere", emoji: "🐐", warmth: 5, drape: 4, care: "Hand wash", notes: "Ultra-soft luxury fiber. Lightweight warmth. Delicate — pills with wear." },
+  { name: "Cashmere", emoji: "🐐", warmth: 5, drape: 4, care: "Hand wash", notes: "Ultra-soft luxury fiber. Lightweight warmth. Delicate, pills with wear." },
   { name: "Nylon", emoji: "💪", warmth: 2, drape: 2, care: "Machine wash", notes: "Added to sock yarn for durability. Very strong, adds structure and memory." },
 ];
 
@@ -192,13 +192,13 @@ export default function YarnWeightChartTool() {
 
     // Weight category difference
     if (weightDiff === 0) {
-      notes.push("Same weight category — great starting point.");
+      notes.push("Same weight category, great starting point.");
     } else if (weightDiff === 1) {
       score -= 25;
-      notes.push("One weight category apart — may work with needle size adjustment.");
+      notes.push("One weight category apart, may work with needle size adjustment.");
     } else {
       score -= weightDiff * 20;
-      notes.push(`${weightDiff} weight categories apart — significant gauge difference expected.`);
+      notes.push(`${weightDiff} weight categories apart, significant gauge difference expected.`);
     }
 
     // Meters per gram comparison (if provided)
@@ -208,13 +208,13 @@ export default function YarnWeightChartTool() {
       const ratio = Math.min(mpg1, mpg2) / Math.max(mpg1, mpg2);
       if (ratio >= 0.85) {
         score = Math.max(score, 85);
-        notes.push(`Yardage per gram is very close (${Math.round(ratio * 100)}% match) — excellent substitute.`);
+        notes.push(`Yardage per gram is very close (${Math.round(ratio * 100)}% match), excellent substitute.`);
       } else if (ratio >= 0.7) {
         score = Math.min(score, 70);
-        notes.push(`Yardage differs by ${Math.round((1 - ratio) * 100)}% — swatch carefully.`);
+        notes.push(`Yardage differs by ${Math.round((1 - ratio) * 100)}%, swatch carefully.`);
       } else {
         score = Math.min(score, 40);
-        notes.push(`Yardage differs significantly (${Math.round((1 - ratio) * 100)}%) — likely needs needle change and will produce different gauge.`);
+        notes.push(`Yardage differs significantly (${Math.round((1 - ratio) * 100)}%), likely needs needle change and will produce different gauge.`);
       }
     }
 
@@ -334,7 +334,7 @@ export default function YarnWeightChartTool() {
             return (
               <div className="result-card">
                 <h3 className="font-semibold text-bark-700 dark:text-cream-200">
-                  {w.number} — {w.usName}
+                  {w.number}, {w.usName}
                 </h3>
                 <p className="text-sm text-bark-500 dark:text-bark-400 mt-1">
                   Also known as: {w.altNames.join(", ")}
@@ -370,7 +370,7 @@ export default function YarnWeightChartTool() {
                 <select value={yarn1Weight} onChange={(e) => setYarn1Weight(e.target.value)} className="select">
                   <option value="">Select…</option>
                   {WEIGHTS.map((w) => (
-                    <option key={w.number} value={w.number}>{w.number} — {w.usName}</option>
+                    <option key={w.number} value={w.number}>{w.number}, {w.usName}</option>
                   ))}
                 </select>
               </div>
@@ -391,7 +391,7 @@ export default function YarnWeightChartTool() {
                 <select value={yarn2Weight} onChange={(e) => setYarn2Weight(e.target.value)} className="select">
                   <option value="">Select…</option>
                   {WEIGHTS.map((w) => (
-                    <option key={w.number} value={w.number}>{w.number} — {w.usName}</option>
+                    <option key={w.number} value={w.number}>{w.number}, {w.usName}</option>
                   ))}
                 </select>
               </div>
@@ -447,7 +447,7 @@ export default function YarnWeightChartTool() {
       {tab === "fibers" && (
         <div className="space-y-4">
           <p className="text-sm text-bark-400 dark:text-bark-500">
-            How each fiber behaves — warmth, drape, and care. Hover or tap for details.
+            How each fiber behaves, warmth, drape, and care. Hover or tap for details.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -509,10 +509,10 @@ export default function YarnWeightChartTool() {
           💡 Substitution Tips
         </h3>
         <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
-          <li><strong>Yards per gram</strong> is the most reliable way to compare yarns — more accurate than weight category alone.</li>
+          <li><strong>Yards per gram</strong> is the most reliable way to compare yarns, more accurate than weight category alone.</li>
           <li><strong>Fiber content matters.</strong> Swapping cotton for wool changes drape, stretch, and warmth even at the same weight.</li>
           <li><strong>Always swatch</strong> with your substitute yarn. Even yarns in the same weight category can knit up differently.</li>
-          <li>The <strong>same yarn in different colors</strong> can have slightly different gauges — dark dyes especially.</li>
+          <li>The <strong>same yarn in different colors</strong> can have slightly different gauges, dark dyes especially.</li>
         </ul>
       </div>
     </div>

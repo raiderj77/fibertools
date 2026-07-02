@@ -5,7 +5,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import YarnCalculatorTool from "./YarnCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Yarn Yardage Calculator — Free Online",
+  title: "Yarn Yardage Calculator, Free Online",
   description:
     "Calculate how much yarn you need for any knitting or crochet project. Enter your gauge and dimensions for instant yardage estimates. Free, no signup.",
   keywords: [
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
   openGraph: {
-    title: "Yarn Yardage Calculator — Free Online",
+    title: "Yarn Yardage Calculator, Free Online",
     description:
       "Calculate how much yarn you need for any knitting or crochet project. Enter your gauge and dimensions for instant yardage estimates. Free, no signup.",
     url: "https://fibertools.app/yarn-calculator",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Yarn Yardage Calculator — Free Online" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Yarn Yardage Calculator, Free Online" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yarn Yardage Calculator — Free Online",
+    title: "Yarn Yardage Calculator, Free Online",
     description:
       "Calculate how much yarn you need for any knitting or crochet project. Enter your gauge and dimensions for instant yardage estimates. Free, no signup.",
     images: ["https://fibertools.app/og-image.png"],
@@ -50,7 +50,7 @@ export default function YarnCalculatorPage() {
       <ToolLayout slug="yarn-calculator" widgetFirst>
       <AnswerBlock
         what="A yardage estimator that calculates how much yarn you need for any knitting or crochet project based on your gauge, dimensions, and yarn weight (CYC Lace 0 through Jumbo 7)."
-        who="Any knitter or crocheter planning a project — especially if you're buying yarn and need to know how many skeins to get before you start."
+        who="Any knitter or crocheter planning a project, especially if you're buying yarn and need to know how many skeins to get before you start."
         bottomLine="Enter your gauge swatch numbers and project size to get an instant yardage estimate, so you buy the right amount of yarn the first time."
         lastUpdated="2026-05-05"
       />
@@ -236,7 +236,7 @@ export default function YarnCalculatorPage() {
         <ol className="space-y-1.5 text-sm text-bark-500 dark:text-bark-400">
           <li>
             <span className="font-medium">1.</span>{" "}
-            Craft Yarn Council — Standard Yarn Weight System.{" "}
+            Craft Yarn Council, Standard Yarn Weight System.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/yarn-weight"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -248,7 +248,7 @@ export default function YarnCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">2.</span>{" "}
-            Ravelry — Sweater pattern database, yardage data from project records.{" "}
+            Ravelry, Sweater pattern database, yardage data from project records.{" "}
             <Link
               href="https://www.ravelry.com/patterns/search#craft=knitting&pc=sweater"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -260,7 +260,7 @@ export default function YarnCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">3.</span>{" "}
-            Craft Yarn Council — Knit and Crochet Stitch Charts.{" "}
+            Craft Yarn Council, Knit and Crochet Stitch Charts.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/stitch-symbols"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -272,7 +272,7 @@ export default function YarnCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">4.</span>{" "}
-            Craft Yarn Council — Substituting Yarns Guide.{" "}
+            Craft Yarn Council, Substituting Yarns Guide.{" "}
             <Link
               href="https://www.craftyarncouncil.com/quick-guide-to-yarn"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -284,7 +284,7 @@ export default function YarnCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">5.</span>{" "}
-            Yarnspirations — Buying the Right Amount of Yarn.{" "}
+            Yarnspirations, Buying the Right Amount of Yarn.{" "}
             <Link
               href="https://www.yarnspirations.com/blogs/ideas-and-inspiration"
               className="text-sage-600 dark:text-sage-400 underline"

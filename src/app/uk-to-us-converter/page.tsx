@@ -48,7 +48,7 @@ export default function UKToUSConverterPage() {
       <AnswerBlock
         what="A converter that translates UK knitting and crochet terminology to US terms, including automatic pattern text conversion."
         who="Crafters working from a British pattern who need to convert stitch names and abbreviations to their US equivalents."
-        bottomLine="Paste any UK pattern text and get an instant US-terms translation — or use the reference table for individual terms."
+        bottomLine="Paste any UK pattern text and get an instant US-terms translation, or use the reference table for individual terms."
         lastUpdated="2026-03-16"
       />
       <div className="sr-only">

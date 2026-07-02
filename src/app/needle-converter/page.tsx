@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import NeedleConverterTool from "./NeedleConverterTool";
 
 export const metadata: Metadata = {
-  title: "Knitting Needle & Hook Size Converter — Free",
+  title: "Knitting Needle & Hook Size Converter, Free",
   description:
     "Convert knitting needle and crochet hook sizes between US, metric, UK, and Japanese systems. All 23 needle sizes and 24 hook sizes. Free.",
   keywords: [
@@ -25,15 +25,15 @@ export const metadata: Metadata = {
     "hook size chart",
   ],
   openGraph: {
-    title: "Knitting Needle & Hook Size Converter — Free",
+    title: "Knitting Needle & Hook Size Converter, Free",
     description:
       "Convert knitting needle and crochet hook sizes between US, metric, UK, and Japanese systems. All 23 needle sizes and 24 hook sizes. Free.",
     url: "https://fibertools.app/needle-converter",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Knitting Needle & Hook Size Converter — Free" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Knitting Needle & Hook Size Converter, Free" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Knitting Needle & Hook Size Converter — Free",
+    title: "Knitting Needle & Hook Size Converter, Free",
     description:
       "Convert knitting needle and crochet hook sizes between US, metric, UK, and Japanese systems. All 23 needle sizes and 24 hook sizes. Free.",
     images: ["https://fibertools.app/og-image.png"],
@@ -48,7 +48,7 @@ export default function NeedleConverterPage() {
       <AnswerBlock
         what="A size converter for knitting needles and crochet hooks that translates between US, metric (mm), UK, and Japanese sizing systems instantly."
         who="Knitters and crocheters working from international patterns, or anyone whose pattern calls for a needle or hook size in an unfamiliar system."
-        bottomLine="Select or type any needle or hook size and see the equivalent in every major sizing system — no more guessing whether a 4.0 mm hook is a US G/6."
+        bottomLine="Select or type any needle or hook size and see the equivalent in every major sizing system, no more guessing whether a 4.0 mm hook is a US G/6."
         lastUpdated="2026-03-16"
       />
       <div className="sr-only">

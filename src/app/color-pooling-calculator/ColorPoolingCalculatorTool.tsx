@@ -221,7 +221,7 @@ export default function ColorPoolingCalculatorTool() {
           <li><strong>Measure carefully.</strong> Work 10+ stitches in each color section and count. Consistency matters.</li>
           <li><strong>Gauge affects pooling.</strong> Changing hook size shifts stitch count per color, which changes the pattern.</li>
           <li><strong>Moss stitch (SC, CH1, skip 1)</strong> is the most popular pooling stitch because it creates clean columns.</li>
-          <li><strong>Use the adjust buttons</strong> to try ±1 or ±2 chains — small changes make a big difference.</li>
+          <li><strong>Use the adjust buttons</strong> to try ±1 or ±2 chains, small changes make a big difference.</li>
           <li><strong>Every skein is slightly different.</strong> Even the same dye lot may have slight color length variations.</li>
         </ul>
       </div>

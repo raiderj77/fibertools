@@ -274,7 +274,7 @@ export default function StripeGeneratorTool() {
         <button type="button" onClick={() => {
           const lines = stripes.map((s, i) => {
             const c = colors.find((cl) => cl.id === s.colorId);
-            return `Stripe ${i + 1}: ${c?.name} — ${s.rows} rows`;
+            return `Stripe ${i + 1}: ${c?.name}, ${s.rows} rows`;
           });
           navigator.clipboard.writeText(lines.join("\n"));
         }} className="btn-secondary text-sm">📋 Copy pattern</button>

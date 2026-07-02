@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Cookie Policy",
   description:
-    "How FiberTools uses cookies — analytics, advertising, and how to manage your preferences.",
+    "How FiberTools uses cookies, analytics, advertising, and how to manage your preferences.",
   keywords: ["cookie policy", "cookies", "analytics cookies", "FiberTools cookies"],
   openGraph: {
     title: "Cookie Policy",
     description:
-      "How FiberTools uses cookies — analytics, advertising, and how to manage your preferences.",
+      "How FiberTools uses cookies, analytics, advertising, and how to manage your preferences.",
     url: "https://fibertools.app/cookies",
     images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Cookie Policy" }],
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Cookie Policy",
     description:
-      "How FiberTools uses cookies — analytics, advertising, and how to manage your preferences.",
+      "How FiberTools uses cookies, analytics, advertising, and how to manage your preferences.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/cookies" },

@@ -19,7 +19,7 @@ export default function ComingSoon({ slug }: ComingSoonProps) {
       </h2>
       <p className="text-bark-500 dark:text-bark-400 max-w-md mx-auto mb-8">
         We&apos;re building {tool?.name || "this tool"} right now. Check back
-        soon — or try one of our other tools:
+        soon, or try one of our other tools:
       </p>
       {related.length > 0 ? (
         <div className="flex flex-wrap justify-center gap-3">

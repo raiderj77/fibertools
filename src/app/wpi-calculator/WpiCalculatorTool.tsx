@@ -175,7 +175,7 @@ export default function WpiCalculatorTool() {
             {results.isOverlap && (
               <div className="p-3 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl">
                 <p className="text-sm text-amber-700 dark:text-amber-300">
-                  Your WPI falls in an overlap zone — swatch to confirm.
+                  Your WPI falls in an overlap zone, swatch to confirm.
                 </p>
               </div>
             )}
@@ -249,7 +249,7 @@ export default function WpiCalculatorTool() {
               type="button"
               onClick={() => {
                 navigator.clipboard.writeText(
-                  `WPI: ${wpi} — ${stickySummary}`
+                  `WPI: ${wpi}, ${stickySummary}`
                 );
               }}
               className="btn-secondary text-sm"
@@ -353,11 +353,11 @@ export default function WpiCalculatorTool() {
           </li>
           <li>
             <strong>Measure in multiple spots.</strong> Yarn thickness can vary
-            along the skein — average 2\u20133 readings for accuracy.
+            along the skein, average 2\u20133 readings for accuracy.
           </li>
           <li>
             <strong>Plied yarn can be tricky.</strong> Highly textured or
-            boucl\u00E9 yarns may not wrap evenly — swatch for the best results.
+            boucl\u00E9 yarns may not wrap evenly, swatch for the best results.
           </li>
         </ul>
       </div>

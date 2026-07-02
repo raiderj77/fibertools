@@ -237,7 +237,7 @@ export default function BlanketCalculatorTool() {
           {/* Gauge (optional) */}
           <div className="p-4 bg-cream-100 dark:bg-bark-800 rounded-xl space-y-3">
             <p className="text-sm font-medium text-bark-700 dark:text-cream-200">
-              Your Gauge (optional — for stitch counts)
+              Your Gauge (optional, for stitch counts)
             </p>
             <div className="grid grid-cols-3 gap-3">
               <div>

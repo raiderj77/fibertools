@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         url: "https://fibertools.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Best Yarn for Amigurumi — FiberTools",
+        alt: "Best Yarn for Amigurumi, FiberTools",
       },
     ],
   },
@@ -79,7 +79,7 @@ export default function BestYarnForAmigurumiPage() {
         name: "Can I use acrylic yarn for amigurumi?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Smooth acrylic yarn is colorfast, machine washable, and available in hundreds of solid colors — ideal for character designs.",
+          text: "Yes. Smooth acrylic yarn is colorfast, machine washable, and available in hundreds of solid colors, ideal for character designs.",
         },
       },
       {
@@ -158,7 +158,7 @@ export default function BestYarnForAmigurumiPage() {
             What Makes Good Amigurumi Yarn?
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Amigurumi demands yarn that creates a tight, dense fabric. Stuffing should never peek through the stitches, so the yarn must have a firm twist that holds its shape under tension. Clean stitch definition is essential — each single crochet should be clearly visible so you can count stitches and place increases accurately.
+            Amigurumi demands yarn that creates a tight, dense fabric. Stuffing should never peek through the stitches, so the yarn must have a firm twist that holds its shape under tension. Clean stitch definition is essential, each single crochet should be clearly visible so you can count stitches and place increases accurately.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             <strong>Look for:</strong> tight twist, smooth texture, excellent stitch definition, colorfast dyes, solid colors (for crisp details), DK (CYC 3) or worsted (CYC 4) weight, non-splitty plied construction.
@@ -277,7 +277,7 @@ export default function BestYarnForAmigurumiPage() {
             The key to amigurumi is using a hook 1–2 sizes smaller than the yarn label recommends. This creates a tighter fabric that prevents stuffing from showing through. For DK yarn that recommends a US G-6 (4mm) hook, use a US D-3 to E-4 (3–3.5mm) hook instead. For worsted yarn recommending a US H-8 (5mm), drop to a US F-5 to G-6 (3.75–4mm).
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Test your gauge by crocheting a small circle in single crochet. Hold the swatch up to a light — if you can see through it, go down another hook size. The finished fabric should feel firm but not so tight that your hook struggles to enter the stitches.
+            Test your gauge by crocheting a small circle in single crochet. Hold the swatch up to a light, if you can see through it, go down another hook size. The finished fabric should feel firm but not so tight that your hook struggles to enter the stitches.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             Generate a custom amigurumi shape with our{" "}
@@ -298,7 +298,7 @@ export default function BestYarnForAmigurumiPage() {
             How Much Yarn Do You Need for Amigurumi?
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Most small amigurumi figures use under 50 yards per color. The main body color uses the most yardage, while accent colors for features, clothing, or accessories need much less — often 5–15 yards each. A standard DK skein of 125–150 yards is enough for several small figures in the same color.
+            Most small amigurumi figures use under 50 yards per color. The main body color uses the most yardage, while accent colors for features, clothing, or accessories need much less, often 5–15 yards each. A standard DK skein of 125–150 yards is enough for several small figures in the same color.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             For larger amigurumi (12 inches or more), plan for 100–200 yards of the main color. Use our{" "}
@@ -321,15 +321,15 @@ export default function BestYarnForAmigurumiPage() {
           <ul className="space-y-4">
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
-              <span><strong>Buying soft, fuzzy yarn because it looks cute.</strong> Chenille, mohair, or any yarn with a halo obscures stitch definition completely — you cannot see where to insert your hook, count stitches, or fix mistakes. Amigurumi requires smooth, tightly plied yarn so stitch structure is clearly visible at all times.</span>
+              <span><strong>Buying soft, fuzzy yarn because it looks cute.</strong> Chenille, mohair, or any yarn with a halo obscures stitch definition completely, you cannot see where to insert your hook, count stitches, or fix mistakes. Amigurumi requires smooth, tightly plied yarn so stitch structure is clearly visible at all times.</span>
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
-              <span><strong>Choosing a yarn that splits easily.</strong> Loosely plied yarns split at the hook tip, creating split stitches that distort the fabric. Pull a length of yarn and try to separate the plies with your fingers — if they separate easily, the yarn will split on tight amigurumi stitches. Opt for yarns with a tight, resistant twist.</span>
+              <span><strong>Choosing a yarn that splits easily.</strong> Loosely plied yarns split at the hook tip, creating split stitches that distort the fabric. Pull a length of yarn and try to separate the plies with your fingers, if they separate easily, the yarn will split on tight amigurumi stitches. Opt for yarns with a tight, resistant twist.</span>
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
-              <span><strong>Buying large yardage skeins in multiple colors.</strong> Amigurumi pieces are small — a typical 4-inch bear uses only 30–50 yards of main color. A 200-yard skein contains enough for 4–6 small pieces in the same color. Buy small skeins (50–100 yards) in a variety of colors rather than large skeins of a single color unless you are making multiples of the same piece.</span>
+              <span><strong>Buying large yardage skeins in multiple colors.</strong> Amigurumi pieces are small, a typical 4-inch bear uses only 30–50 yards of main color. A 200-yard skein contains enough for 4–6 small pieces in the same color. Buy small skeins (50–100 yards) in a variety of colors rather than large skeins of a single color unless you are making multiples of the same piece.</span>
             </li>
           </ul>
         </section>
@@ -353,7 +353,7 @@ export default function BestYarnForAmigurumiPage() {
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Can I use acrylic yarn for amigurumi?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Yes. Smooth acrylic yarn is colorfast, machine washable, and available in hundreds of solid colors — ideal for character designs.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Yes. Smooth acrylic yarn is colorfast, machine washable, and available in hundreds of solid colors, ideal for character designs.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
@@ -385,7 +385,7 @@ export default function BestYarnForAmigurumiPage() {
           Generate the perfect amigurumi shape pattern with our free Amigurumi Shape Generator
         </p>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-4">
-          Spheres, cones, cylinders, and more — customized to your gauge.
+          Spheres, cones, cylinders, and more, customized to your gauge.
         </p>
         <Link href="/amigurumi-shapes" className="btn-primary">
           Open Amigurumi Shape Generator &rarr;

@@ -26,7 +26,7 @@ export default function BlockingCalculatorPage() {
       <AnswerBlock
         what="A tool that recommends the correct blocking method for your fiber type with stretch feasibility ratings and step-by-step instructions."
         who="Fiber artists who need to know whether to wet block, steam block, or spray block their finished project based on fiber content."
-        bottomLine="Enter your fiber type to get the recommended blocking method — always test on a swatch first if you are unsure."
+        bottomLine="Enter your fiber type to get the recommended blocking method, always test on a swatch first if you are unsure."
         lastUpdated="2026-03-16"
       />
       <div className="sr-only">

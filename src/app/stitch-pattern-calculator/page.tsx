@@ -4,9 +4,9 @@ import AnswerBlock from "@/components/AnswerBlock";
 import StitchPatternCalculatorTool from "./StitchPatternCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Stitch Pattern Calculator — Free Online",
+  title: "Stitch Pattern Calculator, Free Online",
   description:
-    "Find compatible stitch counts for sampler blankets. Browse 50+ stitch patterns and calculate the LCM instantly. Free — no signup required.",
+    "Find compatible stitch counts for sampler blankets. Browse 50+ stitch patterns and calculate the LCM instantly. Free, no signup required.",
   keywords: [
     "stitch pattern calculator",
     "crochet stitch multiple calculator",
@@ -28,17 +28,17 @@ export const metadata: Metadata = {
     "stitch compatibility calculator",
   ],
   openGraph: {
-    title: "Stitch Pattern Calculator — Free Online",
+    title: "Stitch Pattern Calculator, Free Online",
     description:
-      "Find compatible stitch counts for sampler blankets. Browse 50+ stitch patterns and calculate the LCM instantly. Free — no signup required.",
+      "Find compatible stitch counts for sampler blankets. Browse 50+ stitch patterns and calculate the LCM instantly. Free, no signup required.",
     url: "https://fibertools.app/stitch-pattern-calculator",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Stitch Pattern Calculator — Free Online" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Stitch Pattern Calculator, Free Online" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stitch Pattern Calculator — Free Online",
+    title: "Stitch Pattern Calculator, Free Online",
     description:
-      "Find compatible stitch counts for sampler blankets. Browse 50+ stitch patterns and calculate the LCM instantly. Free — no signup required.",
+      "Find compatible stitch counts for sampler blankets. Browse 50+ stitch patterns and calculate the LCM instantly. Free, no signup required.",
     images: ["https://fibertools.app/og-image.png"],
   },
   robots: { index: false, follow: true },

@@ -9,7 +9,7 @@ interface UnitToggleProps {
   onChange: (unit: UnitSystem) => void;
 }
 
-/** Read saved preference on mount — call in any tool that uses units */
+/** Read saved preference on mount, call in any tool that uses units */
 export function useSavedUnits(
   setValue: (u: UnitSystem) => void
 ) {

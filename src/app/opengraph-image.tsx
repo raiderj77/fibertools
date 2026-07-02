@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
-export const alt = 'FiberTools — Free Calculators for Knitters & Crocheters'
+export const alt = 'FiberTools, Free Calculators for Knitters & Crocheters'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -39,7 +39,7 @@ export default async function Image() {
                 background: '#7C5A6D',
               }}
             />
-            {/* Arc wrap 1 — upper-right sweep */}
+            {/* Arc wrap 1, upper-right sweep */}
             <div
               style={{
                 position: 'absolute',
@@ -57,7 +57,7 @@ export default async function Image() {
                 transform: 'rotate(-25deg)',
               }}
             />
-            {/* Arc wrap 2 — lower-left sweep */}
+            {/* Arc wrap 2, lower-left sweep */}
             <div
               style={{
                 position: 'absolute',
@@ -75,7 +75,7 @@ export default async function Image() {
                 transform: 'rotate(35deg)',
               }}
             />
-            {/* Arc wrap 3 — diagonal */}
+            {/* Arc wrap 3, diagonal */}
             <div
               style={{
                 position: 'absolute',
@@ -135,7 +135,7 @@ export default async function Image() {
                 background: '#8FAE8B',
               }}
             />
-            {/* Small sage dot — lower left */}
+            {/* Small sage dot, lower left */}
             <div
               style={{
                 position: 'absolute',

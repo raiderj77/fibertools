@@ -12,7 +12,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   await props.params;
   return {
-    title: 'Easter Bunny Amigurumi Pattern — Free Crochet Guide',
+    title: 'Easter Bunny Amigurumi Pattern, Free Crochet Guide',
     description:
       'Free Easter bunny amigurumi crochet pattern with step-by-step instructions, hook size guide, and yarn calculator tips. Make your bunny in one afternoon.',
     robots: { index: true, follow: true, googleBot: { 'max-snippet': -1 } },
@@ -26,7 +26,7 @@ export default async function Page({ params }: { params: Params }) {
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    headline: 'Easter Bunny Amigurumi Pattern — Free Crochet Guide',
+    headline: 'Easter Bunny Amigurumi Pattern, Free Crochet Guide',
     description:
       'Free Easter bunny amigurumi crochet pattern with hook size guide and yarn calculator tips.',
     datePublished: '2026-03-28',
@@ -45,7 +45,7 @@ export default async function Page({ params }: { params: Params }) {
         name: 'What hook size do I use for amigurumi?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'For worsted weight (CYC 4) yarn, use a G/6 (4.0 mm) hook — one to two sizes smaller than the yarn label recommends. The tighter fabric prevents stuffing from showing through stitch gaps. For DK weight (CYC 3), use an E/4 (3.5 mm) hook.',
+          text: 'For worsted weight (CYC 4) yarn, use a G/6 (4.0 mm) hook, one to two sizes smaller than the yarn label recommends. The tighter fabric prevents stuffing from showing through stitch gaps. For DK weight (CYC 3), use an E/4 (3.5 mm) hook.',
         },
       },
       {
@@ -88,7 +88,7 @@ export default async function Page({ params }: { params: Params }) {
       <article className="prose mx-auto max-w-3xl px-4 py-8">
 
         <h1 className="text-3xl font-bold mb-2">
-          Easter Bunny Amigurumi Pattern — Free Crochet Guide
+          Easter Bunny Amigurumi Pattern, Free Crochet Guide
         </h1>
         <p className="text-sm text-gray-400 mb-2">Last updated: April 16, 2026</p>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 mb-6">
@@ -108,9 +108,9 @@ export default async function Page({ params }: { params: Params }) {
             {[
               ['#materials', 'Materials'],
               ['#abbreviations', 'Abbreviations'],
-              ['#body', 'Pattern — Body'],
-              ['#head', 'Pattern — Head'],
-              ['#ears', 'Pattern — Ears'],
+              ['#body', 'Pattern, Body'],
+              ['#head', 'Pattern, Head'],
+              ['#ears', 'Pattern, Ears'],
               ['#finishing', 'Finishing'],
               ['#gauge-notes', 'Hook Size and Gauge Notes'],
             ].map(([href, label]) => (
@@ -131,7 +131,7 @@ export default async function Page({ params }: { params: Params }) {
         {/* ANSWER BLOCK */}
         <p className="lead text-lg text-gray-700 bg-gray-50 border-l-4 border-indigo-400 pl-4 py-3 mb-8">
           This free Easter bunny amigurumi pattern uses worsted weight yarn (CYC 4) and a G/6 (4.0 mm)
-          hook — one size smaller than the label recommends, so the fabric is tight enough to hide
+          hook, one size smaller than the label recommends, so the fabric is tight enough to hide
           the stuffing. The bunny crochets in continuous spiral rounds with no seams on the body.
           Estimated yarn: 60&ndash;80 yards main color, 15 yards accent.
         </p>
@@ -151,8 +151,8 @@ export default async function Page({ params }: { params: Params }) {
         </p>
 
         <ul className="list-disc ml-6 space-y-1 my-4 text-gray-700">
-          <li>Worsted weight (CYC 4) yarn in white or cream — approx. 60–80 yards</li>
-          <li>Pink or light pink yarn — approx. 15 yards (inner ears, cheeks)</li>
+          <li>Worsted weight (CYC 4) yarn in white or cream, approx. 60–80 yards</li>
+          <li>Pink or light pink yarn, approx. 15 yards (inner ears, cheeks)</li>
           <li>G/6 (4.0 mm) crochet hook</li>
           <li>Polyester fiberfill stuffing</li>
           <li>Two 12mm black safety eyes (or embroidery floss for child-safe eyes)</li>
@@ -165,7 +165,7 @@ export default async function Page({ params }: { params: Params }) {
           <Link href="/yarn-calculator" className="text-indigo-600 hover:underline">
             FiberTools Yarn Calculator
           </Link>{' '}
-          to confirm yardage if you&apos;re using DK weight (CYC 3) instead — you&apos;ll need
+          to confirm yardage if you&apos;re using DK weight (CYC 3) instead, you&apos;ll need
           slightly less yarn but should drop to an E/4 (3.5 mm) hook to keep the fabric tight.
         </p>
 
@@ -207,7 +207,7 @@ export default async function Page({ params }: { params: Params }) {
           </table>
         </div>
 
-        <h2 id="body" className="text-2xl font-semibold mt-10 mb-4">Pattern — Body</h2>
+        <h2 id="body" className="text-2xl font-semibold mt-10 mb-4">Pattern, Body</h2>
 
         <p>
           Work in continuous spiral rounds. Place a stitch marker in the first stitch of each round
@@ -215,7 +215,7 @@ export default async function Page({ params }: { params: Params }) {
           <Link href="/stitch-counter" className="text-indigo-600 hover:underline">
             FiberTools Stitch Counter
           </Link>{' '}
-          to track your stitch count — amigurumi rounds are easy to lose count in.
+          to track your stitch count, amigurumi rounds are easy to lose count in.
         </p>
 
         <div className="bg-gray-50 rounded-lg p-4 my-6 font-mono text-sm space-y-1">
@@ -225,7 +225,7 @@ export default async function Page({ params }: { params: Params }) {
           <p><strong>Round 4:</strong> *sc 2, inc* repeat 6 times. (24 sts)</p>
           <p><strong>Round 5:</strong> *sc 3, inc* repeat 6 times. (30 sts)</p>
           <p><strong>Round 6:</strong> *sc 4, inc* repeat 6 times. (36 sts)</p>
-          <p><strong>Rounds 7–12:</strong> sc in each st around. (36 sts) — 6 rounds even</p>
+          <p><strong>Rounds 7–12:</strong> sc in each st around. (36 sts), 6 rounds even</p>
           <p><strong>Round 13:</strong> *sc 4, dec* repeat 6 times. (30 sts)</p>
           <p><strong>Round 14:</strong> *sc 3, dec* repeat 6 times. (24 sts)</p>
           <p className="text-gray-500">→ Insert safety eyes between rounds 9 and 10, approx. 8 sts apart. Begin stuffing firmly.</p>
@@ -235,7 +235,7 @@ export default async function Page({ params }: { params: Params }) {
           <p className="text-gray-500">→ Finish stuffing. Fasten off, leave a 6-inch tail. Close opening with yarn needle.</p>
         </div>
 
-        <h2 id="head" className="text-2xl font-semibold mt-10 mb-4">Pattern — Head</h2>
+        <h2 id="head" className="text-2xl font-semibold mt-10 mb-4">Pattern, Head</h2>
 
         <div className="bg-gray-50 rounded-lg p-4 my-6 font-mono text-sm space-y-1">
           <p><strong>Round 1:</strong> MR, 6 sc. (6 sts)</p>
@@ -252,7 +252,7 @@ export default async function Page({ params }: { params: Params }) {
           <p className="text-gray-500">→ Close and attach head to body with yarn needle.</p>
         </div>
 
-        <h2 id="ears" className="text-2xl font-semibold mt-10 mb-4">Pattern — Ears (make 2)</h2>
+        <h2 id="ears" className="text-2xl font-semibold mt-10 mb-4">Pattern, Ears (make 2)</h2>
 
         <p>
           Make the outer ear in main color, the inner ear in pink. Hold them together and sc around
@@ -264,7 +264,7 @@ export default async function Page({ params }: { params: Params }) {
           <p className="text-gray-500">Outer ear (main color):</p>
           <p><strong>Round 1:</strong> MR, 4 sc. (4)</p>
           <p><strong>Round 2:</strong> inc, sc 2, inc. (6)</p>
-          <p><strong>Rounds 3–8:</strong> sc around. (6) — 6 rows even</p>
+          <p><strong>Rounds 3–8:</strong> sc around. (6), 6 rows even</p>
           <p className="text-gray-500">Fasten off. Do not stuff.</p>
           <p className="text-gray-500 mt-2">Inner ear (pink): Work outer ear pattern through Round 5 only. Sew onto outer ear.</p>
         </div>
@@ -307,12 +307,12 @@ export default async function Page({ params }: { params: Params }) {
           <p className="text-xs font-semibold uppercase tracking-wider text-indigo-600 mb-4">Key Takeaways</p>
           <ul className="space-y-2">
             {[
-              'Use a G/6 (4.0 mm) hook with worsted weight (CYC 4) — one to two sizes smaller than the yarn label recommends — for a dense, stuffing-hiding fabric.',
+              'Use a G/6 (4.0 mm) hook with worsted weight (CYC 4), one to two sizes smaller than the yarn label recommends, for a dense, stuffing-hiding fabric.',
               'Work in continuous spiral rounds; always place a stitch marker in the first stitch of each round to track your position.',
-              'Insert safety eyes before closing the head (between rounds 7–8) — impossible to add once the opening is sewn shut.',
+              'Insert safety eyes before closing the head (between rounds 7–8), impossible to add once the opening is sewn shut.',
               'Stuff firmly but not so tight that the fabric stretches or gaps appear; add polypellets in a small bag for a weighted base.',
               'For child-safe bunnies, embroider eyes with black yarn or floss instead of safety eyes (choking hazard for under-3).',
-              'Gauge is not critical for fit — but fabric density is: no gaps between stitches when gently stretched.',
+              'Gauge is not critical for fit, but fabric density is: no gaps between stitches when gently stretched.',
             ].map((item, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-indigo-800">
                 <span className="text-indigo-400 font-bold flex-shrink-0 mt-0.5">&#10003;</span>
@@ -351,7 +351,7 @@ export default async function Page({ params }: { params: Params }) {
               <span className="text-sm font-semibold text-gray-700 group-hover:text-indigo-600 transition-colors">Can I make amigurumi without safety eyes?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-gray-400 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-gray-600 leading-relaxed">Yes — embroider eyes with black yarn or floss for items intended for young children. Satin stitch two small ovals before closing the head. Safety eyes are a choking hazard for children under 3.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-gray-600 leading-relaxed">Yes, embroider eyes with black yarn or floss for items intended for young children. Satin stitch two small ovals before closing the head. Safety eyes are a choking hazard for children under 3.</p></div>
           </details>
         </div>
 
@@ -359,7 +359,7 @@ export default async function Page({ params }: { params: Params }) {
         <div className="bg-indigo-50 border border-indigo-200 rounded-2xl p-6 mt-10 text-center">
           <p className="text-lg font-semibold text-indigo-800 mb-2">Plan your amigurumi project</p>
           <p className="text-sm text-indigo-700 mb-4">
-            Use the free Amigurumi Shape Calculator to size your bunny up or down — generates round-by-round stitch counts for any target size.
+            Use the free Amigurumi Shape Calculator to size your bunny up or down, generates round-by-round stitch counts for any target size.
           </p>
           <a href="/amigurumi-shapes" className="inline-block bg-indigo-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-indigo-700 transition-colors">
             Open Amigurumi Calculator &rarr;

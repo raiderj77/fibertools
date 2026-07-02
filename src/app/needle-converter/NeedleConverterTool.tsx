@@ -178,7 +178,7 @@ export default function NeedleConverterTool() {
       {/* Tip */}
       <p className="text-sm text-bark-400 dark:text-bark-500">
         {tab === "needles"
-          ? 'Type any size — metric, US number, UK, or Japanese — to find all equivalents. Try "8" or "5mm".'
+          ? 'Type any size, metric, US number, UK, or Japanese, to find all equivalents. Try "8" or "5mm".'
           : 'Type a letter, number, or mm size. Try "H", "6mm", or "worsted".'}
       </p>
 
@@ -198,7 +198,7 @@ export default function NeedleConverterTool() {
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     UK (old)
-                    <Tooltip text="Old British sizing system. Still found in vintage patterns. Runs opposite to metric — smaller number = bigger needle." />
+                    <Tooltip text="Old British sizing system. Still found in vintage patterns. Runs opposite to metric, smaller number = bigger needle." />
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     Japanese
@@ -206,7 +206,7 @@ export default function NeedleConverterTool() {
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     Yarn Weight
-                    <Tooltip text="Approximate. Manufacturers vary — specialty yarns may need a very different size than their weight suggests." />
+                    <Tooltip text="Approximate. Manufacturers vary, specialty yarns may need a very different size than their weight suggests." />
                     <Tooltip text="Yarn weights are approximate. Manufacturers vary, and some specialty yarns (like eyelash or boucle) may recommend a very different hook/needle size than their weight category suggests." />
                   </th>
                   <th className="text-center py-3 px-3 font-semibold text-bark-700 dark:text-cream-200 hidden sm:table-cell">
@@ -268,11 +268,11 @@ export default function NeedleConverterTool() {
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     UK / Canadian
-                    <Tooltip text="UK and Canadian hook sizes. Runs opposite — smaller number = bigger hook." />
+                    <Tooltip text="UK and Canadian hook sizes. Runs opposite, smaller number = bigger hook." />
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     Yarn Weight
-                    <Tooltip text="Approximate. Manufacturers vary — specialty yarns may need a very different size than their weight suggests." />
+                    <Tooltip text="Approximate. Manufacturers vary, specialty yarns may need a very different size than their weight suggests." />
                     <Tooltip text="Yarn weights are approximate. Manufacturers vary, and some specialty yarns (like eyelash or boucle) may recommend a very different hook/needle size than their weight category suggests." />
                   </th>
                   <th className="text-center py-3 px-3 font-semibold text-bark-700 dark:text-cream-200 hidden sm:table-cell">
@@ -342,16 +342,16 @@ export default function NeedleConverterTool() {
         </h3>
         <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
           <li>
-            <strong>Metric (mm)</strong> is the universal standard — when in doubt, go by mm.
+            <strong>Metric (mm)</strong> is the universal standard, when in doubt, go by mm.
           </li>
           <li>
-            <strong>UK old sizes</strong> run backwards — UK 14 is tiny (2mm), UK 000 is huge (10mm).
+            <strong>UK old sizes</strong> run backwards, UK 14 is tiny (2mm), UK 000 is huge (10mm).
           </li>
           <li>
             <strong>Japanese sizes</strong> start at 0 (2mm) and go up. Common in Japanese knitting books.
           </li>
           <li>
-            Crochet hooks use <strong>both letters and numbers</strong> in the US — patterns may use either.
+            Crochet hooks use <strong>both letters and numbers</strong> in the US, patterns may use either.
           </li>
         </ul>
       </div>

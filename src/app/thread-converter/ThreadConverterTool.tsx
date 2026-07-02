@@ -332,8 +332,8 @@ export default function ThreadConverterTool() {
                         )}
                       </td>
                       <td className="py-2 px-3 font-mono font-bold">{r.input}</td>
-                      <td className="py-2 px-3 font-mono">{r.match?.anchor || "—"}</td>
-                      <td className="py-2 px-3 font-mono">{r.match?.cosmo || "—"}</td>
+                      <td className="py-2 px-3 font-mono">{r.match?.anchor || ", "}</td>
+                      <td className="py-2 px-3 font-mono">{r.match?.cosmo || ", "}</td>
                       <td className="py-2 px-3 text-bark-500 dark:text-bark-400">
                         {r.match?.name || "Not found"}
                       </td>

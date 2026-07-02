@@ -408,7 +408,7 @@ export default function YarnCalculatorTool() {
           <div>
             <label className="label">
               Yarn Weight
-              <Tooltip text="The thickness of your yarn. Check the label — it's usually printed as a number 0–7 or a name like 'Worsted'." />
+              <Tooltip text="The thickness of your yarn. Check the label, it's usually printed as a number 0–7 or a name like 'Worsted'." />
             </label>
             <select
               value={yarnWeight}
@@ -539,7 +539,7 @@ export default function YarnCalculatorTool() {
             </div>
           </div>
 
-          {/* Results — wrapped in StickyResult for mobile */}
+          {/* Results, wrapped in StickyResult for mobile */}
           <StickyResult summary={stickySummary} visible={!!result}>
             {result && (
               <div className="result-card space-y-4">
@@ -596,7 +596,7 @@ export default function YarnCalculatorTool() {
                       <button
                         type="button"
                         onClick={() => {
-                          const text = `Yarn estimate: ${result.yardsWithBuffer} yards (${result.meters} m) / ${result.skeins} skeins / ${result.grams}g — ${yw.label}, ${sp.label}`;
+                          const text = `Yarn estimate: ${result.yardsWithBuffer} yards (${result.meters} m) / ${result.skeins} skeins / ${result.grams}g, ${yw.label}, ${sp.label}`;
                           navigator.clipboard.writeText(text);
                         }}
                         className="btn-secondary text-sm"
@@ -624,7 +624,7 @@ export default function YarnCalculatorTool() {
                       🔓 Unlock your full breakdown
                     </p>
                     <p className="text-xs text-bark-500 dark:text-bark-400">
-                      See exact skein count, total weight, and bufferless yardage — free with the FiberTools newsletter.
+                      See exact skein count, total weight, and bufferless yardage, free with the FiberTools newsletter.
                     </p>
                     <div className="flex gap-2">
                       <label htmlFor="gate-email" className="sr-only">Email address</label>
@@ -659,7 +659,7 @@ export default function YarnCalculatorTool() {
         </div>
       </div>
 
-      {/* Ravelry pattern suggestions — turns the result into a launchpad */}
+      {/* Ravelry pattern suggestions, turns the result into a launchpad */}
       <RavelryPatterns
         weight={yarnWeight}
         craft={sp.craft === "both" ? undefined : sp.craft}
@@ -667,7 +667,7 @@ export default function YarnCalculatorTool() {
         visible={!!result}
       />
 
-      {/* Amazon affiliate materials — monetize the result */}
+      {/* Amazon affiliate materials, monetize the result */}
       <FiberGear
         weight={yarnWeight}
         craft={sp.craft === "both" ? undefined : sp.craft}
@@ -683,8 +683,7 @@ export default function YarnCalculatorTool() {
         >
           <span>{showPartial ? "▾" : "▸"}</span>
           🧶 Leftover Yarn Calculator
-          <span className="text-xs text-bark-400 dark:text-bark-500 font-normal">
-            — weigh your partial skein to find remaining yardage
+          <span className="text-xs text-bark-400 dark:text-bark-500 font-normal">, weigh your partial skein to find remaining yardage
           </span>
         </button>
 

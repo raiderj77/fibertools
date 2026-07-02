@@ -108,7 +108,7 @@ export default function DoNotSellPage() {
               </a>
             </li>
             <li>
-              Enable Global Privacy Control (GPC) in your browser — we honor GPC
+              Enable Global Privacy Control (GPC) in your browser, we honor GPC
               as a valid opt-out request
             </li>
           </ul>
@@ -135,7 +135,7 @@ export default function DoNotSellPage() {
               information
             </li>
             <li>
-              <strong>Limit use of sensitive data</strong> — request we limit
+              <strong>Limit use of sensitive data</strong>, request we limit
               the use of any sensitive personal information (note: FiberTools
               does not collect sensitive personal information)
             </li>

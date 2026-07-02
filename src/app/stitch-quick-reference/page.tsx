@@ -3,7 +3,7 @@ import ToolLayout from "@/components/ToolLayout";
 import StitchQuickReferenceTool from "./StitchQuickReferenceTool";
 
 export const metadata: Metadata = {
-  title: "Stitch Quick Reference — Crochet & Knitting",
+  title: "Stitch Quick Reference, Crochet & Knitting",
   description:
     "Visual step-by-step guide for every basic crochet and knitting stitch. Yarn overs, pull-throughs, turning chains, and loop counts at a glance. Free.",
   keywords: [
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
     "crochet stitches for beginners",
   ],
   openGraph: {
-    title: "Stitch Quick Reference — Crochet & Knitting",
+    title: "Stitch Quick Reference, Crochet & Knitting",
     description:
       "Visual step-by-step guide for every basic crochet and knitting stitch. Yarn overs, pull-throughs, turning chains, and loop counts at a glance. Free.",
     url: "https://fibertools.app/stitch-quick-reference",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Stitch Quick Reference — Crochet & Knitting" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Stitch Quick Reference, Crochet & Knitting" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stitch Quick Reference — Crochet & Knitting",
+    title: "Stitch Quick Reference, Crochet & Knitting",
     description:
       "Visual step-by-step guide for every basic crochet and knitting stitch. Yarn overs, pull-throughs, turning chains, and loop counts at a glance. Free.",
     images: ["https://fibertools.app/og-image.png"],

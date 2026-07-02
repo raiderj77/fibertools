@@ -6,7 +6,7 @@ import StitchCounterTool from "./StitchCounterTool";
 export const metadata: Metadata = {
   title: "Free Stitch & Row Counter for Knitting Online",
   description:
-    "Free online row counter for knitting and crochet. Track stitches, rows, and repeats with undo/redo. Works offline — no login required.",
+    "Free online row counter for knitting and crochet. Track stitches, rows, and repeats with undo/redo. Works offline, no login required.",
   keywords: [
     "stitch counter online",
     "row counter online",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free Stitch & Row Counter for Knitting Online",
     description:
-      "Free online row counter for knitting and crochet. Track stitches, rows, and repeats with undo/redo. Works offline — no login required.",
+      "Free online row counter for knitting and crochet. Track stitches, rows, and repeats with undo/redo. Works offline, no login required.",
     url: "https://fibertools.app/stitch-counter",
     images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Free Stitch & Row Counter for Knitting Online" }],
   },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Stitch & Row Counter for Knitting Online",
     description:
-      "Free online row counter for knitting and crochet. Track stitches, rows, and repeats with undo/redo. Works offline — no login required.",
+      "Free online row counter for knitting and crochet. Track stitches, rows, and repeats with undo/redo. Works offline, no login required.",
     images: ["https://fibertools.app/og-image.png"],
   },
   robots: { index: false, follow: true },
@@ -48,7 +48,7 @@ export default function StitchCounterPage() {
       <AnswerBlock
         what="A free online stitch and row counter for knitting and crochet with undo/redo, multiple counters, and offline support."
         who="Knitters and crocheters who need a digital tally counter to track stitches, rows, and pattern repeats while working."
-        bottomLine="Tap to count stitches and rows — your progress saves automatically and works without an internet connection."
+        bottomLine="Tap to count stitches and rows, your progress saves automatically and works without an internet connection."
         lastUpdated="2026-03-16"
       />
       <div className="sr-only">

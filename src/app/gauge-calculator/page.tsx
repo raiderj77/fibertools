@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import GaugeCalculatorTool from "./GaugeCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Knitting Gauge Calculator — Stitches Per Inch",
+  title: "Knitting Gauge Calculator, Stitches Per Inch",
   description:
     "Enter your swatch measurements and get stitches per inch, row gauge, and resized stitch counts instantly. Free knitting and crochet gauge tool.",
   keywords: [
@@ -33,7 +33,7 @@ export default function GaugeCalculatorPage() {
     <ToolLayout slug="gauge-calculator" widgetFirst>
       <AnswerBlock
         what="A gauge calculator that converts your swatch measurements into stitches and rows per inch, then resizes pattern stitch counts to match your actual gauge."
-        who="Knitters and crocheters who need to check whether their swatch matches a pattern's gauge — or resize a pattern for a different yarn weight."
+        who="Knitters and crocheters who need to check whether their swatch matches a pattern's gauge, or resize a pattern for a different yarn weight."
         bottomLine="Measure your swatch, enter the numbers, and get your exact gauge plus adjusted stitch counts so your finished project comes out the right size."
         lastUpdated="2026-03-16"
       />

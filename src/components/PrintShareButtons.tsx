@@ -15,13 +15,13 @@ export default function PrintShareButtons({ toolName }: PrintShareButtonsProps) 
 
   const handleShare = async () => {
     const url = window.location.href;
-    const title = `${toolName} — FiberTools`;
+    const title = `${toolName}, FiberTools`;
 
     if (navigator.share) {
       try {
         await navigator.share({ title, url });
       } catch {
-        // User cancelled or share failed — fall back to copy
+        // User cancelled or share failed, fall back to copy
         await copyToClipboard(url);
       }
     } else {

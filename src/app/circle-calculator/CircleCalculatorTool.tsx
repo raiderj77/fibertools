@@ -189,8 +189,8 @@ export default function CircleCalculatorTool() {
           Tips for flat circles
         </p>
         <p className="text-sm text-bark-500 dark:text-bark-400">
-          If your circle cups or bowls, you need more increases — try going up one hook size. If it
-          ruffles or waves, you have too many increases — go down a hook size. This pattern staggers
+          If your circle cups or bowls, you need more increases, try going up one hook size. If it
+          ruffles or waves, you have too many increases, go down a hook size. This pattern staggers
           increases automatically to avoid visible lines that create a hexagonal shape.
         </p>
       </div>

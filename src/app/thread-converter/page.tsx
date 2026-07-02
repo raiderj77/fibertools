@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import ThreadConverterTool from "./ThreadConverterTool";
 
 export const metadata: Metadata = {
-  title: "Embroidery Thread Converter — DMC & Anchor",
+  title: "Embroidery Thread Converter, DMC & Anchor",
   description:
     "Convert between DMC, Anchor, and Cosmo embroidery thread numbers instantly. Build palettes and bulk-convert for cross stitch shopping lists. Free.",
   keywords: [
@@ -15,15 +15,15 @@ export const metadata: Metadata = {
     "DMC anchor cosmo chart",
   ],
   openGraph: {
-    title: "Embroidery Thread Converter — DMC & Anchor",
+    title: "Embroidery Thread Converter, DMC & Anchor",
     description:
       "Convert between DMC, Anchor, and Cosmo embroidery thread numbers instantly. Build palettes and bulk-convert for cross stitch shopping lists. Free.",
     url: "https://fibertools.app/thread-converter",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Embroidery Thread Converter — DMC & Anchor" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Embroidery Thread Converter, DMC & Anchor" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Embroidery Thread Converter — DMC & Anchor",
+    title: "Embroidery Thread Converter, DMC & Anchor",
     description:
       "Convert between DMC, Anchor, and Cosmo embroidery thread numbers instantly. Build palettes and bulk-convert for cross stitch shopping lists. Free.",
     images: ["https://fibertools.app/og-image.png"],

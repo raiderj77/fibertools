@@ -411,9 +411,9 @@ export default function StitchCounterTool() {
           💡 Tips
         </h3>
         <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
-          <li><strong>Your counts auto-save</strong> — close the tab, come back later, they&apos;ll still be here.</li>
+          <li><strong>Your counts auto-save</strong>, close the tab, come back later, they&apos;ll still be here.</li>
           <li><strong>Tap the counter name</strong> to rename it (e.g., &ldquo;Cable repeats&rdquo;, &ldquo;Sleeve rows&rdquo;).</li>
-          <li><strong>Row reminders</strong> pop up when you reach a specific row — great for decrease schedules or color changes.</li>
+          <li><strong>Row reminders</strong> pop up when you reach a specific row, great for decrease schedules or color changes.</li>
           <li><strong>Fullscreen mode</strong> hides browser chrome so you can count without distractions.</li>
         </ul>
       </div>

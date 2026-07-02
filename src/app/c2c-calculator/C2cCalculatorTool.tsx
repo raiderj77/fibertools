@@ -178,7 +178,7 @@ export default function C2cCalculatorTool() {
           </div>
           <div>
             <label className="label text-xs">
-              Yarn per block (in) — optional
+              Yarn per block (in), optional
               <Tooltip text="Measure how many inches of yarn one C2C block uses. Unravel a block and measure the strand." />
             </label>
             <input
@@ -352,7 +352,7 @@ export default function C2cCalculatorTool() {
           </li>
           <li>
             <strong>C2C blocks are not always square.</strong> Measure both width
-            and height separately — they often differ.
+            and height separately, they often differ.
           </li>
           <li>
             <strong>The diagonal grows fast,</strong> then shrinks. The widest

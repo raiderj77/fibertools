@@ -50,7 +50,7 @@ export const metadata: Metadata = {
         url: "https://fibertools.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Free Crochet Calculators & Tools — FiberTools",
+        alt: "Free Crochet Calculators & Tools, FiberTools",
       },
     ],
   },
@@ -156,14 +156,13 @@ export default function CrochetToolsPage() {
           <p className="text-lg leading-relaxed">
             Every crochet project starts with numbers: how much yarn to buy, what hook size to use,
             how many chains to start, how many rounds to increase before a flat circle becomes a sphere.
-            These calculations are straightforward in principle but tedious to do by hand — especially
+            These calculations are straightforward in principle but tedious to do by hand, especially
             mid-project when your gauge turns out different from the pattern&rsquo;s assumption.
           </p>
           <p className="leading-relaxed">
             FiberTools crochet calculators are built on established Craft Yarn Council (CYC) standards
             and cross-referenced against published industry measurements. The yarn yardage calculator
-            uses your actual gauge swatch data — stitches per inch, rows per inch, and skein yardage —
-            so every estimate reflects your real tension rather than a generic chart number. The gauge
+            uses your actual gauge swatch data, stitches per inch, rows per inch, and skein yardage, so every estimate reflects your real tension rather than a generic chart number. The gauge
             calculator works bidirectionally: give it your swatch measurement and your target stitch
             count, and it tells you exactly what hook size adjustment to make. Blanket sizes use
             standard dimensions from baby (30&times;36&rdquo;) through queen (60&times;80&rdquo;) with
@@ -194,7 +193,7 @@ export default function CrochetToolsPage() {
           </h2>
         </div>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-6 max-w-2xl">
-          Yarn estimation, gauge calculation, hook size conversion, and stitch references — the tools you reach for on every project.
+          Yarn estimation, gauge calculation, hook size conversion, and stitch references, the tools you reach for on every project.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {referenceTools.map((tool) => (

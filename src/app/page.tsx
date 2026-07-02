@@ -42,7 +42,7 @@ export default function HomePage() {
   const webApplicationSchema = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    name: "FiberTools — Free Fiber Arts Calculators",
+    name: "FiberTools, Free Fiber Arts Calculators",
     url: "https://fibertools.app",
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
@@ -101,7 +101,7 @@ export default function HomePage() {
         name: "How do I calculate gauge for a knitting or crochet pattern?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Knit or crochet a 6-inch swatch in your chosen stitch pattern, then count the stitches and rows within a 4-inch section. Enter those numbers into the gauge calculator to see if your tension matches the pattern. Adjust needle or hook size if your gauge is off — too many stitches means go up a size, too few means go down.",
+          text: "Knit or crochet a 6-inch swatch in your chosen stitch pattern, then count the stitches and rows within a 4-inch section. Enter those numbers into the gauge calculator to see if your tension matches the pattern. Adjust needle or hook size if your gauge is off, too many stitches means go up a size, too few means go down.",
         },
       },
       {
@@ -117,7 +117,7 @@ export default function HomePage() {
         name: "How do I substitute yarn in a knitting pattern?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Match the yarn weight category first, then check that your gauge swatch with the substitute yarn matches the pattern gauge. Weight alone is not enough — fiber content affects drape and stitch definition, so swatch before committing to a full project. FiberTools calculators help you verify gauge and yardage requirements for substitutions.",
+          text: "Match the yarn weight category first, then check that your gauge swatch with the substitute yarn matches the pattern gauge. Weight alone is not enough, fiber content affects drape and stitch definition, so swatch before committing to a full project. FiberTools calculators help you verify gauge and yardage requirements for substitutions.",
         },
       },
       {
@@ -133,7 +133,7 @@ export default function HomePage() {
         name: "How do I read a crochet pattern as a beginner?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Start by identifying whether the pattern uses US or UK crochet terminology — they use the same words for different stitches. Then read through the entire pattern before you start, noting the yarn weight, hook size, gauge, finished measurements, and abbreviations used. Work the pattern in sections, checking your stitch count at the end of each row or round against the pattern's count.",
+          text: "Start by identifying whether the pattern uses US or UK crochet terminology, they use the same words for different stitches. Then read through the entire pattern before you start, noting the yarn weight, hook size, gauge, finished measurements, and abbreviations used. Work the pattern in sections, checking your stitch count at the end of each row or round against the pattern's count.",
         },
       },
       {
@@ -183,7 +183,7 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-plum-100 border border-plum-200 rounded-full text-sm text-plum-600 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-plum-500 animate-pulse" />
-              {tools.filter((t) => t.ready).length} free tools — no login required
+              {tools.filter((t) => t.ready).length} free tools, no login required
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display text-bark-800 leading-[1.1] tracking-tight">
               Free tools for
@@ -191,7 +191,7 @@ export default function HomePage() {
             </h1>
             <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: April 16, 2026</p>
             <p className="mt-6 text-lg sm:text-xl text-bark-500 max-w-xl leading-relaxed">
-              Yarn calculators, needle converters, gauge tools, and more — for
+              Yarn calculators, needle converters, gauge tools, and more, for
               knitting, crochet, weaving, spinning, and embroidery. No login. No
               ads wall. Works offline.
             </p>
@@ -314,7 +314,7 @@ export default function HomePage() {
             Get the free Yarn Crafters Survival Kit
           </h2>
           <p className="text-bark-500 dark:text-bark-400 text-sm mb-6 max-w-md mx-auto">
-            Yarn weight, gauge math, and needle sizing in one quick-reference guide. Free — delivered by email.
+            Yarn weight, gauge math, and needle sizing in one quick-reference guide. Free, delivered by email.
           </p>
           <BeehiivSignup />
         </div>
@@ -376,7 +376,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-1">
             Fiber Arts Fundamentals
           </h2>
-          <p className="text-sm text-bark-400 dark:text-bark-500 mb-8">Reference answers for knitting, crochet, weaving, and yarn selection — built by a working maker who got tired of switching between five different calculators</p>
+          <p className="text-sm text-bark-400 dark:text-bark-500 mb-8">Reference answers for knitting, crochet, weaving, and yarn selection, built by a working maker who got tired of switching between five different calculators</p>
         </div>
 
         <div>
@@ -384,7 +384,7 @@ export default function HomePage() {
             How do fiber arts calculators work?
           </h2>
           <p className="text-base font-medium text-bark-700 dark:text-cream-200 mb-3">
-            Enter your gauge swatch measurements, yarn weight, or pattern details — the calculator applies standard fiber arts formulas to give you instant, accurate results.
+            Enter your gauge swatch measurements, yarn weight, or pattern details, the calculator applies standard fiber arts formulas to give you instant, accurate results.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
             FiberTools calculators use CYC yarn weight standards, gauge mathematics, and pattern conversion formulas validated against industry references. Each tool processes your inputs entirely in the browser, so results are instant and your data never leaves your device.
@@ -393,7 +393,7 @@ export default function HomePage() {
             Whether you are scaling a pattern to a different size, converting between US and metric needle sizes, or estimating yardage for a substitution, the underlying formulas account for stitch ratio, row gauge, and fiber-specific variables.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
-            Over 45 million Americans knit or crochet, according to the Craft Yarn Council&apos;s annual survey, generating more than $3 billion in annual craft supply sales — and accurate calculations are what separates a finished project from a frogged one.
+            Over 45 million Americans knit or crochet, according to the Craft Yarn Council&apos;s annual survey, generating more than $3 billion in annual craft supply sales, and accurate calculations are what separates a finished project from a frogged one.
           </p>
         </div>
 
@@ -405,7 +405,7 @@ export default function HomePage() {
             Gauge determines the final size of your project. Even one stitch per inch off gauge can make a garment several sizes too large or too small over 200 rows.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
-            Gauge varies by knitter tension, needle material, yarn fiber content, and stitch pattern — two crafters using the same yarn and hook size can produce swatches that differ by a full stitch per inch. This is why pattern designers specify gauge over a 4-inch swatch, not just a single repeat.
+            Gauge varies by knitter tension, needle material, yarn fiber content, and stitch pattern, two crafters using the same yarn and hook size can produce swatches that differ by a full stitch per inch. This is why pattern designers specify gauge over a 4-inch swatch, not just a single repeat.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
             Gauge swatching reduces project failure rates by over 60% among intermediate and advanced crafters, making it the single most impactful pre-project step for fitted items.
@@ -438,7 +438,7 @@ export default function HomePage() {
             Knitting uses needle sizes in US numbers (1–50) or metric millimeters. Crochet uses hook sizes in US letters (B/1 through S/35) or metric millimeters, which is the most universal sizing system.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
-            Metric millimeter sizing is recommended for precision since US letter and number systems vary by manufacturer — a US size G hook from one brand may measure 4.0mm while another measures 4.25mm. Patterns that specify metric sizes are unambiguous and easier to match when substituting tools.
+            Metric millimeter sizing is recommended for precision since US letter and number systems vary by manufacturer, a US size G hook from one brand may measure 4.0mm while another measures 4.25mm. Patterns that specify metric sizes are unambiguous and easier to match when substituting tools.
           </p>
         </div>
 
@@ -456,8 +456,7 @@ export default function HomePage() {
                 className="text-plum-500 underline hover:text-plum-600"
               >
                 Craft Yarn Council yarn weight standards
-              </a>{" "}
-              — Official CYC weight classifications and gauge ranges.
+              </a>{" "}, Official CYC weight classifications and gauge ranges.
             </li>
             <li>
               <a
@@ -467,8 +466,7 @@ export default function HomePage() {
                 className="text-plum-500 underline hover:text-plum-600"
               >
                 Ravelry gauge and needle size guide
-              </a>{" "}
-              — Community reference for gauge, needle sizing, and yarn substitution.
+              </a>{" "}, Community reference for gauge, needle sizing, and yarn substitution.
             </li>
             <li>
               <a
@@ -478,8 +476,7 @@ export default function HomePage() {
                 className="text-plum-500 underline hover:text-plum-600"
               >
                 Craft Yarn Council tension and gauge guidelines
-              </a>{" "}
-              — Step-by-step guidance for swatching and measuring gauge accurately.
+              </a>{" "}, Step-by-step guidance for swatching and measuring gauge accurately.
             </li>
           </ul>
         </div>
@@ -492,16 +489,16 @@ export default function HomePage() {
           About FiberTools
         </h2>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
-          FiberTools is a free collection of calculators and references built by fiber artists, for fiber artists. Every tool on this site was designed to solve a real problem we faced in our own craft practice — from buying the wrong amount of yarn, to struggling with UK-to-US pattern conversions, to losing track of rows mid-project at 2am.
+          FiberTools is a free collection of calculators and references built by fiber artists, for fiber artists. Every tool on this site was designed to solve a real problem we faced in our own craft practice, from buying the wrong amount of yarn, to struggling with UK-to-US pattern conversions, to losing track of rows mid-project at 2am.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
           Our tools are grounded in industry standards. Yarn weight classifications follow the Craft Yarn Council CYC system. Needle and hook sizing follows US, metric, and UK conventions. Gauge formulas are derived from standard knitting and crochet mathematics, not approximations. FiberTools was built by Jason Ramirez, who got tired of fragmented fiber arts tools and built one that does everything.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
-          Everything on FiberTools is free and always will be. No login. No subscription. No paywall for the next calculator tab. We believe tools that make craft more accessible should be available to everyone — whether you are a beginner knitting your first scarf or an experienced designer working on a complex colorwork sweater.
+          Everything on FiberTools is free and always will be. No login. No subscription. No paywall for the next calculator tab. We believe tools that make craft more accessible should be available to everyone, whether you are a beginner knitting your first scarf or an experienced designer working on a complex colorwork sweater.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed">
-          All calculations happen in your browser. We do not store your inputs, sell your data, or require an account. Use FiberTools at the yarn shop, at a craft fair, or on the couch — it works offline once loaded.
+          All calculations happen in your browser. We do not store your inputs, sell your data, or require an account. Use FiberTools at the yarn shop, at a craft fair, or on the couch, it works offline once loaded.
         </p>
       </section>
 
@@ -518,7 +515,7 @@ export default function HomePage() {
             },
             {
               q: "How do I calculate gauge for a knitting or crochet pattern?",
-              a: "Knit or crochet a 6-inch swatch in your chosen stitch pattern, then count the stitches and rows within a 4-inch section. Enter those numbers into the gauge calculator to see if your tension matches the pattern. Adjust needle or hook size if your gauge is off — too many stitches means go up a size, too few means go down.",
+              a: "Knit or crochet a 6-inch swatch in your chosen stitch pattern, then count the stitches and rows within a 4-inch section. Enter those numbers into the gauge calculator to see if your tension matches the pattern. Adjust needle or hook size if your gauge is off, too many stitches means go up a size, too few means go down.",
             },
             {
               q: "What is the difference between US and UK crochet terminology?",
@@ -526,7 +523,7 @@ export default function HomePage() {
             },
             {
               q: "How do I substitute yarn in a knitting pattern?",
-              a: "Match the yarn weight category first, then check that your gauge swatch with the substitute yarn matches the pattern gauge. Weight alone is not enough — fiber content affects drape and stitch definition, so swatch before committing to a full project. FiberTools calculators help you verify gauge and yardage requirements for substitutions.",
+              a: "Match the yarn weight category first, then check that your gauge swatch with the substitute yarn matches the pattern gauge. Weight alone is not enough, fiber content affects drape and stitch definition, so swatch before committing to a full project. FiberTools calculators help you verify gauge and yardage requirements for substitutions.",
             },
             {
               q: "What yarn weight should beginners start with?",
@@ -574,7 +571,7 @@ export default function HomePage() {
               {
                 icon: "📴",
                 title: "Works offline",
-                desc: "Use it at the yarn shop, on the couch, or at a craft fair — no signal needed.",
+                desc: "Use it at the yarn shop, on the couch, or at a craft fair, no signal needed.",
               },
               {
                 icon: "📱",

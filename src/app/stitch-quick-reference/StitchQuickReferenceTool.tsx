@@ -41,7 +41,7 @@ const STITCHES: StitchRef[] = [
     yarnOvers: 1,
     pullThrus: 1,
     totalSteps: 2,
-    tips: "Keep chains loose — tight chains make the foundation row hard to work into.",
+    tips: "Keep chains loose, tight chains make the foundation row hard to work into.",
     steps: [
       { action: "Yarn over", detail: "Wrap yarn over hook from back to front", loopsAfter: 2 },
       { action: "Pull through", detail: "Pull hook through the loop on hook. 1 chain made.", loopsAfter: 1 },
@@ -195,7 +195,7 @@ const STITCHES: StitchRef[] = [
     yarnOvers: 0,
     pullThrus: 0,
     totalSteps: 5,
-    tips: "The best way to start working in the round — closes completely with no hole in the center. Takes practice but worth learning.",
+    tips: "The best way to start working in the round, closes completely with no hole in the center. Takes practice but worth learning.",
     steps: [
       { action: "Form ring", detail: "Wrap yarn around index finger twice (or once) to create a loop", loopsAfter: 0 },
       { action: "Insert + pull up", detail: "Insert hook through the ring, yarn over, pull up a loop", loopsAfter: 1 },
@@ -228,7 +228,7 @@ const STITCHES: StitchRef[] = [
     yarnOvers: 1,
     pullThrus: 1,
     totalSteps: 5,
-    tips: "The reverse of knit — creates a bump on the facing side. Yarn must be in front. A row of purls on the back = a row of knits on the front (stockinette).",
+    tips: "The reverse of knit, creates a bump on the facing side. Yarn must be in front. A row of purls on the back = a row of knits on the front (stockinette).",
     steps: [
       { action: "Yarn to front", detail: "Bring working yarn to the FRONT of work (between the needles)", loopsAfter: 1 },
       { action: "Insert needle", detail: "Insert right needle into stitch from RIGHT to left (purlwise), back to front", loopsAfter: 1 },
@@ -291,7 +291,7 @@ const STITCHES: StitchRef[] = [
       { action: "Slip 2 to CN", detail: "Slip next 2 stitches onto cable needle. Hold cable needle at FRONT of work.", loopsAfter: 2 },
       { action: "Knit 2", detail: "Knit the next 2 stitches from left needle as normal", loopsAfter: 2 },
       { action: "Knit 2 from CN", detail: "Knit the 2 stitches from the cable needle", loopsAfter: 2 },
-      { action: "Done", detail: "4 stitches crossed — the first 2 now sit on top, crossing left.", loopsAfter: 0 },
+      { action: "Done", detail: "4 stitches crossed, the first 2 now sit on top, crossing left.", loopsAfter: 0 },
     ],
   },
 ];
@@ -622,7 +622,7 @@ export default function StitchQuickReferenceTool() {
                                 ? "2"
                                 : s.abbr === "DTR"
                                   ? "3"
-                                  : "—"}
+                                  : ", "}
                       </td>
                       <td className="py-2 px-3 text-center font-mono">
                         {s.abbr === "SC"
@@ -635,10 +635,10 @@ export default function StitchQuickReferenceTool() {
                                 ? "3"
                                 : s.abbr === "DTR"
                                   ? "4"
-                                  : "—"}
+                                  : ", "}
                       </td>
                       <td className="py-2 px-3 text-center font-mono font-bold text-sage-700 dark:text-sage-300">
-                        {s.turningChain ?? "—"}
+                        {s.turningChain ?? ", "}
                       </td>
                     </tr>
                   ))}

@@ -1,6 +1,6 @@
 "use client";
 
-// Amazon affiliate "materials for this project" — static curated search links.
+// Amazon affiliate "materials for this project", static curated search links.
 // ytearnings-20 (fibertools.app registered in the Associates account). Amazon
 // pays on any qualifying purchase within 24h of the click, so category search
 // links earn even when the buyer picks a different item.

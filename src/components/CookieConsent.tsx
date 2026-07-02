@@ -30,12 +30,12 @@ export default function CookieConsent() {
   useEffect(() => {
     const stored = localStorage.getItem("cookie_consent");
     if (!stored) {
-      // First visit — show banner after a short delay
+      // First visit, show banner after a short delay
       const timer = setTimeout(() => setVisible(true), 1000);
       return () => clearTimeout(timer);
     }
 
-    // Returning visitor — apply stored consent
+    // Returning visitor, apply stored consent
     try {
       const consent: ConsentState = JSON.parse(stored);
       updateGoogleConsent(consent.analytics, consent.ads);

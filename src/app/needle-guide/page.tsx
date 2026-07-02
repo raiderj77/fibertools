@@ -3,7 +3,7 @@ import ToolLayout from "@/components/ToolLayout";
 import NeedleGuideTool from "./NeedleGuideTool";
 
 export const metadata: Metadata = {
-  title: "Sewing Needle Types & Sizes — Free Guide",
+  title: "Sewing Needle Types & Sizes, Free Guide",
   description:
     "Visual guide to sewing needle types: tapestry, chenille, embroidery, sharps, beading, and more. Find the right needle instantly. Free.",
   keywords: [
@@ -24,15 +24,15 @@ export const metadata: Metadata = {
     "tapestry needle uses",
   ],
   openGraph: {
-    title: "Sewing Needle Types & Sizes — Free Guide",
+    title: "Sewing Needle Types & Sizes, Free Guide",
     description:
       "Visual guide to sewing needle types: tapestry, chenille, embroidery, sharps, beading, and more. Find the right needle instantly. Free.",
     url: "https://fibertools.app/needle-guide",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Sewing Needle Types & Sizes — Free Guide" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Sewing Needle Types & Sizes, Free Guide" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sewing Needle Types & Sizes — Free Guide",
+    title: "Sewing Needle Types & Sizes, Free Guide",
     description:
       "Visual guide to sewing needle types: tapestry, chenille, embroidery, sharps, beading, and more. Find the right needle instantly. Free.",
     images: ["https://fibertools.app/og-image.png"],

@@ -214,7 +214,7 @@ export default function ProjectCostCalculatorTool() {
 
             <div>
               <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">
-                Selling price ({sym}) — optional
+                Selling price ({sym}), optional
                 <Tooltip text="If you were to sell this item, what would you charge? We will calculate your effective hourly rate." />
               </label>
               <input type="number" value={sellingPrice} onChange={(e) => setSellingPrice(e.target.value)}

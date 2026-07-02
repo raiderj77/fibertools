@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: "https://fibertools.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Best Yarn for Beginners — FiberTools",
+        alt: "Best Yarn for Beginners, FiberTools",
       },
     ],
   },
@@ -73,7 +73,7 @@ export default function BestYarnForBeginnersPage() {
         name: "What is the best yarn weight for a beginner?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Medium weight (worsted, CYC 4) is best for beginners — it works up quickly, is easy to see, and most beginner patterns are written for it.",
+          text: "Medium weight (worsted, CYC 4) is best for beginners, it works up quickly, is easy to see, and most beginner patterns are written for it.",
         },
       },
       {
@@ -81,7 +81,7 @@ export default function BestYarnForBeginnersPage() {
         name: "Is acrylic yarn good for beginners?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Acrylic is the best choice for learning — it is affordable, machine washable, widely available, and consistent in texture. It forgives mistakes better than slippery or splitty fibers.",
+          text: "Yes. Acrylic is the best choice for learning, it is affordable, machine washable, widely available, and consistent in texture. It forgives mistakes better than slippery or splitty fibers.",
         },
       },
       {
@@ -89,7 +89,7 @@ export default function BestYarnForBeginnersPage() {
         name: "How much does beginner yarn cost?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Beginner-friendly acrylic yarn typically costs $3–$8 per skein. A small first project uses 1–2 skeins. Buy a small amount to start — you can always get more of the same yarn.",
+          text: "Beginner-friendly acrylic yarn typically costs $3–$8 per skein. A small first project uses 1–2 skeins. Buy a small amount to start, you can always get more of the same yarn.",
         },
       },
       {
@@ -144,7 +144,7 @@ export default function BestYarnForBeginnersPage() {
 
       {/* Answer capsule */}
       <p className="text-lg text-bark-600 dark:text-cream-300 leading-relaxed mb-2">
-        The best beginner yarn is a smooth, medium weight (worsted/CYC 4) acrylic in a light color. It is affordable, machine washable, easy to see your stitches in, and available at every craft store. Start with one skein of 200+ yards for your first project — a dishcloth or small scarf.
+        The best beginner yarn is a smooth, medium weight (worsted/CYC 4) acrylic in a light color. It is affordable, machine washable, easy to see your stitches in, and available at every craft store. Start with one skein of 200+ yards for your first project, a dishcloth or small scarf.
       </p>
 
       <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
@@ -160,7 +160,7 @@ export default function BestYarnForBeginnersPage() {
             What Makes a Good Beginner Yarn?
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            A good beginner yarn has a smooth texture so you can see each stitch clearly, medium thickness so it works up at a comfortable pace, and a light color that makes it easy to spot mistakes before they compound. Affordability matters too — you will frog (rip out) your first projects more than once.
+            A good beginner yarn has a smooth texture so you can see each stitch clearly, medium thickness so it works up at a comfortable pace, and a light color that makes it easy to spot mistakes before they compound. Affordability matters too, you will frog (rip out) your first projects more than once.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             <strong>Look for:</strong> smooth texture, Medium weight (worsted/CYC 4), light or medium colors, acrylic or acrylic blend fiber, machine washable, widely available.
@@ -194,7 +194,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3 font-medium">Lion Brand Pound of Love</td>
                   <td className="px-4 py-3">Medium (4)</td>
                   <td className="px-4 py-3">100% acrylic</td>
-                  <td className="px-4 py-3">Best value — 1,020 yards per skein</td>
+                  <td className="px-4 py-3">Best value, 1,020 yards per skein</td>
                   <td className="px-4 py-3">
                     <a href="https://www.amazon.com/dp/B000XZS3AO?tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
@@ -249,7 +249,7 @@ export default function BestYarnForBeginnersPage() {
             Medium weight yarn (worsted, CYC 4) is the best starting point for beginners. It is thick enough to see each stitch clearly, works up faster than thinner yarns so you see progress quickly, and the vast majority of beginner patterns and tutorials are written for it.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Light weight (DK, CYC 3) is a reasonable second choice — it produces a lighter, drapier fabric and is the standard weight in many European patterns. Avoid Super Fine (fingering) or Bulky weights until you are comfortable with basic stitches.
+            Light weight (DK, CYC 3) is a reasonable second choice, it produces a lighter, drapier fabric and is the standard weight in many European patterns. Avoid Super Fine (fingering) or Bulky weights until you are comfortable with basic stitches.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             Not sure about yarn weights? Our{" "}
@@ -266,7 +266,7 @@ export default function BestYarnForBeginnersPage() {
             How Much Yarn Do Beginners Need?
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            For a first project like a dishcloth or short scarf, one skein of 200+ yards is enough. A full-length scarf needs 250–400 yards. A simple hat uses 150–250 yards. Buy one extra skein if the project might grow — dye lot matching later can be difficult.
+            For a first project like a dishcloth or short scarf, one skein of 200+ yards is enough. A full-length scarf needs 250–400 yards. A simple hat uses 150–250 yards. Buy one extra skein if the project might grow, dye lot matching later can be difficult.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             Use our free{" "}
@@ -306,7 +306,7 @@ export default function BestYarnForBeginnersPage() {
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
-              <span><strong>Buying luxury fiber for a first project.</strong> Silk, cashmere, and hand-dyed yarns are expensive and slippery — the worst combination for learning. Mistakes in expensive yarn are demoralizing and costly to fix. Start with affordable, machine-washable acrylic or wool-acrylic blend, and save specialty fibers for projects where you have confidence in your technique.</span>
+              <span><strong>Buying luxury fiber for a first project.</strong> Silk, cashmere, and hand-dyed yarns are expensive and slippery, the worst combination for learning. Mistakes in expensive yarn are demoralizing and costly to fix. Start with affordable, machine-washable acrylic or wool-acrylic blend, and save specialty fibers for projects where you have confidence in your technique.</span>
             </li>
           </ul>
         </section>
@@ -323,21 +323,21 @@ export default function BestYarnForBeginnersPage() {
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">What is the best yarn weight for a beginner?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Medium weight (worsted, CYC 4) is best for beginners — it works up quickly, is easy to see, and most beginner patterns are written for it.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Medium weight (worsted, CYC 4) is best for beginners, it works up quickly, is easy to see, and most beginner patterns are written for it.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Is acrylic yarn good for beginners?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Yes. Acrylic is the best choice for learning — it is affordable, machine washable, widely available, and consistent in texture. It forgives mistakes better than slippery or splitty fibers.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Yes. Acrylic is the best choice for learning, it is affordable, machine washable, widely available, and consistent in texture. It forgives mistakes better than slippery or splitty fibers.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">How much does beginner yarn cost?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Beginner-friendly acrylic yarn typically costs $3–$8 per skein. A small first project uses 1–2 skeins. Buy a small amount to start — you can always get more of the same yarn.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Beginner-friendly acrylic yarn typically costs $3–$8 per skein. A small first project uses 1–2 skeins. Buy a small amount to start, you can always get more of the same yarn.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
@@ -362,7 +362,7 @@ export default function BestYarnForBeginnersPage() {
           Calculate exactly how much yarn you need for your first project
         </p>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-4">
-          Use our free Yarn Calculator — no login required, works offline.
+          Use our free Yarn Calculator, no login required, works offline.
         </p>
         <Link href="/yarn-calculator" className="btn-primary">
           🧶 Open Yarn Calculator

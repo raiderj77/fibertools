@@ -61,13 +61,12 @@ export default function SockCalculatorPage() {
           </p>
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Negative ease is essential for socks — a sock knit to your exact foot measurement will slide down,
+          Negative ease is essential for socks, a sock knit to your exact foot measurement will slide down,
           bunch inside your shoe, and wear out faster at pressure points. The 10% reduction means the knit
           fabric is constantly under slight tension, which holds the sock in place and extends its life.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Measure circumference at the ball of the foot — the widest point across the knuckles of the toes —
-          not at the ankle. The ankle is narrower and will underestimate the cast-on needed for the foot tube.
+          Measure circumference at the ball of the foot, the widest point across the knuckles of the toes, not at the ankle. The ankle is narrower and will underestimate the cast-on needed for the foot tube.
           If your measurements straddle two sizes, round up for a more comfortable fit.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
@@ -91,12 +90,12 @@ export default function SockCalculatorPage() {
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Yardage management is the primary toe-up advantage. Since you work up from the toe, you can knit the
-          leg until your skein runs low and simply bind off — no guessing how much yarn to reserve for the
+          leg until your skein runs low and simply bind off, no guessing how much yarn to reserve for the
           heel. With top-down construction you must estimate your midpoint before starting or risk running out
           before finishing the toe.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Heel durability favors top-down. The heel flap uses a reinforced slip-stitch pattern — alternating
+          Heel durability favors top-down. The heel flap uses a reinforced slip-stitch pattern, alternating
           slipped stitches create a double-thickness fabric at the high-wear point. Short-row heels (the
           standard for toe-up) are faster but produce a thinner, less reinforced heel turn.
         </p>
@@ -127,7 +126,7 @@ export default function SockCalculatorPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Needle material affects gauge for many knitters. Metal needles (stainless steel or nickel-plated
           brass) typically produce a tighter, more even fabric than wood or bamboo because yarn slides more
-          freely. If you&rsquo;re switching needle material, swatch first — you may need to adjust needle
+          freely. If you&rsquo;re switching needle material, swatch first, you may need to adjust needle
           size by one step.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
@@ -153,8 +152,8 @@ export default function SockCalculatorPage() {
           </p>
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          The slip-stitch heel flap pattern — slip 1 purlwise, knit 1 across on right-side rows, purl back
-          on wrong-side rows — doubles the fabric thickness at the heel. Each slipped stitch spans two rows,
+          The slip-stitch heel flap pattern, slip 1 purlwise, knit 1 across on right-side rows, purl back
+          on wrong-side rows, doubles the fabric thickness at the heel. Each slipped stitch spans two rows,
           creating a dense, reinforced fabric at the highest-wear point of the sock. This is why heel flap
           socks outlast short-row heel socks in everyday wear.
         </p>
@@ -187,12 +186,12 @@ export default function SockCalculatorPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Most sock yarn is sold in 100g skeins precisely because that matches the average adult pair
           yardage. The 400&ndash;450 yard range is a standard that yarn manufacturers and pattern designers
-          work around together — it&rsquo;s not a coincidence that most sock patterns are written for a single
+          work around together, it&rsquo;s not a coincidence that most sock patterns are written for a single
           skein.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Shoe size affects yardage more than most knitters expect. Men&rsquo;s size 10&ndash;12 socks typically
-          need 50&ndash;75 more yards than women&rsquo;s size 7&ndash;9 socks — longer foot length and wider
+          need 50&ndash;75 more yards than women&rsquo;s size 7&ndash;9 socks, longer foot length and wider
           circumference both add rows. If you&rsquo;re knitting for someone with large feet, 450&ndash;500 yards
           is a safer target than the standard estimate.
         </p>
@@ -200,8 +199,7 @@ export default function SockCalculatorPage() {
           Buy two skeins for cabled or stranded colorwork sock patterns even if the yardage estimate says
           one skein is enough. Cables consume 20&ndash;30% more yarn per inch than stockinette due to the
           crossings; colorwork with two colors running throughout roughly doubles yardage for each round
-          worked. Running out mid-sock and finding your dye lot is discontinued is a common — and avoidable
-          — frustration.
+          worked. Running out mid-sock and finding your dye lot is discontinued is a common, and avoidable, frustration.
         </p>
       </section>
 
@@ -211,7 +209,7 @@ export default function SockCalculatorPage() {
         <ol className="space-y-1.5 text-sm text-bark-500 dark:text-bark-400">
           <li>
             <span className="font-medium">1.</span>{" "}
-            Craft Yarn Council — Standard Yarn Weight System.{" "}
+            Craft Yarn Council, Standard Yarn Weight System.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/yarn-weight"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -223,7 +221,7 @@ export default function SockCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">2.</span>{" "}
-            Ravelry — Sock pattern database.{" "}
+            Ravelry, Sock pattern database.{" "}
             <Link
               href="https://www.ravelry.com/patterns/search#craft=knitting&pc=socks"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -235,7 +233,7 @@ export default function SockCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">3.</span>{" "}
-            Craft Yarn Council — Needle and Hook Size Chart.{" "}
+            Craft Yarn Council, Needle and Hook Size Chart.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/needle-hook-chart"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -247,7 +245,7 @@ export default function SockCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">4.</span>{" "}
-            Interweave Knits — Sock Construction Reference.{" "}
+            Interweave Knits, Sock Construction Reference.{" "}
             <Link
               href="https://www.interweave.com/article/knitting/sock-knitting-101"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -259,7 +257,7 @@ export default function SockCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">5.</span>{" "}
-            Yarnspirations — Sock Yarn Buying Guide.{" "}
+            Yarnspirations, Sock Yarn Buying Guide.{" "}
             <Link
               href="https://www.yarnspirations.com/blogs/ideas-and-inspiration"
               className="text-sage-600 dark:text-sage-400 underline"

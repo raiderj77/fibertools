@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: "https://fibertools.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Best Knitting Needles — FiberTools",
+        alt: "Best Knitting Needles, FiberTools",
       },
     ],
   },
@@ -80,7 +80,7 @@ export default function BestKnittingNeedlesPage() {
         name: "Are bamboo or metal needles better for beginners?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Bamboo — slight grip slows stitches and prevents them sliding off accidentally. Metal is faster but requires more control.",
+          text: "Bamboo, slight grip slows stitches and prevents them sliding off accidentally. Metal is faster but requires more control.",
         },
       },
       {
@@ -96,7 +96,7 @@ export default function BestKnittingNeedlesPage() {
         name: "Do I need double-pointed needles?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Only for small circumference in the round — socks, gloves, hat crowns. Magic loop with long circulars is a popular alternative.",
+          text: "Only for small circumference in the round, socks, gloves, hat crowns. Magic loop with long circulars is a popular alternative.",
         },
       },
       {
@@ -104,7 +104,7 @@ export default function BestKnittingNeedlesPage() {
         name: "How often should I replace knitting needles?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Quality metal and carbon fiber needles last indefinitely. Bamboo can develop rough spots — sand lightly with fine-grit sandpaper.",
+          text: "Quality metal and carbon fiber needles last indefinitely. Bamboo can develop rough spots, sand lightly with fine-grit sandpaper.",
         },
       },
     ],
@@ -143,7 +143,7 @@ export default function BestKnittingNeedlesPage() {
 
       {/* Answer capsule */}
       <p className="text-lg text-bark-600 dark:text-cream-300 leading-relaxed mb-2">
-        The best knitting needles depend on your project type and experience level. Beginners should start with US 7–9 (4.5–5.5mm) bamboo straights for grip and control. Experienced knitters benefit from circular needles — ChiaoGoo Red Lace are the top choice for their memory-free cables and precise steel tips.
+        The best knitting needles depend on your project type and experience level. Beginners should start with US 7–9 (4.5–5.5mm) bamboo straights for grip and control. Experienced knitters benefit from circular needles, ChiaoGoo Red Lace are the top choice for their memory-free cables and precise steel tips.
       </p>
 
       <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
@@ -159,13 +159,13 @@ export default function BestKnittingNeedlesPage() {
             Types of Knitting Needles Explained
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            <strong>Straight needles</strong> are the classic pair — two rigid sticks with a point at one end and a stopper at the other. They work flat pieces back and forth and are the easiest type for beginners to learn on. Best for scarves, dishcloths, and small flat projects.
+            <strong>Straight needles</strong> are the classic pair, two rigid sticks with a point at one end and a stopper at the other. They work flat pieces back and forth and are the easiest type for beginners to learn on. Best for scarves, dishcloths, and small flat projects.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             <strong>Circular needles</strong> are two short needle tips connected by a flexible cable. They can work flat (back and forth) or in the round (joined in a circle). Most experienced knitters use circulars for everything because the cable holds the weight of the project, reducing wrist strain.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            <strong>Double-pointed needles (DPNs)</strong> have points at both ends and come in sets of 4 or 5. They are used for small-circumference knitting in the round — sock cuffs, glove fingers, and hat crowns. Many knitters now use the magic loop technique on long circulars instead.
+            <strong>Double-pointed needles (DPNs)</strong> have points at both ends and come in sets of 4 or 5. They are used for small-circumference knitting in the round, sock cuffs, glove fingers, and hat crowns. Many knitters now use the magic loop technique on long circulars instead.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             <strong>Interchangeable needle sets</strong> include multiple tip sizes that screw or click onto various cable lengths. They replace an entire collection of fixed circulars and are the most cost-effective option for knitters who work many projects. Check our{" "}
@@ -218,7 +218,7 @@ export default function BestKnittingNeedlesPage() {
             </table>
           </div>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            The Clover Takumi is the most recommended beginner needle — the bamboo surface provides just enough grip to keep stitches from sliding off while you build muscle memory. The Susan Bates Silvalume is a budget-friendly aluminum alternative that offers smooth, fast knitting once you have basic control.
+            The Clover Takumi is the most recommended beginner needle, the bamboo surface provides just enough grip to keep stitches from sliding off while you build muscle memory. The Susan Bates Silvalume is a budget-friendly aluminum alternative that offers smooth, fast knitting once you have basic control.
           </p>
         </section>
 
@@ -228,7 +228,7 @@ export default function BestKnittingNeedlesPage() {
             Best Circular Knitting Needles
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Circular needles are the most versatile type — they handle flat and in-the-round knitting, distribute weight across the cable, and come in every size. The cable quality matters as much as the tips: a stiff, kinky cable fights you on every row.
+            Circular needles are the most versatile type, they handle flat and in-the-round knitting, distribute weight across the cable, and come in every size. The cable quality matters as much as the tips: a stiff, kinky cable fights you on every row.
           </p>
           <div className="overflow-x-auto mb-4">
             <table className="w-full text-sm text-left border border-cream-300 dark:border-bark-700 rounded-xl overflow-hidden">
@@ -246,7 +246,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3 font-medium">ChiaoGoo Red Lace</td>
                   <td className="px-4 py-3">TWIST red cable, memory-free</td>
                   <td className="px-4 py-3">Stainless steel</td>
-                  <td className="px-4 py-3">Best overall — lace to bulky</td>
+                  <td className="px-4 py-3">Best overall, lace to bulky</td>
                   <td className="px-4 py-3">
                     <a href="https://www.amazon.com/s?k=chiaogoo+red+lace+circular+needles&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
@@ -273,7 +273,7 @@ export default function BestKnittingNeedlesPage() {
             </table>
           </div>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            The ChiaoGoo Red Lace is the gold standard for circular needles. The stainless steel tips are precise and pointy enough for lace work, and the TWIST red cable has zero memory — it lies flat without any need to soak or heat it. Addi Turbos are a premium alternative favored by continental and speed knitters for their seamless tip-to-cable join.
+            The ChiaoGoo Red Lace is the gold standard for circular needles. The stainless steel tips are precise and pointy enough for lace work, and the TWIST red cable has zero memory, it lies flat without any need to soak or heat it. Addi Turbos are a premium alternative favored by continental and speed knitters for their seamless tip-to-cable join.
           </p>
         </section>
 
@@ -324,7 +324,7 @@ export default function BestKnittingNeedlesPage() {
             </table>
           </div>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            The ChiaoGoo TWIST Red Lace set is the top pick for its secure screw-in connection, memory-free cables, and wide size range. Knitter&apos;s Pride Karbonz offer a warm-to-the-touch carbon fiber alternative that is exceptionally lightweight — great for long knitting sessions. The Addi Click uses a click-lock mechanism that some knitters prefer over screw-in connections.
+            The ChiaoGoo TWIST Red Lace set is the top pick for its secure screw-in connection, memory-free cables, and wide size range. Knitter&apos;s Pride Karbonz offer a warm-to-the-touch carbon fiber alternative that is exceptionally lightweight, great for long knitting sessions. The Addi Click uses a click-lock mechanism that some knitters prefer over screw-in connections.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             Need help matching needle sizes to your yarn? Our{" "}
@@ -403,11 +403,11 @@ export default function BestKnittingNeedlesPage() {
           <ul className="space-y-3">
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-sage-500 mt-1 flex-shrink-0 font-bold">1.</span>
-              <span><strong>Needle type (straight, circular, or DPN).</strong> Beginners typically start with straight needles for flat knitting. Circular needles are more versatile — they work for both flat and in-the-round projects and are mandatory for large items like sweater bodies. Double-pointed needles (DPNs) are for small circumference knitting (socks, sleeves) and have a steeper learning curve.</span>
+              <span><strong>Needle type (straight, circular, or DPN).</strong> Beginners typically start with straight needles for flat knitting. Circular needles are more versatile, they work for both flat and in-the-round projects and are mandatory for large items like sweater bodies. Double-pointed needles (DPNs) are for small circumference knitting (socks, sleeves) and have a steeper learning curve.</span>
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-sage-500 mt-1 flex-shrink-0 font-bold">2.</span>
-              <span><strong>Material (metal, bamboo, wood, or plastic).</strong> Metal needles are the fastest and most durable — slippery tips move yarn efficiently. Bamboo and wood needles grip yarn slightly, reducing dropped stitches for beginners. Plastic needles are lightweight and good for large sizes but can flex uncomfortably under heavy yarn.</span>
+              <span><strong>Material (metal, bamboo, wood, or plastic).</strong> Metal needles are the fastest and most durable, slippery tips move yarn efficiently. Bamboo and wood needles grip yarn slightly, reducing dropped stitches for beginners. Plastic needles are lightweight and good for large sizes but can flex uncomfortably under heavy yarn.</span>
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-sage-500 mt-1 flex-shrink-0 font-bold">3.</span>
@@ -415,7 +415,7 @@ export default function BestKnittingNeedlesPage() {
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-sage-500 mt-1 flex-shrink-0 font-bold">4.</span>
-              <span><strong>Size range relative to your projects.</strong> Most knitters use US 1–8 (2.25mm–5.0mm) for standard yarn weights. If you primarily knit bulky or worsted weight, make sure the set includes US 9–15. Lace knitters need US 000–2 (1.5mm–2.75mm) — verify these sizes are included before purchasing a set.</span>
+              <span><strong>Size range relative to your projects.</strong> Most knitters use US 1–8 (2.25mm–5.0mm) for standard yarn weights. If you primarily knit bulky or worsted weight, make sure the set includes US 9–15. Lace knitters need US 000–2 (1.5mm–2.75mm), verify these sizes are included before purchasing a set.</span>
             </li>
           </ul>
         </section>
@@ -460,7 +460,7 @@ export default function BestKnittingNeedlesPage() {
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Are bamboo or metal needles better for beginners?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Bamboo — slight grip slows stitches and prevents them sliding off accidentally. Metal is faster but requires more control.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Bamboo, slight grip slows stitches and prevents them sliding off accidentally. Metal is faster but requires more control.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
@@ -474,14 +474,14 @@ export default function BestKnittingNeedlesPage() {
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Do I need double-pointed needles?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Only for small circumference in the round — socks, gloves, hat crowns. Magic loop with long circulars is a popular alternative.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Only for small circumference in the round, socks, gloves, hat crowns. Magic loop with long circulars is a popular alternative.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">How often should I replace knitting needles?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Quality metal and carbon fiber needles last indefinitely. Bamboo can develop rough spots — sand lightly with fine-grit sandpaper.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Quality metal and carbon fiber needles last indefinitely. Bamboo can develop rough spots, sand lightly with fine-grit sandpaper.</p></div>
           </details>
         </div>
       </section>
@@ -492,7 +492,7 @@ export default function BestKnittingNeedlesPage() {
           Find the right needle size for your yarn
         </p>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-4">
-          Use our free Needle Size Converter — no login required, works offline.
+          Use our free Needle Size Converter, no login required, works offline.
         </p>
         <Link href="/needle-converter" className="btn-primary">
           Open Needle Size Converter

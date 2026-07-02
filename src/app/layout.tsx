@@ -33,7 +33,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://fibertools.app"),
   title: {
-    default: "FiberTools — Free Fiber Arts Calculators",
+    default: "FiberTools, Free Fiber Arts Calculators",
     template: "%s | FiberTools",
   },
   description:
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "FiberTools",
-    title: "FiberTools — Free Fiber Arts Calculators",
+    title: "FiberTools, Free Fiber Arts Calculators",
     description:
       "Free online calculators for knitting, crochet, weaving, spinning & embroidery. No login. Works offline.",
     url: "https://fibertools.app",
@@ -83,13 +83,13 @@ export const metadata: Metadata = {
         url: "https://fibertools.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "FiberTools — Free Calculators for Knitters, Crocheters & Weavers",
+        alt: "FiberTools, Free Calculators for Knitters, Crocheters & Weavers",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "FiberTools — Free Calculators for Fiber Crafters",
+    title: "FiberTools, Free Calculators for Fiber Crafters",
     description: "Free yarn calculators, gauge tools, needle converters & more. No login. Works offline.",
     images: ["https://fibertools.app/og-image.png"],
   },
@@ -143,7 +143,7 @@ export default function RootLayout({
         />
         <OrganizationSchema />
         {/* CMP: Funding Choices auto-loads via AdSense for T1 sites */}
-        {/* Google Consent Mode v2 — set defaults BEFORE gtag loads */}
+        {/* Google Consent Mode v2, set defaults BEFORE gtag loads */}
         <Script id="consent-mode-defaults" strategy="beforeInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -171,14 +171,14 @@ export default function RootLayout({
             gtag('config', 'G-T92LYDE8NN');
           `}
         </Script>
-        {/* Google AdSense — auto ads */}
+        {/* Google AdSense, auto ads */}
         <Script
           id="adsense"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932"
           crossOrigin="anonymous"
           strategy="afterInteractive"
         />
-        {/* Microsoft Clarity — heatmaps & session recordings */}
+        {/* Microsoft Clarity, heatmaps & session recordings */}
         <Script id="microsoft-clarity" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){

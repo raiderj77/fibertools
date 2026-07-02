@@ -349,9 +349,9 @@ export default function CrossStitchCalculatorTool() {
       <div className="result-card mt-8">
         <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-2">💡 Cross Stitch Tips</h3>
         <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
-          <li><strong>Aida 14</strong> is the most popular fabric count — great for beginners and most patterns.</li>
+          <li><strong>Aida 14</strong> is the most popular fabric count, great for beginners and most patterns.</li>
           <li><strong>Over-two stitching</strong> on evenweave/linen gives a softer look than Aida at the same effective count.</li>
-          <li><strong>Always add margins</strong> — 3 inches per side minimum for framing, more for scroll frames.</li>
+          <li><strong>Always add margins</strong>, 3 inches per side minimum for framing, more for scroll frames.</li>
           <li><strong>Thread estimates are per color.</strong> Repeat the calculation for each color in your pattern.</li>
         </ul>
       </div>

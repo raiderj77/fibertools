@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: "https://fibertools.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Best Crochet Hooks — FiberTools",
+        alt: "Best Crochet Hooks, FiberTools",
       },
     ],
   },
@@ -88,7 +88,7 @@ export default function BestCrochetHooksPage() {
         name: "What is the difference between inline and tapered crochet hooks?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Inline hooks have the throat cut straight in line with the shaft, creating a more defined hook shape. Tapered hooks have a rounded, gradually narrowing head. Neither is objectively better — try both to see which feels more natural.",
+          text: "Inline hooks have the throat cut straight in line with the shaft, creating a more defined hook shape. Tapered hooks have a rounded, gradually narrowing head. Neither is objectively better, try both to see which feels more natural.",
         },
       },
       {
@@ -143,7 +143,7 @@ export default function BestCrochetHooksPage() {
 
       {/* Answer capsule */}
       <p className="text-lg text-bark-600 dark:text-cream-300 leading-relaxed mb-2">
-        The best crochet hook for most crocheters is an ergonomic hook with a comfortable grip — the Clover Amour is the top all-around pick. Beginners should start with a US H-8 (5mm) hook and medium weight yarn. For budget options, a basic aluminum set from Boye or Susan Bates covers all common sizes for under $15.
+        The best crochet hook for most crocheters is an ergonomic hook with a comfortable grip, the Clover Amour is the top all-around pick. Beginners should start with a US H-8 (5mm) hook and medium weight yarn. For budget options, a basic aluminum set from Boye or Susan Bates covers all common sizes for under $15.
       </p>
 
       <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
@@ -159,7 +159,7 @@ export default function BestCrochetHooksPage() {
             Types of Crochet Hooks
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Crochet hooks come in two main head styles: <strong>inline</strong> (also called Bates-style) and <strong>tapered</strong> (also called Boye-style). Inline hooks have the throat cut straight in line with the shaft, giving a more defined hook shape. Tapered hooks have a rounded, gradually narrowing head. Most crocheters develop a preference — neither is objectively better.
+            Crochet hooks come in two main head styles: <strong>inline</strong> (also called Bates-style) and <strong>tapered</strong> (also called Boye-style). Inline hooks have the throat cut straight in line with the shaft, giving a more defined hook shape. Tapered hooks have a rounded, gradually narrowing head. Most crocheters develop a preference, neither is objectively better.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             <strong>Handle styles</strong> fall into two categories: straight (traditional) and ergonomic (with a shaped rubber or silicone grip). Ergonomic handles reduce hand fatigue during long sessions and are especially helpful for crocheters with arthritis or carpal tunnel.
@@ -168,7 +168,7 @@ export default function BestCrochetHooksPage() {
             <strong>Materials</strong> include aluminum (lightweight, smooth, affordable), steel (small sizes for thread crochet), bamboo and wood (warm feel, slight grip on yarn), and plastic (lightweight, large sizes). Aluminum is the most versatile and popular choice.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            <strong>Sizing</strong> uses both US letter/number and metric millimeter systems. A US H-8 is 5mm, a US G-6 is 4mm, and so on. The two systems do not always align neatly — use our{" "}
+            <strong>Sizing</strong> uses both US letter/number and metric millimeter systems. A US H-8 is 5mm, a US G-6 is 4mm, and so on. The two systems do not always align neatly, use our{" "}
             <Link href="/needle-converter" className="text-sage-600 dark:text-sage-400 hover:underline">
               Hook Size Converter
             </Link>{" "}
@@ -223,7 +223,7 @@ export default function BestCrochetHooksPage() {
             </table>
           </div>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            The <strong>Clover Amour</strong> is the best overall pick for most crocheters. Its color-coded rubber grip is comfortable for hours of work, the inline hook head grabs yarn cleanly, and the full size range covers everything from thread crochet to bulky blankets. The <strong>Tulip Etimo</strong> is a premium Japanese-made hook with an exceptionally smooth shaft and a distinctive teardrop handle — favored by experienced crocheters who prefer a tapered head. The <strong>Furls Streamline</strong> is a handcrafted premium option available in resin, wood, and other materials, with a higher price point to match.
+            The <strong>Clover Amour</strong> is the best overall pick for most crocheters. Its color-coded rubber grip is comfortable for hours of work, the inline hook head grabs yarn cleanly, and the full size range covers everything from thread crochet to bulky blankets. The <strong>Tulip Etimo</strong> is a premium Japanese-made hook with an exceptionally smooth shaft and a distinctive teardrop handle, favored by experienced crocheters who prefer a tapered head. The <strong>Furls Streamline</strong> is a handcrafted premium option available in resin, wood, and other materials, with a higher price point to match.
           </p>
         </section>
 
@@ -266,7 +266,7 @@ export default function BestCrochetHooksPage() {
             </table>
           </div>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            The <strong>Boye Aluminum Set</strong> is a classic straight-handle hook set that has been a craft store staple for decades. Widely available and affordable, it is a solid starting point for anyone learning to crochet. The <strong>Susan Bates Silvalume Set</strong> offers smooth aluminum hooks with an inline head style and good value — often available for under $15 for a full set of common sizes.
+            The <strong>Boye Aluminum Set</strong> is a classic straight-handle hook set that has been a craft store staple for decades. Widely available and affordable, it is a solid starting point for anyone learning to crochet. The <strong>Susan Bates Silvalume Set</strong> offers smooth aluminum hooks with an inline head style and good value, often available for under $15 for a full set of common sizes.
           </p>
         </section>
 
@@ -336,7 +336,7 @@ export default function BestCrochetHooksPage() {
             <strong>Tapered hooks</strong> (Boye-style) have a rounded head that narrows gradually into the throat. The smoother transition can make it easier to pull yarn through tight stitches. Boye and Tulip Etimo are well-known tapered hooks.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Neither style is objectively better — it comes down to personal preference and how you hold your hook. Many crocheters try both and develop a clear favorite. If you are just starting out, pick whichever is available and affordable. You can always try the other style later.
+            Neither style is objectively better, it comes down to personal preference and how you hold your hook. Many crocheters try both and develop a clear favorite. If you are just starting out, pick whichever is available and affordable. You can always try the other style later.
           </p>
         </section>
 
@@ -352,15 +352,15 @@ export default function BestCrochetHooksPage() {
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-sage-500 mt-1 flex-shrink-0 font-bold">2.</span>
-              <span><strong>Hook head style (inline vs. tapered).</strong> Inline hooks (Bates-style) have a more defined throat and grab yarn consistently. Tapered hooks (Boye-style) have a rounded head that slides through tight stitches more easily. Neither is objectively better — your tension and holding style determine which works best for you.</span>
+              <span><strong>Hook head style (inline vs. tapered).</strong> Inline hooks (Bates-style) have a more defined throat and grab yarn consistently. Tapered hooks (Boye-style) have a rounded head that slides through tight stitches more easily. Neither is objectively better, your tension and holding style determine which works best for you.</span>
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-sage-500 mt-1 flex-shrink-0 font-bold">3.</span>
-              <span><strong>Material (aluminum, bamboo, or steel).</strong> Aluminum hooks are lightweight, smooth, and versatile for most yarn weights. Bamboo and wood hooks have a slight grip that prevents slipping — ideal for slippery fibers like silk or bamboo yarn. Steel hooks are for fine thread crochet (sizes 0–14) only.</span>
+              <span><strong>Material (aluminum, bamboo, or steel).</strong> Aluminum hooks are lightweight, smooth, and versatile for most yarn weights. Bamboo and wood hooks have a slight grip that prevents slipping, ideal for slippery fibers like silk or bamboo yarn. Steel hooks are for fine thread crochet (sizes 0–14) only.</span>
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-sage-500 mt-1 flex-shrink-0 font-bold">4.</span>
-              <span><strong>Size range and completeness.</strong> Most crocheters need US B–N (2.25mm–9mm) for standard yarn weights. If you crochet with a variety of yarn weights, buy a complete set rather than individual hooks — sets are significantly cheaper per hook than buying individually.</span>
+              <span><strong>Size range and completeness.</strong> Most crocheters need US B–N (2.25mm–9mm) for standard yarn weights. If you crochet with a variety of yarn weights, buy a complete set rather than individual hooks, sets are significantly cheaper per hook than buying individually.</span>
             </li>
           </ul>
         </section>
@@ -381,7 +381,7 @@ export default function BestCrochetHooksPage() {
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
-              <span><strong>Ignoring the metric millimeter size.</strong> US letter designations are not consistent across brands — a Clover H may measure 5.0mm while a budget H measures 4.75mm. Always check the millimeter measurement, especially when your gauge is critical to a project&apos;s fit.</span>
+              <span><strong>Ignoring the metric millimeter size.</strong> US letter designations are not consistent across brands, a Clover H may measure 5.0mm while a budget H measures 4.75mm. Always check the millimeter measurement, especially when your gauge is critical to a project&apos;s fit.</span>
             </li>
           </ul>
         </section>
@@ -412,7 +412,7 @@ export default function BestCrochetHooksPage() {
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">What is the difference between inline and tapered crochet hooks?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Inline hooks have the throat cut straight in line with the shaft, creating a more defined hook shape. Tapered hooks have a rounded, gradually narrowing head. Neither is objectively better — try both to see which feels more natural.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Inline hooks have the throat cut straight in line with the shaft, creating a more defined hook shape. Tapered hooks have a rounded, gradually narrowing head. Neither is objectively better, try both to see which feels more natural.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
@@ -437,7 +437,7 @@ export default function BestCrochetHooksPage() {
           Convert hook sizes between US, metric, and UK systems
         </p>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-4">
-          Use our free Hook Size Converter — no login required, works offline.
+          Use our free Hook Size Converter, no login required, works offline.
         </p>
         <Link href="/needle-converter" className="btn-primary">
           Open Hook Size Converter

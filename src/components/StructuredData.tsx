@@ -1,6 +1,6 @@
 /**
  * JSON-LD structured data components for FiberTools.
- * Server components — output <script type="application/ld+json"> tags.
+ * Server components, output <script type="application/ld+json"> tags.
  * Required for SEO and rich snippets.
  */
 
@@ -20,7 +20,7 @@ function JsonLd({ data }: JsonLdProps) {
 }
 
 /**
- * WebApplication schema — for tool pages.
+ * WebApplication schema, for tool pages.
  * Tells Google this page is a web application, not just a blog post.
  */
 export function SoftwareAppSchema({
@@ -58,7 +58,7 @@ export function SoftwareAppSchema({
 }
 
 /**
- * FAQ schema — for pages with Q&A sections.
+ * FAQ schema, for pages with Q&A sections.
  * Enables FAQ rich snippets in search results.
  */
 export function FaqSchema({
@@ -90,7 +90,7 @@ export function FaqSchema({
 }
 
 /**
- * Breadcrumb schema — for navigation context in search results.
+ * Breadcrumb schema, for navigation context in search results.
  */
 export function BreadcrumbSchema({
   items,
@@ -145,7 +145,7 @@ export function ToolSchema({ tool, faqs }: { tool: Tool; faqs: Array<{ q: string
 }
 
 /**
- * Organization schema — for the site-wide identity.
+ * Organization schema, for the site-wide identity.
  */
 export function OrganizationSchema() {
   return (

@@ -73,7 +73,7 @@ export default function CircleCalculatorPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           The increase count equals the starting stitch count because of the geometry of a flat disk. Each
           subsequent round sits at a larger radius, and the circumference grows proportionally. To stay flat,
-          every round must add the same number of stitches as the first round — the amount needed to cover
+          every round must add the same number of stitches as the first round, the amount needed to cover
           the additional arc at each ring&rsquo;s edge.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
@@ -84,7 +84,7 @@ export default function CircleCalculatorPage() {
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Too few increases and the circle pulls inward, forming a bowl or cup shape. Too many increases and
-          the extra fabric has nowhere to go, so it folds and waves — the ruffling effect. The correct increase
+          the extra fabric has nowhere to go, so it folds and waves, the ruffling effect. The correct increase
           count keeps the circle lying flat under normal tension with your specific hook and yarn combination.
         </p>
       </section>
@@ -97,7 +97,7 @@ export default function CircleCalculatorPage() {
           <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
             Hexagon shaping happens when increases stack directly on top of each other every round. The corners
             of the hexagon form where the increases pile up. Stagger your increases by working them in different
-            positions each round — the calculator above generates a staggered placement pattern that produces a
+            positions each round, the calculator above generates a staggered placement pattern that produces a
             true round circle instead.<sup>2</sup>
           </p>
         </div>
@@ -114,7 +114,7 @@ export default function CircleCalculatorPage() {
           publications.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          Some patterns intentionally stack increases to create hexagonal motifs — this is the basis for
+          Some patterns intentionally stack increases to create hexagonal motifs, this is the basis for
           hexagonal mandalas and traditional granny-square-adjacent motifs. If you want a hexagon, work
           increases directly above prior-round increases every round. If you want a circle, always stagger.
         </p>
@@ -127,7 +127,7 @@ export default function CircleCalculatorPage() {
         <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
           <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
             To intentionally cup a flat circle into a bowl or hat crown, decrease the number of increases per
-            round. After the desired flat diameter, work plain rounds with no increases — the circle will start
+            round. After the desired flat diameter, work plain rounds with no increases, the circle will start
             curving downward. Hat crowns typically work 6&ndash;8 increase rounds, then transition to plain rounds
             at the desired head size.<sup>3</sup>
           </p>
@@ -163,7 +163,7 @@ export default function CircleCalculatorPage() {
             Circle diameter depends on yarn weight, hook size, and round count. A 10-round single crochet
             circle in worsted weight (US H / 5mm hook) measures roughly 6 inches across. Each additional round
             adds approximately 0.5&ndash;0.75 inches to the diameter, depending on stitch height. The calculator
-            generates patterns up to 30 rounds — large enough for blanket-sized circles.<sup>4</sup>
+            generates patterns up to 30 rounds, large enough for blanket-sized circles.<sup>4</sup>
           </p>
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
@@ -173,7 +173,7 @@ export default function CircleCalculatorPage() {
           larger circles in the same round count because each stitch is physically taller.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Diameter growth slows as rounds increase — not in stitch count, but visually. Each additional round
+          Diameter growth slows as rounds increase, not in stitch count, but visually. Each additional round
           adds the same number of stitches, but those stitches are spread across a larger circumference, so
           the visual width increase per round shrinks slightly as the circle grows. This is why early rounds
           look dramatic and later rounds look smaller in comparison.
@@ -201,7 +201,7 @@ export default function CircleCalculatorPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           The magic ring works by forming a slip loop around your fingers, working the first round of stitches
           into that loop, then pulling the yarn tail to tighten the loop completely closed. The key step most
-          beginners miss is anchoring the ring with a slip stitch before pulling the tail — without it, the
+          beginners miss is anchoring the ring with a slip stitch before pulling the tail, without it, the
           ring can loosen as you work subsequent rounds.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
@@ -224,7 +224,7 @@ export default function CircleCalculatorPage() {
         <ol className="space-y-1.5 text-sm text-bark-500 dark:text-bark-400">
           <li>
             <span className="font-medium">1.</span>{" "}
-            Craft Yarn Council — Stitch Symbols and Standards.{" "}
+            Craft Yarn Council, Stitch Symbols and Standards.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/stitch-symbols"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -236,7 +236,7 @@ export default function CircleCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">2.</span>{" "}
-            Edie Eckman — Around the Corner Crochet Borders (geometry reference).{" "}
+            Edie Eckman, Around the Corner Crochet Borders (geometry reference).{" "}
             <Link
               href="https://www.edieeckman.com/around-the-corner"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -248,7 +248,7 @@ export default function CircleCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">3.</span>{" "}
-            Craft Yarn Council — Hat Sizing Standards.{" "}
+            Craft Yarn Council, Hat Sizing Standards.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/hat-sizing"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -260,7 +260,7 @@ export default function CircleCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">4.</span>{" "}
-            Ravelry — Crochet circle pattern database.{" "}
+            Ravelry, Crochet circle pattern database.{" "}
             <Link
               href="https://www.ravelry.com/patterns/search#craft=crochet&pc=circle"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -272,7 +272,7 @@ export default function CircleCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">5.</span>{" "}
-            Yarnspirations — Crochet Magic Ring Tutorial.{" "}
+            Yarnspirations, Crochet Magic Ring Tutorial.{" "}
             <Link
               href="https://www.yarnspirations.com/blogs/ideas-and-inspiration"
               className="text-sage-600 dark:text-sage-400 underline"

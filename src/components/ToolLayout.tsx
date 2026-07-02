@@ -224,7 +224,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </>
       )}
 
-      {/* Archetype A — Calculator: Use Cases */}
+      {/* Archetype A, Calculator: Use Cases */}
       {content?.useCases && (
         <section className="mt-10">
           <h2 className="section-heading">When to Use This Calculator</h2>
@@ -239,7 +239,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </section>
       )}
 
-      {/* Archetype A — Calculator: Common Mistakes */}
+      {/* Archetype A, Calculator: Common Mistakes */}
       {content?.commonMistakes && (
         <section className="mt-10">
           <h2 className="section-heading">Common Mistakes to Avoid</h2>
@@ -254,7 +254,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </section>
       )}
 
-      {/* Archetype A — Calculator: Project Example */}
+      {/* Archetype A, Calculator: Project Example */}
       {content?.projectExample && (
         <section className="mt-10">
           <h2 className="section-heading">Worked Example</h2>
@@ -264,7 +264,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </section>
       )}
 
-      {/* Archetype B — Reference: Chart Guide */}
+      {/* Archetype B, Reference: Chart Guide */}
       {content?.chartGuide && (
         <section className="mt-10">
           <h2 className="section-heading">How to Read This Chart</h2>
@@ -272,7 +272,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </section>
       )}
 
-      {/* Archetype B — Reference: Industry Standards */}
+      {/* Archetype B, Reference: Industry Standards */}
       {content?.industryStandards && (
         <section className="mt-10">
           <h2 className="section-heading">Industry Standards</h2>
@@ -280,7 +280,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </section>
       )}
 
-      {/* Archetype B — Reference: Manufacturer Note */}
+      {/* Archetype B, Reference: Manufacturer Note */}
       {content?.manufacturerNote && (
         <section className="mt-10">
           <h2 className="section-heading">Real-World Variations</h2>
@@ -290,7 +290,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </section>
       )}
 
-      {/* Archetype D — Technique: Technique Effect */}
+      {/* Archetype D, Technique: Technique Effect */}
       {content?.techniqueEffect && (
         <section className="mt-10">
           <h2 className="section-heading">What This Technique Does to Your Fabric</h2>
@@ -298,7 +298,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </section>
       )}
 
-      {/* Archetype D — Technique: Steps */}
+      {/* Archetype D, Technique: Steps */}
       {content?.techniqueSteps && (
         <section className="mt-10">
           <h2 className="section-heading">Step by Step</h2>
@@ -315,7 +315,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </section>
       )}
 
-      {/* Archetype D — Technique: Fiber Notes */}
+      {/* Archetype D, Technique: Fiber Notes */}
       {content?.fiberNotes && (
         <section className="mt-10">
           <h2 className="section-heading">Fiber-Specific Notes</h2>
@@ -323,7 +323,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </section>
       )}
 
-      {/* Archetype D — Technique: Practice Project */}
+      {/* Archetype D, Technique: Practice Project */}
       {content?.practiceProject && (
         <section className="mt-10">
           <h2 className="section-heading">Practice Project</h2>
@@ -348,7 +348,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </section>
       )}
 
-      {/* Archetype C — Pattern: Design Principles */}
+      {/* Archetype C, Pattern: Design Principles */}
       {content?.designPrinciples && (
         <section className="mt-10">
           <h2 className="section-heading">Design Principles</h2>
@@ -356,7 +356,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </section>
       )}
 
-      {/* Archetype C — Pattern: Pattern Variations */}
+      {/* Archetype C, Pattern: Pattern Variations */}
       {content?.patternVariations && (
         <section className="mt-10">
           <h2 className="section-heading">Pattern Variations to Try</h2>
@@ -381,7 +381,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
                 <Link href={link.href} className="text-plum-500 hover:text-plum-600 hover:underline font-medium">
                   {link.label}
                 </Link>
-                {" — "}
+                {", "}
                 <span className="text-bark-500 text-sm">{link.description}</span>
               </li>
             ))}
@@ -395,21 +395,21 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         <ul className="space-y-2 text-sm text-bark-500">
           <li>
             <a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" target="_blank" rel="noopener noreferrer" className="text-plum-500 hover:text-plum-600 hover:underline">
-              Craft Yarn Council — Yarn Weight System
+              Craft Yarn Council, Yarn Weight System
             </a>
-            {" — Industry-standard yarn weight categories and gauge ranges"}
+            {", Industry-standard yarn weight categories and gauge ranges"}
           </li>
           <li>
             <a href="https://www.craftyarncouncil.com/standards/needle-hook-sizes" target="_blank" rel="noopener noreferrer" className="text-plum-500 hover:text-plum-600 hover:underline">
-              Craft Yarn Council — Needle & Hook Sizes
+              Craft Yarn Council, Needle & Hook Sizes
             </a>
-            {" — Standard sizing charts for knitting needles and crochet hooks"}
+            {", Standard sizing charts for knitting needles and crochet hooks"}
           </li>
           <li>
             <a href="https://www.ravelry.com" target="_blank" rel="noopener noreferrer" className="text-plum-500 hover:text-plum-600 hover:underline">
               Ravelry
             </a>
-            {" — Yarn database, pattern library, and community for fiber artists"}
+            {", Yarn database, pattern library, and community for fiber artists"}
           </li>
         </ul>
       </section>
@@ -496,7 +496,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
               Ready to start your project?
             </h3>
             <p className="text-sm text-bark-500 leading-relaxed">
-              {"You've done the planning — now keep track while you craft. "}
+              {"You've done the planning, now keep track while you craft. "}
               <a
                 href="https://mycrochetkit.com"
                 target="_blank"

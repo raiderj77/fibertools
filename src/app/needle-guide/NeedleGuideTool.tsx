@@ -124,7 +124,7 @@ const NEEDLES: NeedleType[] = [
     bestFor:
       "Holding stitches while crossing cables in knitting",
     howToRemember:
-      "Not really a needle — more like a tiny bent stick. It holds stitches, not thread.",
+      "Not really a needle, more like a tiny bent stick. It holds stitches, not thread.",
     category: "yarn",
   },
   {
@@ -250,7 +250,7 @@ export default function NeedleGuideTool() {
       {/* Key confusion callout */}
       <div className="bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 rounded-xl p-5">
         <h2 className="font-bold text-bark-700 dark:text-cream-300 mb-3">
-          Tapestry vs Chenille — The #1 Confusion
+          Tapestry vs Chenille, The #1 Confusion
         </h2>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-3">
           They look almost identical. Same large eye, same size range. The only difference is the

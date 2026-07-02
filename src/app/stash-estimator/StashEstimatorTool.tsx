@@ -185,7 +185,7 @@ export default function StashEstimatorTool() {
 
                 <div className="p-3 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl">
                   <p className="text-xs text-amber-700 dark:text-amber-300">
-                    Fiber content affects weight-to-yardage ratio — cotton is heavier per yard than wool. Always treat as an estimate.
+                    Fiber content affects weight-to-yardage ratio, cotton is heavier per yard than wool. Always treat as an estimate.
                   </p>
                 </div>
 
@@ -348,10 +348,10 @@ export default function StashEstimatorTool() {
           Stash Tips
         </h3>
         <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
-          <li><strong>Weigh without the label</strong> — yarn ball bands can add 2-5g, which skews small skein estimates.</li>
-          <li><strong>Kitchen scales work great</strong> — accuracy to 1g is plenty for yarn estimation.</li>
-          <li><strong>Cotton is heavier than wool</strong> — 50g of cotton yields fewer yards than 50g of wool at the same thickness.</li>
-          <li><strong>When in doubt, buy more</strong> — running out mid-project with a discontinued dye lot is every crafter&apos;s nightmare.</li>
+          <li><strong>Weigh without the label</strong>, yarn ball bands can add 2-5g, which skews small skein estimates.</li>
+          <li><strong>Kitchen scales work great</strong>, accuracy to 1g is plenty for yarn estimation.</li>
+          <li><strong>Cotton is heavier than wool</strong>, 50g of cotton yields fewer yards than 50g of wool at the same thickness.</li>
+          <li><strong>When in doubt, buy more</strong>, running out mid-project with a discontinued dye lot is every crafter&apos;s nightmare.</li>
         </ul>
       </div>
     </div>

@@ -62,7 +62,7 @@ export default function PrivacyPolicyPage() {
           </p>
           <p>
             <strong>Analytics (Google Analytics 4):</strong> We use GA4 to
-            understand how people use the site — which pages are visited, how
+            understand how people use the site, which pages are visited, how
             long sessions last, and general geographic region. GA4 uses
             first-party cookies. We have IP anonymization enabled. No personally
             identifiable information is collected through analytics.
@@ -154,7 +154,7 @@ export default function PrivacyPolicyPage() {
           <p>We use the following third-party services:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>
-              <strong>Google Analytics 4</strong> — website analytics (
+              <strong>Google Analytics 4</strong>, website analytics (
               <a
                 href="https://policies.google.com/privacy"
                 target="_blank"
@@ -166,7 +166,7 @@ export default function PrivacyPolicyPage() {
               )
             </li>
             <li>
-              <strong>Google AdSense</strong> — advertising (
+              <strong>Google AdSense</strong>, advertising (
               <a
                 href="https://policies.google.com/technologies/ads"
                 target="_blank"
@@ -178,7 +178,7 @@ export default function PrivacyPolicyPage() {
               )
             </li>
             <li>
-              <strong>Vercel</strong> — hosting and CDN (
+              <strong>Vercel</strong>, hosting and CDN (
               <a
                 href="https://vercel.com/legal/privacy-policy"
                 target="_blank"
@@ -190,7 +190,7 @@ export default function PrivacyPolicyPage() {
               )
             </li>
             <li>
-              <strong>Microsoft Clarity</strong> — heatmaps and session recordings
+              <strong>Microsoft Clarity</strong>, heatmaps and session recordings
               to understand how visitors interact with the site (
               <a
                 href="https://privacy.microsoft.com/en-us/privacystatement"
@@ -203,7 +203,7 @@ export default function PrivacyPolicyPage() {
               )
             </li>
             <li>
-              <strong>Amazon Associates</strong> — affiliate product links. We may
+              <strong>Amazon Associates</strong>, affiliate product links. We may
               earn a small commission when you purchase through our links. This does
               not affect the price you pay. (
               <a
@@ -299,7 +299,7 @@ export default function PrivacyPolicyPage() {
             <li>To analyze site traffic and improve tool functionality via analytics</li>
             <li>To maintain site security and prevent fraud</li>
           </ul>
-          <p>We do not sell your personal information as defined under CCPA. Sharing data with advertising partners for targeted advertising may constitute &ldquo;sharing&rdquo; under CPRA — you may opt out using the methods below.</p>
+          <p>We do not sell your personal information as defined under CCPA. Sharing data with advertising partners for targeted advertising may constitute &ldquo;sharing&rdquo; under CPRA, you may opt out using the methods below.</p>
 
           <h3>Your Rights as a California Resident</h3>
           <ul className="list-disc pl-6 space-y-1">
@@ -388,7 +388,7 @@ export default function PrivacyPolicyPage() {
             advertising using sensitive personal information.
           </p>
 
-          <h3>Maryland Online Data Privacy Act (MODPA) — Effective April 1, 2026</h3>
+          <h3>Maryland Online Data Privacy Act (MODPA), Effective April 1, 2026</h3>
           <p>
             Maryland&apos;s Online Data Privacy Act (MODPA, Commercial Law § 14-4604) grants Maryland residents enhanced privacy rights, including:
           </p>

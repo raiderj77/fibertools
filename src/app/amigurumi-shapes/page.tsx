@@ -72,7 +72,7 @@ export default function AmigurumiShapesPage() {
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           The magic ring is essential for spheres because it closes the center hole completely. With a chain-2
-          start, the top and bottom of the sphere have a small visible hole — acceptable for most shapes but
+          start, the top and bottom of the sphere have a small visible hole, acceptable for most shapes but
           noticeable on sphere tops where the poles are prominent. Pull the magic ring tail firmly before
           continuing to the second round to lock it closed. The{' '}
           <Link href="/circle-calculator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">flat circle calculator</Link>
@@ -104,7 +104,7 @@ export default function AmigurumiShapesPage() {
           </p>
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Looser amigurumi shows its stuffing between stitches and loses structural shape over time — the
+          Looser amigurumi shows its stuffing between stitches and loses structural shape over time, the
           polyfill migrates to the lowest point and the piece goes lopsided. A tight fabric keeps stuffing
           evenly distributed and maintains the geometric shape the pattern intends. The quick test: try to
           push a fingertip through the fabric. It should resist firmly without the stitches visibly spreading.
@@ -129,7 +129,7 @@ export default function AmigurumiShapesPage() {
         </h2>
         <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
           <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
-            Sc2tog (single crochet two together) is the standard amigurumi decrease — insert hook into next
+            Sc2tog (single crochet two together) is the standard amigurumi decrease, insert hook into next
             stitch, pull up loop, insert into following stitch, pull up loop, yarn over and pull through all
             three loops. For invisible decreases, work into front loops only of both stitches. Close the final
             round with a yarn needle by weaving through the front loops and pulling tight.<sup>3</sup>
@@ -149,8 +149,7 @@ export default function AmigurumiShapesPage() {
           stitches to lock it.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          Amigurumi finishing shows on every completed piece because the closure sits at a visible point —
-          typically the bottom of a sphere or the tip of a cone. A clean closure makes the piece look
+          Amigurumi finishing shows on every completed piece because the closure sits at a visible point, typically the bottom of a sphere or the tip of a cone. A clean closure makes the piece look
           professionally finished; a sloppy one draws the eye even if every other stitch is perfect. The
           extra 30 seconds spent on a neat cinch-close is worth it.
         </p>
@@ -165,11 +164,11 @@ export default function AmigurumiShapesPage() {
             An off-shape sphere usually means uneven increase distribution, mismatched increase and decrease
             counts, or skipping the equator plain rounds. Check that your increase rounds and decrease rounds
             use the same staggered pattern, and verify the decrease count exactly matches the increase count.
-            Plain rounds at the equator add structural roundness — don&rsquo;t skip them on small spheres.<sup>4</sup>
+            Plain rounds at the equator add structural roundness, don&rsquo;t skip them on small spheres.<sup>4</sup>
           </p>
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Egg shapes result from too many plain equator rounds — the sphere elongates in the direction of
+          Egg shapes result from too many plain equator rounds, the sphere elongates in the direction of
           work. A pointed top comes from stacking increases rather than staggering them, creating a hexagonal
           peak instead of a smooth curve. Wobbly or inconsistent shape usually traces back to tension changes
           between rounds, particularly if you work some rounds tighter when tired.
@@ -182,7 +181,7 @@ export default function AmigurumiShapesPage() {
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Stitch markers prevent round-counting errors that throw off the increase-decrease symmetry. Missing
-          a round during the decrease section — the most common mistake — produces a flat-bottomed sphere
+          a round during the decrease section, the most common mistake, produces a flat-bottomed sphere
           instead of a closed ball. A simple split-ring marker in the first stitch of each round takes 2
           seconds to move and eliminates the most common source of amigurumi shape problems.
         </p>
@@ -209,12 +208,12 @@ export default function AmigurumiShapesPage() {
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Sizing up yarn weight is the faster route to large amigurumi. A 12-round sphere in worsted weight
           takes significantly longer than the same shape in bulky (CYC 5) or super bulky (CYC 6) yarn. The
-          stitch geometry is identical — just scale the hook size to match. A bulky-yarn sphere at 8 rounds
+          stitch geometry is identical, just scale the hook size to match. A bulky-yarn sphere at 8 rounds
           can match the diameter of a worsted-yarn sphere at 12+ rounds.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Stuffing volume scales cubically with diameter, not linearly. A sphere twice as wide needs roughly
-          8 times the stuffing to fill properly. Plan your polyfill quantity accordingly — large amigurumi
+          8 times the stuffing to fill properly. Plan your polyfill quantity accordingly, large amigurumi
           pieces consume surprising amounts of stuffing, and underfilling a large sphere produces a sad,
           floppy result even if the crochet itself is perfectly executed.
         </p>
@@ -226,7 +225,7 @@ export default function AmigurumiShapesPage() {
         <ol className="space-y-1.5 text-sm text-bark-500 dark:text-bark-400">
           <li>
             <span className="font-medium">1.</span>{" "}
-            Craft Yarn Council — Stitch Symbols and Standards.{" "}
+            Craft Yarn Council, Stitch Symbols and Standards.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/stitch-symbols"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -238,7 +237,7 @@ export default function AmigurumiShapesPage() {
           </li>
           <li>
             <span className="font-medium">2.</span>{" "}
-            Craft Yarn Council — Needle and Hook Size Chart.{" "}
+            Craft Yarn Council, Needle and Hook Size Chart.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/needle-hook-chart"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -250,7 +249,7 @@ export default function AmigurumiShapesPage() {
           </li>
           <li>
             <span className="font-medium">3.</span>{" "}
-            Yarnspirations — Amigurumi Decrease Tutorial.{" "}
+            Yarnspirations, Amigurumi Decrease Tutorial.{" "}
             <Link
               href="https://www.yarnspirations.com/blogs/ideas-and-inspiration"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -262,7 +261,7 @@ export default function AmigurumiShapesPage() {
           </li>
           <li>
             <span className="font-medium">4.</span>{" "}
-            Ravelry — Amigurumi pattern database.{" "}
+            Ravelry, Amigurumi pattern database.{" "}
             <Link
               href="https://www.ravelry.com/patterns/search#craft=crochet&pc=toysandhobbies"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -274,7 +273,7 @@ export default function AmigurumiShapesPage() {
           </li>
           <li>
             <span className="font-medium">5.</span>{" "}
-            Craft Yarn Council — Standard Yarn Weight System.{" "}
+            Craft Yarn Council, Standard Yarn Weight System.{" "}
             <Link
               href="https://www.craftyarncouncil.com/standards/yarn-weight"
               className="text-sage-600 dark:text-sage-400 underline"

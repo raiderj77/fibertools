@@ -248,7 +248,7 @@ export default function WeavingSettCalculatorTool() {
                   Target: {settResult.recEpi} ends per inch for {settResult.structure}
                 </p>
                 <p className="text-xs text-bark-400 dark:text-bark-500">
-                  Based on ~{Math.round(settResult.wpi)} WPI. Always sample first — fiber, twist, and finishing change sett.
+                  Based on ~{Math.round(settResult.wpi)} WPI. Always sample first, fiber, twist, and finishing change sett.
                 </p>
               </div>
             )}

@@ -22,19 +22,19 @@ const FIBERS: Record<string, FiberInfo> = {
   "wool-nonsuperwash": {
     label: "Wool (non-superwash)",
     methods: ["Wet block", "Spray block"],
-    warning: "Use COOL water only — hot water felts non-superwash wool.",
+    warning: "Use COOL water only, hot water felts non-superwash wool.",
     instructions: ["wet", "spray"],
   },
   alpaca: {
     label: "Alpaca",
     methods: ["Spray block"],
-    warning: "Avoid wet blocking — alpaca stretches significantly when saturated and may not spring back.",
+    warning: "Avoid wet blocking, alpaca stretches significantly when saturated and may not spring back.",
     instructions: ["spray"],
   },
   cashmere: {
     label: "Cashmere",
     methods: ["Spray block"],
-    warning: "Handle gently — cashmere is delicate when wet.",
+    warning: "Handle gently, cashmere is delicate when wet.",
     instructions: ["spray"],
   },
   mohair: {
@@ -64,13 +64,13 @@ const FIBERS: Record<string, FiberInfo> = {
   bamboo: {
     label: "Bamboo",
     methods: ["Wet block"],
-    warning: "Check yarn label — some bamboo blends have special care requirements.",
+    warning: "Check yarn label, some bamboo blends have special care requirements.",
     instructions: ["wet"],
   },
   acrylic: {
     label: "Acrylic",
     methods: ["Spray block", "Wet block"],
-    warning: "NEVER steam acrylic — heat permanently damages the fibers (\"kills\" them). The change is irreversible.",
+    warning: "NEVER steam acrylic, heat permanently damages the fibers (\"kills\" them). The change is irreversible.",
     instructions: ["spray", "wet"],
   },
   nylon: {
@@ -82,7 +82,7 @@ const FIBERS: Record<string, FiberInfo> = {
   "acrylic-wool": {
     label: "Acrylic/wool blend",
     methods: ["Spray block", "Wet block"],
-    warning: "Treat as acrylic — NEVER steam. The acrylic content will be permanently damaged by heat.",
+    warning: "Treat as acrylic, NEVER steam. The acrylic content will be permanently damaged by heat.",
     instructions: ["spray", "wet"],
   },
 };

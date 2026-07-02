@@ -38,7 +38,7 @@ export default function GuidesPage() {
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Fiber Arts Guides — FiberTools.app",
+    name: "Fiber Arts Guides, FiberTools.app",
     description:
       "In-depth knitting and crochet guides from FiberTools.app",
     url: "https://fibertools.app/guides",

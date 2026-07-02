@@ -69,33 +69,33 @@ export default function AccessibilityPage() {
           </h2>
           <ul className="list-disc pl-6 space-y-1">
             <li>
-              Semantic HTML throughout — proper headings, landmarks, labels, and
+              Semantic HTML throughout, proper headings, landmarks, labels, and
               form elements
             </li>
             <li>
-              Keyboard navigable — all tools and navigation can be used without a
+              Keyboard navigable, all tools and navigation can be used without a
               mouse
             </li>
             <li>
-              Color contrast — our sage/bark/cream color palette meets WCAG AA
+              Color contrast, our sage/bark/cream color palette meets WCAG AA
               contrast ratios
             </li>
             <li>
-              Dark mode — reduces eye strain and improves readability in low-light
+              Dark mode, reduces eye strain and improves readability in low-light
               environments
             </li>
             <li>
-              Responsive design — works on screens from mobile to desktop
+              Responsive design, works on screens from mobile to desktop
             </li>
             <li>
-              Large touch targets — buttons and inputs are sized for easy tapping
+              Large touch targets, buttons and inputs are sized for easy tapping
               on mobile devices
             </li>
             <li>
-              No auto-playing media — no unexpected sounds or animations
+              No auto-playing media, no unexpected sounds or animations
             </li>
             <li>
-              Text resizing — content reflows properly when text size is increased
+              Text resizing, content reflows properly when text size is increased
             </li>
           </ul>
         </section>

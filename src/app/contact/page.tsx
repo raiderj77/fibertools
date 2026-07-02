@@ -81,37 +81,37 @@ export default function ContactPage() {
           </p>
           <ul className="list-disc pl-6 space-y-2">
             <li>
-              <strong>Tool feedback</strong> — Let us know if a calculator gave
+              <strong>Tool feedback</strong>, Let us know if a calculator gave
               you an unexpected result, if the interface is confusing, or if
               you have ideas for improving an existing tool. Specific details
               (the values you entered, the result you expected) help us
               investigate faster.
             </li>
             <li>
-              <strong>Yarn calculation questions</strong> — Unsure which
+              <strong>Yarn calculation questions</strong>, Unsure which
               calculator to use for your project, or need help interpreting a
               result? We are happy to point you in the right direction.
             </li>
             <li>
-              <strong>Pattern suggestions</strong> — If you would like to see a
+              <strong>Pattern suggestions</strong>, If you would like to see a
               calculator or reference chart for a specific technique, stitch
               pattern, or craft discipline, let us know. Many of the tools on
               FiberTools started as user suggestions.
             </li>
             <li>
-              <strong>Bug reports</strong> — Something broken, displaying
+              <strong>Bug reports</strong>, Something broken, displaying
               incorrectly, or not loading? Please include the device and
               browser you are using so we can reproduce the issue.
             </li>
             <li>
-              <strong>Accessibility issues</strong> — We are committed to
+              <strong>Accessibility issues</strong>, We are committed to
               making every tool usable by everyone. If you encounter a barrier
               related to screen readers, keyboard navigation, color contrast,
               or any other accessibility concern, please tell us so we can fix
               it.
             </li>
             <li>
-              <strong>Partnership and collaboration inquiries</strong> — If you
+              <strong>Partnership and collaboration inquiries</strong>, If you
               are a yarn brand, pattern designer, fiber arts educator, or
               content creator interested in working together, we would love to
               hear your ideas.
@@ -148,8 +148,7 @@ export default function ContactPage() {
                 className="text-sage-600 dark:text-sage-400 underline"
               >
                 Yarn Calculator
-              </Link>{" "}
-              — Estimate how much yarn you need for any project based on gauge,
+              </Link>{" "}, Estimate how much yarn you need for any project based on gauge,
               dimensions, and stitch pattern.
             </li>
             <li>
@@ -158,8 +157,7 @@ export default function ContactPage() {
                 className="text-sage-600 dark:text-sage-400 underline"
               >
                 Gauge Calculator
-              </Link>{" "}
-              — Convert your swatch measurements into accurate stitch and row
+              </Link>{" "}, Convert your swatch measurements into accurate stitch and row
               counts for pattern sizing.
             </li>
             <li>
@@ -168,8 +166,7 @@ export default function ContactPage() {
                 className="text-sage-600 dark:text-sage-400 underline"
               >
                 Blanket Size Calculator
-              </Link>{" "}
-              — Find the right dimensions and yarn requirements for blankets of
+              </Link>{" "}, Find the right dimensions and yarn requirements for blankets of
               every size, from baby to king.
             </li>
           </ul>

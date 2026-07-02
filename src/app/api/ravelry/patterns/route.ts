@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 // never reach the browser. Mirrors api/indexnow/route.ts (Node runtime, env vars).
 //
 // Env (set in Vercel project settings):
-//   RAVELRY_API_USERNAME  — read-only "Basic Auth: read only access" username
-//   RAVELRY_API_PASSWORD  — its paired password
+//   RAVELRY_API_USERNAME, read-only "Basic Auth: read only access" username
+//   RAVELRY_API_PASSWORD, its paired password
 //
 // Query params: q (keyword), craft (knitting|crochet), weight (worsted|dk|...),
 //               pc (pattern category e.g. blanket, pullover), limit (default 6, max 12)
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
   const user = process.env.RAVELRY_API_USERNAME;
   const pass = process.env.RAVELRY_API_PASSWORD;
 
-  // Graceful no-op if not configured — the calculator page still works fine.
+  // Graceful no-op if not configured, the calculator page still works fine.
   if (!user || !pass) {
     return NextResponse.json(
       { patterns: [], configured: false },

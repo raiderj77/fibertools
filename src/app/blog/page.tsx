@@ -3,13 +3,13 @@ import Link from "next/link";
 import { getAllMarkdownPosts } from "@/lib/blog-markdown";
 
 export const metadata: Metadata = {
-  title: "Fiber Arts Blog — Guides & Tutorials",
+  title: "Fiber Arts Blog, Guides & Tutorials",
   description:
     "Free guides for knitting, crochet, weaving, spinning, and embroidery. Learn yarn calculation, gauge, needle sizing, and more.",
   keywords: ["fiber arts blog", "knitting guides", "crochet tutorials", "yarn tips"],
   robots: { index: true, follow: true, googleBot: { "max-snippet": -1 } },
   openGraph: {
-    title: "Fiber Arts Blog — Guides & Tutorials",
+    title: "Fiber Arts Blog, Guides & Tutorials",
     description:
       "Free guides for knitting, crochet, weaving, spinning, and embroidery. Learn yarn calculation, gauge, needle sizing, and more.",
     url: "https://fibertools.app/blog",
@@ -18,13 +18,13 @@ export const metadata: Metadata = {
         url: "https://fibertools.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Fiber Arts Blog — FiberTools",
+        alt: "Fiber Arts Blog, FiberTools",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fiber Arts Blog — Guides & Tutorials",
+    title: "Fiber Arts Blog, Guides & Tutorials",
     description:
       "Free guides for knitting, crochet, weaving, spinning, and embroidery.",
     images: ["https://fibertools.app/og-image.png"],
@@ -38,7 +38,7 @@ export default function BlogIndexPage() {
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Fiber Arts Blog — FiberTools.app",
+    name: "Fiber Arts Blog, FiberTools.app",
     description:
       "Knitting, crochet, and fiber arts guides and tutorials from FiberTools.app",
     url: "https://fibertools.app/blog",
@@ -61,7 +61,7 @@ export default function BlogIndexPage() {
         Fiber Arts Blog
       </h1>
       <p className="text-bark-500 dark:text-bark-400 mb-10 max-w-2xl">
-        In-depth guides for knitting, crochet, weaving, and spinning — with free
+        In-depth guides for knitting, crochet, weaving, and spinning, with free
         tools to put every technique into practice.
       </p>
 
