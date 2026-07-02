@@ -189,7 +189,7 @@ export default async function BlogPostPage({
             Ready to put this into practice?
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 mb-4">
-            Use our free {tool.name} — no login required, works offline.
+            Use our free {tool.name}, no login required, works offline.
           </p>
           <Link href={`/${tool.slug}`} className="btn-primary">
             {tool.icon} Open {tool.shortName}
