@@ -5,7 +5,6 @@ import { toolContent } from "@/lib/toolContent";
 import { getBlogPostByToolSlug } from "@/lib/blog";
 import { getGuideByToolSlug } from "@/lib/guides";
 import FAQSection from "./FAQSection";
-import FiberGear from "@/components/FiberGear";
 import PrintShareButtons from "./PrintShareButtons";
 import AdUnit from "./AdUnit";
 import LazyAdUnit from "./LazyAdUnit";
@@ -126,14 +125,6 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
 
       {/* === TOOL UI === */}
       {children}
-
-      {/* Amazon affiliate materials — knit/crochet tools; yarn-calculator has its own tailored one */}
-      {(tool.category === "knitting" || tool.category === "crochet" || tool.category === "both") && slug !== "yarn-calculator" && (
-        <FiberGear
-          craft={tool.category === "crochet" ? "crochet" : tool.category === "knitting" ? "knit" : undefined}
-          visible={true}
-        />
-      )}
 
       {widgetFirst && (
         <>
