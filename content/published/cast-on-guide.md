@@ -1,5 +1,5 @@
 ---
-title: "How Many Stitches to Cast On — Calculator Guide for Any Width"
+title: "How Many Stitches to Cast On, Calculator Guide for Any Width"
 slug: "cast-on-guide"
 date: "2026-03-18"
 toolSlug: "cast-on-calculator"

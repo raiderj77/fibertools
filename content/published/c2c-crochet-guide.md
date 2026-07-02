@@ -1,5 +1,5 @@
 ---
-title: "Corner-to-Corner Crochet (C2C) — How to Calculate Blocks, Rows & Yardage"
+title: "Corner-to-Corner Crochet (C2C), How to Calculate Blocks, Rows & Yardage"
 slug: "c2c-crochet-guide"
 date: "2026-03-18"
 toolSlug: "c2c-calculator"

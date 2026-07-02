@@ -1,5 +1,5 @@
 ---
-title: "How to Read a Crochet Pattern for Beginners — A Complete Guide"
+title: "How to Read a Crochet Pattern for Beginners, A Complete Guide"
 slug: "reading-crochet-patterns-guide"
 date: "2026-03-18"
 toolSlug: "abbreviation-glossary"

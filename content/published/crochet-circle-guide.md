@@ -1,5 +1,5 @@
 ---
-title: "How to Crochet a Perfect Flat Circle — Increase Formula & Pattern Generator"
+title: "How to Crochet a Perfect Flat Circle, Increase Formula & Pattern Generator"
 slug: "crochet-circle-guide"
 date: "2026-03-18"
 toolSlug: "circle-calculator"

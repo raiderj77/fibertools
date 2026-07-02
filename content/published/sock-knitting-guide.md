@@ -1,5 +1,5 @@
 ---
-title: "Sock Knitting Calculator Guide — Sizing, Heel Construction & Stitch Counts"
+title: "Sock Knitting Calculator Guide, Sizing, Heel Construction & Stitch Counts"
 slug: "sock-knitting-guide"
 date: "2026-03-18"
 toolSlug: "sock-calculator"

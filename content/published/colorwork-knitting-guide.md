@@ -1,9 +1,9 @@
 ---
-title: "Introduction to Colorwork Knitting — Stranded, Intarsia & Fair Isle Explained"
+title: "Introduction to Colorwork Knitting, Stranded, Intarsia & Fair Isle Explained"
 slug: "colorwork-knitting-guide"
 date: "2026-03-18"
 toolSlug: "yardage-estimator"
-description: "Learn the three main colorwork knitting techniques — stranded, intarsia, and Fair Isle. Covers float management, tension tips, chart reading, and yarn estimation."
+description: "Learn the three main colorwork knitting techniques, stranded, intarsia, and Fair Isle. Covers float management, tension tips, chart reading, and yarn estimation."
 keywords:
   - colorwork knitting
   - stranded knitting

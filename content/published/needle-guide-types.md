@@ -1,5 +1,5 @@
 ---
-title: "Sewing and Craft Needle Types Explained — Tapestry, Chenille, Sharps & More"
+title: "Sewing and Craft Needle Types Explained, Tapestry, Chenille, Sharps & More"
 slug: "needle-guide-types"
 date: "2026-03-18"
 toolSlug: "needle-guide"

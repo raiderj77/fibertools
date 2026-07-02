@@ -1,5 +1,5 @@
 ---
-title: "Scrap Yarn Projects and Stash Busting Guide — Make the Most of Leftovers"
+title: "Scrap Yarn Projects and Stash Busting Guide, Make the Most of Leftovers"
 slug: "scrap-yarn-stash-busting-guide"
 date: "2026-03-18"
 toolSlug: "stash-estimator"

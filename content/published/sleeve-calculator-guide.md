@@ -1,5 +1,5 @@
 ---
-title: "How to Calculate Sleeve Shaping — Taper Math for Knitting and Crochet"
+title: "How to Calculate Sleeve Shaping, Taper Math for Knitting and Crochet"
 slug: "sleeve-calculator-guide"
 date: "2026-03-18"
 toolSlug: "sleeve-calculator"

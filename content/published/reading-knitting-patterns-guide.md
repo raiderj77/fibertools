@@ -1,5 +1,5 @@
 ---
-title: "How to Read Knitting Patterns — A Beginner's Complete Guide"
+title: "How to Read Knitting Patterns, A Beginner's Complete Guide"
 slug: "reading-knitting-patterns-guide"
 date: "2026-03-18"
 toolSlug: "stitch-counter"

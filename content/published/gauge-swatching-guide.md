@@ -1,5 +1,5 @@
 ---
-title: "How to Knit and Crochet a Gauge Swatch — The Complete Guide"
+title: "How to Knit and Crochet a Gauge Swatch, The Complete Guide"
 slug: "gauge-swatching-guide"
 date: "2026-03-18"
 toolSlug: "gauge-calculator"

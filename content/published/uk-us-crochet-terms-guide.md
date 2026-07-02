@@ -1,5 +1,5 @@
 ---
-title: "UK vs US Crochet Terms — Complete Conversion Chart & Pattern Translator Guide"
+title: "UK vs US Crochet Terms, Complete Conversion Chart & Pattern Translator Guide"
 slug: "uk-us-crochet-terms-guide"
 date: "2026-03-18"
 toolSlug: "uk-to-us-converter"

@@ -1,5 +1,5 @@
 ---
-title: "How to Calculate Hat Size for Knitting and Crochet — From Preemie to Adult"
+title: "How to Calculate Hat Size for Knitting and Crochet, From Preemie to Adult"
 slug: "hat-calculator-guide"
 date: "2026-03-18"
 toolSlug: "hat-calculator"

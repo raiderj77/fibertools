@@ -1,5 +1,5 @@
 ---
-title: "How to Fix Crochet Tension Problems — Even, Consistent Stitches Every Time"
+title: "How to Fix Crochet Tension Problems, Even, Consistent Stitches Every Time"
 slug: "crochet-tension-guide"
 date: "2026-03-18"
 toolSlug: "gauge-calculator"

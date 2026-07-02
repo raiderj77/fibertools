@@ -1,5 +1,5 @@
 ---
-title: "How to Estimate Yarn Yardage in Partial Skeins — Weigh, Calculate & Plan"
+title: "How to Estimate Yarn Yardage in Partial Skeins, Weigh, Calculate & Plan"
 slug: "stash-estimator-guide"
 date: "2026-03-18"
 toolSlug: "stash-estimator"

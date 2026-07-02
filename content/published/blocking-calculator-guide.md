@@ -1,5 +1,5 @@
 ---
-title: "How to Block Knitting and Crochet — Methods, Fiber Guide & When to Block"
+title: "How to Block Knitting and Crochet, Methods, Fiber Guide & When to Block"
 slug: "blocking-calculator-guide"
 date: "2026-03-18"
 toolSlug: "blocking-calculator"

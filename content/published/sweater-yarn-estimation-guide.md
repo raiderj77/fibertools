@@ -1,5 +1,5 @@
 ---
-title: "How to Estimate Yarn for a Sweater — Yardage Guide by Size and Weight"
+title: "How to Estimate Yarn for a Sweater, Yardage Guide by Size and Weight"
 slug: "sweater-yarn-estimation-guide"
 date: "2026-03-18"
 toolSlug: "yarn-calculator"

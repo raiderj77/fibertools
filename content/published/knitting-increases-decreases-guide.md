@@ -1,9 +1,9 @@
 ---
-title: "Knitting Increases and Decreases — Every Method Explained"
+title: "Knitting Increases and Decreases, Every Method Explained"
 slug: "knitting-increases-decreases-guide"
 date: "2026-03-18"
 toolSlug: "stitch-counter"
-description: "Learn every knitting increase and decrease method — KFB, M1L, M1R, K2tog, SSK, and more. Understand left-leaning vs right-leaning shaping for professional results."
+description: "Learn every knitting increase and decrease method, KFB, M1L, M1R, K2tog, SSK, and more. Understand left-leaning vs right-leaning shaping for professional results."
 keywords:
   - knitting increase methods
   - knitting decrease methods

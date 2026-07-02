@@ -1,5 +1,5 @@
 ---
-title: "How to Calculate a Top-Down Raglan Sweater — Stitch Math & Construction Guide"
+title: "How to Calculate a Top-Down Raglan Sweater, Stitch Math & Construction Guide"
 slug: "raglan-sweater-guide"
 date: "2026-03-18"
 toolSlug: "raglan-calculator"

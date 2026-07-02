@@ -1,5 +1,5 @@
 ---
-title: "How to Crochet Basic Amigurumi Shapes — Spheres, Cones, Cylinders & Ovals"
+title: "How to Crochet Basic Amigurumi Shapes, Spheres, Cones, Cylinders & Ovals"
 slug: "amigurumi-shapes-guide"
 date: "2026-03-18"
 toolSlug: "amigurumi-shapes"

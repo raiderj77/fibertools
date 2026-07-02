@@ -1,5 +1,5 @@
 ---
-title: "Yarn Fiber Types — How to Choose the Right Fiber for Your Project"
+title: "Yarn Fiber Types, How to Choose the Right Fiber for Your Project"
 slug: "yarn-fiber-types-guide"
 date: "2026-03-18"
 toolSlug: "yarn-weight-chart"

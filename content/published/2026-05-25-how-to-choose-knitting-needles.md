@@ -108,7 +108,7 @@ Interchangeable knitting needle sets include several tip sizes that screw onto d
       "name": "What are the best knitting needles for beginners?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Bamboo or wooden needles are a good starting point for beginners because their slightly grippy surface prevents stitches from sliding off accidentally. This makes it easier to maintain control while you're still learning tension and stitch placement. Sizes US 7–9 (4.5–5.5mm) work well with medium-weight yarn, making individual stitches easy to see and manipulate without straining your hands."
+        "text": "Bamboo or wooden needles are a good starting point for beginners because their slightly grippy surface prevents stitches from sliding off accidentally. This makes it easier to maintain control while you're still learning tension and stitch placement. Sizes US 7-9 (4.5-5.5mm) work well with medium-weight yarn, making individual stitches easy to see and manipulate without straining your hands."
       }
     },
     {
@@ -124,7 +124,7 @@ Interchangeable knitting needle sets include several tip sizes that screw onto d
       "name": "Are metal or wooden knitting needles better?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Neither is universally better — it depends on your knitting style and yarn choice. Metal needles are slicker, faster, and extremely durable, making them great for smooth yarns and experienced knitters who want speed. Wooden and bamboo needles offer more friction, which helps with slippery yarns like silk or bamboo blends and gives beginners more control. Many knitters keep both types in their collection."
+        "text": "Neither is universally better, it depends on your knitting style and yarn choice. Metal needles are slicker, faster, and extremely durable, making them great for smooth yarns and experienced knitters who want speed. Wooden and bamboo needles offer more friction, which helps with slippery yarns like silk or bamboo blends and gives beginners more control. Many knitters keep both types in their collection."
       }
     },
     {
@@ -132,7 +132,7 @@ Interchangeable knitting needle sets include several tip sizes that screw onto d
       "name": "What size knitting needles do I need for worsted weight yarn?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Worsted weight yarn typically calls for US size 7–9 needles (4.5–5.5mm). The recommended needle size is usually printed on the yarn label as a starting point, but your personal gauge may require adjusting up or down. Always knit a gauge swatch before starting a project, especially for fitted items like sweaters, to ensure your stitch count matches the pattern requirements."
+        "text": "Worsted weight yarn typically calls for US size 7-9 needles (4.5-5.5mm). The recommended needle size is usually printed on the yarn label as a starting point, but your personal gauge may require adjusting up or down. Always knit a gauge swatch before starting a project, especially for fitted items like sweaters, to ensure your stitch count matches the pattern requirements."
       }
     },
     {

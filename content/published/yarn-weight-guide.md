@@ -1,5 +1,5 @@
 ---
-title: "Yarn Weight Chart — Complete CYC Standard Guide From Lace to Jumbo"
+title: "Yarn Weight Chart, Complete CYC Standard Guide From Lace to Jumbo"
 slug: "yarn-weight-guide"
 date: "2026-03-18"
 toolSlug: "yarn-weight-calculator"

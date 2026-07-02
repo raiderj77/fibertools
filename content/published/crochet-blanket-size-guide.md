@@ -1,5 +1,5 @@
 ---
-title: "Crochet Blanket Size Guide — Dimensions, Yarn Amounts & Stitch Counts"
+title: "Crochet Blanket Size Guide, Dimensions, Yarn Amounts & Stitch Counts"
 slug: "crochet-blanket-size-guide"
 date: "2026-03-18"
 toolSlug: "yardage-estimator"

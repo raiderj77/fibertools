@@ -1,5 +1,5 @@
 ---
-title: "How to Plan a Granny Square Blanket — Layout, Yardage & Joining Guide"
+title: "How to Plan a Granny Square Blanket, Layout, Yardage & Joining Guide"
 slug: "granny-square-guide"
 date: "2026-03-18"
 toolSlug: "granny-square-planner"
