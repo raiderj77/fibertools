@@ -136,7 +136,7 @@ Yes. A fabric count conversion calculator works for aida, evenweave, linen, and 
       "name": "How do I convert a cross stitch pattern from 14-count to 18-count fabric?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "To convert between fabric counts, divide the original count by the new count and multiply your pattern dimensions by that ratio. For example, a design that measures 5 inches on 14-count Aida will measure approximately 3.9 inches on 18-count fabric. The stitch count of the pattern itself stays the same \u2014 only the physical finished size changes based on the fabric you choose."
+        "text": "To convert between fabric counts, divide the original count by the new count and multiply your pattern dimensions by that ratio. For example, a design that measures 5 inches on 14-count Aida will measure approximately 3.9 inches on 18-count fabric. The stitch count of the pattern itself stays the same, only the physical finished size changes based on the fabric you choose."
       }
     },
     {

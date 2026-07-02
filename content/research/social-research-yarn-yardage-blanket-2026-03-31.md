@@ -22,7 +22,7 @@
 
 ### Thread 4: Weight-Based Calculation Discussion
 - Key Insight: Experienced crafters prefer weighing yarn with a kitchen scale over measuring yardage
-- Tip: "Weigh your swatch, weigh your remaining yarn, do the math — way easier than trying to measure yards"
+- Tip: "Weigh your swatch, weigh your remaining yarn, do the math, way easier than trying to measure yards"
 - Pain Point: Beginners don't own kitchen scales or know this method exists
 
 ### Thread 5: Stitch Pattern Differences
@@ -84,7 +84,7 @@
 
 ### Insights NOT Available in SEO Content
 1. Weight-based calculation (kitchen scale method) is preferred by experienced crafters but rarely taught
-2. "Yarn chicken" anxiety is a massive community pain point — addressing it builds trust
+2. "Yarn chicken" anxiety is a massive community pain point, addressing it builds trust
 3. Crochet uses approximately 30% more yarn than knitting for the same project
 4. Stitch type can change yardage needs by 25-40%
 5. Dye lot issues are the #1 reason running out of yarn is catastrophic

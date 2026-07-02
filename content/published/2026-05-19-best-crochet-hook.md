@@ -123,7 +123,7 @@ The best crochet hooks for arthritis are ergonomic models with wide, soft rubber
       "name": "What size crochet hook do I need for worsted weight yarn?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For worsted weight yarn, you typically need a 5mm (H-8) crochet hook, though sizes between 4.5mm and 5.5mm are also commonly used. Always check your yarn label, as most include a recommended hook size. Your personal tension also matters \u2014 if your stitches are too tight, size up; too loose, size down. Swatching before starting a project ensures your gauge matches the pattern requirements."
+        "text": "For worsted weight yarn, you typically need a 5mm (H-8) crochet hook, though sizes between 4.5mm and 5.5mm are also commonly used. Always check your yarn label, as most include a recommended hook size. Your personal tension also matters, if your stitches are too tight, size up; too loose, size down. Swatching before starting a project ensures your gauge matches the pattern requirements."
       }
     },
     {

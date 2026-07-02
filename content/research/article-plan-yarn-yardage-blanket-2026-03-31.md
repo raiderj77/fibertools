@@ -18,9 +18,9 @@
 ### 1. Introduction
 - **Type**: intro
 - **Word Target**: 200
-- **Hook Strategy**: Scenario — the crafter who ran out of yarn 3 rows from finishing
+- **Hook Strategy**: Scenario, the crafter who ran out of yarn 3 rows from finishing
 - **APP Elements**: Agree (running out of yarn is the worst), Promise (never again with the right math), Preview (tables + formula + tips)
-- **Mini-Story**: Yes — yarn chicken scenario
+- **Mini-Story**: Yes, yarn chicken scenario
 - **CTA**: soft (mention Yardage Estimator tool)
 - **Unique Data**: Crochet uses ~30% more yarn than knitting
 
@@ -46,7 +46,7 @@
 - **H2**: How to Calculate Yarn Yardage Step by Step
 - **Strategic Angle**: Fully worked example with real numbers (competitors are vague)
 - **Knowledge Gap**: No competitor shows the complete math with a real example
-- **Mini-Story**: Yes — worked example using a throw blanket with worsted weight
+- **Mini-Story**: Yes, worked example using a throw blanket with worsted weight
 - **CTA**: medium (link to Gauge Calculator and Yardage Estimator)
 
 ### 5. The Kitchen Scale Method
@@ -75,9 +75,9 @@
 - **Type**: body-explanation
 - **Word Target**: 300
 - **H2**: How to Never Run Out of Yarn Mid-Blanket
-- **Strategic Angle**: Address "yarn chicken" anxiety directly — use community language
+- **Strategic Angle**: Address "yarn chicken" anxiety directly, use community language
 - **Unique Data**: Dye lot issues, the one-extra-skein rule, weighing remaining yarn
-- **Mini-Story**: Yes — brief "yarn chicken" scenario
+- **Mini-Story**: Yes, brief "yarn chicken" scenario
 
 ### 9. FAQ
 - **Type**: faq

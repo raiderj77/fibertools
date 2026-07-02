@@ -112,7 +112,7 @@ Tulip and Addi are considered top brands for working with fine or lace-weight ya
       "name": "What is the difference between inline and tapered crochet hooks?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Inline hooks have a head that sits flush with the shaft, while tapered hooks have a more pronounced throat that flares outward. Brands like Susan Bates produce inline hooks, whereas Boye is known for its tapered design. The style you prefer often depends on your tension habits \u2014 inline hooks suit tight crocheters, while tapered hooks work well for those with a looser grip. Trying both styles helps you find your ideal match."
+        "text": "Inline hooks have a head that sits flush with the shaft, while tapered hooks have a more pronounced throat that flares outward. Brands like Susan Bates produce inline hooks, whereas Boye is known for its tapered design. The style you prefer often depends on your tension habits, inline hooks suit tight crocheters, while tapered hooks work well for those with a looser grip. Trying both styles helps you find your ideal match."
       }
     },
     {

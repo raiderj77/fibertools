@@ -105,7 +105,7 @@ Wash knitwear only when it is visibly dirty or starts to smell. For garments wor
       "name": "What soap should I use to handwash knitted items?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use a detergent specifically formulated for wool and delicates, such as Eucalan, Soak, or Woolite. These products are pH-balanced to protect protein fibers like wool, alpaca, and mohair. Many no-rinse formulas are especially convenient \u2014 you simply squeeze out the water and skip the rinse step entirely. Avoid regular dish soap or laundry detergent, as harsh surfactants and enzymes can strip natural lanolin and damage delicate yarn fibers over time."
+        "text": "Use a detergent specifically formulated for wool and delicates, such as Eucalan, Soak, or Woolite. These products are pH-balanced to protect protein fibers like wool, alpaca, and mohair. Many no-rinse formulas are especially convenient, you simply squeeze out the water and skip the rinse step entirely. Avoid regular dish soap or laundry detergent, as harsh surfactants and enzymes can strip natural lanolin and damage delicate yarn fibers over time."
       }
     },
     {
@@ -113,7 +113,7 @@ Wash knitwear only when it is visibly dirty or starts to smell. For garments wor
       "name": "How do you dry handwashed knitwear so it keeps its shape?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lay the garment flat on a clean dry towel to block and dry. After washing, gently press out excess water by rolling the knitwear inside the towel \u2014 never wring or twist it. Unroll, reshape the piece to its original measurements, and leave it flat on a drying rack or fresh towel away from direct sunlight and heat. Hanging wet knitwear causes it to stretch out of shape under its own weight."
+        "text": "Lay the garment flat on a clean dry towel to block and dry. After washing, gently press out excess water by rolling the knitwear inside the towel, never wring or twist it. Unroll, reshape the piece to its original measurements, and leave it flat on a drying rack or fresh towel away from direct sunlight and heat. Hanging wet knitwear causes it to stretch out of shape under its own weight."
       }
     },
     {

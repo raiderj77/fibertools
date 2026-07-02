@@ -141,7 +141,7 @@ Calculate blanket yardage by making a gauge swatch. Then use this formula: total
       "name": "How many yards of yarn do I need for a throw blanket?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A throw blanket generally requires 1,500\u20133,000 yards of yarn for a finished size of roughly 50\u00d760 inches. Yarn weight makes the biggest difference \u2014 bulky or super bulky yarn can complete a throw in as few as 1,000 yards, while a lacy fingering-weight design may need 3,500 or more. Crochet stitches tend to use more yarn than knitting. Use a yardage calculator and your gauge swatch to get the most accurate estimate before purchasing."
+        "text": "A throw blanket generally requires 1,500\u20133,000 yards of yarn for a finished size of roughly 50\u00d760 inches. Yarn weight makes the biggest difference, bulky or super bulky yarn can complete a throw in as few as 1,000 yards, while a lacy fingering-weight design may need 3,500 or more. Crochet stitches tend to use more yarn than knitting. Use a yardage calculator and your gauge swatch to get the most accurate estimate before purchasing."
       }
     },
     {
@@ -149,7 +149,7 @@ Calculate blanket yardage by making a gauge swatch. Then use this formula: total
       "name": "How many yards of yarn do I need for a queen-size blanket?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A queen-size blanket typically requires 4,000\u20136,000 yards of yarn for dimensions around 60\u00d780 inches. Heavier yarn weights like bulky or chunky reduce yardage needs significantly, while worsted or DK weight projects in that size range often land closer to 4,500\u20135,500 yards. The stitch pattern also matters \u2014 dense stitches like moss stitch or basketweave use considerably more yarn than open lace patterns. Always add 10\u201315% extra yardage as a safety buffer."
+        "text": "A queen-size blanket typically requires 4,000\u20136,000 yards of yarn for dimensions around 60\u00d780 inches. Heavier yarn weights like bulky or chunky reduce yardage needs significantly, while worsted or DK weight projects in that size range often land closer to 4,500\u20135,500 yards. The stitch pattern also matters, dense stitches like moss stitch or basketweave use considerably more yarn than open lace patterns. Always add 10\u201315% extra yardage as a safety buffer."
       }
     },
     {
@@ -165,7 +165,7 @@ Calculate blanket yardage by making a gauge swatch. Then use this formula: total
       "name": "How do I calculate how many yards of yarn I need for a blanket?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Calculate blanket yardage by working a gauge swatch, then using the formula: total square inches of the blanket divided by square inches in your swatch, multiplied by yards used in the swatch. For example, if your 4\u00d74 inch swatch used 20 yards, a 50\u00d760 inch blanket has 3,000 square inches \u2014 that's 187.5 swatches, requiring roughly 3,750 yards. Tools like the yardage calculator on fibertools.app can automate this process and adjust for yarn weight, stitch pattern, and project dimensions."
+        "text": "Calculate blanket yardage by working a gauge swatch, then using the formula: total square inches of the blanket divided by square inches in your swatch, multiplied by yards used in the swatch. For example, if your 4\u00d74 inch swatch used 20 yards, a 50\u00d760 inch blanket has 3,000 square inches, that's 187.5 swatches, requiring roughly 3,750 yards. Tools like the yardage calculator on fibertools.app can automate this process and adjust for yarn weight, stitch pattern, and project dimensions."
       }
     }
   ]

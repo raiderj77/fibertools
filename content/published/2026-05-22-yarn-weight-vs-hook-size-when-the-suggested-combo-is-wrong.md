@@ -115,7 +115,7 @@ Yes, but expect a different experience. Bamboo and wooden hooks grip yarn slight
       "name": "When should I go up a hook size from what the yarn label suggests?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Go up a hook size when you want a softer, more drapey fabric \u2014 ideal for shawls, garments, or blankets. If your tension naturally runs tight, sizing up compensates and helps you hit gauge. Some yarn labels also recommend conservative hook sizes that produce overly stiff results, so swatching with a larger hook often reveals a more pleasing hand and better stitch definition."
+        "text": "Go up a hook size when you want a softer, more drapey fabric, ideal for shawls, garments, or blankets. If your tension naturally runs tight, sizing up compensates and helps you hit gauge. Some yarn labels also recommend conservative hook sizes that produce overly stiff results, so swatching with a larger hook often reveals a more pleasing hand and better stitch definition."
       }
     },
     {
@@ -131,7 +131,7 @@ Yes, but expect a different experience. Bamboo and wooden hooks grip yarn slight
       "name": "Why does my gauge never match the pattern even when I use the recommended hook and yarn?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Gauge mismatches happen because tension is personal \u2014 your hand pressure, yarn hold, and stitch style are unique to you. Fiber content also matters, since wool behaves differently than cotton or acrylic under the same hook. Switch hook sizes up or down until your swatch matches the pattern's stitch and row count, regardless of what the label recommends. Gauge swatching is the only reliable fix."
+        "text": "Gauge mismatches happen because tension is personal, your hand pressure, yarn hold, and stitch style are unique to you. Fiber content also matters, since wool behaves differently than cotton or acrylic under the same hook. Switch hook sizes up or down until your swatch matches the pattern's stitch and row count, regardless of what the label recommends. Gauge swatching is the only reliable fix."
       }
     },
     {
@@ -139,7 +139,7 @@ Yes, but expect a different experience. Bamboo and wooden hooks grip yarn slight
       "name": "Can I use a metal hook with a yarn that recommends a bamboo or wooden hook?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, but expect a different experience. Bamboo and wooden hooks grip yarn slightly, slowing it down \u2014 helpful for slippery fibers like silk or bamboo yarn. Metal hooks are faster and smoother, which can cause splitty or slippery yarns to slide off unpredictably. If the label suggests wood, it's often a fiber-compatibility hint rather than a strict rule, so test both and choose whichever gives you better stitch control."
+        "text": "Yes, but expect a different experience. Bamboo and wooden hooks grip yarn slightly, slowing it down, helpful for slippery fibers like silk or bamboo yarn. Metal hooks are faster and smoother, which can cause splitty or slippery yarns to slide off unpredictably. If the label suggests wood, it's often a fiber-compatibility hint rather than a strict rule, so test both and choose whichever gives you better stitch control."
       }
     }
   ]

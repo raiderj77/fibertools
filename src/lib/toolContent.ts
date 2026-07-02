@@ -503,7 +503,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       title: "How Stripe Sequences Are Generated",
       paragraphs: [
         "Consider a project with 3 colors in random mode, minimum stripe width of 2 rows, maximum stripe width of 6 rows, for a total of 200 rows. The generator picks a random width between 2 and 6 for each stripe, then assigns a color that differs from the previous stripe to prevent consecutive repeats.",
-        "As stripes are assigned, the generator tracks the cumulative row count for each color. If color A has been used for 80 rows, color B for 70, and color C for 50, the algorithm weights the next assignment toward color C to keep the distribution roughly even \u2014 unless you have set custom weights.",
+        "As stripes are assigned, the generator tracks the cumulative row count for each color. If color A has been used for 80 rows, color B for 70, and color C for 50, the algorithm weights the next assignment toward color C to keep the distribution roughly even, unless you have set custom weights.",
         "Per-color yardage is then calculated by multiplying each color\u2019s total row count by the estimated yards per row at your gauge and project width. For a 48-inch-wide blanket in worsted weight, each row uses approximately 4.5 yards, so 67 rows of one color would require about 302 yards.",
       ],
     },
@@ -550,7 +550,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     introduction: {
       title: "Why You Need an Abbreviation & Stitch Glossary",
       paragraphs: [
-        "Halfway through a vintage pattern, you hit \u201csl1-k2tog-psso\u201d and freeze \u2014 what does that mean? Knitting and crochet patterns rely on over a hundred standard abbreviations, and designers sometimes invent their own. Without a reliable reference, one misread abbreviation can derail an entire project.",
+        "Halfway through a vintage pattern, you hit \u201csl1-k2tog-psso\u201d and freeze, what does that mean? Knitting and crochet patterns rely on over a hundred standard abbreviations, and designers sometimes invent their own. Without a reliable reference, one misread abbreviation can derail an entire project.",
         "The confusion doubles when you cross the Atlantic. UK and US crochet terminology uses the same words for completely different stitches, so a British pattern calling for double crochet produces a fundamentally different fabric than the American stitch of the same name. A searchable glossary with a US/UK toggle eliminates this guesswork entirely.",
       ],
     },
@@ -559,13 +559,13 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       paragraphs: [
         "An abbreviation glossary is a searchable database of knitting and crochet abbreviations paired with their full names, definitions, and step-by-step execution instructions. It covers standard abbreviations published by the Craft Yarn Council as well as widely used designer shorthand for cables, colorwork, and lace.",
         "The US/UK toggle switches the entire glossary between American and British terminology. Each entry shows the equivalent abbreviation in the other system when one exists, making it possible to work confidently from patterns published in either country.",
-        "The pattern translator feature goes further \u2014 paste a full instruction line and the glossary expands every abbreviation into plain language. This is especially useful for complex stitch sequences where multiple abbreviations stack together in a single instruction.",
+        "The pattern translator feature goes further, paste a full instruction line and the glossary expands every abbreviation into plain language. This is especially useful for complex stitch sequences where multiple abbreviations stack together in a single instruction.",
       ],
     },
     howCalculated: {
       title: "How UK/US Term Conversion Works",
       paragraphs: [
-        "The UK/US conversion is not random \u2014 it follows a systematic offset. Every UK crochet term is one step higher than its US equivalent. UK double crochet equals US single crochet. UK treble equals US double crochet. UK double treble equals US treble. The entire naming ladder shifts by one rung.",
+        "The UK/US conversion is not random, it follows a systematic offset. Every UK crochet term is one step higher than its US equivalent. UK double crochet equals US single crochet. UK treble equals US double crochet. UK double treble equals US treble. The entire naming ladder shifts by one rung.",
         "This offset exists because UK terminology counts the loops on the hook, while US terminology counts the yarn overs before insertion. A US single crochet has zero yarn overs before inserting; the UK calls it double crochet because there are two loops on the hook after pulling up. Understanding this logic makes the entire conversion table predictable rather than something to memorize.",
       ],
     },
@@ -669,14 +669,14 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     introduction: {
       title: "Why You Need a Stitch Pattern Calculator",
       paragraphs: [
-        "Planning a sampler blanket with shell stitch requiring a multiple of 6 plus 1 and waffle stitch requiring a multiple of 3 \u2014 what cast-on count works for both panels? Finding a number that satisfies two or more stitch multiples by hand involves trial, error, and arithmetic that gets tedious fast.",
+        "Planning a sampler blanket with shell stitch requiring a multiple of 6 plus 1 and waffle stitch requiring a multiple of 3, what cast-on count works for both panels? Finding a number that satisfies two or more stitch multiples by hand involves trial, error, and arithmetic that gets tedious fast.",
         "Any project combining different stitch patterns needs a compatible stitch count across all sections. Blanket panels, yoke transitions, and border-to-body joins all require this calculation. Getting it wrong means partial pattern repeats at the edges, which look unfinished and amateur regardless of your stitch quality.",
       ],
     },
     whatIs: {
       title: "What Is a Stitch Pattern Calculator?",
       paragraphs: [
-        "A stitch pattern calculator finds stitch counts that are compatible with one or more pattern repeats using the least common multiple (LCM). Every stitch pattern has a repeat \u2014 expressed as a multiple plus an offset, like \u201cmultiple of 6 + 1.\u201d The calculator finds counts that satisfy all entered repeats simultaneously.",
+        "A stitch pattern calculator finds stitch counts that are compatible with one or more pattern repeats using the least common multiple (LCM). Every stitch pattern has a repeat, expressed as a multiple plus an offset, like \u201cmultiple of 6 + 1.\u201d The calculator finds counts that satisfy all entered repeats simultaneously.",
         "The offset accounts for edge or balancing stitches outside the repeating unit. Shell stitch might repeat over 6 stitches but need 1 extra stitch at the end to balance the last shell. The calculator incorporates these offsets so every pattern repeat is complete with no partial shells, cables, or lace motifs at the edges.",
         "When multiple patterns are entered, the calculator finds the LCM of their base multiples, then checks which offsets are compatible. It returns a list of valid stitch counts near your target width so you can choose the one closest to your desired dimensions.",
       ],
@@ -685,8 +685,8 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       title: "How Stitch Compatibility Is Calculated",
       paragraphs: [
         "The calculator uses the least common multiple of the base multiples. For shell stitch with a multiple of 6 and waffle stitch with a multiple of 3, the LCM of 6 and 3 is 6. This means every 6 stitches, both patterns complete a full repeat.",
-        "Adding the offset, shell stitch needs multiples of 6 plus 1. So the compatible stitch counts are 7, 13, 19, 25, 31, and so on \u2014 each one a multiple of 6 with 1 added. The calculator checks that waffle stitch (multiple of 3 + 0) also works at these counts: 7 divided by 3 gives 2 remainder 1, so waffle needs adjustment. The tool flags conflicts and suggests the nearest counts that satisfy all patterns.",
-        "For more complex combinations \u2014 say multiples of 8 + 2, 5 + 1, and 3 + 0 \u2014 the LCM of 8, 5, and 3 is 120. The calculator then tests each offset combination against 120 to find valid totals, narrowing the list to counts near your target width at gauge.",
+        "Adding the offset, shell stitch needs multiples of 6 plus 1. So the compatible stitch counts are 7, 13, 19, 25, 31, and so on, each one a multiple of 6 with 1 added. The calculator checks that waffle stitch (multiple of 3 + 0) also works at these counts: 7 divided by 3 gives 2 remainder 1, so waffle needs adjustment. The tool flags conflicts and suggests the nearest counts that satisfy all patterns.",
+        "For more complex combinations, say multiples of 8 + 2, 5 + 1, and 3 + 0, the LCM of 8, 5, and 3 is 120. The calculator then tests each offset combination against 120 to find valid totals, narrowing the list to counts near your target width at gauge.",
       ],
     },
     howToUse: {
@@ -739,14 +739,14 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       title: "What Is a Stitch Quick Reference?",
       paragraphs: [
         "A stitch quick reference is a visual step-by-step breakdown of every basic knitting and crochet stitch. Each entry shows the yarn over count, loop count on the hook or needle at each stage, turning chain height for crochet stitches, and the completed stitch anatomy.",
-        "The reference covers foundation stitches, basic stitches from chain through treble, increases, decreases, and common specialty stitches. Each card is designed as a memory aid \u2014 compact enough to glance at mid-row without losing your place in the pattern.",
+        "The reference covers foundation stitches, basic stitches from chain through treble, increases, decreases, and common specialty stitches. Each card is designed as a memory aid, compact enough to glance at mid-row without losing your place in the pattern.",
         "Stitch anatomy diagrams show where each part of the stitch sits: the post, the top loops, the back bump, and the turning chain. Understanding these components helps you identify where to insert your hook or needle for variations like back loop only, front post, or linked stitches.",
       ],
     },
     howCalculated: {
       title: "How Stitch Anatomy Is Determined",
       paragraphs: [
-        "Stitch construction is not calculated mathematically \u2014 it is determined by the sequence of yarn overs and pull-throughs that define each stitch. Consider the double crochet: yarn over, insert hook, yarn over and pull up a loop (3 loops on hook), yarn over and pull through 2 (2 loops remain), yarn over and pull through 2 (stitch complete). That is 4 total yarn overs from start to finish.",
+        "Stitch construction is not calculated mathematically, it is determined by the sequence of yarn overs and pull-throughs that define each stitch. Consider the double crochet: yarn over, insert hook, yarn over and pull up a loop (3 loops on hook), yarn over and pull through 2 (2 loops remain), yarn over and pull through 2 (stitch complete). That is 4 total yarn overs from start to finish.",
         "Each additional yarn over before insertion adds height to the stitch. Single crochet has zero yarn overs before inserting. Half double crochet has one. Double crochet has one. Treble crochet has two. This progression creates the predictable height ladder that determines turning chain counts and stitch gauge.",
       ],
     },
@@ -1024,13 +1024,13 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       title: "Why You Need a Cross Stitch Size Calculator",
       paragraphs: [
         "Your pattern is 150 by 200 stitches, but how big will it actually be when stitched on Aida 14 versus Aida 18? And once you know the finished size, how much fabric do you need to buy with enough margin for hooping and framing? These two questions stop more cross stitch projects before they start than any other.",
-        "Fabric count changes everything about a cross stitch project \u2014 the finished dimensions, the level of detail visible to the eye, the number of strands to use, and the total thread consumption. A size calculator lets you compare counts side by side before committing to fabric and floss purchases.",
+        "Fabric count changes everything about a cross stitch project, the finished dimensions, the level of detail visible to the eye, the number of strands to use, and the total thread consumption. A size calculator lets you compare counts side by side before committing to fabric and floss purchases.",
       ],
     },
     whatIs: {
       title: "What Is a Cross Stitch Size Calculator?",
       paragraphs: [
-        "A cross stitch size calculator converts a pattern\u2019s stitch dimensions into physical finished dimensions based on your chosen fabric count. Fabric count is the number of stitchable squares per inch \u2014 Aida 14 has 14 squares per inch, Aida 18 has 18. Higher counts produce smaller, finer stitches and a smaller finished piece.",
+        "A cross stitch size calculator converts a pattern\u2019s stitch dimensions into physical finished dimensions based on your chosen fabric count. Fabric count is the number of stitchable squares per inch, Aida 14 has 14 squares per inch, Aida 18 has 18. Higher counts produce smaller, finer stitches and a smaller finished piece.",
         "Beyond finished size, the calculator estimates fabric yardage needed by adding a border margin on all sides for hooping, framing, or finishing. It can also estimate DMC thread consumption per color based on stitch coverage, helping you build an accurate shopping list before you start stitching.",
       ],
     },
@@ -1038,8 +1038,8 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       title: "How Cross Stitch Dimensions Are Calculated",
       paragraphs: [
         "The formula divides the stitch count by the fabric count. For a 150 by 200 stitch pattern on Aida 14: 150 divided by 14 equals 10.7 inches wide, and 200 divided by 14 equals 14.3 inches tall. That is your finished design size before any border or framing allowance.",
-        "To determine fabric purchase size, add a margin on each side \u2014 typically 3 inches for framing or 4 inches for scroll frame hooping. Using the example above: 10.7 plus 6 inches (3 per side) equals 16.7 inches wide, and 14.3 plus 6 equals 20.3 inches tall. Round up to the nearest available cut size.",
-        "Thread estimation multiplies the stitch count for each color by an average thread length per stitch, which varies by fabric count and number of strands. On Aida 14 with two strands, each cross stitch uses approximately 1 inch of floss. A color covering 500 stitches needs about 500 inches, or roughly 14 yards \u2014 two standard skeins.",
+        "To determine fabric purchase size, add a margin on each side, typically 3 inches for framing or 4 inches for scroll frame hooping. Using the example above: 10.7 plus 6 inches (3 per side) equals 16.7 inches wide, and 14.3 plus 6 equals 20.3 inches tall. Round up to the nearest available cut size.",
+        "Thread estimation multiplies the stitch count for each color by an average thread length per stitch, which varies by fabric count and number of strands. On Aida 14 with two strands, each cross stitch uses approximately 1 inch of floss. A color covering 500 stitches needs about 500 inches, or roughly 14 yards, two standard skeins.",
       ],
     },
     howToUse: {
@@ -1081,14 +1081,14 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     introduction: {
       title: "Why You Need a Weaving Sett Calculator",
       paragraphs: [
-        "Wrong sett in weaving creates fabric that is either sleazy \u2014 so open that warp threads shift and gaps appear \u2014 or stiff as a board because the threads are packed too tightly to interlace with any drape. Getting your ends per inch right before warping is the single most important decision in any weaving project.",
+        "Wrong sett in weaving creates fabric that is either sleazy, so open that warp threads shift and gaps appear, or stiff as a board because the threads are packed too tightly to interlace with any drape. Getting your ends per inch right before warping is the single most important decision in any weaving project.",
         "Sett depends on yarn thickness, weave structure, and intended fabric hand. A yarn that works beautifully in plain weave at 10 ends per inch might need 12 or 14 for twill. Calculating sett from your measured wraps per inch removes the guesswork and prevents the heartbreak of cutting a failed project off the loom.",
       ],
     },
     whatIs: {
       title: "What Is a Weaving Sett Calculator?",
       paragraphs: [
-        "A weaving sett calculator determines the ideal ends per inch (EPI) for your warp based on your yarn\u2019s wraps per inch (WPI) and your chosen weave structure. Sett is the spacing of warp threads across the width of the loom \u2014 it controls how densely the threads pack and directly determines the fabric\u2019s weight, drape, and durability.",
+        "A weaving sett calculator determines the ideal ends per inch (EPI) for your warp based on your yarn\u2019s wraps per inch (WPI) and your chosen weave structure. Sett is the spacing of warp threads across the width of the loom, it controls how densely the threads pack and directly determines the fabric\u2019s weight, drape, and durability.",
         "Different weave structures require different sett densities because of how warp and weft interact. Plain weave, where every thread alternates over-under, needs the most open sett. Twill, where threads float over two or more before interlacing, allows a denser sett. Satin, with even longer floats, can be set denser still.",
         "The calculator also computes total warp ends and warp length. Multiply EPI by the weaving width to get total ends, then add loom waste and shrinkage allowance to the desired finished length to get the total warp length you need to measure and wind.",
       ],

@@ -110,7 +110,7 @@ For amigurumi, use a hook one or two sizes smaller than what the yarn label reco
       "name": "What weight yarn should I use for amigurumi?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "DK weight (size 3) and worsted weight (size 4) yarns are the most commonly recommended for amigurumi projects. DK weight produces smaller, more detailed figures, while worsted weight works up faster and creates slightly larger pieces. The finished size also depends on your hook size \u2014 using a smaller hook than the yarn label suggests creates a tighter fabric that prevents stuffing from poking through gaps."
+        "text": "DK weight (size 3) and worsted weight (size 4) yarns are the most commonly recommended for amigurumi projects. DK weight produces smaller, more detailed figures, while worsted weight works up faster and creates slightly larger pieces. The finished size also depends on your hook size, using a smaller hook than the yarn label suggests creates a tighter fabric that prevents stuffing from poking through gaps."
       }
     },
     {

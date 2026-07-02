@@ -133,7 +133,7 @@ Medium weight yarn, also called worsted weight, is widely recommended for beginn
       "name": "Can I substitute a different yarn weight than what a pattern calls for?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, you can substitute a different yarn weight, but it requires adjusting your needle or hook size and recalculating your gauge and stitch counts. Going up a weight produces a larger, airier fabric, while going down creates something denser and smaller. Many experienced crafters successfully substitute one adjacent weight for another\u2014such as DK for worsted\u2014but dramatic changes can significantly alter the finished dimensions and drape of a project. Always swatch carefully when substituting weights."
+        "text": "Yes, you can substitute a different yarn weight, but it requires adjusting your needle or hook size and recalculating your gauge and stitch counts. Going up a weight produces a larger, airier fabric, while going down creates something denser and smaller. Many experienced crafters successfully substitute one adjacent weight for another, such as DK for worsted, but dramatic changes can significantly alter the finished dimensions and drape of a project. Always swatch carefully when substituting weights."
       }
     },
     {

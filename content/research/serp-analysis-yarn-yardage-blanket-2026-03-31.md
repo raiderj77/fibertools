@@ -57,7 +57,7 @@ Based on what's ranking, these sections appear essential:
 
 ### MUST-FILL GAPS (found in 3+ competitors)
 - No single article provides a complete yardage table crossing BOTH blanket size AND yarn weight
-- Most focus exclusively on crochet — knitting is ignored
+- Most focus exclusively on crochet, knitting is ignored
 - No worked example showing the actual math step-by-step with real numbers
 - No mention of our Yardage Estimator tool
 

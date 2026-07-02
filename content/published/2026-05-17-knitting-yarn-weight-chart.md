@@ -158,7 +158,7 @@ Each yarn weight matches a recommended needle size range. Lace uses 1.5 to 2.25m
       "name": "What needle size should I use for each yarn weight?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Each yarn weight corresponds to a recommended needle size range: Lace uses 1.5\u20132.25mm, Fingering uses 2.25\u20133.25mm, Sport uses 3.25\u20133.75mm, DK uses 3.75\u20134.5mm, Worsted uses 4.5\u20135.5mm, Bulky uses 5.5\u20138mm, Super Bulky uses 8\u201312.75mm, and Jumbo uses 12.75mm and above. These are guidelines, not strict rules \u2014 your personal tension and the desired fabric density may lead you to size up or down. Always check your gauge swatch against the pattern's recommended gauge before committing to a needle size."
+        "text": "Each yarn weight corresponds to a recommended needle size range: Lace uses 1.5\u20132.25mm, Fingering uses 2.25\u20133.25mm, Sport uses 3.25\u20133.75mm, DK uses 3.75\u20134.5mm, Worsted uses 4.5\u20135.5mm, Bulky uses 5.5\u20138mm, Super Bulky uses 8\u201312.75mm, and Jumbo uses 12.75mm and above. These are guidelines, not strict rules, your personal tension and the desired fabric density may lead you to size up or down. Always check your gauge swatch against the pattern's recommended gauge before committing to a needle size."
       }
     }
   ]

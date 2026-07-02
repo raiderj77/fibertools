@@ -136,7 +136,7 @@ Thread brand can slightly affect stitch yield because skein lengths vary between
       "name": "How many strands of floss should I use for cross stitch, and how does it affect skein usage?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Most cross stitch projects use two strands of floss, which balances coverage and thread efficiency. Using more strands\u2014such as three or four\u2014produces bolder, fuller stitches but consumes thread significantly faster, reducing your stitch count per skein. Conversely, using a single strand stretches your skein further but may result in lighter coverage. Always match your strand count to your fabric count for the best results."
+        "text": "Most cross stitch projects use two strands of floss, which balances coverage and thread efficiency. Using more strands, such as three or four, produces bolder, fuller stitches but consumes thread significantly faster, reducing your stitch count per skein. Conversely, using a single strand stretches your skein further but may result in lighter coverage. Always match your strand count to your fabric count for the best results."
       }
     },
     {

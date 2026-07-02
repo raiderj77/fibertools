@@ -110,7 +110,7 @@ Yes, needle material can affect your gauge. Slippery metal needles tend to make 
       "name": "How do I knit a gauge swatch correctly?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Cast on at least 4\u20136 inches worth of stitches using your chosen yarn and needles, then work in the pattern stitch until your swatch measures 4\u20136 inches tall. Bind off, wash and block the swatch exactly as you plan to treat the finished item, then measure the center of the fabric\u2014never the edges. Counting stitches and rows over 4 inches and dividing gives you the most accurate gauge reading."
+        "text": "Cast on at least 4\u20136 inches worth of stitches using your chosen yarn and needles, then work in the pattern stitch until your swatch measures 4\u20136 inches tall. Bind off, wash and block the swatch exactly as you plan to treat the finished item, then measure the center of the fabric, never the edges. Counting stitches and rows over 4 inches and dividing gives you the most accurate gauge reading."
       }
     },
     {

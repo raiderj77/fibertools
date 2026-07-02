@@ -145,7 +145,7 @@ Running out of yarn mid-blanket is one of the most common problems in fiber craf
       "name": "Does yarn weight affect how much I need for a blanket?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, yarn weight dramatically affects yardage requirements. Heavier yarns like bulky or jumbo weight cover more area per yard, so you need fewer total yards \u2014 sometimes as little as 500\u2013800 yards for a lap blanket. Lighter weights like sport or fingering yarn may require 3,000 yards or more for the same size. Always check the yardage per skein, not just the number of skeins, when planning your project."
+        "text": "Yes, yarn weight dramatically affects yardage requirements. Heavier yarns like bulky or jumbo weight cover more area per yard, so you need fewer total yards, sometimes as little as 500\u2013800 yards for a lap blanket. Lighter weights like sport or fingering yarn may require 3,000 yards or more for the same size. Always check the yardage per skein, not just the number of skeins, when planning your project."
       }
     },
     {
@@ -161,7 +161,7 @@ Running out of yarn mid-blanket is one of the most common problems in fiber craf
       "name": "How many skeins of yarn do I need for a baby blanket?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Most baby blankets require 3\u20136 skeins of medium (worsted) weight yarn, or roughly 800\u20131,200 yards total for a standard 30\u00d736 inch size. Bulkier yarn means fewer skeins, while finer yarn means more. The stitch pattern matters too \u2014 dense stitches like moss stitch use more yarn than open lace patterns. Check your pattern's recommended yardage first, and always buy one extra skein from the same dye lot just in case."
+        "text": "Most baby blankets require 3\u20136 skeins of medium (worsted) weight yarn, or roughly 800\u20131,200 yards total for a standard 30\u00d736 inch size. Bulkier yarn means fewer skeins, while finer yarn means more. The stitch pattern matters too, dense stitches like moss stitch use more yarn than open lace patterns. Check your pattern's recommended yardage first, and always buy one extra skein from the same dye lot just in case."
       }
     },
     {

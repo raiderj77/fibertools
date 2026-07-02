@@ -118,7 +118,7 @@ No. Hook sizing is not fully the same across all brands and countries. The US le
       "name": "How do I know if my crochet hook is too small or too large for my yarn?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Your hook is likely the wrong size if your stitches look too tight and stiff, or so loose they appear floppy and gapped. The yarn label is your first guide \u2014 it typically lists a recommended hook size range. A correctly sized hook should pull through loops smoothly without splitting the yarn or creating excessive drag. Always work a gauge swatch to confirm before starting your full project."
+        "text": "Your hook is likely the wrong size if your stitches look too tight and stiff, or so loose they appear floppy and gapped. The yarn label is your first guide, it typically lists a recommended hook size range. A correctly sized hook should pull through loops smoothly without splitting the yarn or creating excessive drag. Always work a gauge swatch to confirm before starting your full project."
       }
     },
     {

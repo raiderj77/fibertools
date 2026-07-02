@@ -113,7 +113,7 @@ const METHOD_STEPS: Record<string, { title: string; steps: string[] }> = {
     steps: [
       "Pin your piece to blocking mats at your target dimensions.",
       "Hold a steam iron 1\u20132 inches above the fabric.",
-      "Steam evenly \u2014 never touch the iron directly to the fabric.",
+      "Steam evenly, never touch the iron directly to the fabric.",
       "Let cool and dry completely.",
     ],
   },
@@ -147,7 +147,7 @@ function getFeasibility(pct: number): { label: string; color: string; note: stri
   return {
     label: "Very Aggressive",
     color: "text-rose-600 dark:text-rose-400",
-    note: "May not be achievable \u2014 consider reknitting/recrocheting to size.",
+    note: "May not be achievable, consider reknitting/recrocheting to size.",
   };
 }
 
@@ -401,7 +401,7 @@ export default function BlockingCalculatorTool() {
                     {fiber.methods.join(", ")}
                   </td>
                   <td className="py-2 px-3 text-bark-500 dark:text-bark-400 text-xs">
-                    {fiber.warning || "\u2014"}
+                    {fiber.warning || ", "}
                   </td>
                 </tr>
               ))}

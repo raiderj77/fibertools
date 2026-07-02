@@ -130,7 +130,7 @@ Choose your hook size based on your yarn weight first. Then pick an ergonomic ha
       "name": "How do I choose the right ergonomic crochet hook size?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Choose your hook size based on your yarn weight first, then select an ergonomic handle style that suits your hand size and any specific comfort needs. Hook sizing follows standard conventions\u2014such as US letter sizes or metric millimeters\u2014regardless of handle design, so a 5mm ergonomic hook works the same as a standard 5mm hook. If you have larger hands or significant joint pain, prioritize hooks with thicker, longer handles. Many ergonomic brands sell starter sets so you can try multiple sizes before committing."
+        "text": "Choose your hook size based on your yarn weight first, then select an ergonomic handle style that suits your hand size and any specific comfort needs. Hook sizing follows standard conventions, such as US letter sizes or metric millimeters, regardless of handle design, so a 5mm ergonomic hook works the same as a standard 5mm hook. If you have larger hands or significant joint pain, prioritize hooks with thicker, longer handles. Many ergonomic brands sell starter sets so you can try multiple sizes before committing."
       }
     }
   ]

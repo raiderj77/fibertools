@@ -166,10 +166,10 @@ For environmentally conscious crafters:
 ## FAQ
 
 ### How do I know which yarn weight to choose for my project?
-Start with your pattern's recommendation — it'll specify a yarn weight (0-7 on the CYC standard scale). If you're designing from scratch, consider the project's purpose. Worsted (4) works for most garments and blankets. Fingering (1) suits lightweight accessories. Bulky (5-6) is great for quick, cozy projects.
+Start with your pattern's recommendation, it'll specify a yarn weight (0-7 on the CYC standard scale). If you're designing from scratch, consider the project's purpose. Worsted (4) works for most garments and blankets. Fingering (1) suits lightweight accessories. Bulky (5-6) is great for quick, cozy projects.
 
 ### Can I substitute a different yarn than what my pattern calls for?
-Yes, but you'll need to match the yarn weight, gauge, and yardage carefully. Swapping fiber types changes drape and stretch — cotton doesn't bounce back like wool. Always knit or crochet a gauge swatch with your substitute yarn before starting. Use our [Gauge Calculator](/gauge-calculator) to verify your swatch matches the pattern.
+Yes, but you'll need to match the yarn weight, gauge, and yardage carefully. Swapping fiber types changes drape and stretch, cotton doesn't bounce back like wool. Always knit or crochet a gauge swatch with your substitute yarn before starting. Use our [Gauge Calculator](/gauge-calculator) to verify your swatch matches the pattern.
 
 ### What's the best yarn for a beginner's first project?
 A medium-weight acrylic in a light, solid color is the easiest to work with. It's forgiving, affordable, and shows your stitches clearly. Brands like Caron Simply Soft or Red Heart Super Saver are widely available. Avoid dark colors, fuzzy textures, and slippery fibers until you're comfortable with tension.

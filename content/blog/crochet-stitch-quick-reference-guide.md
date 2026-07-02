@@ -1,5 +1,5 @@
 ---
-title: "Crochet Stitch Quick Reference — Yarn Overs, Pull-Throughs & Turning Chains Explained"
+title: "Crochet Stitch Quick Reference, Yarn Overs, Pull-Throughs & Turning Chains Explained"
 slug: "crochet-stitch-quick-reference-guide"
 date: "2026-02-15"
 toolSlug: "stitch-quick-reference"
@@ -22,11 +22,11 @@ keywords:
   - half double crochet instructions
 ---
 
-# Crochet Stitch Quick Reference — Yarn Overs, Pull-Throughs & Turning Chains Explained
+# Crochet Stitch Quick Reference, Yarn Overs, Pull-Throughs & Turning Chains Explained
 
 You know how to double crochet. You've done it a thousand times. But mid-project, your brain blanks: "Wait, is it yarn over then pull through two twice, or three times?" You put the hook down, pull up a YouTube video, skip through the intro, and finally get the three-second reminder you needed.
 
-This guide is that three-second reminder — in text form, always available, no video scrubbing required.
+This guide is that three-second reminder, in text form, always available, no video scrubbing required.
 
 ## The Universal Pattern
 
@@ -48,11 +48,11 @@ See the pattern? The number of initial yarn-overs goes up by one each time, and 
 
 Nobody forgets how to chain. The stitches people blank on mid-project tend to be:
 
-**HDC** — because the ending is different from every other stitch. Instead of "pull through 2" repeatedly, you pull through all three loops at once. That's the one exception to the pattern above, and it's why HDC trips people up.
+**HDC**, because the ending is different from every other stitch. Instead of "pull through 2" repeatedly, you pull through all three loops at once. That's the one exception to the pattern above, and it's why HDC trips people up.
 
-**Front and Back Post stitches (FPdc/BPdc)** — because the insertion point is different. You go AROUND the post (the vertical bar of the stitch below) instead of into the top. Everything after that is identical to a regular DC. The only question is direction: front-to-back-to-front for FPdc, back-to-front-to-back for BPdc.
+**Front and Back Post stitches (FPdc/BPdc)**, because the insertion point is different. You go AROUND the post (the vertical bar of the stitch below) instead of into the top. Everything after that is identical to a regular DC. The only question is direction: front-to-back-to-front for FPdc, back-to-front-to-back for BPdc.
 
-**SSK in knitting** — because the slipping steps feel backwards. You slip two stitches knitwise one at a time, then insert the left needle into the fronts of both and knit them together. The slipping is what reorients them for a left-leaning decrease.
+**SSK in knitting**, because the slipping steps feel backwards. You slip two stitches knitwise one at a time, then insert the left needle into the fronts of both and knit them together. The slipping is what reorients them for a left-leaning decrease.
 
 ## Loop Counting: Your Debugging Tool
 
@@ -64,7 +64,7 @@ For DC: After pulling up a loop you should have 3 loops. After the first "pull t
 
 For TR: After pulling up a loop you should have 4 loops. Each "pull through 2" removes one loop until you're back to 1.
 
-If you count and the number is wrong, you missed a yarn-over or accidentally pulled through too many. Our [Stitch Counter](/stitch-counter) tool helps you track your loop count at every step for every stitch — it also keeps a running row tally so you never lose your place in complex patterns where the repeat changes from row to row.
+If you count and the number is wrong, you missed a yarn-over or accidentally pulled through too many. Our [Stitch Counter](/stitch-counter) tool helps you track your loop count at every step for every stitch, it also keeps a running row tally so you never lose your place in complex patterns where the repeat changes from row to row.
 
 ## Turning Chains: Do They Count?
 
@@ -76,7 +76,7 @@ This is one of the most common sources of confusion:
 
 **HDC turning chain (2 chains):** Varies by pattern. Check whether the pattern says "ch 2, turn, HDC in first stitch" (does not count) or "ch 2, turn, HDC in second stitch" (counts as first HDC).
 
-Always follow your specific pattern's instructions — different designers have different conventions.
+Always follow your specific pattern's instructions, different designers have different conventions.
 
 ## US vs UK Terms: The One Thing That Confuses Everyone
 
@@ -108,9 +108,9 @@ No. In crochet, a slip stitch means insert hook, yarn over, and pull through bot
 
 ## Using FiberTools to Master Your Stitches
 
-Having a reference guide is great, but pairing it with the right tools makes your crafting sessions smoother. The [Stitch Counter](/stitch-counter) keeps a running tally as you work, so you don't lose your place in a long row of double crochets or trebles — it also tracks your row count when working patterns that change stitch types from row to row.
+Having a reference guide is great, but pairing it with the right tools makes your crafting sessions smoother. The [Stitch Counter](/stitch-counter) keeps a running tally as you work, so you don't lose your place in a long row of double crochets or trebles, it also tracks your row count when working patterns that change stitch types from row to row.
 
-When you're starting a new project and need to figure out how many stitches to cast on or chain, the [Gauge Calculator](/gauge-calculator) takes the guesswork out of the equation. Measure your swatch, enter the numbers, and it'll tell you the exact stitch count for your desired width. And if you're switching between yarn weights — say, adapting a worsted-weight pattern to DK — the [Yarn Weight Chart](/yarn-weight-chart) helps you understand how that change affects your gauge and yardage needs.
+When you're starting a new project and need to figure out how many stitches to cast on or chain, the [Gauge Calculator](/gauge-calculator) takes the guesswork out of the equation. Measure your swatch, enter the numbers, and it'll tell you the exact stitch count for your desired width. And if you're switching between yarn weights, say, adapting a worsted-weight pattern to DK, the [Yarn Weight Chart](/yarn-weight-chart) helps you understand how that change affects your gauge and yardage needs.
 
 ## Common Mistakes When Learning New Stitches
 
@@ -130,8 +130,8 @@ Understanding individual stitches matters most when you combine them in real pro
 
 **Ribbed hat brim using FPdc/BPdc:** You alternate front post and back post double crochets to create stretchy ribbing. Knowing that the only difference is insertion point (not yarn-overs or pull-throughs) means you can work these at the same speed as regular DC once you get the rhythm.
 
-**Granny square transitions:** A classic granny square uses chains and DC clusters. The DC is always the same — one yarn-over, insert, pull through two twice. What changes is where you insert (into chain spaces rather than stitch tops). The stitch mechanics stay constant.
+**Granny square transitions:** A classic granny square uses chains and DC clusters. The DC is always the same, one yarn-over, insert, pull through two twice. What changes is where you insert (into chain spaces rather than stitch tops). The stitch mechanics stay constant.
 
-**Textured baby blanket with mixed stitches:** Many baby blanket patterns alternate between SC sections (for density) and DC sections (for drape). Knowing the height difference — SC is about half the height of DC — helps you plan how many rows of each you'll need to keep your sections looking proportional.
+**Textured baby blanket with mixed stitches:** Many baby blanket patterns alternate between SC sections (for density) and DC sections (for drape). Knowing the height difference, SC is about half the height of DC, helps you plan how many rows of each you'll need to keep your sections looking proportional.
 
-Crochet stitches aren't mysterious — they're a logical progression of yarn-overs and pull-throughs. Once you see the pattern (each stitch adds one more yarn-over and one more "pull through two" step), the whole system clicks into place. Keep this reference handy for those mid-project brain blanks, and use the [Stitch Counter](/stitch-counter) to track your work in real time. The more you practice, the less you'll need to look anything up — but it's always nice to have a backup when your hands are moving faster than your memory.
+Crochet stitches aren't mysterious, they're a logical progression of yarn-overs and pull-throughs. Once you see the pattern (each stitch adds one more yarn-over and one more "pull through two" step), the whole system clicks into place. Keep this reference handy for those mid-project brain blanks, and use the [Stitch Counter](/stitch-counter) to track your work in real time. The more you practice, the less you'll need to look anything up, but it's always nice to have a backup when your hands are moving faster than your memory.

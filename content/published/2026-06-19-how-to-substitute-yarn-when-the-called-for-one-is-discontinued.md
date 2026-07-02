@@ -104,7 +104,7 @@ This is generally not a good idea. Changing yarn weight changes more than just g
       "name": "Does fiber content matter when substituting yarn?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, fiber content significantly affects drape, elasticity, stitch definition, and care requirements. Swapping a wool yarn for cotton, for example, can dramatically change how a finished garment fits and behaves, since cotton has no memory and is much heavier. Try to match fiber families when possible\u2014wool for wool, plant fiber for plant fiber\u2014unless you intentionally want to change the fabric's character. Always check care instructions so your finished project can be washed the same way."
+        "text": "Yes, fiber content significantly affects drape, elasticity, stitch definition, and care requirements. Swapping a wool yarn for cotton, for example, can dramatically change how a finished garment fits and behaves, since cotton has no memory and is much heavier. Try to match fiber families when possible, wool for wool, plant fiber for plant fiber, unless you intentionally want to change the fabric's character. Always check care instructions so your finished project can be washed the same way."
       }
     },
     {
@@ -128,7 +128,7 @@ This is generally not a good idea. Changing yarn weight changes more than just g
       "name": "Can I substitute a different yarn weight if I adjust my needle size?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It is generally not recommended, because changing yarn weight alters more than just gauge\u2014it changes drape, fabric density, stitch definition, and how much yarn you need. Going up or down a full weight category usually requires recalculating the entire pattern. Minor adjustments within the same weight class, such as a light DK versus a heavy sport, can sometimes work with needle size changes and careful swatching, but always verify your row and stitch gauge matches the pattern before proceeding."
+        "text": "It is generally not recommended, because changing yarn weight alters more than just gauge, it changes drape, fabric density, stitch definition, and how much yarn you need. Going up or down a full weight category usually requires recalculating the entire pattern. Minor adjustments within the same weight class, such as a light DK versus a heavy sport, can sometimes work with needle size changes and careful swatching, but always verify your row and stitch gauge matches the pattern before proceeding."
       }
     }
   ]

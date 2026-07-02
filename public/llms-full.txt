@@ -1,18 +1,18 @@
-# FiberTools — Complete Site Documentation
+# FiberTools, Complete Site Documentation
 
 > https://fibertools.app
 
-FiberTools is a suite of 31 free, browser-based calculators and references for fiber arts — knitting, crochet, weaving, spinning, embroidery, and cross stitch. Created by a fiber arts expert with 30+ years of experience. All processing happens client-side — no data is sent to any server. No login required. Works offline as a Progressive Web App. Every tool includes educational content, expert tips, and FAQ sections.
+FiberTools is a suite of 31 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, and cross stitch. Created by a fiber arts expert with 30+ years of experience. All processing happens client-side, no data is sent to any server. No login required. Works offline as a Progressive Web App. Every tool includes educational content, expert tips, and FAQ sections.
 
 US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Council (CYC) standard: Lace (0), Fingering (1), Sport (2), DK (3), Worsted (4), Bulky (5), Super Bulky (6), Jumbo (7).
 
 ---
 
-## Tools — Knitting & Crochet (25 tools)
+## Tools, Knitting & Crochet (25 tools)
 
 ### Yarn Calculator
 - URL: https://fibertools.app/yarn-calculator
-- Calculate exactly how much yarn you need for any project — blankets, sweaters, scarves, hats, socks, and more. Enter your gauge, dimensions, and yarn weight to get precise yardage and skein estimates. Supports all CYC yarn weights from Lace (0) to Jumbo (7).
+- Calculate exactly how much yarn you need for any project, blankets, sweaters, scarves, hats, socks, and more. Enter your gauge, dimensions, and yarn weight to get precise yardage and skein estimates. Supports all CYC yarn weights from Lace (0) to Jumbo (7).
 
 ### Needle & Hook Size Converter
 - URL: https://fibertools.app/needle-converter
@@ -110,7 +110,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 - URL: https://fibertools.app/stash-estimator
 - Estimate remaining yardage in partial skeins by weighing them. Includes a yardage reference table for identifying unlabeled yarn by weight category.
 
-## Tools — Crochet-Specific (2 tools)
+## Tools, Crochet-Specific (2 tools)
 
 ### C2C Blanket Calculator
 - URL: https://fibertools.app/c2c-calculator
@@ -120,25 +120,25 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 - URL: https://fibertools.app/granny-square-planner
 - Plan a granny square blanket with grid layout dimensions, total square count, per-color yardage estimates, and joining yarn calculations. Supports multi-color schemes.
 
-## Tools — Spinning (1 tool)
+## Tools, Spinning (1 tool)
 
 ### Spinning Ratio Calculator
 - URL: https://fibertools.app/spinning-ratio-calculator
 - Calculate drive ratios, twists per inch (TPI), and plying ratios for handspinning. Supports scotch tension, double drive, and bobbin-lead systems.
 
-## Tools — Weaving (1 tool)
+## Tools, Weaving (1 tool)
 
 ### Weaving Sett Calculator
 - URL: https://fibertools.app/weaving-sett-calculator
 - Find the right sett (ends per inch / EPI) for your yarn weight and weave structure (plain, twill, satin). Includes warp length calculations with loom waste and take-up, plus reed substitution.
 
-## Tools — Cross Stitch (1 tool)
+## Tools, Cross Stitch (1 tool)
 
 ### Cross Stitch Calculator
 - URL: https://fibertools.app/cross-stitch-calculator
 - Calculate finished dimensions for any stitch count and fabric count (Aida, evenweave, linen). Estimates thread amounts per color with skein counts.
 
-## Tools — Embroidery (1 tool)
+## Tools, Embroidery (1 tool)
 
 ### Thread Converter
 - URL: https://fibertools.app/thread-converter
@@ -148,7 +148,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ## Blog Posts
 
-- [How Much Yarn Do I Need?](https://fibertools.app/blog/yarn-calculator-guide): The complete guide to calculating yarn for any project — blankets, sweaters, scarves, and more.
+- [How Much Yarn Do I Need?](https://fibertools.app/blog/yarn-calculator-guide): The complete guide to calculating yarn for any project, blankets, sweaters, scarves, and more.
 - [Knitting Needle & Crochet Hook Size Chart](https://fibertools.app/blog/needle-size-chart-guide): US, Metric, UK & Japanese size conversion chart for needles and hooks.
 - [How to Calculate and Adjust Gauge](https://fibertools.app/blog/gauge-calculator-guide): Why gauge matters, how to measure it, and how to resize patterns.
 - [Yarn Weight Chart](https://fibertools.app/blog/yarn-weight-chart-guide): From lace to jumbo with needle sizes and gauge ranges.
