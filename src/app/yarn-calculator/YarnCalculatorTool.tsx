@@ -6,6 +6,7 @@ import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
 import RavelryPatterns from "@/components/RavelryPatterns";
+import FiberGear from "@/components/FiberGear";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -663,6 +664,13 @@ export default function YarnCalculatorTool() {
         weight={yarnWeight}
         craft={sp.craft === "both" ? undefined : sp.craft}
         query={projectType === "custom" ? "" : projectType}
+        visible={!!result}
+      />
+
+      {/* Amazon affiliate materials — monetize the result */}
+      <FiberGear
+        weight={yarnWeight}
+        craft={sp.craft === "both" ? undefined : sp.craft}
         visible={!!result}
       />
 
