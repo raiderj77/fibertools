@@ -313,7 +313,7 @@ export const tools: Tool[] = [
   },
   {
     slug: "sock-calculator",
-    name: "Sock Foot Calculator",
+    name: "Heel Flap & Gusset Sock Calculator",
     shortName: "Sock Calculator",
     description: "Calculate sock stitch counts for top-down or toe-up construction with heel flap, gusset, and short-row heel instructions.",
     category: "knitting",
