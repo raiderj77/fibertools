@@ -17,7 +17,7 @@ export default function NotFound() {
       </h1>
 
       <p className="text-bark-500 dark:text-bark-400 text-lg leading-relaxed mb-10">
-        That page doesn&rsquo;t exist — it may have been moved, renamed, or never cast on
+        That page doesn&rsquo;t exist, it may have been moved, renamed, or never cast on
         in the first place. Let&rsquo;s get you back to something useful.
       </p>
 
