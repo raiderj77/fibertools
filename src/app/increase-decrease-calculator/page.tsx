@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ToolLayout from "@/components/ToolLayout";
 import AnswerBlock from "@/components/AnswerBlock";
 import IncDecCalculatorTool from "./IncDecCalculatorTool";
