@@ -186,6 +186,7 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "Can I use this for crochet hats?", a: "The cast-on count and sizing work for crochet too. However, the crown decrease schedule is written in knitting terms (K2tog). For crochet, work decreases (sc2tog or dc2tog) evenly in each decrease round using the same section count." },
   ],
   "amigurumi-shapes": [
+    { q: "Is there a free crochet ball calculator?", a: "Yes. This tool works as a crochet ball calculator: choose the sphere shape, enter your starting stitch count, and it generates the full round-by-round pattern with every increase, plain round, and decrease. Free, no login." },
     { q: "What hook size should I use for amigurumi?", a: "Use a hook 1-2 sizes smaller than your yarn label recommends. This creates a tighter fabric that holds stuffing without showing through." },
     { q: "Do I need to join rounds in amigurumi?", a: "No. Most amigurumi is worked in continuous spirals without joining or turning chains. Use a stitch marker to track round starts." },
     { q: "How do I make a bigger sphere?", a: "Increase the number of rounds. More increase rounds before the even section creates a wider sphere. You can also use thicker yarn." },
@@ -209,6 +210,7 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "How do I add a border to a C2C blanket?", a: "Most crafters add a simple SC or DC border after completing the C2C panel. Subtract your planned border width from the target dimensions before calculating block counts, so the finished blanket (panel + border) hits your target size." },
   ],
   "sock-calculator": [
+    { q: "Is there a heel flap and gusset calculator?", a: "Yes. This sock calculator includes heel flap and gusset math: it gives your heel flap stitch count, how many gusset stitches to pick up along each flap edge, and the decrease rounds to get back to your foot stitch count." },
     { q: "How do I measure my foot for sock knitting?", a: "Measure the circumference around the ball of your foot (widest part) and the length from the back of your heel to the tip of your longest toe. The calculator applies 10% negative ease so socks fit snugly." },
     { q: "What is negative ease in socks?", a: "Negative ease means the sock is slightly smaller than your actual foot measurement. The standard is 10%, so an 8-inch foot circumference gets a 7.2-inch sock. The stretch of knit fabric makes it fit comfortably without sagging." },
     { q: "What is the difference between top-down and toe-up socks?", a: "Top-down socks start at the cuff and work down to the toe, using a heel flap and gusset. Toe-up socks start at the toe and work up, typically using a short-row heel. Both produce great socks, it is mostly personal preference." },
