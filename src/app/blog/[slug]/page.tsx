@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getAllMarkdownPosts, getMarkdownPost } from "@/lib/blog-markdown";
 import { getToolBySlug } from "@/lib/tools";
 
+type Params = Promise<{ slug: string }>;
+
 export function generateStaticParams() {
   return getAllMarkdownPosts().map((post) => ({ slug: post.slug }));
 }
@@ -11,9 +13,10 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Params;
 }): Promise<Metadata> {
-  const post = await getMarkdownPost(params.slug);
+  const { slug } = await params;
+  const post = await getMarkdownPost(slug);
   if (!post) return {};
 
   return {
@@ -50,9 +53,10 @@ export async function generateMetadata({
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Params;
 }) {
-  const post = await getMarkdownPost(params.slug);
+  const { slug } = await params;
+  const post = await getMarkdownPost(slug);
   if (!post) notFound();
 
   const tool = post.toolSlug ? getToolBySlug(post.toolSlug) : null;
