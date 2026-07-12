@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import InstallPrompt from "@/components/InstallPrompt";
 import CookieConsent from "@/components/CookieConsent";
+import AffiliateClickTracker from "@/components/AffiliateClickTracker";
 import { OrganizationSchema } from "@/components/StructuredData";
 
 const dmSerifDisplay = DM_Serif_Display({
@@ -199,6 +200,7 @@ export default function RootLayout({
         <ServiceWorkerRegistration />
         <InstallPrompt />
         <CookieConsent />
+        <AffiliateClickTracker />
       </body>
     </html>
   );

@@ -11,6 +11,7 @@
     "start": "next start",
     "lint": "next lint",
     "lint:content": "node scripts/content-lint.js",
+    "test:affiliate": "node scripts/affiliate-check.js",
     "lint:predeploy": "node scripts/predeploy-check.js",
     "prebuild": "npm run lint:predeploy && npm run lint:content"
   },

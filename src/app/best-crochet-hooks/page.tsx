@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { amazonSearchUrl } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
   title: "Best Crochet Hooks (2026): Every Budget",
@@ -200,7 +201,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Rubber grip, inline head</td>
                   <td className="px-4 py-3">2mm–15mm (steel and standard)</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=clover+amour+crochet+hook&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("clover amour crochet hook")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -208,7 +209,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Teardrop cushion grip, tapered head</td>
                   <td className="px-4 py-3">1.8mm–10mm</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=tulip+etimo+crochet+hook&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("tulip etimo crochet hook")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -216,7 +217,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Handcrafted, multiple materials</td>
                   <td className="px-4 py-3">3.5mm–12mm</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=furls+crochet+hook&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("furls crochet hook")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>
@@ -251,7 +252,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Aluminum</td>
                   <td className="px-4 py-3">Set (6–10 hooks)</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=boye+aluminum+crochet+hook+set&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("boye aluminum crochet hook set")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -259,7 +260,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Aluminum</td>
                   <td className="px-4 py-3">Set (6–8 hooks)</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=susan+bates+silvalume+crochet+hook+set&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("susan bates silvalume crochet hook set")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>

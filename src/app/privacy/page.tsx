@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         Privacy Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: April 16, 2026
+        Last updated: July 12, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -81,6 +81,20 @@ export default function PrivacyPolicyPage() {
               Google Ad Settings
             </a>
             .
+          </p>
+          <p>
+            <strong>Affiliate click measurement:</strong> When you follow an Amazon product link,
+            we may send Google Analytics an event containing the page, link placement, content type,
+            merchant, and general product category. The event does not contain calculator inputs or
+            an email address. Amazon receives the normal information involved in visiting its site and
+            handles that information under its own privacy notice.
+          </p>
+          <p>
+            <strong>Optional newsletter:</strong> If you choose to subscribe, your email address is
+            transmitted to Beehiiv, our newsletter provider, so it can manage the subscription and send
+            messages. Newsletter signup is optional and is not required to use a FiberTools calculator.
+            Beehiiv retains subscription information according to its service terms and your subscription
+            status; you can unsubscribe using the link in any newsletter.
           </p>
           <p>
             <strong>Local Storage:</strong> Some tools save your preferences
@@ -249,10 +263,11 @@ export default function PrivacyPolicyPage() {
             Data Retention and Storage
           </h2>
           <p>
-            Analytics data is retained according to Google Analytics default
-            settings (14 months). Microsoft Clarity session data is retained for
-            up to 30 days. We do not maintain any separate database of
-            user information.
+            Analytics data is retained according to Google Analytics settings
+            (14 months). Microsoft Clarity session data is retained for up to 30
+            days. FiberTools does not maintain its own user-account database.
+            Beehiiv stores information submitted through the optional newsletter
+            form as described above.
           </p>
         </section>
 
@@ -272,8 +287,8 @@ export default function PrivacyPolicyPage() {
           <ul className="list-disc pl-6 space-y-1">
             <li><strong>Identifiers:</strong> IP address, browser type, device identifiers collected via analytics and advertising.</li>
             <li><strong>Internet or network activity:</strong> Pages visited, tools used, time on site, referring URLs.</li>
-            <li><strong>Commercial information:</strong> Product interactions inferred from tool usage (e.g., yarn-related interests) used for affiliate advertising targeting.</li>
-            <li><strong>Inferred data:</strong> Interests or preferences inferred from browsing behavior via advertising and affiliate partners.</li>
+            <li><strong>Commercial information:</strong> Aggregate interactions with Amazon product links, such as the page, placement, and general product category.</li>
+            <li><strong>Inferred data:</strong> Interests or preferences that advertising and analytics providers may infer from browsing behavior, subject to your consent choices.</li>
           </ul>
 
           <h3>Sensitive Personal Information</h3>
@@ -295,7 +310,7 @@ export default function PrivacyPolicyPage() {
           <h3>How We Use Your Information</h3>
           <ul className="list-disc pl-6 space-y-1">
             <li>To display advertising through Google AdSense</li>
-            <li>To serve relevant product recommendations through Amazon Associates and other affiliate programs</li>
+            <li>To provide relevant product recommendations through the Amazon Associates program</li>
             <li>To analyze site traffic and improve tool functionality via analytics</li>
             <li>To maintain site security and prevent fraud</li>
           </ul>

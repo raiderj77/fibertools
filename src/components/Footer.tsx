@@ -27,6 +27,7 @@ export default function Footer() {
     { href: "/do-not-sell", label: "Do Not Sell My Info" },
     { href: "/contact", label: "Contact" },
     { href: "/accessibility", label: "Accessibility" },
+    { href: "/affiliate-disclosure", label: "Affiliate Disclosure" },
   ];
 
   return (

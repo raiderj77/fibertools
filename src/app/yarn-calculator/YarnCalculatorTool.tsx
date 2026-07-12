@@ -1,12 +1,10 @@
 "use client";
 
-import React, { useState, useMemo, useEffect } from "react";
-import { subscribeToNewsletter } from "@/app/actions/subscribe";
+import React, { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
 import RavelryPatterns from "@/components/RavelryPatterns";
-import FiberGear from "@/components/FiberGear";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -183,33 +181,6 @@ export default function YarnCalculatorTool() {
   const [partialSkeinWeight, setPartialSkeinWeight] = useState("");
   const [partialSkeinYards, setPartialSkeinYards] = useState("");
 
-  // Email gate
-  const [unlocked, setUnlocked] = useState(false);
-  const [gateEmail, setGateEmail] = useState("");
-  const [gateLoading, setGateLoading] = useState(false);
-  const [gateError, setGateError] = useState("");
-
-  useEffect(() => {
-    if (typeof window !== "undefined" && localStorage.getItem("ft_calc_unlocked")) {
-      setUnlocked(true);
-    }
-  }, []);
-
-  async function handleGateSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!gateEmail) return;
-    setGateLoading(true);
-    setGateError("");
-    const res = await subscribeToNewsletter(gateEmail);
-    setGateLoading(false);
-    if (res.success) {
-      localStorage.setItem("ft_calc_unlocked", "1");
-      setUnlocked(true);
-    } else {
-      setGateError("Something went wrong. Please try again.");
-    }
-  }
-
   const yw = YARN_WEIGHTS[yarnWeight];
   const sp = STITCH_PATTERNS.find((s) => s.label === stitchPattern) || STITCH_PATTERNS[0];
   const presets = SIZE_PRESETS[projectType];
@@ -276,7 +247,7 @@ export default function YarnCalculatorTool() {
       skeinYds: skeinYds,
       skeinG: skeinG,
     };
-  }, [dims, mode, yarnWeight, stitchPattern, skeinYards, skeinGrams, gaugeStitches, gaugeRows, swatchSize, sp, yw, projectType]);
+  }, [dims, mode, skeinYards, skeinGrams, gaugeStitches, gaugeRows, swatchSize, sp, yw, projectType]);
 
   // Partial skein
   const partialResult = useMemo(() => {
@@ -297,7 +268,7 @@ export default function YarnCalculatorTool() {
 
   // Sticky result summary for mobile
   const stickySummary = result
-    ? `${(units === "metric" ? result.meters : result.yardsWithBuffer).toLocaleString()} ${yardLabel}${unlocked ? ` • ${result.skeins} ${result.skeins === 1 ? "skein" : "skeins"}` : ""}`
+    ? `${(units === "metric" ? result.meters : result.yardsWithBuffer).toLocaleString()} ${yardLabel} • ${result.skeins} ${result.skeins === 1 ? "skein" : "skeins"}`
     : "";
 
   return (
@@ -558,9 +529,8 @@ export default function YarnCalculatorTool() {
                   </p>
                 </div>
 
-                {unlocked ? (
-                  <>
-                    {/* Full breakdown after unlock */}
+                <>
+                    {/* Full breakdown */}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
@@ -613,46 +583,7 @@ export default function YarnCalculatorTool() {
                         🖨️ Print
                       </button>
                     </div>
-                  </>
-                ) : (
-                  /* Email gate */
-                  <form
-                    onSubmit={handleGateSubmit}
-                    className="border border-sage-300 dark:border-sage-700 rounded-xl p-4 bg-sage-50/70 dark:bg-sage-950/30 space-y-3"
-                  >
-                    <p className="text-sm font-semibold text-bark-700 dark:text-cream-200">
-                      🔓 Unlock your full breakdown
-                    </p>
-                    <p className="text-xs text-bark-500 dark:text-bark-400">
-                      See exact skein count, total weight, and bufferless yardage, free with the FiberTools newsletter.
-                    </p>
-                    <div className="flex gap-2">
-                      <label htmlFor="gate-email" className="sr-only">Email address</label>
-                      <input
-                        id="gate-email"
-                        type="email"
-                        value={gateEmail}
-                        onChange={(e) => setGateEmail(e.target.value)}
-                        placeholder="your@email.com"
-                        required
-                        className="input flex-1 text-sm"
-                      />
-                      <button
-                        type="submit"
-                        disabled={gateLoading || !gateEmail}
-                        className="btn-primary text-sm whitespace-nowrap disabled:opacity-50"
-                      >
-                        {gateLoading ? "..." : "Unlock →"}
-                      </button>
-                    </div>
-                    {gateError && (
-                      <p className="text-xs text-red-500">{gateError}</p>
-                    )}
-                    <p className="text-xs text-bark-400 dark:text-bark-500">
-                      No spam. Unsubscribe any time.
-                    </p>
-                  </form>
-                )}
+                </>
               </div>
             )}
           </StickyResult>
@@ -664,13 +595,6 @@ export default function YarnCalculatorTool() {
         weight={yarnWeight}
         craft={sp.craft === "both" ? undefined : sp.craft}
         query={projectType === "custom" ? "" : projectType}
-        visible={!!result}
-      />
-
-      {/* Amazon affiliate materials, monetize the result */}
-      <FiberGear
-        weight={yarnWeight}
-        craft={sp.craft === "both" ? undefined : sp.craft}
         visible={!!result}
       />
 
