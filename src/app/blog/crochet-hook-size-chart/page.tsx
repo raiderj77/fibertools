@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { amazonSearchUrl } from '@/lib/affiliate';
 
 type Params = Promise<{ slug: string }>;
 
@@ -101,8 +102,8 @@ export default async function Page({
 
         {/* FTC DISCLOSURE */}
         <p className="text-sm text-gray-500 border border-gray-200 rounded p-3 mb-6">
-          <strong>Disclosure:</strong> This page contains affiliate links to Amazon (tag: ytearnings-20).
-          We may earn a small commission at no extra cost to you if you purchase through these links.
+          <strong>Affiliate disclosure:</strong> As an Amazon Associate, FiberTools earns from qualifying
+          purchases at no extra cost to you. Recommendations are selected for their relevance to this guide.
         </p>
 
         <h1 className="text-3xl font-bold mb-2">
@@ -310,7 +311,7 @@ export default async function Page({
           sessions. Ergonomic handles are thicker, cushioned, and often contoured to reduce grip
           tension. Boye and Susan Bates both make ergonomic lines.{' '}
           <a
-            href="https://www.amazon.com/s?k=ergonomic+crochet+hook+set&tag=ytearnings-20"
+            href={amazonSearchUrl("ergonomic crochet hook set")}
             target="_blank"
             rel="noopener noreferrer sponsored nofollow"
             className="text-indigo-600 hover:underline"

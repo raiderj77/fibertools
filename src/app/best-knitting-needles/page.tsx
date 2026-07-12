@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { amazonSearchUrl } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
   title: "Best Knitting Needles (2026): All Types Reviewed",
@@ -202,7 +203,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Bamboo</td>
                   <td className="px-4 py-3">US 0–15</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=clover+takumi+bamboo+knitting+needles&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("clover takumi bamboo knitting needles")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -211,7 +212,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Aluminum</td>
                   <td className="px-4 py-3">US 0–15</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=susan+bates+silvalume+knitting+needles&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("susan bates silvalume knitting needles")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>
@@ -248,7 +249,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Stainless steel</td>
                   <td className="px-4 py-3">Best overall, lace to bulky</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=chiaogoo+red+lace+circular+needles&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("chiaogoo red lace circular needles")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -257,7 +258,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Nickel-plated brass</td>
                   <td className="px-4 py-3">Speed knitting, smooth join</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=addi+turbo+circular+knitting+needles&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("addi turbo circular knitting needles")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -266,7 +267,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Laminated birch</td>
                   <td className="px-4 py-3">Budget-friendly, colorful</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=knitters+pride+dreamz+circular&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("knitters pride dreamz circular")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>
@@ -301,7 +302,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Stainless steel</td>
                   <td className="px-4 py-3">US 2–15 (complete set)</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=chiaogoo+twist+interchangeable&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("chiaogoo twist interchangeable")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -309,7 +310,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Carbon fiber</td>
                   <td className="px-4 py-3">US 2–11</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=knitters+pride+karbonz+interchangeable&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("knitters pride karbonz interchangeable")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -317,7 +318,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Nickel-plated brass</td>
                   <td className="px-4 py-3">US 4–11</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=addi+click+interchangeable+needles&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("addi click interchangeable needles")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>

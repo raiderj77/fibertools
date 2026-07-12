@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { amazonSearchUrl } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
   title: "Best Yarn for Amigurumi (2026): Tight & Neat",
@@ -194,7 +195,7 @@ export default function BestYarnForAmigurumiPage() {
                   <td className="px-4 py-3">100% cotton</td>
                   <td className="px-4 py-3">Excellent stitch definition, wide color range</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=paintbox+simply+dk+cotton&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("paintbox simply dk cotton")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -203,7 +204,7 @@ export default function BestYarnForAmigurumiPage() {
                   <td className="px-4 py-3">100% cotton</td>
                   <td className="px-4 py-3">Very smooth, machine washable</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=lion+brand+24+7+cotton+yarn&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("lion brand 24 7 cotton yarn")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -212,7 +213,7 @@ export default function BestYarnForAmigurumiPage() {
                   <td className="px-4 py-3">100% cotton</td>
                   <td className="px-4 py-3">Affordable, great for detailed work</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=drops+safran+yarn&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("drops safran yarn")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>
@@ -244,7 +245,7 @@ export default function BestYarnForAmigurumiPage() {
                   <td className="px-4 py-3">Light (3)</td>
                   <td className="px-4 py-3">Tight twist, 100+ solid colors, top choice for amigurumi</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=paintbox+simply+dk&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("paintbox simply dk")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -252,7 +253,7 @@ export default function BestYarnForAmigurumiPage() {
                   <td className="px-4 py-3">Light (3)</td>
                   <td className="px-4 py-3">Tight spin, huge color range, popular in EU patterns</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=scheepjes+catona&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("scheepjes catona")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -260,7 +261,7 @@ export default function BestYarnForAmigurumiPage() {
                   <td className="px-4 py-3">Medium (4)</td>
                   <td className="px-4 py-3">Smooth, affordable, widely available</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=lion+brand+vannas+choice&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("lion brand vannas choice")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>

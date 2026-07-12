@@ -9,6 +9,7 @@ import PrintShareButtons from "./PrintShareButtons";
 import AdUnit from "./AdUnit";
 import LazyAdUnit from "./LazyAdUnit";
 import { ToolSchema } from "./StructuredData";
+import ToolAffiliateRecommendations from "./ToolAffiliateRecommendations";
 
 interface ToolLayoutProps {
   slug: string;
@@ -125,6 +126,8 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
 
       {/* === TOOL UI === */}
       {children}
+
+      <ToolAffiliateRecommendations slug={slug} />
 
       {widgetFirst && (
         <>

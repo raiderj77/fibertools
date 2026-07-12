@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { amazonProductUrl, amazonSearchUrl } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
   title: "Best Yarn for Beginners (2026): Expert Picks",
@@ -196,7 +197,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Best value, 1,020 yards per skein</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/dp/B000XZS3AO?tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonProductUrl("B000XZS3AO")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -205,7 +206,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Smoothest feel, great color range</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/dp/B000XZSGEU?tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonProductUrl("B000XZSGEU")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -214,7 +215,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Most affordable, widely available</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/dp/B000XZS3RQ?tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonProductUrl("B000XZS3RQ")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -223,7 +224,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Great for learning gauge, clean colors</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=paintbox+simply+dk&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("paintbox simply dk")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -232,7 +233,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">Cotton/acrylic</td>
                   <td className="px-4 py-3">Warm climates, dishcloths</td>
                   <td className="px-4 py-3">
-                    <a href="https://www.amazon.com/s?k=lion+brand+comfy+cotton+blend&tag=ytearnings-20" target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("lion brand comfy cotton blend")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>

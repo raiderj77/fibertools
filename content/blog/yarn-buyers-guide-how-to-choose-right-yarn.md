@@ -39,7 +39,7 @@ The fiber content determines how your finished project will look, feel, wear, an
 - **Cashmere:** Ultra-soft luxury fiber, warm but less durable. Best for special occasion items.
 - **Silk:** Shiny, strong, and drapes beautifully. Often blended with other fibers for added sheen.
 
-**Affiliate Recommendation:** For quality wool blends at reasonable prices, check out [KnitPicks Wool of the Andes](https://www.knitpicks.com/yarn/wool-of-the-andes/c/5420150) or [WeCrochet Brava Worsted](https://www.wecrochet.com/yarn/brava-worsted/c/5420102) for acrylic-wool blends.
+For examples of commonly available wool blends, compare the fiber content and care instructions for KnitPicks Wool of the Andes or WeCrochet Brava Worsted directly with your pattern requirements.
 
 ### Plant Fibers (Cotton, Linen, Bamboo)
 **Best for:** Summer garments, home decor, baby items, dishcloths
@@ -47,7 +47,7 @@ The fiber content determines how your finished project will look, feel, wear, an
 - **Linen:** Strong, gets softer with washing, excellent drape. Ideal for summer tops and home accessories.
 - **Bamboo:** Silky soft, naturally antibacterial, and eco-friendly. Great for baby items and sensitive skin.
 
-**Affiliate Recommendation:** [LoveCrafts Paintbox Yarns Cotton Aran](https://www.lovecrafts.com/en-us/p/paintbox-yarns-cotton-aran) offers excellent value for cotton projects.
+Paintbox Yarns Cotton Aran is one example of a cotton yarn to compare by gauge, yardage, and care instructions.
 
 ### Synthetic Fibers (Acrylic, Nylon, Polyester)
 **Best for:** Budget projects, beginners, items needing frequent washing, charity projects
@@ -190,5 +190,3 @@ It depends on blanket size, yarn weight, and stitch pattern. A throw-size blanke
 Choosing the right yarn is both an art and a science. By considering fiber content, weight, project requirements, and care needs, you'll set yourself up for success. Remember: the perfect yarn for your project is one that not only looks beautiful but also performs well throughout the life of the item.
 
 **Ready to calculate exactly how much yarn you need?** Use our [Yarn Calculator](/yarn-calculator) to ensure you purchase the right amount for your next project.
-
-*Disclosure: This article contains affiliate links to LoveCrafts, WeCrochet, and KnitPicks. We may earn a commission on purchases made through these links, at no extra cost to you. These are brands we genuinely recommend based on quality and value.*
