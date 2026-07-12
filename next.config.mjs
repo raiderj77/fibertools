@@ -1,12 +1,3 @@
-import withPWA from 'next-pwa';
-
-const pwa = withPWA({
-  dest: 'public',
-  disable: process.env.NODE_ENV === 'development',
-  register: false,
-  skipWaiting: true,
-});
-
 /** @type {import('next').NextConfig} */
 
 const securityHeaders = [
@@ -101,4 +92,4 @@ const nextConfig = {
   },
 };
 
-export default pwa(nextConfig);
+export default nextConfig;

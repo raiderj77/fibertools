@@ -5,6 +5,8 @@ import { getGuideBySlug, getAllGuides } from "@/lib/guides";
 import { getBlogPostByToolSlug } from "@/lib/blog";
 import { getToolBySlug } from "@/lib/tools";
 
+type Params = Promise<{ slug: string }>;
+
 // Generate all guide paths at build time
 export function generateStaticParams() {
   const guides = getAllGuides();
@@ -12,8 +14,9 @@ export function generateStaticParams() {
 }
 
 // Dynamic metadata per guide
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const guide = getGuideBySlug(params.slug);
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { slug } = await params;
+  const guide = getGuideBySlug(slug);
   if (!guide) return {};
 
   return {
@@ -30,8 +33,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function GuidePage({ params }: { params: { slug: string } }) {
-  const guide = getGuideBySlug(params.slug);
+export default async function GuidePage({ params }: { params: Params }) {
+  const { slug } = await params;
+  const guide = getGuideBySlug(slug);
   if (!guide) notFound();
 
   const tool = getToolBySlug(guide.toolSlug);
