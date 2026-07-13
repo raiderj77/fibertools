@@ -16,7 +16,13 @@ export default function LazyAdUnit({ slot, id, format, style }: LazyAdUnitProps)
   const [hasConsent, setHasConsent] = useState(false);
 
   useEffect(() => {
-    setHasConsent(localStorage.getItem("fiberTools_ad_consent") === "true");
+    try {
+      const stored = localStorage.getItem("cookie_consent");
+      const consent = stored ? JSON.parse(stored) as { ads?: string } : null;
+      setHasConsent(consent?.ads === "granted");
+    } catch {
+      setHasConsent(false);
+    }
   }, []);
 
   useEffect(() => {

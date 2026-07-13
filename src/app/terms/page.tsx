@@ -143,8 +143,10 @@ export default function TermsPage() {
             Advertising on FiberTools
           </h2>
           <p>
-            FiberTools is a free service supported by advertising. Ads are served
-            by Google AdSense and may use cookies. See our{" "}
+            FiberTools is a free service supported by affiliate links and may add
+            advertising after AdSense approval. Google AdSense is not currently
+            enabled. If ads are enabled later, cookie use will follow your consent
+            choices. See our{" "}
             <a
               href="/privacy"
               className="text-sage-600 dark:text-sage-400 underline"

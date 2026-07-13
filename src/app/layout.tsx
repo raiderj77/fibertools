@@ -114,14 +114,6 @@ const websiteSchema = {
   url: "https://fibertools.app",
   name: "FiberTools",
   description: "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery.",
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: "https://fibertools.app/?q={search_term_string}",
-    },
-    "query-input": "required name=search_term_string",
-  },
 };
 
 export default function RootLayout({
@@ -129,21 +121,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const adsenseEnabled = process.env.NEXT_PUBLIC_ADSENSE_ENABLED === "true";
+
   return (
     <html lang="en" className={`${dmSerifDisplay.variable} ${nunito.variable} ${jetbrainsMono.variable}`}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#6b8e6d" />
-        {/* Preconnect to critical third-party origins */}
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://www.clarity.ms" />
+        {adsenseEnabled && (
+          <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <OrganizationSchema />
-        {/* CMP: Funding Choices auto-loads via AdSense for T1 sites */}
         {/* Google Consent Mode v2, set defaults BEFORE gtag loads */}
         <Script id="consent-mode-defaults" strategy="beforeInteractive">
           {`
@@ -172,23 +165,14 @@ export default function RootLayout({
             gtag('config', 'G-T92LYDE8NN');
           `}
         </Script>
-        {/* Google AdSense, auto ads */}
-        <Script
-          id="adsense"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932"
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
-        {/* Microsoft Clarity, heatmaps & session recordings */}
-        <Script id="microsoft-clarity" strategy="afterInteractive">
-          {`
-            (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window,document,"clarity","script","vsqobt7va0");
-          `}
-        </Script>
+        {adsenseEnabled && (
+          <Script
+            id="adsense"
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932"
+            crossOrigin="anonymous"
+            strategy="lazyOnload"
+          />
+        )}
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-sage-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">

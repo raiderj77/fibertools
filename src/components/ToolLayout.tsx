@@ -2,12 +2,9 @@ import Link from "next/link";
 import { getToolBySlug, getRelatedTools, CATEGORY_LABELS, CATEGORY_COLORS } from "@/lib/tools";
 import { toolFaqs } from "@/lib/faqs";
 import { toolContent } from "@/lib/toolContent";
-import { getBlogPostByToolSlug } from "@/lib/blog";
 import { getGuideByToolSlug } from "@/lib/guides";
 import FAQSection from "./FAQSection";
 import PrintShareButtons from "./PrintShareButtons";
-import AdUnit from "./AdUnit";
-import LazyAdUnit from "./LazyAdUnit";
 import { ToolSchema } from "./StructuredData";
 import ToolAffiliateRecommendations from "./ToolAffiliateRecommendations";
 
@@ -24,7 +21,6 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
   const related = getRelatedTools(slug, 4);
   const faqs = toolFaqs[slug] || [];
   const content = toolContent[slug];
-  const companionBlog = getBlogPostByToolSlug(slug);
   const companionGuide = getGuideByToolSlug(slug);
 
   return (
@@ -184,8 +180,6 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
           )}
         </>
       )}
-
-      <AdUnit slot="" id="ad-after-tool" wrapperClassName="max-h-[100px] overflow-hidden sm:max-h-none sm:overflow-visible" />
 
       {/* Educational content */}
       {content && (
@@ -418,28 +412,10 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
       </section>
 
       {/* Companion guides */}
-      {(companionBlog || companionGuide) && (
+      {companionGuide && (
         <section className="mt-12">
           <h2 className="section-heading">Learn More About This Topic</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {companionBlog && (
-              <Link
-                href={`/blog/${companionBlog.slug}`}
-                className="tool-card group"
-              >
-                <div className="flex items-start gap-3">
-                  <span className="text-2xl flex-shrink-0">📝</span>
-                  <div>
-                    <h3 className="font-medium text-bark-700 group-hover:text-plum-500 transition-colors">
-                      {companionBlog.title}
-                    </h3>
-                    <p className="text-sm text-bark-400 mt-1 line-clamp-2">
-                      {companionBlog.description}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            )}
             {companionGuide && (
               <Link
                 href={`/guides/${companionGuide.slug}`}
@@ -522,7 +498,6 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
         </div>
       </section>
 
-      <LazyAdUnit slot="" id="ad-before-footer" />
     </div>
   );
 }

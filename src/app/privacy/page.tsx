@@ -108,7 +108,9 @@ export default function PrivacyPolicyPage() {
             Cookies and Tracking Technologies
           </h2>
           <p>
-            We use cookies for analytics and advertising. For full details, see
+            We use optional cookies for analytics. If advertising is enabled after
+            AdSense approval, advertising storage will remain disabled until you
+            consent. For full details, see
             our{" "}
             <a
               href="/cookies"
@@ -120,9 +122,8 @@ export default function PrivacyPolicyPage() {
             cookie consent banner or your browser settings.
           </p>
           <p>
-            We work with third-party advertising partners, including Google, who
-            may use cookies to serve ads based on your prior visits to this
-            website or other websites. You can opt out of personalized
+            If advertising is enabled, Google may use cookies to serve and measure
+            ads according to your consent choices. You can opt out of personalized
             advertising at{" "}
             <a
               href="https://ads.google.com/settings"
@@ -180,7 +181,7 @@ export default function PrivacyPolicyPage() {
               )
             </li>
             <li>
-              <strong>Google AdSense</strong>, advertising (
+              <strong>Google AdSense</strong>, configured for advertising but not currently enabled (
               <a
                 href="https://policies.google.com/technologies/ads"
                 target="_blank"
@@ -200,19 +201,6 @@ export default function PrivacyPolicyPage() {
                 className="text-sage-600 dark:text-sage-400 underline"
               >
                 Vercel Privacy Policy
-              </a>
-              )
-            </li>
-            <li>
-              <strong>Microsoft Clarity</strong>, heatmaps and session recordings
-              to understand how visitors interact with the site (
-              <a
-                href="https://privacy.microsoft.com/en-us/privacystatement"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sage-600 dark:text-sage-400 underline"
-              >
-                Microsoft Privacy Statement
               </a>
               )
             </li>
@@ -264,8 +252,7 @@ export default function PrivacyPolicyPage() {
           </h2>
           <p>
             Analytics data is retained according to Google Analytics settings
-            (14 months). Microsoft Clarity session data is retained for up to 30
-            days. FiberTools does not maintain its own user-account database.
+            (14 months). FiberTools does not maintain its own user-account database.
             Beehiiv stores information submitted through the optional newsletter
             form as described above.
           </p>
@@ -285,10 +272,10 @@ export default function PrivacyPolicyPage() {
           <h3>Information We Collect</h3>
           <p>In the past 12 months we have collected the following categories of personal information:</p>
           <ul className="list-disc pl-6 space-y-1">
-            <li><strong>Identifiers:</strong> IP address, browser type, device identifiers collected via analytics and advertising.</li>
+            <li><strong>Identifiers:</strong> IP address, browser type, and device identifiers collected through consented analytics and, if enabled, advertising.</li>
             <li><strong>Internet or network activity:</strong> Pages visited, tools used, time on site, referring URLs.</li>
             <li><strong>Commercial information:</strong> Aggregate interactions with Amazon product links, such as the page, placement, and general product category.</li>
-            <li><strong>Inferred data:</strong> Interests or preferences that advertising and analytics providers may infer from browsing behavior, subject to your consent choices.</li>
+            <li><strong>Inferred data:</strong> Interests or preferences that analytics providers and, if enabled, advertising providers may infer from browsing behavior, subject to your consent choices.</li>
           </ul>
 
           <h3>Sensitive Personal Information</h3>
@@ -302,19 +289,19 @@ export default function PrivacyPolicyPage() {
 
           <h3>Data Minimization</h3>
           <p>
-            We collect only the minimum personal information necessary to operate this service and
-            serve relevant advertising. We do not collect personal information beyond what is
+            We collect only the minimum personal information necessary to operate and improve this service.
+            If advertising is enabled after approval, it may also support the free service. We do not collect personal information beyond what is
             reasonably necessary and proportionate to the purposes disclosed in this policy.
           </p>
 
           <h3>How We Use Your Information</h3>
           <ul className="list-disc pl-6 space-y-1">
-            <li>To display advertising through Google AdSense</li>
+            <li>If enabled after approval, to display advertising through Google AdSense</li>
             <li>To provide relevant product recommendations through the Amazon Associates program</li>
             <li>To analyze site traffic and improve tool functionality via analytics</li>
             <li>To maintain site security and prevent fraud</li>
           </ul>
-          <p>We do not sell your personal information as defined under CCPA. Sharing data with advertising partners for targeted advertising may constitute &ldquo;sharing&rdquo; under CPRA, you may opt out using the methods below.</p>
+          <p>We do not sell your personal information as defined under CCPA. If advertising is enabled, disclosures to an advertising partner for targeted advertising may constitute &ldquo;sharing&rdquo; under CPRA; you may opt out using the methods below.</p>
 
           <h3>Your Rights as a California Resident</h3>
           <ul className="list-disc pl-6 space-y-1">

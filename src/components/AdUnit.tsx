@@ -33,6 +33,7 @@ export default function AdUnit({
   }, [pathname]);
 
   if (process.env.NODE_ENV !== "production") return null;
+  if (process.env.NEXT_PUBLIC_ADSENSE_ENABLED !== "true") return null;
 
   const pubId = process.env.NEXT_PUBLIC_ADSENSE_ID;
   if (!pubId) return null;

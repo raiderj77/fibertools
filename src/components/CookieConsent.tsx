@@ -78,7 +78,7 @@ export default function CookieConsent() {
     >
       <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <p className="text-sm text-bark-700 dark:text-cream-300 flex-1">
-          We use cookies for analytics and advertising to keep FiberTools free.
+          We use optional cookies for analytics and, when available, advertising.
           No personal data is collected through our tools.{" "}
           <Link
             href="/cookies"

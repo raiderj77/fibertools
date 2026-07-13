@@ -66,7 +66,7 @@ export default function InstallPrompt() {
             </button>
             <button
               onClick={handleDismiss}
-              className="px-3 py-1.5 text-bark-400 dark:text-bark-500 hover:text-bark-600 dark:hover:text-bark-300 text-xs transition-colors"
+              className="px-3 py-1.5 text-bark-600 dark:text-cream-300 hover:text-bark-800 dark:hover:text-cream-100 text-xs transition-colors"
             >
               Not now
             </button>
