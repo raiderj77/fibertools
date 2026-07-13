@@ -98,7 +98,7 @@ export default function IncDecCalculatorTool() {
       knitInstructions,
       crochetInstructions,
     };
-  }, [currentCount, targetCount, shape, mode]);
+  }, [currentCount, targetCount, shape]);
 
   return (
     <div className="space-y-6">

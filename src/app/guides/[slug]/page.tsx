@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getGuideBySlug, getAllGuides } from "@/lib/guides";
-import { getBlogPostByToolSlug } from "@/lib/blog";
 import { getToolBySlug } from "@/lib/tools";
 
 type Params = Promise<{ slug: string }>;
@@ -39,8 +38,6 @@ export default async function GuidePage({ params }: { params: Params }) {
   if (!guide) notFound();
 
   const tool = getToolBySlug(guide.toolSlug);
-
-  const companionBlog = getBlogPostByToolSlug(guide.toolSlug);
 
   const articleSchema = {
     "@context": "https://schema.org",
@@ -95,7 +92,7 @@ export default async function GuidePage({ params }: { params: Params }) {
         <span aria-hidden="true">&middot;</span>
         <span>By <strong className="text-bark-600 dark:text-cream-400">Jason Ramirez</strong></span>
         <span aria-hidden="true">&middot;</span>
-        <span>Built by a working maker, not a content team</span>
+        <span>Practical reference connected to a working calculator</span>
         <span aria-hidden="true">&middot;</span>
         <span>Last reviewed: April 2026</span>
         <span aria-hidden="true">&middot;</span>
@@ -159,31 +156,6 @@ export default async function GuidePage({ params }: { params: Params }) {
             {tool.icon} Open {tool.shortName}
           </Link>
         </div>
-      )}
-
-      {/* Companion blog post */}
-      {companionBlog && (
-        <section className="mt-12">
-          <h2 className="text-xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
-            Related Tutorial
-          </h2>
-          <Link
-            href={`/blog/${companionBlog.slug}`}
-            className="tool-card group block"
-          >
-            <div className="flex items-start gap-3">
-              <span className="text-2xl flex-shrink-0">📝</span>
-              <div>
-                <h3 className="font-medium text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">
-                  {companionBlog.title}
-                </h3>
-                <p className="text-sm text-bark-400 dark:text-bark-500 mt-1 line-clamp-2">
-                  {companionBlog.description}
-                </p>
-              </div>
-            </div>
-          </Link>
-        </section>
       )}
 
       {/* Related guides */}

@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { tools, CATEGORY_LABELS, CATEGORY_COLORS, type Tool, getToolBySlug } from "@/lib/tools";
-import { blogPosts } from "@/lib/blog";
 import { getAllGuides } from "@/lib/guides";
 import BeehiivSignup from "@/components/BeehiivSignup";
 
@@ -326,30 +325,12 @@ export default function HomePage() {
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100">
             Fiber Arts Guides & Tutorials
           </h2>
-          <Link href="/blog" className="text-sm text-plum-500 hover:text-plum-600 hover:underline font-medium">
+          <Link href="/guides" className="text-sm text-plum-500 hover:text-plum-600 hover:underline font-medium">
             View all →
           </Link>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {blogPosts.slice(0, 3).map((post) => {
-            const tool = getToolBySlug(post.toolSlug);
-            return (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="tool-card group">
-                <div className="flex flex-col gap-3">
-                  <div className="flex items-center gap-2">
-                    {tool && <span className="text-2xl">{tool.icon}</span>}
-                    <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-plum-500 transition-colors line-clamp-2">
-                      {post.title}
-                    </h3>
-                  </div>
-                  <p className="text-xs text-bark-500 dark:text-bark-400 line-clamp-2">
-                    {post.description}
-                  </p>
-                </div>
-              </Link>
-            );
-          })}
-          {getAllGuides().slice(0, 3).map((guide) => {
+          {getAllGuides().slice(0, 6).map((guide) => {
             const tool = getToolBySlug(guide.toolSlug);
             return (
               <Link key={guide.slug} href={`/guides/${guide.slug}`} className="tool-card group">
@@ -376,7 +357,7 @@ export default function HomePage() {
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-1">
             Fiber Arts Fundamentals
           </h2>
-          <p className="text-sm text-bark-400 dark:text-bark-500 mb-8">Reference answers for knitting, crochet, weaving, and yarn selection, built by a working maker who got tired of switching between five different calculators</p>
+          <p className="text-sm text-bark-600 dark:text-cream-300 mb-8">Reference answers for knitting, crochet, weaving, and yarn selection, connected directly to the calculators that use them.</p>
         </div>
 
         <div>
@@ -408,10 +389,10 @@ export default function HomePage() {
             Gauge varies by knitter tension, needle material, yarn fiber content, and stitch pattern, two crafters using the same yarn and hook size can produce swatches that differ by a full stitch per inch. This is why pattern designers specify gauge over a 4-inch swatch, not just a single repeat.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
-            Gauge swatching reduces project failure rates by over 60% among intermediate and advanced crafters, making it the single most impactful pre-project step for fitted items.
+            A gauge swatch helps reveal sizing problems before you commit yarn and time to a fitted project.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
-            Blocking wool and natural fiber projects can increase finished dimensions by 10–15%, making pre-blocking gauge swatches essential for fitted garments. Always swatch in the round if the pattern is worked in the round, since flat and circular tension often differ.
+            Washing and blocking can change a swatch&apos;s dimensions, especially with natural fibers. Measure after treating the swatch the same way you will treat the finished item, and swatch in the round when the pattern is worked in the round.
           </p>
         </div>
 
@@ -489,7 +470,7 @@ export default function HomePage() {
           About FiberTools
         </h2>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
-          FiberTools is a free collection of calculators and references built by fiber artists, for fiber artists. Every tool on this site was designed to solve a real problem we faced in our own craft practice, from buying the wrong amount of yarn, to struggling with UK-to-US pattern conversions, to losing track of rows mid-project at 2am.
+          FiberTools is a free collection of calculators and references built by Jason Ramirez, a developer and crochet hobbyist. The tools focus on practical planning problems such as yarn quantities, gauge, size conversion, and row tracking.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
           Our tools are grounded in industry standards. Yarn weight classifications follow the Craft Yarn Council CYC system. Needle and hook sizing follows US, metric, and UK conventions. Gauge formulas are derived from standard knitting and crochet mathematics, not approximations. FiberTools was built by Jason Ramirez, who got tired of fragmented fiber arts tools and built one that does everything.

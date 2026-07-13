@@ -13,6 +13,7 @@
     "lint:content": "node scripts/content-lint.js",
     "test:affiliate": "node scripts/affiliate-check.js",
     "test:security": "node scripts/security-check.js && node --check public/sw.js",
+    "test:quality": "node scripts/quality-gate.js",
     "lint:predeploy": "node scripts/predeploy-check.js",
     "prebuild": "npm run lint:predeploy && npm run lint:content"
   },

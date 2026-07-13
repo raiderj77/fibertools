@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { tools } from "@/lib/tools";
-import { getAllMarkdownPosts } from "@/lib/blog-markdown";
 import { getAllGuides } from "@/lib/guides";
 
 const BASE_URL = "https://fibertools.app";
@@ -39,13 +38,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: t.tier === 1 ? 0.9 : t.tier === 2 ? 0.8 : 0.7,
     }));
 
-  const blogPages = getAllMarkdownPosts().map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
-    lastModified: post.date ? new Date(post.date) : new Date(TODAY),
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-  }));
-
   const guidePages = getAllGuides().map((g) => ({
     url: `${BASE_URL}/guides/${g.slug}`,
     lastModified: new Date(g.date),
@@ -55,7 +47,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages = [
     { path: "", priority: 1.0, freq: "weekly" as const },
-    { path: "/blog", priority: 0.7, freq: "weekly" as const },
     { path: "/guides", priority: 0.7, freq: "weekly" as const },
     { path: "/about", priority: 0.5, freq: "monthly" as const },
     { path: "/privacy", priority: 0.3, freq: "yearly" as const },
@@ -73,8 +64,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/best-crochet-hooks", priority: 0.85, freq: "monthly" as const },
     { path: "/best-yarn-for-blankets", priority: 0.85, freq: "monthly" as const },
     { path: "/best-yarn-for-amigurumi", priority: 0.85, freq: "monthly" as const },
-    { path: "/blog/stitch-counter-guide", priority: 0.75, freq: "monthly" as const },
-    { path: "/blog/crochet-hook-size-chart", priority: 0.75, freq: "monthly" as const },
   ].map((p) => ({
     url: `${BASE_URL}${p.path}`,
     lastModified: new Date(TODAY),
@@ -85,7 +74,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPages,
     ...toolPages,
-    ...blogPages,
     ...guidePages,
   ];
 }

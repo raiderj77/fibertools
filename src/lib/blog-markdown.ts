@@ -21,6 +21,11 @@ export interface MarkdownPostWithContent extends MarkdownPost {
 
 const PUBLISHED_DIR = path.join(process.cwd(), "content", "published");
 
+// The legacy article library is quarantined after a quality audit found
+// duplicated search-intent pages and unsupported first-person claims. Articles
+// must be individually reviewed and explicitly approved before republishing.
+const APPROVED_BLOG_SLUGS = new Set<string>();
+
 function slugFromFilename(filename: string): string {
   // Strip .md, then strip leading date prefix like "2026-04-08-"
   return filename.replace(/\.md$/, "").replace(/^\d{4}-\d{2}-\d{2}-/, "");
@@ -64,7 +69,7 @@ export function getAllMarkdownPosts(): MarkdownPost[] {
   });
 
   return posts
-    .filter((p) => p.title)
+    .filter((p) => p.title && APPROVED_BLOG_SLUGS.has(p.slug))
     .sort((a, b) => {
       const da = a.date ? new Date(a.date).getTime() : 0;
       const db = b.date ? new Date(b.date).getTime() : 0;
@@ -75,6 +80,7 @@ export function getAllMarkdownPosts(): MarkdownPost[] {
 export async function getMarkdownPost(
   slug: string
 ): Promise<MarkdownPostWithContent | null> {
+  if (!APPROVED_BLOG_SLUGS.has(slug)) return null;
   if (!fs.existsSync(PUBLISHED_DIR)) return null;
 
   const files = fs.readdirSync(PUBLISHED_DIR).filter((f) => f.endsWith(".md"));

@@ -150,7 +150,7 @@ export default function BlanketCalculatorTool() {
       hasGauge,
       hasMultiple: mult > 0 && roundedStitches !== stitchesNeeded,
     };
-  }, [units, sizeIdx, useCustom, customW, customL, yarnWeight, pillowTuck, overhang, gaugeStitches, gaugeRows, gaugeOver, stitchMultiple, multipleExtra, skeinYards, yw]);
+  }, [units, sizeIdx, useCustom, customW, customL, pillowTuck, overhang, gaugeStitches, gaugeRows, gaugeOver, stitchMultiple, multipleExtra, skeinYards, yw]);
 
   const stickySummary = result
     ? `${units === "metric" ? result.meters.toLocaleString() + " m" : result.yards.toLocaleString() + " yds"} • ${result.skeins} skein${result.skeins !== 1 ? "s" : ""}`

@@ -82,11 +82,11 @@ export default function CookiePolicyPage() {
                 </tr>
                 <tr>
                   <td className="py-2 pr-4">Various</td>
-                  <td className="py-2 pr-4">Google AdSense</td>
+                  <td className="py-2 pr-4">Google AdSense (not currently enabled)</td>
                   <td className="py-2 pr-4">
                     Serve and measure advertisements
                   </td>
-                  <td className="py-2">Varies</td>
+                  <td className="py-2">Not currently set</td>
                 </tr>
               </tbody>
             </table>
@@ -116,8 +116,8 @@ export default function CookiePolicyPage() {
           </p>
           <p>
             <strong>Non-essential (analytics &amp; advertising):</strong> Google
-            Analytics and AdSense cookies are non-essential. Under GDPR, we
-            request your consent before loading these. You can withdraw consent
+            Analytics and, if enabled after approval, AdSense cookies are non-essential.
+            We request your consent before allowing their storage. You can withdraw consent
             at any time via the cookie banner.
           </p>
         </section>
