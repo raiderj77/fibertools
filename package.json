@@ -12,6 +12,7 @@
     "lint": "next lint",
     "lint:content": "node scripts/content-lint.js",
     "test:affiliate": "node scripts/affiliate-check.js",
+    "test:indexnow": "node --test tests/indexnow-urls.test.mjs",
     "test:pattern-checker": "node --test tests/amigurumi-pattern-checker.test.mjs",
     "test:revenue-path": "node --test tests/revenue-path-check.test.js",
     "check:revenue-path": "node scripts/revenue-path-check.js",
