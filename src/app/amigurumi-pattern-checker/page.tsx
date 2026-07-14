@@ -3,6 +3,7 @@ import Link from "next/link";
 import AnswerBlock from "@/components/AnswerBlock";
 import ToolLayout from "@/components/ToolLayout";
 import AmigurumiPatternCheckerTool from "./AmigurumiPatternCheckerTool";
+import StitchProofInterestCard from "./StitchProofInterestCard";
 
 export const metadata: Metadata = {
   title: "Free Amigurumi Pattern Checker, Verify Round Math",
@@ -115,6 +116,8 @@ export default function AmigurumiPatternCheckerPage() {
           run only after consent and do not include the pattern text or calculated stitch values.
         </p>
       </section>
+
+      <StitchProofInterestCard />
 
       <section className="mt-10">
         <h2 className="section-heading">Continue planning your amigurumi project</h2>
