@@ -49,3 +49,13 @@ No outcome yet. Add the first result as a new dated entry on or before August 10
 - Google Analytics Realtime received a consented `pattern_check_run` event from the production checker. This confirms the demand signal is reaching the correct FiberTools property. The single verification event is an owner test and must not count toward the non-owner demand gate.
 - The IndexNow deployment job had submitted only the homepage. It was updated to include changed static App Router pages and to fail on rejected submissions; StitchProof was then submitted directly for Bing and other participating engines.
 - The demand funnel now links three existing high-intent amigurumi pages to StitchProof and offers editable email requests for complete audits, saved projects, or downloadable reports. Consented analytics records only the fixed interest category and page path; a click is directional and only a sent email counts as an explicit paid-feature request.
+
+#### July 13, 2026 — analytics business-measurement baseline
+
+- Google Analytics, June 15–July 12, 2026: 127 active users, 115 new users, 212 sessions, and 2 minutes 12 seconds average engagement time per active user.
+- Recorded sessions by leading source and medium: Google organic 77, Bing organic 36, DuckDuckGo organic 36, direct 23, Yahoo organic 17, Ecosia organic 7, and `au.search.yahoo.com` referral 4.
+- Google Analytics reported zero key events and $0 revenue for the period. This confirms the current business baseline; traffic alone is not counted as success.
+- The Analytics reports snapshot was configured to use the Marketing performance view so acquisition, key events, and revenue appear together.
+- `pattern_check_run` was enabled as a key event for future consenting traffic. The earlier owner verification event remains excluded from the non-owner demand gate.
+- Analytics annotations now identify the July 12 affiliate experiment launch and the July 13 StitchProof demand experiment launch. This preserves the intervention dates when later results are reviewed.
+- `affiliate_click` and `stitchproof_interest_click` have not yet appeared in the recent-events list. They must not be counted or described as conversions until real consenting visitors generate them; enable each as a key event only after it appears and its payload is verified.
