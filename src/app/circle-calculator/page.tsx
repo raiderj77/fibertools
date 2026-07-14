@@ -54,6 +54,14 @@ export default function CircleCalculatorPage() {
         lastUpdated="2026-05-05"
       />
 
+      <aside className="mb-6 rounded-xl border border-plum-200 bg-plum-50 p-4 text-[15px] leading-relaxed text-bark-700 dark:border-plum-800 dark:bg-plum-950/30 dark:text-cream-300">
+        Checking a written amigurumi pattern? The free{" "}
+        <Link href="/amigurumi-pattern-checker" className="font-semibold text-plum-700 underline dark:text-plum-300">
+          StitchProof pattern checker
+        </Link>{" "}
+        compares supported round instructions with their written stitch totals.
+      </aside>
+
       <CircleCalculatorTool />
 
       {/* ── Content sections ── */}

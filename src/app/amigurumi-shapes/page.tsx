@@ -54,6 +54,14 @@ export default function AmigurumiShapesPage() {
         lastUpdated="2026-05-05"
       />
 
+      <aside className="mb-6 rounded-xl border border-plum-200 bg-plum-50 p-4 text-[15px] leading-relaxed text-bark-700 dark:border-plum-800 dark:bg-plum-950/30 dark:text-cream-300">
+        Already have an amigurumi pattern? Use the free{" "}
+        <Link href="/amigurumi-pattern-checker" className="font-semibold text-plum-700 underline dark:text-plum-300">
+          StitchProof pattern checker
+        </Link>{" "}
+        to verify supported round math and written stitch totals before you start crocheting.
+      </aside>
+
       <AmigurumiShapesTool />
 
       {/* ── Content sections ── */}

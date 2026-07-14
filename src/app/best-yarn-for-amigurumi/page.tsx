@@ -289,6 +289,10 @@ export default function BestYarnForAmigurumiPage() {
             <Link href="/needle-converter" className="text-sage-600 dark:text-sage-400 hover:underline">
               Needle &amp; Hook Converter
             </Link>
+            . If you already have a written pattern, check its supported round math with the{" "}
+            <Link href="/amigurumi-pattern-checker" className="text-sage-600 dark:text-sage-400 hover:underline">
+              free StitchProof pattern checker
+            </Link>
             .
           </p>
         </section>

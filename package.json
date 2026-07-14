@@ -15,6 +15,7 @@
     "test:indexnow": "node --test tests/indexnow-urls.test.mjs",
     "test:pattern-checker": "node --test tests/amigurumi-pattern-checker.test.mjs",
     "test:revenue-path": "node --test tests/revenue-path-check.test.js",
+    "test:stitchproof-distribution": "node --test tests/stitchproof-distribution.test.mjs",
     "check:revenue-path": "node scripts/revenue-path-check.js",
     "test:security": "node scripts/security-check.js && node --check public/sw.js",
     "test:quality": "node scripts/quality-gate.js",
