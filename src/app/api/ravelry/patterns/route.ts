@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 // Read-only Ravelry pattern search, proxied server-side so the API credentials
-// never reach the browser. Mirrors api/indexnow/route.ts (Node runtime, env vars).
+// never reach the browser.
 //
 // Env (set in Vercel project settings):
 //   RAVELRY_API_USERNAME, read-only "Basic Auth: read only access" username

@@ -24,6 +24,7 @@ const tagMatches = source.match(/ytearnings-20/g) || [];
 assert(tagMatches.length === 1, "Amazon Associates tag must appear only in the central affiliate config");
 
 const recommendationSource = read("src/components/ToolAffiliateRecommendations.tsx");
+const recommendationLayout = read("src/components/AffiliateRecommendations.tsx");
 const configuredTools = [...recommendationSource.matchAll(/^  "([a-z0-9-]+)": \{$/gm)].map((match) => match[1]);
 assert(configuredTools.length === 10, `Expected 10 monetized tools, found ${configuredTools.length}`);
 
@@ -35,6 +36,14 @@ const clickTracker = read("src/components/AffiliateLink.tsx") + read("src/compon
 for (const field of ["page_path", "placement", "content_type", "merchant", "product_category"]) {
   assert(clickTracker.includes(field), `Affiliate click tracking is missing ${field}`);
 }
+
+assert(
+  recommendationLayout.indexOf("<AffiliateDisclosure compact />") <
+    recommendationLayout.indexOf("items.map"),
+  "Amazon disclosure must appear before the first affiliate link",
+);
+assert(!clickTracker.includes("calculator_input"), "Affiliate events must not include calculator inputs");
+assert(!clickTracker.includes("email"), "Affiliate events must not include email addresses");
 
 const yarnCalculator = read("src/app/yarn-calculator/YarnCalculatorTool.tsx");
 assert(!yarnCalculator.includes("ft_calc_unlocked"), "Calculator results must not depend on localStorage unlocks");

@@ -108,9 +108,10 @@ export default function PrivacyPolicyPage() {
             Cookies and Tracking Technologies
           </h2>
           <p>
-            We use optional cookies for analytics. If advertising is enabled after
-            AdSense approval, advertising storage will remain disabled until you
-            consent. For full details, see
+            Google Analytics is optional. FiberTools does not download the Google
+            Analytics or advertising scripts until you choose to allow them. If
+            advertising is enabled after AdSense approval, it uses the same consent
+            choice. For full details, see
             our{" "}
             <a
               href="/cookies"

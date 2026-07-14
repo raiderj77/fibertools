@@ -14,6 +14,27 @@ const privacy = read("src/app/privacy/page.tsx");
 const nextConfig = read("next.config.mjs");
 
 assert.doesNotMatch(layout, /clarity\.ms|microsoft-clarity/i, "Clarity must remain disabled");
+assert.doesNotMatch(
+  layout,
+  /googletagmanager\.com|googlesyndication\.com/,
+  "Google scripts and connection hints must not load from the server layout before consent",
+);
+const consentControls = read("src/components/CookieConsent.tsx");
+assert.match(
+  consentControls,
+  /consent\?\.analytics === "granted"/,
+  "Google Analytics must require a stored or explicit grant",
+);
+assert.match(
+  consentControls,
+  /adsenseEnabled && consent\.ads === "granted"/,
+  "AdSense must require both production enablement and consent",
+);
+assert.match(
+  consentControls,
+  /calculator inputs and email addresses are never included/i,
+  "The consent notice must disclose the affiliate measurement boundary",
+);
 assert.match(
   layout,
   /NEXT_PUBLIC_ADSENSE_ENABLED === "true"/,

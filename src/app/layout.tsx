@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { DM_Serif_Display, Nunito, JetBrains_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -128,51 +127,11 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#6b8e6d" />
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        {adsenseEnabled && (
-          <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
-        )}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
         <OrganizationSchema />
-        {/* Google Consent Mode v2, set defaults BEFORE gtag loads */}
-        <Script id="consent-mode-defaults" strategy="beforeInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('consent', 'default', {
-              ad_storage: 'denied',
-              ad_user_data: 'denied',
-              ad_personalization: 'denied',
-              analytics_storage: 'denied',
-              functionality_storage: 'denied',
-              personalization_storage: 'denied',
-              wait_for_update: 500
-            });
-          `}
-        </Script>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-T92LYDE8NN"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-T92LYDE8NN');
-          `}
-        </Script>
-        {adsenseEnabled && (
-          <Script
-            id="adsense"
-            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7171402107622932"
-            crossOrigin="anonymous"
-            strategy="lazyOnload"
-          />
-        )}
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-sage-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
@@ -183,7 +142,7 @@ export default function RootLayout({
         <Footer />
         <ServiceWorkerRegistration />
         <InstallPrompt />
-        <CookieConsent />
+        <CookieConsent adsenseEnabled={adsenseEnabled} />
         <AffiliateClickTracker />
       </body>
     </html>
