@@ -23,6 +23,8 @@ jobs:
         run: |
           npm ci
           npm run test:quality
+          npm run test:affiliate
+          npm run test:revenue-path
           npm run build
 
   compliance:

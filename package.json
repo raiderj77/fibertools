@@ -12,6 +12,8 @@
     "lint": "next lint",
     "lint:content": "node scripts/content-lint.js",
     "test:affiliate": "node scripts/affiliate-check.js",
+    "test:revenue-path": "node --test tests/revenue-path-check.test.js",
+    "check:revenue-path": "node scripts/revenue-path-check.js",
     "test:security": "node scripts/security-check.js && node --check public/sw.js",
     "test:quality": "node scripts/quality-gate.js",
     "lint:predeploy": "node scripts/predeploy-check.js",
