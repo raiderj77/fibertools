@@ -1,0 +1,28 @@
+# FiberTools Revenue Experiment Ledger
+
+This is an append-only record. Add corrections and outcomes as new dated entries; do not rewrite prior results.
+
+## FT-REV-001 — Useful project-supply recommendations
+
+- **Status:** Active
+- **Started:** July 12, 2026
+- **Decision date:** August 10, 2026, after 28 complete days
+- **Site:** FiberTools
+- **Revenue model:** Amazon Associates commissions
+- **Change:** Show clearly disclosed, project-relevant Amazon recommendations on ten calculators. Track only consented, non-sensitive click metadata.
+- **User benefit:** Visitors can move from calculating project requirements to comparing the yarn, hooks, needles, or tools needed to begin the project.
+- **Primary outcome:** At least one verified Amazon Associates commission. Amazon Associates reporting is the source of truth.
+- **Diagnostic outcome:** Consented `affiliate_click` events by page and product category in Google Analytics. This is directional because visitors who decline analytics are intentionally not counted.
+- **Guardrails:** Revenue pages remain indexable and canonical; disclosure remains before affiliate links; every link keeps the approved Associate tag and `sponsored nofollow` relationship; calculator inputs and personal data never enter affiliate events.
+- **Automated evidence:** The daily FiberTools Revenue Path workflow verifies all ten rendered production pages without visiting Amazon or collecting visitor data.
+- **Search baseline:** Google Search Console, June 15–July 12, 2026: 260 clicks, 13,100 impressions, 2.0% CTR, average position 16.6.
+- **Lead page baseline:** `/blanket-calculator`: 73 clicks and 5,250 impressions in the same period.
+- **Other high-traffic monetized pages:** `/amigurumi-shapes` 51 clicks / 588 impressions; `/circle-calculator` 44 / 522; `/yarn-calculator` 25 / 1,351.
+- **Control:** No reliable matched control exists for this initial monetization launch. Treat the outcome as observational and do not claim the recommendations caused changes in search traffic.
+- **Failure rule:** Repair any technical or disclosure failure immediately. If there is no verified commission by August 10, keep the calculators free and test one placement or recommendation change on one high-traffic page at a time.
+- **Expansion rule:** Do not add paid SEO or monitoring software for this experiment. Do not expand the system to another site until FiberTools records a verified monetization event or the experiment reaches its decision date.
+- **Rollback:** Remove the affected recommendation set if it creates a policy, privacy, accessibility, or user-trust failure. A lack of revenue alone triggers a revised one-page test, not removal of the free calculator.
+
+### Outcome entries
+
+No outcome yet. Add the first result as a new dated entry on or before August 10, 2026.

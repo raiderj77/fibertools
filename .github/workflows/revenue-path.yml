@@ -1,0 +1,23 @@
+name: FiberTools Revenue Path
+
+on:
+  schedule:
+    - cron: "17 15 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fibertools-revenue-path
+  cancel-in-progress: true
+
+jobs:
+  production-check:
+    name: Verify production monetization paths
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Check rendered production pages
+        run: node scripts/revenue-path-check.js
