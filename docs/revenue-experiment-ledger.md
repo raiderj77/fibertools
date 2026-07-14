@@ -39,3 +39,12 @@ No outcome yet. Add the first result as a new dated entry on or before August 10
 - **Success gate:** At least 25 checker runs from non-owner traffic or at least 5 returning users during the first complete 28-day window. These are early demand signals, not proof of willingness to pay.
 - **Paid-build gate:** Do not build accounts, subscriptions, uploads, or private storage until the free checker shows demand and at least 5 users explicitly request a complete audit or saved projects.
 - **Failure rule:** If the checker receives search visibility but little use, improve the explanation or notation support one variable at a time. If it receives neither visibility nor use, pause StitchProof expansion and retain the free tool as a low-maintenance acquisition page.
+
+### Readiness entries
+
+#### July 13, 2026 — discovery and measurement verification
+
+- Google Search Console initially reported `/amigurumi-pattern-checker` as unknown to Google. A standard URL-inspection indexing request was accepted and the page was added to Google's priority crawl queue.
+- The existing sitemap had not been read since April 28, 2026. It was resubmitted without changing its URL; Search Console reported success on July 13 and discovered 54 intentionally listed URLs.
+- Google Analytics Realtime received a consented `pattern_check_run` event from the production checker. This confirms the demand signal is reaching the correct FiberTools property. The single verification event is an owner test and must not count toward the non-owner demand gate.
+- The IndexNow deployment job had submitted only the homepage. It was updated to include changed static App Router pages and to fail on rejected submissions; StitchProof was then submitted directly for Bing and other participating engines.
