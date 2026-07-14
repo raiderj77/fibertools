@@ -135,7 +135,10 @@ export default function BlanketCalculatorTool() {
     const withBuffer = ydsNeeded * 1.1;
     const totalGrams = withBuffer / yw.ydsPerGram;
     const skeinYds = parseFloat(skeinYards) || 220;
-    const skeins = Math.ceil(withBuffer / skeinYds);
+    const skeinWeight = parseFloat(skeinGrams) || 100;
+    const skeinsByLength = Math.ceil(withBuffer / skeinYds);
+    const skeinsByWeight = Math.ceil(totalGrams / skeinWeight);
+    const skeins = Math.max(skeinsByLength, skeinsByWeight);
 
     return {
       widthIn,
@@ -150,7 +153,7 @@ export default function BlanketCalculatorTool() {
       hasGauge,
       hasMultiple: mult > 0 && roundedStitches !== stitchesNeeded,
     };
-  }, [units, sizeIdx, useCustom, customW, customL, pillowTuck, overhang, gaugeStitches, gaugeRows, gaugeOver, stitchMultiple, multipleExtra, skeinYards, yw]);
+  }, [units, sizeIdx, useCustom, customW, customL, pillowTuck, overhang, gaugeStitches, gaugeRows, gaugeOver, stitchMultiple, multipleExtra, skeinYards, skeinGrams, yw]);
 
   const stickySummary = result
     ? `${units === "metric" ? result.meters.toLocaleString() + " m" : result.yards.toLocaleString() + " yds"} • ${result.skeins} skein${result.skeins !== 1 ? "s" : ""}`
@@ -166,7 +169,7 @@ export default function BlanketCalculatorTool() {
           {/* Size selector */}
           <div>
             <div className="flex items-center gap-3 mb-2">
-              <label className="label mb-0">Blanket Size</label>
+              <span id="blanket-size-label" className="label mb-0">Blanket Size</span>
               <label className="flex items-center gap-1.5 text-sm text-bark-500 dark:text-bark-400 cursor-pointer">
                 <input type="checkbox" checked={useCustom} onChange={(e) => setUseCustom(e.target.checked)} className="rounded border-bark-300" />
                 Custom
@@ -176,21 +179,22 @@ export default function BlanketCalculatorTool() {
             {useCustom ? (
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Width ({dim})</label>
-                  <input type="number" value={customW} onChange={(e) => setCustomW(e.target.value)} placeholder="50" className="input" min="0" inputMode="decimal" />
+                  <label htmlFor="blanket-custom-width" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Width ({dim})</label>
+                  <input id="blanket-custom-width" type="number" value={customW} onChange={(e) => setCustomW(e.target.value)} placeholder="50" className="input" min="0" inputMode="decimal" />
                 </div>
                 <div>
-                  <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Length ({dim})</label>
-                  <input type="number" value={customL} onChange={(e) => setCustomL(e.target.value)} placeholder="60" className="input" min="0" inputMode="decimal" />
+                  <label htmlFor="blanket-custom-length" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Length ({dim})</label>
+                  <input id="blanket-custom-length" type="number" value={customL} onChange={(e) => setCustomL(e.target.value)} placeholder="60" className="input" min="0" inputMode="decimal" />
                 </div>
               </div>
             ) : (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" role="group" aria-labelledby="blanket-size-label">
                 {BLANKET_SIZES.map((s, i) => (
                   <button
                     key={i}
                     type="button"
                     onClick={() => setSizeIdx(i)}
+                    aria-pressed={i === sizeIdx}
                     className={`p-3 rounded-xl text-left text-sm transition-all ${
                       i === sizeIdx
                         ? "bg-sage-100 dark:bg-sage-900/20 border-2 border-sage-400 dark:border-sage-600"
@@ -218,16 +222,16 @@ export default function BlanketCalculatorTool() {
               <Tooltip text="Adds extra length at the top to fold over pillows." />
             </label>
             <div className="flex items-center gap-2">
-              <label className="text-sm text-bark-600 dark:text-cream-300">Overhang ({dim}):</label>
-              <input type="number" value={overhang} onChange={(e) => setOverhang(e.target.value)} className="input w-20 text-sm" min="0" inputMode="decimal" />
+              <label htmlFor="blanket-overhang" className="text-sm text-bark-600 dark:text-cream-300">Overhang ({dim}):</label>
+              <input id="blanket-overhang" type="number" value={overhang} onChange={(e) => setOverhang(e.target.value)} className="input w-20 text-sm" min="0" inputMode="decimal" />
               <Tooltip text="How far the blanket drapes off each side of the bed. Typical: 10-15 inches / 25-38 cm." />
             </div>
           </div>
 
           {/* Yarn weight */}
           <div>
-            <label className="label">Yarn Weight</label>
-            <select value={yarnWeight} onChange={(e) => setYarnWeight(e.target.value)} className="select">
+            <label htmlFor="blanket-yarn-weight" className="label">Yarn Weight</label>
+            <select id="blanket-yarn-weight" value={yarnWeight} onChange={(e) => setYarnWeight(e.target.value)} className="select">
               {YARN_WEIGHTS.map((w) => (
                 <option key={w.key} value={w.key}>{w.label}</option>
               ))}
@@ -241,30 +245,30 @@ export default function BlanketCalculatorTool() {
             </p>
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Stitches</label>
-                <input type="number" value={gaugeStitches} onChange={(e) => setGaugeStitches(e.target.value)} placeholder="18" className="input text-sm" min="0" inputMode="decimal" />
+                <label htmlFor="blanket-gauge-stitches" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Stitches</label>
+                <input id="blanket-gauge-stitches" type="number" value={gaugeStitches} onChange={(e) => setGaugeStitches(e.target.value)} placeholder="18" className="input text-sm" min="0" inputMode="decimal" />
               </div>
               <div>
-                <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Rows</label>
-                <input type="number" value={gaugeRows} onChange={(e) => setGaugeRows(e.target.value)} placeholder="24" className="input text-sm" min="0" inputMode="decimal" />
+                <label htmlFor="blanket-gauge-rows" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Rows</label>
+                <input id="blanket-gauge-rows" type="number" value={gaugeRows} onChange={(e) => setGaugeRows(e.target.value)} placeholder="24" className="input text-sm" min="0" inputMode="decimal" />
               </div>
               <div>
-                <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Over ({dim})</label>
-                <input type="number" value={gaugeOver} onChange={(e) => setGaugeOver(e.target.value)} placeholder="4" className="input text-sm" min="0" inputMode="decimal" />
+                <label htmlFor="blanket-gauge-over" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Over ({dim})</label>
+                <input id="blanket-gauge-over" type="number" value={gaugeOver} onChange={(e) => setGaugeOver(e.target.value)} placeholder="4" className="input text-sm" min="0" inputMode="decimal" />
               </div>
             </div>
             {/* Stitch multiple */}
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">
+                <label htmlFor="blanket-stitch-multiple" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">
                   Stitch multiple
                   <Tooltip text="If your stitch pattern repeats every X stitches, enter X." />
                 </label>
-                <input type="number" value={stitchMultiple} onChange={(e) => setStitchMultiple(e.target.value)} placeholder="e.g. 6" className="input text-sm" min="0" inputMode="numeric" />
+                <input id="blanket-stitch-multiple" type="number" value={stitchMultiple} onChange={(e) => setStitchMultiple(e.target.value)} placeholder="e.g. 6" className="input text-sm" min="0" inputMode="numeric" />
               </div>
               <div>
-                <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">+ extra</label>
-                <input type="number" value={multipleExtra} onChange={(e) => setMultipleExtra(e.target.value)} placeholder="e.g. 1" className="input text-sm" min="0" inputMode="numeric" />
+                <label htmlFor="blanket-multiple-extra" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">+ extra</label>
+                <input id="blanket-multiple-extra" type="number" value={multipleExtra} onChange={(e) => setMultipleExtra(e.target.value)} placeholder="e.g. 1" className="input text-sm" min="0" inputMode="numeric" />
               </div>
             </div>
           </div>
@@ -272,14 +276,18 @@ export default function BlanketCalculatorTool() {
           {/* Skein info */}
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="label text-sm">{units === "metric" ? "Meters" : "Yards"} per skein</label>
-              <input type="number" value={skeinYards} onChange={(e) => setSkeinYards(e.target.value)} placeholder="220" className="input" min="0" inputMode="decimal" />
+              <label htmlFor="blanket-skein-length" className="label text-sm">{units === "metric" ? "Meters" : "Yards"} per skein</label>
+              <input id="blanket-skein-length" type="number" value={skeinYards} onChange={(e) => setSkeinYards(e.target.value)} placeholder="220" className="input" min="0" inputMode="decimal" />
             </div>
             <div>
-              <label className="label text-sm">Grams per skein</label>
-              <input type="number" value={skeinGrams} onChange={(e) => setSkeinGrams(e.target.value)} placeholder="100" className="input" min="0" inputMode="decimal" />
+              <label htmlFor="blanket-skein-grams" className="label text-sm">Grams per skein</label>
+              <input id="blanket-skein-grams" type="number" value={skeinGrams} onChange={(e) => setSkeinGrams(e.target.value)} placeholder="100" className="input" min="0" inputMode="decimal" />
             </div>
           </div>
+          <p className="text-xs leading-relaxed text-bark-400 dark:text-bark-500">
+            Skeins are rounded up using both the length and weight on the yarn label, whichever
+            estimate is higher.
+          </p>
         </div>
 
         {/* Right: results */}

@@ -28,6 +28,7 @@ jobs:
           npm run test:pattern-checker
           npm run test:revenue-path
           npm run test:stitchproof-distribution
+          npm run test:ui-accessibility
           npm run build
 
   compliance:

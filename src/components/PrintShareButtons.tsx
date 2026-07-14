@@ -43,7 +43,7 @@ export default function PrintShareButtons({ toolName }: PrintShareButtonsProps) 
     <div className="flex items-center gap-2 no-print">
       <button
         onClick={handlePrint}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-bark-500 dark:text-bark-400 bg-cream-100 dark:bg-bark-800 border border-cream-300 dark:border-bark-700 rounded-lg hover:bg-cream-200 dark:hover:bg-bark-700 transition-colors"
+        className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-cream-300 bg-cream-100 px-3 py-2.5 text-xs font-medium text-bark-500 transition-colors hover:bg-cream-200 dark:border-bark-700 dark:bg-bark-800 dark:text-bark-400 dark:hover:bg-bark-700"
         title="Print this tool"
       >
         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -53,7 +53,8 @@ export default function PrintShareButtons({ toolName }: PrintShareButtonsProps) 
       </button>
       <button
         onClick={handleShare}
-        className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-bark-500 dark:text-bark-400 bg-cream-100 dark:bg-bark-800 border border-cream-300 dark:border-bark-700 rounded-lg hover:bg-cream-200 dark:hover:bg-bark-700 transition-colors"
+        aria-live="polite"
+        className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-cream-300 bg-cream-100 px-3 py-2.5 text-xs font-medium text-bark-500 transition-colors hover:bg-cream-200 dark:border-bark-700 dark:bg-bark-800 dark:text-bark-400 dark:hover:bg-bark-700"
         title="Share this tool"
       >
         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">

@@ -13,8 +13,15 @@ export default function Header() {
         setMobileOpen(false);
       }
     };
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
     document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   const navLinks = [
@@ -35,7 +42,7 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2"
+            className="flex min-h-11 items-center gap-2"
             onClick={() => setMobileOpen(false)}
           >
             <svg
@@ -71,7 +78,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-bark-600 hover:text-plum-500 transition-colors px-3 py-2"
+                className="inline-flex min-h-11 items-center px-3 py-2 text-sm font-medium text-bark-600 transition-colors hover:text-plum-500"
               >
                 {link.label}
               </Link>
@@ -82,7 +89,7 @@ export default function Header() {
           <div className="hidden md:flex items-center">
             <Link
               href="/#all-tools"
-              className="bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-1.5 rounded-full transition-colors"
+              className="inline-flex min-h-11 items-center rounded-full bg-amber-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-amber-600"
             >
               All Tools
             </Link>
@@ -90,9 +97,10 @@ export default function Header() {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden p-2 rounded-lg text-bark-700 hover:bg-cream-200 transition-colors"
-            aria-label="Toggle menu"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-bark-700 transition-colors hover:bg-cream-200 md:hidden"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? (
@@ -128,6 +136,7 @@ export default function Header() {
         {/* Mobile drawer */}
         {mobileOpen && (
           <nav
+            id="mobile-navigation"
             className="md:hidden bg-white shadow-lg border-t border-cream-200"
             aria-label="Mobile navigation"
           >
@@ -136,7 +145,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="block py-3 px-6 text-sm font-medium text-bark-600 hover:text-plum-500 border-b border-cream-200 transition-colors"
+                className="flex min-h-11 items-center border-b border-cream-200 px-6 py-3 text-sm font-medium text-bark-600 transition-colors hover:text-plum-500"
               >
                 {link.label}
               </Link>
@@ -145,7 +154,7 @@ export default function Header() {
               <Link
                 href="/#all-tools"
                 onClick={() => setMobileOpen(false)}
-                className="block w-full text-center bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold px-4 py-2.5 rounded-full transition-colors"
+                className="flex min-h-11 w-full items-center justify-center rounded-full bg-amber-500 px-4 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-amber-600"
               >
                 All Tools
               </Link>
