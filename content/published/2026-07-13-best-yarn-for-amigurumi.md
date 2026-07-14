@@ -70,7 +70,7 @@ Here's how the common weights compare for amigurumi work:
 **Worsted weight (4)**
 This is the default for most published amigurumi patterns. It works up at a reasonable pace, is easy to source, and gives you a finished piece that's a good gift or display size, usually 6 to 10 inches tall depending on the pattern.
 
-**DK or light worsted (3)**
+**DK weight (3)**
 A little thinner than worsted. Good for smaller, more detailed amigurumi, like tiny animals or accessories. Takes more time and more rounds to reach the same size as worsted weight, but you get finer detail in faces and features.
 
 **Sport or fingering weight (1-2)**
