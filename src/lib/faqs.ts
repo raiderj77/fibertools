@@ -193,6 +193,14 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "What is sc2tog?", a: "Single crochet two together, a decrease. Insert hook in next stitch, pull up a loop, insert in following stitch, pull up a loop, yarn over and pull through all 3 loops." },
     { q: "How do I close the last round of amigurumi neatly?", a: "After working all decrease rounds until about 6 stitches remain, stuff the piece firmly. Cut the yarn leaving a 6-inch tail, thread it onto a tapestry needle, and slip through the front loops of the remaining stitches one at a time. Pull tight to close the hole and weave the tail through several stitches on the inside to secure." },
   ],
+  "amigurumi-pattern-checker": [
+    { q: "How do I check the stitch count in an amigurumi round?", a: "Enter the number of stitches available before the round, then paste the round instruction. The checker calculates how many stitches the instruction consumes and creates and compares that result with the written total." },
+    { q: "Can this checker find errors in AI-generated crochet patterns?", a: "It can find arithmetic errors in supported round notation, whether a person or AI wrote the pattern. It cannot verify gauge, shaping quality, assembly, safety, or unsupported special stitches, so a real crochet test is still required." },
+    { q: "Does FiberTools upload or save my crochet pattern?", a: "No. The checker processes pasted text locally in your browser. It does not send the pattern to a server, save it to an account, publish it, or use it for model training." },
+    { q: "What crochet notation does the checker support?", a: "The first release supports US sc, hdc, dc, increases, decreases, sc2tog, hdc2tog, dc2tog, chains, joining slip stitches, FLO, BLO, magic rings, numbered repeats, and simple around instructions." },
+    { q: "Why do I need to enter a starting stitch count?", a: "A middle round can only be checked if the tool knows how many stitches are available from the previous round. You can leave the field blank when the first pasted line starts in a magic ring." },
+    { q: "Does a correct stitch total prove the whole pattern works?", a: "No. Correct means only that the supported arithmetic is internally consistent. The intended shape, size, gauge, clarity, assembly, and safety still need human review and a physical test." },
+  ],
   "wpi-calculator": [
     { q: "What is WPI (wraps per inch)?", a: "WPI stands for Wraps Per Inch. You wrap yarn around a ruler for exactly one inch and count the number of wraps. It\u2019s the most reliable way to identify the weight of unlabeled yarn." },
     { q: "How do I measure WPI accurately?", a: "Wrap your yarn snugly around a ruler or dowel for one inch. Don\u2019t stretch the yarn or leave gaps, and don\u2019t overlap strands. Count the number of wraps. Repeat in 2\u20133 spots and average the results." },

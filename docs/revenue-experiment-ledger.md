@@ -26,3 +26,16 @@ This is an append-only record. Add corrections and outcomes as new dated entries
 ### Outcome entries
 
 No outcome yet. Add the first result as a new dated entry on or before August 10, 2026.
+
+## FT-PRODUCT-001 — StitchProof demand test
+
+- **Status:** Active when the amigurumi pattern checker reaches production
+- **Decision date:** August 10, 2026, after the first complete measurement window
+- **Hypothesis:** FiberTools visitors will use a transparent, deterministic round-math checker and reveal enough demand to justify a paid complete-pattern audit.
+- **Change:** Add one free, crawlable amigurumi pattern checker supporting up to 20 US-terminology rounds. Pattern text stays in the browser and is never stored or sent to a model.
+- **Primary signal:** Distinct consenting sessions that run the checker, measured through the privacy-safe `pattern_check_run` event.
+- **Secondary signals:** Search impressions and clicks to `/amigurumi-pattern-checker`; incorrect or unsupported result counts; internal visits to related planning tools.
+- **Privacy boundary:** Analytics may receive only round and result-category counts after consent. It must never receive pattern text, stitch values, project names, filenames, or user identifiers.
+- **Success gate:** At least 25 checker runs from non-owner traffic or at least 5 returning users during the first complete 28-day window. These are early demand signals, not proof of willingness to pay.
+- **Paid-build gate:** Do not build accounts, subscriptions, uploads, or private storage until the free checker shows demand and at least 5 users explicitly request a complete audit or saved projects.
+- **Failure rule:** If the checker receives search visibility but little use, improve the explanation or notation support one variable at a time. If it receives neither visibility nor use, pause StitchProof expansion and retain the free tool as a low-maintenance acquisition page.
