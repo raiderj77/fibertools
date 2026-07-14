@@ -151,22 +151,27 @@ export default function AmigurumiShapesTool() {
   return (
     <div className="space-y-6">
       {/* Shape selector */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        {SHAPES.map((s) => (
-          <button
-            key={s.key}
-            onClick={() => setShape(s.key)}
-            className={`py-3 px-3 rounded-xl text-sm font-medium transition-colors text-center ${
-              shape === s.key
-                ? "bg-sage-600 text-white"
-                : "bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 text-bark-700 dark:text-cream-300 hover:border-sage-400"
-            }`}
-          >
-            <span className="text-lg block mb-0.5">{s.emoji}</span>
-            {s.name}
-          </button>
-        ))}
-      </div>
+      <fieldset>
+        <legend className="sr-only">Choose an amigurumi shape</legend>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {SHAPES.map((s) => (
+            <button
+              key={s.key}
+              type="button"
+              onClick={() => setShape(s.key)}
+              aria-pressed={shape === s.key}
+              className={`py-3 px-3 rounded-xl text-sm font-medium transition-colors text-center ${
+                shape === s.key
+                  ? "bg-sage-600 text-white"
+                  : "bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 text-bark-700 dark:text-cream-300 hover:border-sage-400"
+              }`}
+            >
+              <span className="text-lg block mb-0.5">{s.emoji}</span>
+              {s.name}
+            </button>
+          ))}
+        </div>
+      </fieldset>
 
       {/* Description */}
       <p className="text-sm text-bark-500 dark:text-bark-400">
@@ -177,33 +182,33 @@ export default function AmigurumiShapesTool() {
       {shape === "oval" ? (
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium text-bark-500 dark:text-bark-400">
+            <label htmlFor="oval-chain-length" className="text-sm font-medium text-bark-500 dark:text-bark-400">
               Starting chain length
             </label>
             <span className="text-sm font-bold text-bark-700 dark:text-cream-300">{ovalLength}</span>
           </div>
-          <input type="range" min={4} max={20} value={ovalLength} onChange={(e) => setOvalLength(Number(e.target.value))} className="w-full accent-sage-600" />
+          <input id="oval-chain-length" type="range" min={4} max={20} value={ovalLength} onChange={(e) => setOvalLength(Number(e.target.value))} className="h-11 w-full accent-sage-600" />
         </div>
       ) : (
         <>
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="text-sm font-medium text-bark-500 dark:text-bark-400">
+              <label htmlFor="shape-total-rounds" className="text-sm font-medium text-bark-500 dark:text-bark-400">
                 Total rounds
               </label>
               <span className="text-sm font-bold text-bark-700 dark:text-cream-300">{rounds}</span>
             </div>
-            <input type="range" min={6} max={30} value={rounds} onChange={(e) => setRounds(Number(e.target.value))} className="w-full accent-sage-600" />
+            <input id="shape-total-rounds" type="range" min={6} max={30} value={rounds} onChange={(e) => setRounds(Number(e.target.value))} className="h-11 w-full accent-sage-600" />
           </div>
           {shape === "cylinder" && (
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="text-sm font-medium text-bark-500 dark:text-bark-400">
+                <label htmlFor="shape-base-rounds" className="text-sm font-medium text-bark-500 dark:text-bark-400">
                   Base rounds (flat circle)
                 </label>
                 <span className="text-sm font-bold text-bark-700 dark:text-cream-300">{baseRounds}</span>
               </div>
-              <input type="range" min={2} max={10} value={baseRounds} onChange={(e) => setBaseRounds(Number(e.target.value))} className="w-full accent-sage-600" />
+              <input id="shape-base-rounds" type="range" min={2} max={10} value={baseRounds} onChange={(e) => setBaseRounds(Number(e.target.value))} className="h-11 w-full accent-sage-600" />
             </div>
           )}
         </>
@@ -213,7 +218,7 @@ export default function AmigurumiShapesTool() {
       <div className="bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 rounded-xl overflow-hidden">
         <div className="px-5 py-3 border-b border-bark-200 dark:border-bark-700 flex items-center justify-between">
           <h2 className="font-bold text-bark-700 dark:text-cream-300">Pattern</h2>
-          <button onClick={handleCopy} className="text-xs text-sage-600 dark:text-sage-400 hover:underline">
+          <button type="button" onClick={handleCopy} aria-live="polite" className="inline-flex min-h-11 items-center px-3 text-sm font-medium text-sage-600 hover:underline dark:text-sage-400">
             {copied ? "✓ Copied!" : "Copy"}
           </button>
         </div>

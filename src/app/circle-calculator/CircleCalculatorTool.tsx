@@ -101,16 +101,18 @@ export default function CircleCalculatorTool() {
   return (
     <div className="space-y-6">
       {/* Stitch Type */}
-      <div>
-        <label className="text-sm font-medium text-bark-500 dark:text-bark-400 mb-2 block">
+      <fieldset>
+        <legend className="text-sm font-medium text-bark-500 dark:text-bark-400 mb-2 block">
           Stitch Type
-        </label>
+        </legend>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {STITCH_TYPES.map((st) => (
             <button
               key={st.key}
+              type="button"
               onClick={() => setStitchKey(st.key)}
-              className={`py-2.5 px-3 rounded-xl text-sm font-medium transition-colors ${
+              aria-pressed={stitchKey === st.key}
+              className={`min-h-11 py-2.5 px-3 rounded-xl text-sm font-medium transition-colors ${
                 stitchKey === st.key
                   ? "bg-sage-600 text-white"
                   : "bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 text-bark-700 dark:text-cream-300 hover:border-sage-400"
@@ -120,23 +122,24 @@ export default function CircleCalculatorTool() {
             </button>
           ))}
         </div>
-      </div>
+      </fieldset>
 
       {/* Rounds Slider */}
       <div>
         <div className="flex items-center justify-between mb-2">
-          <label className="text-sm font-medium text-bark-500 dark:text-bark-400">
+          <label htmlFor="circle-rounds" className="text-sm font-medium text-bark-500 dark:text-bark-400">
             Number of Rounds
           </label>
           <span className="text-sm font-bold text-bark-700 dark:text-cream-300">{rows}</span>
         </div>
         <input
+          id="circle-rounds"
           type="range"
           min={3}
           max={30}
           value={rows}
           onChange={(e) => setRows(Number(e.target.value))}
-          className="w-full accent-sage-600"
+          className="h-11 w-full accent-sage-600"
         />
         <div className="flex justify-between text-xs text-bark-400 dark:text-bark-500 mt-1">
           <span>3 rounds</span>
@@ -165,8 +168,10 @@ export default function CircleCalculatorTool() {
         <div className="px-5 py-3 border-b border-bark-200 dark:border-bark-700 flex items-center justify-between">
           <h2 className="font-bold text-bark-700 dark:text-cream-300">Pattern Instructions</h2>
           <button
+            type="button"
             onClick={handleCopy}
-            className="text-xs text-sage-600 dark:text-sage-400 hover:underline"
+            aria-live="polite"
+            className="inline-flex min-h-11 items-center px-3 text-sm font-medium text-sage-600 hover:underline dark:text-sage-400"
           >
             {copied ? "✓ Copied!" : "Copy"}
           </button>

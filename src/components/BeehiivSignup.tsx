@@ -22,7 +22,7 @@ export default function BeehiivSignup() {
 
   if (status === "success") {
     return (
-      <div className="text-center py-2">
+      <div className="text-center py-2" role="status">
         <p className="text-bark-700 dark:text-cream-200 font-medium">
           🎉 You&rsquo;re in! Check your email for the Survival Kit.
         </p>
@@ -36,7 +36,12 @@ export default function BeehiivSignup() {
         onSubmit={handleSubmit}
         className="flex flex-col sm:flex-row gap-3 max-w-md w-full mx-auto"
       >
+        <label htmlFor="newsletter-email" className="sr-only">
+          Email address
+        </label>
         <input
+          id="newsletter-email"
+          name="email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -54,7 +59,7 @@ export default function BeehiivSignup() {
         </button>
       </form>
       {status === "error" && (
-        <p className="text-red-500 text-xs">{errorMsg}</p>
+        <p className="text-red-500 text-xs" role="alert">{errorMsg}</p>
       )}
     </div>
   );

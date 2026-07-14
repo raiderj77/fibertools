@@ -168,10 +168,11 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
         <div
           role="dialog"
           aria-label="Cookie consent"
+          aria-describedby="cookie-consent-description"
           className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-white dark:bg-bark-800 border-t border-bark-200 dark:border-bark-600 shadow-lg"
         >
           <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <p className="text-sm text-bark-700 dark:text-cream-300 flex-1">
+            <p id="cookie-consent-description" className="text-sm text-bark-700 dark:text-cream-300 flex-1">
               With your permission, Google Analytics helps us understand which tools and product
               recommendations are useful. Calculator inputs and email addresses are never included in
               analytics events.{" "}
@@ -183,14 +184,14 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
               <button
                 type="button"
                 onClick={handleDecline}
-                className="px-4 py-2 text-sm font-medium text-bark-600 dark:text-cream-400 border border-bark-300 dark:border-bark-500 rounded-lg hover:bg-bark-50 dark:hover:bg-bark-700 transition-colors"
+                className="min-h-11 rounded-lg border border-bark-300 px-4 py-2 text-sm font-medium text-bark-600 transition-colors hover:bg-bark-50 dark:border-bark-500 dark:text-cream-400 dark:hover:bg-bark-700"
               >
                 Continue without analytics
               </button>
               <button
                 type="button"
                 onClick={handleAccept}
-                className="px-4 py-2 text-sm font-medium text-white bg-sage-600 rounded-lg hover:bg-sage-700 transition-colors"
+                className="min-h-11 rounded-lg bg-sage-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-sage-700"
               >
                 Allow analytics
               </button>
