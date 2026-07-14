@@ -11,6 +11,7 @@ const packageJson = JSON.parse(read("package.json"));
 const lockfile = read("package-lock.json");
 const nextConfig = read("next.config.mjs");
 const serviceWorker = read("public/sw.js");
+const indexNowRoute = path.join(root, "src/app/api/indexnow/route.ts");
 
 assert(packageJson.dependencies.next === "15.5.20", "Next.js must stay pinned to the reviewed security patch");
 assert(packageJson.dependencies.react === "19.2.7", "React must stay pinned to the reviewed security patch");
@@ -20,6 +21,8 @@ assert(!packageJson.dependencies["next-pwa"], "The abandoned next-pwa package mu
 assert(!lockfile.includes('"node_modules/next-pwa"'), "next-pwa must not remain in the lockfile");
 assert(!lockfile.includes('"node_modules/workbox-build"'), "The vulnerable Workbox build chain must not remain");
 assert(!nextConfig.includes("withPWA"), "Next config must not load next-pwa");
+assert(!nextConfig.includes("'unsafe-eval'"), "Production CSP must not permit unsafe-eval");
+assert(!fs.existsSync(indexNowRoute), "The unauthenticated public IndexNow trigger must stay removed");
 
 assert(serviceWorker.includes('request.method !== "GET"'), "Service worker must ignore non-GET requests");
 assert(serviceWorker.includes('url.origin !== self.location.origin'), "Service worker must ignore cross-origin requests");

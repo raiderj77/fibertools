@@ -29,7 +29,7 @@ export default function CookiePolicyPage() {
         Cookie Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: March 16, 2026
+        Last updated: July 13, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -117,8 +117,9 @@ export default function CookiePolicyPage() {
           <p>
             <strong>Non-essential (analytics &amp; advertising):</strong> Google
             Analytics and, if enabled after approval, AdSense cookies are non-essential.
-            We request your consent before allowing their storage. You can withdraw consent
-            at any time via the cookie banner.
+            We request your consent before downloading their scripts or allowing their
+            storage. You can withdraw consent at any time through the Privacy choices link
+            in the footer.
           </p>
         </section>
 
@@ -127,20 +128,20 @@ export default function CookiePolicyPage() {
             Google Consent Mode v2
           </h2>
           <p>
-            We implement Google Consent Mode v2, which means:
+            We use a prior-consent setup with Google Consent Mode v2, which means:
           </p>
           <ul className="list-disc pl-6 space-y-1">
             <li>
-              Before you consent, Google tags load in a restricted mode that does
-              not store cookies
+              Before you consent, FiberTools does not download Google Analytics or
+              advertising scripts
             </li>
             <li>
               After you consent, full analytics and ad personalization cookies
               are enabled
             </li>
             <li>
-              If you decline, Google tags remain restricted and no tracking
-              cookies are set
+              If you decline, the scripts are not loaded and no Google tracking
+              cookies are set by FiberTools
             </li>
           </ul>
         </section>
@@ -152,8 +153,9 @@ export default function CookiePolicyPage() {
           <p>You can manage cookies in several ways:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>
-              <strong>Cookie banner:</strong> Use the consent banner that appears
-              when you first visit to accept or decline non-essential cookies
+              <strong>Privacy choices:</strong> Use the consent banner when you first
+              visit, or the Privacy choices link in the footer later, to allow or
+              decline non-essential cookies
             </li>
             <li>
               <strong>Browser settings:</strong> Most browsers let you block or

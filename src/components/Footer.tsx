@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PrivacyChoicesButton from "./PrivacyChoicesButton";
 
 export default function Footer() {
   const toolLinks = [
@@ -121,6 +122,9 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <PrivacyChoicesButton />
+              </li>
             </ul>
 
           </div>

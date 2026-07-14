@@ -35,6 +35,7 @@ export default function AffiliateRecommendations({
         {heading}
       </h2>
       <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-cream-300">{intro}</p>
+      <AffiliateDisclosure compact />
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
         {items.map((item) => (
           <AffiliateLink
@@ -58,7 +59,6 @@ export default function AffiliateRecommendations({
           </AffiliateLink>
         ))}
       </div>
-      <AffiliateDisclosure compact />
     </section>
   );
 }
