@@ -6,6 +6,11 @@ interface AnswerBlockProps {
 }
 
 export default function AnswerBlock({ what, who, bottomLine, lastUpdated }: AnswerBlockProps) {
+  const dateParts = lastUpdated.match(/^(\d{4})-(\d{2})-(\d{2})$/)
+  const displayDate = dateParts
+    ? new Date(Number(dateParts[1]), Number(dateParts[2]) - 1, Number(dateParts[3]))
+    : new Date(lastUpdated)
+
   return (
     <section
       aria-label="Quick Answer"
@@ -36,7 +41,7 @@ export default function AnswerBlock({ what, who, bottomLine, lastUpdated }: Answ
         className="block text-right text-xs text-bark-400"
       >
         Last updated:{' '}
-        {new Date(lastUpdated).toLocaleDateString('en-US', {
+        {displayDate.toLocaleDateString('en-US', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',

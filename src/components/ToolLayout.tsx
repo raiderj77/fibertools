@@ -12,9 +12,10 @@ interface ToolLayoutProps {
   slug: string;
   children: React.ReactNode;
   widgetFirst?: boolean;
+  showDefaultReferences?: boolean;
 }
 
-export default function ToolLayout({ slug, children, widgetFirst = false }: ToolLayoutProps) {
+export default function ToolLayout({ slug, children, widgetFirst = false, showDefaultReferences = true }: ToolLayoutProps) {
   const tool = getToolBySlug(slug);
   if (!tool) return null;
 
@@ -387,29 +388,31 @@ export default function ToolLayout({ slug, children, widgetFirst = false }: Tool
       )}
 
       {/* Authority references */}
-      <section className="mt-10">
-        <h2 className="section-heading">References and Industry Standards</h2>
-        <ul className="space-y-2 text-sm text-bark-500">
-          <li>
-            <a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" target="_blank" rel="noopener noreferrer" className="text-plum-500 hover:text-plum-600 hover:underline">
-              Craft Yarn Council, Yarn Weight System
-            </a>
-            {", Industry-standard yarn weight categories and gauge ranges"}
-          </li>
-          <li>
-            <a href="https://www.craftyarncouncil.com/standards/needle-hook-sizes" target="_blank" rel="noopener noreferrer" className="text-plum-500 hover:text-plum-600 hover:underline">
-              Craft Yarn Council, Needle & Hook Sizes
-            </a>
-            {", Standard sizing charts for knitting needles and crochet hooks"}
-          </li>
-          <li>
-            <a href="https://www.ravelry.com" target="_blank" rel="noopener noreferrer" className="text-plum-500 hover:text-plum-600 hover:underline">
-              Ravelry
-            </a>
-            {", Yarn database, pattern library, and community for fiber artists"}
-          </li>
-        </ul>
-      </section>
+      {showDefaultReferences ? (
+        <section className="mt-10">
+          <h2 className="section-heading">References and Industry Standards</h2>
+          <ul className="space-y-2 text-sm text-bark-500">
+            <li>
+              <a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" target="_blank" rel="noopener noreferrer" className="text-plum-500 hover:text-plum-600 hover:underline">
+                Craft Yarn Council, Yarn Weight System
+              </a>
+              {", Industry-standard yarn weight categories and gauge ranges"}
+            </li>
+            <li>
+              <a href="https://www.craftyarncouncil.com/standards/needle-hook-sizes" target="_blank" rel="noopener noreferrer" className="text-plum-500 hover:text-plum-600 hover:underline">
+                Craft Yarn Council, Needle & Hook Sizes
+              </a>
+              {", Standard sizing charts for knitting needles and crochet hooks"}
+            </li>
+            <li>
+              <a href="https://www.ravelry.com" target="_blank" rel="noopener noreferrer" className="text-plum-500 hover:text-plum-600 hover:underline">
+                Ravelry
+              </a>
+              {", Yarn database, pattern library, and community for fiber artists"}
+            </li>
+          </ul>
+        </section>
+      ) : null}
 
       {/* Companion guides */}
       {companionGuide && (

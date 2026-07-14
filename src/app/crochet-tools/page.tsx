@@ -10,6 +10,7 @@ const CROCHET_SLUGS = [
   "blanket-calculator",
   "increase-decrease-calculator",
   "circle-calculator",
+  "amigurumi-pattern-checker",
   "amigurumi-shapes",
   "granny-square-planner",
   "c2c-calculator",
@@ -117,7 +118,7 @@ export default function CrochetToolsPage() {
   };
 
   const garmentTools = crochetTools.filter((t) =>
-    ["amigurumi-shapes", "circle-calculator", "increase-decrease-calculator", "granny-square-planner", "c2c-calculator"].includes(t.slug)
+    ["amigurumi-pattern-checker", "amigurumi-shapes", "circle-calculator", "increase-decrease-calculator", "granny-square-planner", "c2c-calculator"].includes(t.slug)
   );
   const blanketTools = crochetTools.filter((t) =>
     ["blanket-calculator", "stripe-generator", "color-pooling-calculator", "stash-estimator", "project-cost-calculator"].includes(t.slug)
@@ -151,7 +152,7 @@ export default function CrochetToolsPage() {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-1">
           Free Crochet Calculators & Tools
         </h1>
-        <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
+        <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: July 13, 2026</p>
         <div className="space-y-4 text-bark-600 dark:text-cream-300 max-w-3xl">
           <p className="text-lg leading-relaxed">
             Every crochet project starts with numbers: how much yarn to buy, what hook size to use,
