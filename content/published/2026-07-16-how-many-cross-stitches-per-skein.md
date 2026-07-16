@@ -17,7 +17,7 @@ This happens because stitchers buy the exact amount a chart calls for, with noth
 
 Every time you start a new thread, you leave a tail. Every time you end one, you leave another tail. Those tails don't stitch anything. They just get buried under future stitches. On a small project this waste might only cost you a few inches per skein. On a large piece with hundreds of color changes, it adds up to a surprising amount of lost floss.
 
-Fabric count matters too. A pattern designed for 14-count Aida uses smaller stitches than the same pattern on 11-count Aida. Smaller stitches use less floss per stitch, but you need more stitches to cover the same physical area. The math doesn't always work out the way you'd guess.
+[Fabric count matters too.](/blog/cross-stitch-fabric-count/) A pattern designed for 14-count Aida uses smaller stitches than the same pattern on 11-count Aida. Smaller stitches use less floss per stitch, but you need more stitches to cover the same physical area. The math doesn't always work out the way you'd guess.
 
 **How to avoid it:** Buy one extra skein for any color that covers more than 100 stitches in a pattern. For your most-used colors, like background colors, buy two extra. Floss dye lots can vary, so buying extra from the same batch at the start beats trying to match dye lots later.
 
