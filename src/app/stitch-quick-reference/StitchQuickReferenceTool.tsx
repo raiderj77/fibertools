@@ -362,6 +362,7 @@ export default function StitchQuickReferenceTool() {
               className="input"
             />
             <select
+              aria-label="Filter stitches by craft"
               value={craftFilter}
               onChange={(e) => setCraftFilter(e.target.value as CraftFilter)}
               className="input"

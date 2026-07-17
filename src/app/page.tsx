@@ -188,7 +188,7 @@ export default function HomePage() {
               Free tools for
               <span className="text-plum-500"> every fiber crafter</span>
             </h1>
-            <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: April 16, 2026</p>
+            <p className="text-sm text-gray-600 mt-1 mb-4 text-center">Last updated: April 16, 2026</p>
             <p className="mt-6 text-lg sm:text-xl text-bark-500 max-w-xl leading-relaxed">
               Yarn calculators, needle converters, gauge tools, and more, for
               knitting, crochet, weaving, spinning, and embroidery. No login. No

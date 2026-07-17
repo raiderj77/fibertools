@@ -340,7 +340,7 @@ export default function BlanketCalculatorTool() {
                 </p>
 
                 {!result.hasGauge && (
-                  <p className="text-xs text-amber-600 dark:text-amber-400">
+                  <p className="text-xs text-amber-700 dark:text-amber-300">
                     💡 Enter your gauge above to get exact stitch and row counts.
                   </p>
                 )}

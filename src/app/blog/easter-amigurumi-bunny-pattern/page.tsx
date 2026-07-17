@@ -91,7 +91,7 @@ export default async function Page({ params }: { params: Params }) {
           Easter Bunny Amigurumi Pattern, Free Crochet Guide
         </h1>
         <p className="text-sm text-gray-400 mb-2">Last updated: April 16, 2026</p>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 mb-6">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600 mb-6">
           <span>By <strong className="text-gray-700">Jason Ramirez</strong></span>
           <span aria-hidden="true">&middot;</span>
           <span>Built by a working maker, not a content team</span>
@@ -103,7 +103,7 @@ export default async function Page({ params }: { params: Params }) {
 
         {/* IN THIS GUIDE */}
         <nav className="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-6" aria-label="In this guide">
-          <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">In this guide</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-3">In this guide</p>
           <ol className="space-y-1 list-decimal list-inside">
             {[
               ['#materials', 'Materials'],
@@ -228,11 +228,11 @@ export default async function Page({ params }: { params: Params }) {
           <p><strong>Rounds 7–12:</strong> sc in each st around. (36 sts), 6 rounds even</p>
           <p><strong>Round 13:</strong> *sc 4, dec* repeat 6 times. (30 sts)</p>
           <p><strong>Round 14:</strong> *sc 3, dec* repeat 6 times. (24 sts)</p>
-          <p className="text-gray-500">→ Insert safety eyes between rounds 9 and 10, approx. 8 sts apart. Begin stuffing firmly.</p>
+          <p className="text-gray-600">→ Insert safety eyes between rounds 9 and 10, approx. 8 sts apart. Begin stuffing firmly.</p>
           <p><strong>Round 15:</strong> *sc 2, dec* repeat 6 times. (18 sts)</p>
           <p><strong>Round 16:</strong> *sc 1, dec* repeat 6 times. (12 sts)</p>
           <p><strong>Round 17:</strong> dec 6 times. (6 sts)</p>
-          <p className="text-gray-500">→ Finish stuffing. Fasten off, leave a 6-inch tail. Close opening with yarn needle.</p>
+          <p className="text-gray-600">→ Finish stuffing. Fasten off, leave a 6-inch tail. Close opening with yarn needle.</p>
         </div>
 
         <h2 id="head" className="text-2xl font-semibold mt-10 mb-4">Pattern, Head</h2>
@@ -246,10 +246,10 @@ export default async function Page({ params }: { params: Params }) {
           <p><strong>Rounds 6–10:</strong> sc around. (30 sts)</p>
           <p><strong>Round 11:</strong> *sc 3, dec* × 6. (24 sts)</p>
           <p><strong>Round 12:</strong> *sc 2, dec* × 6. (18 sts)</p>
-          <p className="text-gray-500">→ Insert safety eyes between rounds 7 and 8, approx. 7 sts apart. Stuff firmly.</p>
+          <p className="text-gray-600">→ Insert safety eyes between rounds 7 and 8, approx. 7 sts apart. Stuff firmly.</p>
           <p><strong>Round 13:</strong> *sc 1, dec* × 6. (12 sts)</p>
           <p><strong>Round 14:</strong> dec × 6. (6 sts)</p>
-          <p className="text-gray-500">→ Close and attach head to body with yarn needle.</p>
+          <p className="text-gray-600">→ Close and attach head to body with yarn needle.</p>
         </div>
 
         <h2 id="ears" className="text-2xl font-semibold mt-10 mb-4">Pattern, Ears (make 2)</h2>
@@ -261,12 +261,12 @@ export default async function Page({ params }: { params: Params }) {
         </p>
 
         <div className="bg-gray-50 rounded-lg p-4 my-6 font-mono text-sm space-y-1">
-          <p className="text-gray-500">Outer ear (main color):</p>
+          <p className="text-gray-600">Outer ear (main color):</p>
           <p><strong>Round 1:</strong> MR, 4 sc. (4)</p>
           <p><strong>Round 2:</strong> inc, sc 2, inc. (6)</p>
           <p><strong>Rounds 3–8:</strong> sc around. (6), 6 rows even</p>
-          <p className="text-gray-500">Fasten off. Do not stuff.</p>
-          <p className="text-gray-500 mt-2">Inner ear (pink): Work outer ear pattern through Round 5 only. Sew onto outer ear.</p>
+          <p className="text-gray-600">Fasten off. Do not stuff.</p>
+          <p className="text-gray-600 mt-2">Inner ear (pink): Work outer ear pattern through Round 5 only. Sew onto outer ear.</p>
         </div>
 
         <h2 id="finishing" className="text-2xl font-semibold mt-10 mb-4">Finishing</h2>

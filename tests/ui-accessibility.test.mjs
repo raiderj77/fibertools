@@ -13,6 +13,12 @@ const globals = read("src/app/globals.css");
 const blanket = read("src/app/blanket-calculator/BlanketCalculatorTool.tsx");
 const circle = read("src/app/circle-calculator/CircleCalculatorTool.tsx");
 const shapes = read("src/app/amigurumi-shapes/AmigurumiShapesTool.tsx");
+const yarn = read("src/app/yarn-calculator/YarnCalculatorTool.tsx");
+const weaving = read("src/app/weaving-sett-calculator/WeavingSettCalculatorTool.tsx");
+const abbreviations = read("src/app/abbreviation-glossary/AbbreviationGlossaryTool.tsx");
+const stitchReference = read("src/app/stitch-quick-reference/StitchQuickReferenceTool.tsx");
+const patternChecker = read("src/app/amigurumi-pattern-checker/page.tsx");
+const knittingNeedles = read("src/app/best-knitting-needles/page.tsx");
 
 test("provides a focusable main landmark and keyboard-operable mobile navigation", () => {
   assert.match(layout, /<main id="main-content" tabIndex=\{-1\}/);
@@ -72,4 +78,22 @@ test("announces copy, share, success, and error feedback", () => {
   assert.match(shapes, /aria-live="polite"/);
   assert.match(newsletter, /role="status"/);
   assert.match(newsletter, /role="alert"/);
+});
+
+test("names filters and makes horizontally scrolling reference tables keyboard accessible", () => {
+  for (const id of ["yarn-project-type", "yarn-project-size", "yarn-weight", "yarn-stitch-pattern"]) {
+    assert.match(yarn, new RegExp(`htmlFor="${id}"`));
+    assert.match(yarn, new RegExp(`id="${id}"`));
+  }
+
+  for (const id of ["weaving-yarn-weight", "weaving-structure", "weaving-fiber-type", "weaving-reed-dent"]) {
+    assert.match(weaving, new RegExp(`htmlFor="${id}"`));
+    assert.match(weaving, new RegExp(`id="${id}"`));
+  }
+
+  assert.match(abbreviations, /aria-label="Filter abbreviations by craft"/);
+  assert.match(abbreviations, /aria-label="Filter abbreviations by category"/);
+  assert.match(stitchReference, /aria-label="Filter stitches by craft"/);
+  assert.match(patternChecker, /tabIndex=\{0\} aria-label="Pattern instruction reference table"/);
+  assert.match(knittingNeedles, /tabIndex=\{0\} aria-label="Beginner knitting needle comparison table"/);
 });

@@ -309,11 +309,12 @@ export default function YarnCalculatorTool() {
         <div className="space-y-5">
           {/* Project type */}
           <div>
-            <label className="label">
+            <label htmlFor="yarn-project-type" className="label">
               Project Type
               <Tooltip text="Pick your project and we'll show size presets with typical dimensions." />
             </label>
             <select
+              id="yarn-project-type"
               value={projectType}
               onChange={(e) => { setProjectType(e.target.value as ProjectType); setSizeIdx(0); }}
               className="select"
@@ -327,11 +328,12 @@ export default function YarnCalculatorTool() {
           {/* Size preset or custom */}
           {projectType !== "custom" && presets.length > 0 ? (
             <div>
-              <label className="label">
+              <label htmlFor="yarn-project-size" className="label">
                 Size
                 <Tooltip text="Standard sizes for this project type. Dimensions are approximate." />
               </label>
               <select
+                id="yarn-project-size"
                 value={sizeIdx}
                 onChange={(e) => setSizeIdx(parseInt(e.target.value))}
                 className="select"
@@ -377,11 +379,12 @@ export default function YarnCalculatorTool() {
 
           {/* Yarn weight */}
           <div>
-            <label className="label">
+            <label htmlFor="yarn-weight" className="label">
               Yarn Weight
               <Tooltip text="The thickness of your yarn. Check the label, it's usually printed as a number 0–7 or a name like 'Worsted'." />
             </label>
             <select
+              id="yarn-weight"
               value={yarnWeight}
               onChange={(e) => setYarnWeight(e.target.value)}
               className="select"
@@ -394,11 +397,12 @@ export default function YarnCalculatorTool() {
 
           {/* Stitch pattern */}
           <div>
-            <label className="label">
+            <label htmlFor="yarn-stitch-pattern" className="label">
               Stitch Pattern
               <Tooltip text="Different stitches use different amounts of yarn. Cables use ~20–35% more. Lace uses ~15% less. If unsure, leave as default." />
             </label>
             <select
+              id="yarn-stitch-pattern"
               value={stitchPattern}
               onChange={(e) => setStitchPattern(e.target.value)}
               className="select"

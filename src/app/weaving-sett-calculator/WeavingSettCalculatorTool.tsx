@@ -209,16 +209,16 @@ export default function WeavingSettCalculatorTool() {
         <div className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg">
             <div>
-              <label className="label">Yarn Weight</label>
-              <select value={yarnWeight} onChange={(e) => setYarnWeight(e.target.value)} className="select">
+              <label htmlFor="weaving-yarn-weight" className="label">Yarn Weight</label>
+              <select id="weaving-yarn-weight" value={yarnWeight} onChange={(e) => setYarnWeight(e.target.value)} className="select">
                 {YARN_WEIGHTS.map((w) => (
                   <option key={w.key} value={w.key}>{w.label} ({w.wpi[0]}&ndash;{w.wpi[1]} WPI)</option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="label">Weave Structure</label>
-              <select value={structure} onChange={(e) => setStructure(e.target.value)} className="select">
+              <label htmlFor="weaving-structure" className="label">Weave Structure</label>
+              <select id="weaving-structure" value={structure} onChange={(e) => setStructure(e.target.value)} className="select">
                 {STRUCTURES.map((s) => (
                   <option key={s.key} value={s.key}>{s.label}</option>
                 ))}
@@ -317,15 +317,15 @@ export default function WeavingSettCalculatorTool() {
                 placeholder="6" className="input" min="0" inputMode="decimal" />
             </div>
             <div>
-              <label className="label">Fiber type</label>
-              <select value={fiber} onChange={(e) => setFiber(e.target.value)} className="select">
+              <label htmlFor="weaving-fiber-type" className="label">Fiber type</label>
+              <select id="weaving-fiber-type" value={fiber} onChange={(e) => setFiber(e.target.value)} className="select">
                 {Object.entries(SHRINKAGE).map(([k, v]) => (
                   <option key={k} value={k}>{k.charAt(0).toUpperCase() + k.slice(1)} (~{Math.round(v * 100)}% shrink)</option>
                 ))}
               </select>
             </div>
             <div>
-              <label className="label">
+              <label htmlFor="weaving-reed-dent" className="label">
                 Yards per skein
                 <Tooltip text="Optional: enter your skein yardage to get a skein count." />
               </label>
@@ -400,7 +400,7 @@ export default function WeavingSettCalculatorTool() {
                 Reed dent
                 <Tooltip text="Your reed&apos;s dents per inch. Common sizes: 8, 10, 12, 15." />
               </label>
-              <select value={reedDent} onChange={(e) => setReedDent(e.target.value)} className="select">
+              <select id="weaving-reed-dent" value={reedDent} onChange={(e) => setReedDent(e.target.value)} className="select">
                 {[6, 8, 10, 12, 15, 16, 20].map((d) => (
                   <option key={d} value={d}>{d}-dent</option>
                 ))}

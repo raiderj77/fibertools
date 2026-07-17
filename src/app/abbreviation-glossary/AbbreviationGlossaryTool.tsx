@@ -261,12 +261,12 @@ export default function AbbreviationGlossaryTool() {
                 className="input"
               />
             </div>
-            <select value={craft} onChange={(e) => setCraft(e.target.value as typeof craft)} className="input">
+            <select aria-label="Filter abbreviations by craft" value={craft} onChange={(e) => setCraft(e.target.value as typeof craft)} className="input">
               <option value="all">All Crafts</option>
               <option value="knit">Knitting</option>
               <option value="crochet">Crochet</option>
             </select>
-            <select value={category} onChange={(e) => setCategory(e.target.value)} className="input">
+            <select aria-label="Filter abbreviations by category" value={category} onChange={(e) => setCategory(e.target.value)} className="input">
               {CATEGORIES.map((c) => (
                 <option key={c} value={c}>{c === "all" ? "All Categories" : c.charAt(0).toUpperCase() + c.slice(1)}</option>
               ))}
