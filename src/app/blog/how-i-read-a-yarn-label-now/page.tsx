@@ -57,7 +57,7 @@ export default async function Page({ params }: { params: Params }) {
           How I Read a Yarn Label Now (And What I Missed for Six Months)
         </h1>
         <p className="text-sm text-gray-400 mb-2">Last updated: May 6, 2026</p>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500 mb-6">
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600 mb-6">
           <span>By <strong className="text-gray-700">Jason Ramirez</strong></span>
           <span aria-hidden="true">&middot;</span>
           <span>Built by a working maker, not a content team</span>
@@ -67,7 +67,7 @@ export default async function Page({ params }: { params: Params }) {
 
         {/* IN THIS POST */}
         <nav className="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-8" aria-label="In this post">
-          <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">In this post</p>
+          <p className="text-xs font-semibold uppercase tracking-wider text-gray-600 mb-3">In this post</p>
           <ol className="space-y-1 list-decimal list-inside">
             {[
               ['#cyc-weight', 'First thing I check now: the CYC weight number'],

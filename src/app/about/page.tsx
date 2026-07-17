@@ -76,7 +76,7 @@ export default function AboutPage() {
       <h1 className="text-3xl font-bold text-bark-800 dark:text-cream-100 mb-2">
         About Jason Ramirez
       </h1>
-      <p className="text-sm text-gray-500 mt-1 mb-8">Last updated: June 30, 2026</p>
+      <p className="text-sm text-gray-600 mt-1 mb-8">Last updated: June 30, 2026</p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
         <p>

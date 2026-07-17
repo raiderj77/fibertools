@@ -29,7 +29,7 @@ export default function ContactPage() {
       <h1 className="text-3xl font-bold text-bark-800 dark:text-cream-100 mb-2">
         Contact Us
       </h1>
-      <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
+      <p className="text-sm text-gray-600 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-8 text-bark-700 dark:text-cream-300">
         <section>

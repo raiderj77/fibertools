@@ -185,7 +185,7 @@ export default function BestKnittingNeedlesPage() {
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             Beginners should start with straight needles in US 7–9 (4.5–5.5mm). Bamboo is ideal because the slight grip prevents stitches from sliding off while you learn tension control.
           </p>
-          <div className="overflow-x-auto mb-4">
+          <div className="overflow-x-auto mb-4" tabIndex={0} aria-label="Beginner knitting needle comparison table">
             <table className="w-full text-sm text-left border border-cream-300 dark:border-bark-700 rounded-xl overflow-hidden">
               <thead className="bg-cream-100 dark:bg-bark-800 text-bark-600 dark:text-cream-300">
                 <tr>
@@ -231,7 +231,7 @@ export default function BestKnittingNeedlesPage() {
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             Circular needles are the most versatile type, they handle flat and in-the-round knitting, distribute weight across the cable, and come in every size. The cable quality matters as much as the tips: a stiff, kinky cable fights you on every row.
           </p>
-          <div className="overflow-x-auto mb-4">
+          <div className="overflow-x-auto mb-4" tabIndex={0} aria-label="Circular knitting needle comparison table">
             <table className="w-full text-sm text-left border border-cream-300 dark:border-bark-700 rounded-xl overflow-hidden">
               <thead className="bg-cream-100 dark:bg-bark-800 text-bark-600 dark:text-cream-300">
                 <tr>
@@ -286,7 +286,7 @@ export default function BestKnittingNeedlesPage() {
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             Interchangeable sets are the best long-term investment for active knitters. Instead of buying individual circulars for every size and cable length, you get a set of tips and cables that mix and match. Most sets pay for themselves after 4–5 individual circular purchases.
           </p>
-          <div className="overflow-x-auto mb-4">
+          <div className="overflow-x-auto mb-4" tabIndex={0} aria-label="Interchangeable knitting needle set comparison table">
             <table className="w-full text-sm text-left border border-cream-300 dark:border-bark-700 rounded-xl overflow-hidden">
               <thead className="bg-cream-100 dark:bg-bark-800 text-bark-600 dark:text-cream-300">
                 <tr>
@@ -344,7 +344,7 @@ export default function BestKnittingNeedlesPage() {
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             The material of your needles affects how yarn moves across the surface, how the needles feel in your hands, and how long they last. Here is how the most common materials compare.
           </p>
-          <div className="overflow-x-auto mb-4">
+          <div className="overflow-x-auto mb-4" tabIndex={0} aria-label="Knitting needle material comparison table">
             <table className="w-full text-sm text-left border border-cream-300 dark:border-bark-700 rounded-xl overflow-hidden">
               <thead className="bg-cream-100 dark:bg-bark-800 text-bark-600 dark:text-cream-300">
                 <tr>

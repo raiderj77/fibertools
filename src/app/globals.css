@@ -11,8 +11,8 @@
     --color-border:       #EDE0D0;
     --color-accent:       #7C5A6D;
     --color-accent-hover: #634858;
-    --color-cta:          #D4915E;
-    --color-cta-hover:    #B8723E;
+    --color-cta:          #965829;
+    --color-cta-hover:    #8F5429;
     --color-sage:         #8FAE8B;
   }
 
@@ -24,8 +24,8 @@
     --color-border:       #3D302A;
     --color-accent:       #C49ABB;
     --color-accent-hover: #D4AECE;
-    --color-cta:          #E8A87C;
-    --color-cta-hover:    #F0B88E;
+    --color-cta:          #965829;
+    --color-cta-hover:    #8F5429;
     --color-sage:         #9FBDA3;
   }
 
@@ -71,6 +71,12 @@
 
   .btn-primary:hover {
     background-color: var(--color-cta-hover);
+  }
+
+  a.text-sage-600,
+  a.text-plum-500 {
+    text-decoration-line: underline;
+    text-underline-offset: 0.15em;
   }
 
   /* Secondary button */

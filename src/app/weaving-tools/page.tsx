@@ -131,7 +131,7 @@ export default function WeavingToolsPage() {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-1">
           Free Weaving & Spinning Calculators
         </h1>
-        <p className="text-sm text-gray-500 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
+        <p className="text-sm text-gray-600 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
         <div className="space-y-4 text-bark-600 dark:text-cream-300 max-w-3xl">
           <p className="text-lg leading-relaxed">
             Weaving and spinning involve some of the most calculation-heavy math in fiber arts. Before

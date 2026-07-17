@@ -53,7 +53,7 @@ export default function AmigurumiPatternCheckerPage() {
           and creates two. A decrease consumes two and creates one. The checker multiplies those values by the
           repeat count, then compares the calculated total with the number written at the end of the round.
         </p>
-        <div className="mt-5 overflow-x-auto rounded-xl border border-bark-200 dark:border-bark-700">
+        <div className="mt-5 overflow-x-auto rounded-xl border border-bark-200 dark:border-bark-700" tabIndex={0} aria-label="Pattern instruction reference table">
           <table className="w-full min-w-[34rem] text-left text-sm">
             <thead className="bg-cream-100 text-bark-700 dark:bg-bark-800 dark:text-cream-200">
               <tr><th className="px-4 py-3">Instruction</th><th className="px-4 py-3">Consumes</th><th className="px-4 py-3">Creates</th></tr>
