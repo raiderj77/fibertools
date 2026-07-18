@@ -6,7 +6,7 @@ export interface FAQ {
 export const toolFaqs: Record<string, FAQ[]> = {
   "yarn-calculator": [
     { q: "How do I calculate how much yarn I need?", a: "Enter your project type, size, yarn weight, and stitch pattern into our calculator. It uses industry-standard yardage estimates adjusted for your specific combination to give you an accurate total with a 10% safety buffer." },
-    { q: "How much yarn do I need for a blanket?", a: "A throw blanket (50\u00D760\") typically needs 1,200\u20132,000 yards of worsted weight yarn. The exact amount depends on your stitch pattern, gauge, and yarn weight. Use our calculator for a precise estimate." },
+    { q: "How much yarn do I need for a blanket?", a: "Yarn use depends on the finished size, stitch pattern, yarn, tool size, and tension. For a defensible estimate, weigh a representative swatch and scale its yarn use to the finished blanket area." },
     { q: "How many skeins of yarn do I need for a sweater?", a: "An adult sweater typically needs 1,000\u20131,800 yards depending on size and yarn weight. That\u2019s roughly 5\u20138 skeins of worsted weight yarn. Enter your specific measurements for an exact count." },
     { q: "Does stitch pattern affect yarn usage?", a: "Yes, significantly. Cable patterns use 20\u201330% more yarn than stockinette. Lace patterns use less. Brioche uses about 50% more. Our calculator adjusts for 17 different stitch patterns." },
     { q: "Should I buy extra yarn?", a: "Always. Our calculator includes a 10% buffer, but we recommend buying one extra skein from the same dye lot. Yarn from different dye lots can have subtle color differences." },
@@ -51,12 +51,12 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "Can I use this on my phone?", a: "Absolutely. The counter is designed for mobile with extra-large tap targets, one-thumb operation, and a fullscreen mode that hides browser chrome for distraction-free counting." },
   ],
   "blanket-calculator": [
-    { q: "How big should a throw blanket be?", a: "A standard throw blanket is 50\u00D760 inches (127\u00D7152cm). It\u2019s the most popular size for sofa blankets. Our calculator includes 12 standard sizes from lovey (12\u00D712\") to California king (104\u00D7104\")." },
+    { q: "How big should a throw blanket be?", a: "The calculator uses 50\u00D760 inches (127\u00D7152cm) as a common throw planning preset. Measure the intended recipient or space, or follow the pattern dimensions, before buying yarn." },
     { q: "How many chains do I need for a throw blanket?", a: "It depends on your yarn weight and gauge. With worsted yarn at 4 stitches per inch, a 50-inch throw needs about 200 chains. Enter your exact gauge into our calculator for a precise number with stitch multiple rounding." },
-    { q: "How much yarn do I need for a baby blanket?", a: "A baby/crib blanket (36\u00D752\") typically needs 900\u20131,400 yards of worsted weight yarn, or about 4\u20136 skeins. The exact amount depends on your stitch pattern and gauge." },
+    { q: "How much yarn do I need for a baby blanket?", a: "There is no single reliable amount for every baby blanket. Enter the intended dimensions and weigh a swatch made with the actual yarn and stitch pattern to calculate yards and skeins." },
     { q: "What is pillow tuck?", a: "Pillow tuck adds extra length (about 20 inches) to the top of a bed blanket so it can fold over the pillows for a finished look. Toggle it on in our calculator for bed-sized blankets." },
-    { q: "How do I calculate overhang for a bed blanket?", a: "Overhang is how far the blanket drapes over the sides of the mattress. Typical overhang is 10\u201315 inches. Our calculator adds this to both sides and the foot of the bed automatically." },
-    { q: "How many skeins do I need?", a: "Enter your skein yardage (found on the label) and our calculator divides total yardage by skein yardage, rounding up. We include a 10% buffer for swatching and joining." },
+    { q: "How do I calculate overhang for a bed blanket?", a: "Measure from the mattress edge to the point where you want the blanket to end. Enter that chosen drop; the calculator adds it to both sides of the width and to the foot of the length." },
+    { q: "How many skeins do I need?", a: "Enter the swatch dimensions and grams used plus the length and weight printed on the yarn label. The calculator scales the swatch consumption to the finished area, adds a displayed 10% buffer, and rounds up to whole skeins." },
   ],
   "increase-decrease-calculator": [
     { q: "How do I increase evenly across a row?", a: "Divide your current stitch count by the number of increases. Our calculator gives you exact stitch-by-stitch instructions like \u2018K7, M1, repeat 11 times\u2019 with balanced distribution of any remainders." },

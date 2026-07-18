@@ -399,7 +399,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false, showDe
               {", Industry-standard yarn weight categories and gauge ranges"}
             </li>
             <li>
-              <a href="https://www.craftyarncouncil.com/standards/needle-hook-sizes" target="_blank" rel="noopener noreferrer" className="text-plum-500 hover:text-plum-600 hover:underline">
+              <a href="https://www.craftyarncouncil.com/standards/hooks-and-needles" target="_blank" rel="noopener noreferrer" className="text-plum-500 hover:text-plum-600 hover:underline">
                 Craft Yarn Council, Needle & Hook Sizes
               </a>
               {", Standard sizing charts for knitting needles and crochet hooks"}
