@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function DownloadPage() {
   return (
-    <main className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-stone-50">
       <div className="max-w-xl mx-auto px-6 py-20 text-center">
         <div className="text-5xl mb-6">🧶</div>
         <h1
@@ -47,6 +47,6 @@ export default function DownloadPage() {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

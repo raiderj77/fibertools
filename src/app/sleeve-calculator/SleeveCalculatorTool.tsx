@@ -88,6 +88,7 @@ export default function SleeveCalculatorTool() {
               </label>
               <input
                 type="number"
+                aria-label="Upper arm circumference in inches"
                 value={upperArmCirc}
                 onChange={(e) => setUpperArmCirc(e.target.value)}
                 placeholder="13"
@@ -103,6 +104,7 @@ export default function SleeveCalculatorTool() {
               </label>
               <input
                 type="number"
+                aria-label="Wrist or cuff circumference in inches"
                 value={wristCirc}
                 onChange={(e) => setWristCirc(e.target.value)}
                 placeholder="8"
@@ -118,6 +120,7 @@ export default function SleeveCalculatorTool() {
               </label>
               <input
                 type="number"
+                aria-label="Sleeve length in inches"
                 value={sleeveLength}
                 onChange={(e) => setSleeveLength(e.target.value)}
                 placeholder="18"
@@ -133,6 +136,7 @@ export default function SleeveCalculatorTool() {
               </label>
               <input
                 type="number"
+                aria-label="Cuff ribbing length in inches"
                 value={cuffRibbing}
                 onChange={(e) => setCuffRibbing(e.target.value)}
                 placeholder="2"
@@ -152,6 +156,7 @@ export default function SleeveCalculatorTool() {
               <label className="label">Stitches/inch</label>
               <input
                 type="number"
+                aria-label="Stitches per inch"
                 value={stsPerInch}
                 onChange={(e) => setStsPerInch(e.target.value)}
                 placeholder="4.5"
@@ -164,6 +169,7 @@ export default function SleeveCalculatorTool() {
               <label className="label">Rows/inch</label>
               <input
                 type="number"
+                aria-label="Rows per inch"
                 value={rowsPerInch}
                 onChange={(e) => setRowsPerInch(e.target.value)}
                 placeholder="6"

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main className="max-w-2xl mx-auto px-4 py-20 text-center">
+    <div className="max-w-2xl mx-auto px-4 py-20 text-center">
       <p className="text-6xl mb-6" aria-hidden="true">🧶</p>
 
       <h1 className="text-3xl sm:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
@@ -68,6 +68,6 @@ export default function NotFound() {
       >
         ← Back to all tools
       </Link>
-    </main>
+    </div>
   );
 }

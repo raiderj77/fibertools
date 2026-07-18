@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function AccessibilityPage() {
   return (
-    <main className="max-w-3xl mx-auto px-4 py-12">
+    <div className="max-w-3xl mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold text-bark-800 dark:text-cream-100 mb-2">
         Accessibility Statement
       </h1>
@@ -161,6 +161,6 @@ export default function AccessibilityPage() {
           </p>
         </section>
       </div>
-    </main>
+    </div>
   );
 }

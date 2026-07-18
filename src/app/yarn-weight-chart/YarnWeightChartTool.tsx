@@ -263,6 +263,7 @@ export default function YarnWeightChartTool() {
             </svg>
             <input
               type="text" value={search} onChange={(e) => setSearch(e.target.value)}
+              aria-label="Search yarn weights"
               placeholder='Search: "DK", "8 ply", "worsted"…'
               className="input pl-10"
             />
@@ -367,7 +368,7 @@ export default function YarnWeightChartTool() {
               <p className="font-medium text-bark-700 dark:text-cream-200 text-sm">🧶 Pattern Yarn</p>
               <div>
                 <label className="label text-xs">Weight category</label>
-                <select value={yarn1Weight} onChange={(e) => setYarn1Weight(e.target.value)} className="select">
+                <select aria-label="First yarn weight category" value={yarn1Weight} onChange={(e) => setYarn1Weight(e.target.value)} className="select">
                   <option value="">Select…</option>
                   {WEIGHTS.map((w) => (
                     <option key={w.number} value={w.number}>{w.number}, {w.usName}</option>
@@ -379,7 +380,7 @@ export default function YarnWeightChartTool() {
                   Yards per gram (optional)
                   <Tooltip text="Divide the skein's total yardage by its weight in grams. E.g., 220 yds ÷ 100g = 2.2 yd/g" />
                 </label>
-                <input type="number" value={yarn1Mpg} onChange={(e) => setYarn1Mpg(e.target.value)} placeholder="e.g. 2.2" className="input" min="0" inputMode="decimal" />
+                <input aria-label="First yarn yards per gram" type="number" value={yarn1Mpg} onChange={(e) => setYarn1Mpg(e.target.value)} placeholder="e.g. 2.2" className="input" min="0" inputMode="decimal" />
               </div>
             </div>
 
@@ -388,7 +389,7 @@ export default function YarnWeightChartTool() {
               <p className="font-medium text-sage-700 dark:text-sage-300 text-sm">🧶 Substitute Yarn</p>
               <div>
                 <label className="label text-xs">Weight category</label>
-                <select value={yarn2Weight} onChange={(e) => setYarn2Weight(e.target.value)} className="select">
+                <select aria-label="Second yarn weight category" value={yarn2Weight} onChange={(e) => setYarn2Weight(e.target.value)} className="select">
                   <option value="">Select…</option>
                   {WEIGHTS.map((w) => (
                     <option key={w.number} value={w.number}>{w.number}, {w.usName}</option>
@@ -397,7 +398,7 @@ export default function YarnWeightChartTool() {
               </div>
               <div>
                 <label className="label text-xs">Yards per gram (optional)</label>
-                <input type="number" value={yarn2Mpg} onChange={(e) => setYarn2Mpg(e.target.value)} placeholder="e.g. 2.5" className="input" min="0" inputMode="decimal" />
+                <input aria-label="Second yarn yards per gram" type="number" value={yarn2Mpg} onChange={(e) => setYarn2Mpg(e.target.value)} placeholder="e.g. 2.5" className="input" min="0" inputMode="decimal" />
               </div>
             </div>
           </div>

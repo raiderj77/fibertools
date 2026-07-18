@@ -255,6 +255,7 @@ export default function AbbreviationGlossaryTool() {
             <div className="sm:col-span-2">
               <input
                 type="text"
+                aria-label="Search knitting and crochet abbreviations"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search abbreviations…"
@@ -366,6 +367,7 @@ export default function AbbreviationGlossaryTool() {
           <div>
             <label className="label">Paste a line from your pattern</label>
             <textarea
+              aria-label="Pattern line to translate"
               value={patternText}
               onChange={(e) => setPatternText(e.target.value)}
               placeholder="e.g. Ch 3, 2 DC in next st, sk 2, (SC, CH 1, SC) in ch-sp, rep from * to end"
