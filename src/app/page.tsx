@@ -451,13 +451,13 @@ export default function HomePage() {
             </li>
             <li>
               <a
-                href="https://www.craftyarncouncil.com/standards/how-to-measure-gauge"
+                href="https://www.craftyarncouncil.com/top10qa.html"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
                 className="text-plum-500 underline hover:text-plum-600"
               >
-                Craft Yarn Council tension and gauge guidelines
-              </a>{" "}, Step-by-step guidance for swatching and measuring gauge accurately.
+                Craft Yarn Council yarn and gauge questions
+              </a>{" "}, Guidance on gauge, yarn weights, and yarn substitutions.
             </li>
           </ul>
         </div>

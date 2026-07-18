@@ -52,4 +52,23 @@ assert(!yarnCalculator.includes("Unlock your full breakdown"), "Calculator resul
 assert(fs.existsSync(path.join(root, "src", "app", "affiliate-disclosure", "page.tsx")), "Affiliate disclosure page is missing");
 assert(!source.includes("other affiliate programs"), "Privacy copy must not claim unverified affiliate programs");
 
+for (const retiredAsin of ["B000XZS3AO", "B000XZSGEU", "B000XZS3RQ"]) {
+  assert(!source.includes(retiredAsin), `Retired Amazon product ${retiredAsin} must not remain linked`);
+}
+for (const currentAsin of ["B0CBPXTSB8", "B00CB39PYQ", "B00114TCMQ"]) {
+  assert(source.includes(currentAsin), `Verified Amazon product ${currentAsin} is missing`);
+}
+for (const retiredUrl of [
+  "craftyarncouncil.com/standards/how-to-measure-gauge",
+  "craftyarncouncil.com/standards/stitch-symbols",
+  "craftyarncouncil.com/quick-guide-to-yarn",
+  "yarnspirations.com/blogs/ideas-and-inspiration",
+  "craftyarncouncil.com/standards/hat-sizing",
+  "craftyarncouncil.com/standards/needle-hook-chart",
+  "interweave.com/article/knitting/sock-knitting-101",
+  "ads.google.com/settings",
+]) {
+  assert(!source.includes(retiredUrl), `Retired external destination ${retiredUrl} must not remain linked`);
+}
+
 console.log(`Affiliate checks passed for ${configuredTools.length} monetized tools.`);

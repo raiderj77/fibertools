@@ -211,7 +211,7 @@ export default function SockCalculatorPage() {
             <span className="font-medium">1.</span>{" "}
             Craft Yarn Council, Standard Yarn Weight System.{" "}
             <Link
-              href="https://www.craftyarncouncil.com/standards/yarn-weight"
+              href="https://www.craftyarncouncil.com/standards/yarn-weight-system"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
@@ -235,7 +235,7 @@ export default function SockCalculatorPage() {
             <span className="font-medium">3.</span>{" "}
             Craft Yarn Council, Needle and Hook Size Chart.{" "}
             <Link
-              href="https://www.craftyarncouncil.com/standards/needle-hook-chart"
+              href="https://www.craftyarncouncil.com/standards/hooks-and-needles"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
@@ -247,7 +247,7 @@ export default function SockCalculatorPage() {
             <span className="font-medium">4.</span>{" "}
             Interweave Knits, Sock Construction Reference.{" "}
             <Link
-              href="https://www.interweave.com/article/knitting/sock-knitting-101"
+              href="https://www.interweave.com/article/knitting/learn-how-to-knit-socks/"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
@@ -257,9 +257,9 @@ export default function SockCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">5.</span>{" "}
-            Yarnspirations, Sock Yarn Buying Guide.{" "}
+            Yarnspirations, Crochet and Knitting How-To Hub.{" "}
             <Link
-              href="https://www.yarnspirations.com/blogs/ideas-and-inspiration"
+              href="https://www.yarnspirations.com/blogs/how-to"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"

@@ -213,7 +213,7 @@ export default function BestYarnForBlanketsPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">1,020 yds (16 oz)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonProductUrl("B000XZS3AO")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonProductUrl("B0CBPXTSB8")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
