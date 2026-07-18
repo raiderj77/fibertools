@@ -49,6 +49,51 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/yarn-weight-comparison',
+        destination: '/yarn-weight-chart',
+        permanent: true,
+      },
+      {
+        source: '/blog/knitting-abbreviations-guide',
+        destination: '/abbreviation-glossary',
+        permanent: true,
+      },
+      {
+        source: '/blog/gauge-calculator-guide',
+        destination: '/gauge-calculator',
+        permanent: true,
+      },
+      {
+        source: '/blog/needle-size-chart-guide',
+        destination: '/needle-converter',
+        permanent: true,
+      },
+      {
+        source: '/blog/spinning-wheel-guide',
+        destination: '/spinning-ratio-calculator',
+        permanent: true,
+      },
+      {
+        source: '/blog/increase-decrease-guide',
+        destination: '/increase-decrease-calculator',
+        permanent: true,
+      },
+      {
+        source: '/blog/weaving-sett-guide',
+        destination: '/weaving-sett-calculator',
+        permanent: true,
+      },
+      {
+        source: '/blog/yarn-weight-chart-guide',
+        destination: '/yarn-weight-chart',
+        permanent: true,
+      },
+      {
+        source: '/blog/color-pooling-guide',
+        destination: '/color-pooling-calculator',
+        permanent: true,
+      },
+      {
         source: '/blog/needle-guide-guide',
         destination: '/needle-guide',
         permanent: true,
