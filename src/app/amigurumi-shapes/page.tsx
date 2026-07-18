@@ -235,7 +235,7 @@ export default function AmigurumiShapesPage() {
             <span className="font-medium">1.</span>{" "}
             Craft Yarn Council, Stitch Symbols and Standards.{" "}
             <Link
-              href="https://www.craftyarncouncil.com/standards/stitch-symbols"
+              href="https://www.craftyarncouncil.com/standards/crochet-chart-symbols"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
@@ -247,7 +247,7 @@ export default function AmigurumiShapesPage() {
             <span className="font-medium">2.</span>{" "}
             Craft Yarn Council, Needle and Hook Size Chart.{" "}
             <Link
-              href="https://www.craftyarncouncil.com/standards/needle-hook-chart"
+              href="https://www.craftyarncouncil.com/standards/hooks-and-needles"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
@@ -257,9 +257,9 @@ export default function AmigurumiShapesPage() {
           </li>
           <li>
             <span className="font-medium">3.</span>{" "}
-            Yarnspirations, Amigurumi Decrease Tutorial.{" "}
+            Yarnspirations, Crochet and Knitting How-To Hub.{" "}
             <Link
-              href="https://www.yarnspirations.com/blogs/ideas-and-inspiration"
+              href="https://www.yarnspirations.com/blogs/how-to"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
@@ -283,7 +283,7 @@ export default function AmigurumiShapesPage() {
             <span className="font-medium">5.</span>{" "}
             Craft Yarn Council, Standard Yarn Weight System.{" "}
             <Link
-              href="https://www.craftyarncouncil.com/standards/yarn-weight"
+              href="https://www.craftyarncouncil.com/standards/yarn-weight-system"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"

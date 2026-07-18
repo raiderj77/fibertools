@@ -197,7 +197,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Best value, 1,020 yards per skein</td>
                   <td className="px-4 py-3">
-                    <a href={amazonProductUrl("B000XZS3AO")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonProductUrl("B0CBPXTSB8")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -206,7 +206,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Smoothest feel, great color range</td>
                   <td className="px-4 py-3">
-                    <a href={amazonProductUrl("B000XZSGEU")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonProductUrl("B00CB39PYQ")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -215,7 +215,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Most affordable, widely available</td>
                   <td className="px-4 py-3">
-                    <a href={amazonProductUrl("B000XZS3RQ")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonProductUrl("B00114TCMQ")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">

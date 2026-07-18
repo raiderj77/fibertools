@@ -234,7 +234,7 @@ export default function CircleCalculatorPage() {
             <span className="font-medium">1.</span>{" "}
             Craft Yarn Council, Stitch Symbols and Standards.{" "}
             <Link
-              href="https://www.craftyarncouncil.com/standards/stitch-symbols"
+              href="https://www.craftyarncouncil.com/standards/crochet-chart-symbols"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
@@ -258,7 +258,7 @@ export default function CircleCalculatorPage() {
             <span className="font-medium">3.</span>{" "}
             Craft Yarn Council, Hat Sizing Standards.{" "}
             <Link
-              href="https://www.craftyarncouncil.com/standards/hat-sizing"
+              href="https://www.craftyarncouncil.com/standards/head-circumference-chart"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
@@ -280,9 +280,9 @@ export default function CircleCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">5.</span>{" "}
-            Yarnspirations, Crochet Magic Ring Tutorial.{" "}
+            Yarnspirations, Crochet and Knitting How-To Hub.{" "}
             <Link
-              href="https://www.yarnspirations.com/blogs/ideas-and-inspiration"
+              href="https://www.yarnspirations.com/blogs/how-to"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"

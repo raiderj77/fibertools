@@ -127,12 +127,12 @@ export default function PrivacyPolicyPage() {
             ads according to your consent choices. You can opt out of personalized
             advertising at{" "}
             <a
-              href="https://ads.google.com/settings"
+              href="https://myadcenter.google.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sage-600 dark:text-sage-400 underline"
             >
-              Google Ad Settings
+              My Ad Center
             </a>{" "}
             or the{" "}
             <a

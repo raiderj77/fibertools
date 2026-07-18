@@ -237,7 +237,7 @@ export default function YarnCalculatorPage() {
             <span className="font-medium">1.</span>{" "}
             Craft Yarn Council, Standard Yarn Weight System.{" "}
             <Link
-              href="https://www.craftyarncouncil.com/standards/yarn-weight"
+              href="https://www.craftyarncouncil.com/standards/yarn-weight-system"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
@@ -259,9 +259,9 @@ export default function YarnCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">3.</span>{" "}
-            Craft Yarn Council, Knit and Crochet Stitch Charts.{" "}
+            Craft Yarn Council, Crochet Chart Symbols.{" "}
             <Link
-              href="https://www.craftyarncouncil.com/standards/stitch-symbols"
+              href="https://www.craftyarncouncil.com/standards/crochet-chart-symbols"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
@@ -271,9 +271,9 @@ export default function YarnCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">4.</span>{" "}
-            Craft Yarn Council, Substituting Yarns Guide.{" "}
+            Craft Yarn Council, Yarn Substitution Questions and Answers.{" "}
             <Link
-              href="https://www.craftyarncouncil.com/quick-guide-to-yarn"
+              href="https://www.craftyarncouncil.com/top10qa.html"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
@@ -283,9 +283,9 @@ export default function YarnCalculatorPage() {
           </li>
           <li>
             <span className="font-medium">5.</span>{" "}
-            Yarnspirations, Buying the Right Amount of Yarn.{" "}
+            Yarnspirations, Crochet and Knitting How-To Hub.{" "}
             <Link
-              href="https://www.yarnspirations.com/blogs/ideas-and-inspiration"
+              href="https://www.yarnspirations.com/blogs/how-to"
               className="text-sage-600 dark:text-sage-400 underline"
               target="_blank"
               rel="nofollow noopener"
