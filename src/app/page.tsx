@@ -155,7 +155,7 @@ export default function HomePage() {
   };
 
   return (
-    <main>
+    <div>
       {/* Structured Data */}
       <script
         type="application/ld+json"
@@ -582,6 +582,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }

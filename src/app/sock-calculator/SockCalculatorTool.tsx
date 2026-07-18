@@ -134,6 +134,7 @@ export default function SockCalculatorTool() {
             </label>
             <input
               type="number"
+              aria-label="Foot circumference in inches"
               value={footCirc}
               onChange={(e) => setFootCirc(e.target.value)}
               placeholder="8"
@@ -149,6 +150,7 @@ export default function SockCalculatorTool() {
             </label>
             <input
               type="number"
+              aria-label="Foot length in inches"
               value={footLength}
               onChange={(e) => setFootLength(e.target.value)}
               placeholder="9.5"
@@ -164,6 +166,7 @@ export default function SockCalculatorTool() {
             </label>
             <input
               type="number"
+              aria-label="Gauge stitches per four inches"
               value={gaugeSts}
               onChange={(e) => setGaugeSts(e.target.value)}
               placeholder="32"
@@ -179,6 +182,7 @@ export default function SockCalculatorTool() {
             </label>
             <input
               type="number"
+              aria-label="Row gauge per four inches"
               value={rowGauge}
               onChange={(e) => setRowGauge(e.target.value)}
               placeholder="44"

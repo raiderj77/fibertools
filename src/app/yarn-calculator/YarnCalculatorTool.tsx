@@ -354,6 +354,7 @@ export default function YarnCalculatorTool() {
                 <label className="label">Width ({dimLabel})</label>
                 <input
                   type="number"
+                  aria-label={`Width in ${dimLabel}`}
                   value={customW}
                   onChange={(e) => setCustomW(e.target.value)}
                   placeholder="e.g. 50"
@@ -366,6 +367,7 @@ export default function YarnCalculatorTool() {
                 <label className="label">Length ({dimLabel})</label>
                 <input
                   type="number"
+                  aria-label={`Length in ${dimLabel}`}
                   value={customL}
                   onChange={(e) => setCustomL(e.target.value)}
                   placeholder="e.g. 60"
@@ -438,6 +440,7 @@ export default function YarnCalculatorTool() {
                   <label className="label text-xs">Stitches</label>
                   <input
                     type="number"
+                    aria-label="Gauge stitches"
                     value={gaugeStitches}
                     onChange={(e) => setGaugeStitches(e.target.value)}
                     placeholder="18"
@@ -450,6 +453,7 @@ export default function YarnCalculatorTool() {
                   <label className="label text-xs">Rows</label>
                   <input
                     type="number"
+                    aria-label="Gauge rows"
                     value={gaugeRows}
                     onChange={(e) => setGaugeRows(e.target.value)}
                     placeholder="24"
@@ -464,6 +468,7 @@ export default function YarnCalculatorTool() {
                   </label>
                   <input
                     type="number"
+                    aria-label={`Gauge swatch size in ${dimLabel}`}
                     value={swatchSize}
                     onChange={(e) => setSwatchSize(e.target.value)}
                     placeholder="4"
@@ -489,6 +494,7 @@ export default function YarnCalculatorTool() {
                 </label>
                 <input
                   type="number"
+                  aria-label={units === "metric" ? "Meters per skein" : "Yards per skein"}
                   value={skeinYards}
                   onChange={(e) => setSkeinYards(e.target.value)}
                   placeholder="220"
@@ -503,6 +509,7 @@ export default function YarnCalculatorTool() {
                 </label>
                 <input
                   type="number"
+                  aria-label={units === "metric" ? "Grams per skein" : "Ounces per skein"}
                   value={skeinGrams}
                   onChange={(e) => setSkeinGrams(e.target.value)}
                   placeholder="100"
@@ -627,6 +634,7 @@ export default function YarnCalculatorTool() {
                 </label>
                 <input
                   type="number"
+                  aria-label={units === "metric" ? "Partial skein weight in grams" : "Partial skein weight in ounces"}
                   value={partialWeight}
                   onChange={(e) => setPartialWeight(e.target.value)}
                   placeholder="42"
@@ -641,6 +649,7 @@ export default function YarnCalculatorTool() {
                 </label>
                 <input
                   type="number"
+                  aria-label={units === "metric" ? "Full skein weight in grams" : "Full skein weight in ounces"}
                   value={partialSkeinWeight}
                   onChange={(e) => setPartialSkeinWeight(e.target.value)}
                   placeholder="100"
@@ -655,6 +664,7 @@ export default function YarnCalculatorTool() {
                 </label>
                 <input
                   type="number"
+                  aria-label={units === "metric" ? "Full skein length in meters" : "Full skein length in yards"}
                   value={partialSkeinYards}
                   onChange={(e) => setPartialSkeinYards(e.target.value)}
                   placeholder="220"

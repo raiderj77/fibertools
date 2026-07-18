@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AffiliateDisclosurePage() {
   return (
-    <main className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
+    <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
       <h1 className="text-3xl font-display font-bold text-bark-800 dark:text-cream-100">
         Affiliate Disclosure
       </h1>
@@ -36,6 +36,6 @@ export default function AffiliateDisclosurePage() {
           for more information.
         </p>
       </div>
-    </main>
+    </div>
   );
 }

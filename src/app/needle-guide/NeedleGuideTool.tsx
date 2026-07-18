@@ -162,6 +162,7 @@ export default function NeedleGuideTool() {
       {/* Search */}
       <input
         type="text"
+        aria-label="Search needle types"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search needles..."

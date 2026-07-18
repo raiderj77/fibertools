@@ -67,6 +67,7 @@ export default function CastOnCalculatorTool() {
           <label className="label">Desired Width (in)</label>
           <input
             type="number"
+            aria-label="Desired width in inches"
             value={desiredWidth}
             onChange={(e) => setDesiredWidth(e.target.value)}
             placeholder="e.g. 50"
@@ -82,6 +83,7 @@ export default function CastOnCalculatorTool() {
           </label>
           <input
             type="number"
+            aria-label="Gauge stitches"
             value={gaugeStitches}
             onChange={(e) => setGaugeStitches(e.target.value)}
             placeholder="e.g. 18"
@@ -97,6 +99,7 @@ export default function CastOnCalculatorTool() {
           </label>
           <input
             type="number"
+            aria-label="Gauge measurement in inches"
             value={gaugeInches}
             onChange={(e) => setGaugeInches(e.target.value)}
             placeholder="4"
@@ -112,6 +115,7 @@ export default function CastOnCalculatorTool() {
           </label>
           <input
             type="number"
+            aria-label="Stitch multiple"
             value={stitchMultiple}
             onChange={(e) => setStitchMultiple(e.target.value)}
             placeholder="e.g. 6"

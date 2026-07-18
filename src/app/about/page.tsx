@@ -61,7 +61,7 @@ const personSchema = {
 
 export default function AboutPage() {
   return (
-    <main className="max-w-3xl mx-auto px-4 py-12">
+    <div className="max-w-3xl mx-auto px-4 py-12">
       <script
         id="breadcrumb-schema"
         type="application/ld+json"
@@ -175,6 +175,6 @@ export default function AboutPage() {
           Jason Ramirez / Your Friendly Developer LLC
         </p>
       </div>
-    </main>
+    </div>
   );
 }
