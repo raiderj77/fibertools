@@ -106,7 +106,7 @@ export const tools: Tool[] = [
     slug: "blanket-calculator",
     name: "Blanket Size Calculator",
     shortName: "Blanket Calculator",
-    description: "Find the right stitch count, row count, and yarn yardage for any blanket size from baby to king.",
+    description: "Calculate blanket stitch counts and estimate yarn from a measured swatch for sizes from baby to king.",
     category: "both",
     icon: "🛏️",
     tier: 2,

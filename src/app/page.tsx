@@ -374,7 +374,7 @@ export default function HomePage() {
             Whether you are scaling a pattern to a different size, converting between US and metric needle sizes, or estimating yardage for a substitution, the underlying formulas account for stitch ratio, row gauge, and fiber-specific variables.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
-            Over 45 million Americans knit or crochet, according to the Craft Yarn Council&apos;s annual survey, generating more than $3 billion in annual craft supply sales, and accurate calculations are what separates a finished project from a frogged one.
+            Treat every calculator result as a planning aid: follow the pattern and yarn label, make a representative swatch, and verify fit or dimensions before committing the full project.
           </p>
         </div>
 

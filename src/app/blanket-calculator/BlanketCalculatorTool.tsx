@@ -31,14 +31,14 @@ const BLANKET_SIZES: BlanketSize[] = [
 ];
 
 const YARN_WEIGHTS = [
-  { key: "lace", label: "0 – Lace", ydsPerSqIn: 3.2, ydsPerGram: 6.5 },
-  { key: "fingering", label: "1 – Fingering", ydsPerSqIn: 2.5, ydsPerGram: 5.0 },
-  { key: "sport", label: "2 – Sport", ydsPerSqIn: 2.0, ydsPerGram: 4.2 },
-  { key: "dk", label: "3 – DK", ydsPerSqIn: 1.6, ydsPerGram: 3.5 },
-  { key: "worsted", label: "4 – Worsted", ydsPerSqIn: 1.3, ydsPerGram: 2.8 },
-  { key: "bulky", label: "5 – Bulky", ydsPerSqIn: 0.95, ydsPerGram: 1.8 },
-  { key: "superbulky", label: "6 – Super Bulky", ydsPerSqIn: 0.7, ydsPerGram: 1.2 },
-  { key: "jumbo", label: "7 – Jumbo", ydsPerSqIn: 0.45, ydsPerGram: 0.7 },
+  { key: "lace", label: "0 – Lace" },
+  { key: "fingering", label: "1 – Fingering" },
+  { key: "sport", label: "2 – Sport" },
+  { key: "dk", label: "3 – DK" },
+  { key: "worsted", label: "4 – Worsted" },
+  { key: "bulky", label: "5 – Bulky" },
+  { key: "superbulky", label: "6 – Super Bulky" },
+  { key: "jumbo", label: "7 – Jumbo" },
 ];
 
 function inToCm(i: number) { return +(i * 2.54).toFixed(1); }
@@ -60,6 +60,9 @@ export default function BlanketCalculatorTool() {
   const [gaugeStitches, setGaugeStitches] = useState("");
   const [gaugeRows, setGaugeRows] = useState("");
   const [gaugeOver, setGaugeOver] = useState("4");
+  const [swatchWidth, setSwatchWidth] = useState("");
+  const [swatchHeight, setSwatchHeight] = useState("");
+  const [swatchGrams, setSwatchGrams] = useState("");
 
   // Stitch multiple
   const [stitchMultiple, setStitchMultiple] = useState("");
@@ -105,21 +108,35 @@ export default function BlanketCalculatorTool() {
 
     let stitchesNeeded: number;
     let rowsNeeded: number;
-    let ydsNeeded: number;
+    let ydsNeeded: number | null = null;
+    let totalGrams: number | null = null;
 
     if (hasGauge) {
       const stPerIn = gSt / gOver;
       const rowPerIn = gRow / gOver;
       stitchesNeeded = Math.round(widthIn * stPerIn);
       rowsNeeded = Math.round(lengthIn * rowPerIn);
-      // Estimate yardage from gauge
-      const sqIn = widthIn * lengthIn;
-      const gaugeRatio = (stPerIn * rowPerIn) / (4.5 * 6);
-      ydsNeeded = sqIn * 1.3 * gaugeRatio;
     } else {
       stitchesNeeded = 0;
       rowsNeeded = 0;
-      ydsNeeded = widthIn * lengthIn * yw.ydsPerSqIn;
+    }
+
+    // Yarn use cannot be derived reliably from gauge or yarn weight alone.
+    // Scale the maker's measured swatch consumption to the finished area.
+    const swatchWInput = parseFloat(swatchWidth) || 0;
+    const swatchHInput = parseFloat(swatchHeight) || 0;
+    const swatchWIn = units === "metric" ? swatchWInput / 2.54 : swatchWInput;
+    const swatchHIn = units === "metric" ? swatchHInput / 2.54 : swatchHInput;
+    const swatchWeight = parseFloat(swatchGrams) || 0;
+    const skeinLengthInput = parseFloat(skeinYards) || 0;
+    const skeinYds = units === "metric" ? skeinLengthInput / 0.9144 : skeinLengthInput;
+    const skeinWeight = parseFloat(skeinGrams) || 0;
+    const hasSwatchUsage = swatchWIn > 0 && swatchHIn > 0 && swatchWeight > 0 && skeinYds > 0 && skeinWeight > 0;
+
+    if (hasSwatchUsage) {
+      const areaRatio = (widthIn * lengthIn) / (swatchWIn * swatchHIn);
+      totalGrams = swatchWeight * areaRatio * 1.1;
+      ydsNeeded = totalGrams * (skeinYds / skeinWeight);
     }
 
     // Stitch multiple rounding
@@ -132,13 +149,9 @@ export default function BlanketCalculatorTool() {
       if (roundedStitches <= 0) roundedStitches = mult + extra;
     }
 
-    const withBuffer = ydsNeeded * 1.1;
-    const totalGrams = withBuffer / yw.ydsPerGram;
-    const skeinYds = parseFloat(skeinYards) || 220;
-    const skeinWeight = parseFloat(skeinGrams) || 100;
-    const skeinsByLength = Math.ceil(withBuffer / skeinYds);
-    const skeinsByWeight = Math.ceil(totalGrams / skeinWeight);
-    const skeins = Math.max(skeinsByLength, skeinsByWeight);
+    const skeinsByLength = ydsNeeded === null ? 0 : Math.ceil(ydsNeeded / skeinYds);
+    const skeinsByWeight = totalGrams === null ? 0 : Math.ceil(totalGrams / skeinWeight);
+    const skeins = hasSwatchUsage ? Math.max(skeinsByLength, skeinsByWeight) : null;
 
     return {
       widthIn,
@@ -146,18 +159,20 @@ export default function BlanketCalculatorTool() {
       stitches: hasGauge ? roundedStitches : 0,
       stitchesRaw: stitchesNeeded,
       rows: rowsNeeded,
-      yards: Math.round(withBuffer),
-      meters: ydsToM(withBuffer),
-      grams: Math.round(totalGrams),
+      yards: ydsNeeded === null ? null : Math.round(ydsNeeded),
+      meters: ydsNeeded === null ? null : ydsToM(ydsNeeded),
+      grams: totalGrams === null ? null : Math.round(totalGrams),
       skeins,
       hasGauge,
+      hasSwatchUsage,
+      yarnLabel: yw.label,
       hasMultiple: mult > 0 && roundedStitches !== stitchesNeeded,
     };
-  }, [units, sizeIdx, useCustom, customW, customL, pillowTuck, overhang, gaugeStitches, gaugeRows, gaugeOver, stitchMultiple, multipleExtra, skeinYards, skeinGrams, yw]);
+  }, [units, sizeIdx, useCustom, customW, customL, pillowTuck, overhang, gaugeStitches, gaugeRows, gaugeOver, swatchWidth, swatchHeight, swatchGrams, stitchMultiple, multipleExtra, skeinYards, skeinGrams, yw.label]);
 
-  const stickySummary = result
+  const stickySummary = result?.hasSwatchUsage && result.yards !== null && result.meters !== null && result.skeins !== null
     ? `${units === "metric" ? result.meters.toLocaleString() + " m" : result.yards.toLocaleString() + " yds"} • ${result.skeins} skein${result.skeins !== 1 ? "s" : ""}`
-    : "";
+    : result ? "Add swatch usage for a yarn estimate" : "";
 
   return (
     <div className="space-y-8">
@@ -273,6 +288,29 @@ export default function BlanketCalculatorTool() {
             </div>
           </div>
 
+          <div className="p-4 bg-sage-50 dark:bg-sage-900/20 rounded-xl space-y-3">
+            <div>
+              <p className="text-sm font-medium text-bark-700 dark:text-cream-200">Swatch yarn used (for yardage)</p>
+              <p className="text-xs text-bark-500 dark:text-bark-400 mt-1">
+                Make the swatch in your actual stitch pattern, then weigh it. The calculator scales that measured use to the blanket area.
+              </p>
+            </div>
+            <div className="grid grid-cols-3 gap-3">
+              <div>
+                <label htmlFor="blanket-swatch-width" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Width ({dim})</label>
+                <input id="blanket-swatch-width" type="number" value={swatchWidth} onChange={(e) => setSwatchWidth(e.target.value)} placeholder={units === "metric" ? "10" : "4"} className="input text-sm" min="0" inputMode="decimal" />
+              </div>
+              <div>
+                <label htmlFor="blanket-swatch-height" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Height ({dim})</label>
+                <input id="blanket-swatch-height" type="number" value={swatchHeight} onChange={(e) => setSwatchHeight(e.target.value)} placeholder={units === "metric" ? "10" : "4"} className="input text-sm" min="0" inputMode="decimal" />
+              </div>
+              <div>
+                <label htmlFor="blanket-swatch-grams" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Grams used</label>
+                <input id="blanket-swatch-grams" type="number" value={swatchGrams} onChange={(e) => setSwatchGrams(e.target.value)} placeholder="e.g. 10" className="input text-sm" min="0" inputMode="decimal" />
+              </div>
+            </div>
+          </div>
+
           {/* Skein info */}
           <div className="grid grid-cols-2 gap-3">
             <div>
@@ -285,8 +323,7 @@ export default function BlanketCalculatorTool() {
             </div>
           </div>
           <p className="text-xs leading-relaxed text-bark-400 dark:text-bark-500">
-            Skeins are rounded up using both the length and weight on the yarn label, whichever
-            estimate is higher.
+            Enter both values exactly as printed on your yarn label. The result includes a 10% planning buffer and rounds skeins up.
           </p>
         </div>
 
@@ -305,6 +342,7 @@ export default function BlanketCalculatorTool() {
                     : `${Math.round(result.widthIn)} × ${Math.round(result.lengthIn)}″`}
                   {pillowTuck && " (incl. pillow tuck)"}
                 </p>
+                <p className="text-sm text-bark-500 dark:text-bark-400">Yarn weight: {result.yarnLabel}</p>
 
                 {result.hasGauge && (
                   <div className="grid grid-cols-2 gap-4">
@@ -322,7 +360,7 @@ export default function BlanketCalculatorTool() {
                   </div>
                 )}
 
-                <div className="grid grid-cols-2 gap-4">
+                {result.hasSwatchUsage && result.yards !== null && result.meters !== null && result.skeins !== null && result.grams !== null ? <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
                       {units === "metric" ? result.meters.toLocaleString() : result.yards.toLocaleString()}
@@ -333,11 +371,17 @@ export default function BlanketCalculatorTool() {
                     <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.skeins}</p>
                     <p className="text-sm text-bark-500 dark:text-bark-400">{result.skeins === 1 ? "skein" : "skeins"}</p>
                   </div>
-                </div>
+                </div> : null}
 
-                <p className="text-sm text-bark-500 dark:text-bark-400">
+                {result.grams !== null ? <p className="text-sm text-bark-500 dark:text-bark-400">
                   Total weight: ≈ {result.grams.toLocaleString()}g ({(result.grams / 1000).toFixed(1)} kg)
-                </p>
+                </p> : null}
+
+                {!result.hasSwatchUsage && (
+                  <p className="text-sm text-amber-700 dark:text-amber-300">
+                    Enter the swatch dimensions and grams used to calculate yarn and skeins. Gauge alone cannot measure yarn consumption reliably.
+                  </p>
+                )}
 
                 {!result.hasGauge && (
                   <p className="text-xs text-amber-700 dark:text-amber-300">
@@ -347,7 +391,8 @@ export default function BlanketCalculatorTool() {
 
                 <div className="flex gap-2">
                   <button type="button" onClick={() => {
-                    const text = `${useCustom ? "Custom" : BLANKET_SIZES[sizeIdx].label} blanket: ${result.hasGauge ? `${result.stitches} sts × ${result.rows} rows, ` : ""}${result.yards} yds (${result.meters} m), ${result.skeins} skeins`;
+                    const yarnText = result.hasSwatchUsage ? `${result.yards} yds (${result.meters} m), ${result.skeins} skeins` : "add swatch usage for yarn estimate";
+                    const text = `${useCustom ? "Custom" : BLANKET_SIZES[sizeIdx].label} blanket: ${result.hasGauge ? `${result.stitches} sts × ${result.rows} rows, ` : ""}${yarnText}`;
                     navigator.clipboard.writeText(text);
                   }} className="btn-secondary text-sm">📋 Copy</button>
                   <button type="button" onClick={() => window.print()} className="btn-secondary text-sm">🖨️ Print</button>

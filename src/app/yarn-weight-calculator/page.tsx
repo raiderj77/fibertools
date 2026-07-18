@@ -299,7 +299,7 @@ export default function YarnWeightCalculatorPage() {
         <p className="text-bark-600 text-[15px] leading-relaxed mb-1 p-4 bg-sage-50 dark:bg-sage-900/10 border-l-4 border-sage-400 rounded-r-lg">
           The{" "}
           <a
-            href="https://www.craftyarncouncil.com/standards/needle-hook-sizes"
+            href="https://www.craftyarncouncil.com/standards/hooks-and-needles"
             target="_blank"
             rel="noopener noreferrer"
             className="text-plum-500 hover:underline"
@@ -456,7 +456,7 @@ export default function YarnWeightCalculatorPage() {
           </li>
           <li>
             <a
-              href="https://www.craftyarncouncil.com/standards/needle-hook-sizes"
+              href="https://www.craftyarncouncil.com/standards/hooks-and-needles"
               target="_blank"
               rel="noopener noreferrer"
               className="text-plum-500 hover:underline"

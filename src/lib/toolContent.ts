@@ -254,7 +254,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     introduction: {
       title: "Why You Need a Yarn Weight Reference Chart",
       paragraphs: [
-        "A pattern calls for DK weight yarn, but the label on your skein says 8-ply, are they the same thing? According to the Craft Yarn Council, over 38 million Americans knit or crochet, yet different countries and manufacturers use different naming conventions for yarn thickness. The confusion can lead to purchasing the wrong weight entirely and producing fabric with incorrect drape and gauge.",
+        "A pattern calls for DK weight yarn, but the label on your skein says 8-ply, are they the same thing? Different countries and manufacturers use different naming conventions for yarn thickness, which can lead to purchasing the wrong weight and producing fabric with incorrect drape or gauge.",
         "Australian and British patterns use ply counts, North American patterns use category names, and European labels often list only recommended needle size in millimeters. Despite the Craft Yarn Council's standardized weight system (categories 0–7), there is still no universal international labeling standard. A comprehensive reference chart bridges these systems so you can substitute yarns confidently across international patterns.",
       ],
     },
@@ -269,8 +269,8 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     howCalculated: {
       title: "How Yarn Weight Is Determined",
       paragraphs: [
-        "The simplest hands-on method for identifying yarn weight is the wraps-per-inch test. Wrap your yarn snugly around a ruler for one inch without stretching or overlapping, then count the number of wraps. Each weight category corresponds to a specific WPI range that has been standardized through decades of textile measurement.",
-        "For example, 11 wraps per inch identifies DK weight yarn. DK typically knits at 5.5 to 6 stitches per inch on US 5 through 7 needles, or 3.75 to 4.5mm. Worsted weight shows about 9 wraps per inch, while fingering weight shows 14 or more. The WPI test works even when labels are missing or unreadable.",
+        "A practical method for estimating yarn weight is the wraps-per-inch test. Wrap yarn around a consistent tool without stretching or overlapping, then count the wraps across one inch. The Craft Yarn Council publishes overlapping WPI guideline ranges and warns that results can vary by how tightly the yarn is wrapped.",
+        "Because adjacent WPI ranges overlap, one measurement can point to more than one possible category. Use WPI as a starting point, then make a gauge swatch with the intended needles or hook and follow the pattern or yarn manufacturer's guidance.",
         "The calculator cross-references WPI ranges, standard gauge ranges, and recommended needle sizes for all eight CYC categories, giving you multiple ways to confirm your yarn weight classification before committing to a pattern or purchasing additional skeins.",
       ],
     },
@@ -363,7 +363,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       "Using row gauge instead of stitch gauge to calculate blanket width. Width is determined by the number of stitches cast on (stitch gauge × width), not by row gauge. Using row gauge here produces a completely wrong starting stitch count.",
       "Calculating yardage for a single stitch pattern when the blanket uses multiple sections or a border. A granny square blanket or sampler with different stitch patterns in different sections cannot use a single consumption rate.",
     ],
-    projectExample: "A crocheter wants a queen-size throw with 12-inch overhang on three sides. Queen mattress: 60 × 80 inches. Finished size: 84 × 100 inches. At a gauge of 4 stitches per inch and 5 rows per inch in worsted weight, the calculator returns: 336 stitches to chain, 500 rows, approximately 3,300 yards including the 10% buffer, about 15 standard 220-yard skeins.",
+    projectExample: "A crocheter plans an 84 × 100-inch blanket and makes a 4 × 4-inch swatch in the actual stitch pattern. The calculator uses the swatch's measured gram weight and the yarn label's yards per skein to scale yarn use to the finished area, then adds the displayed 10% planning buffer.",
     useCases: [
       "Planning a bed blanket that actually fits with proper drape, the calculator handles mattress dimensions, custom overhang, and stitch counts together.",
       "Estimating total yarn cost before purchasing. If you know yardage and price per skein, you can calculate budget before committing.",
@@ -389,21 +389,21 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       paragraphs: [
         "The calculation starts with mattress dimensions and adds overhang and tuck allowances. For a queen bed measuring 60 by 80 inches with 10 inches of overhang on each side, the finished blanket needs to be 80 inches wide and 90 inches long, 60 plus 10 on each side for width, 80 plus 10 for the foot.",
         "Next, multiply by your gauge to get stitch and row counts. At a gauge of 4 stitches per inch, an 80-inch width requires 320 stitches to cast on. At 5 rows per inch, 90 inches of length means 450 rows of knitting. These numbers let you verify that your pattern repeat divides evenly into the stitch count.",
-        "Finally, multiply the fabric area by your yarn weight consumption rate to estimate total yardage. An 80 by 90 inch blanket at worsted weight might need upward of 5,000 yards, translating to roughly 25 standard skeins. Knowing this upfront lets you budget and buy with confidence.",
+        "Finally, divide the finished area by the measured swatch area and multiply by the grams used in that swatch. The calculator adds a visible 10% planning buffer, then converts grams to yarn length and whole skeins using the length and weight printed on the yarn label.",
       ],
     },
     howToUse: {
       title: "How to Use the Blanket Size Calculator",
       paragraphs: [
-        "Select a standard blanket size preset, baby, throw, twin, full, queen, or king, or enter custom dimensions in inches. Next, enter your gauge: stitches per inch and rows per inch from your swatch. The calculator outputs the exact cast-on stitch count, total row count, and estimated yarn yardage for the finished blanket.",
-        "The stitch count and row count are directly derived from your entered gauge multiplied by the blanket dimensions. If your gauge is 4 stitches per inch and the blanket is 50 inches wide, the calculator returns a 200-stitch cast-on. The yarn yardage estimate uses standard consumption rates for the yarn weight you select."
+        "Select a blanket size preset or enter custom dimensions. Enter stitch and row gauge for cast-on and row counts. For yarn and skeins, enter the swatch dimensions, grams used, and the length and weight printed on the yarn label.",
+        "The stitch count and row count are derived from your gauge multiplied by the blanket dimensions. If your gauge is 4 stitches per inch and the blanket is 50 inches wide, the calculator returns a 200-stitch cast-on. Yarn use is calculated separately from your measured swatch consumption."
       ],
     },
     understandingResults: {
       title: "Understanding Your Results",
       paragraphs: [
         "The stitch and row counts are only as accurate as your gauge input. If your actual working gauge differs from what you entered, even by a quarter stitch per inch, the finished blanket dimensions will be off. For a 60-inch-wide blanket, a 0.25 st/in error produces a blanket that is 3-4 inches wider or narrower than intended. Swatch accurately.",
-        "The yarn yardage estimate includes a built-in buffer for weaving in ends and normal waste. If you are adding fringe, a border in a different stitch, or any embellishment, add that yardage separately. The estimate assumes a single consistent stitch pattern across the entire blanket."
+        "The yarn estimate includes a visible 10% planning buffer. If you are adding fringe, a border in a different stitch, seams, or embellishments, measure or budget those components separately. The estimate assumes the measured swatch represents the main blanket fabric."
       ],
     },
     proTips: {

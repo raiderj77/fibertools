@@ -55,6 +55,9 @@ test("labels the newsletter, cookie choices, and high-traffic calculator control
     "blanket-gauge-stitches",
     "blanket-gauge-rows",
     "blanket-gauge-over",
+    "blanket-swatch-width",
+    "blanket-swatch-height",
+    "blanket-swatch-grams",
     "blanket-stitch-multiple",
     "blanket-multiple-extra",
     "blanket-skein-length",
@@ -80,12 +83,15 @@ test("exposes selected choices and usable touch targets", () => {
   assert.match(globals, /w-6 h-6 rounded-full/);
 });
 
-test("makes both skein inputs affect the blanket recommendation", () => {
+test("bases blanket yarn estimates on measured swatch use and both yarn-label values", () => {
   assert.match(blanket, /parseFloat\(skeinYards\)/);
   assert.match(blanket, /parseFloat\(skeinGrams\)/);
+  assert.match(blanket, /parseFloat\(swatchGrams\)/);
+  assert.match(blanket, /finished area|widthIn \* lengthIn/);
+  assert.doesNotMatch(blanket, /ydsPerSqIn/);
   assert.match(blanket, /Math\.max\(skeinsByLength, skeinsByWeight\)/);
-  assert.match(blanket, /skeinYards, skeinGrams, yw/);
-  assert.match(blanket, /whichever\s+estimate is higher/);
+  assert.match(blanket, /skeinYards, skeinGrams/);
+  assert.match(blanket, /10% planning buffer/);
 });
 
 test("announces copy, share, success, and error feedback", () => {
