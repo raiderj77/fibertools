@@ -121,6 +121,9 @@ This margin gives you room to mount the piece in a hoop, stretch it for framing,
 
 ## Quick Reference: Finished Size by Fabric Count
 
+A 100x100-stitch design on 11-count fabric measures about 9.1 x 9.1 inches, while a 22-count comes in at around 4.5 x 4.5 inches. Use this guide as a starting point for your own patterns.
+
+
 Here is a rough guide for a 100-stitch by 100-stitch square design, so you can see the size difference at a glance.
 
 - 11-count: about 9.1 x 9.1 inches
