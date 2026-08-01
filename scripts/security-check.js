@@ -16,7 +16,7 @@ const indexNowRoute = path.join(root, "src/app/api/indexnow/route.ts");
 assert(packageJson.dependencies.next === "15.5.22", "Next.js must stay pinned to the reviewed security patch");
 assert(packageJson.dependencies.react === "19.2.7", "React must stay pinned to the reviewed security patch");
 assert(packageJson.dependencies["react-dom"] === "19.2.7", "React DOM must match React");
-assert(packageJson.engines.node === ">=18.18.0", "Node engine must satisfy Next.js 15 requirements");
+assert(packageJson.engines.node === ">=20.9.0", "Node engine must match the reviewed Next.js 15 runtime floor");
 assert(!packageJson.dependencies["next-pwa"], "The abandoned next-pwa package must not be restored");
 assert(!lockfile.includes('"node_modules/next-pwa"'), "next-pwa must not remain in the lockfile");
 assert(!lockfile.includes('"node_modules/workbox-build"'), "The vulnerable Workbox build chain must not remain");
