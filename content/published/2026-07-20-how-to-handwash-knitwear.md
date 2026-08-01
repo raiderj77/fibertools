@@ -4,7 +4,7 @@ date: "2026-07-20"
 slug: "how-to-handwash-knitwear"
 description: "Fill a basin with cool water and a wool wash. Soak your sweater for 15-20 minutes. Press out water, don't wring. Roll in a towel to squeeze out more. Lay flat t"
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # How to Handwash Knitwear

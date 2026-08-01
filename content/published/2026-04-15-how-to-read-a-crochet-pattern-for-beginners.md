@@ -4,8 +4,8 @@ date: "2026-04-15"
 slug: "how-to-read-a-crochet-pattern-for-beginners"
 description: "Starting crochet can feel hard at first. Reading a pattern may look confusing. But with patience and practice, you can learn to follow even tricky designs."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # How to Read a Crochet Pattern for Beginners

@@ -52,7 +52,7 @@ export default function StitchCounterGuidePage() {
     dateModified: "2026-04-16",
     url: "https://fibertools.app/blog/stitch-counter-guide",
     mainEntityOfPage: "https://fibertools.app/blog/stitch-counter-guide",
-    author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
+    author: { "@type": "Organization", name: "FiberTools Editorial Team", url: "https://fibertools.app/about" },
     publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     keywords:
       "how to count stitches, how to count rows in crochet, stitch counter, row counter, stitch markers",
@@ -158,7 +158,7 @@ export default function StitchCounterGuidePage() {
 
       {/* Author byline */}
       <div className="flex items-center gap-3 mb-8 text-sm text-bark-400 dark:text-bark-500">
-        <span>By <strong className="text-bark-600 dark:text-cream-400">Jason Ramirez</strong></span>
+        <span>By <strong className="text-bark-600 dark:text-cream-400">FiberTools Editorial Team</strong></span>
         <span>&middot;</span>
         <span>Built by a working maker, not a content team</span>
         <span>&middot;</span>

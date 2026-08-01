@@ -4,7 +4,7 @@ date: "2026-06-15"
 slug: "compare-yarn-weights"
 description: "Yarn weight describes how thick a strand is. Thickness controls how many stitches fit in an inch and how fast a project works up. The Craft Yarn Council..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Yarn Weight Comparison: What Every Number on the Label Actually Means

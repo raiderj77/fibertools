@@ -36,9 +36,8 @@ export default async function Page({
     datePublished: '2026-03-27',
     dateModified: '2026-04-16',
     author: {
-      '@type': 'Person',
-      name: 'Jason Ramirez',
-      jobTitle: 'Founder of FiberTools',
+      '@type': 'Organization',
+      name: 'FiberTools Editorial Team',
       url: 'https://fibertools.app/about',
     },
     publisher: {
@@ -111,7 +110,7 @@ export default async function Page({
         </h1>
         <p className="text-sm text-gray-400 mb-2">Last updated: April 16, 2026</p>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600 mb-6">
-          <span>By <strong className="text-gray-700">Jason Ramirez</strong></span>
+          <span>By <strong className="text-gray-700">FiberTools Editorial Team</strong></span>
           <span aria-hidden="true">&middot;</span>
           <span>Built by a working maker, not a content team</span>
           <span aria-hidden="true">&middot;</span>
@@ -433,7 +432,7 @@ export default async function Page({
 
         {/* ATTRIBUTION */}
         <p className="text-sm text-gray-400 mt-12 pt-6 border-t border-gray-200">
-          Reviewed and maintained by Jason Ramirez, founder.
+          Reviewed and maintained by FiberTools Editorial Team.
         </p>
 
       </article>

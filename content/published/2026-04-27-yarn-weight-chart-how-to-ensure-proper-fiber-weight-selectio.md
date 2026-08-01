@@ -4,8 +4,8 @@ date: "2026-04-27"
 slug: "yarn-weight-chart-how-to-ensure-proper-fiber-weight-selectio"
 description: "Picking the right yarn weight for your project matters more than many new makers think. It affects the size, drape, feel, and durability of your finished..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Mastering Yarn Weight Charts: Your Guide to Project Success

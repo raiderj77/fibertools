@@ -4,7 +4,7 @@ date: "2026-05-28"
 slug: "cross-stitch-size"
 description: "The short answer: Cross stitch size depends on two things working together. The first is your fabric count, which is the number of stitches per inch. The..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Cross Stitch Size: What Actually Controls How Big Your Finished Piece Will Be

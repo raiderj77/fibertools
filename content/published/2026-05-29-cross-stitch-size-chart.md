@@ -4,7 +4,7 @@ date: "2026-05-29"
 slug: "cross-stitch-size-chart"
 description: "The short answer: Finished cross stitch size depends on two numbers. The first is your fabric count, which is the number of stitches per inch. The second is..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Cross Stitch Size Chart: How Big Will Your Finished Piece Actually Be?

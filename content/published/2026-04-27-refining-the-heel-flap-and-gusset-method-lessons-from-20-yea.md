@@ -4,8 +4,8 @@ date: "2026-04-27"
 slug: "refining-the-heel-flap-and-gusset-method-lessons-from-20-yea"
 description: "Perfecting the knit sock heel flap and gusset means understanding how gauge, stitch pattern, and shaping work together. After countless swatches and frogged..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Mastering the Sock Heel: 20 Years of Perfecting the Flap and Gusset Method

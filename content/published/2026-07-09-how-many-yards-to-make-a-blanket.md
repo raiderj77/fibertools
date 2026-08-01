@@ -4,7 +4,7 @@ date: "2026-07-09"
 slug: "how-many-yards-to-make-a-blanket"
 description: "Most blankets take between 2,000 and 5,500 yards, depending on size and stitch. A baby blanket needs about 900 to 1,400 yards. A lapghan needs 1,800 to 2,800 ya"
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # How Many Yards to Make a Blanket?

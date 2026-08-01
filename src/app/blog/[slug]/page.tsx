@@ -23,7 +23,7 @@ export async function generateMetadata({
     title: post.title,
     description: post.description || undefined,
     keywords: post.keywords.length ? post.keywords : undefined,
-    authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
+    authors: [{ name: "FiberTools Editorial Team", url: "https://fibertools.app/about" }],
     robots: { index: true, follow: true, googleBot: { "max-snippet": -1 } },
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
@@ -72,9 +72,8 @@ export default async function BlogPostPage({
     mainEntityOfPage: `https://fibertools.app/blog/${post.slug}`,
     image: "https://fibertools.app/og-image.png",
     author: {
-      "@type": "Person",
-      name: "Jason Ramirez",
-      jobTitle: "Founder of FiberTools",
+      "@type": "Organization",
+      name: "FiberTools Editorial Team",
       url: "https://fibertools.app/about",
     },
     publisher: {
@@ -162,9 +161,9 @@ export default async function BlogPostPage({
           </time>
         )}
         <span aria-hidden="true">&middot;</span>
-        <Link href="/about" className="text-sage-600 dark:text-sage-400 hover:underline">Jason Ramirez</Link>
+        <Link href="/about" className="text-sage-600 dark:text-sage-400 hover:underline">FiberTools Editorial Team</Link>
         <span aria-hidden="true">&middot;</span>
-        <span>Founder of FiberTools</span>
+        <span>Maintained by FiberTools</span>
         <span aria-hidden="true">&middot;</span>
         <span>Last reviewed: April 2026</span>
         {tool && (

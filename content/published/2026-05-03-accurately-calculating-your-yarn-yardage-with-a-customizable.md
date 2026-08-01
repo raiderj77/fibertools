@@ -4,8 +4,8 @@ date: "2026-05-03"
 slug: "accurately-calculating-your-yarn-yardage-with-a-customizable"
 description: "Calculating your yarn yardage accurately is the secret to avoiding 'yarn chicken' and making smart stash decisions. It goes beyond just looking at the..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Accurately Calculating Your Yarn Yardage with a Customizable Fiber Weight Template

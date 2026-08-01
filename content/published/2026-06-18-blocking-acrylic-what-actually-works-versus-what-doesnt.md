@@ -4,7 +4,7 @@ date: "2026-06-18"
 slug: "blocking-acrylic-what-actually-works-versus-what-doesnt"
 description: "The short answer: Steam blocking and wet blocking both work on acrylic, but they do very different things. Wet blocking relaxes and evens out stitches for a..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Blocking Acrylic: What Actually Works Versus What Doesn't

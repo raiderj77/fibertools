@@ -4,7 +4,7 @@ date: "2026-07-16"
 slug: "how-many-cross-stitches-per-skein"
 description: "A skein of DMC floss (8.7 yards, 6-strand) covers about 700 to 800 full cross stitches on 14-count Aida using two strands. That number changes fast with fabric "
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # How Many Cross Stitches Per Skein?

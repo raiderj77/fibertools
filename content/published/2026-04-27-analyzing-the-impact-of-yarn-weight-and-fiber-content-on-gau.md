@@ -4,8 +4,8 @@ date: "2026-04-27"
 slug: "analyzing-the-impact-of-yarn-weight-and-fiber-content-on-gau"
 description: "Understanding how yarn weight and fiber content affect your gauge is the bedrock of successful knitting and crochet projects. Different fiber types react..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Cracking the Code: How Yarn Weight and Fiber Content Directly Influence Your Gauge

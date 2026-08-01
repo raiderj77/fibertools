@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useCallback, useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
@@ -52,6 +52,13 @@ const SHRINKAGE: Record<string, number> = {
 
 type Tab = "sett" | "warp" | "reed";
 
+function convertInput(value: string, factor: number) {
+  if (!value.trim()) return value;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return value;
+  return String(Number((parsed * factor).toFixed(2)));
+}
+
 // ── COMPONENT ─────────────────────────────────────────────────────
 
 export default function WeavingSettCalculatorTool() {
@@ -76,6 +83,16 @@ export default function WeavingSettCalculatorTool() {
   // Reed tab
   const [desiredSett, setDesiredSett] = useState("");
   const [reedDent, setReedDent] = useState("12");
+
+  const handleUnitsChange = useCallback((nextUnits: UnitSystem) => {
+    if (nextUnits === units) return;
+    const factor = nextUnits === "metric" ? 2.54 : 1 / 2.54;
+    setProjectLength((value) => convertInput(value, factor));
+    setProjectWidth((value) => convertInput(value, factor));
+    setLoomWaste((value) => convertInput(value, factor));
+    setSampling((value) => convertInput(value, factor));
+    setUnits(nextUnits);
+  }, [units]);
 
   const dim = units === "metric" ? "cm" : "in";
 
@@ -187,7 +204,7 @@ export default function WeavingSettCalculatorTool() {
 
   return (
     <div className="space-y-6">
-      <UnitToggle value={units} onChange={setUnits} />
+      <UnitToggle value={units} onChange={handleUnitsChange} />
 
       <div className="inline-flex items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1 flex-wrap">
         {([
@@ -195,7 +212,7 @@ export default function WeavingSettCalculatorTool() {
           ["warp", "📏 Warp Length"],
           ["reed", "🔧 Reed Sub"],
         ] as [Tab, string][]).map(([key, label]) => (
-          <button key={key} type="button" onClick={() => setTab(key)}
+          <button key={key} type="button" onClick={() => setTab(key)} aria-pressed={tab === key}
             className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-all ${
               tab === key ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm" : "text-bark-500 dark:text-bark-400"
             }`}>

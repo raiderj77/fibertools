@@ -4,8 +4,8 @@ date: "2026-04-27"
 slug: "understanding-the-fiber-content-and-weighted-yarn-weight-cha"
 description: "Getting a great fiber arts project comes down to understanding yarn weight and fiber content. Yarn weight is not just thickness. It affects your gauge,..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Understanding the Fiber Content and Weighted Yarn Weight Chart for Accurate Projects

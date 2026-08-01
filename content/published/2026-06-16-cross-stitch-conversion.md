@@ -4,7 +4,7 @@ date: "2026-06-16"
 slug: "cross-stitch-conversion"
 description: "Cross stitch patterns are basically pixel grids. Knit and crochet stitches are basically pixels too. You can turn almost any cross stitch chart into..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Cross Stitch Conversion: How to Turn Embroidery Patterns into Knit or Crochet

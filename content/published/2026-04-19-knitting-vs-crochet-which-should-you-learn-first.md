@@ -4,8 +4,8 @@ date: "2026-04-19"
 slug: "knitting-vs-crochet-which-should-you-learn-first"
 description: "If you are new to fiber arts, you may wonder where to start. Should you pick up knitting needles or a crochet hook? Here is some good news: both crafts are..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Knitting vs Crochet: Which Should You Learn First?

@@ -4,8 +4,8 @@ date: "2026-04-29"
 slug: "demystifying-yarn-weights-for-crochet-using-the-yarn-weight-"
 description: "Yarn weight is not just about thickness. It is a shared language for fiber artists. Understanding the Craft Yarn Council's Standard Yarn Weight System helps..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Demystifying Yarn Weights for Crochet: Using the Yarn Weight Standard in Practice

@@ -4,8 +4,8 @@ date: "2026-05-17"
 slug: "knitting-yarn-weight-chart"
 description: "Yarn weight describes how thick a strand is. It controls how many stitches fit in an inch and how fast a project works up. The Craft Yarn Council..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Knitting Yarn Weight Chart: What Every Number and Label Actually Means

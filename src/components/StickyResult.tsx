@@ -38,13 +38,12 @@ export default function StickyResult({ summary, visible, children }: StickyResul
       <div ref={resultsRef} aria-live="polite" aria-atomic="true">{children}</div>
 
       {visible && (
-        <div
+        <button
+          type="button"
           onClick={scrollToResults}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === "Enter" && scrollToResults()}
+          aria-label={`Jump to calculator results: ${summary}`}
           className={`
-            fixed bottom-0 left-0 right-0 z-50 md:hidden
+            fixed bottom-0 left-0 right-0 z-50 w-full text-left md:hidden
             transition-transform duration-300 ease-out cursor-pointer
             ${showBar ? "translate-y-0" : "translate-y-full pointer-events-none"}
           `}
@@ -66,7 +65,7 @@ export default function StickyResult({ summary, visible, children }: StickyResul
               </svg>
             </div>
           </div>
-        </div>
+        </button>
       )}
     </>
   );

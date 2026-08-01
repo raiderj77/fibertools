@@ -48,7 +48,7 @@ export default async function GuidePage({ params }: { params: Params }) {
     dateModified: "2026-04-16",
     url: `https://fibertools.app/guides/${guide.slug}`,
     mainEntityOfPage: `https://fibertools.app/guides/${guide.slug}`,
-    author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
+    author: { "@type": "Organization", name: "FiberTools Editorial Team", url: "https://fibertools.app/about" },
     publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     keywords: guide.keywords.join(", "),
   };
@@ -90,7 +90,7 @@ export default async function GuidePage({ params }: { params: Params }) {
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-8 text-sm text-bark-400 dark:text-bark-500">
         <time dateTime={guide.date}>{new Date(guide.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</time>
         <span aria-hidden="true">&middot;</span>
-        <span>By <strong className="text-bark-600 dark:text-cream-400">Jason Ramirez</strong></span>
+        <span>By <strong className="text-bark-600 dark:text-cream-400">FiberTools Editorial Team</strong></span>
         <span aria-hidden="true">&middot;</span>
         <span>Practical reference connected to a working calculator</span>
         <span aria-hidden="true">&middot;</span>

@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "stitch count calculator",
     "cast on for width",
   ],
-  authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
+  authors: [{ name: "FiberTools Editorial Team", url: "https://fibertools.app/about" }],
   openGraph: {
     title: "Cast On Calculator",
     description:

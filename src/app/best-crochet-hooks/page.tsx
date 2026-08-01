@@ -50,7 +50,7 @@ export default function BestCrochetHooksPage() {
     dateModified: "2026-04-16",
     url: "https://fibertools.app/best-crochet-hooks",
     mainEntityOfPage: "https://fibertools.app/best-crochet-hooks",
-    author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
+    author: { "@type": "Organization", name: "FiberTools Editorial Team", url: "https://fibertools.app/about" },
     publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     keywords: "best crochet hooks, ergonomic crochet hooks, crochet hooks for beginners",
   };
@@ -150,7 +150,7 @@ export default function BestCrochetHooksPage() {
       <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
         <span>Last updated: April 16, 2026</span>
         <span>&middot;</span>
-        <span>Written by Jason Ramirez, founder of FiberTools</span>
+        <span>Written by FiberTools Editorial Team</span>
       </div>
 
       <article className="prose-fiber">

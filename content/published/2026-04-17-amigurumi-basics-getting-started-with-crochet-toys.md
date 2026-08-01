@@ -4,8 +4,8 @@ date: "2026-04-17"
 slug: "amigurumi-basics-getting-started-with-crochet-toys"
 description: "Amigurumi is a style of crochet toy-making. You use colorful yarn to bring cute characters to life. If you want to learn, this beginner's guide will show..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Amigurumi Basics: Getting Started with Crochet Toys

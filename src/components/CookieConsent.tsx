@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Script from "next/script";
 import Link from "next/link";
+import { detectGPCClient } from "@/lib/gpc";
 
 type ConsentStatus = "granted" | "denied";
 
@@ -28,7 +29,7 @@ function updateGoogleConsent(analytics: ConsentStatus, ads: ConsentStatus) {
       ad_personalization: ads,
       analytics_storage: analytics,
       functionality_storage: analytics,
-      personalization_storage: analytics,
+      personalization_storage: "denied",
     });
   }
 }
@@ -42,7 +43,14 @@ function clearGoogleAnalyticsCookies() {
   }
 }
 
-function GoogleServices({ adsenseEnabled }: { adsenseEnabled: boolean }) {
+function GoogleServices({
+  adsenseEnabled,
+  adsGranted,
+}: {
+  adsenseEnabled: boolean;
+  adsGranted: boolean;
+}) {
+  const adConsent = adsGranted ? "granted" : "denied";
   return (
     <>
       <Script id="google-consent-granted" strategy="afterInteractive">
@@ -50,12 +58,12 @@ function GoogleServices({ adsenseEnabled }: { adsenseEnabled: boolean }) {
           window.dataLayer = window.dataLayer || [];
           window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
           window.gtag('consent', 'default', {
-            ad_storage: 'granted',
-            ad_user_data: 'granted',
-            ad_personalization: 'granted',
+            ad_storage: '${adConsent}',
+            ad_user_data: '${adConsent}',
+            ad_personalization: '${adConsent}',
             analytics_storage: 'granted',
             functionality_storage: 'granted',
-            personalization_storage: 'granted'
+            personalization_storage: 'denied'
           });
         `}
       </Script>
@@ -86,8 +94,33 @@ function GoogleServices({ adsenseEnabled }: { adsenseEnabled: boolean }) {
 export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: boolean }) {
   const [visible, setVisible] = useState(false);
   const [consent, setConsent] = useState<StoredConsent>("loading");
+  const [gpcActive, setGpcActive] = useState(false);
 
   useEffect(() => {
+    const hasGpcCookie = document.cookie
+      .split(";")
+      .some((cookie) => cookie.trim() === "empire_gpc=1");
+    const mustHonorGpc = detectGPCClient() || hasGpcCookie;
+    setGpcActive(mustHonorGpc);
+
+    if (mustHonorGpc) {
+      const deniedConsent: ConsentState = {
+        analytics: "denied",
+        ads: "denied",
+        timestamp: new Date().toISOString(),
+      };
+      try {
+        localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(deniedConsent));
+      } catch {
+        // The GPC signal still applies to the current page if storage is unavailable.
+      }
+      updateGoogleConsent("denied", "denied");
+      clearGoogleAnalyticsCookies();
+      setConsent(deniedConsent);
+      setVisible(false);
+      return;
+    }
+
     let stored: string | null;
     try {
       stored = localStorage.getItem(CONSENT_STORAGE_KEY);
@@ -112,7 +145,19 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
       ) {
         throw new Error("Invalid consent state");
       }
-      setConsent(parsed as ConsentState);
+      const normalizedConsent: ConsentState = {
+        analytics: parsed.analytics,
+        ads: "denied",
+        timestamp: typeof parsed.timestamp === "string"
+          ? parsed.timestamp
+          : new Date().toISOString(),
+      };
+      if (parsed.ads !== "denied") {
+        localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(normalizedConsent));
+      }
+      updateGoogleConsent(normalizedConsent.analytics, "denied");
+      if (normalizedConsent.analytics === "denied") clearGoogleAnalyticsCookies();
+      setConsent(normalizedConsent);
     } catch {
       // Corrupted data, show banner again
       localStorage.removeItem(CONSENT_STORAGE_KEY);
@@ -139,12 +184,16 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
   }
 
   function handleAccept() {
+    if (gpcActive) {
+      handleDecline();
+      return;
+    }
     const nextConsent: ConsentState = {
       analytics: "granted",
-      ads: "granted",
+      ads: "denied",
       timestamp: new Date().toISOString(),
     };
-    updateGoogleConsent("granted", "granted");
+    updateGoogleConsent("granted", "denied");
     saveConsent(nextConsent);
   }
 
@@ -162,7 +211,10 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
   return (
     <>
       {consent !== "loading" && consent?.analytics === "granted" ? (
-        <GoogleServices adsenseEnabled={adsenseEnabled && consent.ads === "granted"} />
+        <GoogleServices
+          adsenseEnabled={adsenseEnabled && consent.ads === "granted"}
+          adsGranted={consent.ads === "granted"}
+        />
       ) : null}
       {visible ? (
         <div
@@ -173,9 +225,9 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
         >
           <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <p id="cookie-consent-description" className="text-sm text-bark-700 dark:text-cream-300 flex-1">
-              With your permission, Google Analytics helps us understand which tools and product
-              recommendations are useful. Calculator inputs and email addresses are never included in
-              analytics events.{" "}
+              {gpcActive
+                ? "Global Privacy Control is enabled, so optional analytics and advertising remain off. "
+                : "With your permission, Google Analytics helps us understand which tools and product recommendations are useful. Advertising remains off. Calculator inputs and email addresses are never included in analytics events. "}
               <Link href="/cookies" className="text-sage-600 dark:text-sage-400 underline">
                 Cookie Policy
               </Link>
@@ -188,13 +240,15 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
               >
                 Continue without analytics
               </button>
-              <button
-                type="button"
-                onClick={handleAccept}
-                className="min-h-11 rounded-lg bg-sage-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-sage-700"
-              >
-                Allow analytics
-              </button>
+              {!gpcActive ? (
+                <button
+                  type="button"
+                  onClick={handleAccept}
+                  className="min-h-11 rounded-lg bg-sage-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-sage-700"
+                >
+                  Allow analytics
+                </button>
+              ) : null}
             </div>
           </div>
         </div>

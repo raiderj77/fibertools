@@ -4,7 +4,7 @@ date: "2026-06-19"
 slug: "how-to-substitute-yarn-when-the-called-for-one-is-discontinued"
 description: "When a yarn is discontinued, find a replacement by matching three things in order: fiber content, weight (yards per 100g is more reliable than the label..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # How to Substitute Yarn When the Called-For One Is Discontinued

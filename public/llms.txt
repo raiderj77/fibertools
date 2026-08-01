@@ -1,9 +1,9 @@
 # FiberTools, Free Calculators for Knitters, Crocheters & Weavers
 > https://fibertools.app
 
-FiberTools is a suite of 31 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, and cross stitch. Built by Jason Ramirez, founder, who tested every formula against real-world crafting scenarios to ensure accurate terminology, correct math, and practical usefulness.
+FiberTools is a suite of 33 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, and cross stitch. The tools reference published craft standards where applicable and are tested for accurate terminology, correct math, and practical usefulness.
 
-All processing happens client-side, no data is sent to any server. No login required. Works offline. Every tool includes educational content, expert tips, and FAQ sections.
+Core calculations happen client-side. Optional features such as newsletter signup and pattern discovery use server requests and are described in the privacy policy. No login is required. Many core tools work offline. Every tool includes educational content, expert tips, and FAQ sections.
 
 ## Tools
 
@@ -33,6 +33,8 @@ All processing happens client-side, no data is sent to any server. No login requ
 - [Raglan Calculator](https://fibertools.app/raglan-calculator): Calculate neck cast-on, stitch distribution, and increase rounds for a top-down raglan sweater.
 - [Blocking Calculator](https://fibertools.app/blocking-calculator): Get the right blocking method for your fiber type with stretch feasibility ratings and step-by-step instructions.
 - [Yarn Stash Estimator](https://fibertools.app/stash-estimator): Estimate remaining yardage in partial skeins by weight, plus a yardage reference table for unlabeled yarn.
+- [Amigurumi Pattern Checker](https://fibertools.app/amigurumi-pattern-checker): Check supported round-by-round amigurumi notation and stitch totals without uploading pattern text.
+- [Vintage Pattern Decoder](https://fibertools.app/vintage-pattern-decoder): Translate common vintage knitting and crochet abbreviations and flag ambiguous instructions for review.
 
 ### Crochet
 - [C2C Blanket Calculator](https://fibertools.app/c2c-calculator): Plan your corner-to-corner crochet blanket with block counts, diagonal rows, and yardage estimates.

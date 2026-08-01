@@ -4,7 +4,7 @@ date: "2026-06-09"
 slug: "how-much-yarn-to-make-a-blanket"
 description: "Quick answer: A typical knit or crochet throw blanket (roughly 50' x 60') takes between 1,000 and 3,000 yards of yarn. It depends on yarn weight, stitch..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # How Much Yarn Do You Need to Make a Blanket?

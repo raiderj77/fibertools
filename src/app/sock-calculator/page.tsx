@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "sock stitch count",
     "top down sock calculator",
   ],
-  authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
+  authors: [{ name: "FiberTools Editorial Team", url: "https://fibertools.app/about" }],
   openGraph: {
     title: "Heel Flap & Gusset Sock Calculator - Free Knitting Tool",
     description:

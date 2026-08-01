@@ -4,7 +4,7 @@ date: "2026-06-02"
 slug: "cross-stitch-conversion-chart"
 description: "Cross stitch conversion charts match embroidery floss colors to yarn weights. They turn fabric count numbers, like 14-count Aida, into stitch-per-inch..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Cross Stitch Conversion Chart: How to Translate Thread, Count, and Scale for Knitters and Crocheters

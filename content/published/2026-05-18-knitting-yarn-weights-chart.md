@@ -4,8 +4,8 @@ date: "2026-05-18"
 slug: "knitting-yarn-weights-chart"
 description: "Yarn weight describes how thick a strand is, which controls gauge, drape, and how fast a project works up. The Craft Yarn Council recognizes seven standard..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Knitting Yarn Weights Chart: What Every Number and Label Actually Means

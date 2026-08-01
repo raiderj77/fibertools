@@ -22,6 +22,8 @@ const needleGuide = read("src/app/needle-guide/NeedleGuideTool.tsx");
 const castOn = read("src/app/cast-on-calculator/CastOnCalculatorTool.tsx");
 const sock = read("src/app/sock-calculator/SockCalculatorTool.tsx");
 const sleeve = read("src/app/sleeve-calculator/SleeveCalculatorTool.tsx");
+const crossStitch = read("src/app/cross-stitch-calculator/CrossStitchCalculatorTool.tsx");
+const unitToggle = read("src/components/UnitToggle.tsx");
 const patternChecker = read("src/app/amigurumi-pattern-checker/page.tsx");
 const knittingNeedles = read("src/app/best-knitting-needles/page.tsx");
 
@@ -71,16 +73,46 @@ test("labels the newsletter, cookie choices, and high-traffic calculator control
   assert.match(circle, /id="circle-rounds"/);
   assert.match(shapes, /htmlFor="shape-total-rounds"/);
   assert.match(shapes, /id="shape-total-rounds"/);
+
+  for (const id of [
+    "cross-stitch-pattern-width",
+    "cross-stitch-pattern-height",
+    "cross-stitch-fabric-count",
+    "cross-stitch-thread-count",
+    "cross-stitch-strands",
+    "cross-stitch-margin",
+  ]) {
+    assert.match(crossStitch, new RegExp(`htmlFor="${id}"`));
+    assert.match(crossStitch, new RegExp(`id="${id}"`));
+  }
 });
 
 test("exposes selected choices and usable touch targets", () => {
   assert.match(blanket, /aria-pressed=\{i === sizeIdx\}/);
   assert.match(circle, /aria-pressed=\{stitchKey === st\.key\}/);
   assert.match(shapes, /aria-pressed=\{shape === s\.key\}/);
+  assert.match(yarn, /role="group" aria-label="Calculation method"/);
+  assert.match(yarn, /aria-pressed=\{mode === "quick"\}/);
+  assert.match(yarn, /aria-pressed=\{mode === "precise"\}/);
   assert.match(printShare, /min-h-11/);
   assert.match(circle, /className="h-11 w-full accent-sage-600"/);
   assert.match(shapes, /className="h-11 w-full accent-sage-600"/);
-  assert.match(globals, /w-6 h-6 rounded-full/);
+  assert.match(globals, /w-11 h-11 sm:w-6 sm:h-6 rounded-full/);
+  assert.match(unitToggle, /didInitialize\.current/);
+  assert.match(unitToggle, /aria-pressed=\{value === "imperial"\}/);
+  assert.match(unitToggle, /aria-pressed=\{value === "metric"\}/);
+});
+
+test("keeps unit changes and repaired calculator instructions internally consistent", () => {
+  assert.match(blanket, /const handleUnitsChange = useCallback/);
+  assert.match(blanket, /const gOver = units === "metric" \? gOverInput \/ 2\.54 : gOverInput/);
+  assert.match(weaving, /const handleUnitsChange = useCallback/);
+  assert.match(sock, /toePlainRounds/);
+  assert.match(sock, /toeRows/);
+  assert.match(sleeve, /right-side-row/);
+  assert.match(sleeve, /listed shaping rows/);
+  assert.match(crossStitch, /48 strand-m total/);
+  assert.match(crossStitch, /totalStrandMeters\} strand-m/);
 });
 
 test("bases blanket yarn estimates on measured swatch use and both yarn-label values", () => {

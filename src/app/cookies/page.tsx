@@ -29,7 +29,7 @@ export default function CookiePolicyPage() {
         Cookie Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: July 13, 2026
+        Last updated: July 31, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -115,11 +115,12 @@ export default function CookiePolicyPage() {
             without cookies.
           </p>
           <p>
-            <strong>Non-essential (analytics &amp; advertising):</strong> Google
-            Analytics and, if enabled after approval, AdSense cookies are non-essential.
-            We request your consent before downloading their scripts or allowing their
-            storage. You can withdraw consent at any time through the Privacy choices link
-            in the footer.
+            <strong>Non-essential analytics:</strong> Google Analytics cookies are optional.
+            The current consent control can enable analytics only; advertising storage and
+            personalization remain disabled. AdSense is not currently enabled and would require
+            a separate approved consent control before its script or cookies could be used. You
+            can withdraw analytics consent at any time through the Privacy choices link in the
+            footer.
           </p>
         </section>
 
@@ -136,8 +137,8 @@ export default function CookiePolicyPage() {
               advertising scripts
             </li>
             <li>
-              After you consent, full analytics and ad personalization cookies
-              are enabled
+              If you choose Allow analytics, analytics storage is enabled while advertising
+              storage and ad personalization remain denied
             </li>
             <li>
               If you decline, the scripts are not loaded and no Google tracking
@@ -155,7 +156,7 @@ export default function CookiePolicyPage() {
             <li>
               <strong>Privacy choices:</strong> Use the consent banner when you first
               visit, or the Privacy choices link in the footer later, to allow or
-              decline non-essential cookies
+              decline optional analytics
             </li>
             <li>
               <strong>Browser settings:</strong> Most browsers let you block or

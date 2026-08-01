@@ -4,7 +4,7 @@ date: "2026-05-31"
 slug: "how-do-i-choose-the-right-crochet-hook-size-for-my-project"
 description: "The short answer: Start with the hook size printed on your yarn label. Make a swatch and measure it against the pattern's gauge. If your stitches are too..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # How to Choose the Right Crochet Hook Size for Your Project

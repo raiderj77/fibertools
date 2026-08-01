@@ -4,8 +4,8 @@ date: "2026-04-20"
 slug: "how-to-read-yarn-labels-everything-you-need-to-know"
 description: "Learning to read yarn labels is an important part of becoming a good fiber artist. When you understand what a label tells you, you can pick the right yarn..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # How to Read Yarn Labels: Everything You Need to Know

@@ -56,9 +56,10 @@ export default function PrivacyPolicyPage() {
             What Data We Collect
           </h2>
           <p>
-            All FiberTools calculators run entirely in your browser. We do not
-            send your inputs, results, or calculations to any server. Here is
-            what we do collect:
+            Core FiberTools calculations run entirely in your browser. We do not send dimensions,
+            gauge, pasted pattern text, or calculation results to a server. If you explicitly choose
+            the optional pattern search, the selected craft, yarn weight, and project type are sent
+            through FiberTools to Ravelry. Here is what we collect:
           </p>
           <p>
             <strong>Analytics (Google Analytics 4):</strong> We use GA4 to
@@ -219,6 +220,30 @@ export default function PrivacyPolicyPage() {
               </a>
               )
             </li>
+            <li>
+              <strong>Beehiiv</strong>, optional newsletter subscription management (
+              <a
+                href="https://www.beehiiv.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sage-600 dark:text-sage-400 underline"
+              >
+                Beehiiv Privacy Policy
+              </a>
+              )
+            </li>
+            <li>
+              <strong>Ravelry</strong>, optional pattern discovery requested by the visitor (
+              <a
+                href="https://www.ravelry.com/about/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sage-600 dark:text-sage-400 underline"
+              >
+                Ravelry Privacy Policy
+              </a>
+              )
+            </li>
           </ul>
         </section>
 
@@ -347,7 +372,7 @@ export default function PrivacyPolicyPage() {
           </p>
 
           <h3>Data Retention</h3>
-          <p>Analytics data is retained for 26 months. Server logs are retained for 90 days. We do not retain tool calculation inputs beyond your browser session.</p>
+          <p>Analytics data is retained for 14 months. Server logs are retained for 90 days. We do not retain tool calculation inputs beyond your browser session.</p>
         </section>
 
         <section id="state-privacy" aria-labelledby="state-heading">

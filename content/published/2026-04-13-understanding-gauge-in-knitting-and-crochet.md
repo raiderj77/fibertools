@@ -4,8 +4,8 @@ date: "2026-04-13"
 slug: "understanding-gauge-in-knitting-and-crochet"
 description: "When you work with yarn, gauge is one of the most important things to learn. It does not matter if you are a longtime knitter or a brand new crocheter...."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Understanding Gauge in Knitting and Crochet

@@ -4,8 +4,8 @@ date: "2026-04-02"
 slug: "how-to-choose-the-right-yarn-weight-for-beginners"
 description: "Choosing the right yarn weight can feel overwhelming, especially for beginners. Don't worry. This simple guide will help you pick the right yarn weight for..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # How to Choose the Right Yarn Weight for Beginners

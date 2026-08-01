@@ -4,7 +4,7 @@ date: "2026-07-23"
 slug: "knitting-yarn-weight-chart"
 description: "A yarn weight chart lines up yarn types (lace, fingering, sport, DK, worsted, bulky) with the needle size and stitch gauge each one usually needs. Use it to che"
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Knitting Yarn Weight Chart: How to Pick the Right Yarn Every Time

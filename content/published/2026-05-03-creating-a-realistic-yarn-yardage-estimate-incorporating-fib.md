@@ -4,8 +4,8 @@ date: "2026-05-03"
 slug: "creating-a-realistic-yarn-yardage-estimate-incorporating-fib"
 description: "Running out of yarn mid-project is a nightmare. Buying too much wastes money and stash space. Getting your yardage right means understanding more than the..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Beyond the Ball Band: Realistic Yarn Yardage Estimates with Fiber Quality Metrics

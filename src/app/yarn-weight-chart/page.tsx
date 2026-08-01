@@ -51,11 +51,11 @@ export default function YarnWeightChartPage() {
       </div>
       <YarnWeightChartTool />
       <p style={{ marginTop: "1.5rem", fontSize: "0.95rem" }}>
-        Choosing a weight for your next project? See{" "}
-        <Link href="/blog/crochet-color-trends-2026">
-          Crochet Color Trends 2026
+        Choosing colors for your next project? Try the{" "}
+        <Link href="/stripe-generator">
+          Stripe Generator
         </Link>{" "}
-        for which palettes pair best with each yarn weight this season.
+        to compare and plan a reusable palette.
       </p>
     </ToolLayout>
   );

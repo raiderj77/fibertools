@@ -4,7 +4,7 @@ date: "2026-06-12"
 slug: "calculate-aida-size"
 description: "Aida size calculation comes down to two numbers: your stitch count and your fabric count. Divide the design's width in stitches by the fabric count..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # How to Calculate Aida Cloth Size for Cross Stitch Projects

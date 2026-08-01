@@ -4,8 +4,8 @@ date: "2026-05-03"
 slug: "yarn-yardage-calculator-a-customizable-approach-involving-fi"
 description: "Ever run out of yarn right before finishing a project? Or end up with a huge pile of leftover yarn you don't know what to do with? Getting your yarn amount..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Yarn Yardage Calculator: A Customizable Approach Involving Fiber, Gauge, and Project Metrics

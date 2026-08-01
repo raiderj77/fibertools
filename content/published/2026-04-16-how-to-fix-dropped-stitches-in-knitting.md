@@ -4,8 +4,8 @@ date: "2026-04-16"
 slug: "how-to-fix-dropped-stitches-in-knitting"
 description: "Dropped stitches can be frustrating. But they do not have to ruin your project. With a little patience and practice, you can fix them and keep your fabric..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # How to Fix Dropped Stitches in Knitting: A Comprehensive Guide

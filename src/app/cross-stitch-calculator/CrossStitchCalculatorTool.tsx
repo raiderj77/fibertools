@@ -1,28 +1,28 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useCallback, useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
+import {
+  calculateCrossStitchFloss,
+  effectiveFabricCount,
+} from "@/lib/calculator-math.mjs";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
 const FABRIC_COUNTS = [
-  { count: 11, name: "Aida 11", desc: "Large, beginner-friendly" },
-  { count: 14, name: "Aida 14", desc: "Most popular count" },
-  { count: 16, name: "Aida 16", desc: "Slightly finer detail" },
-  { count: 18, name: "Aida 18", desc: "Fine detail, smaller finish" },
-  { count: 22, name: "Hardanger 22", desc: "Very fine work" },
-  { count: 25, name: "Evenweave 25", desc: "Over-two = 12.5 ct effective" },
-  { count: 28, name: "Evenweave 28", desc: "Over-two = 14 ct effective" },
-  { count: 32, name: "Linen 32", desc: "Over-two = 16 ct effective" },
-  { count: 36, name: "Linen 36", desc: "Over-two = 18 ct effective" },
-  { count: 40, name: "Linen 40", desc: "Very fine, over-two = 20 ct" },
+  { count: 11, name: "Aida 11", desc: "Large, beginner-friendly", supportsOverTwo: false },
+  { count: 14, name: "Aida 14", desc: "Most popular count", supportsOverTwo: false },
+  { count: 16, name: "Aida 16", desc: "Slightly finer detail", supportsOverTwo: false },
+  { count: 18, name: "Aida 18", desc: "Fine detail, smaller finish", supportsOverTwo: false },
+  { count: 22, name: "Hardanger 22", desc: "Very fine work", supportsOverTwo: true },
+  { count: 25, name: "Evenweave 25", desc: "Over-two = 12.5 ct effective", supportsOverTwo: true },
+  { count: 28, name: "Evenweave 28", desc: "Over-two = 14 ct effective", supportsOverTwo: true },
+  { count: 32, name: "Linen 32", desc: "Over-two = 16 ct effective", supportsOverTwo: true },
+  { count: 36, name: "Linen 36", desc: "Over-two = 18 ct effective", supportsOverTwo: true },
+  { count: 40, name: "Linen 40", desc: "Very fine, over-two = 20 ct", supportsOverTwo: true },
 ];
-
-// Approximate inches of 6-strand floss per stitch (full cross)
-const INCHES_PER_STITCH = 1.1;
-const FLOSS_SKEIN_INCHES = 472; // 8 meters ≈ 472 inches per DMC skein
 
 type Tab = "size" | "thread" | "fabric";
 
@@ -45,7 +45,25 @@ export default function CrossStitchCalculatorTool() {
   // Fabric calculator
   const [marginInches, setMarginInches] = useState("3");
 
-  const effectiveCount = overTwo ? fabricCount / 2 : fabricCount;
+  const handleUnitsChange = useCallback((nextUnits: UnitSystem) => {
+    if (nextUnits === units) return;
+    setMarginInches((value) => {
+      if (!value.trim()) return value;
+      const parsed = Number(value);
+      if (!Number.isFinite(parsed)) return value;
+      const converted = nextUnits === "metric" ? parsed * 2.54 : parsed / 2.54;
+      return String(Number(converted.toFixed(2)));
+    });
+    setUnits(nextUnits);
+  }, [units]);
+
+  const selectedFabric = FABRIC_COUNTS.find((fabric) => fabric.count === fabricCount) || FABRIC_COUNTS[1];
+  const overTwoActive = overTwo && selectedFabric.supportsOverTwo;
+  const selectedEffectiveCount = effectiveFabricCount({
+    fabricCount,
+    overTwo,
+    supportsOverTwo: selectedFabric.supportsOverTwo,
+  });
   const dim = units === "metric" ? "cm" : "in";
 
   // Size results
@@ -55,7 +73,11 @@ export default function CrossStitchCalculatorTool() {
     if (w <= 0 || h <= 0) return null;
 
     const results = FABRIC_COUNTS.map((fc) => {
-      const ec = overTwo && fc.count > 20 ? fc.count / 2 : fc.count;
+      const ec = effectiveFabricCount({
+        fabricCount: fc.count,
+        overTwo,
+        supportsOverTwo: fc.supportsOverTwo,
+      });
       const widthIn = w / ec;
       const heightIn = h / ec;
       return {
@@ -77,30 +99,19 @@ export default function CrossStitchCalculatorTool() {
   const threadResult = useMemo(() => {
     const stitches = parseInt(threadStitches) || 0;
     const strands = parseInt(threadStrands) || 2;
-    if (stitches <= 0) return null;
-
-    const strandMultiplier = strands / 2; // base calc is for 2 strands
-    const totalInches = stitches * INCHES_PER_STITCH * strandMultiplier;
-    const skeins = totalInches / FLOSS_SKEIN_INCHES;
-
-    return {
-      totalInches: Math.round(totalInches),
-      totalMeters: +(totalInches * 0.0254).toFixed(1),
-      skeins: +skeins.toFixed(2),
-      skeinsRounded: Math.ceil(skeins),
-    };
+    return calculateCrossStitchFloss({ stitches, strands });
   }, [threadStitches, threadStrands]);
 
   // Fabric result
   const fabricResult = useMemo(() => {
     const w = parseInt(patternW) || 0;
     const h = parseInt(patternH) || 0;
-    const margin = parseFloat(marginInches) || 3;
-    if (w <= 0 || h <= 0) return null;
+    const margin = Number(marginInches);
+    if (w <= 0 || h <= 0 || !marginInches.trim() || !Number.isFinite(margin) || margin < 0) return null;
 
     const marginIn = units === "metric" ? margin / 2.54 : margin;
-    const designW = w / effectiveCount;
-    const designH = h / effectiveCount;
+    const designW = w / selectedEffectiveCount;
+    const designH = h / selectedEffectiveCount;
     const totalW = designW + marginIn * 2;
     const totalH = designH + marginIn * 2;
 
@@ -112,7 +123,7 @@ export default function CrossStitchCalculatorTool() {
       totalWcm: +(totalW * 2.54).toFixed(1),
       totalHcm: +(totalH * 2.54).toFixed(1),
     };
-  }, [patternW, patternH, effectiveCount, marginInches, units]);
+  }, [patternW, patternH, selectedEffectiveCount, marginInches, units]);
 
   // Sticky summary
   const stickySummary = (() => {
@@ -135,7 +146,7 @@ export default function CrossStitchCalculatorTool() {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap gap-4">
-        <UnitToggle value={units} onChange={setUnits} />
+        <UnitToggle value={units} onChange={handleUnitsChange} />
       </div>
 
       {/* Tabs */}
@@ -145,7 +156,7 @@ export default function CrossStitchCalculatorTool() {
           ["thread", "🧵 Thread Estimator"],
           ["fabric", "🪡 Fabric Amount"],
         ] as [Tab, string][]).map(([key, label]) => (
-          <button key={key} type="button" onClick={() => setTab(key)}
+          <button key={key} type="button" onClick={() => setTab(key)} aria-pressed={tab === key}
             className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-all ${
               tab === key ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm" : "text-bark-500 dark:text-bark-400"
             }`}>
@@ -159,21 +170,25 @@ export default function CrossStitchCalculatorTool() {
         <div className="space-y-4">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             <div>
-              <label className="label">Pattern width (stitches)</label>
-              <input type="number" value={patternW} onChange={(e) => setPatternW(e.target.value)}
+              <label htmlFor="cross-stitch-pattern-width" className="label">Pattern width (stitches)</label>
+              <input id="cross-stitch-pattern-width" type="number" value={patternW} onChange={(e) => setPatternW(e.target.value)}
                 placeholder="150" className="input" min="1" inputMode="numeric" />
             </div>
             <div>
-              <label className="label">Pattern height (stitches)</label>
-              <input type="number" value={patternH} onChange={(e) => setPatternH(e.target.value)}
+              <label htmlFor="cross-stitch-pattern-height" className="label">Pattern height (stitches)</label>
+              <input id="cross-stitch-pattern-height" type="number" value={patternH} onChange={(e) => setPatternH(e.target.value)}
                 placeholder="200" className="input" min="1" inputMode="numeric" />
             </div>
             <div>
-              <label className="label">
+              <label htmlFor="cross-stitch-fabric-count" className="label">
                 Fabric count
                 <Tooltip text="The number of threads per inch in your fabric. Aida 14 is the most common." />
               </label>
-              <select value={fabricCount} onChange={(e) => setFabricCount(parseInt(e.target.value))} className="select">
+              <select id="cross-stitch-fabric-count" value={fabricCount} onChange={(e) => {
+                const nextCount = parseInt(e.target.value);
+                setFabricCount(nextCount);
+                if (!FABRIC_COUNTS.find((fabric) => fabric.count === nextCount)?.supportsOverTwo) setOverTwo(false);
+              }} className="select">
                 {FABRIC_COUNTS.map((fc) => (
                   <option key={fc.count} value={fc.count}>{fc.name}</option>
                 ))}
@@ -181,9 +196,9 @@ export default function CrossStitchCalculatorTool() {
             </div>
             <div className="flex items-end pb-2">
               <label className="flex items-center gap-2 text-sm text-bark-600 dark:text-cream-300 cursor-pointer">
-                <input type="checkbox" checked={overTwo} onChange={(e) => setOverTwo(e.target.checked)} className="rounded border-bark-300" />
+                <input type="checkbox" checked={overTwoActive} disabled={!selectedFabric.supportsOverTwo} onChange={(e) => setOverTwo(e.target.checked)} className="rounded border-bark-300" />
                 Stitch over two
-                <Tooltip text="Common on evenweave and linen. Each cross stitch covers 2 threads, halving the effective count." />
+                <Tooltip text="Available for Hardanger, evenweave, and linen. Each cross stitch covers 2 threads, halving the effective count." />
               </label>
             </div>
           </div>
@@ -199,7 +214,7 @@ export default function CrossStitchCalculatorTool() {
               <div className="result-card">
                 <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
                   Finished Size on {sizeResult.primary.name}
-                  {overTwo && sizeResult.primary.count > 20 ? " (over two)" : ""}
+                  {overTwo && sizeResult.primary.supportsOverTwo ? " (over two)" : ""}
                 </h3>
                 <p className="text-3xl font-bold text-bark-800 dark:text-cream-100 mt-2">
                   {units === "metric"
@@ -252,16 +267,16 @@ export default function CrossStitchCalculatorTool() {
           </p>
           <div className="grid grid-cols-2 gap-4 max-w-md">
             <div>
-              <label className="label">
+              <label htmlFor="cross-stitch-thread-count" className="label">
                 Stitches (one color)
                 <Tooltip text="Total full cross stitches in this color. Check your pattern chart." />
               </label>
-              <input type="number" value={threadStitches} onChange={(e) => setThreadStitches(e.target.value)}
+              <input id="cross-stitch-thread-count" type="number" value={threadStitches} onChange={(e) => setThreadStitches(e.target.value)}
                 placeholder="500" className="input" min="1" inputMode="numeric" />
             </div>
             <div>
-              <label className="label">Strands used</label>
-              <select value={threadStrands} onChange={(e) => setThreadStrands(e.target.value)} className="select">
+              <label htmlFor="cross-stitch-strands" className="label">Strands used</label>
+              <select id="cross-stitch-strands" value={threadStrands} onChange={(e) => setThreadStrands(e.target.value)} className="select">
                 <option value="1">1 strand</option>
                 <option value="2">2 strands (standard)</option>
                 <option value="3">3 strands</option>
@@ -281,7 +296,7 @@ export default function CrossStitchCalculatorTool() {
                   <div>
                     <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{threadResult.skeinsRounded}</p>
                     <p className="text-sm text-bark-500 dark:text-bark-400">
-                      {threadResult.skeinsRounded === 1 ? "skein" : "skeins"} (8m / 8.7yd each)
+                      {threadResult.skeinsRounded === 1 ? "skein" : "skeins"} (8m × 6 strands; 48 strand-m total)
                     </p>
                     <p className="text-xs text-bark-400 dark:text-bark-500">
                       Exact: {threadResult.skeins} skeins
@@ -289,10 +304,10 @@ export default function CrossStitchCalculatorTool() {
                   </div>
                   <div>
                     <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
-                      {threadResult.totalMeters} m
+                      {threadResult.totalStrandMeters} strand-m
                     </p>
                     <p className="text-sm text-bark-500 dark:text-bark-400">
-                      ({threadResult.totalInches}″) total thread
+                      ({threadResult.totalStrandInches}&Prime;) across the working strands
                     </p>
                   </div>
                 </div>
@@ -306,19 +321,19 @@ export default function CrossStitchCalculatorTool() {
       )}
 
       {/* ── FABRIC TAB ─────────────────────────────────────────── */}
-      {tab === "fabric" && fabricResult && (
+      {tab === "fabric" && (
         <div className="space-y-6">
           <div className="max-w-xs">
-            <label className="label">
+            <label htmlFor="cross-stitch-margin" className="label">
               Margin on each side ({dim})
               <Tooltip text="Extra fabric around the design for framing or finishing. 3 inches (7.5 cm) is standard for framing." />
             </label>
-            <input type="number" value={marginInches} onChange={(e) => setMarginInches(e.target.value)}
+            <input id="cross-stitch-margin" type="number" value={marginInches} onChange={(e) => setMarginInches(e.target.value)}
               placeholder="3" className="input" min="0" inputMode="decimal" />
           </div>
 
           <StickyResult summary={stickySummary} visible={!!fabricResult}>
-            <div className="result-card space-y-3">
+            {fabricResult && <div className="result-card space-y-3">
               <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
                 Fabric Needed
               </h3>
@@ -340,7 +355,7 @@ export default function CrossStitchCalculatorTool() {
                   </p>
                 </div>
               </div>
-            </div>
+            </div>}
           </StickyResult>
         </div>
       )}

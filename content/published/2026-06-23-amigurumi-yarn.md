@@ -4,7 +4,7 @@ date: "2026-06-23"
 slug: "amigurumi-yarn"
 description: "The short answer: Use a smooth, tightly twisted worsted-weight yarn (around 200 yards per 100g) in a solid or semi-solid color. Cotton and acrylic both work..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Amigurumi Yarn: What Actually Works and Why

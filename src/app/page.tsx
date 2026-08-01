@@ -368,7 +368,7 @@ export default function HomePage() {
             Enter your gauge swatch measurements, yarn weight, or pattern details, the calculator applies standard fiber arts formulas to give you instant, accurate results.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
-            FiberTools calculators use CYC yarn weight standards, gauge mathematics, and pattern conversion formulas validated against industry references. Each tool processes your inputs entirely in the browser, so results are instant and your data never leaves your device.
+            FiberTools calculators use CYC yarn weight standards, gauge mathematics, and pattern conversion formulas validated against industry references. Core calculations run in the browser. Optional pattern discovery sends only the selected craft, yarn weight, and project type after you ask to search.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
             Whether you are scaling a pattern to a different size, converting between US and metric needle sizes, or estimating yardage for a substitution, the underlying formulas account for stitch ratio, row gauge, and fiber-specific variables.
@@ -470,16 +470,16 @@ export default function HomePage() {
           About FiberTools
         </h2>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
-          FiberTools is a free collection of calculators and references built by Jason Ramirez, a developer and crochet hobbyist. The tools focus on practical planning problems such as yarn quantities, gauge, size conversion, and row tracking.
+          FiberTools is a free collection of calculators and references maintained through a documented editorial and development workflow. The tools focus on practical planning problems such as yarn quantities, gauge, size conversion, and row tracking.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
-          Our tools are grounded in industry standards. Yarn weight classifications follow the Craft Yarn Council CYC system. Needle and hook sizing follows US, metric, and UK conventions. Gauge formulas are derived from standard knitting and crochet mathematics, not approximations. FiberTools was built by Jason Ramirez, who got tired of fragmented fiber arts tools and built one that does everything.
+          Our tools are grounded in industry standards. Yarn weight classifications follow the Craft Yarn Council CYC system. Needle and hook sizing follows US, metric, and UK conventions. Gauge formulas are derived from standard knitting and crochet mathematics, not unexplained guesses. FiberTools exists to replace fragmented one-off tools with one practical workspace.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
           Everything on FiberTools is free and always will be. No login. No subscription. No paywall for the next calculator tab. We believe tools that make craft more accessible should be available to everyone, whether you are a beginner knitting your first scarf or an experienced designer working on a complex colorwork sweater.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed">
-          All calculations happen in your browser. We do not store your inputs, sell your data, or require an account. Use FiberTools at the yarn shop, at a craft fair, or on the couch, it works offline once loaded.
+          Core calculations happen in your browser. We do not sell your data or require an account. Optional network features are clearly labeled before they send limited information. Use FiberTools at the yarn shop, at a craft fair, or on the couch; many core tools work offline once loaded.
         </p>
       </section>
 

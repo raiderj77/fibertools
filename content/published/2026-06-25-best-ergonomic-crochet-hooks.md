@@ -4,7 +4,7 @@ date: "2026-06-25"
 slug: "best-ergonomic-crochet-hooks"
 description: "The short answer: The best ergonomic crochet hooks for most people are the Clover Amour, Tulip Etimo, and Furls Streamline series. All three put soft,..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Best Ergonomic Crochet Hooks for 2025

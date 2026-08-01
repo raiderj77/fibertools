@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import StickyResult from "@/components/StickyResult";
+import { calculateSock } from "@/lib/calculator-math.mjs";
 
 // ── TYPES ─────────────────────────────────────────────────────────
 
@@ -20,76 +21,30 @@ export default function SockCalculatorTool() {
   const [rowGauge, setRowGauge] = useState("");
 
   // ── TOP-DOWN RESULTS ──────────────────────────────────────────────
-  const topDownResult = useMemo(() => {
-    const circ = parseFloat(footCirc) || 0;
-    const length = parseFloat(footLength) || 0;
-    const gSt = parseFloat(gaugeSts) || 0;
-    const rGauge = parseFloat(rowGauge) || 0;
-    if (circ <= 0 || length <= 0 || gSt <= 0 || rGauge <= 0) return null;
-
-    const targetCirc = circ * 0.9;
-    const stsPerInch = gSt / 4;
-    let castOn = Math.round(targetCirc * stsPerInch);
-    castOn = Math.round(castOn / 4) * 4;
-    const heelStitches = castOn / 2;
-    const heelFlapRows = heelStitches;
-    const gussetPickup = Math.floor(heelFlapRows / 2);
-    const footRows = Math.round((length - 2) * (rGauge / 4));
-
-    return {
-      castOn,
-      heelStitches,
-      heelFlapRows,
-      gussetPickup,
-      footRows,
-      targetCirc: +targetCirc.toFixed(1),
-    };
+  const sockPlan = useMemo(() => {
+    if (!footCirc || !footLength || !gaugeSts || !rowGauge) return null;
+    return calculateSock({
+      footCircumference: Number(footCirc),
+      footLength: Number(footLength),
+      gaugeStitches: Number(gaugeSts),
+      gaugeRows: Number(rowGauge),
+    });
   }, [footCirc, footLength, gaugeSts, rowGauge]);
 
   // ── TOE-UP RESULTS ────────────────────────────────────────────────
-  const toeUpResult = useMemo(() => {
-    const circ = parseFloat(footCirc) || 0;
-    const length = parseFloat(footLength) || 0;
-    const gSt = parseFloat(gaugeSts) || 0;
-    const rGauge = parseFloat(rowGauge) || 0;
-    if (circ <= 0 || length <= 0 || gSt <= 0 || rGauge <= 0) return null;
-
-    const targetCirc = circ * 0.9;
-    const stsPerInch = gSt / 4;
-    let totalSts = Math.round(targetCirc * stsPerInch);
-    totalSts = Math.round(totalSts / 4) * 4;
-
-    let toeStartPerNeedle = Math.max(8, Math.round(totalSts * 0.15));
-    toeStartPerNeedle = Math.round(toeStartPerNeedle / 2) * 2;
-
-    const toeIncreaseRounds = (totalSts - toeStartPerNeedle * 2) / 4;
-    const heelStitches = totalSts / 2;
-    const heelCenterSts = Math.round(heelStitches / 3);
-    const shortRowsEachSide = Math.floor((heelStitches - heelCenterSts) / 2);
-
-    const rowsPerInch = rGauge / 4;
-    const heelDepth = heelStitches / rowsPerInch / 2;
-    const footRows = Math.round((length - heelDepth) * rowsPerInch);
-
-    return {
-      totalSts,
-      toeStartPerNeedle,
-      toeIncreaseRounds: Math.round(toeIncreaseRounds),
-      footRows,
-      heelStitches,
-      heelCenterSts,
-      shortRowsEachSide,
-      heelDepth: +heelDepth.toFixed(1),
-      targetCirc: +targetCirc.toFixed(1),
-    };
-  }, [footCirc, footLength, gaugeSts, rowGauge]);
+  const topDownResult = sockPlan && !("error" in sockPlan)
+    ? { ...sockPlan, footRows: sockPlan.footRowsBeforeToe }
+    : sockPlan;
+  const toeUpResult = sockPlan && !("error" in sockPlan)
+    ? { ...sockPlan, footRows: sockPlan.plainRowsAfterToe }
+    : sockPlan;
 
   // ── STICKY SUMMARY ────────────────────────────────────────────────
   const stickySummary = (() => {
-    if (tab === "top-down" && topDownResult) {
+    if (tab === "top-down" && topDownResult && !("error" in topDownResult)) {
       return `Cast on ${topDownResult.castOn} sts \u2022 ${topDownResult.heelStitches} heel sts`;
     }
-    if (tab === "toe-up" && toeUpResult) {
+    if (tab === "toe-up" && toeUpResult && !("error" in toeUpResult)) {
       return `${toeUpResult.totalSts} total sts \u2022 ${toeUpResult.toeStartPerNeedle} sts/needle start`;
     }
     return "";
@@ -107,6 +62,7 @@ export default function SockCalculatorTool() {
             key={key}
             type="button"
             onClick={() => setTab(key)}
+            aria-pressed={tab === key}
             className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-150 ${
               tab === key
                 ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm"
@@ -195,8 +151,13 @@ export default function SockCalculatorTool() {
 
         {/* ─── TOP-DOWN RESULTS ─────────────────────────────────────── */}
         {tab === "top-down" && (
+          topDownResult && "error" in topDownResult ? (
+            <div role="alert" className="p-4 bg-rose-50 dark:bg-rose-900/10 border border-rose-200 dark:border-rose-800 rounded-xl text-rose-600 dark:text-rose-400 text-sm">
+              {topDownResult.error}
+            </div>
+          ) : (
           <StickyResult summary={stickySummary} visible={!!topDownResult}>
-            {topDownResult && (
+            {topDownResult && !("error" in topDownResult) && (
               <div className="result-card space-y-4">
                 <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
                   Top-Down Sock Instructions
@@ -256,7 +217,7 @@ export default function SockCalculatorTool() {
                         {topDownResult.footRows}
                       </p>
                       <p className="text-xs text-bark-400 dark:text-bark-500">
-                        rows before toe shaping
+                        foot rounds after the heel and before toe shaping
                       </p>
                     </div>
                   </div>
@@ -266,7 +227,7 @@ export default function SockCalculatorTool() {
                       Toe Shaping
                     </p>
                     <p className="text-sm text-bark-600 dark:text-cream-300">
-                      Decrease 4 stitches every other round until approximately 20&ndash;25% of stitches remain, then graft closed with Kitchener stitch.
+                      Decrease 4 stitches on {topDownResult.toeShapeRounds} shaping rounds, with {topDownResult.toePlainRounds} plain rounds between them, until {topDownResult.toeEndSts} stitches remain. Then graft closed with Kitchener stitch.
                     </p>
                   </div>
                 </div>
@@ -289,12 +250,18 @@ export default function SockCalculatorTool() {
               </div>
             )}
           </StickyResult>
+          )
         )}
 
         {/* ─── TOE-UP RESULTS ──────────────────────────────────────── */}
         {tab === "toe-up" && (
+          toeUpResult && "error" in toeUpResult ? (
+            <div role="alert" className="p-4 bg-rose-50 dark:bg-rose-900/10 border border-rose-200 dark:border-rose-800 rounded-xl text-rose-600 dark:text-rose-400 text-sm">
+              {toeUpResult.error}
+            </div>
+          ) : (
           <StickyResult summary={stickySummary} visible={!!toeUpResult}>
-            {toeUpResult && (
+            {toeUpResult && !("error" in toeUpResult) && (
               <div className="result-card space-y-4">
                 <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
                   Toe-Up Sock Instructions
@@ -336,6 +303,15 @@ export default function SockCalculatorTool() {
                   </div>
                 </div>
 
+                <div className="p-3 bg-sage-50 dark:bg-sage-900/10 border border-sage-200 dark:border-sage-800 rounded-xl">
+                  <p className="text-sm font-medium text-sage-700 dark:text-sage-300 mb-1">
+                    Toe Shaping
+                  </p>
+                  <p className="text-sm text-bark-600 dark:text-cream-300">
+                    Work {toeUpResult.toeIncreaseRounds} increase rounds, adding 4 stitches each time. Alternate each increase round with a plain round, omitting the plain round after the final increase: {toeUpResult.toePlainRounds} plain rounds and {toeUpResult.toeRows} total toe rounds.
+                  </p>
+                </div>
+
                 <div className="border-t border-cream-300 dark:border-bark-600 pt-4 space-y-3">
                   <div>
                     <p className="text-sm font-medium text-bark-700 dark:text-cream-200">
@@ -345,7 +321,7 @@ export default function SockCalculatorTool() {
                       {toeUpResult.footRows}
                     </p>
                     <p className="text-xs text-bark-400 dark:text-bark-500">
-                      rows before heel (accounts for {toeUpResult.heelDepth}&quot; heel depth)
+                      plain rows after the toe; heel starts at row {toeUpResult.heelStartTotalRows} from the toe tip
                     </p>
                   </div>
 
@@ -401,7 +377,7 @@ export default function SockCalculatorTool() {
                 <button
                   type="button"
                   onClick={() => {
-                    const text = `Toe-Up Sock: ${toeUpResult.toeStartPerNeedle} sts/needle start, ${toeUpResult.toeIncreaseRounds} inc rounds to ${toeUpResult.totalSts} sts, Foot: ${toeUpResult.footRows} rows, Heel: ${toeUpResult.heelCenterSts} center / ${toeUpResult.shortRowsEachSide} short rows each side`;
+                    const text = `Toe-Up Sock: ${toeUpResult.toeStartPerNeedle} sts/needle start, Toe: ${toeUpResult.toeIncreaseRounds} increase + ${toeUpResult.toePlainRounds} plain rounds (${toeUpResult.toeRows} total) to ${toeUpResult.totalSts} sts, Foot: ${toeUpResult.footRows} plain rounds, Heel: ${toeUpResult.heelCenterSts} center / ${toeUpResult.shortRowsEachSide} short rows each side`;
                     navigator.clipboard.writeText(text);
                   }}
                   className="btn-secondary text-sm"
@@ -412,6 +388,7 @@ export default function SockCalculatorTool() {
               </div>
             )}
           </StickyResult>
+          )
         )}
       </div>
 

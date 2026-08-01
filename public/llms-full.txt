@@ -2,13 +2,13 @@
 
 > https://fibertools.app
 
-FiberTools is a suite of 31 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, and cross stitch. Created by a fiber arts expert with 30+ years of experience. All processing happens client-side, no data is sent to any server. No login required. Works offline as a Progressive Web App. Every tool includes educational content, expert tips, and FAQ sections.
+FiberTools is a suite of 33 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, and cross stitch. The tools reference published craft standards where applicable. Core calculations happen client-side; optional newsletter and pattern-discovery features use server requests described in the privacy policy. No login is required, and many core tools work offline. Every tool includes educational content, expert tips, and FAQ sections.
 
 US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Council (CYC) standard: Lace (0), Fingering (1), Sport (2), DK (3), Worsted (4), Bulky (5), Super Bulky (6), Jumbo (7).
 
 ---
 
-## Tools, Knitting & Crochet (25 tools)
+## Tools, Knitting & Crochet (27 tools)
 
 ### Yarn Calculator
 - URL: https://fibertools.app/yarn-calculator
@@ -110,6 +110,14 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 - URL: https://fibertools.app/stash-estimator
 - Estimate remaining yardage in partial skeins by weighing them. Includes a yardage reference table for identifying unlabeled yarn by weight category.
 
+### Amigurumi Pattern Checker
+- URL: https://fibertools.app/amigurumi-pattern-checker
+- Check supported round-by-round amigurumi notation and stitch totals locally without uploading pattern text.
+
+### Vintage Pattern Decoder
+- URL: https://fibertools.app/vintage-pattern-decoder
+- Translate common vintage knitting and crochet abbreviations and flag ambiguous instructions that need manual review.
+
 ## Tools, Crochet-Specific (2 tools)
 
 ### C2C Blanket Calculator
@@ -178,15 +186,15 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 - [Beginner's Guide to Amigurumi](https://fibertools.app/guides/amigurumi-beginners-guide): Shapes, sizes, and math for crochet amigurumi including magic ring, increases, and connecting parts.
 
 ## About
-- [About FiberTools](https://fibertools.app/about): Created by a fiber arts expert with 30+ years of experience. Free calculators for knitting, crochet, weaving, spinning, and embroidery.
+- [About FiberTools](https://fibertools.app/about): Free calculators for knitting, crochet, weaving, spinning, and embroidery, maintained with documented sources and hands-on validation.
 - [Privacy Policy](https://fibertools.app/privacy): All calculations happen in-browser. No project data is collected or stored.
 - [Terms of Use](https://fibertools.app/terms): Terms governing use of FiberTools.
 - [Contact](https://fibertools.app/about#contact): hello@fibertools.app
 
 ## Key Facts
-- 31 free tools across 6 fiber arts disciplines
+- 33 free tools across 6 fiber arts disciplines
 - All calculations run client-side in the browser
-- No login, no signup, no data collection
+- No login is required; email is collected only when a visitor chooses to join the newsletter
 - Works offline as a Progressive Web App (PWA)
 - Mobile-first responsive design
 - US crochet terminology standard

@@ -4,8 +4,8 @@ date: "2026-05-22"
 slug: "yarn-weight-vs-hook-size-when-the-suggested-combo-is-wrong"
 description: "The yarn label and the pattern are suggestions, not laws. If your fabric is too stiff, go up a hook size. If it is too loose and drapey, go down. The..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Yarn Weight vs Hook Size: When the Suggested Combo Is Wrong

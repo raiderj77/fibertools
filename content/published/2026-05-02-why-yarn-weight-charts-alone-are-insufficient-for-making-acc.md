@@ -4,8 +4,8 @@ date: "2026-05-02"
 slug: "why-yarn-weight-charts-alone-are-insufficient-for-making-acc"
 description: "Yarn weight charts give you a baseline, but that is all they are. A starting point. Getting the right gauge takes more than a chart. You need to understand..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Why Yarn Weight Charts Are Only the Starting Point for Accurate Gauge

@@ -4,7 +4,7 @@ date: "2026-06-22"
 slug: "4-worsted-weight-yarn-australian-equivalent"
 description: "The short answer: In Australia, the closest match to US worsted weight yarn is 10-ply yarn. Both usually knit to around 18 to 22 stitches per 4 inches (10..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # 4 Worsted Weight Yarn Australian Equivalent

@@ -4,7 +4,7 @@ date: "2026-05-25"
 slug: "how-to-choose-knitting-needles"
 description: "Learn how to choose knitting needles by type, material, tip shape, and size. Covers circulars, DPNs, interchangeables, and what each format is actually for."
 status: draft
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Knitting Needles Explained: Type, Material, Tip, and Size

@@ -4,8 +4,8 @@ date: "2026-05-03"
 slug: "the-physics-of-yarn-yardage-why-fiber-properties-matter-in-y"
 description: "Ever wonder why two skeins labeled 'worsted weight' can feel so different? Or why you always seem to run out of yarn on that one project? It's not magic...."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # The Physics of Yarn Yardage: Why Fiber Properties Matter for Project Success

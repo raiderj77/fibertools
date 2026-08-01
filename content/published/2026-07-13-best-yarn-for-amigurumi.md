@@ -4,7 +4,7 @@ date: "2026-07-13"
 slug: "best-yarn-for-amigurumi"
 description: "For most amigurumi, worsted weight 100% cotton or cotton-acrylic blend yarn is your best choice. It holds stitch definition, hides gaps between stitches, and gi"
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Best Yarn For Amigurumi

@@ -4,8 +4,8 @@ date: "2026-04-27"
 slug: "evaluating-the-accuracy-of-traditional-heel-flap-calculators"
 description: "Many classic heel flap formulas are a good starting point, but they often fall short with today's yarns and knitting styles. They can lead to socks that are..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Re-evaluating Traditional Heel Flap Calculations for Today's Sock Knitting Projects

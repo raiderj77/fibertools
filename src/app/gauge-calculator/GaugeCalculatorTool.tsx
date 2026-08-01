@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
+import { resizePatternCount } from "@/lib/calculator-math.mjs";
 
 // ── TYPES ─────────────────────────────────────────────────────────
 
@@ -47,6 +48,27 @@ export default function GaugeCalculatorTool() {
   const dim = units === "metric" ? "cm" : "in";
   const dimPer = units === "metric" ? "10 cm" : "4 in";
 
+  const handleUnitsChange = useCallback((nextUnits: UnitSystem) => {
+    if (nextUnits === units) return;
+
+    const factor = nextUnits === "metric" ? 2.54 : 1 / 2.54;
+    const convertDimension = (value: string) => {
+      if (value.trim() === "") return value;
+      const parsed = Number(value);
+      if (!Number.isFinite(parsed)) return value;
+      return String(Math.round(parsed * factor * 100) / 100);
+    };
+
+    setSwatchWidth(convertDimension);
+    setSwatchHeight(convertDimension);
+    setOrigWidthDim(convertDimension);
+    setOrigHeightDim(convertDimension);
+    setDimGaugeOver(convertDimension);
+    setDesiredWidth(convertDimension);
+    setDesiredHeight(convertDimension);
+    setUnits(nextUnits);
+  }, [units]);
+
   // ── SWATCH RESULTS ──────────────────────────────────────────────
   const swatchResult = useMemo(() => {
     const w = parseFloat(swatchWidth) || 0;
@@ -79,11 +101,16 @@ export default function GaugeCalculatorTool() {
     const origR = parseFloat(origRows) || 0;
     if (oSt <= 0 || ySt <= 0) return null;
 
-    const stRatio = oSt / ySt;
-    const rowRatio = oRow > 0 && yRow > 0 ? oRow / yRow : 1;
-
-    const newStitches = origSt > 0 ? Math.round(origSt * stRatio) : 0;
-    const newRows = origR > 0 ? Math.round(origR * rowRatio) : 0;
+    const newStitches = resizePatternCount({
+      originalCount: origSt,
+      originalGauge: oSt,
+      actualGauge: ySt,
+    });
+    const newRows = resizePatternCount({
+      originalCount: origR,
+      originalGauge: oRow,
+      actualGauge: yRow,
+    });
 
     // Stitch multiple rounding
     const mult = parseInt(stitchMultiple) || 0;
@@ -98,8 +125,10 @@ export default function GaugeCalculatorTool() {
     // What-if dimensions
     const origW = parseFloat(origWidthDim) || 0;
     const origH = parseFloat(origHeightDim) || 0;
-    const yourWidth = origW > 0 ? +(origW * stRatio).toFixed(1) : 0;
-    const yourHeight = origH > 0 ? +(origH * rowRatio).toFixed(1) : 0;
+    const sizeStRatio = oSt / ySt;
+    const sizeRowRatio = oRow > 0 && yRow > 0 ? oRow / yRow : 1;
+    const yourWidth = origW > 0 ? +(origW * sizeStRatio).toFixed(1) : 0;
+    const yourHeight = origH > 0 ? +(origH * sizeRowRatio).toFixed(1) : 0;
     const widthDiff = origW > 0 ? +(yourWidth - origW).toFixed(1) : 0;
     const heightDiff = origH > 0 ? +(yourHeight - origH).toFixed(1) : 0;
 
@@ -107,8 +136,6 @@ export default function GaugeCalculatorTool() {
       newStitches,
       roundedStitches,
       newRows,
-      stRatio: +stRatio.toFixed(3),
-      rowRatio: +rowRatio.toFixed(3),
       yourWidth,
       yourHeight,
       widthDiff,
@@ -182,7 +209,7 @@ export default function GaugeCalculatorTool() {
     <div className="space-y-6">
       {/* Controls */}
       <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
-        <UnitToggle value={units} onChange={setUnits} />
+        <UnitToggle value={units} onChange={handleUnitsChange} />
       </div>
 
       {/* Tabs */}
@@ -196,6 +223,7 @@ export default function GaugeCalculatorTool() {
             key={key}
             type="button"
             onClick={() => setTab(key)}
+            aria-pressed={tab === key}
             className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-150 ${
               tab === key
                 ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm"
@@ -215,30 +243,30 @@ export default function GaugeCalculatorTool() {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div>
-              <label className="label">Width ({dim})</label>
+              <label htmlFor="gauge-swatch-width" className="label">Width ({dim})</label>
               <input
-                type="number" value={swatchWidth} onChange={(e) => setSwatchWidth(e.target.value)}
+                id="gauge-swatch-width" type="number" value={swatchWidth} onChange={(e) => setSwatchWidth(e.target.value)}
                 placeholder={units === "metric" ? "10" : "4"} className="input" min="0" inputMode="decimal"
               />
             </div>
             <div>
-              <label className="label">Height ({dim})</label>
+              <label htmlFor="gauge-swatch-height" className="label">Height ({dim})</label>
               <input
-                type="number" value={swatchHeight} onChange={(e) => setSwatchHeight(e.target.value)}
+                id="gauge-swatch-height" type="number" value={swatchHeight} onChange={(e) => setSwatchHeight(e.target.value)}
                 placeholder={units === "metric" ? "10" : "4"} className="input" min="0" inputMode="decimal"
               />
             </div>
             <div>
-              <label className="label">Stitches</label>
+              <label htmlFor="gauge-swatch-stitches" className="label">Stitches</label>
               <input
-                type="number" value={swatchStitches} onChange={(e) => setSwatchStitches(e.target.value)}
+                id="gauge-swatch-stitches" type="number" value={swatchStitches} onChange={(e) => setSwatchStitches(e.target.value)}
                 placeholder="18" className="input" min="0" inputMode="decimal"
               />
             </div>
             <div>
-              <label className="label">Rows</label>
+              <label htmlFor="gauge-swatch-rows" className="label">Rows</label>
               <input
-                type="number" value={swatchRows} onChange={(e) => setSwatchRows(e.target.value)}
+                id="gauge-swatch-rows" type="number" value={swatchRows} onChange={(e) => setSwatchRows(e.target.value)}
                 placeholder="24" className="input" min="0" inputMode="decimal"
               />
             </div>
@@ -306,12 +334,12 @@ export default function GaugeCalculatorTool() {
               <p className="font-medium text-bark-700 dark:text-cream-200 text-sm">Pattern Gauge (per {dimPer})</p>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="label text-xs">Stitches</label>
-                  <input type="number" value={origGaugeSt} onChange={(e) => setOrigGaugeSt(e.target.value)} placeholder="18" className="input" min="0" inputMode="decimal" />
+                  <label htmlFor="gauge-pattern-stitches" className="label text-xs">Stitches</label>
+                  <input id="gauge-pattern-stitches" type="number" value={origGaugeSt} onChange={(e) => setOrigGaugeSt(e.target.value)} placeholder="18" className="input" min="0" inputMode="decimal" />
                 </div>
                 <div>
-                  <label className="label text-xs">Rows</label>
-                  <input type="number" value={origGaugeRow} onChange={(e) => setOrigGaugeRow(e.target.value)} placeholder="24" className="input" min="0" inputMode="decimal" />
+                  <label htmlFor="gauge-pattern-rows" className="label text-xs">Rows</label>
+                  <input id="gauge-pattern-rows" type="number" value={origGaugeRow} onChange={(e) => setOrigGaugeRow(e.target.value)} placeholder="24" className="input" min="0" inputMode="decimal" />
                 </div>
               </div>
             </div>
@@ -321,12 +349,12 @@ export default function GaugeCalculatorTool() {
               <p className="font-medium text-sage-700 dark:text-sage-300 text-sm">Your Gauge (per {dimPer})</p>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="label text-xs">Stitches</label>
-                  <input type="number" value={yourGaugeSt} onChange={(e) => setYourGaugeSt(e.target.value)} placeholder="20" className="input" min="0" inputMode="decimal" />
+                  <label htmlFor="gauge-your-stitches" className="label text-xs">Stitches</label>
+                  <input id="gauge-your-stitches" type="number" value={yourGaugeSt} onChange={(e) => setYourGaugeSt(e.target.value)} placeholder="20" className="input" min="0" inputMode="decimal" />
                 </div>
                 <div>
-                  <label className="label text-xs">Rows</label>
-                  <input type="number" value={yourGaugeRow} onChange={(e) => setYourGaugeRow(e.target.value)} placeholder="26" className="input" min="0" inputMode="decimal" />
+                  <label htmlFor="gauge-your-rows" className="label text-xs">Rows</label>
+                  <input id="gauge-your-rows" type="number" value={yourGaugeRow} onChange={(e) => setYourGaugeRow(e.target.value)} placeholder="26" className="input" min="0" inputMode="decimal" />
                 </div>
               </div>
             </div>
@@ -335,29 +363,29 @@ export default function GaugeCalculatorTool() {
           {/* Pattern stitch counts */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             <div>
-              <label className="label">
+              <label htmlFor="gauge-pattern-count" className="label">
                 Pattern stitches
                 <Tooltip text="The stitch count from the original pattern you want to resize." />
               </label>
-              <input type="number" value={origStitches} onChange={(e) => setOrigStitches(e.target.value)} placeholder="120" className="input" min="0" inputMode="numeric" />
+              <input id="gauge-pattern-count" type="number" value={origStitches} onChange={(e) => setOrigStitches(e.target.value)} placeholder="120" className="input" min="0" inputMode="numeric" />
             </div>
             <div>
-              <label className="label">Pattern rows</label>
-              <input type="number" value={origRows} onChange={(e) => setOrigRows(e.target.value)} placeholder="160" className="input" min="0" inputMode="numeric" />
+              <label htmlFor="gauge-pattern-row-count" className="label">Pattern rows</label>
+              <input id="gauge-pattern-row-count" type="number" value={origRows} onChange={(e) => setOrigRows(e.target.value)} placeholder="160" className="input" min="0" inputMode="numeric" />
             </div>
             <div>
-              <label className="label">
+              <label htmlFor="gauge-resize-multiple" className="label">
                 Stitch multiple
                 <Tooltip text="If your stitch pattern repeats every X stitches (e.g., a 6-stitch cable repeat), enter X. We'll round to the nearest valid count." />
               </label>
-              <input type="number" value={stitchMultiple} onChange={(e) => setStitchMultiple(e.target.value)} placeholder="e.g. 6" className="input" min="0" inputMode="numeric" />
+              <input id="gauge-resize-multiple" type="number" value={stitchMultiple} onChange={(e) => setStitchMultiple(e.target.value)} placeholder="e.g. 6" className="input" min="0" inputMode="numeric" />
             </div>
             <div>
-              <label className="label">
+              <label htmlFor="gauge-resize-extra" className="label">
                 + extra
                 <Tooltip text="Extra stitches after the repeat (e.g., 'multiple of 6 + 1' → enter 1 here)." />
               </label>
-              <input type="number" value={multipleExtra} onChange={(e) => setMultipleExtra(e.target.value)} placeholder="e.g. 1" className="input" min="0" inputMode="numeric" />
+              <input id="gauge-resize-extra" type="number" value={multipleExtra} onChange={(e) => setMultipleExtra(e.target.value)} placeholder="e.g. 1" className="input" min="0" inputMode="numeric" />
             </div>
           </div>
 
@@ -368,8 +396,8 @@ export default function GaugeCalculatorTool() {
               <Tooltip text="Enter the pattern's finished dimensions to see how your gauge changes the size." />
             </p>
             <div className="grid grid-cols-2 gap-3 max-w-xs">
-              <input type="number" value={origWidthDim} onChange={(e) => setOrigWidthDim(e.target.value)} placeholder="Width" className="input" min="0" inputMode="decimal" />
-              <input type="number" value={origHeightDim} onChange={(e) => setOrigHeightDim(e.target.value)} placeholder="Height" className="input" min="0" inputMode="decimal" />
+              <input type="number" value={origWidthDim} onChange={(e) => setOrigWidthDim(e.target.value)} placeholder="Width" aria-label={`Original width in ${dim}`} className="input" min="0" inputMode="decimal" />
+              <input type="number" value={origHeightDim} onChange={(e) => setOrigHeightDim(e.target.value)} placeholder="Height" aria-label={`Original height in ${dim}`} className="input" min="0" inputMode="decimal" />
             </div>
           </div>
 
@@ -460,16 +488,16 @@ export default function GaugeCalculatorTool() {
                 <p className="label">Your Gauge</p>
                 <div className="grid grid-cols-3 gap-3">
                   <div>
-                    <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Stitches</label>
-                    <input type="number" value={dimGaugeSt} onChange={(e) => setDimGaugeSt(e.target.value)} placeholder="18" className="input" min="0" inputMode="decimal" />
+                    <label htmlFor="gauge-dim-stitches" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Stitches</label>
+                    <input id="gauge-dim-stitches" type="number" value={dimGaugeSt} onChange={(e) => setDimGaugeSt(e.target.value)} placeholder="18" className="input" min="0" inputMode="decimal" />
                   </div>
                   <div>
-                    <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Rows</label>
-                    <input type="number" value={dimGaugeRow} onChange={(e) => setDimGaugeRow(e.target.value)} placeholder="24" className="input" min="0" inputMode="decimal" />
+                    <label htmlFor="gauge-dim-rows" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Rows</label>
+                    <input id="gauge-dim-rows" type="number" value={dimGaugeRow} onChange={(e) => setDimGaugeRow(e.target.value)} placeholder="24" className="input" min="0" inputMode="decimal" />
                   </div>
                   <div>
-                    <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Over ({dim})</label>
-                    <input type="number" value={dimGaugeOver} onChange={(e) => setDimGaugeOver(e.target.value)} placeholder="4" className="input" min="0" inputMode="decimal" />
+                    <label htmlFor="gauge-dim-over" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Over ({dim})</label>
+                    <input id="gauge-dim-over" type="number" value={dimGaugeOver} onChange={(e) => setDimGaugeOver(e.target.value)} placeholder="4" className="input" min="0" inputMode="decimal" />
                   </div>
                 </div>
               </div>
@@ -479,12 +507,12 @@ export default function GaugeCalculatorTool() {
                 <p className="label">Desired Size ({dim})</p>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Width</label>
-                    <input type="number" value={desiredWidth} onChange={(e) => setDesiredWidth(e.target.value)} placeholder="50" className="input" min="0" inputMode="decimal" />
+                    <label htmlFor="gauge-desired-width" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Width</label>
+                    <input id="gauge-desired-width" type="number" value={desiredWidth} onChange={(e) => setDesiredWidth(e.target.value)} placeholder="50" className="input" min="0" inputMode="decimal" />
                   </div>
                   <div>
-                    <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Height</label>
-                    <input type="number" value={desiredHeight} onChange={(e) => setDesiredHeight(e.target.value)} placeholder="60" className="input" min="0" inputMode="decimal" />
+                    <label htmlFor="gauge-desired-height" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">Height</label>
+                    <input id="gauge-desired-height" type="number" value={desiredHeight} onChange={(e) => setDesiredHeight(e.target.value)} placeholder="60" className="input" min="0" inputMode="decimal" />
                   </div>
                 </div>
               </div>
@@ -492,33 +520,33 @@ export default function GaugeCalculatorTool() {
               {/* Stitch multiple */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="label">
+                  <label htmlFor="gauge-dim-multiple" className="label">
                     Stitch multiple
                     <Tooltip text="If your pattern repeats every X stitches, enter X here." />
                   </label>
-                  <input type="number" value={dimStitchMultiple} onChange={(e) => setDimStitchMultiple(e.target.value)} placeholder="e.g. 6" className="input" min="0" inputMode="numeric" />
+                  <input id="gauge-dim-multiple" type="number" value={dimStitchMultiple} onChange={(e) => setDimStitchMultiple(e.target.value)} placeholder="e.g. 6" className="input" min="0" inputMode="numeric" />
                 </div>
                 <div>
-                  <label className="label">+ extra</label>
-                  <input type="number" value={dimMultipleExtra} onChange={(e) => setDimMultipleExtra(e.target.value)} placeholder="e.g. 1" className="input" min="0" inputMode="numeric" />
+                  <label htmlFor="gauge-dim-extra" className="label">+ extra</label>
+                  <input id="gauge-dim-extra" type="number" value={dimMultipleExtra} onChange={(e) => setDimMultipleExtra(e.target.value)} placeholder="e.g. 1" className="input" min="0" inputMode="numeric" />
                 </div>
               </div>
 
               {/* Edge / chain */}
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="label">
+                  <label htmlFor="gauge-edge-stitches" className="label">
                     Edge stitches (knit)
                     <Tooltip text="Extra stitches for selvage edges. Usually 0–2. Added to cast-on count." />
                   </label>
-                  <input type="number" value={edgeStitches} onChange={(e) => setEdgeStitches(e.target.value)} placeholder="0" className="input" min="0" inputMode="numeric" />
+                  <input id="gauge-edge-stitches" type="number" value={edgeStitches} onChange={(e) => setEdgeStitches(e.target.value)} placeholder="0" className="input" min="0" inputMode="numeric" />
                 </div>
                 <div>
-                  <label className="label">
+                  <label htmlFor="gauge-turning-chains" className="label">
                     Turning chains (crochet)
                     <Tooltip text="Extra chains for turning. SC = 1, HDC = 2, DC = 3, TR = 4. Added to foundation chain." />
                   </label>
-                  <input type="number" value={turningChains} onChange={(e) => setTurningChains(e.target.value)} placeholder="0" className="input" min="0" inputMode="numeric" />
+                  <input id="gauge-turning-chains" type="number" value={turningChains} onChange={(e) => setTurningChains(e.target.value)} placeholder="0" className="input" min="0" inputMode="numeric" />
                 </div>
               </div>
             </div>

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "sleeve shaping math",
     "knitting sleeve calculator",
   ],
-  authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
+  authors: [{ name: "FiberTools Editorial Team", url: "https://fibertools.app/about" }],
   openGraph: {
     title: "Sleeve Shaping Calculator",
     description:

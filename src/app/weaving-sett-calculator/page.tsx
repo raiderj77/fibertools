@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     "warp calculator weaving", "how to calculate warp length", "rigid heddle sett guide",
     "weaving EPI calculator", "warp length calculator",
   ],
-  authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
+  authors: [{ name: "FiberTools Editorial Team", url: "https://fibertools.app/about" }],
   openGraph: {
     title: "Weaving Sett & EPI Calculator, Free",
     description:

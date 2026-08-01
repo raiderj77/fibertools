@@ -13,7 +13,7 @@ const nextConfig = read("next.config.mjs");
 const serviceWorker = read("public/sw.js");
 const indexNowRoute = path.join(root, "src/app/api/indexnow/route.ts");
 
-assert(packageJson.dependencies.next === "15.5.20", "Next.js must stay pinned to the reviewed security patch");
+assert(packageJson.dependencies.next === "15.5.22", "Next.js must stay pinned to the reviewed security patch");
 assert(packageJson.dependencies.react === "19.2.7", "React must stay pinned to the reviewed security patch");
 assert(packageJson.dependencies["react-dom"] === "19.2.7", "React DOM must match React");
 assert(packageJson.engines.node === ">=18.18.0", "Node engine must satisfy Next.js 15 requirements");

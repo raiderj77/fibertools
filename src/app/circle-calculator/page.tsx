@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "crochet circle instructions",
     "flat circle increase calculator",
   ],
-  authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
+  authors: [{ name: "FiberTools Editorial Team", url: "https://fibertools.app/about" }],
   openGraph: {
     title: "Crochet Circle Pattern Generator - Free Increase Calculator",
     description:

@@ -4,8 +4,8 @@ date: "2026-04-18"
 slug: "how-to-crochet-a-granny-square-step-by-step"
 description: "To crochet a granny square, start by making a center square with double crochet stitches. Then work outward in rounds. You will alternate between corner..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # How to Crochet a Granny Square Step by Step
