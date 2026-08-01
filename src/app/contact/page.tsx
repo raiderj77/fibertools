@@ -197,7 +197,7 @@ export default function ContactPage() {
             Who creates these tools?
           </h3>
           <p>
-            FiberTools is built and maintained by a small editorial and development team focused on replacing fragmented fiber arts tools with one reliable workspace.
+            FiberTools is built and maintained through an editorial and development workflow focused on replacing fragmented fiber arts tools with one reliable workspace.
             Every calculator is built with real-world crafting scenarios in mind,
             tested against established references, and refined based on
             community feedback.
