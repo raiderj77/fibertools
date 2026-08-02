@@ -14,6 +14,20 @@ export const metadata: Metadata = {
     "raglan increase calculator",
     "yoke calculator",
   ],
+  openGraph: {
+    title: "Raglan Sweater Calculator",
+    description:
+      "Calculate neck cast-on, stitch distribution, and increase rounds for a top-down raglan sweater construction.",
+    url: "https://fibertools.app/raglan-calculator",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Raglan Sweater Calculator" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Raglan Sweater Calculator",
+    description:
+      "Calculate neck cast-on, stitch distribution, and increase rounds for a top-down raglan sweater construction.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/raglan-calculator" },
 };
 

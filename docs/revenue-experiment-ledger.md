@@ -59,3 +59,12 @@ No outcome yet. Add the first result as a new dated entry on or before August 10
 - `pattern_check_run` was enabled as a key event for future consenting traffic. The earlier owner verification event remains excluded from the non-owner demand gate.
 - Analytics annotations now identify the July 12 affiliate experiment launch and the July 13 StitchProof demand experiment launch. This preserves the intervention dates when later results are reviewed.
 - `affiliate_click` and `stitchproof_interest_click` have not yet appeared in the recent-events list. They must not be counted or described as conversions until real consenting visitors generate them; enable each as a key event only after it appears and its payload is verified.
+
+#### August 2, 2026 — pre-decision acquisition checkpoint
+
+- Google Search Console, July 4–July 31, 2026: 349 clicks, 17,746 impressions, 2.0% CTR, and average position 14.1. Compared with the June 15–July 12 baseline, clicks, impressions, and average position improved while CTR remained 2.0%. This is observational and does not establish that the experiments or social posts caused the change.
+- Leading search landing pages in that window were `/blanket-calculator` with 82 clicks / 6,253 impressions, `/amigurumi-shapes` 74 / 647, `/yarn-calculator` 65 / 3,358, and `/circle-calculator` 50 / 637.
+- StitchProof's `/amigurumi-pattern-checker` recorded 8 search clicks from 57 impressions, 14.0% CTR, and average position 5.7. The volume is too low for a product decision, and Search Console's privacy-thresholded query table is not a complete query set.
+- Google Analytics, July 5–August 1, 2026: 115 active users, 112 new users, 164 sessions, and 1 minute 24 seconds average engagement time per active user. Leading session sources were Google organic 88, direct 18, Bing organic 15, DuckDuckGo organic 14, Yahoo organic 12, ChatGPT 4, and Ecosia 4.
+- Analytics reported $0 revenue. The visible source rows contained 21 key events, but their definitions and business qualification have not yet been verified, so they are not counted toward either experiment's success gate.
+- The August 10 decision dates and existing guardrails remain unchanged.

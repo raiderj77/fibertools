@@ -24,6 +24,20 @@ export const metadata: Metadata = {
     "gauge swatch calculator",
     "knitting math calculator",
   ],
+  openGraph: {
+    title: "Knitting Gauge Calculator, Stitches Per Inch",
+    description:
+      "Enter your swatch measurements and get stitches per inch, row gauge, and resized stitch counts instantly. Free knitting and crochet gauge tool.",
+    url: "https://fibertools.app/gauge-calculator",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Knitting Gauge Calculator, Stitches Per Inch" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Knitting Gauge Calculator, Stitches Per Inch",
+    description:
+      "Enter your swatch measurements and get stitches per inch, row gauge, and resized stitch counts instantly. Free knitting and crochet gauge tool.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/gauge-calculator" },
 };
 
