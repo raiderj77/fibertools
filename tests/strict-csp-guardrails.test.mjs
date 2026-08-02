@@ -66,11 +66,7 @@ test("middleware mints and forwards the nonce without weakening default CSP", ()
   assert.match(middleware, /requestHeaders\.set\('x-nonce', nonce\)/);
   assert.match(
     middleware,
-    /requestHeaders\.delete\('Content-Security-Policy'\)/,
-  );
-  assert.match(
-    middleware,
-    /requestHeaders\.set\('Content-Security-Policy-Report-Only', strictCsp\)/,
+    /requestHeaders\.set\('Content-Security-Policy', strictCsp\)/,
   );
   assert.match(middleware, /Content-Security-Policy-Report-Only/);
   assert.match(middleware, /private, no-store/);

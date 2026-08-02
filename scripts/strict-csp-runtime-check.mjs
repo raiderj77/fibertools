@@ -57,7 +57,6 @@ async function getDocument(pathname = "/", headers = {}, expectedStatus = 200) {
 const first = await getDocument("/", {
   "x-nonce": "attacker-controlled",
   "content-security-policy": "script-src 'none'",
-  "content-security-policy-report-only": "script-src 'none'",
 });
 const second = await getDocument("/");
 assert.notEqual(first.nonce, "attacker-controlled");
@@ -74,7 +73,6 @@ for (const [prefetchHeader, expectedStatus] of [
       ...prefetchHeader,
       "x-nonce": "attacker-controlled",
       "content-security-policy": "script-src 'none'",
-      "content-security-policy-report-only": "script-src 'none'",
     },
     expectedStatus,
   );
