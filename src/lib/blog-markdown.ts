@@ -26,6 +26,14 @@ const PUBLISHED_DIR = path.join(process.cwd(), "content", "published");
 // must be individually reviewed and explicitly approved before republishing.
 const APPROVED_BLOG_SLUGS = new Set<string>();
 
+function assertNoEmbeddedScripts(content: string, slug: string): void {
+  if (/<script\b/i.test(content)) {
+    throw new Error(
+      `Article "${slug}" contains an embedded script. Move structured data to the nonce-aware JsonLd component before approval.`,
+    );
+  }
+}
+
 function slugFromFilename(filename: string): string {
   // Strip .md, then strip leading date prefix like "2026-04-08-"
   return filename.replace(/\.md$/, "").replace(/^\d{4}-\d{2}-\d{2}-/, "");
@@ -100,6 +108,7 @@ export async function getMarkdownPost(
 
   const raw = fs.readFileSync(path.join(PUBLISHED_DIR, foundFile), "utf-8");
   const { data, content } = matter(raw);
+  assertNoEmbeddedScripts(content, slug);
 
   const processed = await remark()
     .use(remarkGfm)

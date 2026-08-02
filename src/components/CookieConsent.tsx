@@ -44,14 +44,18 @@ function clearGoogleAnalyticsCookies() {
   }
 }
 
-function GoogleAnalytics() {
+function GoogleAnalytics({ nonce }: { nonce?: string }) {
   const pathname = usePathname();
 
   if (isGooglePolicyPath(pathname)) return null;
 
   return (
     <>
-      <Script id="google-analytics-consent-granted" strategy="afterInteractive">
+      <Script
+        id="google-analytics-consent-granted"
+        nonce={nonce}
+        strategy="afterInteractive"
+      >
         {`
           window.dataLayer = window.dataLayer || [];
           window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
@@ -64,9 +68,14 @@ function GoogleAnalytics() {
       </Script>
       <Script
         src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_MEASUREMENT_ID}`}
+        nonce={nonce}
         strategy="afterInteractive"
       />
-      <Script id="google-analytics" strategy="afterInteractive">
+      <Script
+        id="google-analytics"
+        nonce={nonce}
+        strategy="afterInteractive"
+      >
         {`
           window.dataLayer = window.dataLayer || [];
           window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
@@ -80,8 +89,10 @@ function GoogleAnalytics() {
 
 export default function CookieConsent({
   googleCmpEnabled,
+  nonce,
 }: {
   googleCmpEnabled: boolean;
+  nonce?: string;
 }) {
   const [visible, setVisible] = useState(false);
   const [consent, setConsent] = useState<StoredConsent>("loading");
@@ -260,10 +271,11 @@ export default function CookieConsent({
       <GoogleCmp
         enabled={googleCmpEnabled}
         blocked={gpcActive !== false}
+        nonce={nonce}
         onApplicabilityChange={handleGdprApplicability}
       />
       {analyticsControlsAvailable && consent !== "loading" && consent?.analytics === "granted" ? (
-        <GoogleAnalytics />
+        <GoogleAnalytics nonce={nonce} />
       ) : null}
       {analyticsControlsAvailable && visible ? (
         <div

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { amazonSearchUrl } from '@/lib/affiliate';
+import { JsonLd } from '@/components/StructuredData';
 
 type Params = Promise<{ slug: string }>;
 
@@ -89,14 +90,8 @@ export default async function Page({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={faqJsonLd} />
       <article className="prose mx-auto max-w-3xl px-4 py-8">
 
         {/* FTC DISCLOSURE */}

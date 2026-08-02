@@ -34,8 +34,46 @@ jobs:
           npm run test:calculator-math
           npm run test:privacy
           npm run test:cmp
+          npm run test:strict-csp
           npm run test:security
           npm run build
+          npm run check:csp-build-mode
+
+  nonce-csp-spike:
+    name: Report-only nonce CSP build and runtime
+    runs-on: ubuntu-latest
+    env:
+      FIBERTOOLS_NONCE_CSP_MODE: report-only
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+      - name: Install, test, and build report-only mode
+        run: |
+          npm ci
+          npm run test:strict-csp
+          npm run build
+          npm run check:csp-build-mode
+      - name: Verify fresh runtime nonces and cache boundaries
+        shell: bash
+        run: |
+          node node_modules/next/dist/bin/next start -p 3415 > nonce-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for ATTEMPT in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:3415/ > /dev/null; then
+              break
+            fi
+            if [ "$ATTEMPT" -eq 30 ]; then
+              cat nonce-server.log
+              exit 1
+            fi
+            sleep 1
+          done
+          npm run check:strict-csp-runtime -- http://127.0.0.1:3415
 
   compliance:
     name: Public-file compliance

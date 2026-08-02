@@ -1,10 +1,14 @@
 /** @type {import('next').NextConfig} */
 
+import { getStrictCspMode } from './src/lib/strict-csp.mjs';
+
 const expectedAdSenseClientId = 'ca-pub-7171402107622932';
 const configuredAdSenseClientId =
   process.env.NEXT_PUBLIC_ADSENSE_ID?.trim() || expectedAdSenseClientId;
 const googleCmpEnabled = process.env.NEXT_PUBLIC_GOOGLE_CMP_ENABLED === 'true';
 const adsenseEnabled = process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true';
+// Validate the build-time mode before Next classifies any routes.
+getStrictCspMode();
 
 if (adsenseEnabled && !googleCmpEnabled) {
   throw new Error(
@@ -70,6 +74,15 @@ const nextConfig = {
       {
         source: '/(.*)',
         headers: securityHeaders,
+      },
+      {
+        source: '/sw.js',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+        ],
       },
     ];
   },

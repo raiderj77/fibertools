@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "About FiberTools, free fiber arts calculators",
@@ -60,16 +61,8 @@ const aboutSchema = {
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
-      <script
-        id="breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        id="about-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aboutSchema) }}
-      />
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={aboutSchema} />
 
       <h1 className="text-3xl font-bold text-bark-800 dark:text-cream-100 mb-2">
         About FiberTools

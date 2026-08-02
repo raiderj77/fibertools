@@ -8,7 +8,8 @@ import InstallPrompt from "@/components/InstallPrompt";
 import CookieConsent from "@/components/CookieConsent";
 import AffiliateClickTracker from "@/components/AffiliateClickTracker";
 import PolicyScriptBoundary from "@/components/PolicyScriptBoundary";
-import { OrganizationSchema } from "@/components/StructuredData";
+import { JsonLd, OrganizationSchema } from "@/components/StructuredData";
+import { getRequestNonce } from "@/lib/request-nonce";
 
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
@@ -116,23 +117,21 @@ const websiteSchema = {
   description: "Free online calculators and tools for knitting, crochet, weaving, spinning, and embroidery.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const googleCmpEnabled =
     process.env.NEXT_PUBLIC_GOOGLE_CMP_ENABLED === "true";
+  const nonce = await getRequestNonce();
 
   return (
     <html lang="en" className={`${dmSerifDisplay.variable} ${nunito.variable} ${jetbrainsMono.variable}`}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#6b8e6d" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        />
+        <JsonLd data={websiteSchema} />
         <OrganizationSchema />
       </head>
       <body className="font-sans antialiased min-h-screen flex flex-col">
@@ -144,10 +143,10 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
-        <ServiceWorkerRegistration />
+        <ServiceWorkerRegistration nonceCspEnabled={Boolean(nonce)} />
         <InstallPrompt />
         <PolicyScriptBoundary />
-        <CookieConsent googleCmpEnabled={googleCmpEnabled} />
+        <CookieConsent googleCmpEnabled={googleCmpEnabled} nonce={nonce} />
         <AffiliateClickTracker />
       </body>
     </html>

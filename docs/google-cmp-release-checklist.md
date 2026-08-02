@@ -1,7 +1,8 @@
 # FiberTools Google CMP and AdSense release checklist
 
-Status: CMP-preview code prepared; account work and a supported AdSense CSP are
-not complete; advertising remains disabled.
+Status: CMP-preview code and a default-off, report-only nonce-CSP compatibility
+spike are prepared; account approval and enforced-CSP release work are not
+complete; advertising remains disabled.
 
 This checklist is a hard release gate. Do not enable ad inventory or Auto ads
 until every required item is recorded with current evidence. The Google CMP
@@ -16,20 +17,34 @@ bootstrap and code-created ad inventory have separate build switches:
 
 ## 1. Verify the account before changing it
 
-- [ ] Confirm `fibertools.app` is in the expected AdSense publisher account and
-      record its current site status.
-- [ ] Check Policy Center and record current issues. Historical workspace
-      evidence said `Needs attention - Low value content`; treat that as stale
-      until the live account confirms it, and do not resubmit unchanged content.
-- [ ] Confirm `public/ads.txt`, the site metadata, and the AdSense account all use
-      publisher `pub-7171402107622932`.
+- [x] Confirm `fibertools.app` is in the expected AdSense publisher account and
+      record its current site status. Read-only verification on 2026-08-01 found
+      **Needs attention > Low value content**; the site detail said it was not
+      ready to show ads and showed a Jul 23, 2026 update timestamp.
+- [x] Check Policy Center and record current issues. Read-only verification on
+      2026-08-01 showed **No current issues**. This does not supersede the
+      separate site-approval rejection above, so do not resubmit unchanged
+      content.
+- [x] Confirm `public/ads.txt`, the site metadata, and the AdSense account all use
+      publisher `pub-7171402107622932`. The public file returned HTTP 200 to a
+      `Mediapartners-Google` user agent and contained the expected direct record.
+      AdSense still displayed **Not found**, so treat the account indicator as
+      lagging crawler state rather than changing a publicly accessible file.
 - [ ] Confirm Auto ads is off for FiberTools during verification.
+      On 2026-08-01 FiberTools had no row under **Ads > By site** because it was
+      not approved; no FiberTools-specific Auto ads control was available there.
 - [ ] For strict prior consent, turn off Limited ads under ad-serving controls so
       a rejection cannot use local storage for limited-ad serving.
 
 ## 2. Configure Google Privacy & messaging
 
 ### European regulations
+
+Read-only evidence on 2026-08-01 showed nine active European-regulations
+messages in the account and a FiberTools message marked **Published** (last
+modified Feb 17, 2026; English plus 31 languages). The exact first-layer
+choices, site selection, policy URL, and vendor disclosures were not verified,
+so the release items below remain open.
 
 - [ ] In AdSense, open **Privacy & messaging > European regulations**.
 - [ ] Select the exact `fibertools.app` site and set
@@ -52,6 +67,10 @@ bootstrap and code-created ad inventory have separate build switches:
 
 ### US state regulations
 
+Read-only evidence on 2026-08-01 showed **Create**, with no active FiberTools
+US-state message. The settings view listed 326 active ad partners; that inventory
+must be reviewed against the public disclosures before publication.
+
 - [ ] Create Google&apos;s **US state regulations** message for `fibertools.app` and
       verify the current state coverage instead of relying on a hard-coded list.
 - [ ] Keep Google&apos;s default **Do Not Sell or Share My Personal Information** link,
@@ -63,6 +82,45 @@ bootstrap and code-created ad inventory have separate build switches:
       and opt-out flow are reviewed.
 
 ## 3. CMP-only technical verification
+
+### Default-off nonce compatibility spike
+
+`FIBERTOOLS_NONCE_CSP_MODE=report-only` is a server-only engineering flag. It
+generates a fresh per-request nonce, forwards the nonce policy to Next.js, emits
+the same policy to browsers as `Content-Security-Policy-Report-Only`, marks page
+responses private/no-store, and prevents the service worker from caching
+rendered HTML. It does **not** enable the CMP, ads, or an enforced launch policy.
+The flag changes route rendering at build time and is bundled into the server
+output. Changing only the start-time environment has no effect; rebuild to
+change modes.
+
+The normal unset/`off` build retains the existing enforced CSP, static
+prerendering, CDN-cache behavior, and offline navigation cache. Verify both modes:
+
+```powershell
+npm run test:strict-csp
+npm run build
+npm run check:csp-build-mode
+
+$env:FIBERTOOLS_NONCE_CSP_MODE = "report-only"
+npm run build
+npm run check:csp-build-mode
+npm run start -- -p 3415
+# In another terminal:
+npm run check:strict-csp-runtime -- http://127.0.0.1:3415
+```
+
+- [ ] Record preview CSP reports and verify client navigation, analytics grant
+      and rejection, the certified message, and PDF decoding in a browser.
+- [ ] Benchmark static versus dynamic TTFB and hosting compute before accepting
+      the architecture change. The
+      [Next.js 15 CSP guide](https://nextjs.org/docs/15/app/guides/content-security-policy)
+      documents that per-request nonces require dynamic rendering and disable
+      ordinary static optimization, ISR, PPR, and CDN page caching. Google's
+      [AdSense CSP guidance](https://support.google.com/adsense/answer/16283098?hl=en)
+      documents the supported strict nonce policy used by this spike.
+- [ ] Only after those results and an owner decision, design the separately
+      reviewed enforced mode. Report-only success is not an activation gate.
 
 - [ ] Set `NEXT_PUBLIC_GOOGLE_CMP_ENABLED=true` and keep
       `NEXT_PUBLIC_ADSENSE_ENABLED=false`.

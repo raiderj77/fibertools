@@ -2,6 +2,7 @@ import Link from "next/link";
 import { tools, CATEGORY_LABELS, CATEGORY_COLORS, type Tool, getToolBySlug } from "@/lib/tools";
 import { getAllGuides } from "@/lib/guides";
 import BeehiivSignup from "@/components/BeehiivSignup";
+import { JsonLd } from "@/components/StructuredData";
 
 function ToolCard({ tool }: { tool: Tool }) {
   return (
@@ -157,24 +158,10 @@ export default function HomePage() {
   return (
     <div>
       {/* Structured Data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApplicationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(toolsCollectionSchema),
-        }}
-      />
+      <JsonLd data={webApplicationSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={faqSchema} />
+      <JsonLd data={toolsCollectionSchema} />
 
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-cream-100 via-cream-50 to-plum-50 grain-overlay">

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { JsonLd } from '@/components/StructuredData';
 
 type Params = Promise<{ slug: string }>;
 
@@ -77,14 +78,8 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={faqJsonLd} />
       <article className="prose mx-auto max-w-3xl px-4 py-8">
 
         <h1 className="text-3xl font-bold mb-2">

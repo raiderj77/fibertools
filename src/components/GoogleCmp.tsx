@@ -18,12 +18,14 @@ export type GdprApplicability =
 interface GoogleCmpProps {
   enabled: boolean;
   blocked: boolean;
+  nonce?: string;
   onApplicabilityChange: (status: GdprApplicability) => void;
 }
 
 export default function GoogleCmp({
   enabled,
   blocked,
+  nonce,
   onApplicabilityChange,
 }: GoogleCmpProps) {
   const pathname = usePathname();
@@ -86,6 +88,7 @@ export default function GoogleCmp({
       id="google-cmp-adsense-bootstrap"
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${GOOGLE_ADSENSE_CLIENT_ID}`}
       crossOrigin="anonymous"
+      nonce={nonce}
       strategy="afterInteractive"
     />
   );
