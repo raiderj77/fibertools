@@ -13,26 +13,12 @@ interface LazyAdUnitProps {
 export default function LazyAdUnit({ slot, id, format, style }: LazyAdUnitProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
-  const [hasConsent, setHasConsent] = useState(false);
+  const adsenseEnabled =
+    process.env.NODE_ENV === "production" &&
+    process.env.NEXT_PUBLIC_ADSENSE_ENABLED === "true";
 
   useEffect(() => {
-    function readConsent() {
-      try {
-        const stored = localStorage.getItem("cookie_consent");
-        const consent = stored ? (JSON.parse(stored) as { ads?: string }) : null;
-        setHasConsent(consent?.ads === "granted");
-      } catch {
-        setHasConsent(false);
-      }
-    }
-
-    readConsent();
-    window.addEventListener("fibertools:consent-changed", readConsent);
-    return () => window.removeEventListener("fibertools:consent-changed", readConsent);
-  }, []);
-
-  useEffect(() => {
-    if (!hasConsent) return;
+    if (!adsenseEnabled) return;
     const el = ref.current;
     if (!el) return;
 
@@ -48,9 +34,9 @@ export default function LazyAdUnit({ slot, id, format, style }: LazyAdUnitProps)
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [hasConsent]);
+  }, [adsenseEnabled]);
 
-  if (!hasConsent) return null;
+  if (!adsenseEnabled) return null;
 
   return (
     <div ref={ref}>

@@ -1,5 +1,32 @@
 /** @type {import('next').NextConfig} */
 
+const expectedAdSenseClientId = 'ca-pub-7171402107622932';
+const configuredAdSenseClientId =
+  process.env.NEXT_PUBLIC_ADSENSE_ID?.trim() || expectedAdSenseClientId;
+const googleCmpEnabled = process.env.NEXT_PUBLIC_GOOGLE_CMP_ENABLED === 'true';
+const adsenseEnabled = process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true';
+
+if (adsenseEnabled && !googleCmpEnabled) {
+  throw new Error(
+    'NEXT_PUBLIC_ADSENSE_ENABLED requires NEXT_PUBLIC_GOOGLE_CMP_ENABLED=true.',
+  );
+}
+
+if (
+  (googleCmpEnabled || adsenseEnabled) &&
+  configuredAdSenseClientId !== expectedAdSenseClientId
+) {
+  throw new Error(
+    'NEXT_PUBLIC_ADSENSE_ID must match the publisher authorized in public/ads.txt.',
+  );
+}
+
+if (adsenseEnabled) {
+  throw new Error(
+    'Manual AdSense activation is blocked until strict nonce CSP is implemented and verified.',
+  );
+}
+
 const securityHeaders = [
   {
     key: 'Strict-Transport-Security',

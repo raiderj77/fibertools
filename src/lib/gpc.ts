@@ -1,6 +1,6 @@
 // Global Privacy Control detection and honoring.
 // Server-side detection is used in middleware to set the empire_gpc cookie.
-// Client-side detection is used in the Cookiebot auto-decline script in layout.tsx.
+// Client-side detection prevents optional analytics and the Google CMP/ad bootstrap.
 
 export function detectGPCServer(request: Request): boolean {
   const header = request.headers.get('sec-gpc')

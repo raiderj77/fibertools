@@ -29,7 +29,7 @@ export default function CookiePolicyPage() {
         Cookie Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: July 31, 2026
+        Last updated: August 1, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -46,7 +46,7 @@ export default function CookiePolicyPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Cookies Used on FiberTools
+            Cookies and Browser Storage Used on FiberTools
           </h2>
 
           <div className="overflow-x-auto">
@@ -69,24 +69,30 @@ export default function CookiePolicyPage() {
                   <td className="py-2">2 years</td>
                 </tr>
                 <tr>
-                  <td className="py-2 pr-4">_gid</td>
-                  <td className="py-2 pr-4">Google Analytics</td>
-                  <td className="py-2 pr-4">Distinguish users</td>
-                  <td className="py-2">24 hours</td>
+                  <td className="py-2 pr-4">cookie_consent (localStorage)</td>
+                  <td className="py-2 pr-4">FiberTools</td>
+                  <td className="py-2 pr-4">Record the optional analytics choice</td>
+                  <td className="py-2">Until cleared or replaced</td>
                 </tr>
                 <tr>
-                  <td className="py-2 pr-4">_gat</td>
-                  <td className="py-2 pr-4">Google Analytics</td>
-                  <td className="py-2 pr-4">Throttle request rate</td>
-                  <td className="py-2">1 minute</td>
+                  <td className="py-2 pr-4">empire_gpc</td>
+                  <td className="py-2 pr-4">FiberTools</td>
+                  <td className="py-2 pr-4">Honor a server-observed Global Privacy Control signal</td>
+                  <td className="py-2">Up to 30 days; removed when the signal stops</td>
+                </tr>
+                <tr>
+                  <td className="py-2 pr-4">TCF consent record (future)</td>
+                  <td className="py-2 pr-4">Google Privacy &amp; messaging</td>
+                  <td className="py-2 pr-4">Record and communicate advertising choices</td>
+                  <td className="py-2">Exact storage and retention must be verified before activation</td>
                 </tr>
                 <tr>
                   <td className="py-2 pr-4">Various</td>
-                  <td className="py-2 pr-4">Google AdSense (not currently enabled)</td>
+                  <td className="py-2 pr-4">Google AdSense (currently paused)</td>
                   <td className="py-2 pr-4">
                     Serve and measure advertisements
                   </td>
-                  <td className="py-2">Not currently set</td>
+                  <td className="py-2">Not set while paused; later varies by choice and cookie</td>
                 </tr>
               </tbody>
             </table>
@@ -100,8 +106,9 @@ export default function CookiePolicyPage() {
           <p>
             In addition to cookies, FiberTools uses your browser&apos;s
             localStorage to save preferences like your preferred unit system
-            (yards vs. meters) and dark mode setting. This data never leaves
-            your device and is not shared with anyone.
+            (yards vs. meters), dark mode setting, and optional analytics
+            choice. These preferences remain on your device unless a service
+            must receive the choice to honor it.
           </p>
         </section>
 
@@ -110,39 +117,56 @@ export default function CookiePolicyPage() {
             Essential vs. Non-Essential Cookies
           </h2>
           <p>
-            <strong>Essential:</strong> FiberTools does not use any cookies that
-            are strictly necessary for the site to function. All tools work
-            without cookies.
+            <strong>Privacy-essential:</strong> The calculators work without
+            cookies. When a browser sends Global Privacy Control, FiberTools uses
+            the first-party empire_gpc cookie to preserve that opt-out before any
+            optional Google service can load. It is removed after the browser
+            stops sending the signal.
           </p>
           <p>
-            <strong>Non-essential analytics:</strong> Google Analytics cookies are optional.
-            The current consent control can enable analytics only; advertising storage and
-            personalization remain disabled. AdSense is not currently enabled and would require
-            a separate approved consent control before its script or cookies could be used. You
-            can withdraw analytics consent at any time through the Privacy choices link in the
-            footer.
+            <strong>Non-essential services:</strong> Google Analytics cookies are
+            optional and are controlled by the separate Analytics choices control.
+            AdSense is currently paused. Before advertising is activated, Google
+            Privacy &amp; messaging, a Google-certified consent management platform
+            using IAB TCF v2.3, will manage advertising choices separately. You
+            can withdraw an analytics choice at any time through the Analytics
+            choices link in the footer.
+          </p>
+          <p>
+            If ads are activated, third-party vendors including Google may use
+            cookies or similar storage to serve ads based on this visit and prior
+            visits to FiberTools or other sites. Before activation, FiberTools
+            will either disable third-party ad serving beyond Google or list and
+            link every enabled advertising vendor and network in the Privacy
+            Policy.
           </p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Google Consent Mode v2
+            Google Privacy and Consent Controls
           </h2>
           <p>
-            We use a prior-consent setup with Google Consent Mode v2, which means:
+            Our release controls separate optional analytics, the certified Google
+            privacy message, and actual ad inventory. This means:
           </p>
           <ul className="list-disc pl-6 space-y-1">
             <li>
-              Before you consent, FiberTools does not download Google Analytics or
-              advertising scripts
+              FiberTools does not download Google Analytics until you explicitly
+              allow analytics
             </li>
             <li>
-              If you choose Allow analytics, analytics storage is enabled while advertising
-              storage and ad personalization remain denied
+              Allowing analytics does not grant advertising storage or ad
+              personalization
             </li>
             <li>
-              If you decline, the scripts are not loaded and no Google tracking
-              cookies are set by FiberTools
+              When advertising is eventually enabled, Google&apos;s certified IAB
+              TCF v2.3 message will collect, record, and communicate advertising
+              choices; a legacy FiberTools analytics choice cannot activate ads
+            </li>
+            <li>
+              A Global Privacy Control signal blocks both optional analytics and
+              the Google advertising bootstrap on FiberTools
             </li>
           </ul>
         </section>
@@ -154,9 +178,14 @@ export default function CookiePolicyPage() {
           <p>You can manage cookies in several ways:</p>
           <ul className="list-disc pl-6 space-y-1">
             <li>
-              <strong>Privacy choices:</strong> Use the consent banner when you first
-              visit, or the Privacy choices link in the footer later, to allow or
+              <strong>Analytics choices:</strong> Use the analytics banner when you first
+              visit, or the Analytics choices link in the footer later, to allow or
               decline optional analytics
+            </li>
+            <li>
+              <strong>European advertising consent:</strong> After advertising is
+              activated, use Google&apos;s message or the Privacy and cookie settings
+              link shown in the footer where European regulations apply
             </li>
             <li>
               <strong>Browser settings:</strong> Most browsers let you block or

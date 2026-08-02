@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Do Not Sell My Personal Information",
   description:
-    "FiberTools does not sell your personal information. Learn about your rights under the California Consumer Privacy Act (CCPA).",
+    "FiberTools does not sell personal information for money. Learn about privacy and opt-out rights under US state laws.",
   keywords: ["do not sell", "CCPA", "privacy rights", "personal information"],
   openGraph: {
     title: "Do Not Sell My Personal Information",
     description:
-      "FiberTools does not sell your personal information. Learn about your rights under the California Consumer Privacy Act (CCPA).",
+      "FiberTools does not sell personal information for money. Learn about privacy and opt-out rights under US state laws.",
     url: "https://fibertools.app/do-not-sell",
     images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Do Not Sell My Personal Information" }],
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Do Not Sell My Personal Information",
     description:
-      "FiberTools does not sell your personal information. Learn about your rights under the California Consumer Privacy Act (CCPA).",
+      "FiberTools does not sell personal information for money. Learn about privacy and opt-out rights under US state laws.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/do-not-sell" },
@@ -29,19 +29,20 @@ export default function DoNotSellPage() {
         Do Not Sell My Personal Information
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: March 16, 2026
+        Last updated: August 1, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            We Do Not Sell Your Data
+            No Monetary Sale
           </h2>
           <p>
-            FiberTools does not sell, rent, or trade your personal information to
-            third parties for monetary or other valuable consideration. This
-            applies to all users, including California residents covered by the
-            California Consumer Privacy Act (CCPA/CPRA).
+            FiberTools does not sell personal information for money. Advertising
+            is currently paused. If advertising is activated, disclosures used
+            for cross-context behavioral advertising may be treated as sharing,
+            targeted advertising, or a sale under some US state laws, even when
+            no money changes hands. The opt-out methods below would apply.
           </p>
         </section>
 
@@ -50,23 +51,31 @@ export default function DoNotSellPage() {
             What Data We Collect
           </h2>
           <p>
-            FiberTools collects minimal data. All calculators run in your
-            browser. The only data we collect is:
+            FiberTools collects minimal data. Core calculator inputs and results
+            remain in your browser. Depending on the features you choose, data
+            handled by us or our service providers may include:
           </p>
           <ul className="list-disc pl-6 space-y-1">
             <li>
-              Anonymous analytics data via Google Analytics 4 (page views,
-              session duration, general location)
+              Optional analytics data via Google Analytics 4 after permission
+              (page views, session duration, and general location)
             </li>
             <li>
-              Advertising data via Google AdSense (if ads are enabled and you
-              have consented to cookies)
+              An email address if you voluntarily subscribe to the newsletter
+            </li>
+            <li>
+              Craft, yarn-weight, and project-type filters if you explicitly
+              request an optional Ravelry pattern search
+            </li>
+            <li>
+              IP address, page and device information, identifiers, and consent
+              choices via Google AdSense if advertising is later enabled
             </li>
           </ul>
           <p>
-            We do not collect names, email addresses, phone numbers, or any
-            other personally identifiable information through normal use of the
-            site.
+            We do not require a name, email address, or phone number to use the
+            calculators. Calculator dimensions, gauge, pasted pattern text, and
+            results are not sent to analytics or advertising providers.
           </p>
         </section>
 
@@ -77,12 +86,17 @@ export default function DoNotSellPage() {
           <p>
             Under CCPA, sharing personal information for cross-context
             behavioral advertising may be considered a &ldquo;sale.&rdquo;
-            Google AdSense may use cookies to serve personalized ads. You can opt
-            out of personalized advertising:
+            AdSense is currently paused. Before activation, FiberTools will
+            publish Google&apos;s US state regulations message and verify its current
+            state targeting and GPP opt-out signal. European TCF consent is a
+            separate process. You can opt out of personalized advertising or
+            sharing:
           </p>
           <ul className="list-disc pl-6 space-y-1">
             <li>
-              Decline cookies via the cookie consent banner on first visit
+              In a covered US state, use Google&apos;s Do Not Sell or Share My
+              Personal Information link shown on the site after the US-state
+              message is activated
             </li>
             <li>
               Visit{" "}
@@ -108,8 +122,8 @@ export default function DoNotSellPage() {
               </a>
             </li>
             <li>
-              Enable Global Privacy Control (GPC) in your browser, we honor GPC
-              as a valid opt-out request
+              Enable Global Privacy Control (GPC) in your browser; FiberTools
+              treats it as an opt-out and blocks the Google advertising bootstrap
             </li>
           </ul>
         </section>

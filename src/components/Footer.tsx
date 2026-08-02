@@ -1,5 +1,7 @@
 import Link from "next/link";
 import PrivacyChoicesButton from "./PrivacyChoicesButton";
+import GoogleAdChoicesButton from "./GoogleAdChoicesButton";
+import PolicyDocumentLink from "./PolicyDocumentLink";
 
 export default function Footer() {
   const toolLinks = [
@@ -21,10 +23,10 @@ export default function Footer() {
 
   const infoLinks = [
     { href: "/about", label: "About" },
-    { href: "/privacy", label: "Privacy Policy" },
-    { href: "/terms", label: "Terms" },
-    { href: "/cookies", label: "Cookie Policy" },
-    { href: "/do-not-sell", label: "Do Not Sell My Info" },
+    { href: "/privacy", label: "Privacy Policy", policyPage: true },
+    { href: "/terms", label: "Terms", policyPage: true },
+    { href: "/cookies", label: "Cookie Policy", policyPage: true },
+    { href: "/do-not-sell", label: "Do Not Sell My Info", policyPage: true },
     { href: "/contact", label: "Contact" },
     { href: "/accessibility", label: "Accessibility" },
     { href: "/affiliate-disclosure", label: "Affiliate Disclosure" },
@@ -113,16 +115,28 @@ export default function Footer() {
             <ul>
               {infoLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-cream-300 hover:text-amber-400 transition-colors block py-1"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.policyPage ? (
+                    <PolicyDocumentLink
+                      href={link.href}
+                      className="text-sm text-cream-300 hover:text-amber-400 transition-colors block py-1"
+                    >
+                      {link.label}
+                    </PolicyDocumentLink>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-cream-300 hover:text-amber-400 transition-colors block py-1"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
               <li>
                 <PrivacyChoicesButton />
+              </li>
+              <li>
+                <GoogleAdChoicesButton />
               </li>
             </ul>
 

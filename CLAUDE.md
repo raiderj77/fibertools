@@ -30,8 +30,8 @@
 - Ads must never exceed content volume on any page
 - Reserve explicit width/height on ad containers (prevents CLS)
 - Mobile: follow Better Ads Standard
-- Google Consent Mode v2: configure all 6 parameters (ad_storage, ad_user_data, ad_personalization, analytics_storage, functionality_storage, personalization_storage)
-- For EEA/UK visitors: Google-certified CMP with IAB TCF v2.2 required
+- Google Consent Mode v2: configure the applicable signals for Google Ads or Analytics tags. For AdSense publisher ads, the certified TCF CMP string is authoritative; custom analytics controls must not overwrite advertising signals.
+- For EEA/UK/Switzerland visitors: Google-certified CMP with IAB TCF v2.3 required
 - Amazon Associates tag `ytearnings-20` for product recommendations. Affiliate links must include `rel="nofollow sponsored"`.
 
 ## 2. SEO — Google Search Essentials
@@ -138,7 +138,7 @@ Configure in `public/robots.txt`. Allow all search-facing AI crawlers:
 ### Cookie Consent
 - EU/EEA/UK: Opt-in model (consent before tracking)
 - US: Opt-out model (honor GPC)
-- Use Google-certified CMP with IAB TCF v2.2 for EEA/UK
+- Use Google-certified CMP with IAB TCF v2.3 for EEA/UK/Switzerland
 
 ## 10. Accessibility (WCAG 2.1 AA)
 
@@ -167,10 +167,14 @@ Referrer-Policy: strict-origin-when-cross-origin
 Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()
 ```
 
-CSP (AdSense-compatible — unsafe-eval required by AdSense):
+CSP (AdSense supports strict nonce-based CSP only; domain allowlists are unsupported):
 ```
 Content-Security-Policy: object-src 'none'; script-src 'nonce-{random}' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'
 ```
+
+Google's documented policy includes `unsafe-eval`. Test in Report-Only mode
+first. Next.js per-request nonces force dynamic rendering, so record and approve
+the CDN-cache, latency, and cost impact; never remove CSP merely to launch ads.
 
 Do NOT enable strict COEP/COOP on pages with ads (breaks ad rendering).
 

@@ -21,6 +21,7 @@
     "test:ui-accessibility": "node --test tests/ui-accessibility.test.mjs",
     "test:calculator-math": "node --test tests/calculator-math.test.mjs tests/skein-purchase.test.mjs",
     "test:privacy": "node --test tests/privacy-guardrails.test.mjs tests/newsletter-guardrails.test.mjs",
+    "test:cmp": "node --test tests/google-cmp-guardrails.test.mjs",
     "check:revenue-path": "node scripts/revenue-path-check.js",
     "test:security": "node scripts/security-check.js && node --check public/sw.js",
     "test:quality": "node scripts/quality-gate.js",

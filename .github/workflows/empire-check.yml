@@ -33,6 +33,7 @@ jobs:
           npm run test:ui-accessibility
           npm run test:calculator-math
           npm run test:privacy
+          npm run test:cmp
           npm run test:security
           npm run build
 

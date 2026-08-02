@@ -9,18 +9,28 @@ test("GPC overrides a previously stored analytics grant", () => {
   assert.match(consent, /detectGPCClient\(\)/);
   assert.match(consent, /empire_gpc=1/);
   assert.match(consent, /localStorage\.setItem\(CONSENT_STORAGE_KEY, JSON\.stringify\(deniedConsent\)\)/);
-  assert.match(consent, /updateGoogleConsent\("denied", "denied"\)/);
+  assert.match(consent, /updateGoogleAnalyticsConsent\("denied"\)/);
   assert.match(consent, /clearGoogleAnalyticsCookies\(\)/);
+  assert.match(consent, /blocked=\{gpcActive !== false\}/);
 });
 
 test("analytics permission does not silently grant advertising permission", () => {
   const consent = read("src/components/CookieConsent.tsx");
-  assert.match(consent, /analytics: "granted",\s+ads: "denied"/);
-  assert.match(consent, /const normalizedConsent:[\s\S]*ads: "denied"/);
-  assert.doesNotMatch(consent, /setConsent\(parsed as ConsentState\)/);
+  assert.match(consent, /analytics: "granted",\s+timestamp:/);
+  assert.doesNotMatch(consent, /parsed\.ads|consent\.ads|ads: "granted"/);
+  assert.doesNotMatch(consent, /ad_storage:|ad_user_data:|ad_personalization:/);
+  assert.doesNotMatch(consent, /googlesyndication\.com/);
   assert.match(consent, /personalization_storage: "denied"/);
-  assert.match(consent, /Advertising remains off/);
-  assert.doesNotMatch(consent, /analytics: "granted",\s+ads: "granted"/);
+  assert.match(consent, /Advertising remains off while certified privacy controls are being prepared/);
+  assert.match(consent, /hasCurrentGdprAnalyticsGrant/);
+  assert.match(consent, /consent\.version === 2/);
+  assert.match(consent, /version: 2/);
+});
+
+test("a removed GPC signal cannot leave a stale server-observed cookie", () => {
+  const middleware = read("src/middleware.ts");
+  assert.match(middleware, /request\.cookies\.has\('empire_gpc'\)/);
+  assert.match(middleware, /response\.cookies\.delete\('empire_gpc'\)/);
 });
 
 test("newsletter fallback cannot put an email address in the URL or expose provider errors", () => {

@@ -7,6 +7,7 @@ import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
 import InstallPrompt from "@/components/InstallPrompt";
 import CookieConsent from "@/components/CookieConsent";
 import AffiliateClickTracker from "@/components/AffiliateClickTracker";
+import PolicyScriptBoundary from "@/components/PolicyScriptBoundary";
 import { OrganizationSchema } from "@/components/StructuredData";
 
 const dmSerifDisplay = DM_Serif_Display({
@@ -120,7 +121,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const adsenseEnabled = process.env.NEXT_PUBLIC_ADSENSE_ENABLED === "true";
+  const googleCmpEnabled =
+    process.env.NEXT_PUBLIC_GOOGLE_CMP_ENABLED === "true";
 
   return (
     <html lang="en" className={`${dmSerifDisplay.variable} ${nunito.variable} ${jetbrainsMono.variable}`}>
@@ -144,7 +146,8 @@ export default function RootLayout({
         <Footer />
         <ServiceWorkerRegistration />
         <InstallPrompt />
-        <CookieConsent adsenseEnabled={adsenseEnabled} />
+        <PolicyScriptBoundary />
+        <CookieConsent googleCmpEnabled={googleCmpEnabled} />
         <AffiliateClickTracker />
       </body>
     </html>

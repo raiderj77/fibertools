@@ -252,9 +252,9 @@ public/
 
 ### 2025-2026 Requirements
 - **Referrer Ad Creative (RAC)**: Mandatory from November 1, 2025 for Related Search publishers. Must provide `referrerAdCreative` parameter with exact creative text when traffic arrives from controlled sources.
-- **Google Consent Mode v2**: Mandatory for all sites. Configure all 6 parameters: `ad_storage`, `ad_user_data`, `ad_personalization`, `analytics_storage`, `functionality_storage`, `personalization_storage`.
-- **Google-certified CMP with IAB TCF v2.2**: Required for serving personalized ads to EEA/UK/Switzerland users. Without it, Google stops serving personalized ads entirely.
-- **GPP National v2**: Supported since September 2025 for US state privacy compliance across AdSense (covers CA, CO, CT, FL, VA).
+- **Google Consent Mode v2**: Configure the applicable signals when deploying Google Ads or Analytics tags. For AdSense publisher ads, the certified TCF CMP string is authoritative; site-specific analytics controls must not overwrite advertising signals.
+- **Google-certified CMP with IAB TCF v2.3**: Required for Google ad serving to EEA/UK/Switzerland users. New TC strings have required v2.3 since March 1, 2026.
+- **US state/GPP messaging**: Use Google&apos;s current US state regulations message and GPP signaling, and verify live state coverage at release time rather than relying on a hard-coded state list.
 - **YMYL sites**: Consider implementing non-personalized ads on health screening and medical bill analysis pages to avoid privacy concerns with sensitive health data.
 
 ### Amazon Associates
@@ -619,8 +619,8 @@ Also create `/llms-full.txt` with full site documentation in Markdown — reduce
 - **EU/EEA/UK**: Opt-in model — prior affirmative consent REQUIRED before any tracking cookies fire. Pre-checked boxes do NOT qualify.
 - **California**: Opt-out model — tracking permitted by default, but must honor Global Privacy Control (GPC) signals
 - **15+ US states**: Must honor universal opt-out mechanisms and GPC signals
-- Use Google-certified CMP with IAB TCF v2.2 integration for AdSense in EEA/UK/Switzerland
-- TCF v2.2 requires: consent-only legal basis for personalization, total vendor count on initial banner, easy withdrawal
+- Use Google-certified CMP with IAB TCF v2.3 integration for AdSense in EEA/UK/Switzerland
+- TCF v2.3 requires: consent-only legal basis for personalization, transparent vendor disclosure, and easy withdrawal
 
 ### Health Data Privacy (Tier 3 YMYL Sites)
 - Treat ALL health screening data as **sensitive data** requiring explicit consent
@@ -703,7 +703,10 @@ Referrer-Policy: strict-origin-when-cross-origin
 For health content pages (mindchecktools.com, medicalbillreader.com), use `Referrer-Policy: no-referrer` to prevent health page URLs from leaking to third parties.
 
 ### Content Security Policy (AdSense-Compatible)
-AdSense requires `unsafe-eval` — this is a known trade-off.
+Google only supports strict nonce-based CSP for AdSense because its runtime
+domains change. Domain-allowlist CSP is not supported. Google's documented
+strict policy includes `unsafe-eval`; this is a reviewed trade-off, not a
+general permission to add it to an existing policy.
 ```
 Content-Security-Policy:
   object-src 'none';
@@ -715,6 +718,10 @@ Content-Security-Policy:
 - `strict-dynamic` allows nonce-trusted scripts to load their dependencies
 - Apply nonce to ALL `<script>` tags including AdSense code
 - Use `Content-Security-Policy-Report-Only` first to test before enforcing
+- In Next.js App Router, per-request nonces force dynamic rendering. Record the
+  CDN-cache, latency, and cost impact before accepting that migration
+- Never disable an enforced CSP merely to launch ads; keep ads off until the
+  security and performance gate is approved
 
 ### Permissions-Policy
 ```
