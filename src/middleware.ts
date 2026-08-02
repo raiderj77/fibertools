@@ -12,11 +12,14 @@ export function middleware(request: NextRequest) {
   if (nonceCspMode === 'report-only') {
     // Always replace client-supplied values. Only this middleware may mint a
     // nonce or tell Next which CSP to use when it nonces framework scripts.
+    // Forward the policy under its actual report-only name so Vercel does not
+    // confuse it with the separately configured enforced compatibility CSP.
     const nonce = createCspNonce()
     const strictCsp = buildAdSenseStrictCsp(nonce)
     const requestHeaders = new Headers(request.headers)
     requestHeaders.set('x-nonce', nonce)
-    requestHeaders.set('Content-Security-Policy', strictCsp)
+    requestHeaders.delete('Content-Security-Policy')
+    requestHeaders.set('Content-Security-Policy-Report-Only', strictCsp)
 
     response = NextResponse.next({
       request: { headers: requestHeaders },
