@@ -4,8 +4,8 @@ date: "2026-04-28"
 slug: "unlocking-yarn-weight-codes-understanding-the-standard-yarn-"
 description: "Yarn weight is not just a number on a label. It is the key to making projects turn out right. The Craft Yarn Council (CYC) Standard sorts yarns into groups..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Demystifying Yarn Weight Codes: Your Expert Guide to Gauge and Glorious Projects

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { JsonLd } from '@/components/StructuredData';
 
 type Params = Promise<{ slug: string }>;
 
@@ -32,9 +33,8 @@ export default async function Page({ params }: { params: Params }) {
     datePublished: '2026-05-06',
     dateModified: '2026-05-06',
     author: {
-      '@type': 'Person',
-      name: 'Jason Ramirez',
-      jobTitle: 'Founder of FiberTools',
+      '@type': 'Organization',
+      name: 'FiberTools Editorial Team',
       url: 'https://fibertools.app/about',
     },
     publisher: {
@@ -47,10 +47,7 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
+      <JsonLd data={articleJsonLd} />
       <article className="prose mx-auto max-w-3xl px-4 py-8">
 
         <h1 className="text-3xl font-bold mb-2">
@@ -58,7 +55,7 @@ export default async function Page({ params }: { params: Params }) {
         </h1>
         <p className="text-sm text-gray-400 mb-2">Last updated: May 6, 2026</p>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600 mb-6">
-          <span>By <strong className="text-gray-700">Jason Ramirez</strong></span>
+          <span>By <strong className="text-gray-700">FiberTools Editorial Team</strong></span>
           <span aria-hidden="true">&middot;</span>
           <span>Built by a working maker, not a content team</span>
           <span aria-hidden="true">&middot;</span>
@@ -225,7 +222,7 @@ export default async function Page({ params }: { params: Params }) {
         </p>
 
         <p className="text-sm text-gray-400 mt-12 pt-6 border-t border-gray-200">
-          Written by Jason Ramirez, founder of FiberTools.
+          Written by FiberTools Editorial Team.
         </p>
 
       </article>

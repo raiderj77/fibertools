@@ -25,3 +25,12 @@ test("links to the current Craft Yarn Council reference routes", () => {
   assert.match(toolLayout, /standards\/hooks-and-needles/);
   assert.doesNotMatch(toolLayout, /standards\/needle-hook-sizes/);
 });
+
+test("keeps cross-stitch guidance aligned with the calculator's strand math", () => {
+  assert.match(toolContent, /500 stitches worked with two strands use about 1,100 strand-inches/);
+  assert.match(toolContent, /rounds that purchase estimate up to one skein/);
+  assert.match(toolContent, /Select the fabric's named count exactly as printed/);
+  assert.match(toolContent, /turn on Stitch over two and the calculator will halve that count once/);
+  assert.doesNotMatch(toolContent, /500 stitches needs about 500 inches|two standard skeins/);
+  assert.doesNotMatch(toolContent, /enter the thread count divided by 2/);
+});

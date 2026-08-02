@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { amazonSearchUrl } from "@/lib/affiliate";
+import { JsonLd } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "Best Knitting Needles (2026): All Types Reviewed",
@@ -50,7 +51,7 @@ export default function BestKnittingNeedlesPage() {
     dateModified: "2026-04-16",
     url: "https://fibertools.app/best-knitting-needles",
     mainEntityOfPage: "https://fibertools.app/best-knitting-needles",
-    author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
+    author: { "@type": "Organization", name: "FiberTools Editorial Team", url: "https://fibertools.app/about" },
     publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     keywords: "best knitting needles, knitting needles for beginners, circular knitting needles, interchangeable knitting needles",
   };
@@ -113,18 +114,9 @@ export default function BestKnittingNeedlesPage() {
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <JsonLd data={articleSchema} />
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={faqSchema} />
 
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-2 text-sm text-bark-400 dark:text-bark-500 mb-6" aria-label="Breadcrumb">
@@ -150,7 +142,7 @@ export default function BestKnittingNeedlesPage() {
       <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
         <span>Last updated: April 16, 2026</span>
         <span>&middot;</span>
-        <span>Written by Jason Ramirez, founder of FiberTools</span>
+        <span>Written by FiberTools Editorial Team</span>
       </div>
 
       <article className="prose-fiber">

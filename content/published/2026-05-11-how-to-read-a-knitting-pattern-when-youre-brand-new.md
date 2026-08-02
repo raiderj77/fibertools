@@ -4,8 +4,8 @@ date: "2026-05-11"
 slug: "how-to-read-a-knitting-pattern-when-youre-brand-new"
 description: "Reading a knitting pattern is mostly about learning a compact shorthand. Patterns use abbreviations, asterisks, and brackets to avoid printing the same..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # How to Read a Knitting Pattern When You're Brand New

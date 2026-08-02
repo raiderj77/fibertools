@@ -10,6 +10,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "fs";
 import { resolve, dirname, relative } from "path";
 import { fileURLToPath } from "url";
+import matter from "gray-matter";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -37,42 +38,33 @@ function getFiles(dir, extensions) {
   return results;
 }
 
+/**
+ * Parse Markdown frontmatter so malformed metadata fails before the production
+ * build reaches static page generation.
+ */
+function checkFrontmatter(file, content) {
+  if (!file.endsWith(".md") && !file.endsWith(".mdx")) return;
+
+  try {
+    matter(content);
+  } catch (error) {
+    const line = Number.isInteger(error?.mark?.line) ? error.mark.line + 1 : 1;
+    fail(file, line, `Invalid frontmatter: ${error.message.split("\n")[0]}`);
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Rules
 // ---------------------------------------------------------------------------
 
-// Pages where "Jason Ramirez" is intentionally present for E-E-A-T / AdSense compliance.
-const PERSONAL_NAME_EXEMPT = [
-  "src/app/about/page.tsx",
-  "src/app/about/jason-ramirez/page.tsx",
-  "src/app/blog/[slug]/page.tsx",
-];
-
-const BYLINE_ALLOWLIST = [
-  /Written by Jason Ramirez/i,
-  /^author:\s*["']Jason Ramirez/i,
-  /^reviewer:\s*["']Jason Ramirez/i,
-  /Reviewed and maintained by Jason Ramirez/i,
-  /built by Jason Ramirez/i,
-  /by Jason Ramirez,\s*founder/i,
-  /Jason Ramirez,\s*founder/i,
-  /name:\s*["']Jason Ramirez["']/,
-  /By\s+<strong[^>]*>\s*Jason Ramirez\s*<\/strong>/i,
-];
-
 /**
  * Check for personal name exposure.
- * The site owner's name must never appear in public content or code,
- * except on pages listed in PERSONAL_NAME_EXEMPT.
+ * The site owner's name must never appear in public content or code.
  */
 function checkPersonalName(file, lines) {
-  const rel = relative(ROOT, file).replace(/\\/g, "/");
-  if (PERSONAL_NAME_EXEMPT.some((exempt) => rel.endsWith(exempt))) return;
-
   const namePattern = /\bJason\s+Ramirez\b/i;
   for (let i = 0; i < lines.length; i++) {
     if (namePattern.test(lines[i])) {
-      if (BYLINE_ALLOWLIST.some((p) => p.test(lines[i]))) continue;
       fail(file, i + 1, "Personal name detected — never expose site owner's name");
     }
   }
@@ -184,6 +176,7 @@ for (const file of allFiles) {
   const content = readFileSync(file, "utf-8");
   const lines = content.split("\n");
 
+  checkFrontmatter(file, content);
   checkPersonalName(file, lines);
   checkUKTerminology(file, lines);
   checkYarnWeights(file, lines);

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "blanket yarn calculator",
     "crochet blanket yarn needed",
   ],
-  authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
+  authors: [{ name: "FiberTools Editorial Team", url: "https://fibertools.app/about" }],
   openGraph: {
     title: "Yarn Yardage Calculator, Free Online",
     description:
@@ -146,9 +146,9 @@ export default function YarnCalculatorPage() {
           Entrelac and intarsia behave differently on yardage. Intarsia requires a separate bobbin per
           color section but adds no extra consumption beyond the base design. Entrelac involves constant
           turning and picking up stitches, which adds 5&ndash;10% waste at joins. For colorwork palette
-          planning and fiber recommendations by color family, see{" "}
-          <Link href="/blog/crochet-color-trends-2026" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">
-            Crochet Color Trends 2026
+          planning by color family, try the{" "}
+          <Link href="/stripe-generator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">
+            Stripe Generator
           </Link>
           .
         </p>

@@ -40,10 +40,10 @@ export default function ToolLayout({ slug, children, widgetFirst = false, showDe
 
       {/* Title & category badge */}
       <div className="mb-8">
-        <div className="flex items-center justify-between gap-3 mb-2">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col min-[360px]:flex-row min-[360px]:items-center min-[360px]:justify-between gap-3 mb-2">
+          <div className="flex min-w-0 items-center gap-3">
             <span className="text-3xl" aria-hidden="true">{tool.icon}</span>
-            <h1 className="text-2xl sm:text-3xl font-display text-bark-800">
+            <h1 className="min-w-0 break-words text-2xl sm:text-3xl font-display text-bark-800">
               {tool.name}
             </h1>
           </div>
@@ -479,25 +479,21 @@ export default function ToolLayout({ slug, children, widgetFirst = false, showDe
             </h3>
             <p className="text-sm text-bark-500 leading-relaxed">
               {"You've done the planning, now keep track while you craft. "}
-              <a
-                href="https://mycrochetkit.com"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/stitch-counter"
                 className="text-plum-500 hover:text-plum-600 hover:underline font-medium"
               >
-                MyCrochetKit
-              </a>
-              {" is a free voice-activated row counter that lets you say \"next\" to count rows hands-free. Track multiple projects, save your progress, and never lose count again."}
+                FiberTools Stitch Counter
+              </Link>
+              {" tracks multiple projects, row reminders, and progress locally in your browser so you never lose count."}
             </p>
           </div>
-          <a
-            href="https://mycrochetkit.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/stitch-counter"
             className="btn-primary text-sm whitespace-nowrap flex-shrink-0"
           >
-            Try It Free →
-          </a>
+            Open Stitch Counter →
+          </Link>
         </div>
       </section>
 

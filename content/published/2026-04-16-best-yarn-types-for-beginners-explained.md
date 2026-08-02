@@ -4,8 +4,8 @@ date: "2026-04-16"
 slug: "best-yarn-types-for-beginners-explained"
 description: "As a beginner in yarn crafts, picking the right yarn can feel confusing. There are so many choices. But some yarn types are great for beginners. They are..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Best Yarn Types for Beginners Explained

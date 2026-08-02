@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     "blanket yarn calculator", "crochet blanket calculator",
     "knitting blanket size guide", "blanket stitch count",
   ],
-  authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
+  authors: [{ name: "FiberTools Editorial Team", url: "https://fibertools.app/about" }],
   openGraph: {
     title: "Blanket Yarn Calculator from Your Gauge Swatch",
     description:

@@ -4,8 +4,8 @@ date: "2026-05-19"
 slug: "best-crochet-hook"
 description: "The short answer: For most crocheters, an ergonomic aluminum hook in a size H-8 (5.0 mm) or I-9 (5.5 mm) is a great all-around choice. It works well for..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Best Crochet Hook: What Actually Works at the Needle

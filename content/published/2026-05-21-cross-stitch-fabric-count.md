@@ -4,8 +4,8 @@ date: "2026-05-21"
 slug: "cross-stitch-fabric-count"
 description: "Cross stitch fabric count is the number of threads or holes per inch in your fabric. A 14-count Aida has 14 squares per inch. Each cross stitch covers one..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Cross Stitch Fabric Count: What It Means and How to Choose the Right One

@@ -1,5 +1,36 @@
 /** @type {import('next').NextConfig} */
 
+import { getStrictCspMode } from './src/lib/strict-csp.mjs';
+
+const expectedAdSenseClientId = 'ca-pub-7171402107622932';
+const configuredAdSenseClientId =
+  process.env.NEXT_PUBLIC_ADSENSE_ID?.trim() || expectedAdSenseClientId;
+const googleCmpEnabled = process.env.NEXT_PUBLIC_GOOGLE_CMP_ENABLED === 'true';
+const adsenseEnabled = process.env.NEXT_PUBLIC_ADSENSE_ENABLED === 'true';
+// Validate the build-time mode before Next classifies any routes.
+getStrictCspMode();
+
+if (adsenseEnabled && !googleCmpEnabled) {
+  throw new Error(
+    'NEXT_PUBLIC_ADSENSE_ENABLED requires NEXT_PUBLIC_GOOGLE_CMP_ENABLED=true.',
+  );
+}
+
+if (
+  (googleCmpEnabled || adsenseEnabled) &&
+  configuredAdSenseClientId !== expectedAdSenseClientId
+) {
+  throw new Error(
+    'NEXT_PUBLIC_ADSENSE_ID must match the publisher authorized in public/ads.txt.',
+  );
+}
+
+if (adsenseEnabled) {
+  throw new Error(
+    'Manual AdSense activation is blocked until strict nonce CSP is implemented and verified.',
+  );
+}
+
 const securityHeaders = [
   {
     key: 'Strict-Transport-Security',
@@ -7,7 +38,7 @@ const securityHeaders = [
   },
   {
     key: 'X-Frame-Options',
-    value: 'SAMEORIGIN',
+    value: 'DENY',
   },
   {
     key: 'X-Content-Type-Options',
@@ -43,6 +74,15 @@ const nextConfig = {
       {
         source: '/(.*)',
         headers: securityHeaders,
+      },
+      {
+        source: '/sw.js',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache, no-store, must-revalidate',
+          },
+        ],
       },
     ];
   },

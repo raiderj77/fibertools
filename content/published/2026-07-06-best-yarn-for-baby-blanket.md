@@ -4,7 +4,7 @@ date: "2026-07-06"
 slug: "best-yarn-for-baby-blanket"
 description: "The short answer: Choose a yarn that is machine washable, soft against skin, and rated worsted weight or bulkier for faster knitting or crocheting. Superwash me"
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Best Yarn For Baby Blanket

@@ -4,8 +4,8 @@ date: "2026-05-01"
 slug: "when-gauge-is-no-gauge-how-yarn-weight-impacts-crochet-fabri"
 description: "Yarn weight labels are a starting point. They do not tell you everything about your finished crochet fabric. The real structure of your fabric, its drape,..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # When Yarn Weight Lies: How It Shapes Your Crochet Fabric (Beyond Gauge)

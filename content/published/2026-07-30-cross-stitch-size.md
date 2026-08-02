@@ -4,7 +4,7 @@ date: "2026-07-30"
 slug: "cross-stitch-size"
 description: "Cross stitch size depends on three things: your fabric count, the stitch count of your pattern, and how many strands you stitch over. To find finished size, div"
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Cross Stitch Size: How to Figure Out How Big Your Finished Piece Will Be

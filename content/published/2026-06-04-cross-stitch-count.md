@@ -4,7 +4,7 @@ date: "2026-06-04"
 slug: "cross-stitch-count"
 description: "Cross stitch count tells you how many stitches fit into one inch of fabric. A 14-count Aida cloth holds 14 stitches per inch. A 28-count evenweave holds 28..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Cross Stitch Count: What It Is and How to Use It in Your Fiber Work

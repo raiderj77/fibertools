@@ -4,8 +4,8 @@ date: "2026-04-28"
 slug: "the-forgotten-importance-of-fiber-scales-in-yarn-weight-char"
 description: "As a crafter who has swatched and frogged thousands of projects, I know yarn weight categories are too broad. Relying solely on 'Worsted' or 'DK' often..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # The Forgotten Importance of Fiber Scales in Yarn Weight Charts

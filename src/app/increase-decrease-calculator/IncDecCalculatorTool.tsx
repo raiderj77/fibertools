@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
+import { calculateIncDec } from "@/lib/calculator-math.mjs";
 
 type Mode = "increase" | "decrease";
 type Shape = "row" | "round";
@@ -13,92 +14,14 @@ export default function IncDecCalculatorTool() {
   const [targetCount, setTargetCount] = useState("");
 
   const result = useMemo(() => {
-    const current = parseInt(currentCount) || 0;
-    const target = parseInt(targetCount) || 0;
-    if (current <= 0 || target <= 0 || current === target) return null;
-
-    const isInc = target > current;
-    const changes = Math.abs(target - current);
-    const sections = changes;
-
-    if (changes >= current && !isInc) return { error: "Cannot decrease more stitches than you have." };
-    if (changes >= target && isInc) {
-      // Every stitch gets an increase, unusual but valid
-    }
-
-    const base = isInc ? current : current;
-    // Distribute changes evenly across the row/round
-    const spacing = Math.floor(base / sections);
-    const remainder = base - spacing * sections;
-
-    // Build stitch-by-stitch pattern
-    const segments: number[] = [];
-    for (let i = 0; i < sections; i++) {
-      segments.push(spacing + (i < remainder ? 1 : 0));
-    }
-
-    // For rows: first and last segments may differ (edge stitches)
-    // For rounds: uniform distribution
-    const incAbbrev = isInc ? "M1" : "k2tog";
-    const crochetAbbrev = isInc ? "2sc in next st" : "sc2tog";
-
-    // Generate written instructions (knitting)
-    let knitInstructions: string;
-    if (shape === "round") {
-      // In the round: evenly distributed
-      const uniqueSpacings = Array.from(new Set(segments));
-      if (uniqueSpacings.length === 1) {
-        knitInstructions = `*K${spacing}, ${incAbbrev}* repeat ${sections} times. (${target} sts)`;
-      } else {
-        const longCount = remainder;
-        const shortCount = sections - remainder;
-        knitInstructions = `*K${spacing + 1}, ${incAbbrev}* ${longCount} times, *K${spacing}, ${incAbbrev}* ${shortCount} times. (${target} sts)`;
-      }
-    } else {
-      // Flat row: may have edge stitches
-      const uniqueSpacings = Array.from(new Set(segments));
-      if (uniqueSpacings.length === 1) {
-        knitInstructions = `K${spacing}, ${incAbbrev}, *K${spacing}, ${incAbbrev}* repeat ${sections - 1} more times, K to end. (${target} sts)`;
-      } else {
-        const longCount = remainder;
-        const shortCount = sections - remainder;
-        knitInstructions = `*K${spacing + 1}, ${incAbbrev}* ${longCount} times, *K${spacing}, ${incAbbrev}* ${shortCount} times, K to end. (${target} sts)`;
-      }
-    }
-
-    // Crochet version
-    let crochetInstructions: string;
-    if (shape === "round") {
-      const uniqueSpacings = Array.from(new Set(segments));
-      if (uniqueSpacings.length === 1) {
-        crochetInstructions = `*SC ${spacing}, ${crochetAbbrev}* repeat ${sections} times. (${target} sts)`;
-      } else {
-        const longCount = remainder;
-        const shortCount = sections - remainder;
-        crochetInstructions = `*SC ${spacing + 1}, ${crochetAbbrev}* ${longCount} times, *SC ${spacing}, ${crochetAbbrev}* ${shortCount} times. (${target} sts)`;
-      }
-    } else {
-      const uniqueSpacings = Array.from(new Set(segments));
-      if (uniqueSpacings.length === 1) {
-        crochetInstructions = `SC ${spacing}, ${crochetAbbrev}, *SC ${spacing}, ${crochetAbbrev}* repeat ${sections - 1} more times, SC to end. (${target} sts)`;
-      } else {
-        const longCount = remainder;
-        const shortCount = sections - remainder;
-        crochetInstructions = `*SC ${spacing + 1}, ${crochetAbbrev}* ${longCount} times, *SC ${spacing}, ${crochetAbbrev}* ${shortCount} times, SC to end. (${target} sts)`;
-      }
-    }
-
-    return {
-      isInc,
-      changes,
-      current,
-      target,
-      spacing,
-      segments,
-      knitInstructions,
-      crochetInstructions,
-    };
-  }, [currentCount, targetCount, shape]);
+    if (!currentCount || !targetCount) return null;
+    return calculateIncDec({
+      mode,
+      shape,
+      current: Number(currentCount),
+      target: Number(targetCount),
+    });
+  }, [currentCount, targetCount, mode, shape]);
 
   return (
     <div className="space-y-6">
@@ -106,10 +29,12 @@ export default function IncDecCalculatorTool() {
       <div className="flex flex-wrap gap-4">
         <div className="inline-flex items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1">
           <button type="button" onClick={() => setMode("increase")}
+            aria-pressed={mode === "increase"}
             className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-all ${mode === "increase" ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm" : "text-bark-500 dark:text-bark-400"}`}>
             📈 Increase
           </button>
           <button type="button" onClick={() => setMode("decrease")}
+            aria-pressed={mode === "decrease"}
             className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-all ${mode === "decrease" ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm" : "text-bark-500 dark:text-bark-400"}`}>
             📉 Decrease
           </button>
@@ -117,10 +42,12 @@ export default function IncDecCalculatorTool() {
 
         <div className="inline-flex items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1">
           <button type="button" onClick={() => setShape("row")}
+            aria-pressed={shape === "row"}
             className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-all ${shape === "row" ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm" : "text-bark-500 dark:text-bark-400"}`}>
             ↔️ Flat Row
           </button>
           <button type="button" onClick={() => setShape("round")}
+            aria-pressed={shape === "round"}
             className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-all ${shape === "round" ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm" : "text-bark-500 dark:text-bark-400"}`}>
             ⭕ In the Round
           </button>
@@ -130,19 +57,19 @@ export default function IncDecCalculatorTool() {
       {/* Inputs */}
       <div className="grid grid-cols-2 gap-4 max-w-md">
         <div>
-          <label className="label">
+          <label htmlFor="inc-dec-current" className="label">
             Current stitches
             <Tooltip text="How many stitches you have right now on the needle or hook." />
           </label>
-          <input type="number" value={currentCount} onChange={(e) => setCurrentCount(e.target.value)}
+          <input id="inc-dec-current" type="number" value={currentCount} onChange={(e) => setCurrentCount(e.target.value)}
             placeholder="84" className="input" min="1" inputMode="numeric" />
         </div>
         <div>
-          <label className="label">
+          <label htmlFor="inc-dec-target" className="label">
             Target stitches
             <Tooltip text="How many stitches you need after the increase/decrease row." />
           </label>
-          <input type="number" value={targetCount} onChange={(e) => setTargetCount(e.target.value)}
+          <input id="inc-dec-target" type="number" value={targetCount} onChange={(e) => setTargetCount(e.target.value)}
             placeholder={mode === "increase" ? "96" : "72"} className="input" min="1" inputMode="numeric" />
         </div>
       </div>
@@ -162,7 +89,7 @@ export default function IncDecCalculatorTool() {
               {result.current} → {result.target}
             </p>
             <p className="text-sm text-bark-500 dark:text-bark-400 mt-1">
-              {result.isInc ? "Make 1" : "Work 2 together"} every {result.spacing}–{result.spacing + 1} stitches
+              Plain-stitch spacing ranges from {result.spacingMin} to {result.spacingMax}
               ({shape === "round" ? "in the round" : "flat row"})
             </p>
           </div>
@@ -208,13 +135,11 @@ export default function IncDecCalculatorTool() {
                       />
                     ))}
                     {seg > 20 && <span className="text-xs text-bark-400">…{seg}</span>}
-                    {segIdx < result.segments.length - 1 && (
+                    {segIdx < result.changes && (
                       <span className="inline-block w-3 h-3 rounded-full bg-rose-400 dark:bg-rose-500 mx-0.5" />
                     )}
                   </span>
                 ))}
-                {/* Last change marker */}
-                <span className="inline-block w-3 h-3 rounded-full bg-rose-400 dark:bg-rose-500 mx-0.5" />
               </div>
             </div>
           </div>

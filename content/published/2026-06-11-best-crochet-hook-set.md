@@ -4,7 +4,7 @@ date: "2026-06-11"
 slug: "best-crochet-hook-set"
 description: "The short answer: For most crocheters, the Clover Amour set covers sizes B-1 (2.25 mm) through K-10.5 (6.5 mm) with ergonomic handles that hold up through..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Best Crochet Hook Set: What Actually Lives in My Hook Roll

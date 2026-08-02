@@ -4,7 +4,7 @@ date: "2026-06-14"
 slug: "calculate-gauge-knitting"
 description: "Gauge is the number of stitches and rows that fit into a measured area of your knitting, usually 4 inches (10 cm). To find your gauge, knit a swatch, block..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # How to Calculate Gauge in Knitting (And Actually Use the Numbers)

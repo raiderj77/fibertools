@@ -4,7 +4,7 @@ date: "2026-06-05"
 slug: "cross-stitch-fabric-count-conversion"
 description: "The short answer: Fabric count tells you how many stitches fit in one inch. To convert between counts, divide the count number into the total stitch width..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Cross Stitch Fabric Count Conversion: What the Numbers Actually Mean

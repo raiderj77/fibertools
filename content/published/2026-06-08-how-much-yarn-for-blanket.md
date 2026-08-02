@@ -4,7 +4,7 @@ date: "2026-06-08"
 slug: "how-much-yarn-for-blanket"
 description: "Quick answer: Most knit or crochet blankets use between 1,000 and 4,000 yards of yarn. The exact amount depends on size, stitch pattern, and yarn weight. A..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # How Much Yarn Do You Need for a Blanket?

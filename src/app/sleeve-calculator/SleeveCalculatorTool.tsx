@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import StickyResult from "@/components/StickyResult";
+import { calculateSleeve } from "@/lib/calculator-math.mjs";
 
 export default function SleeveCalculatorTool() {
   const [upperArmCirc, setUpperArmCirc] = useState("");
@@ -13,66 +14,25 @@ export default function SleeveCalculatorTool() {
   const [rowsPerInch, setRowsPerInch] = useState("");
 
   const result = useMemo(() => {
-    const upperArm = parseFloat(upperArmCirc) || 0;
-    const wrist = parseFloat(wristCirc) || 0;
-    const length = parseFloat(sleeveLength) || 0;
-    const ribbing = parseFloat(cuffRibbing) || 0;
-    const stGauge = parseFloat(stsPerInch) || 0;
-    const rowGauge = parseFloat(rowsPerInch) || 0;
-
-    if (upperArm <= 0 || wrist <= 0 || length <= 0 || stGauge <= 0 || rowGauge <= 0) return null;
-    if (upperArm <= wrist) return null;
-
-    // Round to even
-    let upperArmSts = Math.round(upperArm * stGauge);
-    upperArmSts = Math.round(upperArmSts / 2) * 2;
-
-    let cuffSts = Math.round(wrist * stGauge);
-    cuffSts = Math.round(cuffSts / 2) * 2;
-
-    const stsToDecrease = upperArmSts - cuffSts;
-    const decreaseEvents = stsToDecrease / 2; // 1 decrease each end = 2 sts per event
-
-    if (decreaseEvents <= 0) return null;
-
-    const shapingInches = length - 1 - ribbing - 1; // 1" buffer each end
-    if (shapingInches <= 0) return null;
-
-    let shapingRows = Math.round(shapingInches * rowGauge);
-    shapingRows = Math.round(shapingRows / 2) * 2; // Make even
-
-    if (shapingRows <= 0 || decreaseEvents <= 0) return null;
-
-    const everyNRows = Math.floor(shapingRows / decreaseEvents);
-    const remainder = shapingRows - everyNRows * decreaseEvents;
-
-    let instruction = "";
-    if (remainder === 0) {
-      instruction = `Decrease 1 st each end every ${everyNRows} rows, ${decreaseEvents} times.`;
-    } else {
-      instruction = `Decrease 1 st each end every ${everyNRows} rows ${decreaseEvents - remainder} times, then every ${everyNRows + 1} rows ${remainder} times.`;
-    }
-
-    return {
-      upperArmSts,
-      cuffSts,
-      stsToDecrease,
-      decreaseEvents,
-      shapingRows,
-      everyNRows,
-      remainder,
-      instruction,
-    };
+    if (!upperArmCirc || !wristCirc || !sleeveLength || !stsPerInch || !rowsPerInch) return null;
+    return calculateSleeve({
+      upperArm: Number(upperArmCirc),
+      wrist: Number(wristCirc),
+      length: Number(sleeveLength),
+      cuffRibbing: Number(cuffRibbing),
+      stitchesPerInch: Number(stsPerInch),
+      rowsPerInch: Number(rowsPerInch),
+    });
   }, [upperArmCirc, wristCirc, sleeveLength, cuffRibbing, stsPerInch, rowsPerInch]);
 
-  const stickySummary = result
+  const stickySummary = result && !("error" in result)
     ? `${result.upperArmSts} sts to ${result.cuffSts} sts over ${result.shapingRows} rows`
     : "";
 
   return (
     <div className="space-y-6">
       <p className="text-sm text-bark-400 dark:text-bark-500">
-        Enter your measurements and gauge to get row-by-row decrease instructions for tapered sleeves.
+        Enter your measurements and gauge to get right-side-row decrease instructions for tapered sleeves. The shaping zone reserves 1 inch below the underarm and 1 inch above the cuff.
       </p>
 
       {/* ── INPUTS ────────────────────────────────────────────── */}
@@ -183,8 +143,13 @@ export default function SleeveCalculatorTool() {
       </div>
 
       {/* ── RESULTS ───────────────────────────────────────────── */}
+      {result && "error" in result ? (
+        <div role="alert" className="p-4 bg-rose-50 dark:bg-rose-900/10 border border-rose-200 dark:border-rose-800 rounded-xl text-rose-600 dark:text-rose-400 text-sm">
+          {result.error}
+        </div>
+      ) : (
       <StickyResult summary={stickySummary} visible={!!result}>
-        {result && (
+        {result && !("error" in result) && (
           <div className="result-card space-y-5">
             <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
               Sleeve Shaping Instructions
@@ -243,7 +208,7 @@ export default function SleeveCalculatorTool() {
                   Crochet notation
                 </p>
                 <p className="text-sm text-bark-500 dark:text-bark-400">
-                  SC2tog at beginning and end of rows
+                  SC2tog at beginning and end of the listed shaping rows
                 </p>
               </div>
             </div>
@@ -267,6 +232,7 @@ export default function SleeveCalculatorTool() {
           </div>
         )}
       </StickyResult>
+      )}
 
       {/* Quick reference */}
       <div className="result-card mt-8">

@@ -4,8 +4,8 @@ date: "2026-04-20"
 slug: "how-to-measure-your-knitting-gauge-correctly"
 description: "Accurate Knitting Gauge: The Key to a Perfect Finish"
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # How to Measure Your Knitting Gauge Correctly

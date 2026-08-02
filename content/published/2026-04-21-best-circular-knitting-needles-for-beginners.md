@@ -4,8 +4,8 @@ date: "2026-04-21"
 slug: "best-circular-knitting-needles-for-beginners"
 description: "Circular knitting needles are a must-have for beginners. They are easy to hold and comfortable to use. That means you can focus on your knitting. The good..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Best Circular Knitting Needles for Beginners

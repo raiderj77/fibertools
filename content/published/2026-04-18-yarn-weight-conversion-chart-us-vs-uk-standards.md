@@ -4,8 +4,8 @@ date: "2026-04-18"
 slug: "yarn-weight-conversion-chart-us-vs-uk-standards"
 description: "As a knitter or crocheter, yarn weights can be confusing. This is especially true when you use yarn from another country. Here is a yarn weight conversion..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Yarn Weight Conversion Chart US vs UK Standards

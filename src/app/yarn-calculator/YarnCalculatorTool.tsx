@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useCallback, useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
 import RavelryPatterns from "@/components/RavelryPatterns";
+import { calculateSkeinPurchase } from "@/lib/skein-purchase.mjs";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -104,20 +105,19 @@ const SIZE_PRESETS: Record<ProjectType, SizePreset[]> = {
 interface YarnWeightInfo {
   label: string;
   ydsPerSqIn: number; // average yards consumed per square inch
-  ydsPerGram: number; // typical yards per gram
   gaugeStPerIn: number; // average stitches per inch
   gaugeRowPerIn: number; // average rows per inch
 }
 
 const YARN_WEIGHTS: Record<string, YarnWeightInfo> = {
-  lace: { label: "0 – Lace", ydsPerSqIn: 3.2, ydsPerGram: 6.5, gaugeStPerIn: 8, gaugeRowPerIn: 10 },
-  fingering: { label: "1 – Fingering / Sock", ydsPerSqIn: 2.5, ydsPerGram: 5.0, gaugeStPerIn: 7, gaugeRowPerIn: 9 },
-  sport: { label: "2 – Sport / Baby", ydsPerSqIn: 2.0, ydsPerGram: 4.2, gaugeStPerIn: 6, gaugeRowPerIn: 8 },
-  dk: { label: "3 – DK / Light Worsted", ydsPerSqIn: 1.6, ydsPerGram: 3.5, gaugeStPerIn: 5.5, gaugeRowPerIn: 7 },
-  worsted: { label: "4 – Worsted / Aran", ydsPerSqIn: 1.3, ydsPerGram: 2.8, gaugeStPerIn: 4.5, gaugeRowPerIn: 6 },
-  bulky: { label: "5 – Bulky / Chunky", ydsPerSqIn: 0.95, ydsPerGram: 1.8, gaugeStPerIn: 3.5, gaugeRowPerIn: 5 },
-  superbulky: { label: "6 – Super Bulky", ydsPerSqIn: 0.7, ydsPerGram: 1.2, gaugeStPerIn: 2.5, gaugeRowPerIn: 3.5 },
-  jumbo: { label: "7 – Jumbo", ydsPerSqIn: 0.45, ydsPerGram: 0.7, gaugeStPerIn: 1.5, gaugeRowPerIn: 2.5 },
+  lace: { label: "0 – Lace", ydsPerSqIn: 3.2, gaugeStPerIn: 8, gaugeRowPerIn: 10 },
+  fingering: { label: "1 – Fingering / Sock", ydsPerSqIn: 2.5, gaugeStPerIn: 7, gaugeRowPerIn: 9 },
+  sport: { label: "2 – Sport / Baby", ydsPerSqIn: 2.0, gaugeStPerIn: 6, gaugeRowPerIn: 8 },
+  dk: { label: "3 – DK / Light Worsted", ydsPerSqIn: 1.6, gaugeStPerIn: 5.5, gaugeRowPerIn: 7 },
+  worsted: { label: "4 – Worsted / Aran", ydsPerSqIn: 1.3, gaugeStPerIn: 4.5, gaugeRowPerIn: 6 },
+  bulky: { label: "5 – Bulky / Chunky", ydsPerSqIn: 0.95, gaugeStPerIn: 3.5, gaugeRowPerIn: 5 },
+  superbulky: { label: "6 – Super Bulky", ydsPerSqIn: 0.7, gaugeStPerIn: 2.5, gaugeRowPerIn: 3.5 },
+  jumbo: { label: "7 – Jumbo", ydsPerSqIn: 0.45, gaugeStPerIn: 1.5, gaugeRowPerIn: 2.5 },
 };
 
 // Stitch pattern multipliers relative to stockinette/single crochet
@@ -151,7 +151,12 @@ const STITCH_PATTERNS: StitchPattern[] = [
 
 function inToCm(inches: number) { return inches * 2.54; }
 function ydsToM(yards: number) { return yards * 0.9144; }
-function gToOz(grams: number) { return grams / 28.3495; }
+function convertInput(value: string, factor: number) {
+  if (!value.trim()) return value;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return value;
+  return String(Number((parsed * factor).toFixed(2)));
+}
 
 // ── COMPONENT ─────────────────────────────────────────────────────
 
@@ -159,7 +164,6 @@ type Mode = "quick" | "precise";
 
 export default function YarnCalculatorTool() {
   const [units, setUnits] = useState<UnitSystem>("imperial");
-  useSavedUnits(setUnits);
   const [mode, setMode] = useState<Mode>("quick");
   const [projectType, setProjectType] = useState<ProjectType>("blanket");
   const [sizeIdx, setSizeIdx] = useState(5); // default: throw
@@ -168,7 +172,7 @@ export default function YarnCalculatorTool() {
   const [yarnWeight, setYarnWeight] = useState("worsted");
   const [stitchPattern, setStitchPattern] = useState("Stockinette / Jersey");
   const [skeinYards, setSkeinYards] = useState("220");
-  const [skeinGrams, setSkeinGrams] = useState("100");
+  const [skeinWeight, setSkeinWeight] = useState("3.5");
 
   // Precise mode
   const [gaugeStitches, setGaugeStitches] = useState("");
@@ -180,6 +184,23 @@ export default function YarnCalculatorTool() {
   const [partialWeight, setPartialWeight] = useState("");
   const [partialSkeinWeight, setPartialSkeinWeight] = useState("");
   const [partialSkeinYards, setPartialSkeinYards] = useState("");
+
+  const handleUnitsChange = useCallback((nextUnits: UnitSystem) => {
+    if (nextUnits === units) return;
+
+    const toMetric = nextUnits === "metric";
+    setCustomW((value) => convertInput(value, toMetric ? 2.54 : 1 / 2.54));
+    setCustomL((value) => convertInput(value, toMetric ? 2.54 : 1 / 2.54));
+    setSwatchSize((value) => convertInput(value, toMetric ? 2.54 : 1 / 2.54));
+    setSkeinYards((value) => convertInput(value, toMetric ? 0.9144 : 1 / 0.9144));
+    setSkeinWeight((value) => convertInput(value, toMetric ? 28.3495 : 1 / 28.3495));
+    setPartialWeight((value) => convertInput(value, toMetric ? 28.3495 : 1 / 28.3495));
+    setPartialSkeinWeight((value) => convertInput(value, toMetric ? 28.3495 : 1 / 28.3495));
+    setPartialSkeinYards((value) => convertInput(value, toMetric ? 0.9144 : 1 / 0.9144));
+    setUnits(nextUnits);
+  }, [units]);
+
+  useSavedUnits(handleUnitsChange);
 
   const yw = YARN_WEIGHTS[yarnWeight];
   const sp = STITCH_PATTERNS.find((s) => s.label === stitchPattern) || STITCH_PATTERNS[0];
@@ -217,7 +238,8 @@ export default function YarnCalculatorTool() {
     let ydsPerSqIn: number;
 
     if (mode === "precise" && gaugeStitches && gaugeRows && swatchSize) {
-      const sw = parseFloat(swatchSize) || 4;
+      const swatchInput = parseFloat(swatchSize) || (units === "metric" ? 10.16 : 4);
+      const sw = units === "metric" ? swatchInput / 2.54 : swatchInput;
       const stPerIn = (parseFloat(gaugeStitches) || 0) / sw;
       const rowPerIn = (parseFloat(gaugeRows) || 0) / sw;
       if (stPerIn <= 0 || rowPerIn <= 0) return null;
@@ -231,23 +253,24 @@ export default function YarnCalculatorTool() {
 
     const baseYards = sqInches * ydsPerSqIn * sp.multiplier;
     const withBuffer = baseYards * 1.1; // 10% safety buffer
-    const totalGrams = withBuffer / yw.ydsPerGram;
-
-    const skeinYds = parseFloat(skeinYards) || 220;
-    const skeinG = parseFloat(skeinGrams) || 100;
-    const skeinsNeeded = Math.ceil(withBuffer / skeinYds);
+    const purchase = calculateSkeinPurchase({
+      yardsNeeded: withBuffer,
+      skeinLength: parseFloat(skeinYards),
+      skeinWeight: parseFloat(skeinWeight),
+      units,
+    });
+    if (!purchase) return null;
 
     return {
       yardsNoBuffer: Math.round(baseYards),
       yardsWithBuffer: Math.round(withBuffer),
       meters: Math.round(ydsToM(withBuffer)),
-      grams: Math.round(totalGrams),
-      ounces: +(gToOz(totalGrams)).toFixed(1),
-      skeins: skeinsNeeded,
-      skeinYds: skeinYds,
-      skeinG: skeinG,
+      grams: purchase.grams,
+      ounces: purchase.ounces,
+      skeins: purchase.skeins,
+      skeinYds: purchase.displayLength,
     };
-  }, [dims, mode, skeinYards, skeinGrams, gaugeStitches, gaugeRows, swatchSize, sp, yw, projectType]);
+  }, [dims, mode, skeinYards, skeinWeight, gaugeStitches, gaugeRows, swatchSize, sp, yw, projectType, units]);
 
   // Partial skein
   const partialResult = useMemo(() => {
@@ -256,12 +279,14 @@ export default function YarnCalculatorTool() {
     const sy = parseFloat(partialSkeinYards) || 0;
     if (pw <= 0 || sw <= 0 || sy <= 0) return null;
     const remaining = (pw / sw) * sy;
+    const yards = units === "metric" ? remaining / 0.9144 : remaining;
+    const meters = units === "metric" ? remaining : ydsToM(remaining);
     return {
-      yards: Math.round(remaining),
-      meters: Math.round(ydsToM(remaining)),
+      yards: Math.round(yards),
+      meters: Math.round(meters),
       pct: Math.round((pw / sw) * 100),
     };
-  }, [partialWeight, partialSkeinWeight, partialSkeinYards]);
+  }, [partialWeight, partialSkeinWeight, partialSkeinYards, units]);
 
   const dimLabel = units === "metric" ? "cm" : "inches";
   const yardLabel = units === "metric" ? "meters" : "yards";
@@ -275,13 +300,14 @@ export default function YarnCalculatorTool() {
     <div className="space-y-8">
       {/* Controls bar */}
       <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
-        <UnitToggle value={units} onChange={setUnits} />
+        <UnitToggle value={units} onChange={handleUnitsChange} />
 
-        <div className="flex flex-col sm:flex-row sm:inline-flex items-stretch sm:items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1 gap-1">
+        <div className="flex flex-col sm:flex-row sm:inline-flex items-stretch sm:items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1 gap-1" role="group" aria-label="Calculation method">
           <button
             type="button"
             onClick={() => setMode("quick")}
-            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
+            aria-pressed={mode === "quick"}
+            className={`min-h-11 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
               mode === "quick"
                 ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm"
                 : "text-bark-500 dark:text-bark-400"
@@ -292,7 +318,8 @@ export default function YarnCalculatorTool() {
           <button
             type="button"
             onClick={() => setMode("precise")}
-            className={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
+            aria-pressed={mode === "precise"}
+            className={`min-h-11 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
               mode === "precise"
                 ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm"
                 : "text-bark-500 dark:text-bark-400"
@@ -510,9 +537,9 @@ export default function YarnCalculatorTool() {
                 <input
                   type="number"
                   aria-label={units === "metric" ? "Grams per skein" : "Ounces per skein"}
-                  value={skeinGrams}
-                  onChange={(e) => setSkeinGrams(e.target.value)}
-                  placeholder="100"
+                  value={skeinWeight}
+                  onChange={(e) => setSkeinWeight(e.target.value)}
+                  placeholder={units === "metric" ? "100" : "3.5"}
                   className="input"
                   min="0"
                   inputMode="decimal"
@@ -559,7 +586,7 @@ export default function YarnCalculatorTool() {
                           {units === "metric" ? result.grams.toLocaleString() : result.ounces}{" "}
                           {units === "metric" ? "g" : "oz"}
                         </p>
-                        <p className="text-sm text-bark-500 dark:text-bark-400">total weight</p>
+                        <p className="text-sm text-bark-500 dark:text-bark-400">weight of whole skeins to buy</p>
                       </div>
                       <div>
                         <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
@@ -637,7 +664,7 @@ export default function YarnCalculatorTool() {
                   aria-label={units === "metric" ? "Partial skein weight in grams" : "Partial skein weight in ounces"}
                   value={partialWeight}
                   onChange={(e) => setPartialWeight(e.target.value)}
-                  placeholder="42"
+                  placeholder={units === "metric" ? "42" : "1.5"}
                   className="input"
                   min="0"
                   inputMode="decimal"
@@ -652,7 +679,7 @@ export default function YarnCalculatorTool() {
                   aria-label={units === "metric" ? "Full skein weight in grams" : "Full skein weight in ounces"}
                   value={partialSkeinWeight}
                   onChange={(e) => setPartialSkeinWeight(e.target.value)}
-                  placeholder="100"
+                  placeholder={units === "metric" ? "100" : "3.5"}
                   className="input"
                   min="0"
                   inputMode="decimal"
@@ -667,7 +694,7 @@ export default function YarnCalculatorTool() {
                   aria-label={units === "metric" ? "Full skein length in meters" : "Full skein length in yards"}
                   value={partialSkeinYards}
                   onChange={(e) => setPartialSkeinYards(e.target.value)}
-                  placeholder="220"
+                  placeholder={units === "metric" ? "201" : "220"}
                   className="input"
                   min="0"
                   inputMode="decimal"

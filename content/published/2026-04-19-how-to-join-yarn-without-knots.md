@@ -4,8 +4,8 @@ date: "2026-04-19"
 slug: "how-to-join-yarn-without-knots"
 description: "Joining yarn without knots is a great skill for any knitter or crocheter. It saves time and cuts down on frustration. When you learn this technique, your..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # How to Join Yarn Without Knots

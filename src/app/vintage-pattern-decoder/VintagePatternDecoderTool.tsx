@@ -436,6 +436,12 @@ export default function VintagePatternDecoderTool() {
     const script = document.createElement("script");
     script.src = PDFJS_CDN;
     script.async = true;
+    // Client navigation keeps the original document CSP. Read that document's
+    // nonce instead of using the newer nonce from an RSC navigation request.
+    const documentNonce = document.querySelector<HTMLScriptElement>(
+      "script[nonce]",
+    )?.nonce;
+    if (documentNonce) script.nonce = documentNonce;
     script.onload = () => {
       const pdfjs = (window as PdfjsWindow).pdfjsLib;
       if (pdfjs) {

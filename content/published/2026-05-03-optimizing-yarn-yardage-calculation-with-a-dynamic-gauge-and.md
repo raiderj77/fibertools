@@ -4,8 +4,8 @@ date: "2026-05-03"
 slug: "optimizing-yarn-yardage-calculation-with-a-dynamic-gauge-and"
 description: "Have you ever run out of yarn right before finishing a project? Or ended up with way too much yarn left over? Standard yardage estimates often miss the..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Optimizing Yarn Yardage: A Dynamic Gauge and Fiber Ratio System for Savvy Makers

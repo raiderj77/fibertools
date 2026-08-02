@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { JsonLd } from '@/components/StructuredData';
 
 type Params = Promise<{ slug: string }>;
 
@@ -31,7 +32,7 @@ export default async function Page({ params }: { params: Params }) {
       'Free Easter bunny amigurumi crochet pattern with hook size guide and yarn calculator tips.',
     datePublished: '2026-03-28',
     dateModified: '2026-04-16',
-    author: { '@type': 'Person', name: 'Jason Ramirez', jobTitle: 'Founder of FiberTools', url: 'https://fibertools.app/about' },
+    author: { '@type': 'Organization', name: 'FiberTools Editorial Team', url: 'https://fibertools.app/about' },
     publisher: { '@type': 'Organization', name: 'FiberTools', url: 'https://fibertools.app' },
     mainEntityOfPage: 'https://fibertools.app/blog/easter-amigurumi-bunny-pattern',
   };
@@ -77,14 +78,8 @@ export default async function Page({ params }: { params: Params }) {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+      <JsonLd data={articleJsonLd} />
+      <JsonLd data={faqJsonLd} />
       <article className="prose mx-auto max-w-3xl px-4 py-8">
 
         <h1 className="text-3xl font-bold mb-2">
@@ -92,7 +87,7 @@ export default async function Page({ params }: { params: Params }) {
         </h1>
         <p className="text-sm text-gray-400 mb-2">Last updated: April 16, 2026</p>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-600 mb-6">
-          <span>By <strong className="text-gray-700">Jason Ramirez</strong></span>
+          <span>By <strong className="text-gray-700">FiberTools Editorial Team</strong></span>
           <span aria-hidden="true">&middot;</span>
           <span>Built by a working maker, not a content team</span>
           <span aria-hidden="true">&middot;</span>
@@ -367,7 +362,7 @@ export default async function Page({ params }: { params: Params }) {
         </div>
 
         <p className="text-sm text-gray-400 mt-12 pt-6 border-t border-gray-200">
-          Reviewed and maintained by Jason Ramirez, founder.
+          Reviewed and maintained by FiberTools Editorial Team.
         </p>
 
       </article>

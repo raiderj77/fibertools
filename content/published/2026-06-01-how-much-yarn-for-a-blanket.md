@@ -4,7 +4,7 @@ date: "2026-06-01"
 slug: "how-much-yarn-for-a-blanket"
 description: "The short answer: most blankets need between 1,000 and 3,000 yards of yarn. The right amount depends on size, stitch, and yarn weight. A baby blanket in..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # How Much Yarn Do You Need for a Blanket?

@@ -1,37 +1,38 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "About Jason Ramirez, the maker behind FiberTools",
+  title: "About FiberTools, free fiber arts calculators",
   description:
-    "FiberTools is made by Jason Ramirez. He is a developer and a counselor in recovery who took up crochet as a calming hobby. He builds free, accurate fiber arts tools. Here is the real story.",
+    "Learn why FiberTools exists, how its free fiber arts calculators are tested, and which published craft standards guide the formulas.",
   keywords: [
     "about FiberTools",
-    "Jason Ramirez",
+    "FiberTools editorial standards",
     "fiber arts calculators",
     "knitting tools",
     "crochet tools",
     "crochet for mental health",
   ],
-  authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
+  authors: [{ name: "FiberTools Editorial Team", url: "https://fibertools.app/about" }],
   openGraph: {
-    title: "About Jason Ramirez, the maker behind FiberTools",
+    title: "About FiberTools",
     description:
-      "The real story behind FiberTools. Made by Jason Ramirez, a developer and counselor in recovery who crochets.",
+      "Why FiberTools exists and how its free fiber arts calculators are built and tested.",
     url: "https://fibertools.app/about",
     images: [
       {
         url: "https://fibertools.app/og-image.png",
         width: 1200,
         height: 630,
-        alt: "About FiberTools by Jason Ramirez",
+        alt: "About FiberTools",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "About Jason Ramirez, the maker behind FiberTools",
+    title: "About FiberTools",
     description:
-      "The real story behind FiberTools. Made by Jason Ramirez, a developer and counselor in recovery who crochets.",
+      "Why FiberTools exists and how its free fiber arts calculators are built and tested.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/about" },
@@ -46,62 +47,51 @@ const breadcrumbSchema = {
   ],
 };
 
-const personSchema = {
+const aboutSchema = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Jason Ramirez",
-  jobTitle: "Founder and Developer, FiberTools",
+  "@type": "Organization",
+  name: "FiberTools",
   description:
-    "Developer and counselor in recovery who took up crochet as a calming hobby and builds free, accurate fiber arts tools.",
+    "The team that maintains FiberTools calculators and references against published fiber arts standards.",
   knowsAbout: ["Crochet", "Knitting", "Fiber arts", "Web development"],
-  sameAs: ["https://bsky.app/profile/friendlydeveloper.bsky.social"],
-  worksFor: { "@type": "Organization", name: "Your Friendly Developer LLC" },
+  parentOrganization: { "@type": "Organization", name: "Your Friendly Developer LLC" },
   url: "https://fibertools.app/about",
 };
 
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
-      <script
-        id="breadcrumb-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        id="person-schema"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-      />
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={aboutSchema} />
 
       <h1 className="text-3xl font-bold text-bark-800 dark:text-cream-100 mb-2">
-        About Jason Ramirez
+        About FiberTools
       </h1>
       <p className="text-sm text-gray-600 mt-1 mb-8">Last updated: June 30, 2026</p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
         <p>
-          Hi. I am Jason Ramirez. I make FiberTools. It is just me, not a big team and
-          not a robot. I build these tools, and I use them too.
+          FiberTools is a focused collection of calculators and references for knitters,
+          crocheters, weavers, spinners, embroiderers, and cross-stitchers. The goal is simple:
+          make practical project math easier to understand and verify.
         </p>
 
         <section>
           <h2 className="text-2xl font-semibold text-bark-800 dark:text-cream-100 mt-10 mb-4">
-            Why I make things
+            Why these tools are maintained
           </h2>
           <p>
-            I am a developer and a counselor. I am also in recovery.
+            FiberTools was started by a developer and crochet hobbyist who wanted reliable craft
+            calculators in one place instead of scattered across unrelated websites.
           </p>
           <p>
-            Crochet is one of my hobbies. It keeps my hands and my mind busy, and that
-            helps me stay calm. I also like photography, coding, and building websites. My
-            work as a counselor helps too. I picked up crochet for this reason. It keeps me
-            grounded.
+            Making can also be a grounding activity. That perspective shapes the site: interfaces
+            should be calm, instructions should be direct, and results should explain the math
+            instead of asking visitors to trust a black box.
           </p>
           <p>
-            I share the recovery part on purpose. Recovery gave a lot to me. Now I want to
-            give some of that back. Maybe my story helps someone else. If you are
-            struggling, you are not alone. It is okay to ask for help. Here is where you
-            can reach out:
+            If crafting is part of how you cope and you are struggling, you are not alone. It is
+            okay to ask for help. These US resources are available at any time:
           </p>
           <ul>
             <li>
@@ -124,31 +114,29 @@ export default function AboutPage() {
             Why FiberTools exists
           </h2>
           <p>
-            I tried a lot of fiber arts calculators. Each one did just one thing. One did
-            gauge. One did yarn amounts. One did needle sizes. I got tired of jumping
-            between them. So I built one place that does it all. It is free, and you do not
-            need to log in.
+            Many fiber arts calculators solve only one narrow problem. FiberTools brings gauge,
+            yarn planning, size conversion, row tracking, and related references together. The
+            tools are free to use and do not require an account.
           </p>
           <p>
-            FiberTools is a real toolbox for makers. It is not a blog with a calculator
-            stuck on the side. I use it every day. When I find something missing, I add it.
+            FiberTools is designed as a working toolbox for makers. Missing cases and confusing
+            results are treated as product defects and repaired as they are found.
           </p>
           <p>
-            Every calculator uses Craft Yarn Council (CYC) standards. That is the same
-            system yarn makers use all over the world. It covers yarn weights (0 to 7, from
-            Lace to Jumbo), hook and needle sizes, and gauge. The size charts match real
-            maker standards, not guesses.
+            Where an industry standard applies, FiberTools references Craft Yarn Council (CYC)
+            yarn weights, needle sizes, hook sizes, and gauge ranges. Construction calculators
+            explain their additional measurements and assumptions instead of presenting them as
+            universal standards.
           </p>
           <p>
-            I checked every formula by hand before I put it online. I also tested each one
-            with tricky numbers. Big blankets. Odd swatch sizes. Stitch counts that do not
-            divide evenly.
+            Formulas are checked with ordinary and edge-case inputs, including large blankets,
+            odd swatch sizes, and stitch counts that do not divide evenly. Automated checks guard
+            the most important calculation, privacy, accessibility, and revenue paths.
           </p>
           <p>
-            Now I crochet too. So I test the tools on my own projects. My first granny
-            squares came out a little crooked. One gauge swatch was too tight. Once I even
-            bought too little yarn. Being new helps me. I still remember which parts are
-            hard. Every tool is free. Ads keep it free, and I plan to keep it that way.
+            The tools are also reviewed against real project-planning mistakes, such as tight
+            gauge, uneven motifs, and buying too little yarn. Every current calculator is free.
+            Advertising may help cover the cost of keeping the site available.
           </p>
         </section>
 
@@ -157,8 +145,7 @@ export default function AboutPage() {
             Get in Touch
           </h2>
           <p>
-            Do you have an idea? Did you find a bug? Do you want a new tool? I would love
-            to hear from you.
+            Have an idea, a bug report, or a request for a new tool? Send it to the address below.
           </p>
           <p>
             <strong>Email:</strong>{" "}
@@ -166,13 +153,13 @@ export default function AboutPage() {
               hello@fibertools.app
             </a>
           </p>
-          <p>I read every message. I try to reply within a few days.</p>
+          <p>Messages are reviewed regularly, with a goal of replying within a few days.</p>
         </section>
 
         <hr className="border-bark-200 dark:border-bark-700 my-8" />
 
         <p className="text-sm text-bark-500 dark:text-cream-500">
-          Jason Ramirez / Your Friendly Developer LLC
+          FiberTools is maintained by Your Friendly Developer LLC.
         </p>
       </div>
     </div>

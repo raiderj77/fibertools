@@ -4,8 +4,8 @@ date: "2026-07-01"
 slug: "crochet-mistakes-i-made-as-a-beginner"
 description: "The real crochet mistakes I made as a beginner, from skipping gauge to a hat that fit a watermelon. What went wrong, why, and what I wish I had done instead."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Crochet Mistakes I Made as a Beginner (So You Don't Have To)

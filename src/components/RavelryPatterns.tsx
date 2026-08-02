@@ -41,9 +41,11 @@ interface Props {
 export default function RavelryPatterns({ weight, craft, query, visible }: Props) {
   const [patterns, setPatterns] = useState<Pattern[]>([]);
   const [loading, setLoading] = useState(false);
+  const [requestedKey, setRequestedKey] = useState<string | null>(null);
+  const requestKey = JSON.stringify({ weight: weight || "", craft: craft || "", query: query || "" });
 
   useEffect(() => {
-    if (!visible) return;
+    if (!visible || requestedKey !== requestKey) return;
     const params = new URLSearchParams({ limit: "6" });
     const w = weight ? RAV_WEIGHT[weight] : "";
     if (w) params.set("weight", w);
@@ -75,10 +77,32 @@ export default function RavelryPatterns({ weight, craft, query, visible }: Props
     return () => {
       cancelled = true;
     };
-  }, [weight, craft, query, visible]);
+  }, [weight, craft, query, visible, requestedKey, requestKey]);
 
-  // Stay invisible unless we actually have something useful to show.
   if (!visible) return null;
+  if (requestedKey !== requestKey) {
+    return (
+      <section className="border-t border-cream-300 dark:border-bark-700 pt-8">
+        <h2 className="text-lg font-display text-bark-800 dark:text-cream-100 mb-1">
+          Find matching patterns
+        </h2>
+        <p className="text-sm text-bark-500 dark:text-bark-400 mb-4">
+          This optional search sends only the selected craft, yarn weight, and project type to
+          FiberTools and Ravelry. It does not send dimensions, gauge, results, or an email address.
+        </p>
+        <button
+          type="button"
+          onClick={() => {
+            setPatterns([]);
+            setRequestedKey(requestKey);
+          }}
+          className="btn-secondary min-h-11 text-sm"
+        >
+          Find patterns on Ravelry
+        </button>
+      </section>
+    );
+  }
   if (!loading && patterns.length === 0) return null;
 
   return (

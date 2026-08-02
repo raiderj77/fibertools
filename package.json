@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=18.18.0"
+    "node": ">=20.9.0"
   },
   "scripts": {
     "dev": "next dev",
@@ -16,7 +16,15 @@
     "test:pattern-checker": "node --test tests/amigurumi-pattern-checker.test.mjs",
     "test:revenue-path": "node --test tests/revenue-path-check.test.js",
     "test:stitchproof-distribution": "node --test tests/stitchproof-distribution.test.mjs",
+    "test:seo-content-accuracy": "node --test tests/seo-content-accuracy.test.mjs",
+    "test:legacy-search-redirects": "node --test tests/legacy-search-redirects.test.mjs",
     "test:ui-accessibility": "node --test tests/ui-accessibility.test.mjs",
+    "test:calculator-math": "node --test tests/calculator-math.test.mjs tests/skein-purchase.test.mjs",
+    "test:privacy": "node --test tests/privacy-guardrails.test.mjs tests/newsletter-guardrails.test.mjs",
+    "test:cmp": "node --test tests/google-cmp-guardrails.test.mjs",
+    "test:strict-csp": "node --test tests/strict-csp-guardrails.test.mjs tests/service-worker-cache.test.mjs",
+    "check:strict-csp-runtime": "node scripts/strict-csp-runtime-check.mjs",
+    "check:csp-build-mode": "node scripts/csp-build-mode-check.mjs",
     "check:revenue-path": "node scripts/revenue-path-check.js",
     "test:security": "node scripts/security-check.js && node --check public/sw.js",
     "test:quality": "node scripts/quality-gate.js",
@@ -26,7 +34,7 @@
   "dependencies": {
     "googleapis": "^171.4.0",
     "gray-matter": "^4.0.3",
-    "next": "15.5.20",
+    "next": "15.5.22",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "remark": "^15.0.1",
@@ -38,7 +46,7 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "eslint": "^8",
-    "eslint-config-next": "15.5.20",
+    "eslint-config-next": "15.5.22",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
@@ -46,6 +54,7 @@
   "overrides": {
     "next": {
       "postcss": "8.5.19"
-    }
+    },
+    "sharp": "0.35.3"
   }
 }

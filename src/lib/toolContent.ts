@@ -1039,13 +1039,13 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       paragraphs: [
         "The formula divides the stitch count by the fabric count. For a 150 by 200 stitch pattern on Aida 14: 150 divided by 14 equals 10.7 inches wide, and 200 divided by 14 equals 14.3 inches tall. That is your finished design size before any border or framing allowance.",
         "To determine fabric purchase size, add a margin on each side, typically 3 inches for framing or 4 inches for scroll frame hooping. Using the example above: 10.7 plus 6 inches (3 per side) equals 16.7 inches wide, and 14.3 plus 6 equals 20.3 inches tall. Round up to the nearest available cut size.",
-        "Thread estimation multiplies the stitch count for each color by an average thread length per stitch, which varies by fabric count and number of strands. On Aida 14 with two strands, each cross stitch uses approximately 1 inch of floss. A color covering 500 stitches needs about 500 inches, or roughly 14 yards, two standard skeins.",
+        "Thread estimation multiplies the stitch count for each color by an average length per stitch and the number of working strands. At the calculator's 1.1-inch planning rate, 500 stitches worked with two strands use about 1,100 strand-inches (27.9 meters), or 0.58 of a standard 8-meter, six-strand skein. The calculator rounds that purchase estimate up to one skein; add extra for long tails, mistakes, or specialty stitches.",
       ],
     },
     howToUse: {
       title: "How to Use the Cross Stitch Size & Thread Calculator",
       paragraphs: [
-        "Enter your fabric count, the number of squares per inch on your fabric. Standard Aida counts are 11, 14, 16, and 18. For evenweave and linen, enter the thread count divided by 2 (since you stitch over two threads). Then enter your design dimensions in stitch count, width and height, as listed in your pattern.",
+        "Select the fabric's named count exactly as printed, such as Linen 32 or Evenweave 28. If the pattern is worked over two threads, turn on Stitch over two and the calculator will halve that count once to get the effective stitch count. Then enter the design width and height in stitches as listed in your pattern.",
         "The calculator returns the finished design dimensions in inches and centimeters, the total fabric size you need (with border allowance), and an estimated thread amount based on stitch coverage."
       ],
     },
@@ -1713,8 +1713,8 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       title: "How Sleeve Shaping Is Calculated",
       paragraphs: [
         "The calculator converts your upper arm and wrist circumferences into stitch counts using your stitch gauge, rounding both to even numbers. The difference between these counts divided by 2 gives the number of decrease events needed, since each event removes 2 stitches (one at each end).",
-        "The shaping zone in inches equals the sleeve length minus 1 inch (top buffer) minus the cuff ribbing length minus 1 inch (bottom buffer). This zone is converted to rows using your row gauge and rounded to an even number.",
-        "The calculator then divides shaping rows by decrease events. If the division is exact, you decrease every N rows for the entire shaping zone. If there is a remainder, the decreases are split into two groups: some worked every N rows and the rest every N+1 rows. This two-rate approach distributes the shaping smoothly without bunching decreases at one end.",
+        "The shaping zone in inches equals the sleeve length minus 1 inch at the top, the cuff ribbing length, and 1 inch at the bottom. This zone is converted to whole rows using your row gauge.",
+        "The calculator distributes paired decrease events across that exact row count with balanced integer intervals. It lists the cumulative shaping rows where each decrease happens, verifies that every interval is at least one row, and refuses combinations that need more decrease events than available rows.",
       ],
     },
     howToUse: {
@@ -1722,13 +1722,13 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       paragraphs: [
         "Enter your upper arm circumference (measure the fullest part, about 1 inch below the armpit, and add 1 to 2 inches for ease) and your wrist or cuff circumference. Enter the total sleeve length from underarm to wrist, and the length of cuff ribbing you plan to work.",
         "Enter your stitch gauge (stitches per inch) and row gauge (rows per inch). These should come from a swatch worked in the same stitch pattern you plan to use for the sleeve body, not the ribbing.",
-        "The calculator outputs the upper arm and cuff stitch counts, the total stitches to decrease, the shaping instruction (every N rows for X times, then every N+1 rows for Y times), and both knitting and crochet notation for the decrease technique.",
+        "The calculator outputs the upper arm and cuff stitch counts, the total stitches to decrease, an exact decrease-row schedule, and both knitting and crochet notation for the decrease technique.",
       ],
     },
     understandingResults: {
       title: "Understanding Your Results",
       paragraphs: [
-        "The shaping instruction is the key output. A simple result like 'Decrease 1 st each end every 6 rows, 12 times' means you work 5 plain rows, then a decrease row, and repeat 12 times. A split result like 'every 6 rows 8 times, then every 7 rows 4 times' means you start at the faster rate and switch to the slower rate for the remaining decreases.",
+        "The shaping instruction is the key output. It lists the cumulative shaping rows where you decrease one stitch at each edge. Balanced intervals avoid bunching all shorter gaps at one end of the sleeve.",
         "The total shaping rows should fit within your sleeve length. If the calculator shows more shaping rows than available rows, your sleeve is too short for the amount of taper needed. Either lengthen the sleeve, reduce the upper arm ease, or increase the cuff width.",
       ],
     },
@@ -1745,21 +1745,21 @@ export const toolContent: Record<string, ToolEducationalContent> = {
 
   "raglan-calculator": {
     commonMistakes: [
-      "Miscalculating the neck cast-on by guessing instead of using the 30/30/15/15 ratio (back/front/sleeve/sleeve plus 4 raglan seam stitches). A wrong starting count produces a yoke that is too shallow or too deep for the body.",
+      "Trying to calculate a neck cast-on from chest circumference alone. Neck circumference, finished chest, underarm stitches, yoke depth, and gauge are separate inputs; collapsing them into one measurement produces an oversized neck and a shallow yoke.",
       "Forgetting that yoke depth must match the actual body measurement from neck base to underarm. A calculated yoke of 6 inches that doesn't match the 8-inch body measurement produces shoulders that bunch or sleeves that start too far down the arm.",
       "Placing too many or too few increase rounds in the yoke. Increasing every other round forever creates a flared sweater; too-infrequent increases leave the yoke too small for the intended chest.",
     ],
-    projectExample: "A knitter wants a 40-inch chest sweater with a 22-inch neck and 8-inch yoke depth at a gauge of 5 stitches per inch and 6 rows per inch. Chest: 200 stitches total. Using 30/30/15/15 ratio + 4 seam stitches = 188 cast-on. Difference: 12 stitches. At 8 stitches per increase round and 6 rows per inch × 8 inches = 48 yoke rows, the calculator distributes the increase rounds correctly to reach exactly 200 stitches at underarm depth.",
+    projectExample: "A knitter enters a 36-inch finished chest, 18-inch neck, 8-inch target yoke, 7 underarm stitches per side, and a gauge of 18 stitches and 24 rows over 4 inches. The nearest symmetric neck cast-on is 80 stitches: 25 front, 25 back, 13 per sleeve, and 4 raglan-line stitches. Twenty-four increase rounds over 48 rows produce an 8-inch yoke and exactly 162 body stitches after adding both underarms.",
     useCases: [
       "Designing top-down raglan sweaters in any gauge, the calculator ensures the yoke expands to the right chest circumference at the right depth.",
       "Comparing stitch gauges to see how yoke depth changes. A looser gauge requires fewer increase rounds than a tighter gauge.",
-      "Experimenting with the 30/30/15/15 ratio for specific fit preferences, broad shoulders or larger arms can use 35/35/15/15 or 30/30/20/20.",
+      "Reviewing the starting one-third front, one-third back, and one-sixth per-sleeve distribution before adjusting it for broader shoulders or larger arms.",
     ],
     introduction: {
       title: "Why You Need a Raglan Calculator",
       paragraphs: [
         "Top-down raglan sweaters are one of the most popular garment constructions in knitting and crochet. You start at the neck and work outward, which means you can try on the sweater as you go and adjust the fit in real time. But the yoke math, distributing stitches between front, back, and sleeves, then calculating how many increase rounds to reach your chest circumference, requires careful arithmetic.",
-        "This calculator does the stitch distribution for you using the standard 30/30/15/15 raglan ratio and computes exactly how many increase rounds you need. It gives you a complete starting framework so you can focus on the enjoyable parts: choosing yarn, picking stitch patterns, and watching the yoke grow round by round.",
+        "This calculator derives the neck cast-on from your neck measurement, distributes the stitches symmetrically, and computes how many body increase rounds are needed after accounting for underarm stitches. It also compares the calculated depth with your target yoke depth so a mathematically exact stitch count is not mistaken for a guaranteed fit.",
       ],
     },
     whatIs: {
@@ -1767,23 +1767,23 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       paragraphs: [
         "A raglan sweater is characterized by four diagonal seam lines running from the neckline to the underarm. Unlike set-in sleeve construction, where the body and sleeves are knit separately and seamed together, a raglan is knit as one piece from the top down. The yoke forms a continuous circle of fabric that expands with every increase round.",
         "The standard construction increases at four points (the raglan lines) every other round, adding 8 stitches per increase round, 2 at each raglan point. As the yoke grows, the front, back, and sleeve sections all expand proportionally until the yoke is deep enough to reach the underarm. At that point, the sleeve stitches are placed on hold, the body sections are joined, and the body is worked downward as a tube.",
-        "The standard stitch distribution is 30 percent for the back, 30 percent for the front, and 15 percent for each sleeve, plus 4 raglan seam stitches (one at each raglan line). This ratio produces balanced proportions for most body types, though experienced knitters may adjust the ratio for specific fit preferences.",
+        "A common starting distribution assigns roughly one third of the available neck stitches to the back, one third to the front, and one sixth to each sleeve, plus the raglan-line stitches. This is only a starting proportion; fit still depends on the entered neck, chest, armhole depth, underarm allowance, ease, and gauge.",
       ],
     },
     howCalculated: {
       title: "How the Raglan Calculator Works",
       paragraphs: [
-        "The calculator starts with your desired chest circumference and converts it to total chest stitches using your stitch gauge. It then distributes the initial neck cast-on using the 30/30/15/15 ratio plus 4 raglan seam stitches.",
-        "The difference between the total chest stitches and the neck cast-on is divided by 8 (since each increase round adds 8 stitches) to determine the number of increase rounds. The total yoke rows is twice the increase rounds because you work one plain round between each increase round. Dividing yoke rows by your row gauge gives the estimated yoke depth in inches.",
-        "This yoke depth should roughly match the distance from the base of your neck to your underarm. If the calculated depth is significantly shorter or longer than your body measurement, you may need to adjust the neck cast-on, add or remove plain rounds between increases, or modify the chest circumference input to account for ease.",
+        "The calculator converts the finished neck circumference to a nearby symmetric cast-on, subtracts the four raglan-line stitches, and divides the remaining stitches between equal front and back sections and equal sleeves.",
+        "At the body split, one increase round adds 8 total stitches but only 4 body stitches; the other 4 belong to the sleeves. The calculator therefore subtracts the starting body stitches and both underarm allowances from the finished chest target, then divides the remaining body growth by 4.",
+        "Increase rounds are worked every other round by default. Dividing those yoke rows by row gauge gives the estimated depth. A visible warning appears when that depth differs from the entered target by more than half an inch.",
       ],
     },
     howToUse: {
       title: "How to Use the Raglan Calculator",
       paragraphs: [
-        "Enter your desired chest circumference in inches. This should include any ease you want, typically 2 to 4 inches of positive ease for a standard fit, or 4 to 8 inches for a relaxed fit. Enter your stitch gauge and row gauge, either per inch or per 4 inches.",
+        "Enter the finished chest circumference including ease, the finished neck circumference, target yoke depth, underarm stitches for each side, and your blocked stitch and row gauge.",
         "Review the stitch distribution. The calculator shows how many stitches to assign to the back, front, each sleeve, and the 4 raglan seam stitches. The total of all sections is your neck cast-on count.",
-        "Check the yoke depth against your body. Measure from the base of your neck (where a crew neck would sit) straight down to your underarm. The calculated yoke depth should be close to this measurement. If it is off by more than an inch, consider adjusting your inputs or planning to add extra plain rounds in the yoke.",
+        "Check the calculated yoke depth against your target before casting on. If the warning shows a mismatch, adjust the neckline, chest target, gauge, underarm allowance, or increase spacing and recalculate.",
       ],
     },
     understandingResults: {
@@ -1791,7 +1791,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       paragraphs: [
         "The neck cast-on is the total number of stitches you start with. For a crew neck, this is typically placed on a circular needle and joined for working in the round. For a V-neck or cardigan, you would work flat and adjust the front stitch count.",
         "The stitch distribution shows where to place markers. Cast on all stitches, then place 4 markers to separate the sections: front, raglan stitch, sleeve, raglan stitch, back, raglan stitch, sleeve, raglan stitch. Increase on each side of every marker on increase rounds.",
-        "The note about separating body and sleeves at the underarm is critical. When the yoke is complete, place all sleeve stitches on waste yarn, cast on a few underarm stitches (typically 2 to 6) to bridge the gap between front and back, and continue the body downward. The sleeves are picked up and knit later.",
+        "At the underarm, place the sleeve stitches on holders and cast on the exact underarm count entered for each side. The displayed body-at-split total verifies the front, back, raglan allocation, increases, and underarms reconcile exactly.",
       ],
     },
     proTips: {

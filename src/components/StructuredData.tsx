@@ -5,16 +5,27 @@
  */
 
 import { Tool } from "@/lib/tools";
+import { getRequestNonceContext } from "@/lib/request-nonce";
 
 type JsonLdProps = {
   data: Record<string, unknown>;
 };
 
-function JsonLd({ data }: JsonLdProps) {
+export async function JsonLd({ data }: JsonLdProps) {
+  const { nonce, isRscRequest } = await getRequestNonceContext();
+
+  // The loaded document keeps its original CSP nonce across App Router
+  // navigation. Do not insert structured-data scripts carrying a newer RSC
+  // request nonce; crawlers receive the schema on full document requests.
+  if (isRscRequest) return null;
+
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      nonce={nonce}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(data).replace(/</g, "\\u003c"),
+      }}
     />
   );
 }

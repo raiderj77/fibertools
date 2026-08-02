@@ -4,8 +4,8 @@ date: "2026-05-12"
 slug: "best-crochet-hooks"
 description: "The short answer: For most crocheters, an ergonomic aluminum hook in a mid-range size (4.0 to 6.0 mm) from Clover, Furls, or Tulip will cover 80% of..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Best Crochet Hooks: What Actually Works at the Needle

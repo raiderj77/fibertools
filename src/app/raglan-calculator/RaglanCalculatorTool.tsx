@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import StickyResult from "@/components/StickyResult";
+import { calculateRaglan } from "@/lib/calculator-math.mjs";
 
 const SIZE_CHART = [
   { label: "Child 2\u20134", range: "21\u201323\"" },
@@ -18,77 +19,61 @@ const SIZE_CHART = [
 
 export default function RaglanCalculatorTool() {
   const [chestCirc, setChestCirc] = useState("");
+  const [neckCirc, setNeckCirc] = useState("18");
+  const [targetYokeDepth, setTargetYokeDepth] = useState("8");
+  const [underarmEach, setUnderarmEach] = useState("7");
   const [gaugeSts, setGaugeSts] = useState("");
   const [gaugeRows, setGaugeRows] = useState("");
   const [gaugeOver, setGaugeOver] = useState("4");
 
   const result = useMemo(() => {
-    const chest = parseFloat(chestCirc) || 0;
-    const gSts = parseFloat(gaugeSts) || 0;
-    const gRows = parseFloat(gaugeRows) || 0;
-    const gOver = parseFloat(gaugeOver) || 4;
+    if (!chestCirc || !neckCirc || !targetYokeDepth || !gaugeSts || !gaugeRows || !gaugeOver) return null;
+    return calculateRaglan({
+      finishedChest: Number(chestCirc),
+      neckCircumference: Number(neckCirc),
+      targetYokeDepth: Number(targetYokeDepth),
+      underarmEach: Number(underarmEach),
+      gaugeStitches: Number(gaugeSts),
+      gaugeRows: Number(gaugeRows),
+      gaugeOver: Number(gaugeOver),
+    });
+  }, [chestCirc, neckCirc, targetYokeDepth, underarmEach, gaugeSts, gaugeRows, gaugeOver]);
 
-    if (chest <= 0 || gSts <= 0 || gRows <= 0 || gOver <= 0) return null;
-
-    const stsPerInch = gSts / gOver;
-    const rowsPerInch = gRows / gOver;
-
-    const chestSts = Math.round(chest * stsPerInch);
-    const backSts = Math.round(chestSts * 0.30);
-    const frontSts = Math.round(chestSts * 0.30);
-    const sleeveStsEach = Math.round(chestSts * 0.15);
-    const raglanSeamSts = 4; // 1 each raglan line
-
-    const castOn = frontSts + backSts + sleeveStsEach * 2 + raglanSeamSts;
-
-    // Each increase round adds 8 sts (2 at each of 4 raglan points)
-    const increaseRounds = Math.ceil((chestSts - castOn) / 8);
-    const yokeRows = increaseRounds * 2; // increase every other round
-    const yokeDepth = yokeRows / rowsPerInch;
-
-    return {
-      chestSts,
-      backSts,
-      frontSts,
-      sleeveStsEach,
-      raglanSeamSts,
-      castOn,
-      increaseRounds,
-      yokeRows,
-      yokeDepth: +yokeDepth.toFixed(1),
-      stsPerInch: +stsPerInch.toFixed(2),
-    };
-  }, [chestCirc, gaugeSts, gaugeRows, gaugeOver]);
-
-  const stickySummary = result
+  const stickySummary = result && !("error" in result)
     ? `Cast on ${result.castOn} sts \u2022 ${result.increaseRounds} increase rounds`
     : "";
 
   return (
     <div className="space-y-6">
       <p className="text-sm text-bark-400 dark:text-bark-500">
-        Enter your chest measurement and gauge to calculate neck cast-on, stitch distribution, and increase rounds for a top-down raglan sweater.
+        Enter the finished chest, neck, target yoke depth, underarm allowance, and gauge. Chest size alone cannot determine a safe neck cast-on.
       </p>
 
       {/* ── INPUTS ────────────────────────────────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Measurement */}
         <div className="space-y-3 p-4 bg-cream-100 dark:bg-bark-800 rounded-xl">
-          <p className="font-medium text-bark-700 dark:text-cream-200 text-sm">Body Measurement</p>
-          <div>
-            <label className="label">
-              Chest circumference (inches)
-              <Tooltip text="Measure the fullest part of the chest. See the size chart below for standard measurements." />
-            </label>
-            <input
-              type="number"
-              value={chestCirc}
-              onChange={(e) => setChestCirc(e.target.value)}
-              placeholder="36"
-              className="input"
-              min="0"
-              inputMode="decimal"
-            />
+          <p className="font-medium text-bark-700 dark:text-cream-200 text-sm">Garment Measurements</p>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label htmlFor="raglan-chest" className="label text-xs">
+                Finished chest (in)
+                <Tooltip text="Enter the finished garment chest, including the ease you want." />
+              </label>
+              <input id="raglan-chest" type="number" value={chestCirc} onChange={(e) => setChestCirc(e.target.value)} placeholder="36" className="input" min="0" inputMode="decimal" />
+            </div>
+            <div>
+              <label htmlFor="raglan-neck" className="label text-xs">Finished neck (in)</label>
+              <input id="raglan-neck" type="number" value={neckCirc} onChange={(e) => setNeckCirc(e.target.value)} placeholder="18" className="input" min="0" inputMode="decimal" />
+            </div>
+            <div>
+              <label htmlFor="raglan-yoke-depth" className="label text-xs">Target yoke depth (in)</label>
+              <input id="raglan-yoke-depth" type="number" value={targetYokeDepth} onChange={(e) => setTargetYokeDepth(e.target.value)} placeholder="8" className="input" min="0" inputMode="decimal" />
+            </div>
+            <div>
+              <label htmlFor="raglan-underarm" className="label text-xs">Underarm sts/side</label>
+              <input id="raglan-underarm" type="number" value={underarmEach} onChange={(e) => setUnderarmEach(e.target.value)} placeholder="7" className="input" min="0" step="1" inputMode="numeric" />
+            </div>
           </div>
         </div>
 
@@ -97,8 +82,9 @@ export default function RaglanCalculatorTool() {
           <p className="font-medium text-sage-700 dark:text-sage-300 text-sm">Your Gauge</p>
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="label text-xs">Stitches</label>
+              <label htmlFor="raglan-gauge-stitches" className="label text-xs">Stitches</label>
               <input
+                id="raglan-gauge-stitches"
                 type="number"
                 value={gaugeSts}
                 onChange={(e) => setGaugeSts(e.target.value)}
@@ -109,8 +95,9 @@ export default function RaglanCalculatorTool() {
               />
             </div>
             <div>
-              <label className="label text-xs">Rows</label>
+              <label htmlFor="raglan-gauge-rows" className="label text-xs">Rows</label>
               <input
+                id="raglan-gauge-rows"
                 type="number"
                 value={gaugeRows}
                 onChange={(e) => setGaugeRows(e.target.value)}
@@ -121,11 +108,12 @@ export default function RaglanCalculatorTool() {
               />
             </div>
             <div>
-              <label className="label text-xs">
+              <label htmlFor="raglan-gauge-over" className="label text-xs">
                 Over (inches)
                 <Tooltip text="How many inches your gauge swatch covers. Usually 4 inches." />
               </label>
               <input
+                id="raglan-gauge-over"
                 type="number"
                 value={gaugeOver}
                 onChange={(e) => setGaugeOver(e.target.value)}
@@ -140,8 +128,13 @@ export default function RaglanCalculatorTool() {
       </div>
 
       {/* ── RESULTS ───────────────────────────────────────────── */}
+      {result && "error" in result ? (
+        <div role="alert" className="p-4 bg-rose-50 dark:bg-rose-900/10 border border-rose-200 dark:border-rose-800 rounded-xl text-rose-600 dark:text-rose-400 text-sm">
+          {result.error}
+        </div>
+      ) : (
       <StickyResult summary={stickySummary} visible={!!result}>
-        {result && (
+        {result && !("error" in result) && (
           <div className="result-card space-y-5">
             <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
               Raglan Construction
@@ -181,7 +174,7 @@ export default function RaglanCalculatorTool() {
             </div>
 
             {/* Yoke details */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               <div>
                 <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">
                   {result.increaseRounds}
@@ -200,7 +193,19 @@ export default function RaglanCalculatorTool() {
                 </p>
                 <p className="text-xs text-bark-500 dark:text-bark-400">est. yoke depth</p>
               </div>
+              <div>
+                <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">
+                  {result.bodyAtSplit}
+                </p>
+                <p className="text-xs text-bark-500 dark:text-bark-400">body sts after underarms</p>
+              </div>
             </div>
+
+            {result.warning ? (
+              <div role="status" className="p-3 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl text-sm text-amber-700 dark:text-amber-300">
+                {result.warning}
+              </div>
+            ) : null}
 
             {/* Construction notes */}
             <div className="space-y-3">
@@ -211,7 +216,7 @@ export default function RaglanCalculatorTool() {
               </div>
               <div className="p-3 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl">
                 <p className="text-sm text-amber-700 dark:text-amber-300">
-                  Separate body and sleeves at the underarm. Place sleeve stitches on waste yarn or stitch holders. Cast on 2&ndash;6 underarm stitches for each gap.
+                  Separate body and sleeves at the underarm. Place sleeve stitches on holders and cast on {result.underarmEach} underarm stitches for each side. The body then has exactly {result.bodyAtSplit} stitches.
                 </p>
               </div>
               <div className="p-3 bg-cream-100 dark:bg-bark-800 rounded-xl">
@@ -229,7 +234,7 @@ export default function RaglanCalculatorTool() {
               type="button"
               onClick={() => {
                 navigator.clipboard.writeText(
-                  `Raglan: Cast on ${result.castOn} sts.\nBack: ${result.backSts} | Front: ${result.frontSts} | Each Sleeve: ${result.sleeveStsEach} | 4 raglan seam sts.\n${result.increaseRounds} increase rounds, ${result.yokeRows} total yoke rows, ~${result.yokeDepth}" yoke depth.`
+                  `Raglan: Cast on ${result.castOn} sts.\nBack: ${result.backSts} | Front: ${result.frontSts} | Each Sleeve: ${result.sleeveStsEach} | ${result.raglanSeamSts} raglan line sts.\n${result.increaseRounds} increase rounds, ${result.yokeRows} total yoke rows, ~${result.yokeDepth}" yoke depth. Add ${result.underarmEach} underarm sts per side for ${result.bodyAtSplit} body sts.`
                 );
               }}
               className="btn-secondary text-sm"
@@ -240,6 +245,7 @@ export default function RaglanCalculatorTool() {
           </div>
         )}
       </StickyResult>
+      )}
 
       {/* ── SIZE CHART ────────────────────────────────────────── */}
       <div className="result-card mt-8">

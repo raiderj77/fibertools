@@ -4,7 +4,7 @@ date: "2026-06-28"
 slug: "crochet-hook-brands"
 description: "The short answer: Clover Amour and Tulip Etimo are the two brands most working crocheters reach for, and for good reason. Both have ergonomic handles,..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Crochet Hook Brands: Which Ones Are Actually Worth Your Money?

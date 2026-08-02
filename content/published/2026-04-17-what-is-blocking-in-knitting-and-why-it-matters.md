@@ -4,8 +4,8 @@ date: "2026-04-17"
 slug: "what-is-blocking-in-knitting-and-why-it-matters"
 description: "Blocking is the process of wetting, stretching, and pinning a knitted project. It evens out stitches, relaxes fibers, and brings out the fabric's natural..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # What Is Blocking in Knitting and Why It Matters

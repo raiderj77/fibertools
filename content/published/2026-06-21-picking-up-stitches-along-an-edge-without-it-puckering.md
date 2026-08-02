@@ -4,7 +4,7 @@ date: "2026-06-21"
 slug: "picking-up-stitches-along-an-edge-without-it-puckering"
 description: "The short answer: Space your pick-up points evenly. Match your ratio to the stitch type. Use roughly 3 stitches for every 4 row ends on stockinette. Use 1..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Picking Up Stitches Along an Edge Without It Puckering

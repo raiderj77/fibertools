@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     "crochet round shapes",
     "amigurumi pattern generator",
   ],
-  authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
+  authors: [{ name: "FiberTools Editorial Team", url: "https://fibertools.app/about" }],
   openGraph: {
     title: "Crochet Sphere Calculator - Amigurumi Shapes Generator",
     description:

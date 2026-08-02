@@ -4,7 +4,7 @@ date: "2026-05-26"
 slug: "best-knitting-needles"
 description: "The short answer: For most knitters, a set of interchangeable circulars in nickel-plated brass or stainless steel covers 80% of projects. Chiaogoo Red Lace..."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Best Knitting Needles: What Actually Works (From Someone Who Uses Them Daily)

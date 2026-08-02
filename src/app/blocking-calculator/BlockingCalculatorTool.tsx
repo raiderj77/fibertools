@@ -204,8 +204,9 @@ export default function BlockingCalculatorTool() {
       {/* Inputs */}
       <div className="space-y-4">
         <div>
-          <label className="label">Fiber Type</label>
+          <label htmlFor="blocking-fiber" className="label">Fiber Type</label>
           <select
+            id="blocking-fiber"
             value={fiberType}
             onChange={(e) => setFiberType(e.target.value)}
             className="input"
@@ -224,8 +225,9 @@ export default function BlockingCalculatorTool() {
             <p className="font-medium text-bark-700 dark:text-cream-200 text-sm">Current Dimensions (inches)</p>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="label text-xs">Width</label>
+                <label htmlFor="blocking-current-width" className="label text-xs">Width</label>
                 <input
+                  id="blocking-current-width"
                   type="number"
                   value={currentWidth}
                   onChange={(e) => setCurrentWidth(e.target.value)}
@@ -236,8 +238,9 @@ export default function BlockingCalculatorTool() {
                 />
               </div>
               <div>
-                <label className="label text-xs">Length</label>
+                <label htmlFor="blocking-current-length" className="label text-xs">Length</label>
                 <input
+                  id="blocking-current-length"
                   type="number"
                   value={currentLength}
                   onChange={(e) => setCurrentLength(e.target.value)}
@@ -254,8 +257,9 @@ export default function BlockingCalculatorTool() {
             <p className="font-medium text-sage-700 dark:text-sage-300 text-sm">Target Dimensions (inches)</p>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="label text-xs">Width</label>
+                <label htmlFor="blocking-target-width" className="label text-xs">Width</label>
                 <input
+                  id="blocking-target-width"
                   type="number"
                   value={targetWidth}
                   onChange={(e) => setTargetWidth(e.target.value)}
@@ -266,8 +270,9 @@ export default function BlockingCalculatorTool() {
                 />
               </div>
               <div>
-                <label className="label text-xs">Length</label>
+                <label htmlFor="blocking-target-length" className="label text-xs">Length</label>
                 <input
+                  id="blocking-target-length"
                   type="number"
                   value={targetLength}
                   onChange={(e) => setTargetLength(e.target.value)}

@@ -4,8 +4,8 @@ date: "2026-04-26"
 slug: "the-evolution-of-heel-flap-and-gusset-schematics-an-examinat"
 description: "I've spent 20+ years working with pattern makers, yarn manufacturers, and fiber enthusiasts to better understand the intricacies of heel flap and gusset..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # The Evolution of Heel Flap and Gusset Schematics: An Examination of Efficacy

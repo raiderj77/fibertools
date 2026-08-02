@@ -29,7 +29,7 @@ export default function TermsPage() {
         Terms of Use
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: March 16, 2026
+        Last updated: August 1, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -145,8 +145,10 @@ export default function TermsPage() {
           <p>
             FiberTools is a free service supported by affiliate links and may add
             advertising after AdSense approval. Google AdSense is not currently
-            enabled. If ads are enabled later, cookie use will follow your consent
-            choices. See our{" "}
+            enabled. Before ads are activated, FiberTools will require Google&apos;s
+            certified IAB TCF v2.3 privacy message and verify consent, rejection,
+            withdrawal, and Global Privacy Control behavior. Analytics permission
+            does not grant advertising permission. See our{" "}
             <a
               href="/privacy"
               className="text-sage-600 dark:text-sage-400 underline"
@@ -197,8 +199,8 @@ export default function TermsPage() {
           </h2>
           <p>
             We reserve the right to modify these terms at any time. Changes will
-            be posted on this page with an updated date. Your continued use of
-            the site constitutes acceptance of any changes.
+            be posted on this page with an updated date. If a change requires
+            consent, we will ask before applying it.
           </p>
         </section>
 

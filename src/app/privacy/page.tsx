@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How FiberTools handles your data. We collect minimal analytics, run no ads tracking without consent, and never sell your personal information.",
+    "How FiberTools handles your data. Optional analytics requires permission, advertising is paused, and personal information is not sold for money.",
   keywords: ["privacy policy", "data protection", "fiber arts tools privacy", "FiberTools privacy"],
   openGraph: {
     title: "Privacy Policy",
     description:
-      "How FiberTools handles your data. We collect minimal analytics, run no ads tracking without consent, and never sell your personal information.",
+      "How FiberTools handles your data. Optional analytics requires permission, advertising is paused, and personal information is not sold for money.",
     url: "https://fibertools.app/privacy",
     images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Privacy Policy" }],
   },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Privacy Policy",
     description:
-      "How FiberTools handles your data. We collect minimal analytics, run no ads tracking without consent, and never sell your personal information.",
+      "How FiberTools handles your data. Optional analytics requires permission, advertising is paused, and personal information is not sold for money.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/privacy" },
@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         Privacy Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: July 12, 2026
+        Last updated: August 1, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -56,22 +56,56 @@ export default function PrivacyPolicyPage() {
             What Data We Collect
           </h2>
           <p>
-            All FiberTools calculators run entirely in your browser. We do not
-            send your inputs, results, or calculations to any server. Here is
-            what we do collect:
+            Core FiberTools calculations run entirely in your browser. We do not send dimensions,
+            gauge, pasted pattern text, or calculation results to a server. If you explicitly choose
+            the optional pattern search, the selected craft, yarn weight, and project type are sent
+            through FiberTools to Ravelry. Here is what we collect:
           </p>
           <p>
             <strong>Analytics (Google Analytics 4):</strong> We use GA4 to
             understand how people use the site, which pages are visited, how
             long sessions last, and general geographic region. GA4 uses
-            first-party cookies. We have IP anonymization enabled. No personally
-            identifiable information is collected through analytics.
+            first-party cookies. Google receives an IP address with the network
+            request and may use it for coarse location and basic service
+            functions, but GA4 does not log or store individual IP addresses.
+            Google handles this data according to its regional product controls
+            and privacy terms. We do not send calculator inputs, pasted pattern
+            text, calculation results, or email addresses to GA4.
           </p>
           <p>
-            <strong>Advertising (Google AdSense):</strong> If and when ads are
-            displayed, Google AdSense may use cookies to serve ads based on your
-            prior visits to this or other websites. You can opt out of
-            personalized advertising at{" "}
+            <strong>Advertising (Google AdSense):</strong> AdSense is currently
+            paused. Before activation, FiberTools will use Google Privacy &amp;
+            messaging, a Google-certified consent management platform using IAB
+            TCF v2.3. If ads are activated, Google may process your IP address,
+            page URL and referrer, browser and device information, cookie or
+            device identifiers, and recorded consent choices to deliver and
+            measure ads and, where permitted by your choice, personalize them.
+            Third-party vendors, including Google, may use cookies to serve ads
+            based on prior visits to FiberTools or other websites. Google&apos;s use
+            of advertising cookies enables Google and its partners to serve ads
+            based on visits to FiberTools and other sites. Before activation, we
+            will either disable third-party ad serving beyond Google or identify
+            and link every enabled third-party advertising vendor and network on
+            this page.
+            Review{" "}
+            <a
+              href="https://business.safety.google/privacy/?wpacode=65899"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sage-600 dark:text-sage-400 underline"
+            >
+              Google&apos;s Business Data Responsibility information
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://policies.google.com/technologies/partner-sites"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sage-600 dark:text-sage-400 underline"
+            >
+              how Google uses information from partner sites
+            </a>
+            . You can also manage personalized advertising at{" "}
             <a
               href="https://www.google.com/settings/ads"
               target="_blank"
@@ -108,10 +142,13 @@ export default function PrivacyPolicyPage() {
             Cookies and Tracking Technologies
           </h2>
           <p>
-            Google Analytics is optional. FiberTools does not download the Google
-            Analytics or advertising scripts until you choose to allow them. If
-            advertising is enabled after AdSense approval, it uses the same consent
-            choice. For full details, see
+            Google Analytics is optional and uses FiberTools&apos; Analytics choices
+            control. Advertising choices are separate: a legacy analytics choice
+            never activates advertising. Before AdSense is activated, Google&apos;s
+            certified IAB TCF v2.3 message must be published and verified. Our
+            privacy and cookie disclosure pages do not load ad tags, the Funding
+            Choices consent-message tag, or other tags that require consent. For
+            full details, see
             our{" "}
             <a
               href="/cookies"
@@ -119,13 +156,16 @@ export default function PrivacyPolicyPage() {
             >
               Cookie Policy
             </a>
-            . You can manage your cookie preferences at any time through the
-            cookie consent banner or your browser settings.
+            . You can manage analytics through the Analytics choices link. After
+            ad activation, European visitors can use the Privacy and cookie
+            settings link; covered US-state visitors can use Google&apos;s Do Not Sell
+            or Share link. We also honor Global Privacy Control.
           </p>
           <p>
-            If advertising is enabled, Google may use cookies to serve and measure
-            ads according to your consent choices. You can opt out of personalized
-            advertising at{" "}
+            If advertising is enabled, Google may use cookies, IP addresses, and
+            device or browser information to serve and measure ads according to
+            the certified consent message and applicable law. You can opt out of
+            personalized advertising at{" "}
             <a
               href="https://myadcenter.google.com/"
               target="_blank"
@@ -155,11 +195,13 @@ export default function PrivacyPolicyPage() {
           <ul className="list-disc pl-6 space-y-1">
             <li>Understand which tools are most popular so we can improve them</li>
             <li>Monitor site performance and fix errors</li>
-            <li>Display relevant advertising to support the free service</li>
+            <li>Display relevant advertising to support the free service if AdSense is activated</li>
           </ul>
           <p>
-            We do <strong>not</strong> sell, rent, or share your personal
-            information with third parties for their own marketing purposes.
+            We do <strong>not</strong> sell personal information for money. If
+            advertising is activated, disclosures to advertising providers may
+            be considered sharing or targeted advertising under some US state
+            laws; the opt-out methods described above will apply.
           </p>
         </section>
 
@@ -182,7 +224,9 @@ export default function PrivacyPolicyPage() {
               )
             </li>
             <li>
-              <strong>Google AdSense</strong>, configured for advertising but not currently enabled (
+              <strong>Google AdSense</strong>, configured for advertising but not currently enabled.
+              Every enabled ad technology provider, third-party vendor, and
+              network will be verified, listed, and linked here before activation. (
               <a
                 href="https://policies.google.com/technologies/ads"
                 target="_blank"
@@ -216,6 +260,30 @@ export default function PrivacyPolicyPage() {
                 className="text-sage-600 dark:text-sage-400 underline"
               >
                 Amazon Privacy Notice
+              </a>
+              )
+            </li>
+            <li>
+              <strong>Beehiiv</strong>, optional newsletter subscription management (
+              <a
+                href="https://www.beehiiv.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sage-600 dark:text-sage-400 underline"
+              >
+                Beehiiv Privacy Policy
+              </a>
+              )
+            </li>
+            <li>
+              <strong>Ravelry</strong>, optional pattern discovery requested by the visitor (
+              <a
+                href="https://www.ravelry.com/about/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sage-600 dark:text-sage-400 underline"
+              >
+                Ravelry Privacy Policy
               </a>
               )
             </li>
@@ -347,7 +415,7 @@ export default function PrivacyPolicyPage() {
           </p>
 
           <h3>Data Retention</h3>
-          <p>Analytics data is retained for 26 months. Server logs are retained for 90 days. We do not retain tool calculation inputs beyond your browser session.</p>
+          <p>Analytics data is retained for 14 months. Server logs are retained for 90 days. We do not retain tool calculation inputs beyond your browser session.</p>
         </section>
 
         <section id="state-privacy" aria-labelledby="state-heading">
@@ -423,8 +491,8 @@ export default function PrivacyPolicyPage() {
           </h2>
           <p>
             We may update this policy from time to time. Changes will be posted
-            on this page with an updated date. Continued use of the site after
-            changes constitutes acceptance.
+            on this page with an updated date. If a change requires consent, we
+            will ask before applying that change to your information.
           </p>
         </section>
 

@@ -4,8 +4,8 @@ date: "2026-04-14"
 slug: "best-crochet-hooks-for-beginners"
 description: "If you are new to crochet, you may wonder which hooks are best for learning. Buy a set of good, ergonomic crochet hooks that feel comfortable in your hand...."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Best Crochet Hooks for Beginners: A Comprehensive Guide

@@ -4,7 +4,7 @@ date: "2026-05-24"
 slug: "pooling-and-flashing-in-variegated-yarn-what-causes-it"
 description: "Pooling and flashing in variegated yarn are caused by how your stitch count aligns with the color repeat. Learn how to predict and avoid both effects."
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Pooling and Flashing in Variegated Yarn: What Causes It

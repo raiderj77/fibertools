@@ -4,8 +4,8 @@ date: "2026-05-15"
 slug: "how-to-handwash-knitwear"
 description: "Handwash knitwear in cool water (60 to 85°F / 15 to 30°C) with a wool-safe soap. Handle it gently. Never wring or twist it. Support the wet fabric at all..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # How to Handwash Knitwear Without Ruining It

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useCallback, useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
@@ -43,6 +43,12 @@ const YARN_WEIGHTS = [
 
 function inToCm(i: number) { return +(i * 2.54).toFixed(1); }
 function ydsToM(y: number) { return +(y * 0.9144).toFixed(0); }
+function convertInput(value: string, factor: number) {
+  if (!value.trim()) return value;
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return value;
+  return String(Number((parsed * factor).toFixed(2)));
+}
 
 // ── COMPONENT ─────────────────────────────────────────────────────
 
@@ -71,6 +77,20 @@ export default function BlanketCalculatorTool() {
   // Skein info
   const [skeinYards, setSkeinYards] = useState("220");
   const [skeinGrams, setSkeinGrams] = useState("100");
+
+  const handleUnitsChange = useCallback((nextUnits: UnitSystem) => {
+    if (nextUnits === units) return;
+    const toMetric = nextUnits === "metric";
+    const dimensionFactor = toMetric ? 2.54 : 1 / 2.54;
+    setCustomW((value) => convertInput(value, dimensionFactor));
+    setCustomL((value) => convertInput(value, dimensionFactor));
+    setOverhang((value) => convertInput(value, dimensionFactor));
+    setGaugeOver((value) => convertInput(value, dimensionFactor));
+    setSwatchWidth((value) => convertInput(value, dimensionFactor));
+    setSwatchHeight((value) => convertInput(value, dimensionFactor));
+    setSkeinYards((value) => convertInput(value, toMetric ? 0.9144 : 1 / 0.9144));
+    setUnits(nextUnits);
+  }, [units]);
 
   const dim = units === "metric" ? "cm" : "in";
   const yw = YARN_WEIGHTS.find((w) => w.key === yarnWeight) || YARN_WEIGHTS[4];
@@ -101,7 +121,8 @@ export default function BlanketCalculatorTool() {
     if (widthIn <= 0 || lengthIn <= 0) return null;
 
     // Gauge
-    const gOver = parseFloat(gaugeOver) || 4;
+    const gOverInput = parseFloat(gaugeOver) || (units === "metric" ? 10.16 : 4);
+    const gOver = units === "metric" ? gOverInput / 2.54 : gOverInput;
     const gSt = parseFloat(gaugeStitches) || 0;
     const gRow = parseFloat(gaugeRows) || 0;
     const hasGauge = gSt > 0 && gRow > 0;
@@ -176,7 +197,7 @@ export default function BlanketCalculatorTool() {
 
   return (
     <div className="space-y-8">
-      <UnitToggle value={units} onChange={setUnits} />
+      <UnitToggle value={units} onChange={handleUnitsChange} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left: inputs */}

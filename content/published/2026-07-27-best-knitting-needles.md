@@ -2,9 +2,9 @@
 title: "Best Knitting Needles"
 date: "2026-07-27"
 slug: "best-knitting-needles"
-description: "There is no single "best" needle. The best needle depends on your project, your yarn, and how you knit. This guide walks you through picking the right material,"
+description: 'There is no single "best" needle. The best needle depends on your project, your yarn, and how you knit. This guide walks you through picking the right material,'
 status: published
-author: "Jason Ramirez"
+author: "FiberTools Editorial Team"
 ---
 
 # Best Knitting Needles: How to Choose the Right Ones for Every Project

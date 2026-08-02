@@ -4,8 +4,8 @@ date: "2026-04-27"
 slug: "unlocking-optimal-fit-the-science-behind-custom-heel-gussets"
 description: "Ever struggled with a sock heel that just would not fit right? Getting a custom-fit sock is not magic. It is science. When you understand your gauge and use..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Unlocking Optimal Fit: The Science Behind Custom Heel Gussets and Flap Calculations

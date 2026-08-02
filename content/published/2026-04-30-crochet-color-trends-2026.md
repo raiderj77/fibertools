@@ -5,8 +5,8 @@ slug: "crochet-color-trends-2026"
 description: "2026 crochet color trends favor earthy neutrals, romantic pastels, and bold accents. See which palettes are trending and how to use them."
 keywords: "crochet color trends 2026, yarn color trends, trending crochet colors, what yarn colors are popular 2026"
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Crochet Color Trends 2026: What's Hot Right Now

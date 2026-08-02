@@ -4,8 +4,8 @@ date: "2026-04-28"
 slug: "applying-standard-yarn-weight-system-to-real-world-fiber-cho"
 description: "The Craft Yarn Council's standard yarn weight system is a valuable roadmap, but real-world projects demand more than just label reading. Understanding how..."
 status: published
-author: "Jason Ramirez"
-reviewer: "Jason Ramirez"
+author: "FiberTools Editorial Team"
+reviewer: "FiberTools Editorial Team"
 ---
 
 # Cracking the Code: Applying Standard Yarn Weight Systems to Real-World Fiber Choices and Projects
