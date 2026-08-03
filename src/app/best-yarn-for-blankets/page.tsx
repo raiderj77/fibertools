@@ -136,7 +136,7 @@ export default function BestYarnForBlanketsPage() {
 
       {/* Affiliate disclosure */}
       <p className="text-xs text-bark-400 dark:text-bark-500 bg-cream-100 dark:bg-bark-800 border border-cream-300 dark:border-bark-700 rounded-lg px-4 py-2 mb-6">
-        This page contains affiliate links. If you purchase through our links we may earn a small commission at no extra cost to you.
+        As an Amazon Associate I earn from qualifying purchases.
       </p>
 
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
@@ -204,7 +204,7 @@ export default function BestYarnForBlanketsPage() {
                   <td className="px-4 py-3">100% polyester</td>
                   <td className="px-4 py-3">220 yds (10.5 oz)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("bernat blanket yarn")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("bernat blanket yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -213,7 +213,7 @@ export default function BestYarnForBlanketsPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">1,020 yds (16 oz)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonProductUrl("B0CBPXTSB8")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonProductUrl("B0CBPXTSB8")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -222,7 +222,7 @@ export default function BestYarnForBlanketsPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">812 yds (16 oz)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("caron one pound yarn")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("caron one pound yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>
@@ -256,7 +256,7 @@ export default function BestYarnForBlanketsPage() {
                   <td className="px-4 py-3">100% polyester</td>
                   <td className="px-4 py-3">Works up fast, extra thick</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("bernat blanket extra yarn")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("bernat blanket extra yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -265,7 +265,7 @@ export default function BestYarnForBlanketsPage() {
                   <td className="px-4 py-3">80% acrylic / 20% wool</td>
                   <td className="px-4 py-3">Classic chunky blanket yarn</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("lion brand thick quick")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("lion brand thick quick")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -274,7 +274,7 @@ export default function BestYarnForBlanketsPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Pill-resistant, great for everyday use</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("premier yarns everyday chunky")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("premier yarns everyday chunky")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>
@@ -308,7 +308,7 @@ export default function BestYarnForBlanketsPage() {
                   <td className="px-4 py-3">60% acrylic / 40% nylon</td>
                   <td className="px-4 py-3">Very soft, gentle on skin</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("lion brand baby soft yarn")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("lion brand baby soft yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -317,7 +317,7 @@ export default function BestYarnForBlanketsPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Clean colors, affordable</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("paintbox simply dk yarn")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("paintbox simply dk yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>

@@ -23,6 +23,45 @@ const source = sourceFiles.map((file) => fs.readFileSync(file, "utf8")).join("\n
 const tagMatches = source.match(/ytearnings-20/g) || [];
 assert(tagMatches.length === 1, "Amazon Associates tag must appear only in the central affiliate config");
 
+const requiredDisclosure = "As an Amazon Associate I earn from qualifying purchases.";
+const directlyMonetizedPages = [
+  "src/app/best-yarn-for-blankets/page.tsx",
+  "src/app/best-yarn-for-beginners/page.tsx",
+  "src/app/best-yarn-for-amigurumi/page.tsx",
+  "src/app/best-knitting-needles/page.tsx",
+  "src/app/best-crochet-hooks/page.tsx",
+  "src/app/blog/crochet-hook-size-chart/page.tsx",
+];
+const disclosureSources = [
+  "src/components/AffiliateDisclosure.tsx",
+  "src/app/affiliate-disclosure/page.tsx",
+  ...directlyMonetizedPages,
+];
+
+for (const relativePath of disclosureSources) {
+  assert(read(relativePath).includes(requiredDisclosure), `${relativePath}: exact Amazon disclosure is missing`);
+}
+
+for (const relativePath of directlyMonetizedPages) {
+  const pageSource = read(relativePath);
+  const disclosurePosition = pageSource.indexOf(requiredDisclosure);
+  const firstAffiliatePosition = pageSource.search(/href=\{amazon(?:Search|Product)Url\(/);
+  assert(firstAffiliatePosition >= 0, `${relativePath}: expected a tagged Amazon link`);
+  assert(disclosurePosition < firstAffiliatePosition, `${relativePath}: disclosure must precede tagged Amazon links`);
+
+  const helperCalls = pageSource.match(/href=\{amazon(?:Search|Product)Url\(/g) || [];
+  const directLinks = pageSource.match(/<a\b[^>]*href=\{amazon(?:Search|Product)Url\([^>]*>/g) || [];
+  assert(directLinks.length === helperCalls.length, `${relativePath}: could not validate every tagged Amazon link`);
+
+  for (const link of directLinks) {
+    const relMatch = link.match(/\brel="([^"]+)"/);
+    const relTokens = relMatch ? relMatch[1].split(/\s+/) : [];
+    for (const token of ["sponsored", "nofollow", "noopener"]) {
+      assert(relTokens.includes(token), `${relativePath}: tagged Amazon link is missing rel=${token}`);
+    }
+  }
+}
+
 const recommendationSource = read("src/components/ToolAffiliateRecommendations.tsx");
 const recommendationLayout = read("src/components/AffiliateRecommendations.tsx");
 const configuredTools = [...recommendationSource.matchAll(/^  "([a-z0-9-]+)": \{$/gm)].map((match) => match[1]);
@@ -32,9 +71,15 @@ for (const slug of configuredTools) {
   assert(fs.existsSync(path.join(root, "src", "app", slug, "page.tsx")), `Missing page for ${slug}`);
 }
 
-const clickTracker = read("src/components/AffiliateLink.tsx") + read("src/components/AffiliateClickTracker.tsx");
+const affiliateLinkSource = read("src/components/AffiliateLink.tsx");
+const clickTracker = affiliateLinkSource + read("src/components/AffiliateClickTracker.tsx");
 for (const field of ["page_path", "placement", "content_type", "merchant", "product_category"]) {
   assert(clickTracker.includes(field), `Affiliate click tracking is missing ${field}`);
+}
+const affiliateRelMatch = affiliateLinkSource.match(/\brel="([^"]+)"/);
+const affiliateRelTokens = affiliateRelMatch ? affiliateRelMatch[1].split(/\s+/) : [];
+for (const token of ["sponsored", "nofollow", "noopener"]) {
+  assert(affiliateRelTokens.includes(token), `Central affiliate link is missing rel=${token}`);
 }
 
 assert(

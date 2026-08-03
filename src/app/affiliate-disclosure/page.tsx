@@ -15,8 +15,7 @@ export default function AffiliateDisclosurePage() {
       </h1>
       <div className="mt-6 space-y-5 text-bark-600 dark:text-cream-300">
         <p>
-          FiberTools participates in the Amazon Services LLC Associates Program. As an Amazon Associate,
-          FiberTools earns from qualifying purchases made after you follow an eligible product link.
+          FiberTools participates in the Amazon Services LLC Associates Program. As an Amazon Associate I earn from qualifying purchases.
         </p>
         <p>
           An affiliate link does not change the price you pay. Amazon may pay FiberTools a commission if

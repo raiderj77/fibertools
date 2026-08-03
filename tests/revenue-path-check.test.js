@@ -15,7 +15,7 @@ function validPage(overrides = {}) {
     headers: { "content-type": "text/html; charset=utf-8", "x-robots-tag": "" },
     html: `
       <html><head><link rel="canonical" href="https://fibertools.app${path}"></head><body>
-      <p>As an Amazon Associate, FiberTools earns from qualifying purchases.</p>
+      <p>As an Amazon Associate I earn from qualifying purchases.</p>
       ${affiliateLink()}${affiliateLink()}${affiliateLink()}
       </body></html>
     `,
@@ -41,7 +41,7 @@ test("rejects an incorrect affiliate tag", () => {
 
 test("rejects a disclosure placed after the affiliate links", () => {
   const page = validPage();
-  const disclosure = "<p>As an Amazon Associate, FiberTools earns from qualifying purchases.</p>";
+  const disclosure = "<p>As an Amazon Associate I earn from qualifying purchases.</p>";
   page.html = page.html.replace(disclosure, "").replace("</body>", `${disclosure}</body>`);
   assert.throws(() => validateRevenuePage(page), /disclosure must precede affiliate links/);
 });
@@ -50,4 +50,10 @@ test("rejects untracked affiliate links", () => {
   const page = validPage();
   page.html = page.html.replace(' data-affiliate-tracked="true"', "");
   assert.throws(() => validateRevenuePage(page), /click tracking marker is missing/);
+});
+
+test("rejects affiliate links without noopener", () => {
+  const page = validPage();
+  page.html = page.html.replace(/ noopener/g, "");
+  assert.throws(() => validateRevenuePage(page), /affiliate link is missing rel=noopener/);
 });
