@@ -102,8 +102,8 @@ export default async function Page({
 
         {/* FTC DISCLOSURE */}
         <p className="text-sm text-gray-600 border border-gray-200 rounded p-3 mb-6">
-          <strong>Affiliate disclosure:</strong> As an Amazon Associate, FiberTools earns from qualifying
-          purchases at no extra cost to you. Recommendations are selected for their relevance to this guide.
+          <strong>Affiliate disclosure:</strong> As an Amazon Associate I earn from qualifying purchases.
+          Recommendations are selected for their relevance to this guide.
         </p>
 
         <h1 className="text-3xl font-bold mb-2">

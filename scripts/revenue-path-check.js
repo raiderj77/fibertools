@@ -2,6 +2,7 @@ const assert = require("node:assert/strict");
 
 const BASE_URL = (process.env.FIBERTOOLS_BASE_URL || "https://fibertools.app").replace(/\/$/, "");
 const ASSOCIATE_TAG = "ytearnings-20";
+const REQUIRED_DISCLOSURE = "As an Amazon Associate I earn from qualifying purchases.";
 
 const MONETIZED_PATHS = [
   "/blanket-calculator",
@@ -55,7 +56,7 @@ function validateRevenuePage({ path, status, headers = {}, html }) {
 
   assert.ok(affiliateLinks.length >= 3, `${path}: expected at least 3 rendered Amazon recommendations`);
 
-  const disclosurePosition = html.search(/As an Amazon Associate[^<]*qualifying purchases/i);
+  const disclosurePosition = html.indexOf(REQUIRED_DISCLOSURE);
   const firstAffiliatePosition = html.indexOf(affiliateLinks[0]);
   assert.ok(disclosurePosition >= 0, `${path}: Amazon disclosure is missing`);
   assert.ok(disclosurePosition < firstAffiliatePosition, `${path}: disclosure must precede affiliate links`);
@@ -67,6 +68,7 @@ function validateRevenuePage({ path, status, headers = {}, html }) {
     assert.equal(href.searchParams.get("tag"), ASSOCIATE_TAG, `${path}: affiliate tag is missing or incorrect`);
     assert.ok(rel.includes("sponsored"), `${path}: affiliate link is missing rel=sponsored`);
     assert.ok(rel.includes("nofollow"), `${path}: affiliate link is missing rel=nofollow`);
+    assert.ok(rel.includes("noopener"), `${path}: affiliate link is missing rel=noopener`);
     assert.equal(attribute(link, "data-affiliate-tracked"), "true", `${path}: click tracking marker is missing`);
     assert.ok(attribute(link, "data-affiliate-placement"), `${path}: placement label is missing`);
     assert.ok(attribute(link, "data-affiliate-category"), `${path}: category label is missing`);

@@ -135,7 +135,7 @@ export default function BestCrochetHooksPage() {
 
       {/* Affiliate disclosure */}
       <p className="text-xs text-bark-400 dark:text-bark-500 bg-cream-100 dark:bg-bark-800 border border-cream-300 dark:border-bark-700 rounded-lg px-4 py-2 mb-6">
-        This page contains affiliate links. If you purchase through our links we may earn a small commission at no extra cost to you.
+        As an Amazon Associate I earn from qualifying purchases.
       </p>
 
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
@@ -201,7 +201,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Rubber grip, inline head</td>
                   <td className="px-4 py-3">2mm–15mm (steel and standard)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("clover amour crochet hook")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("clover amour crochet hook")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -209,7 +209,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Teardrop cushion grip, tapered head</td>
                   <td className="px-4 py-3">1.8mm–10mm</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("tulip etimo crochet hook")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("tulip etimo crochet hook")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -217,7 +217,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Handcrafted, multiple materials</td>
                   <td className="px-4 py-3">3.5mm–12mm</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("furls crochet hook")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("furls crochet hook")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>
@@ -252,7 +252,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Aluminum</td>
                   <td className="px-4 py-3">Set (6–10 hooks)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("boye aluminum crochet hook set")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("boye aluminum crochet hook set")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -260,7 +260,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Aluminum</td>
                   <td className="px-4 py-3">Set (6–8 hooks)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("susan bates silvalume crochet hook set")} target="_blank" rel="nofollow sponsored" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("susan bates silvalume crochet hook set")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
                   </td>
                 </tr>
               </tbody>
