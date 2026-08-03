@@ -10,6 +10,7 @@
 import { readFileSync, readdirSync, existsSync, statSync } from "fs";
 import { resolve, dirname, relative } from "path";
 import { fileURLToPath } from "url";
+import matter from "gray-matter";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -183,6 +184,16 @@ console.log(`  Scanning ${contentFiles.length} content files and ${srcFiles.leng
 for (const file of allFiles) {
   const content = readFileSync(file, "utf-8");
   const lines = content.split("\n");
+
+  if (contentFiles.includes(file)) {
+    try {
+      matter(content);
+    } catch (error) {
+      const line = Number.isInteger(error?.mark?.line) ? error.mark.line + 1 : 1;
+      fail(file, line, `Invalid front matter: ${error.message}`);
+      continue;
+    }
+  }
 
   checkPersonalName(file, lines);
   checkUKTerminology(file, lines);
