@@ -117,6 +117,9 @@ Still make a small swatch, even without a required gauge. It shows you what the 
 
 ## Quick decision guide
 
+Use this chart as a quick reference, then make a swatch to confirm. For pattern gauge, start with the listed hook size and adjust until your stitch count matches. If no gauge is given, use the yarn label's suggestion and tweak to personal preference.
+
+
 Use this as a shortcut, then confirm with a swatch:
 
 | Situation | What to do |
