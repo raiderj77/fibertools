@@ -3,6 +3,7 @@ import fs from "node:fs";
 import test from "node:test";
 
 const config = fs.readFileSync("next.config.mjs", "utf8");
+const guides = fs.readFileSync("src/lib/guides.ts", "utf8");
 
 const replacements = new Map([
   ["/yarn-weight-comparison", "/yarn-weight-chart"],
@@ -14,6 +15,10 @@ const replacements = new Map([
   ["/blog/weaving-sett-guide", "/weaving-sett-calculator"],
   ["/blog/yarn-weight-chart-guide", "/yarn-weight-chart"],
   ["/blog/color-pooling-guide", "/color-pooling-calculator"],
+  ["/blog/sock-knitting-guide", "/sock-calculator"],
+  ["/blog/granny-square-guide", "/guides/granny-square-blanket-guide"],
+  ["/blog/sweater-yarn-estimation-guide", "/yarn-calculator"],
+  ["/blog/cast-on-guide", "/cast-on-calculator"],
 ]);
 
 test("maps Search Console legacy URLs to their closest live replacements", () => {
@@ -34,4 +39,26 @@ test("keeps exact legacy redirects ahead of the generic blog fallback", () => {
       assert.ok(config.indexOf(`source: '${source}'`) < fallbackAt, `${source} must precede fallback`);
     }
   }
+});
+
+test("routes legacy searches only to maintained canonical pages", () => {
+  for (const destination of replacements.values()) {
+    if (destination.startsWith("/guides/")) {
+      const slug = destination.slice("/guides/".length);
+      assert.match(guides, new RegExp(`slug: ["']${slug}["']`));
+      continue;
+    }
+
+    const pagePath = `src/app${destination}/page.tsx`;
+    assert.ok(fs.existsSync(pagePath), `${destination} must have a public page`);
+    assert.match(
+      fs.readFileSync(pagePath, "utf8"),
+      new RegExp(`canonical: ["']${destination}["']`),
+      `${destination} must declare its canonical URL`,
+    );
+  }
+});
+
+test("does not force project-time intent onto the cost calculator", () => {
+  assert.equal(config.indexOf("source: '/blog/project-time-estimation-guide'"), -1);
 });

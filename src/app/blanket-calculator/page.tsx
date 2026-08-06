@@ -37,7 +37,11 @@ export const metadata: Metadata = {
 
 export default function BlanketCalculatorPage() {
   return (
-    <ToolLayout slug="blanket-calculator" widgetFirst>
+    <ToolLayout
+      slug="blanket-calculator"
+      widgetFirst
+      pageTitle="Blanket Yarn & Size Calculator"
+    >
       <AnswerBlock
         what="A blanket yarn calculator that scales the yarn used by your own swatch to a selected blanket size, then calculates stitch counts, rows, total yards, and whole skeins."
         who="Knitters and crocheters planning a blanket project who want to buy the right amount of yarn before starting."
@@ -51,7 +55,7 @@ export default function BlanketCalculatorPage() {
 
       <section className="mt-12">
         <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100 mb-3">
-          How do you calculate how much yarn you need for a blanket?
+          How many yards of yarn do you need for a throw or queen blanket?
         </h2>
         <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
           <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">

@@ -40,8 +40,11 @@ test("keeps the yarn calculator example aligned with its default quick estimate"
 
 test("keeps Search Console quick-win copy mapped to the correct canonical tools", () => {
   assert.match(blanketPage, /Blanket Yarn Calculator: Yards & Skeins by Size/);
+  assert.match(blanketPage, /pageTitle="Blanket Yarn & Size Calculator"/);
+  assert.match(blanketPage, /How many yards of yarn do you need for a throw or queen blanket\?/);
   assert.match(blanketPage, /throw, queen, or custom blanket/);
   assert.match(blanketPage, /href="\/cast-on-calculator"/);
+  assert.match(toolLayout, /pageTitle \? \{ \.\.\.tool, name: pageTitle \} : tool/);
   assert.match(castOnPage, /Cast On Calculator: Stitches for Any Width/);
   assert.match(castOnPage, /how many stitches to cast on/);
   assert.match(sockPage, /heel-turn guidance/);

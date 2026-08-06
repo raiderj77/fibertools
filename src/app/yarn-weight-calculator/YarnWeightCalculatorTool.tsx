@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import ResultShareButton from "@/components/ResultShareButton";
+import useToolCompletion from "@/lib/useToolCompletion";
 
 // ── CYC YARN WEIGHT DATA ──────────────────────────────────────────
 
@@ -141,6 +143,8 @@ export default function YarnWeightCalculatorTool() {
     }
   }, [mode, wpiValue, gaugeValue]);
 
+  useToolCompletion("yarn-weight-calculator", results);
+
   return (
     <div className="space-y-5">
       {/* Mode tabs */}
@@ -263,6 +267,10 @@ export default function YarnWeightCalculatorTool() {
             <p className="text-xs text-bark-400 dark:text-bark-500 italic">
               Always swatch to confirm weight before starting a project.
             </p>
+            <ResultShareButton
+              toolName="Yarn Weight Calculator"
+              toolSlug="yarn-weight-calculator"
+            />
           </div>
         </div>
       )}

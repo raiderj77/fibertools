@@ -144,6 +144,26 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/blog/sock-knitting-guide',
+        destination: '/sock-calculator',
+        permanent: true,
+      },
+      {
+        source: '/blog/granny-square-guide',
+        destination: '/guides/granny-square-blanket-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/sweater-yarn-estimation-guide',
+        destination: '/yarn-calculator',
+        permanent: true,
+      },
+      {
+        source: '/blog/cast-on-guide',
+        destination: '/cast-on-calculator',
+        permanent: true,
+      },
+      {
         source: '/blog/:path*',
         destination: '/guides',
         permanent: true,
