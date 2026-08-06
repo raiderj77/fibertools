@@ -5,9 +5,9 @@ import AnswerBlock from "@/components/AnswerBlock";
 import BlanketCalculatorTool from "./BlanketCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Blanket Yarn Calculator from Your Gauge Swatch",
+  title: "Blanket Yarn Calculator: Yards & Skeins by Size",
   description:
-    "Estimate blanket yarn and skeins from your measured swatch. Calculate blanket dimensions, stitch counts, rows, and a transparent 10% buffer.",
+    "Calculate how many yards and skeins of yarn you need for a throw, queen, or custom blanket from your measured swatch, with a transparent 10% buffer.",
   keywords: [
     "blanket size chart", "crochet blanket sizes", "blanket size calculator",
     "how big should a blanket be", "baby blanket size crochet", "throw blanket dimensions",
@@ -18,31 +18,31 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
   openGraph: {
-    title: "Blanket Yarn Calculator from Your Gauge Swatch",
+    title: "Blanket Yarn Calculator: Yards & Skeins by Size",
     description:
-      "Estimate blanket yarn and skeins from your measured swatch, with blanket dimensions, stitch counts, rows, and a transparent 10% buffer.",
+      "Calculate blanket yarn in yards and whole skeins for a throw, queen, or custom size from your measured swatch.",
     url: "https://fibertools.app/blanket-calculator",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Blanket Yarn Calculator, How Much Do I Need?" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Blanket Yarn Calculator: Yards and Skeins by Size" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blanket Yarn Calculator from Your Gauge Swatch",
+    title: "Blanket Yarn Calculator: Yards & Skeins by Size",
     description:
-      "Estimate blanket yarn and skeins from your measured swatch, with blanket dimensions, stitch counts, rows, and a transparent 10% buffer.",
+      "Calculate blanket yarn in yards and whole skeins for a throw, queen, or custom size from your measured swatch.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/blanket-calculator" },
-  other: { dateModified: "2026-07-17" },
+  other: { dateModified: "2026-08-05" },
 };
 
 export default function BlanketCalculatorPage() {
   return (
     <ToolLayout slug="blanket-calculator" widgetFirst>
       <AnswerBlock
-        what="A calculator that scales the yarn used by your own swatch to a selected blanket size, then calculates stitch counts, rows, total yarn, and skeins."
+        what="A blanket yarn calculator that scales the yarn used by your own swatch to a selected blanket size, then calculates stitch counts, rows, total yards, and whole skeins."
         who="Knitters and crocheters planning a blanket project who want to buy the right amount of yarn before starting."
-        bottomLine="For a defensible yarn estimate, make a swatch in the actual stitch pattern, weigh it, and enter the yarn-label yardage and weight."
-        lastUpdated="2026-07-17"
+        bottomLine="Choose a throw, queen, or custom size, then enter a measured swatch and the yarn-label length and weight to calculate yards and whole skeins."
+        lastUpdated="2026-08-05"
       />
 
       <BlanketCalculatorTool />
@@ -65,6 +65,9 @@ export default function BlanketCalculatorPage() {
           Gauge determines the cast-on stitch count and number of rows, but gauge alone does not reveal how
           much yarn a stitch pattern consumes. Two swatches can have the same dimensions while using different
           amounts of yarn because cables, bobbles, lace, and plain stitches follow different yarn paths.
+          If you only need the starting count, the{' '}
+          <Link href="/cast-on-calculator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">cast-on calculator</Link>
+          {' '}converts your measured gauge and target width into stitches, including pattern-repeat rounding.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           Stitch pattern matters too. Work the sample in the same stitch pattern, yarn, and tool size planned

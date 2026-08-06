@@ -22,6 +22,7 @@ const needleGuide = read("src/app/needle-guide/NeedleGuideTool.tsx");
 const castOn = read("src/app/cast-on-calculator/CastOnCalculatorTool.tsx");
 const sock = read("src/app/sock-calculator/SockCalculatorTool.tsx");
 const sleeve = read("src/app/sleeve-calculator/SleeveCalculatorTool.tsx");
+const unitToggle = read("src/components/UnitToggle.tsx");
 const patternChecker = read("src/app/amigurumi-pattern-checker/page.tsx");
 const knittingNeedles = read("src/app/best-knitting-needles/page.tsx");
 
@@ -77,6 +78,12 @@ test("exposes selected choices and usable touch targets", () => {
   assert.match(blanket, /aria-pressed=\{i === sizeIdx\}/);
   assert.match(circle, /aria-pressed=\{stitchKey === st\.key\}/);
   assert.match(shapes, /aria-pressed=\{shape === s\.key\}/);
+  assert.match(yarn, /role="group" aria-label="Calculation method"/);
+  assert.match(yarn, /aria-pressed=\{mode === "quick"\}/);
+  assert.match(yarn, /aria-pressed=\{mode === "precise"\}/);
+  assert.match(unitToggle, /didInitialize\.current/);
+  assert.match(unitToggle, /aria-pressed=\{value === "imperial"\}/);
+  assert.match(unitToggle, /aria-pressed=\{value === "metric"\}/);
   assert.match(printShare, /min-h-11/);
   assert.match(circle, /className="h-11 w-full accent-sage-600"/);
   assert.match(shapes, /className="h-11 w-full accent-sage-600"/);

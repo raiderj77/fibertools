@@ -408,7 +408,7 @@ const relatedToolMap: Record<string, string[]> = {
   "gauge-calculator": ["yarn-calculator", "stitch-pattern-calculator", "blanket-calculator"],
   "yarn-weight-chart": ["yarn-calculator", "needle-converter", "project-cost-calculator"],
   "stitch-counter": ["increase-decrease-calculator", "stitch-pattern-calculator", "stitch-quick-reference"],
-  "blanket-calculator": ["yarn-calculator", "stripe-generator", "gauge-calculator", "stitch-pattern-calculator"],
+  "blanket-calculator": ["cast-on-calculator", "yarn-calculator", "gauge-calculator", "stitch-pattern-calculator"],
   "increase-decrease-calculator": ["gauge-calculator", "stitch-counter", "circle-calculator"],
   "stripe-generator": ["color-pooling-calculator", "blanket-calculator", "yarn-calculator"],
   "abbreviation-glossary": ["uk-to-us-converter", "stitch-quick-reference", "needle-converter"],
