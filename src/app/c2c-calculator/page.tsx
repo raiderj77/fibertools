@@ -15,6 +15,20 @@ export const metadata: Metadata = {
     "diagonal crochet planner",
     "corner to corner blanket",
   ],
+  openGraph: {
+    title: "C2C Blanket Calculator",
+    description:
+      "Plan your corner-to-corner crochet blanket with block counts, diagonal rows, and yardage estimates from your gauge swatch.",
+    url: "https://fibertools.app/c2c-calculator",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "C2C Blanket Calculator" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "C2C Blanket Calculator",
+    description:
+      "Plan your corner-to-corner crochet blanket with block counts, diagonal rows, and yardage estimates from your gauge swatch.",
+    images: ["https://fibertools.app/og-image.png"],
+  },
   alternates: { canonical: "/c2c-calculator" },
 };
 
