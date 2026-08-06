@@ -165,7 +165,14 @@ export default function KnittingToolsPage() {
             FiberTools knitting calculators are built on Craft Yarn Council (CYC) standards and
             verified against industry measurement conventions. The gauge calculator is the foundation:
             enter your swatch measurements and your pattern&rsquo;s target gauge, and it shows you
-            exactly how far off you are and what needle adjustment to try. The yarn calculator uses your
+            exactly how far off you are and what needle adjustment to try. The{" "}
+            <Link
+              href="/yarn-calculator"
+              className="text-sage-700 dark:text-sage-300 underline underline-offset-2"
+            >
+              yarn calculator
+            </Link>{" "}
+            uses your
             actual stitches-per-inch and skein yardage to produce an estimate based on your real
             tension, not a chart approximation.
           </p>
@@ -173,14 +180,26 @@ export default function KnittingToolsPage() {
             The garment tools handle calculations that trip up even experienced knitters. The raglan
             calculator generates a full shaping schedule, increase frequency, stitch distribution, and
             body/sleeve split, from nothing more than your gauge and target finished measurements. The
-            sock calculator covers heel turn and gusset math for both top-down and toe-up construction.
+            <Link
+              href="/sock-calculator"
+              className="text-sage-700 dark:text-sage-300 underline underline-offset-2"
+            >
+              sock calculator
+            </Link>{" "}
+            covers heel turn and gusset math for both top-down and toe-up construction.
             The hat calculator handles crown shaping from bulky beanies through fingering-weight
             colorwork projects with multiple decreasing methods.
           </p>
           <p className="leading-relaxed">
             For finishing and project planning, the blocking calculator estimates how much your fabric
             will grow after wet blocking, essential for lace and fitted garments where blocked
-            dimensions differ significantly from needles-off measurements. The cast-on calculator
+            dimensions differ significantly from needles-off measurements. The{" "}
+            <Link
+              href="/cast-on-calculator"
+              className="text-sage-700 dark:text-sage-300 underline underline-offset-2"
+            >
+              cast-on calculator
+            </Link>{" "}
             adjusts your stitch count to the nearest stitch multiple for your chosen pattern. All tools
             are free, require no account, and work on any device.
           </p>

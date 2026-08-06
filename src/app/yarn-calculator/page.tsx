@@ -106,7 +106,14 @@ export default function YarnCalculatorPage() {
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Garment style drives yardage more than size alone. A cropped pullover in size L uses less yarn
-          than a hip-length fitted pullover in the same size. Raglan construction typically uses slightly
+          than a hip-length fitted pullover in the same size.{" "}
+          <Link
+            href="/guides/raglan-sweater-guide"
+            className="text-sage-700 dark:text-sage-300 underline underline-offset-2"
+          >
+            Raglan construction
+          </Link>{" "}
+          typically uses slightly
           less than set-in sleeves because there&rsquo;s less seam finishing. Cardigans need 10&ndash;15%
           more than pullovers because front bands and button bands add linear yardage.
         </p>

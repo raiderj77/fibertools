@@ -13,6 +13,7 @@
     "lint:content": "node scripts/content-lint.js",
     "test:affiliate": "node scripts/affiliate-check.js",
     "test:indexnow": "node --test tests/indexnow-urls.test.mjs",
+    "test:gpc-consent": "node --test tests/gpc-consent.test.mjs",
     "test:pattern-checker": "node --test tests/amigurumi-pattern-checker.test.mjs",
     "test:revenue-path": "node --test tests/revenue-path-check.test.js",
     "test:search-traffic": "node --test tests/legacy-search-redirects.test.mjs tests/seo-content-accuracy.test.mjs tests/sitemap-readiness.test.mjs tests/tool-referral-loop.test.mjs",

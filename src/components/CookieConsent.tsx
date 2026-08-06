@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Script from "next/script";
 import Link from "next/link";
+import { detectGPCClient } from "@/lib/gpc";
 
 type ConsentStatus = "granted" | "denied";
 
@@ -34,10 +35,26 @@ function updateGoogleConsent(analytics: ConsentStatus, ads: ConsentStatus) {
 }
 
 function clearGoogleAnalyticsCookies() {
+  if (typeof document === "undefined") return;
+
+  const domainAttributes = [""];
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname;
+    if (hostname && hostname !== "localhost") {
+      domainAttributes.push(` Domain=${hostname};`);
+      const labels = hostname.split(".");
+      if (labels.length > 2) {
+        domainAttributes.push(` Domain=.${labels.slice(-2).join(".")};`);
+      }
+    }
+  }
+
   for (const cookie of document.cookie.split(";")) {
     const name = cookie.split("=")[0]?.trim();
     if (name === "_ga" || name?.startsWith("_ga_")) {
-      document.cookie = `${name}=; Max-Age=0; Path=/; SameSite=Lax`;
+      for (const domainAttribute of domainAttributes) {
+        document.cookie = `${name}=; Max-Age=0; Path=/;${domainAttribute} SameSite=Lax`;
+      }
     }
   }
 }
@@ -86,8 +103,38 @@ function GoogleServices({ adsenseEnabled }: { adsenseEnabled: boolean }) {
 export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: boolean }) {
   const [visible, setVisible] = useState(false);
   const [consent, setConsent] = useState<StoredConsent>("loading");
+  const [gpcActive, setGpcActive] = useState(false);
+
+  function saveConsent(nextConsent: ConsentState, closeChoices = true) {
+    try {
+      localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(nextConsent));
+    } catch {
+      // The choice still applies to the current page if storage is unavailable.
+    }
+    setConsent(nextConsent);
+    window.dispatchEvent(new CustomEvent(CONSENT_CHANGED_EVENT, { detail: nextConsent }));
+    if (closeChoices) setVisible(false);
+  }
+
+  function enforceGPC(closeChoices = true) {
+    const nextConsent: ConsentState = {
+      analytics: "denied",
+      ads: "denied",
+      timestamp: new Date().toISOString(),
+    };
+    setGpcActive(true);
+    updateGoogleConsent("denied", "denied");
+    clearGoogleAnalyticsCookies();
+    saveConsent(nextConsent, closeChoices);
+  }
 
   useEffect(() => {
+    if (detectGPCClient()) {
+      enforceGPC();
+      return;
+    }
+
+    setGpcActive(false);
     let stored: string | null;
     try {
       stored = localStorage.getItem(CONSENT_STORAGE_KEY);
@@ -119,26 +166,32 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
       setConsent(null);
       setVisible(true);
     }
+    // Consent is initialized once per page load. GPC is checked again before any grant.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    const showChoices = () => setVisible(true);
+    const showChoices = () => {
+      if (detectGPCClient()) {
+        enforceGPC(false);
+      } else {
+        setGpcActive(false);
+      }
+      setVisible(true);
+    };
     window.addEventListener(PRIVACY_CHOICES_EVENT, showChoices);
     return () => window.removeEventListener(PRIVACY_CHOICES_EVENT, showChoices);
+    // The listener is registered once and re-checks the live GPC signal when invoked.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function saveConsent(nextConsent: ConsentState) {
-    try {
-      localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(nextConsent));
-    } catch {
-      // The choice still applies to the current page if storage is unavailable.
-    }
-    setConsent(nextConsent);
-    window.dispatchEvent(new CustomEvent(CONSENT_CHANGED_EVENT, { detail: nextConsent }));
-    setVisible(false);
-  }
-
   function handleAccept() {
+    if (detectGPCClient()) {
+      enforceGPC();
+      return;
+    }
+
+    setGpcActive(false);
     const nextConsent: ConsentState = {
       analytics: "granted",
       ads: "granted",
@@ -149,6 +202,7 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
   }
 
   function handleDecline() {
+    setGpcActive(detectGPCClient());
     const nextConsent: ConsentState = {
       analytics: "denied",
       ads: "denied",
@@ -161,7 +215,7 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
 
   return (
     <>
-      {consent !== "loading" && consent?.analytics === "granted" ? (
+      {consent !== "loading" && !gpcActive && consent?.analytics === "granted" ? (
         <GoogleServices adsenseEnabled={adsenseEnabled && consent.ads === "granted"} />
       ) : null}
       {visible ? (
@@ -173,9 +227,13 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
         >
           <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <p id="cookie-consent-description" className="text-sm text-bark-700 dark:text-cream-300 flex-1">
-              With your permission, Google Analytics helps us understand which tools and product
-              recommendations are useful. Calculator inputs and email addresses are never included in
-              analytics events.{" "}
+              {gpcActive ? (
+                <>Your browser&apos;s Global Privacy Control signal is active, so analytics and advertising remain off. </>
+              ) : (
+                <>With your permission, Google Analytics helps us understand which tools and product
+                  recommendations are useful. Calculator inputs and email addresses are never included in
+                  analytics events. </>
+              )}
               <Link href="/cookies" className="text-sage-600 dark:text-sage-400 underline">
                 Cookie Policy
               </Link>
@@ -188,13 +246,15 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
               >
                 Continue without analytics
               </button>
-              <button
-                type="button"
-                onClick={handleAccept}
-                className="min-h-11 rounded-lg bg-sage-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-sage-700"
-              >
-                Allow analytics
-              </button>
+              {!gpcActive ? (
+                <button
+                  type="button"
+                  onClick={handleAccept}
+                  className="min-h-11 rounded-lg bg-sage-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-sage-700"
+                >
+                  Allow analytics
+                </button>
+              ) : null}
             </div>
           </div>
         </div>
