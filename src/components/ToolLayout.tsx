@@ -13,11 +13,14 @@ interface ToolLayoutProps {
   children: React.ReactNode;
   widgetFirst?: boolean;
   showDefaultReferences?: boolean;
+  pageTitle?: string;
 }
 
-export default function ToolLayout({ slug, children, widgetFirst = false, showDefaultReferences = true }: ToolLayoutProps) {
+export default function ToolLayout({ slug, children, widgetFirst = false, showDefaultReferences = true, pageTitle }: ToolLayoutProps) {
   const tool = getToolBySlug(slug);
   if (!tool) return null;
+
+  const pageTool = pageTitle ? { ...tool, name: pageTitle } : tool;
 
   const related = getRelatedTools(slug, 4);
   const faqs = toolFaqs[slug] || [];
@@ -27,7 +30,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false, showDe
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
       {/* Structured Data: SoftwareApplication + FAQPage + BreadcrumbList */}
-      <ToolSchema tool={tool} faqs={faqs} />
+      <ToolSchema tool={pageTool} faqs={faqs} />
 
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-2 text-sm text-bark-400 mb-4" aria-label="Breadcrumb">
@@ -35,7 +38,7 @@ export default function ToolLayout({ slug, children, widgetFirst = false, showDe
           Home
         </Link>
         <span aria-hidden="true">/</span>
-        <span className="text-bark-600">{tool.name}</span>
+        <span className="text-bark-600">{pageTool.name}</span>
       </nav>
 
       {/* Title & category badge */}
@@ -44,10 +47,10 @@ export default function ToolLayout({ slug, children, widgetFirst = false, showDe
           <div className="flex items-center gap-3">
             <span className="text-3xl" aria-hidden="true">{tool.icon}</span>
             <h1 className="text-2xl sm:text-3xl font-display text-bark-800">
-              {tool.name}
+              {pageTool.name}
             </h1>
           </div>
-          <PrintShareButtons toolName={tool.name} />
+          <PrintShareButtons toolName={pageTool.name} />
         </div>
         <div className="flex items-center gap-3">
           <span className={`inline-block px-2.5 py-0.5 text-xs font-medium rounded-full ${CATEGORY_COLORS[tool.category]}`}>

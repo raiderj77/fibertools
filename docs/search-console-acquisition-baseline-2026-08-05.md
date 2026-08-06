@@ -92,3 +92,11 @@ The live site has a generic page-level share control but no generic calculator-c
 - The protected StitchProof checker and its analytics remain outside this generic loop through the August 10 checkpoint.
 
 Measure qualified referred sessions that arrive through the fixed share campaign and subsequently complete a tool. Do not treat share-button clicks, raw pageviews, or sitemap URL count as success metrics. The event will appear in GA4 after a release; reporting `tool_slug` as a dedicated dimension may require an owner-side analytics setting and is not changed by this local patch.
+
+## Follow-up provider validation
+
+The same current Search Console property and complete reporting window were checked before extending this patch:
+
+- `/blanket-calculator` remains the clearest qualified quick win at 78 clicks, 5,877 impressions, 1.3% CTR, and average position 7.2. Its metadata and answer block already address the recorded yardage queries; the local follow-up aligns the rendered H1 and supporting question with that same intent without changing its calculation or the protected experiment.
+- `/guides/raglan-sweater-guide` recorded 9 clicks, 278 impressions, 3.2% CTR, and average position 10.5. Visible query rows included `raglan sweater construction` at position 12.7 and `raglan construction` at position 11.5. The current title and description already contain those terms, so no additional copy change is justified yet.
+- `/wpi-calculator` and `/yarn-weight-calculator` each recorded zero impressions in the latest 28 days. Over three months, `/wpi-calculator` recorded 1 click, 220 impressions, 0.5% CTR, and average position 38.1; `/yarn-weight-calculator` recorded no data. Because the two pages overlap, do not add broad internal links or consolidate them until a canonical intent decision is supported by stronger evidence.
