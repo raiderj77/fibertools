@@ -57,7 +57,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       "Confusing yardage per skein with the stated skein weight. A 50g skein of fingering weight contains 200+ yards, while a 50g skein of bulky weight contains only 50–60 yards. Using the weight instead of yardage in your calculations results in buying far too little yarn.",
       "Calculating cable sweaters at stockinette consumption rates. Cable patterns use 15–20% more yarn than stockinette due to the twisted stitches consuming extra length. A cable pullover using the stockinette rate will run short by a full skein or more.",
     ],
-    projectExample: "A crafter wants to make a throw blanket measuring 50 by 60 inches in worsted weight (220 yards per 100g skein). Using the calculator with a gauge of 4 stitches per inch and 5 rows per inch in stockinette, the tool estimates approximately 2,160 yards for the base fabric. Adding the 10% buffer produces 2,376 yards. At 220 yards per standard skein, that is 11 skeins. Purchasing 12 skeins from the same dye lot ensures enough for weaving in ends and any tension variation.",
+    projectExample: "A crafter wants to make a 50 by 60 inch throw in worsted weight using stockinette and 220-yard skeins. In Quick Estimate mode, the calculator applies its built-in 1.3-yards-per-square-inch worsted factor: 3,000 square inches multiplied by 1.3 produces 3,900 base yards. The built-in 10% buffer raises the estimate to 4,290 yards, and rounding 4,290 divided by 220 up to a whole skein produces 20 skeins.",
     useCases: [
       "Planning a multi-pattern sweater where cable panels, ribbing, and stockinette sections consume yarn at different rates, enter each section separately and sum the totals.",
       "Buying yarn for a large project like a queen-size blanket where running short means hunting for a discontinued dye lot. The calculator's buffer prevents that mid-project panic.",
@@ -85,8 +85,8 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     howCalculated: {
       title: "How Yarn Yardage Is Calculated",
       paragraphs: [
-        "The core formula multiplies the project area by a yards-per-square-inch factor for your chosen yarn weight. For example, worsted weight yarn in stockinette typically uses about 0.018 yards per square inch of finished fabric, a value derived from standard gauge and average stitch dimensions.",
-        "Consider a worsted weight throw measuring 50 by 60 inches. The area is 3,000 square inches. Multiply by 0.018 to get 54 yards, but that factor already accounts for stitch density, so the real calculation yields approximately 2,160 yards. Adding a 10 percent buffer brings the total to about 2,376 yards.",
+        "Quick Estimate mode multiplies the project area by the calculator's built-in yards-per-square-inch factor for the selected yarn weight, then applies the selected stitch-pattern multiplier and a 10% buffer. The default worsted-weight stockinette factor is 1.3 yards per square inch.",
+        "For a 50 by 60 inch throw, the area is 3,000 square inches. Multiplying 3,000 by the default worsted factor of 1.3 produces 3,900 base yards. The 10% buffer raises the result to 4,290 yards; with 220-yard skeins, the calculator rounds 19.5 up to 20 skeins.",
         "The calculator then divides total yardage by the yards per skein to determine how many skeins to purchase, always rounding up because partial skeins are not sold. This final number is what you bring to the yarn shop with confidence.",
       ],
     },

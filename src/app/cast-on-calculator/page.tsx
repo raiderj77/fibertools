@@ -5,9 +5,9 @@ import AnswerBlock from "@/components/AnswerBlock";
 import CastOnCalculatorTool from "./CastOnCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Cast On Calculator",
+  title: "Cast On Calculator: Stitches for Any Width",
   description:
-    "Calculate how many stitches to cast on for any width with stitch pattern multiple rounding and edge stitch notes.",
+    "Calculate how many stitches to cast on from your measured gauge and target width, with pattern-repeat rounding and edge-stitch guidance.",
   keywords: [
     "cast on calculator",
     "how many stitches to cast on",
@@ -18,21 +18,21 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
   openGraph: {
-    title: "Cast On Calculator",
+    title: "Cast On Calculator: Stitches for Any Width",
     description:
-      "Calculate how many stitches to cast on for any width with stitch pattern multiple rounding and edge stitch notes.",
+      "Calculate how many stitches to cast on from your measured gauge and target width, with pattern-repeat rounding.",
     url: "https://fibertools.app/cast-on-calculator",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Cast On Calculator" }],
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Cast On Calculator: Stitches for Any Width" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Cast On Calculator",
+    title: "Cast On Calculator: Stitches for Any Width",
     description:
-      "Calculate how many stitches to cast on for any width with stitch pattern multiple rounding and edge stitch notes.",
+      "Calculate how many stitches to cast on from your measured gauge and target width, with pattern-repeat rounding.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/cast-on-calculator" },
-  other: { dateModified: "2026-05-05" },
+  other: { dateModified: "2026-08-05" },
 };
 
 export default function CastOnCalculatorPage() {
@@ -41,8 +41,8 @@ export default function CastOnCalculatorPage() {
       <AnswerBlock
         what="A calculator that determines how many stitches to cast on for any target width, with stitch pattern multiple rounding and edge stitch adjustments."
         who="Knitters who need the exact cast-on count for a custom-width project or when substituting yarn at a different gauge."
-        bottomLine="Enter your gauge and desired width to get a cast-on number rounded to your pattern repeat."
-        lastUpdated="2026-05-05"
+        bottomLine="Enter your measured gauge and desired width to calculate how many stitches to cast on, rounded to your pattern repeat."
+        lastUpdated="2026-08-05"
       />
 
       <CastOnCalculatorTool />

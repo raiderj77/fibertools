@@ -7,7 +7,7 @@ import SockCalculatorTool from "./SockCalculatorTool";
 export const metadata: Metadata = {
   title: "Heel Flap & Gusset Sock Calculator - Free Knitting Tool",
   description:
-    "Free heel flap and gusset calculator for sock knitting. Top-down or toe-up stitch counts with short-row heel option. No signup, instant results.",
+    "Free heel flap and gusset calculator for sock knitting, with heel-turn guidance, top-down or toe-up stitch counts, and a short-row heel option.",
   keywords: [
     "sock calculator",
     "sock knitting calculator",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Heel Flap & Gusset Sock Calculator - Free Knitting Tool",
     description:
-      "Free heel flap and gusset calculator for sock knitting. Top-down or toe-up stitch counts with short-row heel option. No signup, instant results.",
+      "Plan a sock heel turn with heel-flap, gusset, top-down, toe-up, and short-row guidance.",
     url: "https://fibertools.app/sock-calculator",
     images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Heel Flap & Gusset Sock Calculator - Free Knitting Tool" }],
   },
@@ -28,21 +28,21 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Heel Flap & Gusset Sock Calculator - Free Knitting Tool",
     description:
-      "Free heel flap and gusset calculator for sock knitting. Top-down or toe-up stitch counts with short-row heel option. No signup, instant results.",
+      "Plan a sock heel turn with heel-flap, gusset, top-down, toe-up, and short-row guidance.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/sock-calculator" },
-  other: { dateModified: "2026-05-05" },
+  other: { dateModified: "2026-08-05" },
 };
 
 export default function SockCalculatorPage() {
   return (
     <ToolLayout slug="sock-calculator" widgetFirst>
       <AnswerBlock
-        what="A sock calculator that provides stitch counts for top-down or toe-up construction with heel flap, gusset, and short-row heel instructions."
+        what="A sock calculator that provides top-down or toe-up stitch counts, heel-flap and gusset numbers, plus heel-turn and short-row guidance."
         who="Sock knitters who need accurate stitch counts for any foot size and want shaping instructions for their preferred heel style."
-        bottomLine="Enter your foot measurements and gauge to get a complete sock blueprint including heel and toe shaping."
-        lastUpdated="2026-05-05"
+        bottomLine="Enter your foot measurements and gauge to get a sock blueprint with heel flap, gusset pickup, heel-turn context, and toe shaping."
+        lastUpdated="2026-08-05"
       />
 
       <SockCalculatorTool />
