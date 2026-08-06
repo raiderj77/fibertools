@@ -5,7 +5,9 @@ import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
 import RavelryPatterns from "@/components/RavelryPatterns";
+import ResultShareButton from "@/components/ResultShareButton";
 import { calculateSkeinPurchase } from "@/lib/skein-purchase.mjs";
+import useToolCompletion from "@/lib/useToolCompletion";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -164,6 +166,7 @@ type Mode = "quick" | "precise";
 
 export default function YarnCalculatorTool() {
   const [units, setUnits] = useState<UnitSystem>("imperial");
+  const [hasInteracted, setHasInteracted] = useState(false);
   const [mode, setMode] = useState<Mode>("quick");
   const [projectType, setProjectType] = useState<ProjectType>("blanket");
   const [sizeIdx, setSizeIdx] = useState(5); // default: throw
@@ -272,6 +275,8 @@ export default function YarnCalculatorTool() {
     };
   }, [dims, mode, skeinYards, skeinWeight, gaugeStitches, gaugeRows, swatchSize, sp, yw, projectType, units]);
 
+  useToolCompletion("yarn-calculator", result, hasInteracted && Boolean(result));
+
   // Partial skein
   const partialResult = useMemo(() => {
     const pw = parseFloat(partialWeight) || 0;
@@ -297,15 +302,17 @@ export default function YarnCalculatorTool() {
     : "";
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8" onChangeCapture={() => setHasInteracted(true)}>
       {/* Controls bar */}
       <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
-        <UnitToggle value={units} onChange={handleUnitsChange} />
+        <div onClickCapture={() => setHasInteracted(true)}>
+          <UnitToggle value={units} onChange={handleUnitsChange} />
+        </div>
 
         <div className="flex flex-col sm:flex-row sm:inline-flex items-stretch sm:items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1 gap-1" role="group" aria-label="Calculation method">
           <button
             type="button"
-            onClick={() => setMode("quick")}
+            onClick={() => { setHasInteracted(true); setMode("quick"); }}
             aria-pressed={mode === "quick"}
             className={`min-h-11 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
               mode === "quick"
@@ -317,7 +324,7 @@ export default function YarnCalculatorTool() {
           </button>
           <button
             type="button"
-            onClick={() => setMode("precise")}
+            onClick={() => { setHasInteracted(true); setMode("precise"); }}
             aria-pressed={mode === "precise"}
             className={`min-h-11 px-4 py-2 text-sm font-medium rounded-lg transition-all duration-150 ${
               mode === "precise"
@@ -600,7 +607,7 @@ export default function YarnCalculatorTool() {
                       </div>
                     </div>
 
-                    <div className="flex gap-2 pt-2">
+                    <div className="flex flex-wrap gap-2 pt-2">
                       <button
                         type="button"
                         onClick={() => {
@@ -620,6 +627,7 @@ export default function YarnCalculatorTool() {
                       >
                         🖨️ Print
                       </button>
+                      <ResultShareButton toolName="Yarn Calculator" toolSlug="yarn-calculator" />
                     </div>
                 </>
               </div>

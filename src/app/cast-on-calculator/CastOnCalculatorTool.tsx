@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import StickyResult from "@/components/StickyResult";
+import ResultShareButton from "@/components/ResultShareButton";
+import useToolCompletion from "@/lib/useToolCompletion";
 
 // ── REFERENCE DATA ──────────────────────────────────────────────────
 
@@ -49,6 +51,8 @@ export default function CastOnCalculatorTool() {
       actualWidth,
     };
   }, [desiredWidth, gaugeStitches, gaugeInches, stitchMultiple]);
+
+  useToolCompletion("cast-on-calculator", result);
 
   // ── STICKY SUMMARY ────────────────────────────────────────────
   const stickySummary = result
@@ -174,19 +178,22 @@ export default function CastOnCalculatorTool() {
               Always swatch to confirm your gauge before casting on.
             </p>
 
-            <button
-              type="button"
-              onClick={() => {
-                const count = result.hasMultiple ? result.roundedCastOn : result.rawCastOn;
-                navigator.clipboard.writeText(
-                  `Cast on ${count} stitches for ${desiredWidth}" width at ${gaugeStitches} sts / ${gaugeInches}"`
-                );
-              }}
-              className="btn-secondary text-sm"
-              aria-label="Copy cast on count to clipboard"
-            >
-              Copy result
-            </button>
+            <div className="flex flex-wrap gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  const count = result.hasMultiple ? result.roundedCastOn : result.rawCastOn;
+                  navigator.clipboard.writeText(
+                    `Cast on ${count} stitches for ${desiredWidth}" width at ${gaugeStitches} sts / ${gaugeInches}"`
+                  );
+                }}
+                className="btn-secondary text-sm"
+                aria-label="Copy cast on count to clipboard"
+              >
+                Copy result
+              </button>
+              <ResultShareButton toolName="Cast On Calculator" toolSlug="cast-on-calculator" />
+            </div>
           </div>
         )}
       </StickyResult>

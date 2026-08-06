@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import StickyResult from "@/components/StickyResult";
+import ResultShareButton from "@/components/ResultShareButton";
+import useToolCompletion from "@/lib/useToolCompletion";
 
 // ── TYPES ─────────────────────────────────────────────────────────
 
@@ -83,6 +85,9 @@ export default function SockCalculatorTool() {
       targetCirc: +targetCirc.toFixed(1),
     };
   }, [footCirc, footLength, gaugeSts, rowGauge]);
+
+  const activeResult = tab === "top-down" ? topDownResult : toeUpResult;
+  useToolCompletion("sock-calculator", activeResult);
 
   // ── STICKY SUMMARY ────────────────────────────────────────────────
   const stickySummary = (() => {
@@ -275,17 +280,20 @@ export default function SockCalculatorTool() {
                   Always swatch to confirm gauge before starting your socks.
                 </p>
 
-                <button
-                  type="button"
-                  onClick={() => {
-                    const text = `Top-Down Sock: Cast on ${topDownResult.castOn}, Heel: ${topDownResult.heelStitches} sts / ${topDownResult.heelFlapRows} rows, Gusset pickup: ${topDownResult.gussetPickup} each side, Foot: ${topDownResult.footRows} rows`;
-                    navigator.clipboard.writeText(text);
-                  }}
-                  className="btn-secondary text-sm"
-                  aria-label="Copy results to clipboard"
-                >
-                  Copy results
-                </button>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const text = `Top-Down Sock: Cast on ${topDownResult.castOn}, Heel: ${topDownResult.heelStitches} sts / ${topDownResult.heelFlapRows} rows, Gusset pickup: ${topDownResult.gussetPickup} each side, Foot: ${topDownResult.footRows} rows`;
+                      navigator.clipboard.writeText(text);
+                    }}
+                    className="btn-secondary text-sm"
+                    aria-label="Copy results to clipboard"
+                  >
+                    Copy results
+                  </button>
+                  <ResultShareButton toolName="Sock Calculator" toolSlug="sock-calculator" />
+                </div>
               </div>
             )}
           </StickyResult>
@@ -398,17 +406,20 @@ export default function SockCalculatorTool() {
                   Always swatch to confirm gauge before starting your socks.
                 </p>
 
-                <button
-                  type="button"
-                  onClick={() => {
-                    const text = `Toe-Up Sock: ${toeUpResult.toeStartPerNeedle} sts/needle start, ${toeUpResult.toeIncreaseRounds} inc rounds to ${toeUpResult.totalSts} sts, Foot: ${toeUpResult.footRows} rows, Heel: ${toeUpResult.heelCenterSts} center / ${toeUpResult.shortRowsEachSide} short rows each side`;
-                    navigator.clipboard.writeText(text);
-                  }}
-                  className="btn-secondary text-sm"
-                  aria-label="Copy results to clipboard"
-                >
-                  Copy results
-                </button>
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const text = `Toe-Up Sock: ${toeUpResult.toeStartPerNeedle} sts/needle start, ${toeUpResult.toeIncreaseRounds} inc rounds to ${toeUpResult.totalSts} sts, Foot: ${toeUpResult.footRows} rows, Heel: ${toeUpResult.heelCenterSts} center / ${toeUpResult.shortRowsEachSide} short rows each side`;
+                      navigator.clipboard.writeText(text);
+                    }}
+                    className="btn-secondary text-sm"
+                    aria-label="Copy results to clipboard"
+                  >
+                    Copy results
+                  </button>
+                  <ResultShareButton toolName="Sock Calculator" toolSlug="sock-calculator" />
+                </div>
               </div>
             )}
           </StickyResult>

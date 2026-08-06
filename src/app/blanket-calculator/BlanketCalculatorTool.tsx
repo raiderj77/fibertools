@@ -4,6 +4,8 @@ import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
+import ResultShareButton from "@/components/ResultShareButton";
+import useToolCompletion from "@/lib/useToolCompletion";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -169,6 +171,8 @@ export default function BlanketCalculatorTool() {
       hasMultiple: mult > 0 && roundedStitches !== stitchesNeeded,
     };
   }, [units, sizeIdx, useCustom, customW, customL, pillowTuck, overhang, gaugeStitches, gaugeRows, gaugeOver, swatchWidth, swatchHeight, swatchGrams, stitchMultiple, multipleExtra, skeinYards, skeinGrams, yw.label]);
+
+  useToolCompletion("blanket-calculator", result, Boolean(result?.hasSwatchUsage));
 
   const stickySummary = result?.hasSwatchUsage && result.yards !== null && result.meters !== null && result.skeins !== null
     ? `${units === "metric" ? result.meters.toLocaleString() + " m" : result.yards.toLocaleString() + " yds"} • ${result.skeins} skein${result.skeins !== 1 ? "s" : ""}`
@@ -389,13 +393,14 @@ export default function BlanketCalculatorTool() {
                   </p>
                 )}
 
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <button type="button" onClick={() => {
                     const yarnText = result.hasSwatchUsage ? `${result.yards} yds (${result.meters} m), ${result.skeins} skeins` : "add swatch usage for yarn estimate";
                     const text = `${useCustom ? "Custom" : BLANKET_SIZES[sizeIdx].label} blanket: ${result.hasGauge ? `${result.stitches} sts × ${result.rows} rows, ` : ""}${yarnText}`;
                     navigator.clipboard.writeText(text);
                   }} className="btn-secondary text-sm">📋 Copy</button>
                   <button type="button" onClick={() => window.print()} className="btn-secondary text-sm">🖨️ Print</button>
+                  <ResultShareButton toolName="Blanket Calculator" toolSlug="blanket-calculator" />
                 </div>
               </div>
             )}

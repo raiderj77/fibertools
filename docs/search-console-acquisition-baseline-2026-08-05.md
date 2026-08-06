@@ -69,6 +69,26 @@ Primary outcomes for the next valid comparison window: qualified organic visits 
 - The most recent IndexNow workflow for current `main` completed successfully on August 3, 2026. The workflow fails when the provider does not return an accepted response, but a successful submission is not proof that a participating engine indexed a URL.
 - No sitemap submission, indexing request, IndexNow submission, or provider setting was changed during this work.
 
-## Deferred, evidence-backed crawl finding
+## Local crawl-recovery follow-up
 
-Several legacy `/blog/...` URLs still receive impressions near page one while redirecting to the generic `/guides` page. They need query-level review and one-to-one canonical replacements in a separate redirect patch. They were not changed here because this acquisition pass is deliberately limited to titles, snippets, answer blocks, internal links, and the already-started calculator correction.
+The following legacy URLs still receive impressions near page one while the live site sends them to the generic `/guides` page. Four have close maintained replacements. A current guide is used where it preserves the retired page's informational intent; calculator-intent pages go directly to their tool.
+
+| Legacy URL | Clicks | Impressions | CTR | Position | Local decision |
+| --- | ---: | ---: | ---: | ---: | --- |
+| `/blog/sock-knitting-guide` | 0 | 258 | 0% | 8.4 | `/sock-calculator` |
+| `/blog/granny-square-guide` | 1 | 192 | 0.5% | 11.5 | `/guides/granny-square-blanket-guide` |
+| `/blog/sweater-yarn-estimation-guide` | 1 | 154 | 0.6% | 9.9 | `/yarn-calculator` |
+| `/blog/project-time-estimation-guide` | 1 | 119 | 0.8% | 8.0 | No exact maintained replacement; retain the generic fallback rather than misdirect time-estimation intent to a cost calculator. |
+| `/blog/cast-on-guide` | 0 | 53 | 0% | 10.3 | `/cast-on-calculator` |
+
+The local redirect patch replaces only the four defensible generic fallbacks and records all five metrics above as its before-state. The local sitemap patch would expand coverage from 54 to 73 URLs by adding 18 registered ready tools plus the standalone `/yarn-weight-calculator`; all 19 are self-canonical and indexable. It also removes fabricated current-date modification signals. `/increase-decrease-calculator` and `/uk-to-us-converter` remain omitted because they are adjacent to the protected StitchProof experiment; revisit those two after the August 11 evidence review. No redirect, sitemap, or indexing change is live until an approved release occurs.
+
+## Local qualified-traffic measurement loop
+
+The live site has a generic page-level share control but no generic calculator-completion event. The local follow-up adds a result-stage referral loop to `/blanket-calculator`, `/yarn-calculator`, `/cast-on-calculator`, `/sock-calculator`, and `/yarn-weight-calculator` only:
+
+- Shared links contain the canonical tool path and fixed `tool_share / referral / calculator_result` campaign values. Incoming query parameters, fragments, calculator inputs, and results are discarded.
+- After analytics consent, the first result produced after user interaction emits `tool_completion` with only the fixed `tool_slug`. It never sends measurements, calculated values, project details, or other user-entered data. Blanket completion requires a swatch-based yarn result, not the default size view.
+- The protected StitchProof checker and its analytics remain outside this generic loop through the August 10 checkpoint.
+
+Measure qualified referred sessions that arrive through the fixed share campaign and subsequently complete a tool. Do not treat share-button clicks, raw pageviews, or sitemap URL count as success metrics. The event will appear in GA4 after a release; reporting `tool_slug` as a dedicated dimension may require an owner-side analytics setting and is not changed by this local patch.

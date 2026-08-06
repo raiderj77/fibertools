@@ -3,37 +3,21 @@ import { tools } from "@/lib/tools";
 import { getAllGuides } from "@/lib/guides";
 
 const BASE_URL = "https://fibertools.app";
-const TODAY = new Date().toISOString().split("T")[0];
 
-const NOINDEX_TOOL_SLUGS = new Set([
-  "blocking-calculator",
-  "c2c-calculator",
-  "color-pooling-calculator",
-  "cross-stitch-calculator",
-  "gauge-calculator",
-  "granny-square-planner",
-  "hat-calculator",
+// Keep experiment-adjacent discovery unchanged until the protected StitchProof
+// evidence review. Every other ready, canonical tool belongs in the sitemap.
+const EXPERIMENT_ADJACENT_TOOL_SLUGS = new Set([
   "increase-decrease-calculator",
-  "needle-converter",
-  "project-cost-calculator",
-  "raglan-calculator",
-  "spinning-ratio-calculator",
-  "stash-estimator",
-  "stitch-counter",
-  "stitch-pattern-calculator",
-  "stripe-generator",
-  "thread-converter",
   "uk-to-us-converter",
-  "vintage-pattern-decoder",
-  "wpi-calculator",
 ]);
+
+const STANDALONE_TOOL_SLUGS = ["yarn-weight-calculator"] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const toolPages = tools
-    .filter((t) => t.ready && !NOINDEX_TOOL_SLUGS.has(t.slug))
+    .filter((t) => t.ready && !EXPERIMENT_ADJACENT_TOOL_SLUGS.has(t.slug))
     .map((t) => ({
       url: `${BASE_URL}/${t.slug}`,
-      lastModified: new Date(TODAY),
       changeFrequency: "monthly" as const,
       priority: t.tier === 1 ? 0.9 : t.tier === 2 ? 0.8 : 0.7,
     }));
@@ -43,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(g.date),
     changeFrequency: "monthly" as const,
     priority: 0.65,
+  }));
+
+  const standaloneToolPages = STANDALONE_TOOL_SLUGS.map((slug) => ({
+    url: `${BASE_URL}/${slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
   }));
 
   const staticPages = [
@@ -66,7 +56,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/best-yarn-for-amigurumi", priority: 0.85, freq: "monthly" as const },
   ].map((p) => ({
     url: `${BASE_URL}${p.path}`,
-    lastModified: new Date(TODAY),
     changeFrequency: p.freq,
     priority: p.priority,
   }));
@@ -74,6 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...staticPages,
     ...toolPages,
+    ...standaloneToolPages,
     ...guidePages,
   ];
 }
