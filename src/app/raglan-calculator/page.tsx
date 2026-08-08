@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ToolLayout from "@/components/ToolLayout";
 import AnswerBlock from "@/components/AnswerBlock";
 import RaglanCalculatorTool from "./RaglanCalculatorTool";
@@ -32,6 +33,24 @@ export default function RaglanCalculatorPage() {
         <h2>Raglan Results and Increase Round Schedule</h2>
       </div>
       <RaglanCalculatorTool />
+      <section className="mt-10">
+        <h2 className="section-heading">Plan the rest of your raglan project</h2>
+        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
+          Use the{" "}
+          <Link href="/yarn-calculator" className="text-sage-700 dark:text-sage-300 underline underline-offset-2">
+            yarn calculator
+          </Link>{" "}
+          to estimate yardage from the same gauge, and the{" "}
+          <Link href="/cast-on-calculator" className="text-sage-700 dark:text-sage-300 underline underline-offset-2">
+            cast-on calculator
+          </Link>{" "}
+          when a hem, cuff, or separate neckline needs to fit a stitch-pattern repeat. After the yoke split, the{" "}
+          <Link href="/sleeve-calculator" className="text-sage-700 dark:text-sage-300 underline underline-offset-2">
+            sleeve calculator
+          </Link>{" "}
+          can distribute taper decreases for the remaining sleeve length.
+        </p>
+      </section>
     </ToolLayout>
   );
 }

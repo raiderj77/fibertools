@@ -2,15 +2,17 @@
 import { useState } from "react";
 import Link from "next/link";
 import { subscribeToNewsletter } from "@/app/actions/subscribe";
+import { detectGPCClient } from "@/lib/gpc";
+import { recordNewsletterSignupSuccess } from "@/lib/newsletter-analytics.mjs";
 
 type SignupSource = "home_survival_kit" | "newsletter_page";
 
 function recordSignupSuccess(source: SignupSource) {
-  const analyticsWindow = window as typeof window & {
-    gtag?: (...args: unknown[]) => void;
-  };
-  analyticsWindow.gtag?.("event", "newsletter_signup_success", {
-    signup_source: source,
+  recordNewsletterSignupSuccess({
+    source,
+    storage: window.localStorage,
+    gpcActive: detectGPCClient(),
+    getGtag: () => window.gtag,
   });
 }
 

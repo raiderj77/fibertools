@@ -118,6 +118,16 @@ export default function YarnCalculatorPage() {
           more than pullovers because front bands and button bands add linear yardage.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
+          Once the yardage is planned, use the{" "}
+          <Link
+            href="/raglan-calculator"
+            className="text-sage-700 dark:text-sage-300 underline underline-offset-2"
+          >
+            raglan calculator
+          </Link>{" "}
+          to turn your gauge and finished measurements into neck cast-on, section, and increase-round counts.
+        </p>
+        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           Fiber content affects apparent weight, not always yardage. Wool sweaters feel substantial at
           lower yardage because wool has more loft. Cotton at the same yardage feels heavier and drapier
           because cotton is denser. When substituting fiber types, match yards-per-100g on the label

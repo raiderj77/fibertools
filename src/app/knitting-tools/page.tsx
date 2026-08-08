@@ -177,8 +177,14 @@ export default function KnittingToolsPage() {
             tension, not a chart approximation.
           </p>
           <p className="leading-relaxed">
-            The garment tools handle calculations that trip up even experienced knitters. The raglan
-            calculator generates a full shaping schedule, increase frequency, stitch distribution, and
+            The garment tools handle calculations that trip up even experienced knitters. The{" "}
+            <Link
+              href="/raglan-calculator"
+              className="text-sage-700 dark:text-sage-300 underline underline-offset-2"
+            >
+              raglan calculator
+            </Link>{" "}
+            generates a full shaping schedule, increase frequency, stitch distribution, and
             body/sleeve split, from nothing more than your gauge and target finished measurements. The
             <Link
               href="/sock-calculator"

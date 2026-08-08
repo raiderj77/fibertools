@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
+import { recordNewsletterSignupSuccess } from "../src/lib/newsletter-analytics.mjs";
 
 const read = (path) => fs.readFileSync(path, "utf8");
 
@@ -30,6 +31,7 @@ test("newsletter action validates input and never returns provider internals", (
 
 test("newsletter has a shareable promise, immediate download, and privacy-safe measurement", () => {
   const signup = read("src/components/BeehiivSignup.tsx");
+  const analytics = read("src/lib/newsletter-analytics.mjs");
   const page = read("src/app/newsletter/page.tsx");
   const sitemap = read("src/app/sitemap.ts");
   const footer = read("src/components/Footer.tsx");
@@ -38,9 +40,56 @@ test("newsletter has a shareable promise, immediate download, and privacy-safe m
   assert.match(page, /Swatch Signal/);
   assert.match(page, /No affiliate links inside the email/);
   assert.match(signup, /href="\/survival-kit\.pdf"/);
-  assert.match(signup, /newsletter_signup_success/);
-  assert.match(signup, /signup_source: source/);
-  assert.doesNotMatch(signup, /gtag[^\n]+email|email[^\n]+gtag/);
+  assert.match(signup, /recordNewsletterSignupSuccess/);
+  assert.match(analytics, /newsletter_signup_success/);
+  assert.match(analytics, /signup_source: source/);
+  assert.doesNotMatch(`${signup}\n${analytics}`, /gtag[^\n]+email|email[^\n]+gtag/);
   assert.match(sitemap, /\/newsletter/);
   assert.match(footer, /\/newsletter/);
+});
+
+function consentStorage(status) {
+  return {
+    getItem() {
+      return JSON.stringify({ analytics: status, ads: status });
+    },
+  };
+}
+
+test("newsletter success measurement requires current consent and honors GPC", () => {
+  const calls = [];
+  const getGtag = () => (...args) => calls.push(args);
+
+  assert.equal(
+    recordNewsletterSignupSuccess({
+      source: "newsletter_page",
+      storage: consentStorage("denied"),
+      gpcActive: false,
+      getGtag,
+    }),
+    false,
+  );
+  assert.equal(
+    recordNewsletterSignupSuccess({
+      source: "newsletter_page",
+      storage: consentStorage("granted"),
+      gpcActive: true,
+      getGtag,
+    }),
+    false,
+  );
+  assert.deepEqual(calls, []);
+
+  assert.equal(
+    recordNewsletterSignupSuccess({
+      source: "newsletter_page",
+      storage: consentStorage("granted"),
+      gpcActive: false,
+      getGtag,
+    }),
+    true,
+  );
+  assert.deepEqual(calls, [
+    ["event", "newsletter_signup_success", { signup_source: "newsletter_page" }],
+  ]);
 });
