@@ -39,7 +39,7 @@
 
 - After the protected window, test title and description improvements for blanket, yarn and cast-on pages one cohort at a time; preserve page quality and measure Search Console CTR, not rankings alone.
 - Maintain the formula library as a “show the work” reference with formulas, worked examples, limitations and official Craft Yarn Council sources.
-- Add deep internal links from relevant calculator explanations to the exact formula section, without turning every page into repetitive SEO copy.
+- The active draft PR now connects the knitting hub, yarn, raglan, cast-on, and sock journeys with contextual links where the next calculation is genuinely useful. Keep this cluster focused rather than turning every page into repetitive SEO copy.
 - Publish original measurements: controlled swatch comparisons, calculator validation examples, yarn-label field studies and transparent correction logs. These are more defensible and linkable than generic AI-written craft articles.
 - Continue structured answer blocks, canonical metadata and citation hygiene. Do not mass-produce similar posts or claim unsupported audience, accuracy, savings or sales statistics.
 
@@ -61,7 +61,7 @@
 ## Conversion repairs
 
 - The newsletter server action now validates the address, normalizes it and returns generic visitor-safe errors rather than provider bodies or configuration details.
-- Instrument the newsletter success state only after consent and only with a generic event. Do not send the email address or craft choices to analytics.
+- The newsletter success state now emits a generic source-only event only when current analytics consent is granted and GPC is inactive. It does not send the email address, craft choices, or provider response to analytics.
 - Track tool completion, contextual affiliate click, paid-product CTA, checkout referral and verified storefront sale as separate facts.
 - Preserve direct links and campaign parameters with a privacy-safe fixed taxonomy; never include pasted patterns or calculated results in analytics.
 
