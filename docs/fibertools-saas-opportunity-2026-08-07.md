@@ -1,7 +1,9 @@
 # FiberTools SaaS opportunity - evidence-backed product decision
 
-**Status:** discovery complete; paid infrastructure not authorized or justified yet  
-**Recommended wedge:** Swatch-to-Finish Project Lab  
+**Status:** discovery complete; paid infrastructure not authorized or justified yet
+
+**Recommended wedge:** Swatch-to-Finish Project Lab
+
 **Release boundary:** do not change the protected StitchProof experiment before the August 11 evidence review
 
 ## Decision

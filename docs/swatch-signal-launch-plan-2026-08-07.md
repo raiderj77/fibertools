@@ -1,7 +1,9 @@
 # Swatch Signal newsletter launch plan
 
-**Promise:** one useful fiber-math note most weeks  
-**Primary job:** bring a maker back to a relevant FiberTools calculator  
+**Promise:** one useful fiber-math note most weeks
+
+**Primary job:** bring a maker back to a relevant FiberTools calculator
+
 **Secondary jobs:** learn which project problems repeat, distribute original citation assets, and introduce paid products without turning the email into an advertisement
 
 ## Why this newsletter can earn attention
@@ -26,22 +28,26 @@ The kit has been rebuilt as a sourced, seven-page fillable and printable asset. 
 
 ### Message 0 - immediately
 
-**Subject:** Your FiberTools Survival Kit is ready  
+**Subject:** Your FiberTools Survival Kit is ready
+
 Deliver the direct `/download` link, explain that calculators remain free without an account, set the "most weeks" expectation, and provide one-click unsubscribe.
 
 ### Message 1 - day 2
 
-**Subject:** The swatch measurement most people skip  
+**Subject:** The swatch measurement most people skip
+
 Show untreated versus treated width and explain why post-treatment evidence is stronger. Link to the Gauge Calculator and Formula Library.
 
 ### Message 2 - day 5
 
-**Subject:** Use your own swatch to estimate yarn  
+**Subject:** Use your own swatch to estimate yarn
+
 Explain area-based swatch consumption, name its limitations, and link to the Blanket or Yarn Calculator. Do not place Amazon affiliate links in the email.
 
 ### Message 3 - day 9
 
-**Subject:** What should FiberTools connect next?  
+**Subject:** What should FiberTools connect next?
+
 Offer fixed choices: compare two yarn scenarios; save a project passport; translate gauge to a stitch multiple; or audit repeat math. Record only the selected category, not free-text pattern or project data.
 
 ## First eight editorial issues
