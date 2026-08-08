@@ -187,8 +187,8 @@ export default function ContactPage() {
           </h3>
           <p>
             Yes. Every calculator and tool on FiberTools is completely free to
-            use. The site is supported by ads, which allows us to keep all tools
-            available without requiring a subscription or login. We also offer
+            use. Clearly disclosed affiliate commissions help support the site
+            without requiring a subscription or login. We also offer
             offline access through our progressive web app, so you can use your
             favorite tools even without an internet connection.
           </p>

@@ -27,6 +27,13 @@ This is an append-only record. Add corrections and outcomes as new dated entries
 
 No outcome yet. Add the first result as a new dated entry on or before August 10, 2026.
 
+#### August 5, 2026 — verified interim Amazon outcome
+
+- Amazon Associates reporting was filtered to tracking ID `ytearnings-20` and the experiment window available at the time, July 12 through August 4, 2026. The report was last updated August 4 at 00:00.
+- The filtered report recorded 523 clicks, 2 ordered items, 2 shipped items, a 0.38% conversion rate, and $6.92 in commissions. Bounties and bonuses were $0.
+- This current provider result meets the published primary outcome of at least one verified commission. Keep the recommendation placement and products unchanged through August 10, then recheck the complete window on August 11 for returns, reversals, or later activity before closing the experiment.
+- Only the Amazon orders and commissions are treated as the revenue outcome. Click counts remain diagnostic and are not used to claim causation or site-level conversion performance.
+
 ## FT-PRODUCT-001 — StitchProof demand test
 
 - **Status:** Active when the amigurumi pattern checker reaches production

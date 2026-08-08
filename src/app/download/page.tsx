@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Your Free Yarn Crafters Survival Kit",
-  description: "Download your free Yarn Crafters Survival Kit, a quick-reference guide for knitters and crocheters.",
+  description: "Download the sourced, fillable seven-page Yarn Crafters Survival Kit for swatches, gauge, yarn planning, and project rescue.",
   alternates: { canonical: "/download" },
   robots: { index: false },
 };
@@ -20,7 +20,7 @@ export default function DownloadPage() {
           You&rsquo;re in!
         </h1>
         <p className="text-stone-600 text-lg mb-10 leading-relaxed">
-          Welcome to FiberTools. Your Yarn Crafters Survival Kit is ready to download.
+          Welcome to FiberTools. Your sourced, fillable seven-page Yarn Crafters Survival Kit is ready to download.
         </p>
 
         <a

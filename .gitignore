@@ -8,6 +8,11 @@
 
 # testing
 /coverage
+/tmp/
+
+# python build artifacts
+__pycache__/
+*.py[cod]
 
 # next.js
 /.next/

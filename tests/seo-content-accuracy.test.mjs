@@ -7,10 +7,13 @@ const blanketTool = read("src/app/blanket-calculator/BlanketCalculatorTool.tsx")
 const blanketPage = read("src/app/blanket-calculator/page.tsx");
 const castOnPage = read("src/app/cast-on-calculator/page.tsx");
 const homepage = read("src/app/page.tsx");
+const knittingToolsPage = read("src/app/knitting-tools/page.tsx");
+const raglanPage = read("src/app/raglan-calculator/page.tsx");
 const sockPage = read("src/app/sock-calculator/page.tsx");
 const toolContent = read("src/lib/toolContent.ts");
 const toolLayout = read("src/components/ToolLayout.tsx");
 const tools = read("src/lib/tools.ts");
+const yarnPage = read("src/app/yarn-calculator/page.tsx");
 const yarnTool = read("src/app/yarn-calculator/YarnCalculatorTool.tsx");
 
 test("does not publish the unsupported FiberTools audience and sales statistics", () => {
@@ -49,4 +52,21 @@ test("keeps Search Console quick-win copy mapped to the correct canonical tools"
   assert.match(castOnPage, /how many stitches to cast on/);
   assert.match(sockPage, /heel-turn guidance/);
   assert.match(tools, /"blanket-calculator": \["cast-on-calculator", "yarn-calculator"/);
+});
+
+test("keeps the contextual yarn, cast-on, sock, and raglan journey connected", () => {
+  for (const path of [
+    "/yarn-calculator",
+    "/cast-on-calculator",
+    "/sock-calculator",
+    "/raglan-calculator",
+  ]) {
+    assert.match(knittingToolsPage, new RegExp(`href="${path}"`));
+  }
+
+  assert.match(yarnPage, /href="\/raglan-calculator"/);
+  assert.match(castOnPage, /href="\/sock-calculator"/);
+  assert.match(sockPage, /href="\/cast-on-calculator"/);
+  assert.match(raglanPage, /href="\/yarn-calculator"/);
+  assert.match(raglanPage, /href="\/cast-on-calculator"/);
 });
