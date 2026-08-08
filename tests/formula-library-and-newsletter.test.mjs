@@ -27,3 +27,20 @@ test("newsletter action validates input and never returns provider internals", (
   assert.doesNotMatch(action, /JSON\.stringify\(body\)|Network error:|beehiiv:/);
   assert.doesNotMatch(action, /apiKey[^\n]+error|pubId[^\n]+error/);
 });
+
+test("newsletter has a shareable promise, immediate download, and privacy-safe measurement", () => {
+  const signup = read("src/components/BeehiivSignup.tsx");
+  const page = read("src/app/newsletter/page.tsx");
+  const sitemap = read("src/app/sitemap.ts");
+  const footer = read("src/components/Footer.tsx");
+
+  assert.match(page, /canonical: "\/newsletter"/);
+  assert.match(page, /Swatch Signal/);
+  assert.match(page, /No affiliate links inside the email/);
+  assert.match(signup, /href="\/survival-kit\.pdf"/);
+  assert.match(signup, /newsletter_signup_success/);
+  assert.match(signup, /signup_source: source/);
+  assert.doesNotMatch(signup, /gtag[^\n]+email|email[^\n]+gtag/);
+  assert.match(sitemap, /\/newsletter/);
+  assert.match(footer, /\/newsletter/);
+});

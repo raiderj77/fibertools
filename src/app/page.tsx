@@ -310,10 +310,10 @@ export default function HomePage() {
         <div className="rounded-2xl bg-plum-50 dark:bg-bark-800 border border-plum-200 dark:border-bark-700 px-8 py-10 text-center">
           <div className="text-3xl mb-3">🧶</div>
           <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-2">
-            Get the free Yarn Crafters Survival Kit
+            Get Swatch Signal + the free Survival Kit
           </h2>
           <p className="text-bark-500 dark:text-bark-400 text-sm mb-6 max-w-md mx-auto">
-            Yarn weight, gauge math, and needle sizing in one quick-reference guide. Free, delivered by email.
+            One practical fiber-math note most weeks, plus the printable yarn, gauge, and sizing reference immediately after signup.
           </p>
           <BeehiivSignup />
         </div>

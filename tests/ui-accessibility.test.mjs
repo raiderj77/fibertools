@@ -46,8 +46,8 @@ test("provides a focusable main landmark and keyboard-operable mobile navigation
 });
 
 test("labels the newsletter, cookie choices, and high-traffic calculator controls", () => {
-  assert.match(newsletter, /htmlFor="newsletter-email"/);
-  assert.match(newsletter, /id="newsletter-email"/);
+  assert.match(newsletter, /htmlFor={`newsletter-email-\${source}`}/);
+  assert.match(newsletter, /id={`newsletter-email-\${source}`}/);
   assert.match(cookieConsent, /aria-describedby="cookie-consent-description"/);
 
   for (const id of [

@@ -18,6 +18,7 @@ export default function Footer() {
     { href: "/blog", label: "Blog" },
     { href: "/guides", label: "Guides" },
     { href: "/formula-library", label: "Formula Library" },
+    { href: "/newsletter", label: "Swatch Signal" },
     { href: "/", label: "All Tools" },
   ];
 
