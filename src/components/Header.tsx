@@ -30,6 +30,7 @@ export default function Header() {
     { href: "/weaving-tools", label: "Weaving Tools" },
     { href: "/blog", label: "Blog" },
     { href: "/guides", label: "Guides" },
+    { href: "/formula-library", label: "Formulas" },
   ];
 
   return (

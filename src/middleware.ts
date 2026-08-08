@@ -4,7 +4,8 @@ export function middleware(request: NextRequest) {
   const response = NextResponse.next()
   const gpc = request.headers.get('sec-gpc') === '1'
   if (gpc) {
-    // empire_gpc cookie is readable by the client-side Cookiebot auto-decline script.
+    // The consent component reads this bridge cookie when the browser exposes
+    // Sec-GPC without exposing navigator.globalPrivacyControl to client code.
     // httpOnly: false is intentional, the consent banner JS must read this value.
     response.cookies.set('empire_gpc', '1', {
       httpOnly: false,
@@ -12,6 +13,10 @@ export function middleware(request: NextRequest) {
       secure: true,
       maxAge: 60 * 60 * 24 * 30,
     })
+  } else if (request.cookies.has('empire_gpc')) {
+    // Keep the bridge aligned with the current request instead of leaving a
+    // stale opt-out cookie after the browser's GPC signal is turned off.
+    response.cookies.delete('empire_gpc')
   }
   return response
 }

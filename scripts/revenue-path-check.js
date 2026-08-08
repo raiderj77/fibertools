@@ -1,10 +1,12 @@
 const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const pathModule = require("node:path");
 
 const BASE_URL = (process.env.FIBERTOOLS_BASE_URL || "https://fibertools.app").replace(/\/$/, "");
 const ASSOCIATE_TAG = "ytearnings-20";
 const REQUIRED_DISCLOSURE = "As an Amazon Associate I earn from qualifying purchases.";
 
-const MONETIZED_PATHS = [
+const CALCULATOR_PATHS = [
   "/blanket-calculator",
   "/amigurumi-shapes",
   "/circle-calculator",
@@ -16,6 +18,52 @@ const MONETIZED_PATHS = [
   "/raglan-calculator",
   "/color-pooling-calculator",
 ];
+
+const BUYING_GUIDE_PATHS = [
+  "/best-crochet-hooks",
+  "/best-knitting-needles",
+  "/best-yarn-for-amigurumi",
+  "/best-yarn-for-beginners",
+  "/best-yarn-for-blankets",
+];
+
+const MONETIZED_PATHS = [...CALCULATOR_PATHS, ...BUYING_GUIDE_PATHS];
+const BUYING_GUIDE_PATH_SET = new Set(BUYING_GUIDE_PATHS);
+
+function validateDelegatedTrackingSource({ layoutSource, trackerSource }) {
+  assert.match(
+    layoutSource,
+    /<AffiliateClickTracker\s*\/>/,
+    "Global AffiliateClickTracker must remain mounted before guides use delegated tracking",
+  );
+  assert.ok(
+    trackerSource.includes('a[href*="amazon.com"]'),
+    "Delegated tracker must retain the Amazon link fallback",
+  );
+  assert.ok(
+    trackerSource.includes('link.dataset.affiliateTracked === "true"'),
+    "Delegated tracker must avoid double-counting links with direct tracking",
+  );
+  assert.ok(
+    trackerSource.includes('window.gtag("event", "affiliate_click"'),
+    "Delegated tracker must emit affiliate_click",
+  );
+  for (const field of ["page_path", "placement", "content_type", "merchant", "product_category"]) {
+    assert.ok(trackerSource.includes(field), `Delegated tracking is missing ${field}`);
+  }
+
+  return true;
+}
+
+function validateLocalDelegatedTrackingSource() {
+  return validateDelegatedTrackingSource({
+    layoutSource: fs.readFileSync(pathModule.join(process.cwd(), "src/app/layout.tsx"), "utf8"),
+    trackerSource: fs.readFileSync(
+      pathModule.join(process.cwd(), "src/components/AffiliateClickTracker.tsx"),
+      "utf8",
+    ),
+  });
+}
 
 function decodeHtmlAttribute(value) {
   return value
@@ -29,7 +77,13 @@ function attribute(tag, name) {
   return match ? decodeHtmlAttribute(match[1]) : null;
 }
 
-function validateRevenuePage({ path, status, headers = {}, html }) {
+function validateRevenuePage({
+  path,
+  status,
+  headers = {},
+  html,
+  requireTrackingMetadata = !BUYING_GUIDE_PATH_SET.has(path),
+}) {
   assert.equal(status, 200, `${path}: expected HTTP 200, received ${status}`);
   assert.match(headers["content-type"] || "", /text\/html/i, `${path}: response is not HTML`);
   assert.doesNotMatch(headers["x-robots-tag"] || "", /noindex/i, `${path}: X-Robots-Tag blocks indexing`);
@@ -69,12 +123,25 @@ function validateRevenuePage({ path, status, headers = {}, html }) {
     assert.ok(rel.includes("sponsored"), `${path}: affiliate link is missing rel=sponsored`);
     assert.ok(rel.includes("nofollow"), `${path}: affiliate link is missing rel=nofollow`);
     assert.ok(rel.includes("noopener"), `${path}: affiliate link is missing rel=noopener`);
-    assert.equal(attribute(link, "data-affiliate-tracked"), "true", `${path}: click tracking marker is missing`);
-    assert.ok(attribute(link, "data-affiliate-placement"), `${path}: placement label is missing`);
-    assert.ok(attribute(link, "data-affiliate-category"), `${path}: category label is missing`);
+
+    const trackingMetadata = {
+      tracked: attribute(link, "data-affiliate-tracked"),
+      placement: attribute(link, "data-affiliate-placement"),
+      category: attribute(link, "data-affiliate-category"),
+    };
+    const hasAnyTrackingMetadata = Object.values(trackingMetadata).some(Boolean);
+    if (requireTrackingMetadata || hasAnyTrackingMetadata) {
+      assert.equal(trackingMetadata.tracked, "true", `${path}: click tracking marker is missing`);
+      assert.ok(trackingMetadata.placement, `${path}: placement label is missing`);
+      assert.ok(trackingMetadata.category, `${path}: category label is missing`);
+    }
   }
 
-  return { path, affiliateLinks: affiliateLinks.length };
+  return {
+    path,
+    affiliateLinks: affiliateLinks.length,
+    tracking: requireTrackingMetadata ? "link-metadata" : "delegated",
+  };
 }
 
 async function fetchWithRetry(url, attempts = 2) {
@@ -110,13 +177,17 @@ async function checkRevenuePath(path) {
 }
 
 async function main() {
+  validateLocalDelegatedTrackingSource();
+
   const results = [];
   for (const path of MONETIZED_PATHS) {
     results.push(await checkRevenuePath(path));
   }
 
   for (const result of results) {
-    console.log(`PASS ${result.path}: ${result.affiliateLinks} tracked affiliate links`);
+    console.log(
+      `PASS ${result.path}: ${result.affiliateLinks} affiliate links (${result.tracking} tracking)`,
+    );
   }
   console.log(`Revenue path healthy on ${results.length} monetized FiberTools pages.`);
 }
@@ -128,4 +199,10 @@ if (require.main === module) {
   });
 }
 
-module.exports = { MONETIZED_PATHS, validateRevenuePage };
+module.exports = {
+  BUYING_GUIDE_PATHS,
+  CALCULATOR_PATHS,
+  MONETIZED_PATHS,
+  validateDelegatedTrackingSource,
+  validateRevenuePage,
+};

@@ -8,14 +8,29 @@
  */
 
 import { readFileSync, readdirSync, existsSync, statSync } from "fs";
-import { resolve, dirname, relative } from "path";
+import { resolve, dirname, relative, basename } from "path";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
+const PUBLISHED_DIR = resolve(ROOT, "content", "published");
+
+// The legacy library remains quarantined, but an external publisher has already
+// created these duplicate slugs. Ratchet from the verified August 6 baseline so
+// new duplicates cannot accumulate while the existing pairs await review.
+const QUARANTINED_DUPLICATE_BASELINE = new Map([
+  ["best-knitting-needles", 2],
+  ["cross-stitch-fabric-count", 2],
+  ["cross-stitch-size", 2],
+  ["how-do-i-choose-the-right-crochet-hook-size-for-my-project", 2],
+  ["how-many-cross-stitches-per-skein", 2],
+  ["how-to-handwash-knitwear", 2],
+  ["knitting-yarn-weight-chart", 2],
+]);
 
 let failures = 0;
+const publishedSlugFiles = new Map();
 
 function fail(file, line, msg) {
   const rel = relative(ROOT, file);
@@ -169,6 +184,32 @@ function checkYarnWeights(file, lines) {
   }
 }
 
+function recordPublishedSlug(file, data) {
+  if (dirname(file) !== PUBLISHED_DIR) return;
+
+  const fallbackSlug = basename(file)
+    .replace(/\.mdx?$/, "")
+    .replace(/^\d{4}-\d{2}-\d{2}-/, "");
+  const slug = typeof data.slug === "string" && data.slug.trim() ? data.slug.trim() : fallbackSlug;
+  const files = publishedSlugFiles.get(slug) || [];
+  files.push(file);
+  publishedSlugFiles.set(slug, files);
+}
+
+function checkPublishedSlugGrowth() {
+  for (const [slug, files] of publishedSlugFiles) {
+    const allowedCount = QUARANTINED_DUPLICATE_BASELINE.get(slug) || 1;
+    if (files.length <= allowedCount) continue;
+
+    const firstUnexpectedFile = files[allowedCount] || files[files.length - 1];
+    fail(
+      firstUnexpectedFile,
+      1,
+      `Published slug "${slug}" appears ${files.length} times; the quarantined baseline allows ${allowedCount}`,
+    );
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
@@ -187,7 +228,8 @@ for (const file of allFiles) {
 
   if (contentFiles.includes(file)) {
     try {
-      matter(content);
+      const { data } = matter(content);
+      recordPublishedSlug(file, data);
     } catch (error) {
       const line = Number.isInteger(error?.mark?.line) ? error.mark.line + 1 : 1;
       fail(file, line, `Invalid front matter: ${error.message}`);
@@ -199,6 +241,8 @@ for (const file of allFiles) {
   checkUKTerminology(file, lines);
   checkYarnWeights(file, lines);
 }
+
+checkPublishedSlugGrowth();
 
 // ---------------------------------------------------------------------------
 // Summary

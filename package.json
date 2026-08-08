@@ -13,9 +13,10 @@
     "lint:content": "node scripts/content-lint.js",
     "test:affiliate": "node scripts/affiliate-check.js",
     "test:indexnow": "node --test tests/indexnow-urls.test.mjs",
+    "test:gpc-consent": "node --test tests/gpc-consent.test.mjs",
     "test:pattern-checker": "node --test tests/amigurumi-pattern-checker.test.mjs",
     "test:revenue-path": "node --test tests/revenue-path-check.test.js",
-    "test:search-traffic": "node --test tests/legacy-search-redirects.test.mjs tests/seo-content-accuracy.test.mjs tests/sitemap-readiness.test.mjs tests/tool-referral-loop.test.mjs",
+    "test:search-traffic": "node --test tests/formula-library-and-newsletter.test.mjs tests/legacy-search-redirects.test.mjs tests/seo-content-accuracy.test.mjs tests/sitemap-readiness.test.mjs tests/tool-referral-loop.test.mjs",
     "test:stitchproof-distribution": "node --test tests/stitchproof-distribution.test.mjs",
     "test:ui-accessibility": "node --test tests/ui-accessibility.test.mjs",
     "check:revenue-path": "node scripts/revenue-path-check.js",
@@ -46,7 +47,7 @@
   },
   "overrides": {
     "next": {
-      "postcss": "8.5.19"
+      "postcss": "8.5.26"
     },
     "sharp": "0.35.3"
   }

@@ -148,7 +148,8 @@ export default function AboutPage() {
             Now I crochet too. So I test the tools on my own projects. My first granny
             squares came out a little crooked. One gauge swatch was too tight. Once I even
             bought too little yarn. Being new helps me. I still remember which parts are
-            hard. Every tool is free. Ads keep it free, and I plan to keep it that way.
+            hard. Every tool is free. Clearly disclosed affiliate commissions help support
+            the site, and I plan to keep the tools free.
           </p>
         </section>
 

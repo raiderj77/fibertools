@@ -38,6 +38,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     { path: "", priority: 1.0, freq: "weekly" as const },
     { path: "/guides", priority: 0.7, freq: "weekly" as const },
+    { path: "/formula-library", priority: 0.75, freq: "monthly" as const },
+    { path: "/newsletter", priority: 0.65, freq: "weekly" as const },
     { path: "/about", priority: 0.5, freq: "monthly" as const },
     { path: "/privacy", priority: 0.3, freq: "yearly" as const },
     { path: "/terms", priority: 0.3, freq: "yearly" as const },
