@@ -78,9 +78,9 @@ A fillable and printable 12-page workspace for fiber projects - from measurement
 
 Start the project with a plan you can actually use.
 
-## Image plan
+## Listing images
 
-Create at least five listing images before publication:
+Upload these five finished listing images in order:
 
 1. Cover image with “12 fillable + printable pages” and the crafts served.
 2. Three-page spread showing project brief, swatch record, and yarn inventory.
@@ -89,6 +89,11 @@ Create at least five listing images before publication:
 5. Exact page index and digital-download disclosure.
 
 Do not show invented reviews, sales counts, urgency, savings, or “best seller” labels.
+
+Five 2400 x 1800 RGB marketplace images are ready in
+`output/images/fibertools-project-planning-pack/`. The first image is intentionally a
+singular-product presentation, and every preview page is rendered from the sale PDF.
+Keep the images in numbered order when uploading.
 
 ## Measurement plan
 
