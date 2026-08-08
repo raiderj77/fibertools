@@ -106,3 +106,26 @@ The same current Search Console property and complete reporting window were chec
 - The crawl-recovery, sitemap, query-alignment, and qualified-referral changes described above were released from commit `fb0c69d9b017be9df18f8d36e2299ad67868e35b` on August 6, 2026 at 03:57 UTC.
 - Production, repository quality gates, deployment checks, and the accepted IndexNow request passed. The successful IndexNow submission covered the homepage and `/blanket-calculator`; sitemap discovery remains the coverage path for the other listed URLs.
 - Preserve the original Search Console rows above as the before-state. Do not judge organic impact from the partial post-release period; use a later non-overlapping 28-day comparison and qualified calculator completions rather than impressions alone.
+
+## August 7 message and indexing audit
+
+The signed-in `https://fibertools.app/` Search Console property was checked again on August 7, 2026. The 16 messages that were unread when the review began, plus the new August 7 indexing notice that arrived in the same review, were opened and read. Search Console then reported zero unread messages. No Search Console setting, validation, indexing request, or sitemap submission was changed.
+
+### Current provider state
+
+- The Page indexing report was last updated August 4 and showed 109 indexed pages and 103 not-indexed URLs.
+- The eight reported reasons were: Page with redirect (23), Excluded by `noindex` (20), Not found (404) (16), Alternate page with proper canonical (2), Crawled - currently not indexed (38), Duplicate without user-selected canonical (1), Redirect error (1, passed), and Discovered - currently not indexed (2, passed).
+- `/sitemap.xml` remained `Success`, was last read August 5, and reported 54 discovered pages and no discovered videos.
+
+### Live verification and decisions
+
+- All 20 URLs in the historical `noindex` example list now return HTTP 200, `index, follow`, and a self-referencing canonical. This provider report is stale relative to the live release and does not justify another code change.
+- Fourteen of the 16 current 404 examples now return a permanent 308 redirect to a maintained matching route. The other two are obsolete hashed Next.js font assets; retaining 404 is correct because old build artifacts should not be redirected to content pages.
+- The two alternate-canonical examples are tracking/search parameter variants of the homepage (`?ref=producthunt` and `?q={search_term_string}`); canonicalization to `/` is intentional.
+- The 23 `Page with redirect` examples are retired `/blog` URLs covered by exact or generic permanent redirects. This is expected exclusion behavior.
+- `/guides/cast-on-methods-guide`, the single duplicate-canonical example, currently returns HTTP 200 with a self-referencing canonical. Search Console already showed validation as started, so no additional canonical or redirect change is evidence-backed while that validation is pending.
+- Most `Crawled - currently not indexed` examples are retired blog URLs, framework assets, the web manifest, or social-image endpoints. Two maintained guide examples remain an indexing outcome to monitor, not proof of a technical defect.
+
+### Measurement note
+
+The latest rolling 28-day Search Console view (July 8 through August 4) showed 339 clicks, 17,994 impressions, 1.9% CTR, and average position 14.6. Because this window substantially overlaps the August 6 release, it is not a valid post-release comparison. Keep the August 5 before-state above and wait for a non-overlapping comparison window before attributing traffic or CTR changes.
