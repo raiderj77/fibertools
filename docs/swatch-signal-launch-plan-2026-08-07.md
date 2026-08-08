@@ -72,12 +72,22 @@ Each issue can produce one on-site Lab Note, one Pinterest graphic, one short ve
 
 ## Launch checklist
 
-- Confirm `BEEHIIV_API_KEY` and `BEEHIIV_PUBLICATION_ID` exist in production without exposing their values.
-- Confirm Beehiiv's welcome message links to `/download` and the direct post-submit download also works.
-- Enable double opt-in unless current verified provider configuration and list rules justify another choice.
+- Confirm a FiberTools-specific `BEEHIIV_API_KEY` and the Fiber Tools `BEEHIIV_PUBLICATION_ID` exist in production without exposing their values. Do not reuse a key named for another publication.
+- Confirm Beehiiv's welcome message links to `/survival-kit.pdf` and the direct post-submit download also works.
+- Keep double opt-in enabled unless current verified provider configuration and list rules justify another choice.
 - Send a consented owner test to a non-sensitive address and verify signup, confirmation, welcome message, download, unsubscribe, and suppression behavior.
 - Verify sender identity, reply-to address, physical-address footer, authentication, and unsubscribe controls in Beehiiv.
 - Record aggregate subscribed, confirmed, unsubscribed, delivered, opened, clicked, and complaint counts without copying subscriber records into project files.
+
+### Account-readiness snapshot — August 7, 2026
+
+- Verified the signed-in **Fiber Tools** publication and its public Beehiiv page without opening subscriber records.
+- Set the craft-focused description, the relevant **Art** discovery category, and Pacific Time; removed inherited Business and Artificial Intelligence categories.
+- Set the sender identity, completed the required footer address from the publication's existing welcome-email footer, enabled double opt-in, and set the confirmation redirect to `https://fibertools.app`.
+- Corrected both preset messages: the confirmation email no longer references another publication, and the welcome email now names Swatch Signal while retaining the direct Survival Kit link.
+- Verified Beehiiv's shared web and email domains are live and `https://fibertools.app/survival-kit.pdf` returns `200 application/pdf`.
+- Beehiiv automations require a paid plan, so the day 2/5/9 sequence remains an editorial schedule rather than an activated automation. Do not upgrade until measured demand justifies the cost.
+- A dedicated FiberTools API key and production Vercel environment check remain pending. No test subscriber was created and no message was sent during this review.
 
 ## 30-day success gate
 
