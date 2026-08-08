@@ -87,7 +87,7 @@ Each issue can produce one on-site Lab Note, one Pinterest graphic, one short ve
 - Corrected both preset messages: the confirmation email no longer references another publication, and the welcome email now names Swatch Signal while retaining the direct Survival Kit link.
 - Verified Beehiiv's shared web and email domains are live and `https://fibertools.app/survival-kit.pdf` returns `200 application/pdf`.
 - Beehiiv automations require a paid plan, so the day 2/5/9 sequence remains an editorial schedule rather than an activated automation. Do not upgrade until measured demand justifies the cost.
-- A dedicated FiberTools API key and production Vercel environment check remain pending. No test subscriber was created and no message was sent during this review.
+- The correct FiberTools Vercel project contains `BEEHIIV_API_KEY` and `BEEHIIV_PUBLICATION_ID` as Sensitive variables scoped to Production and Preview. Their values were not revealed, copied, rotated, or replaced. A consented end-to-end signup test after the August 11 release review must confirm that the stored credentials resolve to this publication before they are treated as operational proof. No test subscriber was created and no message was sent during this review.
 
 ## 30-day success gate
 
