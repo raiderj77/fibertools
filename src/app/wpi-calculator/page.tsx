@@ -16,6 +16,21 @@ export const metadata: Metadata = {
     "wraps per inch chart",
   ],
   alternates: { canonical: "/wpi-calculator" },
+  openGraph: {
+    title: "WPI to Yarn Weight Converter",
+    description:
+      "Enter wraps per inch to identify yarn weight, recommended needles, hooks, gauge range, and project ideas.",
+    url: "https://fibertools.app/wpi-calculator",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "WPI to Yarn Weight Converter" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WPI to Yarn Weight Converter",
+    description:
+      "Enter wraps per inch to identify yarn weight, recommended needles, hooks, gauge range, and project ideas.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function WpiCalculatorPage() {

@@ -17,6 +17,21 @@ export const metadata: Metadata = {
     "fiber blocking method",
   ],
   alternates: { canonical: "/blocking-calculator" },
+  openGraph: {
+    title: "Blocking Calculator & Fiber Guide",
+    description:
+      "Get the right blocking method for your fiber type with stretch feasibility ratings and step-by-step instructions.",
+    url: "https://fibertools.app/blocking-calculator",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Blocking Calculator & Fiber Guide" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blocking Calculator & Fiber Guide",
+    description:
+      "Get the right blocking method for your fiber type with stretch feasibility ratings and step-by-step instructions.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function BlockingCalculatorPage() {

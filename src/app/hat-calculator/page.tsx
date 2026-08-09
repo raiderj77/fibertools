@@ -16,6 +16,21 @@ export const metadata: Metadata = {
     "crochet hat calculator",
   ],
   alternates: { canonical: "/hat-calculator" },
+  openGraph: {
+    title: "Hat Size Calculator",
+    description:
+      "Get cast-on count, crown decrease schedule, and yardage for any head size, preemie to large adult with ease adjustments.",
+    url: "https://fibertools.app/hat-calculator",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Hat Size Calculator" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hat Size Calculator",
+    description:
+      "Get cast-on count, crown decrease schedule, and yardage for any head size, preemie to large adult with ease adjustments.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function HatCalculatorPage() {

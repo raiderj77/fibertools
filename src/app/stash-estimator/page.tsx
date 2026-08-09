@@ -15,6 +15,21 @@ export const metadata: Metadata = {
     "remaining yarn calculator",
   ],
   alternates: { canonical: "/stash-estimator" },
+  openGraph: {
+    title: "Yarn Stash Estimator",
+    description:
+      "Estimate remaining yardage in partial skeins by weight, plus a yardage reference table for unlabeled yarn by weight category.",
+    url: "https://fibertools.app/stash-estimator",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Yarn Stash Estimator" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yarn Stash Estimator",
+    description:
+      "Estimate remaining yardage in partial skeins by weight, plus a yardage reference table for unlabeled yarn by weight category.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function StashEstimatorPage() {

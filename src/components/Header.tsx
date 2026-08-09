@@ -28,7 +28,6 @@ export default function Header() {
     { href: "/crochet-tools", label: "Crochet Tools" },
     { href: "/knitting-tools", label: "Knitting Tools" },
     { href: "/weaving-tools", label: "Weaving Tools" },
-    { href: "/blog", label: "Blog" },
     { href: "/guides", label: "Guides" },
     { href: "/formula-library", label: "Formulas" },
   ];
