@@ -50,7 +50,7 @@ export function SoftwareAppSchema({
         browserRequirements: "Requires JavaScript",
         softwareHelp: {
           "@type": "CreativeWork",
-          url: "https://fibertools.app/blog",
+          url: "https://fibertools.app/guides",
         },
       }}
     />

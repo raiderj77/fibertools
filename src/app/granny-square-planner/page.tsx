@@ -15,6 +15,21 @@ export const metadata: Metadata = {
     "crochet blanket planner",
   ],
   alternates: { canonical: "/granny-square-planner" },
+  openGraph: {
+    title: "Granny Square Blanket Planner",
+    description:
+      "Plan your granny square blanket with grid layout, total squares, per-color yardage, and joining yarn estimates.",
+    url: "https://fibertools.app/granny-square-planner",
+    type: "website",
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Granny Square Blanket Planner" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Granny Square Blanket Planner",
+    description:
+      "Plan your granny square blanket with grid layout, total squares, per-color yardage, and joining yarn estimates.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function GrannySquarePlannerPage() {
