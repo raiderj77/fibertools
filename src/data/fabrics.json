@@ -1,0 +1,302 @@
+[
+  {
+    "id": "rayon-challis", "slug": "rayon-challis", "displayName": "Rayon challis", "aliases": ["viscose challis", "challis"],
+    "description": "A lightweight plain-woven fabric with a soft hand and fluid drape.", "construction": "woven", "constructionSubtype": "plain weave", "commonFibers": ["rayon", "viscose"],
+    "weightGsmMin": 80, "weightGsmMax": 150, "weightLabel": "light", "drapeRating": 5, "structureRating": 1, "opacityRating": 3, "recoveryRating": 1, "sewingDifficultyRating": 4,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 5, "verticalStretchMin": 0, "verticalStretchMax": 3,
+    "commonUses": ["Flowy dresses", "Blouses", "Skirts", "Wide-leg pants", "Scarves"], "poorUses": ["Tailored jackets", "Structured bags"],
+    "recommendedSubstitutes": ["lyocell-twill", "cotton-lawn", "crepe"], "poorSubstitutes": ["canvas", "denim", "scuba-knit"],
+    "beginnerNotes": "Manageable after practice, but the fabric can shift while cutting and sewing.", "handlingNotes": "Prewash, cut in a single layer when accuracy matters, and use fine pins or clips.",
+    "sourceReferences": [{"id": "seamwork-one-pattern-three-fabrics", "note": "Drape, weight, and garment behavior."}, {"id": "threads-monthly-dress-fabrics", "note": "Common names and uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "cotton-lawn", "slug": "cotton-lawn", "displayName": "Cotton lawn", "aliases": ["lawn", "cotton voile lawn"],
+    "description": "A fine, lightweight plain weave that feels smooth, crisp, and breathable.", "construction": "woven", "constructionSubtype": "plain weave", "commonFibers": ["cotton"],
+    "weightGsmMin": 70, "weightGsmMax": 130, "weightLabel": "light", "drapeRating": 3, "structureRating": 2, "opacityRating": 3, "recoveryRating": 1, "sewingDifficultyRating": 2,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 4, "verticalStretchMin": 0, "verticalStretchMax": 2,
+    "commonUses": ["Summer dresses", "Blouses", "Pajamas", "Linings", "Children's clothing"], "poorUses": ["Winter coats", "Upholstery"],
+    "recommendedSubstitutes": ["cotton-voile", "rayon-challis", "broadcloth"], "poorSubstitutes": ["denim", "canvas", "fleece"],
+    "beginnerNotes": "One of the easier lightweight fabrics because it usually stays put better than chiffon or challis.", "handlingNotes": "Use a sharp fine needle and test opacity before skipping a lining.",
+    "sourceReferences": [{"id": "seamwork-one-pattern-three-fabrics", "note": "Weight, sewing behavior, and uses."}, {"id": "seamwork-needle-guide", "note": "Lightweight woven needle guidance."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "cotton-poplin", "slug": "cotton-poplin", "displayName": "Cotton poplin", "aliases": ["poplin", "broadcloth poplin"],
+    "description": "A smooth, tightly woven plain weave with a fine crosswise rib and crisp body.", "construction": "woven", "constructionSubtype": "plain weave", "commonFibers": ["cotton", "cotton blends"],
+    "weightGsmMin": 100, "weightGsmMax": 220, "weightLabel": "medium", "drapeRating": 2, "structureRating": 4, "opacityRating": 4, "recoveryRating": 1, "sewingDifficultyRating": 1,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 4, "verticalStretchMin": 0, "verticalStretchMax": 2,
+    "commonUses": ["Button-up shirts", "Shirt dresses", "Skirts", "Quilting", "Children's clothing"], "poorUses": ["Bodycon dresses", "Soft draped gowns"],
+    "recommendedSubstitutes": ["broadcloth", "chambray", "cotton-lawn"], "poorSubstitutes": ["chiffon", "cotton-jersey", "stretch-velvet"],
+    "beginnerNotes": "Stable, easy to press, and usually friendly for a first woven garment.", "handlingNotes": "Prewash for shrinkage and clip curved seams before turning.",
+    "sourceReferences": [{"id": "cottonworks-basic-woven-designs", "note": "Plain-weave construction behavior."}, {"id": "threads-monthly-fabric-names", "note": "Common terminology and uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "cotton-voile", "slug": "cotton-voile", "displayName": "Cotton voile", "aliases": ["voile", "cotton veil"],
+    "description": "A very light, airy plain weave that is often semi-sheer.", "construction": "woven", "constructionSubtype": "plain weave", "commonFibers": ["cotton", "cotton blends"],
+    "weightGsmMin": 50, "weightGsmMax": 100, "weightLabel": "very light", "drapeRating": 4, "structureRating": 1, "opacityRating": 2, "recoveryRating": 1, "sewingDifficultyRating": 3,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 4, "verticalStretchMin": 0, "verticalStretchMax": 2,
+    "commonUses": ["Sheer blouses", "Summer dresses", "Curtains", "Scarves", "Linings"], "poorUses": ["Workwear pants", "Structured coats"],
+    "recommendedSubstitutes": ["cotton-lawn", "chiffon", "double-gauze"], "poorSubstitutes": ["canvas", "denim", "ponte-knit"],
+    "beginnerNotes": "The transparency and light weight require more control than poplin or broadcloth.", "handlingNotes": "Use a fine needle, narrow seams, and consider French seams or a lining.",
+    "sourceReferences": [{"id": "seamwork-silk-guide", "note": "Comparison with other sheer lightweight fabrics."}, {"id": "threads-monthly-fabric-names", "note": "Common properties and uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "broadcloth", "slug": "broadcloth", "displayName": "Broadcloth", "aliases": ["cotton broadcloth", "shirt broadcloth"],
+    "description": "A closely woven, stable plain-weave fabric with an even surface.", "construction": "woven", "constructionSubtype": "plain weave", "commonFibers": ["cotton", "polyester", "cotton blends"],
+    "weightGsmMin": 100, "weightGsmMax": 180, "weightLabel": "medium", "drapeRating": 2, "structureRating": 4, "opacityRating": 4, "recoveryRating": 1, "sewingDifficultyRating": 1,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 3, "verticalStretchMin": 0, "verticalStretchMax": 2,
+    "commonUses": ["Button-up shirts", "Uniforms", "Quilting", "Aprons", "Simple dresses"], "poorUses": ["Swimwear", "Fluid bias gowns"],
+    "recommendedSubstitutes": ["cotton-poplin", "chambray", "cotton-lawn"], "poorSubstitutes": ["chiffon", "rib-knit", "fleece"],
+    "beginnerNotes": "Stable edges and clear grain make it a forgiving woven fabric.", "handlingNotes": "Prewash and press; lighter colors may still need a lining.",
+    "sourceReferences": [{"id": "cottonworks-basic-woven-designs", "note": "Plain-weave construction."}, {"id": "threads-monthly-fabric-names", "note": "Naming and project uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "linen", "slug": "linen", "displayName": "Linen", "aliases": ["flax linen", "linen cloth"],
+    "description": "A breathable woven fabric with visible texture, low elasticity, and weights ranging from handkerchief to suiting.", "construction": "woven", "constructionSubtype": "plain weave", "commonFibers": ["linen", "flax", "linen blends"],
+    "weightGsmMin": 100, "weightGsmMax": 280, "weightLabel": "medium", "drapeRating": 3, "structureRating": 3, "opacityRating": 4, "recoveryRating": 1, "sewingDifficultyRating": 2,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 4, "verticalStretchMin": 0, "verticalStretchMax": 2,
+    "commonUses": ["Summer dresses", "Loose pants", "Shirts", "Jackets", "Home linens"], "poorUses": ["Fitted stretch tops", "Swimwear"],
+    "recommendedSubstitutes": ["chambray", "lyocell-twill", "cotton-poplin"], "poorSubstitutes": ["scuba-knit", "rib-knit", "stretch-velvet"],
+    "beginnerNotes": "Generally approachable, although loose weaves can fray and the fabric wrinkles easily.", "handlingNotes": "Wash and dry before cutting, finish raw edges, and embrace or manage the wrinkles intentionally.",
+    "sourceReferences": [{"id": "seamwork-one-pattern-three-fabrics", "note": "Linen garment behavior and handling."}, {"id": "threads-monthly-dress-fabrics", "note": "Typical uses and weight variation."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "chambray", "slug": "chambray", "displayName": "Chambray", "aliases": ["cotton chambray", "denim-look chambray"],
+    "description": "A lightweight plain weave using colored warp and pale weft yarns, often resembling light denim.", "construction": "woven", "constructionSubtype": "plain weave", "commonFibers": ["cotton", "linen blends"],
+    "weightGsmMin": 110, "weightGsmMax": 200, "weightLabel": "medium", "drapeRating": 3, "structureRating": 3, "opacityRating": 4, "recoveryRating": 1, "sewingDifficultyRating": 1,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 4, "verticalStretchMin": 0, "verticalStretchMax": 2,
+    "commonUses": ["Shirts", "Shirt dresses", "Light pants", "Skirts", "Children's clothing"], "poorUses": ["Heavy jeans", "Bodycon dresses"],
+    "recommendedSubstitutes": ["cotton-poplin", "linen", "broadcloth"], "poorSubstitutes": ["denim", "chiffon", "cotton-jersey"],
+    "beginnerNotes": "Stable and easy to sew, much like poplin.", "handlingNotes": "Prewash; watch for dye transfer in dark versions.",
+    "sourceReferences": [{"id": "cottonworks-basic-woven-designs", "note": "Plain-weave structure."}, {"id": "threads-monthly-fabric-names", "note": "Chambray terminology and uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "twill", "slug": "twill", "displayName": "Twill", "aliases": ["cotton twill", "chino cloth"],
+    "description": "A woven family identified by diagonal ribs, usually durable with moderate structure.", "construction": "woven", "constructionSubtype": "twill weave", "commonFibers": ["cotton", "polyester", "wool", "blends"],
+    "weightGsmMin": 150, "weightGsmMax": 350, "weightLabel": "heavy", "drapeRating": 2, "structureRating": 4, "opacityRating": 5, "recoveryRating": 2, "sewingDifficultyRating": 2,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 6, "verticalStretchMin": 0, "verticalStretchMax": 3,
+    "commonUses": ["Chinos", "Utility jackets", "Skirts", "Workwear", "Bags"], "poorUses": ["Sheer blouses", "Flowy scarves"],
+    "recommendedSubstitutes": ["gabardine", "lyocell-twill", "denim"], "poorSubstitutes": ["chiffon", "cotton-voile", "rib-knit"],
+    "beginnerNotes": "Stable but heavier versions need stronger needles and careful bulk reduction.", "handlingNotes": "Match needle size to weight and grade bulky seams.",
+    "sourceReferences": [{"id": "cottonworks-basic-woven-designs", "note": "Twill construction and bottom-weight uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "denim", "slug": "denim", "displayName": "Denim", "aliases": ["jean fabric", "bull denim"],
+    "description": "A durable warp-faced twill, usually cotton, with weight and stiffness varying widely.", "construction": "woven", "constructionSubtype": "warp-faced twill", "commonFibers": ["cotton", "cotton blends"],
+    "weightGsmMin": 200, "weightGsmMax": 500, "weightLabel": "very heavy", "drapeRating": 1, "structureRating": 5, "opacityRating": 5, "recoveryRating": 2, "sewingDifficultyRating": 3,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 8, "verticalStretchMin": 0, "verticalStretchMax": 4,
+    "commonUses": ["Jeans", "Jackets", "Skirts", "Overalls", "Bags"], "poorUses": ["Flowy blouses", "Lingerie"],
+    "recommendedSubstitutes": ["twill", "gabardine", "canvas"], "poorSubstitutes": ["chiffon", "rayon-challis", "cotton-voile"],
+    "beginnerNotes": "Light denim is manageable; heavy denim requires the right machine, needle, and seam plan.", "handlingNotes": "Prewash separately, use a denim needle, and test several layers before topstitching.",
+    "sourceReferences": [{"id": "cottonworks-denim-construction", "note": "Denim construction and yarn arrangement."}, {"id": "cottonworks-denim-basics", "note": "Weight and performance context."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "gabardine", "slug": "gabardine", "displayName": "Gabardine", "aliases": ["suiting gabardine", "wool gabardine"],
+    "description": "A tightly woven steep twill with a smooth face, firm hand, and good durability.", "construction": "woven", "constructionSubtype": "steep twill weave", "commonFibers": ["wool", "cotton", "polyester", "blends"],
+    "weightGsmMin": 180, "weightGsmMax": 350, "weightLabel": "heavy", "drapeRating": 2, "structureRating": 4, "opacityRating": 5, "recoveryRating": 3, "sewingDifficultyRating": 3,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 6, "verticalStretchMin": 0, "verticalStretchMax": 3,
+    "commonUses": ["Tailored pants", "Trench coats", "Suits", "Uniforms", "Structured skirts"], "poorUses": ["Gathered blouses", "Swimwear"],
+    "recommendedSubstitutes": ["twill", "denim", "lyocell-twill"], "poorSubstitutes": ["chiffon", "double-gauze", "rib-knit"],
+    "beginnerNotes": "Stable but tailoring details and pressing can raise the difficulty.", "handlingNotes": "Use a press cloth and test heat, especially on wool or synthetic blends.",
+    "sourceReferences": [{"id": "cottonworks-basic-woven-designs", "note": "Gabardine as a twill bottom weight."}, {"id": "threads-monthly-fabric-names", "note": "Garment uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "corduroy", "slug": "corduroy", "displayName": "Corduroy", "aliases": ["cord", "needlecord", "pinwale corduroy"],
+    "description": "A cut-pile woven fabric with raised lengthwise ribs called wales.", "construction": "woven", "constructionSubtype": "cut-pile weave", "commonFibers": ["cotton", "cotton blends"],
+    "weightGsmMin": 180, "weightGsmMax": 420, "weightLabel": "heavy", "drapeRating": 2, "structureRating": 4, "opacityRating": 5, "recoveryRating": 2, "sewingDifficultyRating": 3,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 7, "verticalStretchMin": 0, "verticalStretchMax": 3,
+    "commonUses": ["Pants", "Jackets", "Skirts", "Overalls", "Bags"], "poorUses": ["Bias-cut gowns", "Sheer blouses"],
+    "recommendedSubstitutes": ["denim", "twill", "canvas"], "poorSubstitutes": ["chiffon", "satin", "rayon-challis"],
+    "beginnerNotes": "The sewing is straightforward, but nap direction and bulky seams need planning.", "handlingNotes": "Cut every piece in one nap direction and press from the wrong side over a towel.",
+    "sourceReferences": [{"id": "cottonworks-complex-woven-designs", "note": "Pile construction and corduroy wales."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "canvas", "slug": "canvas", "displayName": "Canvas", "aliases": ["duck canvas", "cotton duck"],
+    "description": "A firm, densely woven utility fabric designed for durability and structure.", "construction": "woven", "constructionSubtype": "basket or plain weave", "commonFibers": ["cotton", "hemp", "polyester"],
+    "weightGsmMin": 220, "weightGsmMax": 600, "weightLabel": "very heavy", "drapeRating": 1, "structureRating": 5, "opacityRating": 5, "recoveryRating": 1, "sewingDifficultyRating": 3,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 3, "verticalStretchMin": 0, "verticalStretchMax": 2,
+    "commonUses": ["Tote bags", "Aprons", "Utility jackets", "Home decor", "Tool rolls"], "poorUses": ["Flowy dresses", "Lingerie"],
+    "recommendedSubstitutes": ["denim", "twill", "corduroy"], "poorSubstitutes": ["rayon-challis", "chiffon", "cotton-voile"],
+    "beginnerNotes": "Simple shapes are beginner-friendly if the machine can handle the thickness.", "handlingNotes": "Use a heavy needle, longer stitch, and reduce layers at intersections.",
+    "sourceReferences": [{"id": "cottonworks-basic-woven-designs", "note": "Dense plain and basket weave behavior."}, {"id": "threads-monthly-fabric-names", "note": "Canvas terminology and uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "muslin", "slug": "muslin", "displayName": "Muslin", "aliases": ["calico", "toile fabric", "unbleached muslin"],
+    "description": "A plain-woven cotton sold in several weights, widely used for test garments and utility sewing.", "construction": "woven", "constructionSubtype": "plain weave", "commonFibers": ["cotton"],
+    "weightGsmMin": 90, "weightGsmMax": 200, "weightLabel": "medium", "drapeRating": 2, "structureRating": 3, "opacityRating": 3, "recoveryRating": 1, "sewingDifficultyRating": 1,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 5, "verticalStretchMin": 0, "verticalStretchMax": 3,
+    "commonUses": ["Test garments", "Linings", "Simple curtains", "Produce bags", "Quilting"], "poorUses": ["Formal gowns", "Swimwear"],
+    "recommendedSubstitutes": ["broadcloth", "cotton-poplin", "cotton-lawn"], "poorSubstitutes": ["rib-knit", "scuba-knit", "stretch-velvet"],
+    "beginnerNotes": "Stable and inexpensive, making it ideal for practice and fit tests.", "handlingNotes": "Match the test muslin's weight and drape to the final fashion fabric.",
+    "sourceReferences": [{"id": "cottonworks-basic-woven-designs", "note": "Plain-weave structure."}, {"id": "threads-monthly-fabric-names", "note": "Muslin terminology and uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "double-gauze", "slug": "double-gauze", "displayName": "Double gauze", "aliases": ["double cloth gauze", "cotton double gauze"],
+    "description": "Two fine open-weave layers joined at intervals for softness, air, and gentle volume.", "construction": "woven", "constructionSubtype": "double cloth plain weave", "commonFibers": ["cotton"],
+    "weightGsmMin": 100, "weightGsmMax": 180, "weightLabel": "light", "drapeRating": 3, "structureRating": 2, "opacityRating": 3, "recoveryRating": 1, "sewingDifficultyRating": 3,
+    "horizontalStretchMin": 2, "horizontalStretchMax": 10, "verticalStretchMin": 0, "verticalStretchMax": 5,
+    "commonUses": ["Loose dresses", "Baby blankets", "Blouses", "Pajamas", "Scarves"], "poorUses": ["Sharp tailoring", "Fitted pants"],
+    "recommendedSubstitutes": ["cotton-voile", "cotton-lawn", "flannel"], "poorSubstitutes": ["gabardine", "canvas", "scuba-knit"],
+    "beginnerNotes": "Soft and forgiving, but the loose layers can distort and fray.", "handlingNotes": "Prewash gently, staystitch curves, and avoid stretching edges while sewing.",
+    "sourceReferences": [{"id": "seamwork-fabric-shopping", "note": "Double-gauze feel and garment suitability."}, {"id": "cottonworks-basic-woven-designs", "note": "Woven construction context."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "flannel", "slug": "flannel", "displayName": "Flannel", "aliases": ["cotton flannel", "wool flannel", "flannelette"],
+    "description": "A woven fabric with a brushed surface that adds warmth and softness; fiber and weight vary.", "construction": "woven", "constructionSubtype": "brushed plain or twill weave", "commonFibers": ["cotton", "wool", "synthetic blends"],
+    "weightGsmMin": 140, "weightGsmMax": 300, "weightLabel": "medium", "drapeRating": 2, "structureRating": 3, "opacityRating": 5, "recoveryRating": 2, "sewingDifficultyRating": 2,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 6, "verticalStretchMin": 0, "verticalStretchMax": 3,
+    "commonUses": ["Pajamas", "Shirts", "Baby blankets", "Linings", "Quilts"], "poorUses": ["Summer blouses", "Swimwear"],
+    "recommendedSubstitutes": ["double-gauze", "broadcloth", "twill"], "poorSubstitutes": ["chiffon", "organza", "scuba-knit"],
+    "beginnerNotes": "Usually easy to sew, though it can shrink and some versions fray.", "handlingNotes": "Prewash and dry using the finished item's routine; align directional nap or plaid.",
+    "sourceReferences": [{"id": "threads-monthly-fabric-names", "note": "Flannel properties and common uses."}, {"id": "seamwork-needle-guide", "note": "Medium-weight woven handling context."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "crepe", "slug": "crepe", "displayName": "Crepe", "aliases": ["crepe de chine", "woven crepe", "crape"],
+    "description": "A broad woven family with a pebbled surface; versions range from airy and fluid to substantial suiting.", "construction": "woven", "constructionSubtype": "crepe weave or crepe yarn", "commonFibers": ["silk", "rayon", "polyester", "wool"],
+    "weightGsmMin": 80, "weightGsmMax": 300, "weightLabel": "medium", "drapeRating": 4, "structureRating": 2, "opacityRating": 4, "recoveryRating": 2, "sewingDifficultyRating": 4,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 10, "verticalStretchMin": 0, "verticalStretchMax": 5,
+    "commonUses": ["Dresses", "Blouses", "Wide-leg pants", "Skirts", "Formalwear"], "poorUses": ["Rigid bags", "Heavy workwear"],
+    "recommendedSubstitutes": ["rayon-challis", "georgette", "silk-charmeuse"], "poorSubstitutes": ["canvas", "denim", "fleece"],
+    "beginnerNotes": "Difficulty varies; slippery or very fluid crepes need patient cutting.", "handlingNotes": "Identify the exact crepe type, test pressing, and stabilize bias edges.",
+    "sourceReferences": [{"id": "seamwork-silk-guide", "note": "Crepe texture, drape, and variations."}, {"id": "threads-monthly-dress-fabrics", "note": "Common garment uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "satin", "slug": "satin", "displayName": "Satin", "aliases": ["satin weave", "duchess satin", "poly satin"],
+    "description": "A smooth, lustrous satin-weave family whose fiber, body, and weight vary substantially.", "construction": "woven", "constructionSubtype": "satin weave", "commonFibers": ["silk", "polyester", "acetate", "rayon"],
+    "weightGsmMin": 80, "weightGsmMax": 250, "weightLabel": "medium", "drapeRating": 4, "structureRating": 2, "opacityRating": 4, "recoveryRating": 1, "sewingDifficultyRating": 5,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 6, "verticalStretchMin": 0, "verticalStretchMax": 3,
+    "commonUses": ["Formal dresses", "Blouses", "Skirts", "Linings", "Lingerie"], "poorUses": ["Rugged workwear", "Structured totes"],
+    "recommendedSubstitutes": ["silk-charmeuse", "crepe", "lyocell-twill"], "poorSubstitutes": ["canvas", "corduroy", "fleece"],
+    "beginnerNotes": "The slippery face, snagging risk, and visible needle marks make satin a challenging first fabric.", "handlingNotes": "Cut in a single layer, use fine sharp tools, and test every seam and press setting on scraps.",
+    "sourceReferences": [{"id": "seamwork-silk-guide", "note": "Satin weave, variation, and handling."}, {"id": "seamwork-lingerie-fabrics", "note": "Satin uses and sewing behavior."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "silk-charmeuse", "slug": "silk-charmeuse", "displayName": "Silk charmeuse", "aliases": ["charmeuse", "silk satin charmeuse"],
+    "description": "A lightweight satin-weave silk with a glossy face, dull back, and very fluid drape.", "construction": "woven", "constructionSubtype": "satin weave", "commonFibers": ["silk"],
+    "weightGsmMin": 60, "weightGsmMax": 120, "weightLabel": "light", "drapeRating": 5, "structureRating": 1, "opacityRating": 3, "recoveryRating": 1, "sewingDifficultyRating": 5,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 5, "verticalStretchMin": 0, "verticalStretchMax": 3,
+    "commonUses": ["Bias-cut dresses", "Blouses", "Lingerie", "Scarves", "Luxury linings"], "poorUses": ["Structured jackets", "Utility bags"],
+    "recommendedSubstitutes": ["satin", "rayon-challis", "crepe"], "poorSubstitutes": ["canvas", "denim", "ponte-knit"],
+    "beginnerNotes": "Beautiful but unforgiving; shifting, fraying, and marks from pins are common challenges.", "handlingNotes": "Cut in one layer, use silk pins and a fine needle, and support bias sections while hanging.",
+    "sourceReferences": [{"id": "seamwork-silk-guide", "note": "Charmeuse weight, drape, face, and garment uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "chiffon", "slug": "chiffon", "displayName": "Chiffon", "aliases": ["silk chiffon", "poly chiffon"],
+    "description": "A very lightweight, sheer plain weave made with tightly twisted yarns.", "construction": "woven", "constructionSubtype": "sheer plain weave", "commonFibers": ["silk", "polyester", "nylon"],
+    "weightGsmMin": 25, "weightGsmMax": 70, "weightLabel": "very light", "drapeRating": 5, "structureRating": 1, "opacityRating": 1, "recoveryRating": 1, "sewingDifficultyRating": 5,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 8, "verticalStretchMin": 0, "verticalStretchMax": 4,
+    "commonUses": ["Chiffon overlays", "Sheer blouses", "Scarves", "Formal dresses", "Flowing sleeves"], "poorUses": ["Pants without lining", "Structured coats"],
+    "recommendedSubstitutes": ["georgette", "cotton-voile", "organza"], "poorSubstitutes": ["canvas", "denim", "ponte-knit"],
+    "beginnerNotes": "Its transparency, movement, and fraying make chiffon an advanced fabric.", "handlingNotes": "Use a single layer, tissue-paper support if helpful, microtex needle, and narrow seam finish.",
+    "sourceReferences": [{"id": "seamwork-silk-guide", "note": "Chiffon construction, sheerness, and uses."}, {"id": "seamwork-lingerie-fabrics", "note": "Handling and intimate-apparel context."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "georgette", "slug": "georgette", "displayName": "Georgette", "aliases": ["silk georgette", "poly georgette"],
+    "description": "A lightweight, semi-sheer crepe fabric with a dry, pebbled surface and fluid movement.", "construction": "woven", "constructionSubtype": "crepe plain weave", "commonFibers": ["silk", "polyester", "rayon"],
+    "weightGsmMin": 40, "weightGsmMax": 100, "weightLabel": "very light", "drapeRating": 5, "structureRating": 1, "opacityRating": 2, "recoveryRating": 1, "sewingDifficultyRating": 5,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 10, "verticalStretchMin": 0, "verticalStretchMax": 5,
+    "commonUses": ["Blouses", "Dresses", "Scarves", "Formal overlays", "Flowing sleeves"], "poorUses": ["Structured pants", "Workwear"],
+    "recommendedSubstitutes": ["chiffon", "crepe", "rayon-challis"], "poorSubstitutes": ["canvas", "denim", "corduroy"],
+    "beginnerNotes": "The slight texture helps control it more than chiffon, but it remains a demanding fabric.", "handlingNotes": "Use fine needles, narrow seams, and support delicate edges while sewing.",
+    "sourceReferences": [{"id": "seamwork-silk-guide", "note": "Georgette texture, sheerness, and behavior."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "organza", "slug": "organza", "displayName": "Organza", "aliases": ["silk organza", "poly organza"],
+    "description": "A sheer plain weave with crisp body, low drape, and enough stiffness to support volume.", "construction": "woven", "constructionSubtype": "sheer plain weave", "commonFibers": ["silk", "polyester", "nylon"],
+    "weightGsmMin": 20, "weightGsmMax": 70, "weightLabel": "very light", "drapeRating": 1, "structureRating": 4, "opacityRating": 1, "recoveryRating": 1, "sewingDifficultyRating": 4,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 4, "verticalStretchMin": 0, "verticalStretchMax": 2,
+    "commonUses": ["Formal overlays", "Structured sleeves", "Interfacing", "Costumes", "Decorative details"], "poorUses": ["Soft lounge pants", "Body-skimming slips"],
+    "recommendedSubstitutes": ["cotton-voile", "chiffon", "cotton-lawn"], "poorSubstitutes": ["rayon-challis", "cotton-jersey", "fleece"],
+    "beginnerNotes": "It is crisp rather than slippery, but fraying and visible seams require care.", "handlingNotes": "Use enclosed seams, a fine needle, and low heat appropriate to the fiber.",
+    "sourceReferences": [{"id": "seamwork-silk-guide", "note": "Organza construction, body, and sheerness."}, {"id": "seamwork-lingerie-fabrics", "note": "Common uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "cotton-jersey", "slug": "cotton-jersey", "displayName": "Cotton jersey", "aliases": ["single jersey", "t-shirt jersey"],
+    "description": "A single-knit fabric with a smooth face, looped back, natural crosswise stretch, and curling cut edges.", "construction": "knit", "constructionSubtype": "single knit", "commonFibers": ["cotton", "cotton-spandex"],
+    "weightGsmMin": 120, "weightGsmMax": 220, "weightLabel": "medium", "drapeRating": 4, "structureRating": 1, "opacityRating": 4, "recoveryRating": 3, "sewingDifficultyRating": 3,
+    "horizontalStretchMin": 20, "horizontalStretchMax": 60, "verticalStretchMin": 5, "verticalStretchMax": 25,
+    "commonUses": ["T-shirts", "Casual dresses", "Pajamas", "Leggings", "Children's clothing"], "poorUses": ["Sharp tailoring", "Structured bags"],
+    "recommendedSubstitutes": ["interlock-knit", "rib-knit", "french-terry"], "poorSubstitutes": ["cotton-poplin", "canvas", "organza"],
+    "beginnerNotes": "A walking foot or stretch stitch helps; edges may curl while sewing.", "handlingNotes": "Check stretch percentage and recovery, use a ballpoint needle, and stabilize shoulders.",
+    "sourceReferences": [{"id": "cottonworks-knit-basics", "note": "Knit loop structure and stretch."}, {"id": "cottonworks-single-double-knits", "note": "Single-jersey construction and behavior."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "interlock-knit", "slug": "interlock-knit", "displayName": "Interlock knit", "aliases": ["interlock", "double jersey"],
+    "description": "A smooth double knit with similar faces, more stability, and greater thickness than single jersey.", "construction": "knit", "constructionSubtype": "interlock double knit", "commonFibers": ["cotton", "polyester", "rayon", "spandex blends"],
+    "weightGsmMin": 180, "weightGsmMax": 300, "weightLabel": "medium", "drapeRating": 3, "structureRating": 3, "opacityRating": 5, "recoveryRating": 4, "sewingDifficultyRating": 2,
+    "horizontalStretchMin": 20, "horizontalStretchMax": 50, "verticalStretchMin": 10, "verticalStretchMax": 30,
+    "commonUses": ["T-shirts", "Casual dresses", "Baby clothing", "Pajamas", "Light jackets"], "poorUses": ["Sheer overlays", "Crisp shirts"],
+    "recommendedSubstitutes": ["cotton-jersey", "ponte-knit", "rib-knit"], "poorSubstitutes": ["chiffon", "organza", "canvas"],
+    "beginnerNotes": "Stable edges and balanced faces make interlock one of the easier knits.", "handlingNotes": "Use a ballpoint needle and avoid stretching seams during pressing.",
+    "sourceReferences": [{"id": "cottonworks-single-double-knits", "note": "Interlock structure, thickness, stretch, and stability."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "rib-knit", "slug": "rib-knit", "displayName": "Rib knit", "aliases": ["ribbing", "1x1 rib", "2x2 rib"],
+    "description": "A knit with alternating face and back wales that gives high crosswise stretch and good body conformity.", "construction": "knit", "constructionSubtype": "rib knit", "commonFibers": ["cotton", "wool", "rayon", "spandex blends"],
+    "weightGsmMin": 160, "weightGsmMax": 350, "weightLabel": "medium", "drapeRating": 3, "structureRating": 2, "opacityRating": 4, "recoveryRating": 5, "sewingDifficultyRating": 3,
+    "horizontalStretchMin": 40, "horizontalStretchMax": 100, "verticalStretchMin": 10, "verticalStretchMax": 40,
+    "commonUses": ["Fitted tops", "Neckbands", "Cuffs", "Fitted dresses", "Baby clothing"], "poorUses": ["Crisp shirts", "Structured trousers"],
+    "recommendedSubstitutes": ["cotton-jersey", "interlock-knit", "stretch-velvet"], "poorSubstitutes": ["broadcloth", "canvas", "organza"],
+    "beginnerNotes": "Stretch makes it forgiving on fit but easy to distort under the presser foot.", "handlingNotes": "Measure recovery, reduce pattern ease when appropriate, and use a stretch needle.",
+    "sourceReferences": [{"id": "cottonworks-single-double-knits", "note": "Rib construction, extensibility, and recovery."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "ponte-knit", "slug": "ponte-knit", "displayName": "Ponte knit", "aliases": ["ponte di roma", "ponte roma", "double-knit ponte"],
+    "description": "A firm double knit with a smooth surface, limited stretch, strong recovery, and tailoring-friendly structure.", "construction": "knit", "constructionSubtype": "double knit", "commonFibers": ["rayon", "polyester", "nylon", "spandex blends"],
+    "weightGsmMin": 250, "weightGsmMax": 400, "weightLabel": "heavy", "drapeRating": 2, "structureRating": 5, "opacityRating": 5, "recoveryRating": 5, "sewingDifficultyRating": 2,
+    "horizontalStretchMin": 20, "horizontalStretchMax": 45, "verticalStretchMin": 10, "verticalStretchMax": 30,
+    "commonUses": ["Fitted dresses", "Pull-on pants", "Jackets", "Structured skirts", "Officewear"], "poorUses": ["Sheer blouses", "Flowing scarves"],
+    "recommendedSubstitutes": ["scuba-knit", "interlock-knit", "stretch-velvet"], "poorSubstitutes": ["chiffon", "rayon-challis", "cotton-voile"],
+    "beginnerNotes": "Stable and resistant to curling, making it a friendly garment knit.", "handlingNotes": "Choose a version with the stretch your pattern requires and reduce seam bulk.",
+    "sourceReferences": [{"id": "cottonworks-single-double-knits", "note": "Ponte double-knit structure, weight, and stability."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "french-terry", "slug": "french-terry", "displayName": "French terry", "aliases": ["loopback jersey", "sweatshirt terry"],
+    "description": "A knit with a smooth face and uncut loops on the back, balancing warmth, stretch, and moderate drape.", "construction": "knit", "constructionSubtype": "plated or loopback knit", "commonFibers": ["cotton", "rayon", "polyester", "spandex blends"],
+    "weightGsmMin": 220, "weightGsmMax": 380, "weightLabel": "heavy", "drapeRating": 3, "structureRating": 3, "opacityRating": 5, "recoveryRating": 4, "sewingDifficultyRating": 2,
+    "horizontalStretchMin": 15, "horizontalStretchMax": 50, "verticalStretchMin": 5, "verticalStretchMax": 25,
+    "commonUses": ["Sweatshirts", "Joggers", "Casual dresses", "Shorts", "Robes"], "poorUses": ["Formal gowns", "Crisp shirts"],
+    "recommendedSubstitutes": ["fleece", "cotton-jersey", "interlock-knit"], "poorSubstitutes": ["organza", "chiffon", "gabardine"],
+    "beginnerNotes": "Usually stable enough for a first sweatshirt or jogger project.", "handlingNotes": "Check whether the stretch is one-way or two-way and contain loop lint while cutting.",
+    "sourceReferences": [{"id": "cottonworks-knit-basics", "note": "General knit structure and apparel behavior."}, {"id": "threads-monthly-fabric-names", "note": "French-terry terminology and uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "fleece", "slug": "fleece", "displayName": "Fleece", "aliases": ["polar fleece", "sweatshirt fleece", "microfleece"],
+    "description": "A warm knit family with a raised or brushed surface; bulk, stretch, and fiber vary widely.", "construction": "knit", "constructionSubtype": "brushed knit", "commonFibers": ["polyester", "cotton", "wool blends"],
+    "weightGsmMin": 200, "weightGsmMax": 450, "weightLabel": "heavy", "drapeRating": 2, "structureRating": 3, "opacityRating": 5, "recoveryRating": 3, "sewingDifficultyRating": 2,
+    "horizontalStretchMin": 10, "horizontalStretchMax": 40, "verticalStretchMin": 5, "verticalStretchMax": 20,
+    "commonUses": ["Jackets", "Blankets", "Sweatshirts", "Vests", "Hats"], "poorUses": ["Summer dresses", "Tailored shirts"],
+    "recommendedSubstitutes": ["french-terry", "ponte-knit", "scuba-knit"], "poorSubstitutes": ["chiffon", "cotton-voile", "silk-charmeuse"],
+    "beginnerNotes": "Edges often do not fray, but thickness can make seam intersections bulky.", "handlingNotes": "Confirm direction of greatest stretch, use clips, and clean lint from the machine often.",
+    "sourceReferences": [{"id": "cottonworks-knit-basics", "note": "General knit performance context."}, {"id": "threads-monthly-fabric-names", "note": "Fleece categories and uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "scuba-knit", "slug": "scuba-knit", "displayName": "Scuba knit", "aliases": ["scuba", "fashion scuba", "neoprene-look knit"],
+    "description": "A smooth, springy double knit with substantial body and stretch, distinct from true neoprene.", "construction": "knit", "constructionSubtype": "double knit", "commonFibers": ["polyester", "spandex"],
+    "weightGsmMin": 220, "weightGsmMax": 350, "weightLabel": "heavy", "drapeRating": 2, "structureRating": 5, "opacityRating": 5, "recoveryRating": 5, "sewingDifficultyRating": 2,
+    "horizontalStretchMin": 25, "horizontalStretchMax": 60, "verticalStretchMin": 15, "verticalStretchMax": 45,
+    "commonUses": ["Fitted dresses", "Structured skirts", "Jackets", "Costumes", "Pull-on pants"], "poorUses": ["Breathable summer tops", "Soft scarves"],
+    "recommendedSubstitutes": ["ponte-knit", "interlock-knit", "stretch-velvet"], "poorSubstitutes": ["rayon-challis", "chiffon", "cotton-voile"],
+    "beginnerNotes": "Stable edges and limited fraying are friendly, though the thickness can be unforgiving.", "handlingNotes": "Use clips to avoid marks, test heat, and reduce bulky seam allowances.",
+    "sourceReferences": [{"id": "cottonworks-single-double-knits", "note": "Double-knit structure and stability context."}, {"id": "threads-monthly-fabric-names", "note": "Scuba terminology and uses."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "stretch-velvet", "slug": "stretch-velvet", "displayName": "Stretch velvet", "aliases": ["velour knit", "knit velvet"],
+    "description": "A knit pile fabric with rich surface sheen, directional nap, stretch, and fluid-to-moderate drape.", "construction": "knit", "constructionSubtype": "pile knit", "commonFibers": ["polyester", "nylon", "spandex"],
+    "weightGsmMin": 220, "weightGsmMax": 400, "weightLabel": "heavy", "drapeRating": 4, "structureRating": 2, "opacityRating": 5, "recoveryRating": 4, "sewingDifficultyRating": 5,
+    "horizontalStretchMin": 30, "horizontalStretchMax": 70, "verticalStretchMin": 10, "verticalStretchMax": 40,
+    "commonUses": ["Fitted dresses", "Tops", "Leggings", "Costumes", "Formalwear"], "poorUses": ["Crisp shirts", "Structured totes"],
+    "recommendedSubstitutes": ["rib-knit", "cotton-jersey", "ponte-knit"], "poorSubstitutes": ["cotton-poplin", "organza", "canvas"],
+    "beginnerNotes": "Nap, creeping layers, and pressure marks make this an advanced knit.", "handlingNotes": "Cut all pieces with the same nap, hand-baste difficult seams, and press without crushing the pile.",
+    "sourceReferences": [{"id": "cottonworks-knit-basics", "note": "Knit stretch behavior."}, {"id": "threads-monthly-dress-fabrics", "note": "Velvet garment uses and handling context."}], "lastReviewedDate": "2026-08-16"
+  },
+  {
+    "id": "lyocell-twill", "slug": "lyocell-twill", "displayName": "Lyocell twill", "aliases": ["tencel twill", "soft lyocell twill"],
+    "description": "A twill weave made with lyocell, typically combining a visible diagonal with a soft hand and fluid drape.", "construction": "woven", "constructionSubtype": "twill weave", "commonFibers": ["lyocell", "lyocell blends"],
+    "weightGsmMin": 140, "weightGsmMax": 260, "weightLabel": "medium", "drapeRating": 4, "structureRating": 2, "opacityRating": 4, "recoveryRating": 2, "sewingDifficultyRating": 3,
+    "horizontalStretchMin": 0, "horizontalStretchMax": 8, "verticalStretchMin": 0, "verticalStretchMax": 4,
+    "commonUses": ["Wide-leg pants", "Dresses", "Shirts", "Jumpsuits", "Soft jackets"], "poorUses": ["Rigid bags", "Bodycon knit dresses"],
+    "recommendedSubstitutes": ["rayon-challis", "linen", "twill"], "poorSubstitutes": ["canvas", "scuba-knit", "rib-knit"],
+    "beginnerNotes": "The fabric is usually stable but may shift or show water marks depending on the finish.", "handlingNotes": "Prewash, cut carefully on grain, and test pressing and marking tools on scraps.",
+    "sourceReferences": [{"id": "cottonworks-basic-woven-designs", "note": "Twill construction."}, {"id": "seamwork-one-pattern-three-fabrics", "note": "Comparison with fluid rayon and linen garments."}], "lastReviewedDate": "2026-08-16"
+  }
+]
