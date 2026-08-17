@@ -76,6 +76,15 @@ test("similar weight, stretch, and drape score above distant values", () => {
   assert.ok(scoreFabricPair(source, close).breakdown.drape > scoreFabricPair(source, distantDrape).breakdown.drape);
 });
 
+test("raised pile or brushing lowers compatibility and creates a handling caution", () => {
+  const corduroy = scoreFabricPair(byId.get("denim"), byId.get("corduroy"));
+  const fleece = scoreFabricPair(byId.get("french-terry"), byId.get("fleece"));
+  assert.equal(corduroy.label, "Reasonable substitute");
+  assert.equal(fleece.label, "Reasonable substitute");
+  assert.ok(corduroy.cautions.some((item) => item.includes("raised pile")));
+  assert.ok(fleece.cautions.some((item) => item.includes("raised pile")));
+});
+
 test("ranks deterministically, excludes self, and uses display name for score ties", () => {
   const source = byId.get("cotton-jersey");
   const first = rankFabricSubstitutes(source, fabrics);
@@ -119,6 +128,17 @@ test("project suggestions expose suitability, limitations, lining, stretch, and 
     assert.equal(typeof suggestion.stretchImportant, "boolean");
     assert.ok(suggestion.behavior.length > 10);
   }
+});
+
+test("project suggestions do not overstate lining or stretch suitability", () => {
+  const chiffon = projectSuggestionsFor(byId.get("chiffon"));
+  const scarf = chiffon.find((item) => item.name === "Scarves");
+  const jersey = projectSuggestionsFor(byId.get("cotton-jersey"));
+  const leggings = jersey.find((item) => item.name === "Leggings");
+  assert.equal(scarf.liningUseful, false);
+  assert.match(scarf.limitations, /Transparency is part of the effect/);
+  assert.equal(leggings.suitability, "Reasonable");
+  assert.match(leggings.limitations, /required stretch and recovery/);
 });
 
 test("feature analytics source contains no raw query or free-text property", () => {

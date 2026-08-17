@@ -31,6 +31,9 @@ function ratingScore(a, b, points) {
 function constructionScore(source, candidate) {
   if (source.construction !== candidate.construction) return 0;
   if (source.constructionSubtype === candidate.constructionSubtype) return SCORE_WEIGHTS.construction;
+  const sourceHasRaisedSurface = /pile|brushed/i.test(source.constructionSubtype);
+  const candidateHasRaisedSurface = /pile|brushed/i.test(candidate.constructionSubtype);
+  if (sourceHasRaisedSurface !== candidateHasRaisedSurface) return 16;
   return 24;
 }
 
@@ -68,6 +71,12 @@ function describeMatch(source, candidate, breakdown) {
     reasons.push(`Both are ${source.construction} fabrics, so the basic pattern behavior is compatible.`);
   } else {
     cautions.push(`This changes from ${source.construction} to ${candidate.construction}; fit, ease, and seam construction may need to be redesigned.`);
+  }
+
+  const sourceHasRaisedSurface = /pile|brushed/i.test(source.constructionSubtype);
+  const candidateHasRaisedSurface = /pile|brushed/i.test(candidate.constructionSubtype);
+  if (sourceHasRaisedSurface !== candidateHasRaisedSurface) {
+    cautions.push("One fabric has a raised pile or brushed surface; nap direction, bulk, pressing, and visible texture will change.");
   }
 
   if (breakdown.weight >= 11) {
@@ -142,11 +151,12 @@ export function searchFabrics(query, allFabrics) {
 }
 
 const STRETCH_PROJECTS = new Set(["T-shirts", "Leggings", "Sweatshirts", "Fitted dresses", "Activewear"]);
+const DELIBERATELY_SHEER_PROJECTS = new Set(["Scarves", "Chiffon overlays", "Formal overlays", "Curtains", "Decorative details", "Structured sleeves", "Interfacing"]);
 
 export function projectSuggestionsFor(fabric) {
   return (fabric.commonUses ?? []).slice(0, 7).map((name, index) => {
     const stretchImportant = STRETCH_PROJECTS.has(name);
-    const liningUseful = fabric.opacityRating <= 2 || ["Chiffon overlays", "Sheer blouses", "Formal dresses"].includes(name);
+    const liningUseful = (fabric.opacityRating <= 2 && !DELIBERATELY_SHEER_PROJECTS.has(name)) || ["Sheer blouses", "Formal dresses"].includes(name);
     const beginnerDifficulty = fabric.sewingDifficultyRating <= 2
       ? "Beginner-friendly"
       : fabric.sewingDifficultyRating <= 3
@@ -158,14 +168,19 @@ export function projectSuggestionsFor(fabric) {
         ? "Holds a crisp, structured shape."
         : "Balances movement with moderate body.";
     const limitations = [
-      stretchImportant && fabric.horizontalStretchMax < 20 ? "The project usually needs more stretch than this fabric provides." : null,
-      liningUseful ? "Plan for lining, underlining, or deliberate transparency." : null,
+      stretchImportant && (fabric.horizontalStretchMax < 25 || fabric.recoveryRating < 4) ? "Verify the pattern's required stretch and recovery; some versions of this fabric will bag out or restrict movement." : null,
+      liningUseful ? "Plan for lining or underlining where coverage is needed." : null,
+      fabric.opacityRating <= 2 && DELIBERATELY_SHEER_PROJECTS.has(name) ? "Transparency is part of the effect; pair it with an opaque layer when coverage is needed." : null,
       fabric.poorUses?.[0] ? `Avoid treating it like ${fabric.poorUses[0].toLowerCase()}.` : null,
     ].filter(Boolean).join(" ") || "Test the fabric after washing before committing yardage.";
 
+    let suitability = index < 3 ? "Strong" : index < 6 ? "Reasonable" : "Possible with adjustments";
+    if (stretchImportant && (fabric.horizontalStretchMax < 25 || fabric.recoveryRating < 3)) suitability = "Possible with adjustments";
+    else if (stretchImportant && fabric.recoveryRating < 4) suitability = "Reasonable";
+
     return {
       name,
-      suitability: index < 3 ? "Strong" : index < 6 ? "Reasonable" : "Possible with adjustments",
+      suitability,
       why: `${fabric.displayName} is commonly used for ${name.toLowerCase()} because its ${fabric.weightLabel} weight and ${fabric.drapeRating >= 4 ? "fluid drape" : fabric.structureRating >= 4 ? "firm structure" : "balanced hand"} support the shape.`,
       limitations,
       beginnerDifficulty,
