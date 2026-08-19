@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getStripeClient } from "@/lib/designer-preflight-server";
-import { PREFLIGHT_SERVICE_KEY } from "@/lib/designer-preflight-service.mjs";
+import { getExpectedStripeLivemode, getStripeClient } from "@/lib/designer-preflight-server";
+import { PREFLIGHT_AMOUNT_CENTS, PREFLIGHT_SERVICE_KEY } from "@/lib/designer-preflight-service.mjs";
 import PaymentSuccessAnalytics from "./PaymentSuccessAnalytics";
 
 export const metadata: Metadata = { title: "Pattern Preflight Payment Status", robots: { index: false, follow: false } };
@@ -15,8 +15,12 @@ export default async function PreflightSuccessPage({ searchParams }: { searchPar
   if (sessionId?.startsWith("cs_")) {
     try {
       const session = await getStripeClient().checkout.sessions.retrieve(sessionId);
-      const validService = session.metadata?.service === PREFLIGHT_SERVICE_KEY && Boolean(session.metadata?.submission_id);
-      verifiedPaid = validService && (session.payment_status === "paid" || session.payment_status === "no_payment_required");
+      const validService =
+        session.livemode === getExpectedStripeLivemode() &&
+        session.metadata?.service === PREFLIGHT_SERVICE_KEY &&
+        Boolean(session.metadata?.submission_id) &&
+        session.amount_total === PREFLIGHT_AMOUNT_CENTS;
+      verifiedPaid = validService && session.payment_status === "paid";
       processing = validService && session.status === "complete" && !verifiedPaid;
     } catch {
       verifiedPaid = false;

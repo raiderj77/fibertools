@@ -62,8 +62,16 @@ export default function DesignerPreflightForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const result = (await response.json()) as { checkoutUrl?: string; error?: string; errors?: FormErrors };
+      const result = (await response.json()) as {
+        checkoutUrl?: string;
+        error?: string;
+        errors?: FormErrors;
+        code?: string;
+      };
       if (!response.ok || !result.checkoutUrl) {
+        if (result.code === "fresh_request_required" || result.code === "request_already_processed") {
+          sessionStorage.removeItem(REQUEST_KEY);
+        }
         setErrors(result.errors || {});
         setGeneralError(result.error || "The submission could not be started. Your card was not charged.");
         setSubmitting(false);
