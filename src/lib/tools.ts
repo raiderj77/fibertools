@@ -16,7 +16,8 @@ export type ToolCategory =
   | "weaving" 
   | "spinning" 
   | "embroidery" 
-  | "cross-stitch";
+  | "cross-stitch"
+  | "sewing";
 export const CATEGORY_LABELS: Record<ToolCategory, string> = {
   knitting: "Knitting",
   crochet: "Crochet",
@@ -25,6 +26,7 @@ export const CATEGORY_LABELS: Record<ToolCategory, string> = {
   spinning: "Spinning",
   embroidery: "Embroidery",
   "cross-stitch": "Cross Stitch",
+  sewing: "Sewing",
 };
 export const CATEGORY_COLORS: Record<ToolCategory, string> = {
   knitting: "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300",
@@ -34,6 +36,7 @@ export const CATEGORY_COLORS: Record<ToolCategory, string> = {
   spinning: "bg-cream-300 text-bark-700 dark:bg-bark-700 dark:text-cream-300",
   embroidery: "bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300",
   "cross-stitch": "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300",
+  sewing: "bg-plum-100 text-plum-700 dark:bg-plum-900/30 dark:text-plum-300",
 };
 export const tools: Tool[] = [
   {
@@ -79,6 +82,17 @@ export const tools: Tool[] = [
     tier: 1,
     ready: true,
     keywords: ["yarn weight chart", "yarn substitution", "DK vs worsted"],
+  },
+  {
+    slug: "fabric-substitute",
+    name: "Fabric Substitute Finder",
+    shortName: "Fabric Substitutes",
+    description: "Compare 30 garment fabrics by construction, stretch, weight, drape, structure, opacity, and recovery, or find projects suited to fabric you already own.",
+    category: "sewing",
+    icon: "🧵",
+    tier: 1,
+    ready: true,
+    keywords: ["fabric substitute", "fabric substitution chart", "what can I make with this fabric", "fabric compatibility"],
   },
   {
     slug: "stitch-counter",
@@ -406,7 +420,8 @@ const relatedToolMap: Record<string, string[]> = {
   "yarn-calculator": ["yarn-weight-chart", "blanket-calculator", "project-cost-calculator", "gauge-calculator"],
   "needle-converter": ["needle-guide", "uk-to-us-converter", "gauge-calculator"],
   "gauge-calculator": ["yarn-calculator", "stitch-pattern-calculator", "blanket-calculator"],
-  "yarn-weight-chart": ["yarn-calculator", "needle-converter", "project-cost-calculator"],
+  "yarn-weight-chart": ["fabric-substitute", "yarn-calculator", "needle-converter", "project-cost-calculator"],
+  "fabric-substitute": ["yarn-weight-chart", "project-cost-calculator", "needle-guide", "blocking-calculator"],
   "stitch-counter": ["increase-decrease-calculator", "stitch-pattern-calculator", "stitch-quick-reference"],
   "blanket-calculator": ["cast-on-calculator", "yarn-calculator", "gauge-calculator", "stitch-pattern-calculator"],
   "increase-decrease-calculator": ["gauge-calculator", "stitch-counter", "circle-calculator"],

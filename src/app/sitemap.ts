@@ -49,6 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/do-not-sell", priority: 0.3, freq: "yearly" as const },
     { path: "/contact", priority: 0.4, freq: "yearly" as const },
     { path: "/crochet-tools", priority: 0.85, freq: "monthly" as const },
+    { path: "/designer-pattern-preflight", priority: 0.8, freq: "monthly" as const },
     { path: "/knitting-tools", priority: 0.85, freq: "monthly" as const },
     { path: "/weaving-tools", priority: 0.85, freq: "monthly" as const },
     { path: "/best-yarn-for-beginners", priority: 0.85, freq: "monthly" as const },

@@ -29,7 +29,7 @@ export default function TermsPage() {
         Terms of Use
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: March 16, 2026
+        Last updated: August 16, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -57,8 +57,41 @@ export default function TermsPage() {
           <p>
             FiberTools provides free, browser-based calculators and reference
             tools for fiber arts including knitting, crochet, weaving, spinning,
-            and embroidery. All calculations run entirely in your browser, we do
-            not process or store your inputs on our servers.
+            and embroidery. Calculator inputs run entirely in your browser and are
+            not stored on our servers. FiberTools also offers an optional paid
+            manual Designer Pattern Preflight pilot under the separate terms below.
+          </p>
+        </section>
+
+        <section id="designer-pattern-preflight">
+          <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
+            Designer Pattern Preflight Pilot Terms
+          </h2>
+          <p>
+            The pilot price is $9 for one submitted crochet pattern, one structured
+            manual report, and one clarification email related to the findings. The
+            delivery target is three business days after confirmed payment and working
+            access to a complete pattern. It is a target, not a guaranteed deadline.
+          </p>
+          <p>
+            This service is an affordable preflight intended to flag possible supported
+            arithmetic errors, inconsistencies, missing information, and areas requiring
+            human review. It is not professional tech editing, pattern testing, rewriting,
+            grading, sizing or fit verification, gauge or yarn verification, certification,
+            or a guarantee that a pattern or finished item is error-free. No ongoing revision
+            rounds are included.
+          </p>
+          <p>
+            You confirm that you created the submitted pattern or have permission to share
+            it for review, and that your private link grants FiberTools temporary view access.
+            You retain ownership of your pattern. FiberTools will not use it for AI training,
+            public examples, marketing, or product development without separate written permission.
+          </p>
+          <p>
+            If FiberTools cannot access or fulfill a paid submission, contact
+            jason@fibertools.app. Refund decisions are handled through Stripe based on the
+            circumstances. FiberTools does not issue refunds automatically, and no website
+            workflow may be treated as confirmation until Stripe records the refund.
           </p>
         </section>
 

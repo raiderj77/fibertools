@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         Privacy Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: July 12, 2026
+        Last updated: August 16, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -56,9 +56,10 @@ export default function PrivacyPolicyPage() {
             What Data We Collect
           </h2>
           <p>
-            All FiberTools calculators run entirely in your browser. We do not
-            send your inputs, results, or calculations to any server. Here is
-            what we do collect:
+            FiberTools calculators run entirely in your browser. We do not send
+            calculator inputs, results, or calculations to a server. The optional
+            paid Designer Pattern Preflight pilot is a separate manual service and
+            collects only the information described below. Here is what we collect:
           </p>
           <p>
             <strong>Analytics (Google Analytics 4):</strong> We use GA4 to
@@ -95,6 +96,14 @@ export default function PrivacyPolicyPage() {
             messages. Newsletter signup is optional and is not required to use a FiberTools calculator.
             Beehiiv retains subscription information according to its service terms and your subscription
             status; you can unsubscribe using the link in any newsletter.
+          </p>
+          <p>
+            <strong>Designer Pattern Preflight pilot:</strong> If you choose this paid manual service,
+            we collect your name, email address, pattern title, terminology, intended skill level,
+            pattern type, optional comments, consent record, payment status, and a customer-controlled
+            Google Drive, Dropbox, or OneDrive share link. FiberTools does not accept a direct upload
+            or place the pattern in a public storage bucket during this pilot. Do not paste pattern text
+            into the comments field.
           </p>
           <p>
             <strong>Local Storage:</strong> Some tools save your preferences
@@ -156,6 +165,7 @@ export default function PrivacyPolicyPage() {
             <li>Understand which tools are most popular so we can improve them</li>
             <li>Monitor site performance and fix errors</li>
             <li>Display relevant advertising to support the free service</li>
+            <li>Accept payment for, fulfill, deliver, and support the optional Designer Pattern Preflight</li>
           </ul>
           <p>
             We do <strong>not</strong> sell, rent, or share your personal
@@ -219,6 +229,15 @@ export default function PrivacyPolicyPage() {
               </a>
               )
             </li>
+            <li>
+              <strong>Stripe</strong>, payment processing for the optional Designer Pattern Preflight.
+              FiberTools sends Stripe the internal submission ID and customer email needed for checkout,
+              but not the pattern link, pattern content, comments, or report findings.
+            </li>
+            <li>
+              <strong>Supabase</strong>, private database storage for Designer Pattern Preflight submission
+              details and payment status. Direct anonymous and signed-in browser access to these tables is disabled.
+            </li>
           </ul>
         </section>
 
@@ -253,9 +272,20 @@ export default function PrivacyPolicyPage() {
           </h2>
           <p>
             Analytics data is retained according to Google Analytics settings
-            (14 months). FiberTools does not maintain its own user-account database.
+            (14 months). FiberTools does not maintain a customer-account database.
             Beehiiv stores information submitted through the optional newsletter
-            form as described above.
+            form as described above. For Designer Pattern Preflight, the owner manually
+            removes the stored share link, comments, internal notes, and customer submission
+            details no later than 30 days after report delivery, except limited payment or
+            transaction records retained when reasonably necessary for accounting, disputes,
+            fraud prevention, or legal obligations. This deletion is a weekly manual workflow,
+            not an automated retention job.
+          </p>
+          <p>
+            Submitted patterns are never used for AI training, public examples, marketing,
+            or product development without separate written permission. Pattern content,
+            filenames, customer names, email addresses, share links, comments, and report
+            findings are not placed in analytics events.
           </p>
         </section>
 
@@ -276,6 +306,7 @@ export default function PrivacyPolicyPage() {
             <li><strong>Identifiers:</strong> IP address, browser type, and device identifiers collected through consented analytics and, if enabled, advertising.</li>
             <li><strong>Internet or network activity:</strong> Pages visited, tools used, time on site, referring URLs.</li>
             <li><strong>Commercial information:</strong> Aggregate interactions with Amazon product links, such as the page, placement, and general product category.</li>
+            <li><strong>Optional service information:</strong> Name, email, pattern title and type, share link, consent record, payment status, and fulfillment status when you purchase Designer Pattern Preflight.</li>
             <li><strong>Inferred data:</strong> Interests or preferences that analytics providers and, if enabled, advertising providers may infer from browsing behavior, subject to your consent choices.</li>
           </ul>
 
@@ -347,7 +378,7 @@ export default function PrivacyPolicyPage() {
           </p>
 
           <h3>Data Retention</h3>
-          <p>Analytics data is retained for 26 months. Server logs are retained for 90 days. We do not retain tool calculation inputs beyond your browser session.</p>
+          <p>Analytics data is retained for 14 months. Server logs are retained for 90 days. We do not retain tool calculation inputs beyond your browser session. Designer Pattern Preflight submission data follows the manual 30-day post-delivery deletion process described above.</p>
         </section>
 
         <section id="state-privacy" aria-labelledby="state-heading">

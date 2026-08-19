@@ -274,4 +274,11 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "What does 'psso' mean in a vintage knitting pattern?", a: "'Psso' stands for 'pass slipped stitch over,' a left-leaning decrease. You slip one stitch knitwise, knit the next stitch, then lift the slipped stitch over the knitted stitch and off the needle. It is equivalent to SKP (slip, knit, pass over) in modern patterns." },
     { q: "What is 'cast off' in a vintage pattern?", a: "'Cast off' is the vintage and British term for bind off. Both instructions tell you to close the live stitches at the end of a piece or section so they cannot unravel. The technique is identical, only the name differs." },
   ],
+  "fabric-substitute": [
+    { q: "What is the best way to choose a fabric substitute?", a: "Match construction first, then compare stretch, weight, drape, structure, opacity, and recovery. A woven-to-woven or knit-to-knit substitution with overlapping ranges is safer, but a washed test swatch is still the final check." },
+    { q: "Can I replace a woven fabric with a knit?", a: "Usually not without changing the pattern. Knits stretch and recover differently, while woven patterns may rely on darts, closures, or wearing ease. The finder heavily penalizes woven-to-knit matches and labels them poor when the behavior conflicts." },
+    { q: "Does the fabric score guarantee the project will work?", a: "No. The score is a transparent comparison of seven broad fabric properties, not a guarantee. Mill finish, fiber blend, washing, pattern ease, and the exact fabric in your hand can change the result." },
+    { q: "What does GSM mean for fabric?", a: "GSM means grams per square meter, a measure of fabric mass per area. It helps compare weight, but two fabrics with the same GSM can still have very different thickness, drape, stretch, or warmth." },
+    { q: "Why are the fabric ranges broad?", a: "Names such as satin, linen, crepe, fleece, and twill describe families rather than one fixed specification. Fiber, yarn size, weave or knit settings, and finishing vary by mill, so the tool uses documented working ranges and tells you to verify the actual fabric." },
+  ],
 };

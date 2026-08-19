@@ -233,6 +233,15 @@ export default function CrochetToolsPage() {
         </div>
       </section>
 
+      <section className="mb-12 rounded-2xl border border-plum-200 bg-plum-50 p-6 dark:border-plum-800 dark:bg-plum-950/20 sm:p-8">
+        <p className="text-sm font-semibold uppercase tracking-wider text-plum-600 dark:text-plum-300">For crochet pattern designers</p>
+        <h2 className="mt-2 text-2xl font-display font-bold text-bark-800 dark:text-cream-100">Need a person to preflight the whole pattern?</h2>
+        <p className="mt-3 max-w-3xl leading-relaxed text-bark-600 dark:text-bark-400">
+          The $9 Designer Pattern Preflight pilot checks supported arithmetic, numbering, terminology, missing details, and areas that need human review before testers or professional tech editing.
+        </p>
+        <Link href="/designer-pattern-preflight" className="btn-primary mt-5">See the manual preflight pilot</Link>
+      </section>
+
       {/* Cross-link to knitting */}
       <div className="mt-8 p-6 bg-rose-50 dark:bg-rose-900/20 rounded-2xl border border-rose-200 dark:border-rose-800 text-center">
         <p className="text-bark-700 dark:text-cream-200 font-medium">
