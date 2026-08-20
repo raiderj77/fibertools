@@ -16,7 +16,8 @@
     "test:gpc-consent": "node --test tests/gpc-consent.test.mjs",
     "test:pattern-checker": "node --test tests/amigurumi-pattern-checker.test.mjs",
     "test:fabric-substitution": "node --test tests/fabric-substitution.test.mjs",
-    "test:designer-preflight": "node --test tests/designer-pattern-preflight.test.mjs",
+    "test:designer-preflight": "node --test tests/designer-pattern-preflight.test.mjs tests/designer-preflight-sql-contract.test.mjs",
+    "ops:designer-preflight-watchdog": "node scripts/designer-preflight-ops-watchdog.mjs",
     "test:revenue-path": "node --test tests/revenue-path-check.test.js",
     "test:search-traffic": "node --test tests/formula-library-and-newsletter.test.mjs tests/legacy-search-redirects.test.mjs tests/seo-content-accuracy.test.mjs tests/sitemap-readiness.test.mjs tests/social-preview-metadata.test.mjs tests/tool-referral-loop.test.mjs",
     "test:stitchproof-distribution": "node --test tests/stitchproof-distribution.test.mjs",
@@ -40,6 +41,7 @@
     "stripe": "^22.5.0"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "0.5.5",
     "@types/node": "^20",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
