@@ -95,6 +95,7 @@ test("checkout creation segregates test/live state and saves expiration", async 
   let idempotencyKey;
   let createdMode;
   let savedCheckout;
+  const futureExpiry = new Date(Date.now() + 60 * 60 * 1000).toISOString();
   const repository = {
     findByRequestId: async () => null,
     create: async (_data, liveMode) => {
@@ -113,7 +114,7 @@ test("checkout creation segregates test/live state and saves expiration", async 
         id: "cs_test_123",
         url: "https://checkout.stripe.com/c/pay/cs_test_123",
         liveMode: false,
-        expiresAt: "2026-08-20T00:00:00.000Z",
+        expiresAt: futureExpiry,
       };
     },
   };
@@ -136,7 +137,7 @@ test("checkout creation segregates test/live state and saves expiration", async 
     "cs_test_123",
     "https://checkout.stripe.com/c/pay/cs_test_123",
     false,
-    "2026-08-20T00:00:00.000Z",
+    futureExpiry,
   ]);
 });
 
