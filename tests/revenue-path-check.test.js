@@ -21,7 +21,7 @@ function validPage(overrides = {}) {
     headers: { "content-type": "text/html; charset=utf-8", "x-robots-tag": "" },
     html: `
       <html><head><link rel="canonical" href="https://fibertools.app${path}"></head><body>
-      <p>As an Amazon Associate I earn from qualifying purchases.</p>
+      <p>FiberTools may earn a commission if you buy through these links. As an Amazon Associate I earn from qualifying purchases.</p>
       ${affiliateLink()}${affiliateLink()}${affiliateLink()}
       </body></html>
     `,
@@ -33,8 +33,12 @@ function validDelegatedTrackingSource() {
   return {
     layoutSource: "<html><body><AffiliateClickTracker /></body></html>",
     trackerSource: `
-      const link = target.closest('a[href*="amazon.com"]');
+      const link = target.closest<HTMLAnchorElement>("a[href]");
       if (!link || link.dataset.affiliateTracked === "true") return;
+      const destination = new URL(link.href);
+      if (destination.protocol !== "https:") return;
+      if (destination.hostname !== "www.amazon.com") return;
+      if (destination.searchParams.get("tag") !== AMAZON_ASSOCIATE_TAG) return;
       window.gtag("event", "affiliate_click", {
         page_path: window.location.pathname,
         placement: "editorial-product-link",
@@ -104,14 +108,44 @@ test("requires the delegated Amazon tracker before guides skip link metadata", (
     /must remain mounted/,
   );
 
-  const withoutAmazonFallback = validDelegatedTrackingSource();
-  withoutAmazonFallback.trackerSource = withoutAmazonFallback.trackerSource.replace(
-    'a[href*="amazon.com"]',
-    "a[data-affiliate-tracked]",
+  const withoutTagGuard = validDelegatedTrackingSource();
+  withoutTagGuard.trackerSource = withoutTagGuard.trackerSource.replace(
+    'destination.searchParams.get("tag") !== AMAZON_ASSOCIATE_TAG',
+    'destination.searchParams.get("tag") !== "anything"',
   );
   assert.throws(
-    () => validateDelegatedTrackingSource(withoutAmazonFallback),
-    /must retain the Amazon link fallback/,
+    () => validateDelegatedTrackingSource(withoutTagGuard),
+    /must require the approved Associate tag/,
+  );
+
+  const withoutHostGuard = validDelegatedTrackingSource();
+  withoutHostGuard.trackerSource = withoutHostGuard.trackerSource.replace(
+    'destination.hostname !== "www.amazon.com"',
+    'destination.hostname !== "example.com"',
+  );
+  assert.throws(
+    () => validateDelegatedTrackingSource(withoutHostGuard),
+    /must require the Amazon host/,
+  );
+
+  const withoutHttpsGuard = validDelegatedTrackingSource();
+  withoutHttpsGuard.trackerSource = withoutHttpsGuard.trackerSource.replace(
+    'destination.protocol !== "https:"',
+    'destination.protocol !== "http:"',
+  );
+  assert.throws(
+    () => validateDelegatedTrackingSource(withoutHttpsGuard),
+    /must require HTTPS/,
+  );
+
+  const withoutDirectTrackingGuard = validDelegatedTrackingSource();
+  withoutDirectTrackingGuard.trackerSource = withoutDirectTrackingGuard.trackerSource.replace(
+    'link.dataset.affiliateTracked === "true"',
+    'link.dataset.affiliateTracked === "false"',
+  );
+  assert.throws(
+    () => validateDelegatedTrackingSource(withoutDirectTrackingGuard),
+    /must avoid double-counting/,
   );
 });
 
@@ -129,9 +163,15 @@ test("rejects an incorrect affiliate tag", () => {
 
 test("rejects a disclosure placed after the affiliate links", () => {
   const page = validPage();
-  const disclosure = "<p>As an Amazon Associate I earn from qualifying purchases.</p>";
+  const disclosure = "<p>FiberTools may earn a commission if you buy through these links. As an Amazon Associate I earn from qualifying purchases.</p>";
   page.html = page.html.replace(disclosure, "").replace("</body>", `${disclosure}</body>`);
   assert.throws(() => validateRevenuePage(page), /disclosure must precede affiliate links/);
+});
+
+test("rejects an Amazon statement without a clear paid-link disclosure", () => {
+  const page = validPage();
+  page.html = page.html.replace("FiberTools may earn a commission if you buy through these links. ", "");
+  assert.throws(() => validateRevenuePage(page), /paid-link disclosure is missing/);
 });
 
 test("rejects untracked affiliate links", () => {

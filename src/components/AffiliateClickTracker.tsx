@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { AMAZON_ASSOCIATE_TAG } from "@/lib/affiliate";
 
 export default function AffiliateClickTracker() {
   useEffect(() => {
@@ -8,8 +9,23 @@ export default function AffiliateClickTracker() {
       const target = event.target;
       if (!(target instanceof Element)) return;
 
-      const link = target.closest<HTMLAnchorElement>('a[href*="amazon.com"]');
+      const link = target.closest<HTMLAnchorElement>("a[href]");
       if (!link || link.dataset.affiliateTracked === "true") return;
+
+      let destination: URL;
+      try {
+        destination = new URL(link.href);
+      } catch {
+        return;
+      }
+
+      if (
+        destination.protocol !== "https:" ||
+        destination.hostname !== "www.amazon.com" ||
+        destination.searchParams.get("tag") !== AMAZON_ASSOCIATE_TAG
+      ) {
+        return;
+      }
 
       if (typeof window.gtag === "function") {
         window.gtag("event", "affiliate_click", {

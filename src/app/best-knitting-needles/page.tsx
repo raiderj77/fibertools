@@ -134,8 +134,8 @@ export default function BestKnittingNeedlesPage() {
       </nav>
 
       {/* Affiliate disclosure */}
-      <p className="text-xs text-bark-400 dark:text-bark-500 bg-cream-100 dark:bg-bark-800 border border-cream-300 dark:border-bark-700 rounded-lg px-4 py-2 mb-6">
-        As an Amazon Associate I earn from qualifying purchases.
+      <p className="mb-6 rounded-lg border border-cream-300 bg-cream-100 px-4 py-3 text-sm leading-relaxed text-bark-600 dark:border-bark-700 dark:bg-bark-800 dark:text-cream-300">
+        <strong>Paid links:</strong> FiberTools may earn a commission if you buy through these links. As an Amazon Associate I earn from qualifying purchases.
       </p>
 
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
@@ -203,7 +203,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Bamboo</td>
                   <td className="px-4 py-3">US 0–15</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("clover takumi bamboo knitting needles")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("clover takumi bamboo knitting needles")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -212,7 +212,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Aluminum</td>
                   <td className="px-4 py-3">US 0–15</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("susan bates silvalume knitting needles")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("susan bates silvalume knitting needles")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
               </tbody>
@@ -249,7 +249,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Stainless steel</td>
                   <td className="px-4 py-3">Best overall, lace to bulky</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("chiaogoo red lace circular needles")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("chiaogoo red lace circular needles")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -258,7 +258,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Nickel-plated brass</td>
                   <td className="px-4 py-3">Speed knitting, smooth join</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("addi turbo circular knitting needles")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("addi turbo circular knitting needles")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -267,7 +267,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Laminated birch</td>
                   <td className="px-4 py-3">Budget-friendly, colorful</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("knitters pride dreamz circular")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("knitters pride dreamz circular")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
               </tbody>
@@ -302,7 +302,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Stainless steel</td>
                   <td className="px-4 py-3">US 2–15 (complete set)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("chiaogoo twist interchangeable")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("chiaogoo twist interchangeable")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -310,7 +310,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Carbon fiber</td>
                   <td className="px-4 py-3">US 2–11</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("knitters pride karbonz interchangeable")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("knitters pride karbonz interchangeable")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -318,7 +318,7 @@ export default function BestKnittingNeedlesPage() {
                   <td className="px-4 py-3">Nickel-plated brass</td>
                   <td className="px-4 py-3">US 4–11</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("addi click interchangeable needles")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("addi click interchangeable needles")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
               </tbody>
