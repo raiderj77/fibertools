@@ -102,7 +102,7 @@ export default async function Page({
 
         {/* FTC DISCLOSURE */}
         <p className="text-sm text-gray-600 border border-gray-200 rounded p-3 mb-6">
-          <strong>Affiliate disclosure:</strong> As an Amazon Associate I earn from qualifying purchases.
+          <strong>Paid links:</strong> FiberTools may earn a commission if you buy through these links. As an Amazon Associate I earn from qualifying purchases.
           Recommendations are selected for their relevance to this guide.
         </p>
 
@@ -316,9 +316,9 @@ export default async function Page({
             rel="noopener noreferrer sponsored nofollow"
             className="text-indigo-600 hover:underline"
           >
-            Ergonomic hook sets on Amazon (affiliate link)
+            Ergonomic hook sets on Amazon (paid link)
           </a>{' '}
-          range from $15–$40 for a full set and include sizes B through K.
+          are available in full sets that cover a broad range of sizes.
         </p>
 
         <p>
@@ -338,7 +338,7 @@ export default async function Page({
         <p>
           A <strong>needle gauge card</strong> has labeled holes, insert the hook shaft (not the
           throat) until you find the snug fit. A <strong>digital caliper</strong> measures the shaft
-          diameter in millimeters and costs under $10. Both tools work for knitting needles too.
+          diameter in millimeters. Both tools work for knitting needles too.
           The FiberTools{' '}
           <a href="/needle-guide" className="text-indigo-600 hover:underline">
             Needle Guide

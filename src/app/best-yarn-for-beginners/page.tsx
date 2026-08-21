@@ -90,7 +90,7 @@ export default function BestYarnForBeginnersPage() {
         name: "How much does beginner yarn cost?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Beginner-friendly acrylic yarn typically costs $3–$8 per skein. A small first project uses 1–2 skeins. Buy a small amount to start, you can always get more of the same yarn.",
+          text: "Beginner-friendly acrylic yarn is widely available in budget-friendly skeins. A small first project uses 1–2 skeins. Buy a small amount to start, you can always get more of the same yarn.",
         },
       },
       {
@@ -135,8 +135,8 @@ export default function BestYarnForBeginnersPage() {
       </nav>
 
       {/* Affiliate disclosure */}
-      <p className="text-xs text-bark-400 dark:text-bark-500 bg-cream-100 dark:bg-bark-800 border border-cream-300 dark:border-bark-700 rounded-lg px-4 py-2 mb-6">
-        As an Amazon Associate I earn from qualifying purchases.
+      <p className="mb-6 rounded-lg border border-cream-300 bg-cream-100 px-4 py-3 text-sm leading-relaxed text-bark-600 dark:border-bark-700 dark:bg-bark-800 dark:text-cream-300">
+        <strong>Paid links:</strong> FiberTools may earn a commission if you buy through these links. As an Amazon Associate I earn from qualifying purchases.
       </p>
 
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
@@ -197,7 +197,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Best value, 1,020 yards per skein</td>
                   <td className="px-4 py-3">
-                    <a href={amazonProductUrl("B0CBPXTSB8")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonProductUrl("B0CBPXTSB8")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -206,7 +206,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Smoothest feel, great color range</td>
                   <td className="px-4 py-3">
-                    <a href={amazonProductUrl("B00CB39PYQ")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonProductUrl("B00CB39PYQ")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -215,7 +215,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Most affordable, widely available</td>
                   <td className="px-4 py-3">
-                    <a href={amazonProductUrl("B00114TCMQ")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonProductUrl("B00114TCMQ")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -224,7 +224,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Great for learning gauge, clean colors</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("paintbox simply dk")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("paintbox simply dk")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -233,7 +233,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">Cotton/acrylic</td>
                   <td className="px-4 py-3">Warm climates, dishcloths</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("lion brand comfy cotton blend")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("lion brand comfy cotton blend")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
               </tbody>
@@ -338,7 +338,7 @@ export default function BestYarnForBeginnersPage() {
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">How much does beginner yarn cost?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Beginner-friendly acrylic yarn typically costs $3–$8 per skein. A small first project uses 1–2 skeins. Buy a small amount to start, you can always get more of the same yarn.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Beginner-friendly acrylic yarn is widely available in budget-friendly skeins. A small first project uses 1–2 skeins. Buy a small amount to start, you can always get more of the same yarn.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">

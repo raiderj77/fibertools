@@ -222,7 +222,7 @@ export default function PrivacyPolicyPage() {
               <a
                 href="https://www.amazon.com/gp/help/customer/display.html?nodeId=468496"
                 target="_blank"
-                rel="noopener noreferrer nofollow sponsored"
+                rel="noopener noreferrer nofollow"
                 className="text-sage-600 dark:text-sage-400 underline"
               >
                 Amazon Privacy Notice

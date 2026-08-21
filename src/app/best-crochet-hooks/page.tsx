@@ -134,8 +134,8 @@ export default function BestCrochetHooksPage() {
       </nav>
 
       {/* Affiliate disclosure */}
-      <p className="text-xs text-bark-400 dark:text-bark-500 bg-cream-100 dark:bg-bark-800 border border-cream-300 dark:border-bark-700 rounded-lg px-4 py-2 mb-6">
-        As an Amazon Associate I earn from qualifying purchases.
+      <p className="mb-6 rounded-lg border border-cream-300 bg-cream-100 px-4 py-3 text-sm leading-relaxed text-bark-600 dark:border-bark-700 dark:bg-bark-800 dark:text-cream-300">
+        <strong>Paid links:</strong> FiberTools may earn a commission if you buy through these links. As an Amazon Associate I earn from qualifying purchases.
       </p>
 
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
@@ -144,7 +144,7 @@ export default function BestCrochetHooksPage() {
 
       {/* Answer capsule */}
       <p className="text-lg text-bark-600 dark:text-cream-300 leading-relaxed mb-2">
-        The best crochet hook for most crocheters is an ergonomic hook with a comfortable grip, the Clover Amour is the top all-around pick. Beginners should start with a US H-8 (5mm) hook and medium weight yarn. For budget options, a basic aluminum set from Boye or Susan Bates covers all common sizes for under $15.
+        The best crochet hook for most crocheters is an ergonomic hook with a comfortable grip, the Clover Amour is the top all-around pick. Beginners should start with a US H-8 (5mm) hook and medium weight yarn. For budget options, a basic aluminum set from Boye or Susan Bates covers the common sizes without the premium price of ergonomic sets.
       </p>
 
       <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
@@ -201,7 +201,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Rubber grip, inline head</td>
                   <td className="px-4 py-3">2mm–15mm (steel and standard)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("clover amour crochet hook")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("clover amour crochet hook")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -209,7 +209,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Teardrop cushion grip, tapered head</td>
                   <td className="px-4 py-3">1.8mm–10mm</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("tulip etimo crochet hook")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("tulip etimo crochet hook")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
@@ -217,7 +217,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Handcrafted, multiple materials</td>
                   <td className="px-4 py-3">3.5mm–12mm</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("furls crochet hook")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("furls crochet hook")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
               </tbody>
@@ -252,7 +252,7 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Aluminum</td>
                   <td className="px-4 py-3">Set (6–10 hooks)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("boye aluminum crochet hook set")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("boye aluminum crochet hook set")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
@@ -260,14 +260,14 @@ export default function BestCrochetHooksPage() {
                   <td className="px-4 py-3">Aluminum</td>
                   <td className="px-4 py-3">Set (6–8 hooks)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("susan bates silvalume crochet hook set")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">Check price</a>
+                    <a href={amazonSearchUrl("susan bates silvalume crochet hook set")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            The <strong>Boye Aluminum Set</strong> is a classic straight-handle hook set that has been a craft store staple for decades. Widely available and affordable, it is a solid starting point for anyone learning to crochet. The <strong>Susan Bates Silvalume Set</strong> offers smooth aluminum hooks with an inline head style and good value, often available for under $15 for a full set of common sizes.
+            The <strong>Boye Aluminum Set</strong> is a classic straight-handle hook set that has been a craft store staple for decades. Widely available and affordable, it is a solid starting point for anyone learning to crochet. The <strong>Susan Bates Silvalume Set</strong> offers smooth aluminum hooks with an inline head style and good value in a full set of common sizes.
           </p>
         </section>
 

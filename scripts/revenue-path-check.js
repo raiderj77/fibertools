@@ -5,6 +5,7 @@ const pathModule = require("node:path");
 const BASE_URL = (process.env.FIBERTOOLS_BASE_URL || "https://fibertools.app").replace(/\/$/, "");
 const ASSOCIATE_TAG = "ytearnings-20";
 const REQUIRED_DISCLOSURE = "As an Amazon Associate I earn from qualifying purchases.";
+const REQUIRED_LINK_DISCLOSURE = "FiberTools may earn a commission if you buy through these links.";
 
 const CALCULATOR_PATHS = [
   "/blanket-calculator",
@@ -37,8 +38,24 @@ function validateDelegatedTrackingSource({ layoutSource, trackerSource }) {
     "Global AffiliateClickTracker must remain mounted before guides use delegated tracking",
   );
   assert.ok(
-    trackerSource.includes('a[href*="amazon.com"]'),
-    "Delegated tracker must retain the Amazon link fallback",
+    trackerSource.includes('target.closest<HTMLAnchorElement>("a[href]")'),
+    "Delegated tracker must inspect clicked links",
+  );
+  assert.ok(
+    trackerSource.includes("new URL(link.href)"),
+    "Delegated tracker must parse the clicked destination",
+  );
+  assert.ok(
+    trackerSource.includes('destination.protocol !== "https:"'),
+    "Delegated tracker must require HTTPS",
+  );
+  assert.ok(
+    trackerSource.includes('destination.hostname !== "www.amazon.com"'),
+    "Delegated tracker must require the Amazon host",
+  );
+  assert.ok(
+    trackerSource.includes('destination.searchParams.get("tag") !== AMAZON_ASSOCIATE_TAG'),
+    "Delegated tracker must require the approved Associate tag",
   );
   assert.ok(
     trackerSource.includes('link.dataset.affiliateTracked === "true"'),
@@ -111,9 +128,15 @@ function validateRevenuePage({
   assert.ok(affiliateLinks.length >= 3, `${path}: expected at least 3 rendered Amazon recommendations`);
 
   const disclosurePosition = html.indexOf(REQUIRED_DISCLOSURE);
+  const linkDisclosurePosition = html.indexOf(REQUIRED_LINK_DISCLOSURE);
   const firstAffiliatePosition = html.indexOf(affiliateLinks[0]);
   assert.ok(disclosurePosition >= 0, `${path}: Amazon disclosure is missing`);
+  assert.ok(linkDisclosurePosition >= 0, `${path}: paid-link disclosure is missing`);
   assert.ok(disclosurePosition < firstAffiliatePosition, `${path}: disclosure must precede affiliate links`);
+  assert.ok(
+    linkDisclosurePosition < firstAffiliatePosition,
+    `${path}: paid-link disclosure must precede affiliate links`,
+  );
 
   for (const link of affiliateLinks) {
     const href = new URL(attribute(link, "href"));
