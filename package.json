@@ -14,6 +14,7 @@
     "test:affiliate": "node scripts/affiliate-check.js",
     "test:indexnow": "node --test tests/indexnow-urls.test.mjs",
     "test:gpc-consent": "node --test tests/gpc-consent.test.mjs",
+    "test:blanket-gauge": "node --test tests/blanket-gauge.test.mjs",
     "test:pattern-checker": "node --test tests/amigurumi-pattern-checker.test.mjs",
     "test:fabric-substitution": "node --test tests/fabric-substitution.test.mjs",
     "test:designer-preflight": "node --test tests/designer-pattern-preflight.test.mjs tests/designer-preflight-sql-contract.test.mjs",
