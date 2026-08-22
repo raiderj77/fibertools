@@ -5,6 +5,7 @@ import test from "node:test";
 const read = (path) => fs.readFileSync(path, "utf8");
 const blanketTool = read("src/app/blanket-calculator/BlanketCalculatorTool.tsx");
 const blanketPage = read("src/app/blanket-calculator/page.tsx");
+const blanketGuide = read("src/lib/guides.ts");
 const castOnPage = read("src/app/cast-on-calculator/page.tsx");
 const homepage = read("src/app/page.tsx");
 const knittingToolsPage = read("src/app/knitting-tools/page.tsx");
@@ -25,6 +26,19 @@ test("uses swatch consumption instead of a generic blanket coverage factor", () 
   assert.doesNotMatch(blanketTool, /ydsPerSqIn|gaugeRatio/);
   assert.match(blanketTool, /swatchWeight \* areaRatio \* 1\.1/);
   assert.match(blanketPage, /finished area ÷ swatch area × measured swatch grams × 1\.10 buffer/);
+});
+
+test("keeps the blanket guide aligned with the measured-swatch calculator", () => {
+  assert.doesNotMatch(blanketGuide, /Figure out exactly how much yarn to buy for any blanket size/);
+  assert.match(blanketGuide, /Estimate how much yarn to buy for a blanket from a measured swatch/);
+  assert.match(blanketGuide, /90 × 100 inches for a queen/);
+  assert.match(blanketGuide, /108 × 100 inches for a king/);
+  assert.doesNotMatch(blanketGuide, /queen comes in at 90 × 90 inches/);
+  assert.match(blanketGuide, /cannot derive yarn use reliably from gauge, blanket dimensions, and yarn-weight category alone/);
+  assert.match(blanketGuide, /scales the grams used by a measured swatch made in your actual stitch pattern/);
+  assert.match(blanketGuide, /yarn label's length and weight convert that result to total yardage and whole skeins/);
+  assert.match(blanketGuide, /Gauge is used separately for stitch and row counts/);
+  assert.match(blanketTool, /Yarn use cannot be derived reliably from gauge or yarn weight alone/);
 });
 
 test("links to the current Craft Yarn Council reference routes", () => {
