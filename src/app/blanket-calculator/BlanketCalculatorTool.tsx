@@ -1,10 +1,15 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useCallback, useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
-import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
+import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
 import ResultShareButton from "@/components/ResultShareButton";
+import {
+  calculateBlanketGaugeCounts,
+  convertBlanketMeasurementInput,
+  roundBlanketStitchesToMultiple,
+} from "@/lib/blanket-gauge.mjs";
 import useToolCompletion from "@/lib/useToolCompletion";
 
 // ── DATA ──────────────────────────────────────────────────────────
@@ -74,6 +79,23 @@ export default function BlanketCalculatorTool() {
   const [skeinYards, setSkeinYards] = useState("220");
   const [skeinGrams, setSkeinGrams] = useState("100");
 
+  const handleUnitsChange = useCallback((nextUnits: UnitSystem) => {
+    if (nextUnits === units) return;
+
+    const toMetric = nextUnits === "metric";
+    const dimensionFactor = toMetric ? 2.54 : 1 / 2.54;
+    setCustomW((value) => convertBlanketMeasurementInput(value, dimensionFactor));
+    setCustomL((value) => convertBlanketMeasurementInput(value, dimensionFactor));
+    setOverhang((value) => convertBlanketMeasurementInput(value, dimensionFactor));
+    setGaugeOver((value) => convertBlanketMeasurementInput(value, dimensionFactor));
+    setSwatchWidth((value) => convertBlanketMeasurementInput(value, dimensionFactor));
+    setSwatchHeight((value) => convertBlanketMeasurementInput(value, dimensionFactor));
+    setSkeinYards((value) => convertBlanketMeasurementInput(value, toMetric ? 0.9144 : 1 / 0.9144));
+    setUnits(nextUnits);
+  }, [units]);
+
+  useSavedUnits(handleUnitsChange);
+
   const dim = units === "metric" ? "cm" : "in";
   const yw = YARN_WEIGHTS.find((w) => w.key === yarnWeight) || YARN_WEIGHTS[4];
 
@@ -103,25 +125,25 @@ export default function BlanketCalculatorTool() {
     if (widthIn <= 0 || lengthIn <= 0) return null;
 
     // Gauge
-    const gOver = parseFloat(gaugeOver) || 4;
+    const gOver = parseFloat(gaugeOver);
     const gSt = parseFloat(gaugeStitches) || 0;
     const gRow = parseFloat(gaugeRows) || 0;
-    const hasGauge = gSt > 0 && gRow > 0;
+    const hasGaugeInput = gSt > 0 && gRow > 0;
 
-    let stitchesNeeded: number;
-    let rowsNeeded: number;
+    const gaugeCounts = hasGaugeInput ? calculateBlanketGaugeCounts({
+      widthIn,
+      lengthIn,
+      gaugeStitches: gSt,
+      gaugeRows: gRow,
+      gaugeOver: gOver,
+      units,
+    }) : null;
+    const hasGauge = gaugeCounts !== null;
+
+    const stitchesNeeded = gaugeCounts?.stitches ?? 0;
+    const rowsNeeded = gaugeCounts?.rows ?? 0;
     let ydsNeeded: number | null = null;
     let totalGrams: number | null = null;
-
-    if (hasGauge) {
-      const stPerIn = gSt / gOver;
-      const rowPerIn = gRow / gOver;
-      stitchesNeeded = Math.round(widthIn * stPerIn);
-      rowsNeeded = Math.round(lengthIn * rowPerIn);
-    } else {
-      stitchesNeeded = 0;
-      rowsNeeded = 0;
-    }
 
     // Yarn use cannot be derived reliably from gauge or yarn weight alone.
     // Scale the maker's measured swatch consumption to the finished area.
@@ -144,12 +166,7 @@ export default function BlanketCalculatorTool() {
     // Stitch multiple rounding
     const mult = parseInt(stitchMultiple) || 0;
     const extra = parseInt(multipleExtra) || 0;
-    let roundedStitches = stitchesNeeded;
-    if (mult > 0 && stitchesNeeded > 0) {
-      const base = stitchesNeeded - extra;
-      roundedStitches = Math.round(base / mult) * mult + extra;
-      if (roundedStitches <= 0) roundedStitches = mult + extra;
-    }
+    const roundedStitches = roundBlanketStitchesToMultiple(stitchesNeeded, mult, extra);
 
     const skeinsByLength = ydsNeeded === null ? 0 : Math.ceil(ydsNeeded / skeinYds);
     const skeinsByWeight = totalGrams === null ? 0 : Math.ceil(totalGrams / skeinWeight);
@@ -180,7 +197,7 @@ export default function BlanketCalculatorTool() {
 
   return (
     <div className="space-y-8">
-      <UnitToggle value={units} onChange={setUnits} />
+      <UnitToggle value={units} onChange={handleUnitsChange} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left: inputs */}
