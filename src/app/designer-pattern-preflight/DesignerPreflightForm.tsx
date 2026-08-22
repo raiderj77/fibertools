@@ -177,14 +177,14 @@ export default function DesignerPreflightForm() {
         <label className="flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-bark-700 dark:text-cream-300">
           <input name="scopeAgreed" type="checkbox" required className="mt-1 h-5 w-5 shrink-0 accent-sage-600" aria-invalid={Boolean(errors.scopeAgreed)} aria-describedby={describedBy("scopeAgreed", "scope-summary")} />
           <span id="scope-summary">
-            I agree to the $9 pilot scope, the <Link href="/privacy" className="text-sage-600 underline">Privacy Policy</Link>, and the <Link href="/terms#designer-pattern-preflight" className="text-sage-600 underline">pilot terms</Link>. I understand this is a manual preflight, not professional tech editing or a guarantee that the pattern is error-free.
+            I agree to the $39 pilot scope for one pattern, one version, up to 10 pages, and one written report; the <Link href="/privacy" className="text-sage-600 underline">Privacy Policy</Link>; and the <Link href="/terms#designer-pattern-preflight" className="text-sage-600 underline">pilot terms</Link>. I understand this is a manual preflight, not rewriting, grading, ongoing consultation, professional tech editing, or a guarantee that the pattern is error-free.
           </span>
         </label>
         <FieldError id="scopeAgreed-error" message={errors.scopeAgreed} />
       </div>
 
       <button type="submit" disabled={submitting} className="btn-primary w-full sm:w-auto" aria-describedby="payment-note">
-        {submitting ? "Opening secure checkout…" : "Continue to Stripe — $9"}
+        {submitting ? "Opening secure checkout…" : "Continue to Stripe — $39"}
       </button>
       <p id="payment-note" className="text-xs leading-relaxed text-bark-500 dark:text-bark-400">
         Payment is handled by Stripe. Your pattern link is not sent to Stripe. If checkout fails, your card is not charged.

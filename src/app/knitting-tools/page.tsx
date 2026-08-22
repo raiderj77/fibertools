@@ -206,8 +206,9 @@ export default function KnittingToolsPage() {
             >
               cast-on calculator
             </Link>{" "}
-            adjusts your stitch count to the nearest stitch multiple for your chosen pattern. All tools
-            are free, require no account, and work on any device.
+            adjusts your stitch count to the nearest stitch multiple for your chosen pattern. Every
+            self-service calculator listed here is free. Optional professional reviews and project
+            downloads are separate paid offers.
           </p>
         </div>
       </div>

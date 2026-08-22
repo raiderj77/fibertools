@@ -2,7 +2,7 @@
 
 > https://fibertools.app
 
-FiberTools is a suite of 31 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, and cross stitch. Created by a fiber arts expert with 30+ years of experience. All processing happens client-side, no data is sent to any server. No login required. Works offline as a Progressive Web App. Every tool includes educational content, expert tips, and FAQ sections.
+FiberTools is a suite of 34 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, cross stitch, and sewing. Created by a fiber arts expert with 30+ years of experience. Calculator inputs and results are processed in the browser and are not sent to a server. Newsletter signup and optional paid services use their separately disclosed workflows. No login is required for self-service calculators, and many tools work offline as part of the Progressive Web App. All self-service calculators stay free. Optional professional reviews and project downloads are paid.
 
 US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Council (CYC) standard: Lace (0), Fingering (1), Sport (2), DK (3), Worsted (4), Bulky (5), Super Bulky (6), Jumbo (7).
 
@@ -184,11 +184,12 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 - [Contact](https://fibertools.app/about#contact): hello@fibertools.app
 
 ## Key Facts
-- 31 free tools across 6 fiber arts disciplines
-- All calculations run client-side in the browser
-- No login, no signup, no data collection
+- 34 free self-service tools across fiber arts disciplines
+- Calculator inputs and results stay in the browser
+- No login or email gate for self-service calculators
+- Optional professional reviews and project downloads are paid
 - Works offline as a Progressive Web App (PWA)
 - Mobile-first responsive design
 - US crochet terminology standard
 - CYC yarn weight classification (Lace 0 through Jumbo 7)
-- Last updated: March 2026
+- Last updated: August 2026

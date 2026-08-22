@@ -5,6 +5,7 @@ import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
 import ResultShareButton from "@/components/ResultShareButton";
+import PlanningPackResultCta from "@/components/PlanningPackResultCta";
 import {
   calculateBlanketGaugeCounts,
   convertBlanketMeasurementInput,
@@ -53,7 +54,7 @@ function ydsToM(y: number) { return +(y * 0.9144).toFixed(0); }
 
 // ── COMPONENT ─────────────────────────────────────────────────────
 
-export default function BlanketCalculatorTool() {
+export default function BlanketCalculatorTool({ embedded = false }: { embedded?: boolean }) {
   const [units, setUnits] = useState<UnitSystem>("imperial");
   const [sizeIdx, setSizeIdx] = useState(6); // throw
   const [useCustom, setUseCustom] = useState(false);
@@ -94,7 +95,7 @@ export default function BlanketCalculatorTool() {
     setUnits(nextUnits);
   }, [units]);
 
-  useSavedUnits(handleUnitsChange);
+  useSavedUnits(handleUnitsChange, !embedded);
 
   const dim = units === "metric" ? "cm" : "in";
   const yw = YARN_WEIGHTS.find((w) => w.key === yarnWeight) || YARN_WEIGHTS[4];
@@ -189,7 +190,7 @@ export default function BlanketCalculatorTool() {
     };
   }, [units, sizeIdx, useCustom, customW, customL, pillowTuck, overhang, gaugeStitches, gaugeRows, gaugeOver, swatchWidth, swatchHeight, swatchGrams, stitchMultiple, multipleExtra, skeinYards, skeinGrams, yw.label]);
 
-  useToolCompletion("blanket-calculator", result, Boolean(result?.hasSwatchUsage));
+  useToolCompletion("blanket-calculator", result, !embedded && Boolean(result?.hasSwatchUsage));
 
   const stickySummary = result?.hasSwatchUsage && result.yards !== null && result.meters !== null && result.skeins !== null
     ? `${units === "metric" ? result.meters.toLocaleString() + " m" : result.yards.toLocaleString() + " yds"} • ${result.skeins} skein${result.skeins !== 1 ? "s" : ""}`
@@ -197,7 +198,7 @@ export default function BlanketCalculatorTool() {
 
   return (
     <div className="space-y-8">
-      <UnitToggle value={units} onChange={handleUnitsChange} />
+      <UnitToggle value={units} onChange={handleUnitsChange} persist={!embedded} />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left: inputs */}
@@ -417,8 +418,11 @@ export default function BlanketCalculatorTool() {
                     navigator.clipboard.writeText(text);
                   }} className="btn-secondary text-sm">📋 Copy</button>
                   <button type="button" onClick={() => window.print()} className="btn-secondary text-sm">🖨️ Print</button>
-                  <ResultShareButton toolName="Blanket Calculator" toolSlug="blanket-calculator" />
+                  {!embedded ? (
+                    <ResultShareButton toolName="Blanket Calculator" toolSlug="blanket-calculator" />
+                  ) : null}
                 </div>
+                {!embedded && result.hasSwatchUsage ? <PlanningPackResultCta /> : null}
               </div>
             )}
           </StickyResult>

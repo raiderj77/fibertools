@@ -8,6 +8,10 @@ import {
 
 const cookieConsent = fs.readFileSync("src/components/CookieConsent.tsx", "utf8");
 const middleware = fs.readFileSync("src/middleware.ts", "utf8");
+const pageViews = fs.readFileSync("src/components/SanitizedPageViewTracker.tsx", "utf8");
+const fixedAnalytics = fs.readFileSync("src/lib/fixed-analytics.ts", "utf8");
+const affiliateTracker = fs.readFileSync("src/components/AffiliateClickTracker.tsx", "utf8");
+const affiliateLink = fs.readFileSync("src/components/AffiliateLink.tsx", "utf8");
 
 test("recognizes only the explicit FiberTools GPC cookie", () => {
   assert.equal(hasGPCConsentCookie("empire_gpc=1"), true);
@@ -58,4 +62,23 @@ test("keeps the server bridge cookie aligned with the current GPC signal", () =>
     middleware,
     /else if \(request\.cookies\.has\('empire_gpc'\)\) \{[\s\S]*response\.cookies\.delete\('empire_gpc'\)/,
   );
+});
+
+test("disables automatic query-bearing page views and sends a sanitized path", () => {
+  assert.match(cookieConsent, /send_page_view:\s*false/);
+  assert.match(cookieConsent, /ignore_referrer:\s*true/);
+  assert.match(pageViews, /page_path:\s*pathname/);
+  assert.match(pageViews, /page_location:\s*`\$\{window\.location\.origin\}\$\{pathname\}`/);
+  assert.match(pageViews, /page_referrer:\s*""/);
+  assert.doesNotMatch(pageViews, /useSearchParams|location\.search|document\.referrer/);
+});
+
+test("rechecks stored consent and GPC before every affiliate analytics event", () => {
+  assert.match(fixedAnalytics, /export function hasCurrentAnalyticsConsent/);
+  assert.match(fixedAnalytics, /if \(detectGPCClient\(\)\) return false/);
+  assert.match(fixedAnalytics, /analytics === "granted"/);
+  for (const source of [affiliateTracker, affiliateLink]) {
+    assert.match(source, /hasCurrentAnalyticsConsent\(\)/);
+    assert.ok(source.indexOf("hasCurrentAnalyticsConsent()") < source.indexOf('window.gtag("event"'));
+  }
 });

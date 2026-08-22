@@ -412,8 +412,8 @@ export default function StitchCounterGuidePage() {
               <span className="text-bark-500 text-sm">Convert your stitch and row counts to actual measurements, or figure out how many rows you need to reach a target length.</span>
             </li>
             <li>
-              <Link href="/row-repeat-calculator" className="text-sage-600 dark:text-sage-400 hover:underline font-medium">
-                Row Repeat Calculator
+              <Link href="/stitch-pattern-calculator" className="text-sage-600 dark:text-sage-400 hover:underline font-medium">
+                Stitch Pattern &amp; Repeat Calculator
               </Link>
               {", "}
               <span className="text-bark-500 text-sm">Calculate how many pattern repeats fit your stitch count, and what adjustments to make.</span>

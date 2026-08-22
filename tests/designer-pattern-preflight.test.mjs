@@ -126,7 +126,7 @@ test("checkout creation segregates test/live state and saves expiration", async 
   });
   assert.equal(result.ok, true);
   assert.equal(checkoutInput.amountCents, PREFLIGHT_AMOUNT_CENTS);
-  assert.equal(checkoutInput.amountCents, 900);
+  assert.equal(checkoutInput.amountCents, 3900);
   assert.equal(checkoutInput.serviceKey, PREFLIGHT_SERVICE_KEY);
   assert.equal(checkoutInput.submissionId, submissionId);
   assert.equal(Object.hasOwn(checkoutInput, "secureShareUrl"), false);
@@ -389,7 +389,7 @@ test("paid webhook passes mode, amount, and internal IDs to one atomic repositor
       id: "cs_test_paid",
       payment_status: "paid",
       payment_intent: "pi_test_paid",
-      amount_total: 900,
+      amount_total: 3900,
       metadata: preflightMetadata(),
     } },
   };
@@ -400,7 +400,7 @@ test("paid webhook passes mode, amount, and internal IDs to one atomic repositor
   assert.equal(result.handled, true);
   assert.equal(recorded.paymentState, "paid");
   assert.equal(recorded.stripeLivemode, false);
-  assert.equal(recorded.amountPaidCents, 900);
+  assert.equal(recorded.amountPaidCents, 3900);
   assert.equal(recorded.submissionId, submissionId);
 });
 
@@ -413,7 +413,7 @@ test("duplicate webhook delivery is acknowledged without a second state transiti
       id: "cs_test_duplicate",
       payment_status: "paid",
       payment_intent: null,
-      amount_total: 900,
+      amount_total: 3900,
       metadata: preflightMetadata(),
     } },
   };
@@ -492,7 +492,7 @@ test("refund events distinguish partial and full aggregate refunds", async () =>
     data: { object: {
       id: "ch_test_partial",
       payment_intent: "pi_test_paid",
-      amount: 900,
+      amount: 3900,
       amount_refunded: 300,
       refunded: false,
     } },
@@ -504,8 +504,8 @@ test("refund events distinguish partial and full aggregate refunds", async () =>
     data: { object: {
       id: "ch_test_full",
       payment_intent: "pi_test_paid",
-      amount: 900,
-      amount_refunded: 900,
+      amount: 3900,
+      amount_refunded: 3900,
       refunded: true,
     } },
   }, repository));
@@ -514,7 +514,7 @@ test("refund events distinguish partial and full aggregate refunds", async () =>
   assert.equal(recorded[0].paymentState, "partially_refunded");
   assert.equal(recorded[0].amountRefundedCents, 300);
   assert.equal(recorded[1].paymentState, "refunded");
-  assert.equal(recorded[1].amountRefundedCents, 900);
+  assert.equal(recorded[1].amountRefundedCents, 3900);
 });
 
 test("dispute events resolve PaymentIntent metadata and keep intermediate/won/lost states explicit", async () => {
@@ -527,7 +527,7 @@ test("dispute events resolve PaymentIntent metadata and keep intermediate/won/lo
     data: { object: {
       id: "dp_test_created",
       payment_intent: "pi_test_paid",
-      amount: 900,
+      amount: 3900,
       status: "needs_response",
     } },
   }, repository));
@@ -538,7 +538,7 @@ test("dispute events resolve PaymentIntent metadata and keep intermediate/won/lo
     data: { object: {
       id: "dp_test_closed",
       charge: "ch_test_paid",
-      amount: 900,
+      amount: 3900,
       status: "won",
     } },
   }, repository));
@@ -549,7 +549,7 @@ test("dispute events resolve PaymentIntent metadata and keep intermediate/won/lo
     data: { object: {
       id: "dp_test_updated",
       payment_intent: "pi_test_paid",
-      amount: 900,
+      amount: 3900,
       status: "under_review",
     } },
   }, repository));
@@ -572,7 +572,7 @@ test("owned dispute events reject unknown statuses before database mutation", as
     data: { object: {
       id: "dp_test_unknown",
       payment_intent: "pi_test_paid",
-      amount: 900,
+      amount: 3900,
       status: "future_provider_status",
     } },
   }, { recordStripeEvent: async () => { calls += 1; return true; } }));
@@ -589,8 +589,8 @@ test("financial events for another service are acknowledged and ignored", async 
     data: { object: {
       id: "ch_other",
       payment_intent: "pi_other",
-      amount: 900,
-      amount_refunded: 900,
+      amount: 3900,
+      amount_refunded: 3900,
       refunded: true,
     } },
   }, { recordStripeEvent: async () => { calls += 1; return true; } }, {

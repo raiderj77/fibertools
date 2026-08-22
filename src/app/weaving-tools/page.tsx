@@ -160,8 +160,9 @@ export default function WeavingToolsPage() {
           </p>
           <p className="leading-relaxed">
             These calculators are built for weavers, spinners, and fiber artists who need accurate
-            technical math without digging through handbooks or spreadsheets. All tools are free, work
-            on any device, and require no account or login.
+            technical math without digging through handbooks or spreadsheets. Every self-service
+            calculator listed here is free. Optional professional reviews and project downloads are
+            separate paid offers.
           </p>
         </div>
       </div>

@@ -104,6 +104,9 @@ test("wires the tested gauge calculation into the blanket calculator", () => {
   assert.match(component, /from "@\/lib\/blanket-gauge\.mjs"/);
   assert.match(component, /calculateBlanketGaugeCounts\(\{/);
   assert.match(component, /setGaugeOver\(\(value\) => convertBlanketMeasurementInput\(value, dimensionFactor\)\)/);
-  assert.match(component, /<UnitToggle value=\{units\} onChange=\{handleUnitsChange\} \/>/);
+  assert.match(
+    component,
+    /<UnitToggle value=\{units\} onChange=\{handleUnitsChange\} persist=\{!embedded\} \/>/,
+  );
   assert.match(component, /roundBlanketStitchesToMultiple\(stitchesNeeded, mult, extra\)/);
 });

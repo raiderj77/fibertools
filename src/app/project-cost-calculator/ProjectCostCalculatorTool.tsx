@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import StickyResult from "@/components/StickyResult";
+import PlanningPackResultCta from "@/components/PlanningPackResultCta";
 
 // ── TYPES ─────────────────────────────────────────────────────────
 
@@ -285,6 +286,7 @@ export default function ProjectCostCalculatorTool() {
               }} className="btn-secondary text-sm">
                 📋 Copy breakdown
               </button>
+              {result.totalCost > 0 ? <PlanningPackResultCta /> : null}
             </div>
           </StickyResult>
         </div>

@@ -59,7 +59,27 @@ export default function TermsPage() {
             tools for fiber arts including knitting, crochet, weaving, spinning,
             and embroidery. Calculator inputs run entirely in your browser and are
             not stored on our servers. FiberTools also offers an optional paid
-            manual Designer Pattern Preflight pilot under the separate terms below.
+            Fiber Project Planning Pack and a limited manual Designer Pattern
+            Preflight pilot under the separate terms below.
+          </p>
+        </section>
+
+        <section id="fiber-project-planning-pack">
+          <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
+            Fiber Project Planning Pack Terms
+          </h2>
+          <p>
+            The Fiber Project Planning Pack is a $17 digital PDF workbook for
+            personal project-planning use. A purchaser may save and print clean
+            working copies for their own projects, but may not resell, redistribute,
+            publish, sublicense, or claim ownership of the workbook or its templates.
+          </p>
+          <p>
+            The pack is a general organizational aid, not a pattern, calculator,
+            professional instruction, or guarantee of project results. Checkout,
+            digital delivery, and any purchase-specific refund terms are provided by
+            the checkout provider identified at the time of purchase. When checkout
+            is unavailable, the website shows a contact action and does not accept payment.
           </p>
         </section>
 
@@ -68,10 +88,11 @@ export default function TermsPage() {
             Designer Pattern Preflight Pilot Terms
           </h2>
           <p>
-            The pilot price is $9 for one submitted crochet pattern, one structured
-            manual report, and one clarification email related to the findings. The
-            delivery target is three business days after confirmed payment and working
-            access to a complete pattern. It is a target, not a guaranteed deadline.
+            The limited pilot price is $39 for one submitted crochet pattern, one
+            version up to 10 pages, a manual math and consistency review, and one
+            written report. The delivery target is three business days after confirmed
+            payment and working access to a complete pattern. It is a target, not a
+            guaranteed deadline.
           </p>
           <p>
             This service is an affordable preflight intended to flag possible supported
@@ -79,7 +100,8 @@ export default function TermsPage() {
             human review. It is not professional tech editing, pattern testing, rewriting,
             grading, sizing or fit verification, gauge or yarn verification, certification,
             or a guarantee that a pattern or finished item is error-free. No ongoing revision
-            rounds are included.
+            rounds or ongoing consultation are included. FiberTools does not provide
+            clinical, legal, copyright, or business advice through this service.
           </p>
           <p>
             You confirm that you created the submitted pattern or have permission to share
@@ -176,8 +198,8 @@ export default function TermsPage() {
             Advertising on FiberTools
           </h2>
           <p>
-            FiberTools is a free service supported by affiliate links and may add
-            advertising after AdSense approval. Google AdSense is not currently
+            FiberTools keeps its self-service calculators free with support from
+            affiliate links and may add advertising after AdSense approval. Google AdSense is not currently
             enabled. If ads are enabled later, cookie use will follow your consent
             choices. See our{" "}
             <a

@@ -74,44 +74,44 @@ test("ops migrations execute with provider-ID-free outbox, safe orphan cleanup, 
         'evt_test_contract_refund_paid', 'checkout.session.completed',
         '00000000-0000-4000-8000-000000000011', 'cs_test_contract_refund',
         'pi_test_contract_refund', 'cs_test_contract_refund', false, 'paid',
-        900, null, null, null, null
+        3900, null, null, null, null
       );
       select public.process_designer_preflight_stripe_event_v2(
         'evt_test_contract_partial', 'charge.refunded',
         '00000000-0000-4000-8000-000000000011', null,
         'pi_test_contract_refund', 'ch_test_contract_refund', false, 'partially_refunded',
-        900, 300, null, null, null
+        3900, 300, null, null, null
       );
       select public.process_designer_preflight_stripe_event_v2(
         'evt_test_contract_full', 'charge.refunded',
         '00000000-0000-4000-8000-000000000011', null,
         'pi_test_contract_refund', 'ch_test_contract_refund', false, 'refunded',
-        900, 900, null, null, null
+        3900, 3900, null, null, null
       );
 
       select public.process_designer_preflight_stripe_event_v2(
         'evt_test_contract_dispute_paid', 'checkout.session.completed',
         '00000000-0000-4000-8000-000000000012', 'cs_test_contract_dispute',
         'pi_test_contract_dispute', 'cs_test_contract_dispute', false, 'paid',
-        900, null, null, null, null
+        3900, null, null, null, null
       );
       select public.process_designer_preflight_stripe_event_v2(
         'evt_test_contract_dispute_open', 'charge.dispute.created',
         '00000000-0000-4000-8000-000000000012', null,
         'pi_test_contract_dispute', 'dp_test_contract_dispute', false, 'disputed',
-        900, null, 'dp_test_contract_dispute', 'needs_response', null
+        3900, null, 'dp_test_contract_dispute', 'needs_response', null
       );
       select public.process_designer_preflight_stripe_event_v2(
         'evt_test_contract_dispute_won', 'charge.dispute.closed',
         '00000000-0000-4000-8000-000000000012', null,
         'pi_test_contract_dispute', 'dp_test_contract_dispute', false, 'dispute_won',
-        900, null, 'dp_test_contract_dispute', 'won', null
+        3900, null, 'dp_test_contract_dispute', 'won', null
       );
       select public.process_designer_preflight_stripe_event_v2(
         'evt_test_contract_ordered_partial', 'charge.refunded',
         '00000000-0000-4000-8000-000000000016', null,
         'pi_test_contract_ordered', 'ch_test_contract_ordered', false, 'partially_refunded',
-        900, 300, null, null, null
+        3900, 300, null, null, null
       );
     `);
 
@@ -131,7 +131,7 @@ test("ops migrations execute with provider-ID-free outbox, safe orphan cleanup, 
         'evt_test_contract_null_state', 'checkout.session.completed',
         '00000000-0000-4000-8000-000000000011', 'cs_test_contract_refund',
         'pi_test_contract_refund', 'cs_test_contract_refund', false, null,
-        900, null, null, null, null
+        3900, null, null, null, null
       )`),
       /Unsupported payment state/
     );
@@ -160,14 +160,14 @@ test("ops migrations execute with provider-ID-free outbox, safe orphan cleanup, 
     assert.deepEqual(result.rows[0], {
       status: "paid",
       payment_status: "partially_refunded",
-      amount_paid_cents: 900,
+      amount_paid_cents: 3900,
       amount_refunded_cents: 300,
     });
     await db.exec(`select public.process_designer_preflight_stripe_event_v2(
       'evt_test_contract_ordered_paid', 'checkout.session.completed',
       '00000000-0000-4000-8000-000000000016', 'cs_test_contract_ordered',
       'pi_test_contract_ordered', 'cs_test_contract_ordered', false, 'paid',
-      900, null, null, null, null
+      3900, null, null, null, null
     )`);
     result = await db.query(`
       select status, payment_status
@@ -234,7 +234,7 @@ test("ops migrations execute with provider-ID-free outbox, safe orphan cleanup, 
       'evt_test_contract_late_paid', 'checkout.session.completed',
       '00000000-0000-4000-8000-000000000015', 'cs_test_contract_late_original',
       'pi_test_contract_late', 'cs_test_contract_late_original', false, 'paid',
-      900, null, null, null, null
+      3900, null, null, null, null
     )`);
     result = await db.query(`
       select stripe_checkout_session_id, payment_status

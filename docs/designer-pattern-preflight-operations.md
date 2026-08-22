@@ -10,6 +10,8 @@ Operational events are written to `designer_preflight_outbox` in the same databa
 
 Set these server-side values in local `.env.local` and the deployment provider. Never expose Stripe or Supabase secrets to the browser.
 
+- `DESIGNER_PREFLIGHT_ACTION_MODE`: defaults safely to inquiry for every value except exact `checkout`. Set `checkout` only after the migration, provider, webhook, and fulfillment gates below are complete.
+- `DESIGNER_PREFLIGHT_INQUIRY_URL`: optional HTTPS or `mailto:` inquiry destination. Invalid or missing values fall back to the FiberTools support email. The inquiry route must not solicit pattern files, private share links, or payment details.
 - `NEXT_PUBLIC_SITE_URL`: `http://localhost:3000` locally; `https://fibertools.app` in production.
 - `STRIPE_MODE`: exactly `test` or `live`. Test and live requests, rows, webhooks, outbox events, and watchdog runs are segregated by this value.
 - `STRIPE_SECRET_KEY`: a key whose mode matches `STRIPE_MODE`.
@@ -56,7 +58,7 @@ For production, subscribe the live endpoint at `https://fibertools.app/api/strip
 - `charge.dispute.updated`
 - `charge.dispute.closed`
 
-The product and $9 one-time price are created inline by the server. No recurring price or subscription is created.
+The product and $39 one-time price are created inline by the server. No recurring price or subscription is created. The checkout API remains unavailable unless `DESIGNER_PREFLIGHT_ACTION_MODE=checkout` and every required Stripe, Supabase, webhook, and site value is present.
 
 ## Durable outbox and notification boundary
 
@@ -78,10 +80,10 @@ There is no admin authentication in the repository, so use the Supabase dashboar
 1. Filter `designer_preflight_submissions` by the intended `stripe_livemode`, `payment_status = paid`, and `status = paid`.
 2. Verify the payment in the matching Stripe mode before opening the pattern link.
 3. Acknowledge the paid row with `acknowledge_designer_preflight_paid_order(...)` so the stale-paid watchdog stops repeating alerts.
-4. Confirm the share link grants `jason@fibertools.app` view access. If access or information is missing, email the customer; do not move to `in_review` until access works.
+4. Confirm the share link grants `jason@fibertools.app` view access and contains exactly one submitted version of one crochet pattern with no more than 10 pages. If access, scope, or information is missing, email the customer; do not move to `in_review` until it is resolved.
 5. Call `start_designer_preflight_review(...)` with the owner-calculated due time. It records access and acknowledgement using database time, validates the due time against a 30-day maximum, and sets `status = in_review`. The database does not guess holidays.
 6. Review manually using `docs/designer-pattern-preflight-report-template.md`.
-7. Save the editable source and PDF outside the public repository, call `mark_designer_preflight_report_ready(...)`, and email the report manually from `jason@fibertools.app`.
+7. Save the editable source and one written PDF report outside the public repository, call `mark_designer_preflight_report_ready(...)`, and email that report manually from `jason@fibertools.app`. Do not add rewriting, grading, ownership transfer, ongoing consultation, or revision rounds to the fulfillment scope.
 8. Call `mark_designer_preflight_delivered(...)`. Database time atomically sets `status = delivered`, `delivered_at`, and the fixed 30-day `retention_delete_by` deadline.
 9. Record aggregate time and supported/unsupported requests in the validation ledger without copying customer or pattern content.
 
@@ -133,7 +135,7 @@ Automated anonymization requires a due deadline plus a delivered/terminal state,
 
 ## Pre-deployment gate
 
-Do not apply phase 1 until the target's remote migration baseline is reconciled. Do not deploy application code until the verified phase-1 migration is applied to the matching environment, `STRIPE_MODE` and its matching key are set explicitly, the subscribed event list is updated in the matching Stripe mode, and the test matrix passes. Apply owner-gated phase 2 only after every writer runs mode-aware code. Provider decisions still required before relying on automated operations:
+Do not apply phase 1 until the target's remote migration baseline is reconciled. Keep `DESIGNER_PREFLIGHT_ACTION_MODE` in its default inquiry state until the verified phase-1 migration is applied to the matching environment, `STRIPE_MODE` and its matching key are set explicitly, the subscribed event list is updated in the matching Stripe mode, and the test matrix passes. Switching the action mode to checkout is an owner/provider configuration action. Apply owner-gated phase 2 only after every writer runs mode-aware code. Provider decisions still required before relying on automated operations:
 
 - owner-notification delivery provider and destination;
 - scheduler/worker provider, authentication, cadence, and alert ownership;

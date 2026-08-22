@@ -1,7 +1,41 @@
 import Link from "next/link";
 import { tools, CATEGORY_LABELS, CATEGORY_COLORS, type Tool, getToolBySlug } from "@/lib/tools";
 import { getAllGuides } from "@/lib/guides";
-import BeehiivSignup from "@/components/BeehiivSignup";
+import HomeToolDirectory from "@/components/HomeToolDirectory";
+
+const FEATURED_TOOL_SLUGS = [
+  "blanket-calculator",
+  "yarn-calculator",
+  "circle-calculator",
+  "amigurumi-shapes",
+  "cast-on-calculator",
+] as const;
+
+const SECONDARY_TOOL_SLUG = "sock-calculator" as const;
+
+const VISITOR_PATHS = [
+  {
+    href: "/yarn-calculator",
+    icon: "🧶",
+    title: "Calculate yarn and materials",
+    description: "Estimate yardage, compare yarn information, and prepare a realistic supply list.",
+    action: "Start with the Yarn Calculator",
+  },
+  {
+    href: "/gauge-calculator",
+    icon: "📐",
+    title: "Fix gauge, sizing, and stitch counts",
+    description: "Turn a measured swatch into the stitch and row counts your project needs.",
+    action: "Start with the Gauge Calculator",
+  },
+  {
+    href: "/blanket-calculator",
+    icon: "🗂️",
+    title: "Plan a crochet or knitting project",
+    description: "Move from an idea to workable dimensions, quantities, and construction decisions.",
+    action: "Start planning a project",
+  },
+] as const;
 
 function ToolCard({ tool }: { tool: Tool }) {
   return (
@@ -34,9 +68,12 @@ function ToolCard({ tool }: { tool: Tool }) {
 }
 
 export default function HomePage() {
-  const tier1 = tools.filter((t) => t.tier === 1);
-  const tier2 = tools.filter((t) => t.tier === 2);
-  const tier3 = tools.filter((t) => t.tier === 3);
+  const featuredTools = FEATURED_TOOL_SLUGS
+    .map((slug) => getToolBySlug(slug))
+    .filter((tool): tool is Tool => tool !== undefined && tool.ready);
+  const secondaryTool = getToolBySlug(SECONDARY_TOOL_SLUG);
+  const promotedSlugs = new Set<string>([...FEATURED_TOOL_SLUGS, SECONDARY_TOOL_SLUG]);
+  const remainingTools = tools.filter((tool) => tool.ready && !promotedSlugs.has(tool.slug));
 
   const webApplicationSchema = {
     "@context": "https://schema.org",
@@ -182,26 +219,22 @@ export default function HomePage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-plum-100 border border-plum-200 rounded-full text-sm text-plum-600 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-plum-500 animate-pulse" />
-              {tools.filter((t) => t.ready).length} free tools, no login required
+              Free self-service calculators, no login required
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-display text-bark-800 leading-[1.1] tracking-tight">
-              Free tools for
-              <span className="text-plum-500"> every fiber crafter</span>
+              Fiber arts calculators for
+              <span className="text-plum-500"> confident projects</span>
             </h1>
             <p className="text-sm text-gray-600 mt-1 mb-4 text-center">Last updated: April 16, 2026</p>
             <p className="mt-6 text-lg sm:text-xl text-bark-500 max-w-xl leading-relaxed">
-              Yarn calculators, needle converters, gauge tools, and more, for
-              knitting, crochet, weaving, spinning, and embroidery. No login. No
-              ads wall. Works offline.
+              Calculate materials, correct gauge and stitch counts, or plan a knitting or crochet project with practical tools that show their work.
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link href="#all-tools" className="btn-primary">
-                Browse All Tools
-              </Link>
-              <Link href="/yarn-calculator" className="btn-secondary">
-                🧶 Yarn Calculator
-              </Link>
-            </div>
+            <p className="mt-4 max-w-2xl text-sm font-medium leading-relaxed text-bark-600 dark:text-cream-300">
+              All self-service calculators stay free. Optional professional reviews and project downloads are paid.
+            </p>
+            <Link href="#featured-calculators" className="btn-primary mt-8 inline-flex">
+              Browse calculators
+            </Link>
           </div>
 
           {/* Feature pills */}
@@ -209,9 +242,9 @@ export default function HomePage() {
             {[
               { icon: "⚡", text: "Instant results" },
               { icon: "📱", text: "Mobile-first" },
-              { icon: "🔒", text: "100% private" },
+              { icon: "🔒", text: "Inputs stay in-browser" },
               { icon: "📴", text: "Works offline" },
-              { icon: "🆓", text: "Always free" },
+              { icon: "🆓", text: "Calculators stay free" },
             ].map(({ icon, text }, i) => (
               <span
                 key={text}
@@ -231,93 +264,65 @@ export default function HomePage() {
         <div className="absolute top-1/2 right-1/4 w-40 h-40 rounded-full bg-cream-300/40 blur-3xl pointer-events-none animate-float" style={{ animationDelay: "1.5s" }} />
       </section>
 
-      {/* Tool Grid */}
-      <section id="all-tools" className="max-w-6xl mx-auto px-4 sm:px-6 py-16">
-        {/* Essential Tools */}
-        <div className="mb-12">
-          <div className="flex items-center gap-3 mb-6">
-            <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100">
-              Essential Fiber Arts Tools
-            </h2>
-            <span className="text-xs font-medium text-plum-600 bg-plum-100 px-2.5 py-0.5 rounded-full">
-              Most popular
-            </span>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {tier1.map((tool) => (
-              <ToolCard key={tool.slug} tool={tool} />
-            ))}
-          </div>
-        </div>
-
-        {/* More Calculators */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-6">
-            More Fiber Arts Calculators
+      {/* Primary visitor paths */}
+      <section className="mx-auto max-w-6xl px-4 pt-16 sm:px-6" aria-labelledby="choose-path-heading">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-plum-500">Choose your next step</p>
+          <h2 id="choose-path-heading" className="mt-2 text-3xl font-display font-bold text-bark-800 dark:text-cream-100">
+            What do you need to solve?
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {tier2.map((tool) => (
-              <ToolCard key={tool.slug} tool={tool} />
-            ))}
-          </div>
         </div>
-
-        {/* Specialty Tools */}
-        <div>
-          <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-6">
-            Specialty Fiber Arts Tools
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {tier3.map((tool) => (
-              <ToolCard key={tool.slug} tool={tool} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Buying Guides */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
-        <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-6">
-          Buying Guides
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {[
-            { href: "/best-crochet-hooks", icon: "🪝", title: "Best Crochet Hooks", desc: "Top-rated hooks for every skill level and budget." },
-            { href: "/best-knitting-needles", icon: "🥢", title: "Best Knitting Needles", desc: "Find the perfect needles for your next project." },
-            { href: "/best-yarn-for-amigurumi", icon: "🧸", title: "Best Yarn for Amigurumi", desc: "Yarns that hold shape and show stitch definition." },
-            { href: "/best-yarn-for-beginners", icon: "🌱", title: "Best Yarn for Beginners", desc: "Forgiving, easy-to-work yarns for new crafters." },
-            { href: "/best-yarn-for-blankets", icon: "🛏️", title: "Best Yarn for Blankets", desc: "Soft, durable yarns perfect for cozy blankets." },
-          ].map((guide) => (
-            <Link key={guide.href} href={guide.href} className="tool-card group">
-              <div className="flex flex-col gap-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl">{guide.icon}</span>
-                  <h3 className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-plum-500 transition-colors">
-                    {guide.title}
-                  </h3>
-                </div>
-                <p className="text-xs text-bark-500 dark:text-bark-400">
-                  {guide.desc}
-                </p>
-              </div>
+        <div className="mt-8 grid grid-cols-1 gap-5 lg:grid-cols-3">
+          {VISITOR_PATHS.map((path) => (
+            <Link key={path.title} href={path.href} className="group rounded-2xl border border-cream-300 bg-white p-6 transition hover:border-plum-300 hover:shadow-md dark:border-bark-700 dark:bg-bark-800">
+              <span className="text-3xl" aria-hidden="true">{path.icon}</span>
+              <h3 className="mt-4 text-xl font-semibold text-bark-700 transition-colors group-hover:text-plum-500 dark:text-cream-200">
+                {path.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-bark-500 dark:text-bark-400">{path.description}</p>
+              <span className="mt-5 inline-flex text-sm font-semibold text-plum-500">{path.action} →</span>
             </Link>
           ))}
         </div>
       </section>
 
-      {/* Newsletter Signup */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
-        <div className="rounded-2xl bg-plum-50 dark:bg-bark-800 border border-plum-200 dark:border-bark-700 px-8 py-10 text-center">
-          <div className="text-3xl mb-3">🧶</div>
-          <h2 className="text-2xl font-display font-bold text-bark-800 dark:text-cream-100 mb-2">
-            Get Swatch Signal + the free Survival Kit
+      {/* Evidence-backed featured calculators */}
+      <section id="featured-calculators" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6" aria-labelledby="featured-calculators-heading">
+        <div className="max-w-3xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-plum-500">Start here</p>
+          <h2 id="featured-calculators-heading" className="mt-2 text-3xl font-display font-bold text-bark-800 dark:text-cream-100">
+            Featured calculators
           </h2>
-          <p className="text-bark-500 dark:text-bark-400 text-sm mb-6 max-w-md mx-auto">
-            One practical fiber-math note most weeks, plus the printable yarn, gauge, and sizing reference immediately after signup.
+          <p className="mt-3 text-bark-500 dark:text-bark-400">
+            The five proven tools most visitors use to size projects, estimate materials, and work through construction math.
           </p>
-          <BeehiivSignup />
+        </div>
+        <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {featuredTools.map((tool) => (
+            <ToolCard key={tool.slug} tool={tool} />
+          ))}
         </div>
       </section>
+
+      {/* Secondary proven calculator */}
+      {secondaryTool?.ready && (
+        <section className="mx-auto max-w-6xl px-4 pb-4 sm:px-6" aria-labelledby="sock-calculator-heading">
+          <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 dark:border-rose-800 dark:bg-rose-900/20 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-wider text-rose-600 dark:text-rose-300">Also popular</p>
+              <h2 id="sock-calculator-heading" className="mt-2 text-2xl font-display font-bold text-bark-800 dark:text-cream-100">
+                Sock Calculator
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">{secondaryTool.description}</p>
+            </div>
+            <Link href={`/${secondaryTool.slug}`} className="btn-secondary mt-5 inline-flex shrink-0 sm:mt-0">
+              Open the Sock Calculator
+            </Link>
+          </div>
+        </section>
+      )}
+
+      <HomeToolDirectory tools={remainingTools} />
 
       {/* Latest Guides & Tutorials */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16">
@@ -348,6 +353,46 @@ export default function HomePage() {
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      {/* Secondary resources */}
+      <section className="mx-auto max-w-6xl px-4 pb-16 sm:px-6" aria-labelledby="secondary-resources-heading">
+        <h2 id="secondary-resources-heading" className="sr-only">More FiberTools resources</h2>
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
+          <div className="rounded-2xl border border-cream-300 bg-cream-50 p-6 dark:border-bark-700 dark:bg-bark-800">
+            <p className="text-xs font-semibold uppercase tracking-wider text-bark-500">Optional product guidance</p>
+            <h3 className="mt-2 text-xl font-display font-bold text-bark-800 dark:text-cream-100">Buying guides</h3>
+            <p className="mt-2 text-sm leading-relaxed text-bark-500 dark:text-bark-400">
+              Compare yarn, hooks, and needles after your calculations are complete. Destination pages clearly disclose paid links.
+            </p>
+            <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+              {[
+                { href: "/best-crochet-hooks", label: "Crochet hooks" },
+                { href: "/best-knitting-needles", label: "Knitting needles" },
+                { href: "/best-yarn-for-amigurumi", label: "Amigurumi yarn" },
+                { href: "/best-yarn-for-beginners", label: "Beginner yarn" },
+                { href: "/best-yarn-for-blankets", label: "Blanket yarn" },
+              ].map((guide) => (
+                <li key={guide.href}>
+                  <Link href={guide.href} className="font-semibold text-plum-500 underline underline-offset-2 hover:text-plum-600">
+                    {guide.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="rounded-2xl border border-plum-200 bg-plum-50 p-6 dark:border-plum-800 dark:bg-plum-950/20">
+            <p className="text-xs font-semibold uppercase tracking-wider text-plum-600 dark:text-plum-300">Optional newsletter</p>
+            <h3 className="mt-2 text-xl font-display font-bold text-bark-800 dark:text-cream-100">Swatch Signal</h3>
+            <p className="mt-2 text-sm leading-relaxed text-bark-500 dark:text-bark-400">
+              Get one practical fiber-math note most weeks and the free Yarn Crafters Survival Kit. Calculator access never requires an email address.
+            </p>
+            <Link href="/newsletter" className="mt-4 inline-flex min-h-11 items-center text-sm font-semibold text-plum-600 underline underline-offset-2 hover:text-plum-700 dark:text-plum-300">
+              Read the newsletter promise →
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -470,16 +515,16 @@ export default function HomePage() {
           About FiberTools
         </h2>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
-          FiberTools is a free collection of calculators and references built by Jason Ramirez, a developer and crochet hobbyist. The tools focus on practical planning problems such as yarn quantities, gauge, size conversion, and row tracking.
+          FiberTools is a collection of free self-service calculators and references for practical planning problems such as yarn quantities, gauge, size conversion, and row tracking.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
-          Our tools are grounded in industry standards. Yarn weight classifications follow the Craft Yarn Council CYC system. Needle and hook sizing follows US, metric, and UK conventions. Gauge formulas are derived from standard knitting and crochet mathematics, not approximations. FiberTools was built by Jason Ramirez, who got tired of fragmented fiber arts tools and built one that does everything.
+          The tools are grounded in industry standards. Yarn weight classifications follow the Craft Yarn Council CYC system, needle and hook sizing follows US, metric, and UK conventions, and calculation methods remain visible so you can check the assumptions.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
-          Everything on FiberTools is free and always will be. No login. No subscription. No paywall for the next calculator tab. We believe tools that make craft more accessible should be available to everyone, whether you are a beginner knitting your first scarf or an experienced designer working on a complex colorwork sweater.
+          All self-service calculators stay free. Optional professional reviews and project downloads are paid.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed">
-          All calculations happen in your browser. We do not store your inputs, sell your data, or require an account. Use FiberTools at the yarn shop, at a craft fair, or on the couch, it works offline once loaded.
+          Calculator inputs and results stay in your browser. FiberTools does not require an account to use the calculators, and many tools work offline once loaded.
         </p>
       </section>
 
@@ -561,8 +606,8 @@ export default function HomePage() {
               },
               {
                 icon: "🔓",
-                title: "No login, ever",
-                desc: "Just use the tools. No accounts, no subscriptions, no email required.",
+                title: "No calculator login",
+                desc: "Use every self-service calculator without an account or email gate.",
               },
             ].map(({ icon, title, desc }, i) => (
               <div

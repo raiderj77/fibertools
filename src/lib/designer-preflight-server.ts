@@ -194,7 +194,7 @@ export function createCheckoutProvider(expectedLivemode = getExpectedStripeLivem
                 unit_amount: input.amountCents,
                 product_data: {
                   name: "Designer Pattern Preflight",
-                  description: "One manual crochet pattern preflight report",
+                  description: "One version of one crochet pattern, up to 10 pages, with one manual preflight report",
                 },
               },
             },

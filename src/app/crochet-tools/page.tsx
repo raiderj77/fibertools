@@ -180,8 +180,8 @@ export default function CrochetToolsPage() {
           <p className="leading-relaxed">
             Whether you&rsquo;re planning your first baby blanket or calculating the exact yarn
             requirement for a corner-to-corner king-size afghan in three colors, these tools give you a
-            precise number rather than a rough estimate. No signup required, no app to install, and
-            every tool is free.
+            precise number rather than a rough estimate. Every self-service calculator listed here is
+            free. Optional professional reviews and project downloads are separate paid offers.
           </p>
         </div>
       </div>
@@ -237,7 +237,7 @@ export default function CrochetToolsPage() {
         <p className="text-sm font-semibold uppercase tracking-wider text-plum-600 dark:text-plum-300">For crochet pattern designers</p>
         <h2 className="mt-2 text-2xl font-display font-bold text-bark-800 dark:text-cream-100">Need a person to preflight the whole pattern?</h2>
         <p className="mt-3 max-w-3xl leading-relaxed text-bark-600 dark:text-bark-400">
-          The $9 Designer Pattern Preflight pilot checks supported arithmetic, numbering, terminology, missing details, and areas that need human review before testers or professional tech editing.
+          The $39 Designer Pattern Preflight pilot reviews one version of one crochet pattern, up to 10 pages, for supported arithmetic, numbering, terminology, missing details, and areas that need human review before testers or professional tech editing. It includes one written report.
         </p>
         <Link href="/designer-pattern-preflight" className="btn-primary mt-5">See the manual preflight pilot</Link>
       </section>

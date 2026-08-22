@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { checkPattern, MAX_FREE_ROUNDS } from "@/lib/amigurumi-pattern-checker.mjs";
+import { trackFixedEvent } from "@/lib/fixed-analytics";
 
 type CheckStatus = "correct" | "incorrect" | "calculated" | "unsupported";
 
@@ -70,21 +71,8 @@ export default function AmigurumiPatternCheckerTool() {
       : null;
     const result = checkPattern(pattern, validStart) as CheckResult;
     setChecked(result);
-    if (typeof window.gtag === "function" && !result.error) {
-      const resultCounts = result.results.reduce(
-        (summary, round) => {
-          summary[round.status] += 1;
-          return summary;
-        },
-        { correct: 0, incorrect: 0, calculated: 0, unsupported: 0 },
-      );
-      window.gtag("event", "pattern_check_run", {
-        round_count: result.results.length,
-        correct_rounds: resultCounts.correct,
-        incorrect_rounds: resultCounts.incorrect,
-        calculated_rounds: resultCounts.calculated,
-        unsupported_rounds: resultCounts.unsupported,
-      });
+    if (!result.error) {
+      trackFixedEvent("pattern_check_run", { slug: "amigurumi-pattern-checker" });
     }
   }
 

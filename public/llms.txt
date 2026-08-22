@@ -1,9 +1,9 @@
 # FiberTools, Free Calculators for Knitters, Crocheters & Weavers
 > https://fibertools.app
 
-FiberTools is a suite of 31 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, and cross stitch. Built by Jason Ramirez, founder, who tested every formula against real-world crafting scenarios to ensure accurate terminology, correct math, and practical usefulness.
+FiberTools is a suite of 34 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, cross stitch, and sewing. The formulas are checked against real-world crafting scenarios for accurate terminology, transparent math, and practical usefulness.
 
-All processing happens client-side, no data is sent to any server. No login required. Works offline. Every tool includes educational content, expert tips, and FAQ sections.
+Calculator inputs and results are processed in the browser and are not sent to a server. Newsletter signup and optional paid services use their separately disclosed workflows. No login is required for self-service calculators, and many tools work offline. All self-service calculators stay free. Optional professional reviews and project downloads are paid.
 
 ## Tools
 

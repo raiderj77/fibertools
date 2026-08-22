@@ -16,10 +16,9 @@ test("provides three explicit, editable product-interest requests", () => {
   assert.match(interestCard, /only a sent request counts/i);
 });
 
-test("tracks only a fixed interest category and page path", () => {
-  assert.match(interestCard, /"stitchproof_interest_click"/);
-  assert.match(interestCard, /interest_type: interestType/);
-  assert.match(interestCard, /page_path: "\/amigurumi-pattern-checker"/);
+test("tracks only a fixed allowlisted event and content slug", () => {
+  assert.match(interestCard, /trackFixedEvent\("stitchproof_interest_click", \{ slug: "amigurumi-pattern-checker" \}\)/);
+  assert.doesNotMatch(interestCard, /interest_type|page_path/);
   assert.doesNotMatch(interestCard, /fetch\(|localStorage|sessionStorage/);
   assert.doesNotMatch(interestCard, /pattern_text|email_address|project_name/);
 });
@@ -31,6 +30,6 @@ test("links existing high-intent pages to StitchProof", () => {
     "src/app/best-yarn-for-amigurumi/page.tsx",
   ]) {
     const source = fs.readFileSync(file, "utf8");
-    assert.match(source, /href="\/amigurumi-pattern-checker"/, `${file} must link to StitchProof`);
+    assert.match(source, /href(?:=|:)\s*"\/amigurumi-pattern-checker"/, `${file} must link to StitchProof`);
   }
 });

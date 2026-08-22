@@ -1,5 +1,7 @@
 "use client";
 
+import { trackFixedEvent } from "@/lib/fixed-analytics";
+
 const INTEREST_OPTIONS = [
   {
     key: "complete_audit",
@@ -36,13 +38,8 @@ function buildInterestEmail(title: string) {
 }
 
 export default function StitchProofInterestCard() {
-  function trackInterest(interestType: (typeof INTEREST_OPTIONS)[number]["key"]) {
-    if (typeof window.gtag === "function") {
-      window.gtag("event", "stitchproof_interest_click", {
-        interest_type: interestType,
-        page_path: "/amigurumi-pattern-checker",
-      });
-    }
+  function trackInterest() {
+    trackFixedEvent("stitchproof_interest_click", { slug: "amigurumi-pattern-checker" });
   }
 
   return (
@@ -60,7 +57,7 @@ export default function StitchProofInterestCard() {
           <a
             key={option.key}
             href={buildInterestEmail(option.title)}
-            onClick={() => trackInterest(option.key)}
+            onClick={trackInterest}
             className="rounded-xl border border-plum-200 bg-white p-4 transition hover:border-plum-400 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-plum-500 dark:border-plum-700 dark:bg-bark-800"
           >
             <span className="block font-semibold text-plum-700 dark:text-plum-300">{option.title}</span>

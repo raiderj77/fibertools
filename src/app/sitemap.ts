@@ -4,18 +4,11 @@ import { getAllGuides } from "@/lib/guides";
 
 const BASE_URL = "https://fibertools.app";
 
-// Keep experiment-adjacent discovery unchanged until the protected StitchProof
-// evidence review. Every other ready, canonical tool belongs in the sitemap.
-const EXPERIMENT_ADJACENT_TOOL_SLUGS = new Set([
-  "increase-decrease-calculator",
-  "uk-to-us-converter",
-]);
-
 const STANDALONE_TOOL_SLUGS = ["yarn-weight-calculator"] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const toolPages = tools
-    .filter((t) => t.ready && !EXPERIMENT_ADJACENT_TOOL_SLUGS.has(t.slug))
+    .filter((t) => t.ready)
     .map((t) => ({
       url: `${BASE_URL}/${t.slug}`,
       changeFrequency: "monthly" as const,
@@ -40,6 +33,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/guides", priority: 0.7, freq: "weekly" as const },
     { path: "/formula-library", priority: 0.75, freq: "monthly" as const },
     { path: "/newsletter", priority: 0.65, freq: "weekly" as const },
+    { path: "/embeds", priority: 0.65, freq: "monthly" as const },
+    { path: "/fiber-project-planning-pack", priority: 0.75, freq: "monthly" as const },
     { path: "/about", priority: 0.5, freq: "monthly" as const },
     { path: "/privacy", priority: 0.3, freq: "yearly" as const },
     { path: "/terms", priority: 0.3, freq: "yearly" as const },

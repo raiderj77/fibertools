@@ -1,4 +1,4 @@
-const CACHE_NAME = "fibertools-v1";
+const CACHE_NAME = "fibertools-v3";
 const PRECACHE_URLS = [
   "/",
   "/manifest.json",
@@ -25,12 +25,31 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+function isEmbedPathname(pathname) {
+  return pathname === "/embed" || pathname.startsWith("/embed/");
+}
+
+async function belongsToEmbedClient(event) {
+  if (!event.clientId) return false;
+
+  const client = await self.clients.get(event.clientId);
+  if (!client?.url) return false;
+
+  try {
+    const clientUrl = new URL(client.url);
+    return clientUrl.origin === self.location.origin && isEmbedPathname(clientUrl.pathname);
+  } catch {
+    return false;
+  }
+}
+
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   if (request.method !== "GET") return;
 
   const url = new URL(request.url);
   if (url.origin !== self.location.origin || url.pathname.startsWith("/api/")) return;
+  if (isEmbedPathname(url.pathname)) return;
 
   if (request.mode === "navigate") {
     event.respondWith(
@@ -53,18 +72,20 @@ self.addEventListener("fetch", (event) => {
 
   if (["font", "image", "script", "style"].includes(request.destination)) {
     event.respondWith(
-      caches.match(request).then(
-        (cached) =>
-          cached ||
-          fetch(request).then(async (response) => {
-            if (response.ok) {
-              const copy = response.clone();
-              const cache = await caches.open(CACHE_NAME);
-              await cache.put(request, copy);
-            }
-            return response;
-          }),
-      ),
+      (async () => {
+        if (await belongsToEmbedClient(event)) return fetch(request);
+
+        const cached = await caches.match(request);
+        if (cached) return cached;
+
+        const response = await fetch(request);
+        if (response.ok) {
+          const copy = response.clone();
+          const cache = await caches.open(CACHE_NAME);
+          await cache.put(request, copy);
+        }
+        return response;
+      })(),
     );
   }
 });

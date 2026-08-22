@@ -37,7 +37,16 @@ export const metadata: Metadata = {
 
 export default function SockCalculatorPage() {
   return (
-    <ToolLayout slug="sock-calculator" widgetFirst>
+    <ToolLayout
+      slug="sock-calculator"
+      widgetFirst
+      focused
+      nextAction={{
+        href: "/yarn-calculator",
+        label: "Estimate yarn and skeins",
+        description: "Use the project dimensions and your yarn details to estimate a buffered quantity before buying.",
+      }}
+    >
       <AnswerBlock
         what="A sock calculator that provides top-down or toe-up stitch counts, heel-flap and gusset numbers, plus heel-turn and short-row guidance."
         who="Sock knitters who need accurate stitch counts for any foot size and want shaping instructions for their preferred heel style."

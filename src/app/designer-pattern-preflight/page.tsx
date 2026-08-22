@@ -2,26 +2,28 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import DesignerPreflightCta from "./DesignerPreflightCta";
 import DesignerPreflightForm from "./DesignerPreflightForm";
+import { getDesignerPreflightAction } from "@/lib/designer-preflight-availability";
 
 export const metadata: Metadata = {
-  title: "Crochet Designer Pattern Preflight Review — $9 Pilot",
-  description: "A manual $9 crochet pattern preflight that flags possible arithmetic issues, inconsistencies, missing details, and areas needing human review before testing or tech editing.",
+  title: "Crochet Designer Pattern Preflight Review — $39 Pilot",
+  description: "A manual $39 crochet pattern preflight for one version of one pattern up to 10 pages, delivered as one written review report.",
   alternates: { canonical: "/designer-pattern-preflight" },
   openGraph: {
-    title: "Designer Pattern Preflight — $9 Manual Crochet Review",
+    title: "Designer Pattern Preflight — $39 Manual Crochet Review",
     description: "Find possible pattern problems before testers or professional tech editing with a structured manual preflight report.",
     url: "https://fibertools.app/designer-pattern-preflight",
     images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "FiberTools Designer Pattern Preflight" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Designer Pattern Preflight — $9 Pilot",
+    title: "Designer Pattern Preflight — $39 Pilot",
     description: "A structured manual preflight report for independent crochet pattern designers.",
     images: ["https://fibertools.app/og-image.png"],
   },
 };
 
 const included = [
+  "One submitted crochet pattern, one version, up to 10 pages",
   "Supported stitch-count arithmetic and written totals",
   "Repeated or skipped row and round numbers",
   "Mixed US and UK terminology",
@@ -33,14 +35,17 @@ const included = [
 
 const excluded = [
   "Professional tech editing, certification, or a guarantee that the pattern is error-free",
-  "Pattern rewriting, grading, or ongoing revision rounds",
+  "Pattern rewriting, editing, grading, ownership transfer, or ongoing consultation and revision rounds",
   "Physical testing of fit, shape, assembly, gauge, yarn performance, or the finished item",
   "Verification of unsupported or ambiguous instructions when the pattern lacks enough information",
+  "Clinical, legal, copyright, or business advice",
+  "AI analysis, AI training, or AI-generated pattern content",
 ];
 
 const faqs = [
+  ["What is included for $39?", "One submitted crochet pattern, one version, up to 10 pages; a manual math and consistency review; and one written PDF report."],
   ["Is this professional tech editing?", "No. It is an affordable manual preflight designed to flag possible problems before pattern testing or professional tech editing."],
-  ["Does the service rewrite my pattern?", "No. The report identifies findings and suggests what to review; it does not rewrite the pattern or provide ongoing revisions."],
+  ["Does the service rewrite my pattern?", "No. The report identifies findings and suggests what to review; it does not rewrite, edit, grade, transfer ownership of, or provide ongoing consultation for the pattern."],
   ["Are submitted patterns used to train AI?", "No. Submitted patterns are not used for AI training, public examples, marketing, or product development without separate written permission."],
   ["How is my pattern stored?", "The pilot accepts a customer-controlled private Google Drive, Dropbox, or OneDrive link. FiberTools stores the link and submission details in a private database; it does not copy your pattern into a public bucket."],
   ["When is my pattern deleted?", "FiberTools manually deletes the stored share link and customer submission details no later than 30 days after the report is delivered, except limited payment records that must be retained for accounting or legal purposes."],
@@ -52,6 +57,7 @@ const faqs = [
 ];
 
 export default function DesignerPatternPreflightPage() {
+  const action = getDesignerPreflightAction();
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -59,7 +65,9 @@ export default function DesignerPatternPreflightPage() {
     description: "A manual crochet pattern preflight review that flags possible arithmetic issues, inconsistencies, missing information, and areas requiring human review.",
     url: "https://fibertools.app/designer-pattern-preflight",
     provider: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
-    offers: { "@type": "Offer", price: "9.00", priceCurrency: "USD", availability: "https://schema.org/InStock" },
+    ...(action.mode === "checkout"
+      ? { offers: { "@type": "Offer", price: "39.00", priceCurrency: "USD", availability: "https://schema.org/InStock" } }
+      : {}),
   };
   const faqSchema = {
     "@context": "https://schema.org",
@@ -92,10 +100,10 @@ export default function DesignerPatternPreflightPage() {
           An affordable preflight review designed to flag possible errors, inconsistencies, and missing information before your crochet pattern reaches testers or a professional tech editor.
         </p>
         <div className="mt-7 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-          <DesignerPreflightCta />
+          <DesignerPreflightCta mode={action.mode} inquiryUrl={action.mode === "inquiry" ? action.inquiryUrl : undefined} />
           <a href="#sample-report" className="btn-secondary">See a fictional sample report</a>
         </div>
-        <p className="mt-4 text-sm text-bark-500 dark:text-bark-400"><strong>$9 for one pattern.</strong> Target delivery: three business days after payment and working pattern access.</p>
+        <p className="mt-4 text-sm text-bark-500 dark:text-bark-400"><strong>$39 for one pattern, one version, up to 10 pages, and one written report.</strong> Target delivery: three business days after payment and working pattern access.</p>
       </section>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-2">
@@ -115,7 +123,10 @@ export default function DesignerPatternPreflightPage() {
       <section className="mt-14">
         <h2 className="section-heading">How it works</h2>
         <ol className="grid gap-4 sm:grid-cols-5">
-          {["Share the pattern", "Pay the $9 pilot fee", "Receive confirmation", "Manual review", "Report by email"].map((step, index) => (
+          {(action.mode === "checkout"
+            ? ["Share the pattern", "Pay the $39 pilot fee", "Receive confirmation", "Manual review", "Report by email"]
+            : ["Ask about availability", "Receive pilot instructions", "Share only after acceptance", "Manual review", "Report by email"]
+          ).map((step, index) => (
             <li key={step} className="rounded-xl border border-cream-300 bg-white p-4 dark:border-bark-700 dark:bg-bark-900"><span className="text-sm font-bold text-plum-600">{index + 1}</span><p className="mt-2 font-semibold text-bark-700 dark:text-cream-200">{step}</p></li>
           ))}
         </ol>
@@ -138,16 +149,26 @@ export default function DesignerPatternPreflightPage() {
 
       <section className="mt-14 grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
         <div>
-          <h2 className="section-heading">Pilot price: $9</h2>
+          <h2 className="section-heading">Pilot price: $39</h2>
           <ul className="space-y-3 text-bark-600 dark:text-bark-400">
-            <li>One submitted crochet pattern</li><li>One editable, structured report delivered as a PDF</li><li>One clarification email about the findings</li><li>No rewriting, ongoing revisions, or professional certification</li>
+            <li>One submitted crochet pattern, one version, up to 10 pages</li><li>One written, structured report delivered as a PDF</li><li>Math and consistency findings supported by the submitted version</li><li>No rewriting, grading, ownership transfer, ongoing consultation, or professional certification</li>
           </ul>
           <p className="mt-6 text-sm leading-relaxed text-bark-500 dark:text-bark-400">Prefer to check round math yourself first? Use the free <Link href="/amigurumi-pattern-checker" className="text-sage-600 underline">amigurumi pattern checker</Link>. It processes supported text locally in your browser.</p>
         </div>
-        <div id="submit-pattern" className="scroll-mt-20 rounded-2xl border border-plum-200 bg-plum-50 p-5 dark:border-plum-800 dark:bg-plum-950/20 sm:p-8">
-          <h2 className="text-2xl font-bold text-bark-800 dark:text-cream-100">Submit a pattern</h2>
-          <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">No account and no public upload. Your private share link and contact details are stored only for fulfillment and retention handling.</p>
-          <DesignerPreflightForm />
+        <div id={action.mode === "checkout" ? "submit-pattern" : "pilot-inquiry"} className="scroll-mt-20 rounded-2xl border border-plum-200 bg-plum-50 p-5 dark:border-plum-800 dark:bg-plum-950/20 sm:p-8">
+          {action.mode === "checkout" ? (
+            <>
+              <h2 className="text-2xl font-bold text-bark-800 dark:text-cream-100">Submit a pattern</h2>
+              <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">No account and no public upload. Your private share link and contact details are stored only for fulfillment and retention handling.</p>
+              <DesignerPreflightForm />
+            </>
+          ) : (
+            <>
+              <h2 className="text-2xl font-bold text-bark-800 dark:text-cream-100">Pilot inquiries are open</h2>
+              <p className="mt-2 mb-6 text-sm leading-relaxed text-bark-600 dark:text-bark-400">Online submission and payment are not open. Ask about availability without sending your pattern, private share link, or payment information.</p>
+              <DesignerPreflightCta mode="inquiry" inquiryUrl={action.inquiryUrl} />
+            </>
+          )}
         </div>
       </section>
 

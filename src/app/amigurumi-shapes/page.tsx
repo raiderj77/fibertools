@@ -46,21 +46,22 @@ export const metadata: Metadata = {
 
 export default function AmigurumiShapesPage() {
   return (
-    <ToolLayout slug="amigurumi-shapes" widgetFirst>
+    <ToolLayout
+      slug="amigurumi-shapes"
+      widgetFirst
+      focused
+      nextAction={{
+        href: "/amigurumi-pattern-checker",
+        label: "Check written round math",
+        description: "Already have a pattern? Use the free checker to compare supported round instructions with their written stitch totals.",
+      }}
+    >
       <AnswerBlock
         what="A calculator that generates round-by-round increase and decrease instructions for crochet spheres, cones, cylinders, and ovals."
         who="Amigurumi makers who need custom shape patterns without guessing at stitch counts for each round."
         bottomLine="Select your shape, enter your starting stitch count, and get a complete round-by-round pattern instantly."
         lastUpdated="2026-05-05"
       />
-
-      <aside className="mb-6 rounded-xl border border-plum-200 bg-plum-50 p-4 text-[15px] leading-relaxed text-bark-700 dark:border-plum-800 dark:bg-plum-950/30 dark:text-cream-300">
-        Already have an amigurumi pattern? Use the free{" "}
-        <Link href="/amigurumi-pattern-checker" className="font-semibold text-plum-700 underline dark:text-plum-300">
-          StitchProof pattern checker
-        </Link>{" "}
-        to verify supported round math and written stitch totals before you start crocheting.
-      </aside>
 
       <AmigurumiShapesTool />
 

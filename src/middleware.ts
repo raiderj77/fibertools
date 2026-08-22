@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { isEmbedPath } from '@/lib/embed-policy.mjs'
 
 export function middleware(request: NextRequest) {
+  if (isEmbedPath(request.nextUrl.pathname)) {
+    return NextResponse.next()
+  }
+
   const response = NextResponse.next()
   const gpc = request.headers.get('sec-gpc') === '1'
   if (gpc) {

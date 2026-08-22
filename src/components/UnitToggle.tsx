@@ -7,14 +7,17 @@ export type UnitSystem = "imperial" | "metric";
 interface UnitToggleProps {
   value: UnitSystem;
   onChange: (unit: UnitSystem) => void;
+  persist?: boolean;
 }
 
 /** Read saved preference on mount, call in any tool that uses units */
 export function useSavedUnits(
-  setValue: (u: UnitSystem) => void
+  setValue: (u: UnitSystem) => void,
+  enabled = true,
 ) {
   const didInitialize = useRef(false);
   useEffect(() => {
+    if (!enabled) return;
     if (didInitialize.current) return;
     didInitialize.current = true;
     try {
@@ -23,16 +26,18 @@ export function useSavedUnits(
         setValue(saved);
       }
     } catch {}
-  }, [setValue]);
+  }, [enabled, setValue]);
 }
 
-export default function UnitToggle({ value, onChange }: UnitToggleProps) {
+export default function UnitToggle({ value, onChange, persist = true }: UnitToggleProps) {
   // Persist choice
   const handleChange = (unit: UnitSystem) => {
     onChange(unit);
-    try {
-      localStorage.setItem("ft-units", unit);
-    } catch {}
+    if (persist) {
+      try {
+        localStorage.setItem("ft-units", unit);
+      } catch {}
+    }
   };
 
   return (

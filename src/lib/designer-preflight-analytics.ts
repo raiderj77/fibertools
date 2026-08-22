@@ -6,8 +6,7 @@ export type DesignerPreflightEvent =
   | "designer_preflight_submission_started"
   | "designer_preflight_submission_completed"
   | "designer_preflight_checkout_started"
-  | "designer_preflight_payment_completed"
-  | "designer_preflight_repeat_purchase";
+  | "designer_preflight_payment_completed";
 
 function analyticsAllowed(): boolean {
   try {

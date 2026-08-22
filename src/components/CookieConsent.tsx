@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Script from "next/script";
 import Link from "next/link";
 import { detectGPCClient } from "@/lib/gpc";
+import SanitizedPageViewTracker from "@/components/SanitizedPageViewTracker";
 
 type ConsentStatus = "granted" | "denied";
 
@@ -85,9 +86,14 @@ function GoogleServices({ adsenseEnabled }: { adsenseEnabled: boolean }) {
           window.dataLayer = window.dataLayer || [];
           window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
           window.gtag('js', new Date());
-          window.gtag('config', '${GOOGLE_MEASUREMENT_ID}', { anonymize_ip: true });
+          window.gtag('config', '${GOOGLE_MEASUREMENT_ID}', {
+            anonymize_ip: true,
+            ignore_referrer: true,
+            send_page_view: false
+          });
         `}
       </Script>
+      <SanitizedPageViewTracker />
       {adsenseEnabled ? (
         <Script
           id="adsense"

@@ -1,6 +1,7 @@
 "use client";
 
 import type { AnchorHTMLAttributes, ReactNode } from "react";
+import { hasCurrentAnalyticsConsent } from "@/lib/fixed-analytics";
 
 interface AffiliateLinkProps extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, "href" | "onClick"> {
   href: string;
@@ -21,7 +22,11 @@ export default function AffiliateLink({
   ...props
 }: AffiliateLinkProps) {
   function trackClick() {
-    if (typeof window !== "undefined" && typeof window.gtag === "function") {
+    if (
+      typeof window !== "undefined" &&
+      hasCurrentAnalyticsConsent() &&
+      typeof window.gtag === "function"
+    ) {
       window.gtag("event", "affiliate_click", {
         page_path: page,
         placement,

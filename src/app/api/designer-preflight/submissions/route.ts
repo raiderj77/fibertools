@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { canAcceptDesignerPreflightCheckout } from "@/lib/designer-preflight-availability";
 import { createPreflightCheckout } from "@/lib/designer-preflight-service.mjs";
 import {
   createCheckoutProvider,
@@ -9,6 +10,13 @@ import {
 export const runtime = "nodejs";
 
 export async function POST(request: Request) {
+  if (!canAcceptDesignerPreflightCheckout()) {
+    return NextResponse.json(
+      { error: "Online checkout is not open. Your card was not charged." },
+      { status: 503, headers: { "Cache-Control": "no-store" } }
+    );
+  }
+
   if (!request.headers.get("content-type")?.toLowerCase().includes("application/json")) {
     return NextResponse.json({ error: "Send submission details as JSON." }, { status: 415 });
   }

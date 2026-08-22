@@ -55,7 +55,7 @@ test("tracks one privacy-minimized completion and exposes result sharing on sele
   const yarnCalculator = read("src/app/yarn-calculator/YarnCalculatorTool.tsx");
   assert.match(
     yarnCalculator,
-    /useToolCompletion\("yarn-calculator", result, hasInteracted && Boolean\(result\)\)/,
+    /useToolCompletion\("yarn-calculator", result, !embedded && hasInteracted && Boolean\(result\)\)/,
   );
 });
 
