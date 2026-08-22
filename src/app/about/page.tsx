@@ -126,8 +126,8 @@ export default function AboutPage() {
           <p>
             I tried a lot of fiber arts calculators. Each one did just one thing. One did
             gauge. One did yarn amounts. One did needle sizes. I got tired of jumping
-            between them. So I built one place that does it all. It is free, and you do not
-            need to log in.
+            between them. So I built one place for the calculations. The self-service
+            calculators are free, and you do not need to log in.
           </p>
           <p>
             FiberTools is a real toolbox for makers. It is not a blog with a calculator
@@ -148,8 +148,9 @@ export default function AboutPage() {
             Now I crochet too. So I test the tools on my own projects. My first granny
             squares came out a little crooked. One gauge swatch was too tight. Once I even
             bought too little yarn. Being new helps me. I still remember which parts are
-            hard. Every tool is free. Clearly disclosed affiliate commissions help support
-            the site, and I plan to keep the tools free.
+            hard. All self-service calculators stay free. Optional professional reviews
+            and project downloads are paid. Clearly disclosed affiliate commissions also
+            help support the free calculator library.
           </p>
         </section>
 

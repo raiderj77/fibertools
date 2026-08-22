@@ -64,9 +64,6 @@ test("keeps pattern contents out of storage, network calls, and analytics", () =
     "utf8",
   );
   assert.doesNotMatch(component, /\bfetch\s*\(|localStorage|sessionStorage/);
-  const analyticsParameters = component.match(/window\.gtag\("event", "pattern_check_run", \{([\s\S]*?)\n\s*\}\);/);
-  assert.ok(analyticsParameters, "pattern_check_run event is missing");
-  assert.doesNotMatch(analyticsParameters[1], /pattern|source|stitch|starting|created|written/i);
-  assert.match(analyticsParameters[1], /round_count/);
-  assert.match(analyticsParameters[1], /unsupported_rounds/);
+  assert.match(component, /trackFixedEvent\("pattern_check_run", \{ slug: "amigurumi-pattern-checker" \}\)/);
+  assert.doesNotMatch(component, /round_count|correct_rounds|incorrect_rounds|calculated_rounds|unsupported_rounds/);
 });

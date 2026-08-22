@@ -120,7 +120,7 @@ export default function AmigurumiPatternCheckerPage() {
       <section className="mt-10 rounded-2xl border border-sage-200 bg-sage-50 p-5 dark:border-sage-800 dark:bg-sage-950/20 sm:p-6">
         <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">Want a manual review beyond supported round math?</h2>
         <p className="mt-2 text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
-          The <Link href="/designer-pattern-preflight" className="text-sage-600 underline">$9 Designer Pattern Preflight pilot</Link> checks a complete crochet pattern for possible arithmetic issues, numbering and terminology inconsistencies, missing information, and instructions that need a person to review. It does not replace professional tech editing or pattern testing.
+          The <Link href="/designer-pattern-preflight" className="text-sage-600 underline">$39 Designer Pattern Preflight pilot</Link> reviews one version of one crochet pattern, up to 10 pages, for possible arithmetic issues, numbering and terminology inconsistencies, missing information, and instructions that need a person to review. It includes one written report and does not replace professional tech editing or pattern testing.
         </p>
       </section>
 

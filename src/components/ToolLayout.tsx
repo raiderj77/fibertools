@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Children } from "react";
 import { getToolBySlug, getRelatedTools, CATEGORY_LABELS, CATEGORY_COLORS } from "@/lib/tools";
 import { toolFaqs } from "@/lib/faqs";
 import { toolContent } from "@/lib/toolContent";
@@ -14,9 +15,23 @@ interface ToolLayoutProps {
   widgetFirst?: boolean;
   showDefaultReferences?: boolean;
   pageTitle?: string;
+  focused?: boolean;
+  nextAction?: {
+    href: string;
+    label: string;
+    description: string;
+  };
 }
 
-export default function ToolLayout({ slug, children, widgetFirst = false, showDefaultReferences = true, pageTitle }: ToolLayoutProps) {
+export default function ToolLayout({
+  slug,
+  children,
+  widgetFirst = false,
+  showDefaultReferences = true,
+  pageTitle,
+  focused = false,
+  nextAction,
+}: ToolLayoutProps) {
   const tool = getToolBySlug(slug);
   if (!tool) return null;
 
@@ -24,13 +39,19 @@ export default function ToolLayout({ slug, children, widgetFirst = false, showDe
 
   const related = getRelatedTools(slug, 4);
   const faqs = toolFaqs[slug] || [];
+  const visibleFaqs = focused ? faqs.slice(0, 4) : faqs;
   const content = toolContent[slug];
   const companionGuide = getGuideByToolSlug(slug);
+  const childItems = Children.toArray(children);
+  const focusedCore = focused ? childItems.slice(0, 2) : children;
+  const focusedReferences = focused && childItems.length > 2
+    ? childItems[childItems.length - 1]
+    : null;
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
       {/* Structured Data: SoftwareApplication + FAQPage + BreadcrumbList */}
-      <ToolSchema tool={pageTool} faqs={faqs} />
+      <ToolSchema tool={pageTool} faqs={visibleFaqs} />
 
       {/* Breadcrumbs */}
       <nav className="flex items-center gap-2 text-sm text-bark-400 mb-4" aria-label="Breadcrumb">
@@ -125,8 +146,10 @@ export default function ToolLayout({ slug, children, widgetFirst = false, showDe
       )}
 
       {/* === TOOL UI === */}
-      {children}
+      {focusedCore}
 
+      {!focused && (
+        <>
       <ToolAffiliateRecommendations slug={slug} />
 
       {widgetFirst && (
@@ -503,6 +526,71 @@ export default function ToolLayout({ slug, children, widgetFirst = false, showDe
           </a>
         </div>
       </section>
+
+        </>
+      )}
+
+      {focused && (
+        <>
+          {content?.howCalculated ? (
+            <section className="mt-12">
+              <h2 className="section-heading">Formula and calculation method</h2>
+              {content.howCalculated.paragraphs.map((paragraph, index) => (
+                <p key={index} className="mb-4 text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+                  {paragraph}
+                </p>
+              ))}
+            </section>
+          ) : null}
+
+          {content?.projectExample ? (
+            <section className="mt-10">
+              <h2 className="section-heading">Worked example</h2>
+              <div className="rounded-xl border border-sage-200 bg-sage-50 p-5 dark:border-sage-800 dark:bg-sage-950/20">
+                <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+                  {content.projectExample}
+                </p>
+              </div>
+            </section>
+          ) : null}
+
+          {content?.commonMistakes ? (
+            <section className="mt-10">
+              <h2 className="section-heading">Assumptions and limitations</h2>
+              <ul className="space-y-3">
+                {content.commonMistakes.map((item, index) => (
+                  <li key={index} className="flex items-start gap-3 text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+                    <span className="mt-1 font-bold text-amber-600" aria-hidden="true">!</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          {focusedReferences}
+
+          <FAQSection faqs={visibleFaqs} heading="Frequently Asked Questions" />
+
+          {nextAction ? (
+            <section className="mt-12 border-t border-bark-200 pt-8 dark:border-bark-700">
+              <h2 className="section-heading">Next step</h2>
+              <div className="rounded-2xl border border-sage-200 bg-sage-50 p-5 dark:border-sage-800 dark:bg-sage-950/20">
+                <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+                  {nextAction.description}
+                </p>
+                <Link href={nextAction.href} className="btn-primary mt-4 inline-flex min-h-11 items-center">
+                  {nextAction.label}
+                </Link>
+              </div>
+            </section>
+          ) : null}
+
+          <div className="mt-12 border-t border-bark-200 pt-8 dark:border-bark-700">
+            <ToolAffiliateRecommendations slug={slug} />
+          </div>
+        </>
+      )}
 
     </div>
   );

@@ -37,7 +37,16 @@ export const metadata: Metadata = {
 
 export default function CastOnCalculatorPage() {
   return (
-    <ToolLayout slug="cast-on-calculator" widgetFirst>
+    <ToolLayout
+      slug="cast-on-calculator"
+      widgetFirst
+      focused
+      nextAction={{
+        href: "/gauge-calculator",
+        label: "Check the gauge math",
+        description: "Compare your swatch with the pattern gauge or calculate the stitch count for a finished width.",
+      }}
+    >
       <AnswerBlock
         what="A calculator that determines how many stitches to cast on for any target width, with stitch pattern multiple rounding and edge stitch adjustments."
         who="Knitters who need the exact cast-on count for a custom-width project or when substituting yarn at a different gauge."

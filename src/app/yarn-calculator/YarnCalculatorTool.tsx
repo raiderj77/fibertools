@@ -6,6 +6,7 @@ import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitTog
 import StickyResult from "@/components/StickyResult";
 import RavelryPatterns from "@/components/RavelryPatterns";
 import ResultShareButton from "@/components/ResultShareButton";
+import PlanningPackResultCta from "@/components/PlanningPackResultCta";
 import { calculateSkeinPurchase } from "@/lib/skein-purchase.mjs";
 import useToolCompletion from "@/lib/useToolCompletion";
 
@@ -164,7 +165,7 @@ function convertInput(value: string, factor: number) {
 
 type Mode = "quick" | "precise";
 
-export default function YarnCalculatorTool() {
+export default function YarnCalculatorTool({ embedded = false }: { embedded?: boolean }) {
   const [units, setUnits] = useState<UnitSystem>("imperial");
   const [hasInteracted, setHasInteracted] = useState(false);
   const [mode, setMode] = useState<Mode>("quick");
@@ -203,7 +204,7 @@ export default function YarnCalculatorTool() {
     setUnits(nextUnits);
   }, [units]);
 
-  useSavedUnits(handleUnitsChange);
+  useSavedUnits(handleUnitsChange, !embedded);
 
   const yw = YARN_WEIGHTS[yarnWeight];
   const sp = STITCH_PATTERNS.find((s) => s.label === stitchPattern) || STITCH_PATTERNS[0];
@@ -275,7 +276,7 @@ export default function YarnCalculatorTool() {
     };
   }, [dims, mode, skeinYards, skeinWeight, gaugeStitches, gaugeRows, swatchSize, sp, yw, projectType, units]);
 
-  useToolCompletion("yarn-calculator", result, hasInteracted && Boolean(result));
+  useToolCompletion("yarn-calculator", result, !embedded && hasInteracted && Boolean(result));
 
   // Partial skein
   const partialResult = useMemo(() => {
@@ -306,7 +307,7 @@ export default function YarnCalculatorTool() {
       {/* Controls bar */}
       <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3">
         <div onClickCapture={() => setHasInteracted(true)}>
-          <UnitToggle value={units} onChange={handleUnitsChange} />
+          <UnitToggle value={units} onChange={handleUnitsChange} persist={!embedded} />
         </div>
 
         <div className="flex flex-col sm:flex-row sm:inline-flex items-stretch sm:items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1 gap-1" role="group" aria-label="Calculation method">
@@ -385,8 +386,9 @@ export default function YarnCalculatorTool() {
           ) : (
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="label">Width ({dimLabel})</label>
+                <label htmlFor="yarn-custom-width" className="label">Width ({dimLabel})</label>
                 <input
+                  id="yarn-custom-width"
                   type="number"
                   aria-label={`Width in ${dimLabel}`}
                   value={customW}
@@ -398,8 +400,9 @@ export default function YarnCalculatorTool() {
                 />
               </div>
               <div>
-                <label className="label">Length ({dimLabel})</label>
+                <label htmlFor="yarn-custom-length" className="label">Length ({dimLabel})</label>
                 <input
+                  id="yarn-custom-length"
                   type="number"
                   aria-label={`Length in ${dimLabel}`}
                   value={customL}
@@ -471,8 +474,9 @@ export default function YarnCalculatorTool() {
               </p>
               <div className="grid grid-cols-3 gap-3">
                 <div>
-                  <label className="label text-xs">Stitches</label>
+                  <label htmlFor="yarn-gauge-stitches" className="label text-xs">Stitches</label>
                   <input
+                    id="yarn-gauge-stitches"
                     type="number"
                     aria-label="Gauge stitches"
                     value={gaugeStitches}
@@ -484,8 +488,9 @@ export default function YarnCalculatorTool() {
                   />
                 </div>
                 <div>
-                  <label className="label text-xs">Rows</label>
+                  <label htmlFor="yarn-gauge-rows" className="label text-xs">Rows</label>
                   <input
+                    id="yarn-gauge-rows"
                     type="number"
                     aria-label="Gauge rows"
                     value={gaugeRows}
@@ -497,10 +502,11 @@ export default function YarnCalculatorTool() {
                   />
                 </div>
                 <div>
-                  <label className="label text-xs">
+                  <label htmlFor="yarn-gauge-over" className="label text-xs">
                     Over ({dimLabel})
                   </label>
                   <input
+                    id="yarn-gauge-over"
                     type="number"
                     aria-label={`Gauge swatch size in ${dimLabel}`}
                     value={swatchSize}
@@ -523,10 +529,11 @@ export default function YarnCalculatorTool() {
             </p>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs text-bark-500 dark:text-bark-400 mb-1 block">
+                <label htmlFor="yarn-skein-length" className="text-xs text-bark-500 dark:text-bark-400 mb-1 block">
                   {units === "metric" ? "Meters" : "Yards"} per skein
                 </label>
                 <input
+                  id="yarn-skein-length"
                   type="number"
                   aria-label={units === "metric" ? "Meters per skein" : "Yards per skein"}
                   value={skeinYards}
@@ -538,10 +545,11 @@ export default function YarnCalculatorTool() {
                 />
               </div>
               <div>
-                <label className="text-xs text-bark-500 dark:text-bark-400 mb-1 block">
+                <label htmlFor="yarn-skein-weight" className="text-xs text-bark-500 dark:text-bark-400 mb-1 block">
                   {units === "metric" ? "Grams" : "Ounces"} per skein
                 </label>
                 <input
+                  id="yarn-skein-weight"
                   type="number"
                   aria-label={units === "metric" ? "Grams per skein" : "Ounces per skein"}
                   value={skeinWeight}
@@ -627,8 +635,11 @@ export default function YarnCalculatorTool() {
                       >
                         🖨️ Print
                       </button>
-                      <ResultShareButton toolName="Yarn Calculator" toolSlug="yarn-calculator" />
+                      {!embedded ? (
+                        <ResultShareButton toolName="Yarn Calculator" toolSlug="yarn-calculator" />
+                      ) : null}
                     </div>
+                    {!embedded ? <PlanningPackResultCta /> : null}
                 </>
               </div>
             )}
@@ -636,16 +647,18 @@ export default function YarnCalculatorTool() {
         </div>
       </div>
 
-      {/* Ravelry pattern suggestions, turns the result into a launchpad */}
-      <RavelryPatterns
-        weight={yarnWeight}
-        craft={sp.craft === "both" ? undefined : sp.craft}
-        query={projectType === "custom" ? "" : projectType}
-        visible={!!result}
-      />
+      {!embedded ? (
+        <>
+          {/* Ravelry pattern suggestions, turns the result into a launchpad */}
+          <RavelryPatterns
+            weight={yarnWeight}
+            craft={sp.craft === "both" ? undefined : sp.craft}
+            query={projectType === "custom" ? "" : projectType}
+            visible={!!result}
+          />
 
-      {/* Partial skein calculator */}
-      <div className="border-t border-cream-300 dark:border-bark-700 pt-8">
+          {/* Partial skein calculator */}
+          <div className="border-t border-cream-300 dark:border-bark-700 pt-8">
         <button
           type="button"
           onClick={() => setShowPartial(!showPartial)}
@@ -664,10 +677,11 @@ export default function YarnCalculatorTool() {
             </p>
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <label className="label text-xs">
+                <label htmlFor="yarn-partial-weight" className="label text-xs">
                   Partial weight ({units === "metric" ? "g" : "oz"})
                 </label>
                 <input
+                  id="yarn-partial-weight"
                   type="number"
                   aria-label={units === "metric" ? "Partial skein weight in grams" : "Partial skein weight in ounces"}
                   value={partialWeight}
@@ -679,10 +693,11 @@ export default function YarnCalculatorTool() {
                 />
               </div>
               <div>
-                <label className="label text-xs">
+                <label htmlFor="yarn-partial-full-weight" className="label text-xs">
                   Full skein ({units === "metric" ? "g" : "oz"})
                 </label>
                 <input
+                  id="yarn-partial-full-weight"
                   type="number"
                   aria-label={units === "metric" ? "Full skein weight in grams" : "Full skein weight in ounces"}
                   value={partialSkeinWeight}
@@ -694,10 +709,11 @@ export default function YarnCalculatorTool() {
                 />
               </div>
               <div>
-                <label className="label text-xs">
+                <label htmlFor="yarn-partial-full-length" className="label text-xs">
                   Full skein ({units === "metric" ? "m" : "yd"})
                 </label>
                 <input
+                  id="yarn-partial-full-length"
                   type="number"
                   aria-label={units === "metric" ? "Full skein length in meters" : "Full skein length in yards"}
                   value={partialSkeinYards}
@@ -729,7 +745,9 @@ export default function YarnCalculatorTool() {
             )}
           </div>
         )}
-      </div>
+          </div>
+        </>
+      ) : null}
     </div>
   );
 }

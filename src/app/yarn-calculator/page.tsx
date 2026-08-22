@@ -47,7 +47,16 @@ export const metadata: Metadata = {
 export default function YarnCalculatorPage() {
   return (
     <>
-      <ToolLayout slug="yarn-calculator" widgetFirst>
+      <ToolLayout
+        slug="yarn-calculator"
+        widgetFirst
+        focused
+        nextAction={{
+          href: "/project-cost-calculator",
+          label: "Estimate the project cost",
+          description: "Carry the whole-skein count into a materials and optional labor-cost estimate.",
+        }}
+      >
       <AnswerBlock
         what="A yardage estimator that calculates how much yarn you need for any knitting or crochet project based on your gauge, dimensions, and yarn weight (CYC Lace 0 through Jumbo 7)."
         who="Any knitter or crocheter planning a project, especially if you're buying yarn and need to know how many skeins to get before you start."

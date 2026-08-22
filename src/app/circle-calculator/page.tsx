@@ -46,21 +46,22 @@ export const metadata: Metadata = {
 
 export default function CircleCalculatorPage() {
   return (
-    <ToolLayout slug="circle-calculator" widgetFirst>
+    <ToolLayout
+      slug="circle-calculator"
+      widgetFirst
+      focused
+      nextAction={{
+        href: "/amigurumi-pattern-checker",
+        label: "Check written round math",
+        description: "Already have a written pattern? Use the free checker to compare supported round instructions with their stated stitch totals.",
+      }}
+    >
       <AnswerBlock
         what="A pattern generator that creates round-by-round increase instructions for flat crochet circles in any stitch type with staggered placement."
         who="Crocheters making hats, rugs, mandalas, or any project that starts with a flat circle and needs even increases."
         bottomLine="Choose your stitch type and number of rounds to get a complete flat circle pattern with no curling or ruffling."
         lastUpdated="2026-05-05"
       />
-
-      <aside className="mb-6 rounded-xl border border-plum-200 bg-plum-50 p-4 text-[15px] leading-relaxed text-bark-700 dark:border-plum-800 dark:bg-plum-950/30 dark:text-cream-300">
-        Checking a written amigurumi pattern? The free{" "}
-        <Link href="/amigurumi-pattern-checker" className="font-semibold text-plum-700 underline dark:text-plum-300">
-          StitchProof pattern checker
-        </Link>{" "}
-        compares supported round instructions with their written stitch totals.
-      </aside>
 
       <CircleCalculatorTool />
 

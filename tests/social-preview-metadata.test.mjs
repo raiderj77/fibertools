@@ -40,7 +40,7 @@ test("social cards use large-image previews without changing canonical URLs", ()
   }
 });
 
-test("primary navigation and tool help point directly to the canonical guide hub", () => {
+test("navigation keeps formulas discoverable and tool help points to the canonical guide hub", () => {
   const header = readFileSync(join(process.cwd(), "src", "components", "Header.tsx"), "utf8");
   const footer = readFileSync(join(process.cwd(), "src", "components", "Footer.tsx"), "utf8");
   const structuredData = readFileSync(
@@ -50,7 +50,7 @@ test("primary navigation and tool help point directly to the canonical guide hub
 
   assert.doesNotMatch(header, /href: "\/blog"/u);
   assert.doesNotMatch(footer, /href: "\/blog"/u);
-  assert.match(header, /href: "\/guides"/u);
+  assert.match(header, /href: "\/formula-library"/u);
   assert.match(footer, /href: "\/guides"/u);
   assert.match(structuredData, /softwareHelp:\s*\{[\s\S]*?url: "https:\/\/fibertools\.app\/guides"/u);
 });

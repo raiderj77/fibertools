@@ -25,11 +25,12 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { href: "/crochet-tools", label: "Crochet Tools" },
-    { href: "/knitting-tools", label: "Knitting Tools" },
-    { href: "/weaving-tools", label: "Weaving Tools" },
-    { href: "/guides", label: "Guides" },
-    { href: "/formula-library", label: "Formulas" },
+    { href: "/#all-tools", label: "Calculators" },
+    { href: "/formula-library", label: "Guides & formulas" },
+    { href: "/embeds", label: "Embeds" },
+    { href: "/fiber-project-planning-pack", label: "Planning Pack" },
+    { href: "/designer-pattern-preflight", label: "For designers" },
+    { href: "/about", label: "About" },
   ];
 
   return (
@@ -73,7 +74,7 @@ export default function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center" aria-label="Main navigation">
+          <nav className="hidden lg:flex items-center" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -85,19 +86,9 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center">
-            <Link
-              href="/#all-tools"
-              className="inline-flex min-h-11 items-center rounded-full bg-amber-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-amber-600"
-            >
-              All Tools
-            </Link>
-          </div>
-
           {/* Mobile hamburger */}
           <button
-            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-bark-700 transition-colors hover:bg-cream-200 md:hidden"
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-bark-700 transition-colors hover:bg-cream-200 lg:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"
@@ -137,7 +128,7 @@ export default function Header() {
         {mobileOpen && (
           <nav
             id="mobile-navigation"
-            className="md:hidden bg-white shadow-lg border-t border-cream-200"
+            className="bg-white shadow-lg border-t border-cream-200 lg:hidden"
             aria-label="Mobile navigation"
           >
             {navLinks.map((link) => (
@@ -150,15 +141,6 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <div className="px-6 py-4">
-              <Link
-                href="/#all-tools"
-                onClick={() => setMobileOpen(false)}
-                className="flex min-h-11 w-full items-center justify-center rounded-full bg-amber-500 px-4 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-amber-600"
-              >
-                All Tools
-              </Link>
-            </div>
           </nav>
         )}
       </div>

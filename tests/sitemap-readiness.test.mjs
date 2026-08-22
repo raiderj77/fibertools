@@ -6,17 +6,14 @@ const read = (path) => fs.readFileSync(path, "utf8");
 const sitemap = read("src/app/sitemap.ts");
 const toolsSource = read("src/lib/tools.ts");
 
-const experimentAdjacentSlugs = [
-  "increase-decrease-calculator",
-  "uk-to-us-converter",
-];
 const standaloneToolSlugs = ["yarn-weight-calculator"];
 
-test("sitemap includes every ready canonical tool outside the protected experiment", () => {
+test("sitemap includes every ready canonical tool after the dated experiment gates closed", () => {
   assert.match(
     sitemap,
-    /\.filter\(\(t\) => t\.ready && !EXPERIMENT_ADJACENT_TOOL_SLUGS\.has\(t\.slug\)\)/,
+    /\.filter\(\(t\) => t\.ready\)/,
   );
+  assert.doesNotMatch(sitemap, /EXPERIMENT_ADJACENT_TOOL_SLUGS/);
   assert.doesNotMatch(sitemap, /NOINDEX_TOOL_SLUGS/);
 
   const readyTools = [
@@ -27,7 +24,7 @@ test("sitemap includes every ready canonical tool outside the protected experime
     .filter((match) => match[2] === "true")
     .map((match) => match[1]);
 
-  assert.ok(readyTools.length > experimentAdjacentSlugs.length);
+  assert.ok(readyTools.length > 0);
   for (const slug of readyTools) {
     const pagePath = `src/app/${slug}/page.tsx`;
     assert.ok(fs.existsSync(pagePath), `${slug} must have a public page`);
@@ -36,10 +33,6 @@ test("sitemap includes every ready canonical tool outside the protected experime
       new RegExp(`canonical: ["']/${slug}["']`),
       `${slug} must declare its canonical URL`,
     );
-  }
-
-  for (const slug of experimentAdjacentSlugs) {
-    assert.match(sitemap, new RegExp(`"${slug}"`));
   }
 
   for (const slug of standaloneToolSlugs) {
@@ -52,6 +45,12 @@ test("sitemap includes every ready canonical tool outside the protected experime
       `${slug} must declare its canonical URL`,
     );
   }
+});
+
+test("sitemap includes public offers but excludes minimal embed routes", () => {
+  assert.match(sitemap, /path: "\/embeds"/);
+  assert.match(sitemap, /path: "\/fiber-project-planning-pack"/);
+  assert.doesNotMatch(sitemap, /path: "\/embed\//);
 });
 
 test("sitemap reports only evidence-backed modification dates", () => {

@@ -6,6 +6,7 @@ const read = (path) => fs.readFileSync(path, "utf8");
 
 const layout = read("src/app/layout.tsx");
 const header = read("src/components/Header.tsx");
+const homeDirectory = read("src/components/HomeToolDirectory.tsx");
 const newsletter = read("src/components/BeehiivSignup.tsx");
 const cookieConsent = read("src/components/CookieConsent.tsx");
 const printShare = read("src/components/PrintShareButtons.tsx");
@@ -14,6 +15,9 @@ const blanket = read("src/app/blanket-calculator/BlanketCalculatorTool.tsx");
 const circle = read("src/app/circle-calculator/CircleCalculatorTool.tsx");
 const shapes = read("src/app/amigurumi-shapes/AmigurumiShapesTool.tsx");
 const yarn = read("src/app/yarn-calculator/YarnCalculatorTool.tsx");
+const gauge = read("src/app/gauge-calculator/GaugeCalculatorTool.tsx");
+const embedShell = read("src/components/EmbedCalculatorShell.tsx");
+const embedCodeCard = read("src/components/EmbedCodeCard.tsx");
 const weaving = read("src/app/weaving-sett-calculator/WeavingSettCalculatorTool.tsx");
 const abbreviations = read("src/app/abbreviation-glossary/AbbreviationGlossaryTool.tsx");
 const stitchReference = read("src/app/stitch-quick-reference/StitchQuickReferenceTool.tsx");
@@ -110,6 +114,12 @@ test("announces copy, share, success, and error feedback", () => {
 });
 
 test("names filters and makes horizontally scrolling reference tables keyboard accessible", () => {
+  assert.match(homeDirectory, /htmlFor="home-tool-search"/);
+  assert.match(homeDirectory, /id="home-tool-search"/);
+  assert.match(homeDirectory, /role="group" aria-label="Filter the tool directory by project need"/);
+  assert.match(homeDirectory, /aria-pressed=\{activeFilter === filter\.value\}/);
+  assert.match(homeDirectory, /aria-live="polite"/);
+
   for (const id of ["yarn-project-type", "yarn-project-size", "yarn-weight", "yarn-stitch-pattern"]) {
     assert.match(yarn, new RegExp(`htmlFor="${id}"`));
     assert.match(yarn, new RegExp(`id="${id}"`));
@@ -133,4 +143,64 @@ test("names filters and makes horizontally scrolling reference tables keyboard a
   assert.match(sleeve, /aria-label="Upper arm circumference in inches"/);
   assert.match(patternChecker, /tabIndex=\{0\} aria-label="Pattern instruction reference table"/);
   assert.match(knittingNeedles, /tabIndex=\{0\} aria-label="Beginner knitting needle comparison table"/);
+});
+
+test("associates every audited Yarn and Gauge field with its visible label", () => {
+  const yarnIds = [
+    "yarn-custom-width",
+    "yarn-custom-length",
+    "yarn-gauge-stitches",
+    "yarn-gauge-rows",
+    "yarn-gauge-over",
+    "yarn-skein-length",
+    "yarn-skein-weight",
+    "yarn-partial-weight",
+    "yarn-partial-full-weight",
+    "yarn-partial-full-length",
+  ];
+  const gaugeIds = [
+    "gauge-swatch-width",
+    "gauge-swatch-height",
+    "gauge-swatch-stitches",
+    "gauge-swatch-rows",
+    "gauge-pattern-stitches",
+    "gauge-pattern-rows",
+    "gauge-actual-stitches",
+    "gauge-actual-rows",
+    "gauge-pattern-count",
+    "gauge-pattern-row-count",
+    "gauge-resize-multiple",
+    "gauge-resize-extra",
+    "gauge-original-width",
+    "gauge-original-height",
+    "gauge-dimension-stitches",
+    "gauge-dimension-rows",
+    "gauge-dimension-over",
+    "gauge-desired-width",
+    "gauge-desired-height",
+    "gauge-dimension-multiple",
+    "gauge-dimension-extra",
+    "gauge-edge-stitches",
+    "gauge-turning-chains",
+  ];
+
+  for (const id of yarnIds) {
+    assert.match(yarn, new RegExp(`htmlFor="${id}"`));
+    assert.match(yarn, new RegExp(`id="${id}"`));
+  }
+  for (const id of gaugeIds) {
+    assert.match(gauge, new RegExp(`htmlFor="${id}"`));
+    assert.match(gauge, new RegExp(`id="${id}"`));
+  }
+});
+
+test("exposes selected Gauge tabs and keyboard-usable embed controls", () => {
+  assert.match(gauge, /role="tablist" aria-label="Gauge calculation mode"/);
+  assert.match(gauge, /role="tab"/);
+  assert.match(gauge, /aria-selected=\{tab === key\}/);
+  assert.match(gauge, /role="tabpanel"/);
+  assert.match(embedShell, /min-h-11/);
+  assert.match(embedShell, /target="_blank"/);
+  assert.match(embedCodeCard, /tabIndex=\{0\}/);
+  assert.match(embedCodeCard, /aria-live="polite"/);
 });

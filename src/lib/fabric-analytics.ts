@@ -1,3 +1,5 @@
+import { detectGPCClient } from "@/lib/gpc";
+
 type FabricAnalyticsEvent =
   | "fabric_tool_viewed"
   | "fabric_flow_selected"
@@ -28,11 +30,10 @@ function analyticsAllowed(): boolean {
   }
 }
 
-export function trackFabricEvent(event: FabricAnalyticsEvent, properties: SafeEventProperties = {}): void {
+export function trackFabricEvent(event: FabricAnalyticsEvent, _properties: SafeEventProperties = {}): void {
+  void _properties;
   if (typeof window === "undefined" || !analyticsAllowed() || typeof window.gtag !== "function") return;
   window.gtag("event", event, {
     tool_slug: "fabric-substitute",
-    ...properties,
   });
 }
-import { detectGPCClient } from "@/lib/gpc";

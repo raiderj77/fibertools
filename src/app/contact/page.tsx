@@ -34,7 +34,7 @@ export default function ContactPage() {
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-8 text-bark-700 dark:text-cream-300">
         <section>
           <p>
-            FiberTools is a free collection of online calculators and utilities
+            FiberTools is a collection of free self-service calculators and utilities
             built specifically for knitters, crocheters, weavers, spinners, and
             fiber artists of every skill level. Every tool on the site is
             designed by someone who uses these tools every day, so we understand the real-world problems crafters face
@@ -186,9 +186,9 @@ export default function ContactPage() {
             Is FiberTools free?
           </h3>
           <p>
-            Yes. Every calculator and tool on FiberTools is completely free to
-            use. Clearly disclosed affiliate commissions help support the site
-            without requiring a subscription or login. We also offer
+            All self-service calculators stay free. Optional professional reviews
+            and project downloads are paid. Clearly disclosed affiliate commissions
+            also help support the calculator library without requiring a login. We offer
             offline access through our progressive web app, so you can use your
             favorite tools even without an internet connection.
           </p>

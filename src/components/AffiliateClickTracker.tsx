@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { AMAZON_ASSOCIATE_TAG } from "@/lib/affiliate";
+import { hasCurrentAnalyticsConsent } from "@/lib/fixed-analytics";
 
 export default function AffiliateClickTracker() {
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function AffiliateClickTracker() {
         return;
       }
 
-      if (typeof window.gtag === "function") {
+      if (hasCurrentAnalyticsConsent() && typeof window.gtag === "function") {
         window.gtag("event", "affiliate_click", {
           page_path: window.location.pathname,
           placement: link.dataset.affiliatePlacement || "editorial-product-link",

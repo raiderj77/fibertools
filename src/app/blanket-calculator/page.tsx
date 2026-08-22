@@ -40,7 +40,13 @@ export default function BlanketCalculatorPage() {
     <ToolLayout
       slug="blanket-calculator"
       widgetFirst
+      focused
       pageTitle="Blanket Yarn & Size Calculator"
+      nextAction={{
+        href: "/project-cost-calculator",
+        label: "Estimate the project cost",
+        description: "Use the whole-skein count from your result to estimate yarn, notions, and optional labor cost.",
+      }}
     >
       <AnswerBlock
         what="A blanket yarn calculator that scales the yarn used by your own swatch to a selected blanket size, then calculates stitch counts, rows, total yards, and whole skeins."

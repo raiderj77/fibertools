@@ -1,6 +1,6 @@
 import { validatePreflightSubmission } from "./designer-preflight-validation.mjs";
 
-export const PREFLIGHT_AMOUNT_CENTS = 900;
+export const PREFLIGHT_AMOUNT_CENTS = 3900;
 export const PREFLIGHT_SERVICE_KEY = "designer_pattern_preflight";
 export const PREFLIGHT_ORPHAN_RETRY_MAX_AGE_MS = 60 * 60 * 1000;
 

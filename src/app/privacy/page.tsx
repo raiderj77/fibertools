@@ -164,12 +164,33 @@ export default function PrivacyPolicyPage() {
           <ul className="list-disc pl-6 space-y-1">
             <li>Understand which tools are most popular so we can improve them</li>
             <li>Monitor site performance and fix errors</li>
-            <li>Display relevant advertising to support the free service</li>
+            <li>Display relevant advertising to support the free self-service calculator library</li>
+            <li>Record fixed, consented interactions with the optional Fiber Project Planning Pack page and checkout action</li>
             <li>Accept payment for, fulfill, deliver, and support the optional Designer Pattern Preflight</li>
           </ul>
           <p>
             We do <strong>not</strong> sell, rent, or share your personal
             information with third parties for their own marketing purposes.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
+            Embedded Calculators and Digital Product
+          </h2>
+          <p>
+            Dedicated calculator routes under <code>/embed/</code> do not load
+            FiberTools analytics, advertising, affiliate tracking, cookie consent,
+            newsletter forms, or saved unit preferences. Calculator inputs and results
+            stay in the embedded page and are not sent to FiberTools analytics.
+          </p>
+          <p>
+            The Fiber Project Planning Pack page records only fixed page-visit,
+            checkout-click, or launch-interest events after analytics consent. These
+            events do not contain calculator inputs, results, project names, email
+            addresses, or free-form content. If checkout is enabled, the external
+            checkout and delivery provider shown when you follow the purchase link
+            processes the information you submit under its own privacy policy.
           </p>
         </section>
 
@@ -306,7 +327,7 @@ export default function PrivacyPolicyPage() {
             <li><strong>Identifiers:</strong> IP address, browser type, and device identifiers collected through consented analytics and, if enabled, advertising.</li>
             <li><strong>Internet or network activity:</strong> Pages visited, tools used, time on site, referring URLs.</li>
             <li><strong>Commercial information:</strong> Aggregate interactions with Amazon product links, such as the page, placement, and general product category.</li>
-            <li><strong>Optional service information:</strong> Name, email, pattern title and type, share link, consent record, payment status, and fulfillment status when you purchase Designer Pattern Preflight.</li>
+            <li><strong>Optional service information:</strong> Name, email, pattern title and type, share link, consent record, payment status, and fulfillment status when you purchase Designer Pattern Preflight. A planning-pack checkout provider may separately process purchase and delivery information under the policy shown at checkout.</li>
             <li><strong>Inferred data:</strong> Interests or preferences that analytics providers and, if enabled, advertising providers may infer from browsing behavior, subject to your consent choices.</li>
           </ul>
 
@@ -322,7 +343,7 @@ export default function PrivacyPolicyPage() {
           <h3>Data Minimization</h3>
           <p>
             We collect only the minimum personal information necessary to operate and improve this service.
-            If advertising is enabled after approval, it may also support the free service. We do not collect personal information beyond what is
+            If advertising is enabled after approval, it may also support the free self-service calculator library. We do not collect personal information beyond what is
             reasonably necessary and proportionate to the purposes disclosed in this policy.
           </p>
 

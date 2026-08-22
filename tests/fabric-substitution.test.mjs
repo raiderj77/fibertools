@@ -147,6 +147,8 @@ test("feature analytics source contains no raw query or free-text property", () 
   assert.match(analytics, /cookie_consent/);
   assert.match(analytics, /analytics === "granted"/);
   assert.match(analytics, /detectGPCClient/);
+  assert.match(analytics, /tool_slug: "fabric-substitute"/);
+  assert.doesNotMatch(analytics, /\.\.\.properties/);
   for (const event of ["fabric_tool_viewed", "fabric_flow_selected", "fabric_selected", "substitution_results_viewed", "project_suggestions_viewed", "result_expanded", "result_helpful", "result_not_helpful", "source_information_viewed"]) {
     assert.match(analytics, new RegExp(`"${event}"`));
   }
