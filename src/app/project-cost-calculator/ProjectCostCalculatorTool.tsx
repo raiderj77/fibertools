@@ -116,8 +116,8 @@ export default function ProjectCostCalculatorTool() {
     <div className="space-y-8">
       {/* Currency */}
       <div className="flex items-center gap-3">
-        <label className="label mb-0">Currency</label>
-        <select value={currency} onChange={(e) => setCurrency(e.target.value)} className="select w-auto">
+        <label htmlFor="project-cost-currency" className="label mb-0">Currency</label>
+        <select id="project-cost-currency" value={currency} onChange={(e) => setCurrency(e.target.value)} className="select w-auto">
           {CURRENCIES.map((c) => (
             <option key={c.code} value={c.code}>{c.symbol} {c.code}</option>
           ))}
@@ -136,24 +136,31 @@ export default function ProjectCostCalculatorTool() {
               )}
             </div>
             <div className="space-y-3">
-              {yarns.map((y) => (
+              {yarns.map((y, yarnIndex) => (
                 <div key={y.id} className="flex gap-2 items-end">
                   <div className="flex-1">
-                    <input type="text" value={y.name} onChange={(e) => updateYarn(y.id, { name: e.target.value })}
+                    <label htmlFor={`project-cost-yarn-${yarnIndex}-name`} className="sr-only">
+                      Yarn {yarnIndex + 1} name
+                    </label>
+                    <input id={`project-cost-yarn-${yarnIndex}-name`} type="text" value={y.name} onChange={(e) => updateYarn(y.id, { name: e.target.value })}
                       placeholder="Color name" className="input text-sm" maxLength={20} />
                   </div>
                   <div className="w-20">
-                    <label className="text-xs text-bark-400 dark:text-bark-500 block mb-1">Skeins</label>
-                    <input type="number" value={y.skeins} onChange={(e) => updateYarn(y.id, { skeins: e.target.value })}
+                    <label htmlFor={`project-cost-yarn-${yarnIndex}-skeins`} className="text-xs text-bark-400 dark:text-bark-500 block mb-1">
+                      <span className="sr-only">Yarn {yarnIndex + 1} </span>Skeins
+                    </label>
+                    <input id={`project-cost-yarn-${yarnIndex}-skeins`} type="number" value={y.skeins} onChange={(e) => updateYarn(y.id, { skeins: e.target.value })}
                       placeholder="3" className="input text-sm" min="0" inputMode="decimal" />
                   </div>
                   <div className="w-24">
-                    <label className="text-xs text-bark-400 dark:text-bark-500 block mb-1">{sym}/skein</label>
-                    <input type="number" value={y.pricePerSkein} onChange={(e) => updateYarn(y.id, { pricePerSkein: e.target.value })}
+                    <label htmlFor={`project-cost-yarn-${yarnIndex}-price`} className="text-xs text-bark-400 dark:text-bark-500 block mb-1">
+                      <span className="sr-only">Yarn {yarnIndex + 1} </span>{sym}/skein
+                    </label>
+                    <input id={`project-cost-yarn-${yarnIndex}-price`} type="number" value={y.pricePerSkein} onChange={(e) => updateYarn(y.id, { pricePerSkein: e.target.value })}
                       placeholder="8.99" className="input text-sm" min="0" step="0.01" inputMode="decimal" />
                   </div>
                   {yarns.length > 1 && (
-                    <button type="button" onClick={() => removeYarn(y.id)} className="text-bark-400 hover:text-rose-500 pb-2">✕</button>
+                    <button type="button" onClick={() => removeYarn(y.id)} aria-label={`Remove yarn entry ${yarnIndex + 1}`} className="text-bark-400 hover:text-rose-500 pb-2">✕</button>
                   )}
                 </div>
               ))}
@@ -173,17 +180,23 @@ export default function ProjectCostCalculatorTool() {
               <p className="text-xs text-bark-400 dark:text-bark-500">No notions added. Click + to add buttons, zippers, patterns, etc.</p>
             )}
             <div className="space-y-2">
-              {notions.map((n) => (
+              {notions.map((n, notionIndex) => (
                 <div key={n.id} className="flex gap-2 items-end">
                   <div className="flex-1">
-                    <input type="text" value={n.name} onChange={(e) => updateNotion(n.id, { name: e.target.value })}
+                    <label htmlFor={`project-cost-notion-${notionIndex}-name`} className="sr-only">
+                      Notion or extra {notionIndex + 1} name
+                    </label>
+                    <input id={`project-cost-notion-${notionIndex}-name`} type="text" value={n.name} onChange={(e) => updateNotion(n.id, { name: e.target.value })}
                       placeholder="e.g. Buttons" className="input text-sm" maxLength={30} />
                   </div>
                   <div className="w-24">
-                    <input type="number" value={n.price} onChange={(e) => updateNotion(n.id, { price: e.target.value })}
+                    <label htmlFor={`project-cost-notion-${notionIndex}-price`} className="sr-only">
+                      Notion or extra {notionIndex + 1} price in {currency}
+                    </label>
+                    <input id={`project-cost-notion-${notionIndex}-price`} type="number" value={n.price} onChange={(e) => updateNotion(n.id, { price: e.target.value })}
                       placeholder={`${sym}0.00`} className="input text-sm" min="0" step="0.01" inputMode="decimal" />
                   </div>
-                  <button type="button" onClick={() => removeNotion(n.id)} className="text-bark-400 hover:text-rose-500 pb-2">✕</button>
+                  <button type="button" onClick={() => removeNotion(n.id)} aria-label={`Remove notion or extra ${notionIndex + 1}`} className="text-bark-400 hover:text-rose-500 pb-2">✕</button>
                 </div>
               ))}
             </div>
@@ -196,29 +209,29 @@ export default function ProjectCostCalculatorTool() {
             </p>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">
+                <label htmlFor="project-cost-total-stitches" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">
                   Total stitches
                   <Tooltip text="From your yarn calculator or pattern. Leave blank to skip time estimate." />
                 </label>
-                <input type="number" value={totalStitches} onChange={(e) => setTotalStitches(e.target.value)}
+                <input id="project-cost-total-stitches" type="number" value={totalStitches} onChange={(e) => setTotalStitches(e.target.value)}
                   placeholder="50000" className="input text-sm" min="0" inputMode="numeric" />
               </div>
               <div>
-                <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">
+                <label htmlFor="project-cost-stitches-per-minute" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">
                   Your speed (st/min)
                   <Tooltip text="Average stitches per minute. Beginners: 15-20. Intermediate: 25-35. Fast: 40+." />
                 </label>
-                <input type="number" value={stitchesPerMin} onChange={(e) => setStitchesPerMin(e.target.value)}
+                <input id="project-cost-stitches-per-minute" type="number" value={stitchesPerMin} onChange={(e) => setStitchesPerMin(e.target.value)}
                   placeholder="25" className="input text-sm" min="1" inputMode="numeric" />
               </div>
             </div>
 
             <div>
-              <label className="text-xs text-bark-500 dark:text-bark-400 block mb-1">
+              <label htmlFor="project-cost-selling-price" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">
                 Selling price ({sym}), optional
                 <Tooltip text="If you were to sell this item, what would you charge? We will calculate your effective hourly rate." />
               </label>
-              <input type="number" value={sellingPrice} onChange={(e) => setSellingPrice(e.target.value)}
+              <input id="project-cost-selling-price" type="number" value={sellingPrice} onChange={(e) => setSellingPrice(e.target.value)}
                 placeholder="0.00" className="input text-sm max-w-[160px]" min="0" step="0.01" inputMode="decimal" />
             </div>
           </div>

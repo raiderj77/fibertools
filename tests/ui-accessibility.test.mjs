@@ -16,6 +16,7 @@ const circle = read("src/app/circle-calculator/CircleCalculatorTool.tsx");
 const shapes = read("src/app/amigurumi-shapes/AmigurumiShapesTool.tsx");
 const yarn = read("src/app/yarn-calculator/YarnCalculatorTool.tsx");
 const gauge = read("src/app/gauge-calculator/GaugeCalculatorTool.tsx");
+const projectCost = read("src/app/project-cost-calculator/ProjectCostCalculatorTool.tsx");
 const embedShell = read("src/components/EmbedCalculatorShell.tsx");
 const embedCodeCard = read("src/components/EmbedCodeCard.tsx");
 const weaving = read("src/app/weaving-sett-calculator/WeavingSettCalculatorTool.tsx");
@@ -192,6 +193,34 @@ test("associates every audited Yarn and Gauge field with its visible label", () 
     assert.match(gauge, new RegExp(`htmlFor="${id}"`));
     assert.match(gauge, new RegExp(`id="${id}"`));
   }
+});
+
+test("labels every Project Cost field and names row removal controls", () => {
+  for (const id of [
+    "project-cost-currency",
+    "project-cost-total-stitches",
+    "project-cost-stitches-per-minute",
+    "project-cost-selling-price",
+  ]) {
+    assert.match(projectCost, new RegExp(`htmlFor="${id}"`));
+    assert.match(projectCost, new RegExp(`id="${id}"`));
+  }
+
+  for (const id of [
+    "project-cost-yarn-${yarnIndex}-name",
+    "project-cost-yarn-${yarnIndex}-skeins",
+    "project-cost-yarn-${yarnIndex}-price",
+    "project-cost-notion-${notionIndex}-name",
+    "project-cost-notion-${notionIndex}-price",
+  ]) {
+    assert.ok(projectCost.includes(`htmlFor={\`${id}\`}`), `missing label association for ${id}`);
+    assert.ok(projectCost.includes(`id={\`${id}\`}`), `missing control id for ${id}`);
+  }
+
+  assert.match(projectCost, /aria-label=\{`Remove yarn entry \$\{yarnIndex \+ 1\}`\}/);
+  assert.match(projectCost, /aria-label=\{`Remove notion or extra \$\{notionIndex \+ 1\}`\}/);
+  assert.ok(projectCost.includes('<span className="sr-only">Yarn {yarnIndex + 1} </span>Skeins'));
+  assert.ok(projectCost.includes('<span className="sr-only">Yarn {yarnIndex + 1} </span>{sym}/skein'));
 });
 
 test("exposes selected Gauge tabs and keyboard-usable embed controls", () => {
