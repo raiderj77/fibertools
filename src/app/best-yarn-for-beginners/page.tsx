@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { amazonProductUrl, amazonSearchUrl } from "@/lib/affiliate";
+import { REVIEW_DATES } from "@/lib/review-dates.mjs";
 
 export const metadata: Metadata = {
-  title: "Best Yarn for Beginners (2026): Expert Picks",
+  title: "Best Yarn for Beginners (2026): Practical Picks",
   description:
-    "The best beginner yarn for knitting and crochet in 2026. Smooth, affordable options that are easy to work with and available everywhere.",
+    "Practical beginner-yarn options for knitting and crochet in 2026, with smooth, affordable choices selected for visible stitches and manageable handling.",
   keywords: [
     "best yarn for beginners",
     "beginner knitting yarn",
@@ -17,9 +18,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "article",
-    title: "Best Yarn for Beginners (2026): Expert Picks",
+    title: "Best Yarn for Beginners (2026): Practical Picks",
     description:
-      "The best beginner yarn for knitting and crochet in 2026. Smooth, affordable options that are easy to work with and available everywhere.",
+      "Practical beginner-yarn options for knitting and crochet in 2026, with smooth, affordable choices selected for visible stitches and manageable handling.",
     url: "https://fibertools.app/best-yarn-for-beginners",
     images: [
       {
@@ -32,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Best Yarn for Beginners (2026): Expert Picks",
+    title: "Best Yarn for Beginners (2026): Practical Picks",
     description:
-      "The best beginner yarn for knitting and crochet in 2026. Smooth, affordable options that are easy to work with and available everywhere.",
+      "Practical beginner-yarn options for knitting and crochet in 2026, with smooth, affordable choices selected for visible stitches and manageable handling.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/best-yarn-for-beginners" },
@@ -44,11 +45,11 @@ export default function BestYarnForBeginnersPage() {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Best Yarn for Beginners (2026): Expert Picks",
+    headline: "Best Yarn for Beginners (2026): Practical Picks",
     description:
-      "The best beginner yarn for knitting and crochet in 2026. Smooth, affordable options that are easy to work with and available everywhere.",
+      "Practical beginner-yarn options for knitting and crochet in 2026, with smooth, affordable choices selected for visible stitches and manageable handling.",
     datePublished: "2026-03-11",
-    dateModified: "2026-04-16",
+    dateModified: REVIEW_DATES.bestYarnForBeginners.iso,
     url: "https://fibertools.app/best-yarn-for-beginners",
     mainEntityOfPage: "https://fibertools.app/best-yarn-for-beginners",
     author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
@@ -74,7 +75,7 @@ export default function BestYarnForBeginnersPage() {
         name: "What is the best yarn weight for a beginner?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Medium weight (worsted, CYC 4) is best for beginners, it works up quickly, is easy to see, and most beginner patterns are written for it.",
+          text: "Medium weight (worsted, CYC 4) can be a practical starting point because its stitches are generally easier to see than very fine yarn. Follow the yarn weight specified by the pattern you choose.",
         },
       },
       {
@@ -82,7 +83,7 @@ export default function BestYarnForBeginnersPage() {
         name: "Is acrylic yarn good for beginners?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Acrylic is the best choice for learning, it is affordable, machine washable, widely available, and consistent in texture. It forgives mistakes better than slippery or splitty fibers.",
+          text: "A smooth acrylic can be suitable for learning when its feel and care instructions fit the project. Price, texture, splitting, and washability vary, so check the specific yarn rather than treating one fiber as universally best.",
         },
       },
       {
@@ -90,7 +91,7 @@ export default function BestYarnForBeginnersPage() {
         name: "How much does beginner yarn cost?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Beginner-friendly acrylic yarn is widely available in budget-friendly skeins. A small first project uses 1–2 skeins. Buy a small amount to start, you can always get more of the same yarn.",
+          text: "Prices and skein sizes vary by yarn, color, and seller. Check the current price per yard and the amount required by your chosen pattern; if color matching matters, plan for dye-lot availability before buying.",
         },
       },
       {
@@ -98,7 +99,7 @@ export default function BestYarnForBeginnersPage() {
         name: "What yarn should beginners avoid?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Avoid eyelash or fuzzy yarn (hard to see stitches), dark colors (hard to see mistakes), slippery fibers like silk or bamboo, and loosely twisted yarn that splits easily.",
+          text: "Some learners find fuzzy yarn, very dark colors, slippery fibers, or loosely twisted yarn harder to inspect and undo. Choose the texture and color that let you see and control your own stitches.",
         },
       },
       {
@@ -106,7 +107,7 @@ export default function BestYarnForBeginnersPage() {
         name: "Can I use the same yarn for knitting and crochet?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes. Most yarn is suitable for both. The tools differ (needles vs hooks) but the yarn requirements are similar. Medium weight acrylic works well for both crafts.",
+          text: "Many yarns can be used for either knitting or crochet, but the pattern's yarn weight, gauge, fabric requirements, and care instructions determine whether a particular yarn is suitable.",
         },
       },
     ],
@@ -145,11 +146,11 @@ export default function BestYarnForBeginnersPage() {
 
       {/* Answer capsule */}
       <p className="text-lg text-bark-600 dark:text-cream-300 leading-relaxed mb-2">
-        The best beginner yarn is a smooth, medium weight (worsted/CYC 4) acrylic in a light color. It is affordable, machine washable, easy to see your stitches in, and available at every craft store. Start with one skein of 200+ yards for your first project, a dishcloth or small scarf.
+        A practical beginner yarn is a smooth, medium weight (worsted/CYC 4) acrylic in a light color. It is affordable, machine washable, and makes stitches easier to see. Check local or online availability before choosing a color, and start with one skein of 200+ yards for a small first project such as a dishcloth or short scarf.
       </p>
 
       <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
-        <span>Last updated: April 16, 2026</span>
+        <span>Last updated: {REVIEW_DATES.bestYarnForBeginners.label}</span>
         <span>&middot;</span>
         <span>Written by Jason Ramirez, founder of FiberTools</span>
       </div>
@@ -161,13 +162,13 @@ export default function BestYarnForBeginnersPage() {
             What Makes a Good Beginner Yarn?
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            A good beginner yarn has a smooth texture so you can see each stitch clearly, medium thickness so it works up at a comfortable pace, and a light color that makes it easy to spot mistakes before they compound. Affordability matters too, you will frog (rip out) your first projects more than once.
+            A practical learning yarn has a texture and color that let you inspect each stitch, plus a thickness that feels manageable with the chosen hook or needles. Price may matter when a project involves practice or rework, so compare the current cost per yard as well as the skein price.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            <strong>Look for:</strong> smooth texture, Medium weight (worsted/CYC 4), light or medium colors, acrylic or acrylic blend fiber, machine washable, widely available.
+            <strong>Consider:</strong> a smooth texture, a visible color, care instructions that suit the project, and current availability in enough yardage and one dye lot. Medium weight (worsted/CYC 4) is one approachable option when the pattern permits it.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            <strong>Avoid:</strong> eyelash or fuzzy yarn (impossible to see stitches), dark colors (hard to see mistakes), slippery silk or bamboo blends (stitches slide off needles), loosely twisted singles yarn (splits constantly), and novelty yarns of any kind until you have the basics down.
+            <strong>Potentially harder to inspect:</strong> fuzzy textures, very dark colors, slippery yarns, and loosely twisted singles. These can obscure stitches or split more readily for some users, but the best learning material is the one you can see and control comfortably.
           </p>
         </section>
 
@@ -177,7 +178,7 @@ export default function BestYarnForBeginnersPage() {
             Best Beginner Yarn Picks
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            These yarns are widely recommended by knitting and crochet instructors for first-time crafters. All are smooth, affordable, and easy to find.
+            These picks emphasize smooth texture, manageable weight, practical care, and enough yardage for common first projects. Availability and price vary by seller and color.
           </p>
           <div className="overflow-x-auto mb-4">
             <table className="w-full text-sm text-left border border-cream-300 dark:border-bark-700 rounded-xl overflow-hidden">
@@ -186,7 +187,7 @@ export default function BestYarnForBeginnersPage() {
                   <th className="px-4 py-3 font-semibold">Yarn Name</th>
                   <th className="px-4 py-3 font-semibold">Weight</th>
                   <th className="px-4 py-3 font-semibold">Fiber</th>
-                  <th className="px-4 py-3 font-semibold">Best For</th>
+                  <th className="px-4 py-3 font-semibold">Planning note</th>
                   <th className="px-4 py-3 font-semibold">Link</th>
                 </tr>
               </thead>
@@ -195,7 +196,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3 font-medium">Lion Brand Pound of Love</td>
                   <td className="px-4 py-3">Medium (4)</td>
                   <td className="px-4 py-3">100% acrylic</td>
-                  <td className="px-4 py-3">Best value, 1,020 yards per skein</td>
+                  <td className="px-4 py-3">Large put-up, 1,020 yards listed per skein</td>
                   <td className="px-4 py-3">
                     <a href={amazonSearchUrl("Lion Brand Pound of Love yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
@@ -204,7 +205,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3 font-medium">Caron Simply Soft</td>
                   <td className="px-4 py-3">Medium (4)</td>
                   <td className="px-4 py-3">100% acrylic</td>
-                  <td className="px-4 py-3">Smoothest feel, great color range</td>
+                  <td className="px-4 py-3">Smooth-finish option; compare current colors and care label</td>
                   <td className="px-4 py-3">
                     <a href={amazonProductUrl("B00CB39PYQ")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
@@ -213,7 +214,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3 font-medium">Red Heart Super Saver</td>
                   <td className="px-4 py-3">Medium (4)</td>
                   <td className="px-4 py-3">100% acrylic</td>
-                  <td className="px-4 py-3">Most affordable, widely available</td>
+                  <td className="px-4 py-3">Compare current price, yardage, colors, and care label</td>
                   <td className="px-4 py-3">
                     <a href={amazonProductUrl("B00114TCMQ")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
@@ -222,7 +223,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3 font-medium">Paintbox Simply DK</td>
                   <td className="px-4 py-3">Light (3)</td>
                   <td className="px-4 py-3">100% acrylic</td>
-                  <td className="px-4 py-3">Great for learning gauge, clean colors</td>
+                  <td className="px-4 py-3">Light (3) option; compare label gauge, care, and current colors</td>
                   <td className="px-4 py-3">
                     <a href={amazonSearchUrl("paintbox simply dk")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
@@ -247,17 +248,17 @@ export default function BestYarnForBeginnersPage() {
             What Yarn Weight Should Beginners Start With?
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Medium weight yarn (worsted, CYC 4) is the best starting point for beginners. It is thick enough to see each stitch clearly, works up faster than thinner yarns so you see progress quickly, and the vast majority of beginner patterns and tutorials are written for it.
+            Medium weight yarn (worsted, CYC 4) can be an approachable starting point when the pattern permits it: its stitches are generally easier to inspect than those made with very fine yarn. Actual pace and visibility depend on the stitch, color, tools, and your tension.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Light weight (DK, CYC 3) is a reasonable second choice, it produces a lighter, drapier fabric and is the standard weight in many European patterns. Avoid Super Fine (fingering) or Bulky weights until you are comfortable with basic stitches.
+            Light weight (DK, CYC 3) is another option when the selected pattern calls for it. Very fine, fuzzy, or very bulky yarn may be harder for some learners to inspect or control, but there is no required progression: use the pattern specification and a small swatch to decide.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             Not sure about yarn weights? Our{" "}
             <Link href="/yarn-weight-chart" className="text-sage-600 dark:text-sage-400 hover:underline">
               Yarn Weight Chart
             </Link>{" "}
-            explains the CYC 0–7 system with needle and hook size recommendations for every weight.
+            explains the listed CYC 0–7 categories and the label-guided needle and hook ranges associated with them.
           </p>
         </section>
 
@@ -267,14 +268,14 @@ export default function BestYarnForBeginnersPage() {
             How Much Yarn Do Beginners Need?
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            For a first project like a dishcloth or short scarf, one skein of 200+ yards is enough. A full-length scarf needs 250–400 yards. A simple hat uses 150–250 yards. Buy one extra skein if the project might grow, dye lot matching later can be difficult.
+            Yardage depends on the pattern, dimensions, stitch, gauge, and yarn. Use the selected pattern&apos;s stated requirement as the primary source, compare it with the yardage on the actual label, and consider dye-lot availability and the seller&apos;s return policy before adding a buffer.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             Use our free{" "}
             <Link href="/yarn-calculator" className="text-sage-600 dark:text-sage-400 hover:underline">
               Yarn Calculator
             </Link>{" "}
-            to get an exact yardage estimate for any project type, size, and yarn weight.
+            to get a planning estimate for supported project types using the measurements and yarn information you provide.
           </p>
         </section>
 
@@ -284,10 +285,10 @@ export default function BestYarnForBeginnersPage() {
             Should Beginners Use Acrylic or Natural Fibers?
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Acrylic is the best fiber choice for learning. It is affordable enough that frogging and restarting does not feel wasteful. It is machine washable, which matters for practice projects that get handled constantly. It has consistent texture with no slubs or thin spots that could confuse a new crafter.
+            A smooth acrylic can be a practical learning option when its current price, texture, and care label fit the project. Acrylic yarns vary in softness, twist, washability, and price, so inspect the specific product rather than assuming the fiber name guarantees those traits.
           </p>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Save natural fibers like wool, cotton, and alpaca for after you are comfortable with tension and stitch formation. Wool is wonderful but more expensive, felts if machine washed incorrectly, and some people find it scratchy. Cotton has almost no stretch, which makes it harder to maintain even tension as a beginner.
+            Natural fibers are not inherently unsuitable for beginners. Wool, cotton, alpaca, and blends behave differently, and price, stretch, texture, allergies, and washing instructions vary by product. Swatch the actual yarn and follow its care label before committing to a larger project.
           </p>
         </section>
 
@@ -299,15 +300,15 @@ export default function BestYarnForBeginnersPage() {
           <ul className="space-y-4">
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
-              <span><strong>Buying yarn before choosing a project.</strong> The most common beginner mistake is buying yarn because it looks attractive, then discovering it is the wrong weight, too slippery, or too textured for the intended project. Always choose your project first, then buy yarn that matches the pattern&apos;s requirements.</span>
+              <span><strong>Buying without checking a project&apos;s requirements.</strong> If you plan to follow a pattern, compare its yarn weight, gauge, yardage, and fiber or care needs with the exact label before buying.</span>
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
-              <span><strong>Choosing dark colors for a first project.</strong> Dark yarns (navy, charcoal, black) make it nearly impossible to see individual stitches, count rows, or spot mistakes. Light or medium colors (cream, sky blue, soft pink) show stitch structure clearly and make learning significantly easier. Save dark colors for your third or fourth project.</span>
+              <span><strong>Ignoring stitch visibility.</strong> Very dark or fuzzy yarn can reduce stitch contrast in some lighting. Compare a small swatch under the lighting where you will work and choose the color and texture you can inspect comfortably.</span>
             </li>
             <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
               <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
-              <span><strong>Buying luxury fiber for a first project.</strong> Silk, cashmere, and hand-dyed yarns are expensive and slippery, the worst combination for learning. Mistakes in expensive yarn are demoralizing and costly to fix. Start with affordable, machine-washable acrylic or wool-acrylic blend, and save specialty fibers for projects where you have confidence in your technique.</span>
+              <span><strong>Skipping price and care checks.</strong> Specialty and hand-dyed yarns can have different costs, handling, color behavior, and care needs. Compare the label, swatch behavior, required quantity, and return policy with your budget before choosing.</span>
             </li>
           </ul>
         </section>
@@ -324,35 +325,35 @@ export default function BestYarnForBeginnersPage() {
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">What is the best yarn weight for a beginner?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Medium weight (worsted, CYC 4) is best for beginners, it works up quickly, is easy to see, and most beginner patterns are written for it.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Medium weight (worsted, CYC 4) can be a practical starting point because its stitches are generally easier to see than very fine yarn. Follow the yarn weight specified by the pattern you choose.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Is acrylic yarn good for beginners?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Yes. Acrylic is the best choice for learning, it is affordable, machine washable, widely available, and consistent in texture. It forgives mistakes better than slippery or splitty fibers.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">A smooth acrylic can be suitable for learning when its feel and care instructions fit the project. Price, texture, splitting, and washability vary, so check the specific yarn rather than treating one fiber as universally best.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">How much does beginner yarn cost?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Beginner-friendly acrylic yarn is widely available in budget-friendly skeins. A small first project uses 1–2 skeins. Buy a small amount to start, you can always get more of the same yarn.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Prices and skein sizes vary by yarn, color, and seller. Check the current price per yard and the amount required by your chosen pattern; if color matching matters, plan for dye-lot availability before buying.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">What yarn should beginners avoid?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Avoid eyelash or fuzzy yarn (hard to see stitches), dark colors (hard to see mistakes), slippery fibers like silk or bamboo, and loosely twisted yarn that splits easily.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Some learners find fuzzy yarn, very dark colors, slippery fibers, or loosely twisted yarn harder to inspect and undo. Choose the texture and color that let you see and control your own stitches.</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Can I use the same yarn for knitting and crochet?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Yes. Most yarn is suitable for both. The tools differ (needles vs hooks) but the yarn requirements are similar. Medium weight acrylic works well for both crafts.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Many yarns can be used for either knitting or crochet, but the pattern&apos;s yarn weight, gauge, fabric requirements, and care instructions determine whether a particular yarn is suitable.</p></div>
           </details>
         </div>
       </section>
@@ -360,7 +361,7 @@ export default function BestYarnForBeginnersPage() {
       {/* CTA */}
       <div className="mt-12 p-6 bg-sage-50 dark:bg-sage-900/20 rounded-2xl border border-sage-200 dark:border-sage-800 text-center">
         <p className="text-lg font-semibold text-bark-700 dark:text-cream-200 mb-2">
-          Calculate exactly how much yarn you need for your first project
+          Estimate yarn for your first project
         </p>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-4">
           Use our free Yarn Calculator, no login required, works offline.

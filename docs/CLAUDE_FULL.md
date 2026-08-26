@@ -1,246 +1,124 @@
-# FiberTools — CLAUDE.md
+# FiberTools repository instructions
 
-> Source of truth for Claude Code on this project. Last updated: 2026-03-09
+> Current operating source of truth. Last verified: 2026-08-25.
 
-## Before Doing Anything
-1. Read this file and EMPIRE_BUILD_STANDARDS.md first
-2. Show Jason a plan. Wait for approval.
+## Repository identity gate
 
-## Project Identity
+Before changing anything, verify all of the following:
 
-- **Site**: FiberTools
-- **Domain**: fibertools.app
-- **Purpose**: Fiber arts calculators and tools for knitters, crocheters, and fiber artists
-- **Type**: utility-site
-- **Compliance Tier**: Standard
+- repository root: `C:\Users\jason\Documents\fibertools` or an explicitly created FiberTools worktree;
+- remote: `https://github.com/raiderj77/fibertools.git`;
+- default and production branch: `main`;
+- intended base SHA is the current fetched `origin/main`;
+- `git status --short --branch` has been reviewed and unrelated owner changes will be preserved.
 
-## Tech Stack
+Do not work from a similarly named repository or assume that a successful homepage response identifies the source checkout or deployed commit.
 
-- **Framework**: Next.js
-- **Deployment**: Vercel
-- **Language**: TypeScript (preferred) / JavaScript
-- **Styling**: Tailwind CSS (preferred) / CSS Modules
-- **Package Manager**: npm
+`docs/stitchproof-distribution-kit.md` and all StitchProof experiment, attribution, and outcome state are protected owner records. Do not open, modify, stage, summarize, or reinterpret them unless the owner explicitly authorizes that exact work.
 
-## 1. AdSense & Monetization
+## Product contract
 
-- **Publisher ID**: `ca-pub-7171402107622932`
-- **ads.txt** at `public/ads.txt`: `google.com, pub-7171402107622932, DIRECT, f08c47fec0942fa0`
-- Include OWNERDOMAIN directive per IAB ads.txt v1.1
-- Ads must never exceed content volume on any page
-- Reserve explicit width/height on ad containers (prevents CLS)
-- Mobile: follow Better Ads Standard
-- Google Consent Mode v2: configure all 6 parameters (ad_storage, ad_user_data, ad_personalization, analytics_storage, functionality_storage, personalization_storage)
-- For EEA/UK visitors: Google-certified CMP with IAB TCF v2.2 required
-- Amazon Associates tag `ytearnings-20` for product recommendations. Affiliate links must include `rel="nofollow sponsored"`.
+FiberTools is a privacy-first collection of free, deterministic fiber-arts calculators and references. Public self-service calculators:
 
-## 2. SEO — Google Search Essentials
+- require no account or email address;
+- process project inputs in the browser unless a page explicitly says otherwise;
+- show calculations as planning aids, not guaranteed project outcomes;
+- remain free, including when optional paid products or services are offered;
+- preserve accessible labels, keyboard operation, visible focus, responsive reflow, and clear limitations.
 
-- Use SSR or SSG for all public pages (critical for both Google and Bing crawlability)
-- No cloaking, doorway pages, hidden text, link spam, or sneaky redirects
-- Each page must provide substantive unique value
-- AI-generated content permitted if genuine value added
+The homepage organizes visitors around three jobs:
 
-## 3. Core Web Vitals
+1. calculate yarn and materials;
+2. fix gauge, sizing, and stitch counts;
+3. plan a crochet or knitting project.
 
-Target thresholds (at 75th percentile):
-- **LCP** ≤ 2.5 seconds
-- **INP** ≤ 200 milliseconds
-- **CLS** ≤ 0.1
+The featured calculator order is Blanket, Yarn, Circle, Amigurumi Shapes, and Cast-on. Sock Calculator is the secondary featured tool. Keep the remaining ready tools available through the server-rendered directory.
 
-How to maintain these:
-- Use `next/image` with width/height props (prevents CLS)
-- Use `next/font` (prevents font-loading shifts)
-- Reserve dimensions on all ad containers
-- Leverage Vercel ISR/SSR for LCP optimization
-- Audit third-party scripts (especially AdSense) for INP impact
+## Current commercial boundaries
 
-## 4. E-E-A-T Content Standards
+- Amazon product links may use Associates tag `ytearnings-20` only when the destination genuinely helps the task. Put a clear affiliate disclosure before the first paid link, use `rel="nofollow sponsored"`, and keep privacy-notice destinations untagged.
+- AdSense is disabled unless `NEXT_PUBLIC_ADSENSE_ENABLED=true` and a valid public publisher ID is deliberately configured. Do not infer approval from source configuration.
+- The $17 Fiber Project Planning Pack checkout is disabled. Its public-history artifact is not an approved private sellable revision. Do not enable its link until the owner confirms a new private delivery source and separately approves activation.
+- Designer Pattern Preflight is a $39 bounded pilot and is inquiry-only by default. Missing, invalid, or mismatched provider configuration must fail closed to inquiry.
+- The $149/year and $299/year white-label descriptions are interest tests only. They are not active subscriptions, checkout offers, tenant provisioning, or promises of availability.
+- Embeds remain free, branded, `noindex`, isolated from site chrome and monetization, and frameable only under the dedicated embed security policy.
 
-- Display author credentials on every content page
-- Create dedicated author bio pages with Person schema
-- Maintain About page with verifiable organizational info and mission
-- Include Contact information accessible from every page
-- Describe editorial review process (especially for YMYL content)
-- Attribution: "Created by a fiber arts expert with 30+ years experience" — NEVER use personal name
-- Content authority from 30+ years fiber arts expertise.
+Never invent revenue, demand, conversion, customer, affiliate-performance, delivery, inventory, approval, or provider-readiness claims.
 
-## 5. Structured Data (JSON-LD)
+## Publication freeze
 
-Use JSON-LD format. Place via Next.js generateMetadata() or Script component.
+No new public calculator, general tool, article, guide, paid service, or major feature before November 20, 2026 unless an explicit owner-approved publication record exists. Bug fixes, security fixes, legal corrections, factual corrections, and broken-link repairs remain permitted.
 
-Required schema types for this site:
-- Organization (homepage)
-- WebSite (homepage)
-- WebApplication (each tool)
-- BreadcrumbList (all pages)
+Markdown under `content/published` is quarantined unless the application allowlist and an explicit owner-approved publication record make it public. Do not treat a filename or `status: published` front matter as approval. Do not create doorway pages, duplicate programmatic pages, generic AI articles, scraped content, link schemes, or unsourced fiber-arts claims.
 
-Rules:
-- All markup must match visible page content exactly
-- Include dateModified on all content (critical freshness signal for search and AI)
-- Validate with Google Rich Results Test and Bing Markup Validator
+## Identity and editorial truth
 
-## 6. Mobile-First Requirements
+The current public About page intentionally identifies FiberTools' owner and describes his actual relationship to the project. Personal-name publication is not categorically prohibited. Preserve intentional, owner-approved attribution, but never expose private contact, identity, payment, tax, account, or provider data.
 
-- Content parity: mobile must contain ALL desktop content
-- Same structured data and meta robots on mobile and desktop
-- Responsive design with viewport meta tag
-- Touch targets: 48px minimum
-- Body text: 16px minimum
-- No intrusive interstitials
-- Don't block CSS/JS/images from crawlers
+Do not claim 30+ years of fiber-arts expertise, professional fiber-arts credentials, instructor consensus, popularity, universal availability, exact project outcomes, or other credentials or superlatives without directly verifiable evidence. Visible claims and JSON-LD must agree. A review date may change only when the represented content or destinations were actually reviewed.
 
-## 7. Bing-Specific Optimization
+Use US crochet terminology and Craft Yarn Council weight labels Lace (0) through Jumbo (7). Keep formulas deterministic, documented, accessible, and covered by focused regression tests.
 
-- Include `<meta name="keywords">` tag (Bing still uses it, Google ignores)
-- Write descriptive meta descriptions (Bing shows them more literally)
-- SSR/SSG is MANDATORY — Bingbot has very limited JS rendering
-- IndexNow: API route at /api/indexnow, key file in /public, trigger on deploy
-- Store INDEXNOW_API_KEY in Vercel environment variables
-- Crawl-delay: 10 for Bingbot in robots.txt
-- Title, H1, meta description must be aligned and consistent
-- Do NOT hide content behind tabs, accordions, or expandable menus
+## Technology and route behavior
 
-## 8. GEO / AI Discoverability
+- Framework: Next.js App Router under `src/app`.
+- Language: TypeScript and JavaScript.
+- Styling: Tailwind CSS and repository styles.
+- Package manager: npm.
+- Deployment: Vercel from `main`.
+- Standard pages use `X-Frame-Options: SAMEORIGIN` plus the standard CSP.
+- `/embed/*` routes omit `X-Frame-Options`, use a dedicated `frame-ancestors` CSP, and return `X-Robots-Tag: noindex, nofollow`.
+- `/blog/*` is redirected to current tool or guide destinations; quarantined Markdown is not a public blog.
 
-### llms.txt
-Serve `/llms.txt` at site root (Markdown, text/plain MIME type). Include site name, description, links to key pages with descriptions. Also create `/llms-full.txt` with full content.
+Do not replace the intentional standard/embed header split with a blanket `DENY` rule. Do not weaken either policy without focused security and embed tests.
 
-### robots.txt AI Crawlers
-Configure in `public/robots.txt`. Allow all search-facing AI crawlers:
-- OAI-SearchBot, ChatGPT-User, Claude-SearchBot, Claude-User, PerplexityBot, Applebot-Extended, DuckAssistBot, Amazonbot
-- Allow or block training crawlers (GPTBot, ClaudeBot, Google-Extended) per preference
-- Block: Bytespider, Meta-ExternalAgent
+## Privacy and analytics
 
-### Content Structure for AI
-- Answer-first format: lead sections with 1-3 sentence direct answers
-- Question-based headings ("How does X work?")
-- Self-contained sections extractable as standalone snippets
-- Short paragraphs (2-4 sentences)
-- Include statistics and data (boosts AI visibility 15-30%)
-- Add visible "Last Updated" dates
-- Set meta robots: `index, follow, max-snippet:-1`
-- SSR all critical content (AI crawlers don't execute JS)
+- Never place calculator inputs, form contents, email addresses, provider payloads, credentials, or free-form user text in analytics or reports.
+- New analytics must use fixed allowlisted event names and non-sensitive values.
+- Recheck consent and Global Privacy Control before affiliate or analytics sends.
+- Newsletter and paid-service flows are separate disclosed server workflows; do not describe every site interaction as browser-only.
+- Collect only what a feature needs, retain it only for the documented period, and preserve deletion/retention operations.
 
-## 9. Privacy & Consent
+## Environment and owner operations
 
-### Required Pages
-- `/privacy` — Privacy Policy (update annually, include GDPR + CCPA sections)
-- `/terms` — Terms of Service
+The canonical environment inventory, safe defaults, activation gates, and release procedure are in `docs/fibertools-deployment-environment.md`. `.env.example` must contain fake placeholders only. Every active application or offer environment reference must appear in both places and is enforced by `tests/environment-docs.test.mjs`.
 
-### Privacy Policy Must Include
-- Data controller identity, lawful basis, data categories, retention periods
-- Third-party recipients (including Google for AdSense)
-- Consumer rights (access, delete, correct, opt-out)
-- CCPA: "Do Not Sell or Share" link on homepage
-- Honor Global Privacy Control (GPC) signals
+Never copy provider values into source, documentation, tests, terminal reports, issues, or pull requests. Do not inspect or expose `.env*` values. Configuration being present is not proof that the provider, webhook, database migration, retention operation, or fulfillment path is production-ready.
 
-### Cookie Consent
-- EU/EEA/UK: Opt-in model (consent before tracking)
-- US: Opt-out model (honor GPC)
-- Use Google-certified CMP with IAB TCF v2.2 for EEA/UK
+## Release procedure
 
-## 10. Accessibility (WCAG 2.1 AA)
+Use an isolated clean worktree based on fetched `origin/main`. Keep a change narrowly scoped, add focused tests, and run the relevant gates. The minimum documentation/environment gate is:
 
-- Alt text on all images (alt="" for decorative)
-- Color contrast: 4.5:1 normal text, 3:1 large text
-- All functionality via keyboard, no keyboard traps
-- Skip navigation links
-- Visible focus indicators on all interactive elements
-- Touch targets: 44x44 CSS pixels minimum
-- `lang` attribute on `<html>` element
-- Form errors with descriptive messages, visible labels (not just placeholders)
-- Valid semantic HTML, proper ARIA roles
-- Dynamic content changes announced via ARIA live regions
-- Content reflow at 320px without horizontal scroll
-- European Accessibility Act (June 2025): publish accessibility statement
-
-## 11. Security Headers
-
-Configure in `vercel.json` or `next.config.js` headers:
-
-```
-Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-X-Content-Type-Options: nosniff
-X-Frame-Options: DENY
-Referrer-Policy: strict-origin-when-cross-origin
-Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()
+```bash
+node --test tests/environment-docs.test.mjs
 ```
 
-CSP (AdSense-compatible — unsafe-eval required by AdSense):
-```
-Content-Security-Policy: object-src 'none'; script-src 'nonce-{random}' 'unsafe-inline' 'unsafe-eval' 'strict-dynamic' https: http:; base-uri 'none'
-```
+For application work, also run the affected focused suite, TypeScript, security/quality/content checks, and `npm run build`. Use `docs/fibertools-owner-activation-checklist.md` before any offer activation.
 
-Do NOT enable strict COEP/COOP on pages with ads (breaks ad rendering).
+Keep these stages distinct in reports:
 
-## 12. Sitemaps & Metadata
+1. local change;
+2. focused tests;
+3. commit and pushed branch;
+4. pull request and required checks;
+5. merge;
+6. production deployment tied to the expected SHA;
+7. direct production verification.
 
-### Sitemap
-- Generate via `app/sitemap.ts` with lastmod from actual content dates
-- Submit to Google Search Console AND Bing Webmaster Tools
-- Reference in robots.txt
+A green scheduled production monitor does not prove that a newer source commit builds. A READY deployment does not prove checkout, fulfillment, webhook, analytics, or customer outcomes. Report verified, inferred, and unknown states separately.
 
-### Every Page Must Have
-- `<title>` unique, under 60 chars
-- `<meta name="description">` unique, ~155 chars, direct answer to page query
-- `<meta name="keywords">` (for Bing)
-- `<meta name="robots" content="index, follow, max-snippet:-1">`
-- `<link rel="canonical">`
-- Open Graph: og:title, og:description, og:image (1200x630px), og:url, og:type
-- Semantic HTML5: header, nav, main, article, section, footer
-- Heading hierarchy: H1 > H2 > H3, no skipping
+Do not push directly to `main`. Branch protection and required GitHub checks are owner-controlled safeguards and should remain enabled once configured.
 
-## Cross-Site Links
+## Protected and prohibited actions
 
-Footer links to all sister sites (exclude self):
-- [MindCheck Tools](https://mindchecktools.com)
-- [FlipMyCase](https://flipmycase.com)
-- [Creator Revenue Calculator](https://creatorrevenuecalculator.com)
-- [ContractExtract](https://contractextract.com)
-- [Medical Bill Reader](https://medicalbillreader.com)
-- [524 Tracker](https://524tracker.com)
+Without explicit owner authorization, do not:
 
-## Deployment
+- alter StitchProof protected state;
+- merge, deploy, publish, send outreach, change DNS, spend money, or enable billing;
+- activate checkout, ads, subscriptions, provider accounts, or customer delivery;
+- fabricate credentials, citations, standards, test results, dates, testimonials, or endorsements;
+- remove legal, accessibility, privacy, consent, security, or affiliate-disclosure protections;
+- add mandatory sister-site links or remove links merely to satisfy an obsolete portfolio rule.
 
-- **Platform**: Vercel
-- **Branch**: main
-- **Build**: `npm run build`
-- **Env vars**: INDEXNOW_API_KEY
-
-### Pre-Deploy Checklist
-1. `npm run build` passes
-2. ads.txt present and correct
-3. robots.txt has AI crawler rules
-4. llms.txt present and current
-5. All legal pages render
-6. Cross-site links working
-7. Security headers configured
-8. Structured data validates
-
-## Warnings — Things Claude Code Must NEVER Do
-
-1. Never expose the site owner's personal name in code, content, comments, or metadata
-2. Never modify ads.txt unless explicitly asked
-3. Never remove legal pages (privacy, terms)
-4. Never hardcode API keys — use environment variables
-5. Never push to main without testing build
-6. Never remove sister site cross-links
-7. Never remove or weaken security headers
-8. Never remove accessibility features (alt text, ARIA, focus indicators)
-9. Never remove llms.txt or AI crawler rules from robots.txt
-10. Never confuse US and UK crochet terminology — US terms are standard
-11. Never use incorrect yarn weight classifications — follow CYC standard (Lace 0 through Jumbo 7)
-12. Never mix up knitting and crochet gauge
-
-## Empire Skills
-For cross-site operations, read the relevant skill:
-- Audit/sync: ~/empire-skills/empire-sitesync/SKILL.md
-- CLAUDE.md generation: ~/empire-skills/empire-projectfiles/SKILL.md
-
-## Fiber Arts Content Rules
-
-US crochet terminology only (US sc = UK dc, etc.). Yarn weights follow CYC standard: Lace (0), Fingering (1), Sport (2), DK (3), Worsted (4), Bulky (5), Super Bulky (6), Jumbo (7). Pattern abbreviations must be industry-standard. Vintage patterns need era context and terminology notes.
-
-### Vintage Pattern Decoder
-Translates outdated knitting/crochet patterns to modern equivalents. Handle pre-1960s formats, convert imperial/metric, flag ambiguous instructions.
+Preserve unrelated local changes and never stage files outside the approved scope.

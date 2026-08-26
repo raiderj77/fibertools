@@ -55,6 +55,11 @@ test("sitemap includes public offers but excludes minimal embed routes", () => {
 
 test("sitemap reports only evidence-backed modification dates", () => {
   assert.doesNotMatch(sitemap, /TODAY/);
-  assert.equal((sitemap.match(/lastModified:/g) ?? []).length, 1);
+  assert.doesNotMatch(sitemap, /new Date\(\)/);
   assert.match(sitemap, /lastModified: new Date\(g\.date\)/);
+  assert.match(
+    sitemap,
+    /path: "", priority: 1\.0, freq: "weekly", lastModified: REVIEW_DATES\.homepage\.iso/,
+  );
+  assert.match(sitemap, /p\.lastModified \? \{ lastModified: p\.lastModified \} : \{\}/);
 });

@@ -58,7 +58,7 @@ For production, subscribe the live endpoint at `https://fibertools.app/api/strip
 - `charge.dispute.updated`
 - `charge.dispute.closed`
 
-The product and $39 one-time price are created inline by the server. No recurring price or subscription is created. The checkout API remains unavailable unless `DESIGNER_PREFLIGHT_ACTION_MODE=checkout` and every required Stripe, Supabase, webhook, and site value is present.
+The product and $39 one-time price are created inline by the server. No recurring price or subscription is created. The checkout API remains unavailable unless `DESIGNER_PREFLIGHT_ACTION_MODE=checkout`, every required Stripe, Supabase, webhook, and site value is valid, and the documented migration, database, retention, outbox, exact webhook-event, notification-delivery, durable-abuse-protection, and fulfillment-capacity attestations all pass the shared runtime readiness contract. Documented fake values and reserved example destinations are rejected.
 
 ## Durable outbox and notification boundary
 

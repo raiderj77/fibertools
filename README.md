@@ -1,64 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FiberTools
+
+FiberTools is a privacy-first Next.js collection of free fiber-arts calculators, guides, and references. Self-service calculators require no account, keep project inputs in the browser, and present deterministic results as planning aids rather than guaranteed project outcomes.
+
+- Live site: <https://fibertools.app>
+- Repository: <https://github.com/raiderj77/fibertools>
+- Production branch: `main`
+- Application source: `src/app`
+- Owner deployment and environment contract: [`docs/fibertools-deployment-environment.md`](docs/fibertools-deployment-environment.md)
+
+## Three starting paths
+
+The homepage routes visitors by the project problem they are solving:
+
+1. **Calculate yarn and materials** — start at `/yarn-calculator`.
+2. **Fix gauge, sizing, and stitch counts** — start at `/gauge-calculator`.
+3. **Plan a crochet or knitting project** — start at `/blanket-calculator`.
+
+The five featured calculators, in product order, are:
+
+- `/blanket-calculator`
+- `/yarn-calculator`
+- `/circle-calculator`
+- `/amigurumi-shapes`
+- `/cast-on-calculator`
+
+`/sock-calculator` is the secondary featured calculator. The homepage's server-rendered searchable directory exposes the remaining ready tools. Craft landing pages are available at `/crochet-tools`, `/knitting-tools`, and `/weaving-tools`.
+
+## Embeds
+
+`/embeds` provides copyable snippets for three free branded embeds:
+
+- `/embed/blanket-calculator`
+- `/embed/yarn-calculator`
+- `/embed/gauge-calculator`
+
+Embed pages are `noindex` and use a dedicated `frame-ancestors` policy. Their rendered, hydrated UI omits site navigation, analytics, affiliate destinations, paid-offer promotion, newsletter forms, and cookie writes. Embed documents and subresources bypass FiberTools Cache Storage, although an already-installed service worker may still mediate ordinary static-resource requests through the browser's HTTP cache. Standard pages retain `X-Frame-Options: SAMEORIGIN`.
+
+The displayed $149/year and $299/year white-label tiers are interest tests only. There is no white-label checkout, subscription billing, tenant account, unbranded build, or customer provisioning.
+
+## Optional offers: current status
+
+All self-service calculators remain free.
+
+### Fiber Project Planning Pack
+
+`/fiber-project-planning-pack` describes a $17 workbook, but checkout is disabled. The tracked historical PDF is not eligible for paid private delivery. Edition `FT-PP-V2-2026-08-25` is a distinct 12-page fillable revision stored only in the gitignored owner-private workspace and bound to `config/planning-pack-release-manifest.json` by SHA-256. Activation still requires owner-approved private storage, a successful non-customer delivery test, exact owner approval, environment attestations, and an approved checkout destination.
+
+### Designer Pattern Preflight
+
+`/designer-pattern-preflight` describes a $39 bounded pilot for one version of one crochet pattern, up to 10 pages, with one written report. It defaults to inquiry-only. Checkout can appear only when the explicit action mode, mode-matched Stripe key, webhook secret, Supabase configuration, site URL, migration/schema attestations, exact webhook event list, notification delivery, durable abuse protection, and fulfillment capacity all pass one shared fail-closed server gate. Documented placeholders and reserved example destinations are rejected. These owner-controlled attestations record readiness evidence; they do not replace direct provider and live-path verification.
+
+See [`docs/fibertools-owner-activation-checklist.md`](docs/fibertools-owner-activation-checklist.md) before changing either offer.
+
+## Local development
+
+Requirements:
+
+- Node.js 20.9 or later; CI currently uses Node 20.
+- npm.
+
+Install and run:
+
+```bash
+npm ci
+npm run dev
+```
+
+Open <http://localhost:3000>. Pages live under `src/app`; shared components and deterministic logic live under `src/components` and `src/lib`.
+
+Copy `.env.example` to an ignored local environment file only when a flow needs configuration. Every committed value is a fake placeholder or fail-closed default. Never commit or paste provider values into documentation, tests, issues, pull requests, or reports. The complete variable inventory and safe defaults are in [`docs/fibertools-deployment-environment.md`](docs/fibertools-deployment-environment.md).
+
+## Validation
+
+Run the focused documentation/environment contract directly:
+
+```bash
+node --test tests/environment-docs.test.mjs
+```
+
+Common application gates are:
+
+```bash
+npm run test:focus-revenue
+npm run test:designer-preflight
+npm run test:affiliate
+npm run test:gpc-consent
+npm run test:security
+npm run test:quality
+npm run lint:content
+npm run lint:predeploy
+npx tsc --noEmit --incremental false
+npm run build
+```
+
+Use the smallest relevant focused suite while iterating, then run the release-appropriate gates. A successful live-site monitor is not proof that a newer source commit builds, and a successful build is not proof that a provider or paid fulfillment path is ready.
+
+## Content and publication controls
+
+Current guide routes are implemented in application source. Markdown under `content/published` remains quarantined unless both the application allowlist and an explicit owner-approved publication record permit release. A filename or `status: published` value is not approval.
+
+`docs/stitchproof-distribution-kit.md` and all StitchProof experiment state are protected owner records. Do not open, modify, stage, summarize, or reinterpret them without explicit authorization for that exact work.
+
+No new public calculator, general tool, article, guide, paid service, or major feature before November 20, 2026 unless an explicit owner-approved publication record exists. Bug fixes, security fixes, legal corrections, factual corrections, and broken-link repairs remain permitted.
+
+## Release boundary
+
+Use a clean isolated worktree based on fetched `origin/main`, preserve unrelated changes, and release through a narrowly scoped pull request. Keep local validation, pushed branch, pull request, merge, Vercel deployment, alias assignment, and direct production verification as separate evidence. Do not push directly to `main`, enable an offer, or infer customer or revenue outcomes from deployment health.
 
 ## Fabric Substitute Finder
 
-`/fabric-substitute` is a local, deterministic MVP for comparing 30 garment fabrics. It supports two flows: ranked substitute compatibility and project suggestions for fabric already on hand. The score compares construction (30), stretch (20), weight (15), drape (15), structure (10), opacity (5), and recovery (5).
+`/fabric-substitute` is a local deterministic comparison tool. Canonical data is in `src/data/fabrics.json`; sourcing and human-review requirements are documented in `docs/fabric-data-sources.md` and `docs/fabric-substitution-validation.md`. Do not expand the fabric database with unsourced generated facts.
 
-The canonical data is `src/data/fabrics.json`. Source methodology and update ownership are documented in `docs/fabric-data-sources.md`; technical, human-review, post-launch, and expansion gates are in `docs/fabric-substitution-validation.md`.
-
-Fabric records are typed by `FabricRecord` in `src/lib/fabric-types.ts` and include identity, aliases, construction, fibers, GSM and stretch ranges, five comparison ratings, project uses, poor uses, handling guidance, substitute relationships, sources, and review date. The optional `FabricRetailerLink` structure exists for future approved destinations, but the current approved list is empty and the interface remains hidden.
-
-The consent-aware validation events are `fabric_tool_viewed`, `fabric_flow_selected`, `fabric_selected`, `substitution_results_viewed`, `project_suggestions_viewed`, `result_expanded`, `result_helpful`, `result_not_helpful`, and `source_information_viewed`. They use known IDs and bands only. Raw search text is not sent. A retailer-click event must not be added until a real approved retailer link exists.
-
-To add or update a fabric:
-
-1. Collect non-retailer technical evidence and add every source to `docs/fabric-data-sources.md`.
-2. Add or revise the complete JSON record, using honest ranges where products vary.
-3. Update `lastReviewedDate` and explain what each source supports.
-4. Add the expected ID and scenario coverage to `tests/fabric-substitution.test.mjs`.
-5. Run type, lint, tests, and the production build, then complete the human-review gate.
-
-Known limitations: these are broad fabric-family comparisons rather than lab tests; mill finish and fiber blend can move a real fabric outside the working range; no score guarantees a pattern outcome; the project flow provides categories rather than pattern alterations; and no approved retailer links exist in the MVP.
-
-> **Do not expand the fabric database with unsourced AI-generated facts.**
-
-Run the focused tests with:
+Focused validation:
 
 ```bash
 npm run test:fabric-substitution
 ```
-
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { tools } from "@/lib/tools";
 import { getAllGuides } from "@/lib/guides";
+import { REVIEW_DATES } from "@/lib/review-dates.mjs";
 
 const BASE_URL = "https://fibertools.app";
 
@@ -28,8 +29,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
-  const staticPages = [
-    { path: "", priority: 1.0, freq: "weekly" as const },
+  const staticPageConfig: Array<{
+    path: string;
+    priority: number;
+    freq: "weekly" | "monthly" | "yearly";
+    lastModified?: string;
+  }> = [
+    { path: "", priority: 1.0, freq: "weekly", lastModified: REVIEW_DATES.homepage.iso },
     { path: "/guides", priority: 0.7, freq: "weekly" as const },
     { path: "/formula-library", priority: 0.75, freq: "monthly" as const },
     { path: "/newsletter", priority: 0.65, freq: "weekly" as const },
@@ -52,10 +58,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/best-crochet-hooks", priority: 0.85, freq: "monthly" as const },
     { path: "/best-yarn-for-blankets", priority: 0.85, freq: "monthly" as const },
     { path: "/best-yarn-for-amigurumi", priority: 0.85, freq: "monthly" as const },
-  ].map((p) => ({
+  ];
+
+  const staticPages = staticPageConfig.map((p) => ({
     url: `${BASE_URL}${p.path}`,
     changeFrequency: p.freq,
     priority: p.priority,
+    ...(p.lastModified ? { lastModified: p.lastModified } : {}),
   }));
 
   return [

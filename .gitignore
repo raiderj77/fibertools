@@ -21,6 +21,9 @@ __pycache__/
 # production
 /build
 
+# Owner-only paid product artifacts and editable sources
+/.owner-private-products/
+
 # misc
 .DS_Store
 *.pem

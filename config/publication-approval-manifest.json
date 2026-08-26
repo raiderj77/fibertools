@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "freeze": {
+    "status": "ACTIVE",
+    "startsOn": "2026-08-25",
+    "decisionDate": "2026-11-20",
+    "rule": "No new public calculator, general tool, article, guide, paid service, or major feature before November 20, 2026 unless an explicit owner-approved publication record exists. Bug fixes, security fixes, legal corrections, factual corrections, and broken-link repairs remain permitted.",
+    "ownerDecision": null
+  },
+  "baseline": {
+    "capturedFromCommit": "e67c27714f5353b14e6ae13f6b1291f677fdbaf3",
+    "publicRouteCount": 73,
+    "publicRouteSha256": "e340030fbe0869260d83d6c9d98c5bceed7b7822b3035e362eebc532b248f424",
+    "toolSlugCount": 34,
+    "toolSlugSha256": "478d156d3050cc977b39fe94c9a38a21179dd5aefc0969b944a26ae9515fe363",
+    "guideSlugCount": 23,
+    "guideSlugSha256": "5b4ba99f22614252fa6c2ce0ad5039fae0cdbf5ab94f14d1a1c793b7ab12bcb9",
+    "quarantinedArticleFileCount": 160,
+    "quarantinedArticleFileSha256": "98a053b2c5485ba82538d8142dea4d6f35948c166e0fa5209c5cf2a7586d8425",
+    "priceBearingSourceFileCount": 9,
+    "priceBearingSourceFileSha256": "b53f625461f447c7555a4b0c58931509118216e841ad072e55537c15ad952881",
+    "duplicateAllowances": {
+      "slug": {
+        "best-knitting-needles": 2,
+        "cross-stitch-fabric-count": 2,
+        "cross-stitch-size": 2,
+        "how-do-i-choose-the-right-crochet-hook-size-for-my-project": 2,
+        "how-many-cross-stitches-per-skein": 2,
+        "how-to-handwash-knitwear": 2,
+        "knitting-yarn-weight-chart": 2
+      },
+      "title": {
+        "best knitting needles": 2,
+        "cross stitch fabric count": 2,
+        "cross stitch size": 2,
+        "how do i choose the right crochet hook size for my project?": 2,
+        "how many cross stitches per skein?": 2,
+        "how to handwash knitwear?": 2,
+        "knitting yarn weight chart": 2
+      },
+      "canonical": {}
+    }
+  },
+  "approvals": []
+}

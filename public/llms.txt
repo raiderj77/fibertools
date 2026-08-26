@@ -8,7 +8,7 @@ Calculator inputs and results are processed in the browser and are not sent to a
 ## Tools
 
 ### Knitting & Crochet
-- [Yarn Calculator](https://fibertools.app/yarn-calculator): Calculate exactly how much yarn you need for any project, blankets, sweaters, scarves, and more.
+- [Yarn Calculator](https://fibertools.app/yarn-calculator): Estimate yarn needs for supported projects such as blankets, sweaters, scarves, and more using the measurements and gauge information you provide.
 - [Needle & Hook Size Converter](https://fibertools.app/needle-converter): Convert knitting needle and crochet hook sizes between US, UK, metric, and Japanese systems.
 - [Gauge Calculator](https://fibertools.app/gauge-calculator): Calculate your gauge from a swatch, resize patterns to a new gauge, and get exact stitch counts.
 - [Yarn Weight Chart](https://fibertools.app/yarn-weight-chart): Interactive yarn weight chart with US, UK, and Australian names plus substitution compatibility checker.
@@ -165,11 +165,11 @@ Calculator inputs and results are processed in the browser and are not sent to a
 
 ## Buying Guides
 
-- [Best Yarn for Beginners (2026)](https://fibertools.app/best-yarn-for-beginners): Expert picks for the best beginner yarn, smooth, affordable worsted weight acrylic for knitting and crochet.
+- [Best Yarn for Beginners (2026)](https://fibertools.app/best-yarn-for-beginners): Practical beginner-yarn considerations and disclosed product destinations for knitting and crochet.
 - [Best Knitting Needles (2026)](https://fibertools.app/best-knitting-needles): Straight, circular, and interchangeable needle recommendations for every budget and skill level.
 - [Best Crochet Hooks (2026)](https://fibertools.app/best-crochet-hooks): Ergonomic, aluminum, and steel crochet hook recommendations for beginners and experienced crocheters.
 - [Best Yarn for Blankets (2026)](https://fibertools.app/best-yarn-for-blankets): Soft, washable, budget-friendly yarn picks for throw, baby, and chunky blankets.
 - [Best Yarn for Amigurumi (2026)](https://fibertools.app/best-yarn-for-amigurumi): Cotton and acrylic yarn picks for tight gauge, clean stitch definition, and vibrant amigurumi colors.
 
 ## About
-- [About FiberTools](https://fibertools.app/about): Learn about FiberTools and the fiber arts expertise behind these calculators.
+- [About FiberTools](https://fibertools.app/about): Meet the identified maker behind FiberTools and read how the calculators are built and checked.
