@@ -25,14 +25,19 @@ async function sourceManifest() {
   return JSON.parse(await read("../config/planning-pack-release-manifest.json"));
 }
 
-async function approvedManifest() {
+async function fulfillmentManifest() {
   const manifest = await sourceManifest();
-  manifest.releaseStatus = "ENABLED";
-  manifest.checkoutActivationStatus = "ENABLED";
   manifest.privateArtifact.sha256 = ARTIFACT_SHA256;
   manifest.privateArtifact.expectedSha256 = ARTIFACT_SHA256;
   manifest.privateArtifact.uploadStatus = "UPLOADED";
   manifest.privateUploadStatus = "UPLOADED";
+  return manifest;
+}
+
+async function approvedManifest() {
+  const manifest = await fulfillmentManifest();
+  manifest.releaseStatus = "ENABLED";
+  manifest.checkoutActivationStatus = "ENABLED";
   manifest.privateDeliveryStatus = "CONFIRMED";
   manifest.ownerVerificationStatus = "VERIFIED";
   manifest.ownerApproval = {
@@ -65,6 +70,13 @@ function readyEnvironment(manifest, overrides = {}) {
       "releases/FT-PP-V2-2026-08-25/fiber-project-planning-pack.pdf",
     ...overrides,
   };
+}
+
+function fulfillmentEnvironment(manifest, overrides = {}) {
+  const env = readyEnvironment(manifest);
+  delete env.PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED;
+  delete env.PLANNING_PACK_OWNER_APPROVAL_CONFIRMED;
+  return { ...env, ...overrides };
 }
 
 function offerMetadata(overrides = {}) {
@@ -225,18 +237,115 @@ async function invokeCheckout({ manifest, env, dependencies }) {
   });
 }
 
-test("the committed manifest blocks checkout and delivery before any provider call", async () => {
+test("the committed manifest blocks checkout and unconfirmed-upload delivery before provider calls", async () => {
   const manifest = await sourceManifest();
-  for (const invoke of [invokeCheckout, invokeDownload]) {
-    const mocks = mockedDependencies();
-    const response = await invoke({
-      manifest,
-      env: readyEnvironment(manifest),
-      dependencies: mocks.implementation,
+
+  const checkoutMocks = mockedDependencies();
+  const checkoutResponse = await invokeCheckout({
+    manifest,
+    env: readyEnvironment(manifest),
+    dependencies: checkoutMocks.implementation,
+  });
+  assert.equal(checkoutResponse.status, 404);
+  assert.deepEqual(checkoutMocks.calls, []);
+  assert.equal(checkoutResponse.headers.get("cache-control"), "no-store, max-age=0");
+
+  const deliveryMocks = mockedDependencies();
+  const downloadResponse = await invokeDownload({
+    manifest,
+    env: readyEnvironment(manifest, {
+      PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED: "false",
+    }),
+    dependencies: deliveryMocks.implementation,
+  });
+  assert.equal(downloadResponse.status, 404);
+  assert.deepEqual(deliveryMocks.calls, []);
+  assert.equal(downloadResponse.headers.get("cache-control"), "no-store, max-age=0");
+});
+
+test("disabled public checkout makes no provider calls while an exact paid purchase fulfills", async () => {
+  const manifest = await fulfillmentManifest();
+  const env = fulfillmentEnvironment(manifest);
+
+  const checkoutMocks = mockedDependencies();
+  const checkoutResponse = await invokeCheckout({
+    manifest,
+    env,
+    dependencies: checkoutMocks.implementation,
+  });
+  assert.equal(checkoutResponse.status, 404);
+  assert.equal(checkoutResponse.headers.get("location"), null);
+  assert.deepEqual(checkoutMocks.calls, []);
+
+  const deliveryMocks = mockedDependencies();
+  const downloadResponse = await invokeDownload({
+    manifest,
+    env,
+    dependencies: deliveryMocks.implementation,
+  });
+  assert.equal(downloadResponse.status, 200);
+  assert.deepEqual(deliveryMocks.calls, ["account", "session", "private-object"]);
+  assert.deepEqual(new Uint8Array(await downloadResponse.arrayBuffer()), ARTIFACT_BYTES);
+});
+
+test("post-sale deactivation does not revoke an exact paid purchase", async () => {
+  const manifest = await approvedManifest();
+  manifest.releaseStatus = "DISABLED";
+  manifest.checkoutActivationStatus = "DISABLED";
+  manifest.privateDeliveryStatus = "PENDING";
+  manifest.ownerVerificationStatus = "PENDING";
+  manifest.ownerApproval = {
+    status: "PENDING",
+    editionId: manifest.edition.id,
+    artifactSha256: "PENDING",
+    recordedAt: null,
+  };
+  const env = fulfillmentEnvironment(manifest);
+
+  const checkoutMocks = mockedDependencies();
+  const checkoutResponse = await invokeCheckout({
+    manifest,
+    env,
+    dependencies: checkoutMocks.implementation,
+  });
+  assert.equal(checkoutResponse.status, 404);
+  assert.deepEqual(checkoutMocks.calls, []);
+
+  const deliveryMocks = mockedDependencies();
+  const downloadResponse = await invokeDownload({
+    manifest,
+    env,
+    dependencies: deliveryMocks.implementation,
+  });
+  assert.equal(downloadResponse.status, 200);
+  assert.deepEqual(deliveryMocks.calls, ["account", "session", "private-object"]);
+});
+
+test("fulfillment still requires exact manifest, artifact, and private-upload bindings", async (t) => {
+  const cases = [
+    ["edition", ({ manifest }) => { manifest.edition.id = "FT-PP-V2-wrong"; }],
+    ["artifact checksum", ({ manifest }) => { manifest.privateArtifact.expectedSha256 = "0".repeat(64); }],
+    ["artifact upload", ({ manifest }) => { manifest.privateArtifact.uploadStatus = "NOT_UPLOADED"; }],
+    ["manifest upload", ({ manifest }) => { manifest.privateUploadStatus = "NOT_UPLOADED"; }],
+    ["environment edition", ({ env }) => { env.PLANNING_PACK_EDITION_ID = "FT-PP-V2-wrong"; }],
+    ["environment checksum", ({ env }) => { env.PLANNING_PACK_PRIVATE_FILE_SHA256 = "0".repeat(64); }],
+    ["environment upload", ({ env }) => { env.PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED = "false"; }],
+  ];
+
+  for (const [name, mutate] of cases) {
+    await t.test(name, async () => {
+      const manifest = await fulfillmentManifest();
+      const env = fulfillmentEnvironment(manifest);
+      mutate({ manifest, env });
+      const mocks = mockedDependencies();
+      const response = await invokeDownload({
+        manifest,
+        env,
+        dependencies: mocks.implementation,
+      });
+      assert.equal(response.status, 404);
+      assert.deepEqual(mocks.calls, []);
     });
-    assert.equal(response.status, 404);
-    assert.deepEqual(mocks.calls, []);
-    assert.equal(response.headers.get("cache-control"), "no-store, max-age=0");
   }
 });
 
@@ -399,12 +508,12 @@ test("Stripe account identity is verified before Payment Link or Checkout Sessio
 });
 
 test("malformed and wrong-mode Checkout Session IDs never reach Stripe", async () => {
-  const manifest = await approvedManifest();
+  const manifest = await fulfillmentManifest();
   for (const sessionId of ["", "cs_live_unitfixture123", "pi_unitfixture", "cs_test_bad/value"]) {
     const mocks = mockedDependencies();
     const response = await invokeDownload({
       manifest,
-      env: readyEnvironment(manifest),
+      env: fulfillmentEnvironment(manifest),
       dependencies: mocks.implementation,
       sessionId,
     });
@@ -414,7 +523,7 @@ test("malformed and wrong-mode Checkout Session IDs never reach Stripe", async (
 });
 
 test("every required purchase property fails closed before private storage", async (t) => {
-  const manifest = await approvedManifest();
+  const manifest = await fulfillmentManifest();
   const cases = [
     ["session identity", { id: "cs_test_otherfixture" }],
     ["completion", { status: "open" }],
@@ -475,7 +584,7 @@ test("every required purchase property fails closed before private storage", asy
       const mocks = mockedDependencies({ session: paidSession(override) });
       const response = await invokeDownload({
         manifest,
-        env: readyEnvironment(manifest),
+        env: fulfillmentEnvironment(manifest),
         dependencies: mocks.implementation,
       });
       assert.equal(response.status, 403);
@@ -485,12 +594,12 @@ test("every required purchase property fails closed before private storage", asy
 });
 
 test("wrong-size or wrong-checksum private bytes never reach the customer", async () => {
-  const manifest = await approvedManifest();
+  const manifest = await fulfillmentManifest();
   for (const bytes of [ARTIFACT_BYTES.subarray(0, 100), new Uint8Array(ARTIFACT_BYTES.byteLength)]) {
     const mocks = mockedDependencies({ bytes });
     const response = await invokeDownload({
       manifest,
-      env: readyEnvironment(manifest),
+      env: fulfillmentEnvironment(manifest),
       dependencies: mocks.implementation,
     });
     assert.equal(response.status, 502);
@@ -500,7 +609,7 @@ test("wrong-size or wrong-checksum private bytes never reach the customer", asyn
 });
 
 test("fake or incomplete provider configuration fails before provider access", async () => {
-  const manifest = await approvedManifest();
+  const manifest = await fulfillmentManifest();
   for (const override of [
     { FIBERTOOLS_STRIPE_ACCOUNT_ID: "acct_replace_me_server_only" },
     { PLANNING_PACK_STRIPE_PAYMENT_LINK_ID: "plink_replace_me_server_only" },
@@ -516,7 +625,7 @@ test("fake or incomplete provider configuration fails before provider access", a
     const mocks = mockedDependencies();
     const response = await invokeDownload({
       manifest,
-      env: readyEnvironment(manifest, override),
+      env: fulfillmentEnvironment(manifest, override),
       dependencies: mocks.implementation,
     });
     assert.equal(response.status, 404);

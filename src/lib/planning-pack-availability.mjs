@@ -17,15 +17,10 @@ function isRecordedApproval(value, now) {
   return Number.isFinite(recordedAt) && Number.isFinite(currentTime) && recordedAt <= currentTime;
 }
 
-/**
- * Return the first-party checkout gate only when the immutable release record,
- * complete server configuration, exact artifact binding, and owner approval agree.
- */
-export function getPlanningPackCheckoutUrl({ manifest, env = {}, now = new Date() }) {
+function getPlanningPackBindingState({ manifest, env }) {
   const edition = manifest?.edition ?? {};
   const historical = manifest?.historicallyPublicEdition ?? {};
   const artifact = manifest?.privateArtifact ?? {};
-  const approval = manifest?.ownerApproval ?? {};
   const checksum = artifact.sha256;
   const deliveryEnvironmentReady =
     getPlanningPackDeliveryEnvironmentReadiness(env).ready;
@@ -51,11 +46,61 @@ export function getPlanningPackCheckoutUrl({ manifest, env = {}, now = new Date(
     env.PLANNING_PACK_EDITION_ID === edition.id &&
     env.PLANNING_PACK_PRIVATE_FILE_SHA256 === checksum;
 
-  const privateDeliveryReady =
+  const privateUploadReady =
     artifact.uploadStatus === "UPLOADED" &&
     manifest?.privateUploadStatus === "UPLOADED" &&
+    env.PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED === "true";
+
+  return {
+    edition,
+    checksum,
+    releaseRecordMatches,
+    artifactMatches,
+    privateUploadReady,
+    deliveryEnvironmentReady,
+  };
+}
+
+/**
+ * Keep an already-paid purchase fulfillable after public sales are disabled.
+ * This gate intentionally excludes release, checkout, delivery-confirmation,
+ * and owner-approval switches while preserving every immutable artifact,
+ * private-upload, and provider-configuration binding.
+ */
+export function isPlanningPackFulfillmentReady({ manifest, env = {} }) {
+  const {
+    releaseRecordMatches,
+    artifactMatches,
+    privateUploadReady,
+    deliveryEnvironmentReady,
+  } = getPlanningPackBindingState({ manifest, env });
+
+  return (
+    releaseRecordMatches &&
+    artifactMatches &&
+    privateUploadReady &&
+    deliveryEnvironmentReady
+  );
+}
+
+/**
+ * Return the first-party checkout gate only when the immutable release record,
+ * complete server configuration, exact artifact binding, and owner approval agree.
+ */
+export function getPlanningPackCheckoutUrl({ manifest, env = {}, now = new Date() }) {
+  const {
+    edition,
+    checksum,
+    releaseRecordMatches,
+    artifactMatches,
+    privateUploadReady,
+    deliveryEnvironmentReady,
+  } = getPlanningPackBindingState({ manifest, env });
+  const approval = manifest?.ownerApproval ?? {};
+
+  const privateDeliveryReady =
+    privateUploadReady &&
     manifest?.privateDeliveryStatus === "CONFIRMED" &&
-    env.PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED === "true" &&
     env.PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED === "true";
 
   const ownerApproved =

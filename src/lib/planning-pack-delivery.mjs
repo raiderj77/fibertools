@@ -8,6 +8,7 @@ import {
 } from "./planning-pack-delivery-config.mjs";
 import {
   getPlanningPackCheckoutUrl,
+  isPlanningPackFulfillmentReady,
   PLANNING_PACK_CHECKOUT_ROUTE,
 } from "./planning-pack-availability.mjs";
 
@@ -41,11 +42,7 @@ function isValidCheckoutSessionId(value, stripeMode) {
   return Boolean(match && match[1] === stripeMode && sessionId.length <= 255);
 }
 
-function getDeliveryConfiguration({ manifest, env, now }) {
-  if (getPlanningPackCheckoutUrl({ manifest, env, now }) !== PLANNING_PACK_CHECKOUT_ROUTE) {
-    return null;
-  }
-
+function getBoundDeliveryConfiguration({ manifest, env }) {
   const configuration =
     getPlanningPackDeliveryEnvironmentConfiguration(env).configuration;
   const artifactSha256 = manifest?.privateArtifact?.sha256;
@@ -68,6 +65,19 @@ function getDeliveryConfiguration({ manifest, env, now }) {
     artifactByteSize,
     editionId,
   };
+}
+
+function getCheckoutConfiguration({ manifest, env, now }) {
+  if (getPlanningPackCheckoutUrl({ manifest, env, now }) !== PLANNING_PACK_CHECKOUT_ROUTE) {
+    return null;
+  }
+
+  return getBoundDeliveryConfiguration({ manifest, env });
+}
+
+function getFulfillmentConfiguration({ manifest, env }) {
+  if (!isPlanningPackFulfillmentReady({ manifest, env })) return null;
+  return getBoundDeliveryConfiguration({ manifest, env });
 }
 
 function stripeResourceId(value) {
@@ -218,7 +228,7 @@ export async function handlePlanningPackCheckoutRequest({
   now = new Date(),
   dependencies,
 }) {
-  const configuration = getDeliveryConfiguration({ manifest, env, now });
+  const configuration = getCheckoutConfiguration({ manifest, env, now });
   if (!configuration) return checkoutUnavailableResponse();
 
   try {
@@ -242,7 +252,6 @@ export async function handlePlanningPackDownloadRequest({
   request,
   manifest,
   env = process.env,
-  now = new Date(),
   dependencies,
 }) {
   let requestUrl;
@@ -252,7 +261,7 @@ export async function handlePlanningPackDownloadRequest({
     return unavailableResponse(400);
   }
 
-  const configuration = getDeliveryConfiguration({ manifest, env, now });
+  const configuration = getFulfillmentConfiguration({ manifest, env });
   const sessionId = requestUrl.searchParams.get("session_id");
   if (!configuration) return unavailableResponse();
   if (!isValidCheckoutSessionId(sessionId, configuration.stripeMode)) {
