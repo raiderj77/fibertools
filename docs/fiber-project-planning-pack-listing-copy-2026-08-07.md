@@ -1,5 +1,7 @@
 # FiberTools Project Planning Pack - listing package
 
+> **Superseded historical planning asset — do not publish or upload from this file.** The `$1.99` storefront concept and `output/pdf/fibertools-project-planning-pack.pdf` reference below describe the ineligible public-history edition. The current offer contract is the private, checksum-bound `FT-PP-V2-2026-08-25` edition at `$17`; follow `docs/fibertools-owner-activation-checklist.md` and the release manifest before any provider action.
+
 **Status:** prepared, not published
 **Product file:** `output/pdf/fibertools-project-planning-pack.pdf`
 

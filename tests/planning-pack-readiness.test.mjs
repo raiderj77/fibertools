@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { verifyPlanningPackReadiness } from "../scripts/verify-planning-pack-readiness.mjs";
+import { CANONICAL_FIBERTOOLS_STRIPE_ACCOUNT_ID } from "../src/lib/planning-pack-delivery.mjs";
 
 const read = (relativePath) => readFile(new URL(relativePath, import.meta.url), "utf8");
 
@@ -25,6 +26,7 @@ test("planning-pack manifest records the validated v2 artifact but stays disable
     manifest.privateArtifact.sha256,
     "e5407e856ce539b1e751f8e36388c3d66d3151a649e6e61a97036ce9cbdd89a6"
   );
+  assert.equal(manifest.privateArtifact.byteSize, 134356);
   assert.equal(manifest.privateArtifact.uploadStatus, "NOT_UPLOADED");
   assert.equal(manifest.privateUploadStatus, "NOT_UPLOADED");
   assert.equal(manifest.privateDeliveryStatus, "PENDING");
@@ -36,7 +38,7 @@ test("planning-pack manifest records the validated v2 artifact but stays disable
   assert.equal(manifest.checkoutActivationStatus, "DISABLED");
 });
 
-test("planning-pack readiness evaluates exactly nine fail-closed conditions", async () => {
+test("planning-pack readiness evaluates exactly twelve fail-closed conditions", async () => {
   const report = await verifyPlanningPackReadiness({
     env: {
       PLANNING_PACK_EDITION_ID: "FT-PP-V2-2026-08-25",
@@ -45,7 +47,7 @@ test("planning-pack readiness evaluates exactly nine fail-closed conditions", as
     },
   });
 
-  assert.equal(report.checks.length, 9);
+  assert.equal(report.checks.length, 12);
   assert.equal(report.ready, false);
   assert.equal(
     report.checks.find((check) => check.id === "private-checksum")?.status,
@@ -85,7 +87,18 @@ test("planning-pack readiness binds approval to the exact private artifact", asy
     PLANNING_PACK_OWNER_APPROVAL_CONFIRMED: "true",
     PLANNING_PACK_EDITION_ID: approvedManifest.edition.id,
     PLANNING_PACK_PRIVATE_FILE_SHA256: approvedManifest.privateArtifact.sha256,
-    NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL: "https://buy.stripe.com/planning-pack-v2-fixture",
+    PLANNING_PACK_STRIPE_PAYMENT_LINK_URL: "https://buy.stripe.com/test_unitfixture123",
+    NEXT_PUBLIC_SITE_URL: "https://fibertools.app",
+    STRIPE_MODE: "test",
+    STRIPE_SECRET_KEY: "sk_test_unitfixture",
+    FIBERTOOLS_STRIPE_ACCOUNT_ID: CANONICAL_FIBERTOOLS_STRIPE_ACCOUNT_ID,
+    PLANNING_PACK_STRIPE_PAYMENT_LINK_ID: "plink_unitfixture",
+    PLANNING_PACK_STRIPE_PRICE_ID: "price_unitfixture",
+    SUPABASE_URL: "https://unitfixture.supabase.co",
+    SUPABASE_SECRET_KEY: "sb_secret_unitfixture",
+    PLANNING_PACK_STORAGE_BUCKET: "planning-pack-private",
+    PLANNING_PACK_STORAGE_OBJECT_PATH:
+      "releases/FT-PP-V2-2026-08-25/fiber-project-planning-pack.pdf",
   };
 
   const ready = await verifyPlanningPackReadiness({
@@ -118,8 +131,8 @@ test("planning-pack readiness rejects embedded checkout credentials", async () =
 
   const report = await verifyPlanningPackReadiness({
     env: {
-      NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL:
-        "https://operator:password@checkout.example.test/planning-pack-v2",
+      PLANNING_PACK_STRIPE_PAYMENT_LINK_URL:
+        "https://operator:password@buy.stripe.com/test_unitfixture123",
       PLANNING_PACK_EDITION_ID: candidate.edition.id,
       PLANNING_PACK_PRIVATE_FILE_SHA256: candidate.privateArtifact.sha256,
     },
@@ -141,7 +154,7 @@ test("planning-pack readiness rejects documented placeholder destinations", asyn
 
   const report = await verifyPlanningPackReadiness({
     env: {
-      NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL: "https://checkout.example.invalid/planning-pack",
+      PLANNING_PACK_STRIPE_PAYMENT_LINK_URL: "https://checkout.example.invalid/planning-pack",
       PLANNING_PACK_EDITION_ID: candidate.edition.id,
       PLANNING_PACK_PRIVATE_FILE_SHA256: candidate.privateArtifact.sha256,
     },

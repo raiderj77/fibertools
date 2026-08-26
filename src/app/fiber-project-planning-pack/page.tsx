@@ -45,12 +45,13 @@ const faqs = [
   ["Is this a pattern?", "No. It is a general planning workbook and does not contain instructions for making a specific project."],
   ["Can I reuse it?", "Yes, for your own personal project planning. Keep a clean copy and save or print a new working copy for each project."],
   ["Will it calculate yarn or gauge for me?", "No. The workbook helps you organize inputs and decisions. FiberTools calculators can help with estimates, but you remain responsible for checking project requirements."],
-  ["How is it delivered?", "When checkout is enabled, the checkout provider supplies the digital-delivery instructions. FiberTools does not expose the product file through this page."],
+  ["How is it delivered?", "After a successful payment, Stripe returns you to FiberTools. FiberTools verifies the paid Checkout Session and sends the checksum-matched PDF as a private download. The product file is not stored in this page or a public bucket."],
 ];
 
 export default function FiberProjectPlanningPackPage() {
-  // The URL is exposed only when the release manifest, exact private artifact,
-  // private delivery confirmations, and owner approval all agree at build time.
+  // The first-party checkout gate is exposed only when the release manifest,
+  // exact private artifact, delivery confirmations, and owner approval all agree.
+  // That gate re-verifies the live Stripe account and Payment Link before redirecting.
   const checkoutUrl = getPlanningPackCheckoutUrl({
     manifest: planningPackReleaseManifest,
     env: process.env,

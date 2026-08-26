@@ -47,7 +47,12 @@ Production readiness remains narrower than offer readiness. This snapshot does n
 | `PLANNING_PACK_OWNER_APPROVAL_CONFIRMED` | Server-only owner gate | Keep `false` or unset until the owner records explicit activation approval after every delivery and customer-operations prerequisite. |
 | `PLANNING_PACK_EDITION_ID` | Server-only artifact binding | Must equal the approved public release manifest edition ID. The example is deliberately non-ready. |
 | `PLANNING_PACK_PRIVATE_FILE_SHA256` | Server-only artifact binding | Must equal the lowercase SHA-256 in the release manifest. The example is a non-ready placeholder. |
-| `NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL` | Public | HTTPS checkout destination. Runtime ignores it unless every manifest, artifact, private-delivery, and owner-approval gate agrees. The example URL is fake. |
+| `FIBERTOOLS_STRIPE_ACCOUNT_ID` | Server-only provider binding | Must equal the code-bound public canonical FiberTools account ID. The endpoint retrieves the current account represented by the configured key and fails closed unless both values match the canonical binding. This is an account identifier, never a secret key. |
+| `PLANNING_PACK_STRIPE_PAYMENT_LINK_ID` | Server-only offer binding | Exact Stripe Payment Link ID expected on the paid Checkout Session. The fake example is rejected. |
+| `PLANNING_PACK_STRIPE_PAYMENT_LINK_URL` | Server-only offer binding | Exact `buy.stripe.com` URL returned only by the verified first-party checkout gate. It must match the Payment Link retrieved from the intended Stripe account. |
+| `PLANNING_PACK_STRIPE_PRICE_ID` | Server-only offer binding | Exact one-time Stripe Price ID expected on the sole Checkout line item. The fake example is rejected. |
+| `PLANNING_PACK_STORAGE_BUCKET` | Server-only delivery binding | Exact private Supabase Storage bucket containing the approved artifact. A public bucket is not acceptable. |
+| `PLANNING_PACK_STORAGE_OBJECT_PATH` | Server-only delivery binding | Exact private PDF object path. Client input never selects or changes this path. |
 | `DESIGNER_PREFLIGHT_ACTION_MODE` | Server-only action gate | Keep `inquiry`; only exact `checkout` requests activation and all provider checks must still pass. |
 | `DESIGNER_PREFLIGHT_INQUIRY_URL` | Server-only rendering input | Optional HTTPS or `mailto:` destination. Invalid input falls back to the public FiberTools inquiry address. |
 | `DESIGNER_PREFLIGHT_OPS_APPLY_CONFIRM` | Server-only mutation confirmation | Do not pre-populate with the watchdog's required confirmation. Set only for one explicitly authorized operation. |
@@ -91,9 +96,18 @@ All of these environment values are necessary but not sufficient:
 - `PLANNING_PACK_OWNER_APPROVAL_CONFIRMED=true`
 - `PLANNING_PACK_EDITION_ID=FT-PP-V2-2026-08-25`
 - `PLANNING_PACK_PRIVATE_FILE_SHA256=<exact manifest checksum>`
-- `NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL=https://...`
+- `FIBERTOOLS_STRIPE_ACCOUNT_ID=<verified account ID>`
+- `PLANNING_PACK_STRIPE_PAYMENT_LINK_ID=<exact Payment Link ID>`
+- `PLANNING_PACK_STRIPE_PAYMENT_LINK_URL=<exact buy.stripe.com URL>`
+- `PLANNING_PACK_STRIPE_PRICE_ID=<exact one-time Price ID>`
+- `PLANNING_PACK_STORAGE_BUCKET=<exact private bucket>`
+- `PLANNING_PACK_STORAGE_OBJECT_PATH=<exact private PDF object path>`
+- mode-matched `STRIPE_MODE` and `STRIPE_SECRET_KEY`
+- verified `SUPABASE_URL` and `SUPABASE_SECRET_KEY`
 
 Edition `FT-PP-V2-2026-08-25` has been generated and validated outside Git. Before setting these variables, the owner must upload that exact checksum-matched artifact to approved private storage, verify delivery, approve the edition, confirm customer-facing terms/support/refund handling, and authorize the checkout provider. The public-history PDF is not an approved private product.
+
+`GET /api/planning-pack/checkout` is the only public checkout destination. Before redirecting, it retrieves the configured Stripe account and Payment Link and requires the exact account, live/test mode, active link, `buy.stripe.com` URL, immediate card payments only, one-time USD $17 Price, fixed quantity one, disabled promotion codes, release metadata, and after-completion return URL. `GET /api/planning-pack/download?session_id={CHECKOUT_SESSION_ID}` independently verifies the account and paid Checkout Session, permits verified applicable tax without permitting a lower base price or discount, retrieves only the configured object from a non-public Supabase bucket, and rechecks its exact byte size and SHA-256 before returning it as a PDF attachment. Both routes remain unavailable—and the public Buy action remains hidden—while the manifest is disabled or any artifact, upload, delivery, owner-approval, provider, or storage gate is absent. Responses are non-cacheable, no-referrer, and noindex; application code does not log the session ID or provider payload. Configuration and a successful build are not provider or delivery verification.
 
 ### Designer Pattern Preflight
 

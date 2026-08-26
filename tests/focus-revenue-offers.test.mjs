@@ -3,7 +3,10 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { normalizeCheckoutUrl } from "../src/lib/offer-links.mjs";
-import { getPlanningPackCheckoutUrl } from "../src/lib/planning-pack-availability.mjs";
+import {
+  getPlanningPackCheckoutUrl,
+  PLANNING_PACK_CHECKOUT_ROUTE,
+} from "../src/lib/planning-pack-availability.mjs";
 
 const read = (path) => readFile(new URL(path, import.meta.url), "utf8");
 
@@ -57,7 +60,17 @@ test("planning-pack runtime binds checkout to every release and artifact gate", 
     PLANNING_PACK_OWNER_APPROVAL_CONFIRMED: "true",
     PLANNING_PACK_EDITION_ID: manifest.edition.id,
     PLANNING_PACK_PRIVATE_FILE_SHA256: checksum,
-    NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL: "https://buy.stripe.com/planning_pack_v2_fixture",
+    STRIPE_MODE: "test",
+    STRIPE_SECRET_KEY: "sk_test_unitfixture",
+    FIBERTOOLS_STRIPE_ACCOUNT_ID: "acct_1U5HWnD2Of3MIt94",
+    PLANNING_PACK_STRIPE_PAYMENT_LINK_ID: "plink_unitfixture",
+    PLANNING_PACK_STRIPE_PAYMENT_LINK_URL: "https://buy.stripe.com/test_unitfixture123",
+    PLANNING_PACK_STRIPE_PRICE_ID: "price_unitfixture",
+    NEXT_PUBLIC_SITE_URL: "https://fibertools.app",
+    SUPABASE_URL: "https://unitfixture.supabase.co",
+    SUPABASE_SECRET_KEY: "sb_secret_unitfixture",
+    PLANNING_PACK_STORAGE_BUCKET: "planning-pack-private",
+    PLANNING_PACK_STORAGE_OBJECT_PATH: "releases/planning-pack-v2.pdf",
   };
 
   assert.equal(
@@ -82,7 +95,7 @@ test("planning-pack runtime binds checkout to every release and artifact gate", 
 
   assert.equal(
     getPlanningPackCheckoutUrl({ manifest: approved, env, now: new Date("2026-08-26T00:00:00.000Z") }),
-    env.NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL
+    PLANNING_PACK_CHECKOUT_ROUTE
   );
 
   for (const mutate of [
@@ -103,11 +116,36 @@ test("planning-pack runtime binds checkout to every release and artifact gate", 
   assert.equal(
     getPlanningPackCheckoutUrl({
       manifest: approved,
-      env: { ...env, NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL: "https://checkout.example.invalid/pack" },
+      env: { ...env, PLANNING_PACK_STRIPE_PAYMENT_LINK_URL: "https://evil.com/pack" },
       now: new Date("2026-08-26T00:00:00.000Z"),
     }),
     null
   );
+
+  for (const requiredBinding of [
+    "STRIPE_SECRET_KEY",
+    "FIBERTOOLS_STRIPE_ACCOUNT_ID",
+    "PLANNING_PACK_STRIPE_PAYMENT_LINK_ID",
+    "PLANNING_PACK_STRIPE_PAYMENT_LINK_URL",
+    "PLANNING_PACK_STRIPE_PRICE_ID",
+    "NEXT_PUBLIC_SITE_URL",
+    "SUPABASE_URL",
+    "SUPABASE_SECRET_KEY",
+    "PLANNING_PACK_STORAGE_BUCKET",
+    "PLANNING_PACK_STORAGE_OBJECT_PATH",
+  ]) {
+    const incompleteEnvironment = { ...env };
+    delete incompleteEnvironment[requiredBinding];
+    assert.equal(
+      getPlanningPackCheckoutUrl({
+        manifest: approved,
+        env: incompleteEnvironment,
+        now: new Date("2026-08-26T00:00:00.000Z"),
+      }),
+      null,
+      `${requiredBinding} must fail closed before the Buy action is shown`
+    );
+  }
 });
 
 test("preflight defaults to inquiry and the API gates checkout before reading customer data", async () => {

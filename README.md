@@ -46,6 +46,8 @@ All self-service calculators remain free.
 
 `/fiber-project-planning-pack` describes a $17 workbook, but checkout is disabled. The tracked historical PDF is not eligible for paid private delivery. Edition `FT-PP-V2-2026-08-25` is a distinct 12-page fillable revision stored only in the gitignored owner-private workspace and bound to `config/planning-pack-release-manifest.json` by SHA-256. Activation still requires owner-approved private storage, a successful non-customer delivery test, exact owner approval, environment attestations, and an approved checkout destination.
 
+The repository includes fail-closed server-only checkout and delivery gates for a Stripe Payment Link. Before checkout, FiberTools verifies the configured Stripe account and exact active Payment Link, immediate card-only payment configuration, fixed quantity, Price, release metadata, and return URL. After payment, it independently verifies the paid Checkout Session, downloads only the configured object from a non-public Supabase bucket, rechecks its exact byte size and SHA-256, and returns the PDF as an attachment. The current disabled/pending manifest keeps both endpoints unavailable and the public Buy action hidden; no product file is stored or exposed by the repository.
+
 ### Designer Pattern Preflight
 
 `/designer-pattern-preflight` describes a $39 bounded pilot for one version of one crochet pattern, up to 10 pages, with one written report. It defaults to inquiry-only. Checkout can appear only when the explicit action mode, mode-matched Stripe key, webhook secret, Supabase configuration, site URL, migration/schema attestations, exact webhook event list, notification delivery, durable abuse protection, and fulfillment capacity all pass one shared fail-closed server gate. Documented placeholders and reserved example destinations are rejected. These owner-controlled attestations record readiness evidence; they do not replace direct provider and live-path verification.
@@ -82,6 +84,7 @@ Common application gates are:
 
 ```bash
 npm run test:focus-revenue
+npm run test:planning-pack-delivery
 npm run test:designer-preflight
 npm run test:affiliate
 npm run test:gpc-consent
