@@ -15,7 +15,7 @@ async function releaseFixture() {
   return { manifest: JSON.parse(manifestText), publicPageSource };
 }
 
-test("planning-pack manifest records the validated v2 artifact but stays disabled", async () => {
+test("planning-pack manifest records the validated private upload but stays disabled", async () => {
   const { manifest } = await releaseFixture();
 
   assert.equal(manifest.edition.id, "FT-PP-V2-2026-08-25");
@@ -27,8 +27,8 @@ test("planning-pack manifest records the validated v2 artifact but stays disable
     "e5407e856ce539b1e751f8e36388c3d66d3151a649e6e61a97036ce9cbdd89a6"
   );
   assert.equal(manifest.privateArtifact.byteSize, 134356);
-  assert.equal(manifest.privateArtifact.uploadStatus, "NOT_UPLOADED");
-  assert.equal(manifest.privateUploadStatus, "NOT_UPLOADED");
+  assert.equal(manifest.privateArtifact.uploadStatus, "UPLOADED");
+  assert.equal(manifest.privateUploadStatus, "UPLOADED");
   assert.equal(manifest.privateDeliveryStatus, "PENDING");
   assert.equal(manifest.editionDifferenceStatus, "CONFIRMED");
   assert.equal(manifest.publicCopyStatus, "CONFIRMED");

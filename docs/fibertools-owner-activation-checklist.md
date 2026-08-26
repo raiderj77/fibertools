@@ -35,11 +35,12 @@ Current state: **checkout disabled**.
 - [x] Generated distinct edition `FT-PP-V2-2026-08-25` outside Git: 12 US Letter pages, 141 fillable fields, 141 appearance streams, synthetic fill/read-back passed, and all 12 pages rendered for visual review.
 - [x] Bound the edition to the public release manifest with SHA-256 `e5407e856ce539b1e751f8e36388c3d66d3151a649e6e61a97036ce9cbdd89a6`; the historical public artifact has a different SHA-256.
 - [x] Uploaded the exact revision to owner-approved private Supabase storage in a non-public bucket; the provider UI confirmed one PDF object with the expected name, MIME type, and size.
-- [ ] Retrieve the exact object through the production delivery path and verify its checksum with non-customer test data.
 - [ ] Verify the key resolves to the code-bound canonical FiberTools Stripe account, then configure the Payment Link ID, one-time Price ID, private bucket, and exact object path without copying keys or private-storage values into source or reports.
+- [ ] Set `PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED=true` first in the protected preview after the preceding provider checks; this records private upload placement, not delivery success. Carry the same gate into production only after the protected test and release approval pass.
+- [ ] Retrieve the exact object through the protected delivery path and verify its checksum with non-customer test data.
 - [ ] Approve customer terms, support, refund handling, fulfillment ownership, and checkout provider.
 - [ ] Record explicit owner activation approval.
-- [ ] Only after every prior item: configure `PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED=true`, `PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED=true`, `PLANNING_PACK_OWNER_APPROVAL_CONFIRMED=true`, the exact edition/checksum bindings, and the exact server-only Stripe Payment Link ID, URL, Price ID, bucket, and object path without exposing credentials.
+- [ ] Only after every prior delivery and owner-approval item: configure `PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED=true` and `PLANNING_PACK_OWNER_APPROVAL_CONFIRMED=true`; retain the exact edition/checksum, Stripe Payment Link, Price, bucket, and object bindings without exposing credentials.
 - [ ] Verify the exact production deployment and delivery path after an authorized release.
 
 Do not treat a checkout URL, environment value, product page, or successful build as delivery readiness.

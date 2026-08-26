@@ -18,9 +18,9 @@
     "sha256": "e5407e856ce539b1e751f8e36388c3d66d3151a649e6e61a97036ce9cbdd89a6",
     "expectedSha256": "e5407e856ce539b1e751f8e36388c3d66d3151a649e6e61a97036ce9cbdd89a6",
     "byteSize": 134356,
-    "uploadStatus": "NOT_UPLOADED"
+    "uploadStatus": "UPLOADED"
   },
-  "privateUploadStatus": "NOT_UPLOADED",
+  "privateUploadStatus": "UPLOADED",
   "privateDeliveryStatus": "PENDING",
   "editionDifferenceStatus": "CONFIRMED",
   "publicCopyStatus": "CONFIRMED",
