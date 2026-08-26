@@ -3,8 +3,8 @@
   "offerId": "fiber-project-planning-pack",
   "publicProductName": "Fiber Project Planning Pack",
   "creationDate": "2026-08-25",
-  "releaseStatus": "DISABLED",
-  "checkoutActivationStatus": "DISABLED",
+  "releaseStatus": "ENABLED",
+  "checkoutActivationStatus": "ENABLED",
   "priceUsd": 17,
   "edition": {
     "id": "FT-PP-V2-2026-08-25",
@@ -21,14 +21,14 @@
     "uploadStatus": "UPLOADED"
   },
   "privateUploadStatus": "UPLOADED",
-  "privateDeliveryStatus": "PENDING",
+  "privateDeliveryStatus": "CONFIRMED",
   "editionDifferenceStatus": "CONFIRMED",
   "publicCopyStatus": "CONFIRMED",
-  "ownerVerificationStatus": "PENDING",
+  "ownerVerificationStatus": "VERIFIED",
   "ownerApproval": {
-    "status": "PENDING",
+    "status": "APPROVED",
     "editionId": "FT-PP-V2-2026-08-25",
-    "artifactSha256": "PENDING",
-    "recordedAt": null
+    "artifactSha256": "e5407e856ce539b1e751f8e36388c3d66d3151a649e6e61a97036ce9cbdd89a6",
+    "recordedAt": "2026-08-26T15:14:43.614Z"
   }
 }

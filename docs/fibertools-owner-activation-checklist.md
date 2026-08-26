@@ -1,6 +1,6 @@
 # FiberTools owner activation checklist
 
-Current review date: 2026-08-25. This is a decision checklist, not an authorization record. Leave an item unchecked unless the owner has directly verified it and recorded approval without copying credentials or customer data.
+Current review date: 2026-08-26. This is a decision checklist, not an authorization record. Leave an item unchecked unless the owner has directly verified it and recorded approval without copying credentials or customer data.
 
 ## 1. Repository identity and protected state
 
@@ -18,6 +18,7 @@ Stop if the remote, branch, base SHA, protected-state hash, or ownership of a di
 - [x] PR #40 merged as `691f9dfd9453c68ae36d7e8780b8f1daa3b0771d`.
 - [x] PR #41 merged as `791b10d1ca960695b03496831040e43ea6505974`.
 - [x] PR #42 merged as `e67c27714f5353b14e6ae13f6b1291f677fdbaf3`.
+- [x] PR #45 merged as `070ee982559acd9b58cd63f6041ed854918a13a1`.
 - [x] Vercel deployment `dpl_EbDxqPo6occUQtSYv4J9aQ1Qm174` was observed READY for production from #42 with the FiberTools production aliases.
 - [x] Direct checks returned 200 for the homepage and both #42 buyer pages; the retired ASIN was absent and the replacement Amazon destinations retained the FiberTools tag.
 - [ ] Protect `main` and require the GitHub build/quality gate before merge.
@@ -27,7 +28,7 @@ A green live watchdog can describe an older deployment while newer source is bro
 
 ## 3. Fiber Project Planning Pack activation
 
-Current state: **checkout disabled**.
+Current state: **source activation approved; exact production bindings and Stripe hardening configured; post-deploy verification remains pending**.
 
 - [x] The tracked public-history PDF is documented as ineligible for private paid delivery.
 - [x] Runtime fails closed unless the release manifest, exact edition/checksum, private upload and delivery, owner approval, enabled release states, and a non-placeholder HTTPS checkout destination all agree.
@@ -35,12 +36,12 @@ Current state: **checkout disabled**.
 - [x] Generated distinct edition `FT-PP-V2-2026-08-25` outside Git: 12 US Letter pages, 141 fillable fields, 141 appearance streams, synthetic fill/read-back passed, and all 12 pages rendered for visual review.
 - [x] Bound the edition to the public release manifest with SHA-256 `e5407e856ce539b1e751f8e36388c3d66d3151a649e6e61a97036ce9cbdd89a6`; the historical public artifact has a different SHA-256.
 - [x] Uploaded the exact revision to owner-approved private Supabase storage in a non-public bucket; the provider UI confirmed one PDF object with the expected name, MIME type, and size.
-- [ ] Verify the key resolves to the code-bound canonical FiberTools Stripe account, then configure the Payment Link ID, one-time Price ID, private bucket, and exact object path without copying keys or private-storage values into source or reports.
-- [ ] Set `PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED=true` first in the protected preview after the preceding provider checks; this records private upload placement, not delivery success. Carry the same gate into production only after the protected test and release approval pass.
-- [ ] Retrieve the exact object through the protected delivery path and verify its checksum with non-customer test data.
-- [ ] Approve customer terms, support, refund handling, fulfillment ownership, and checkout provider.
-- [ ] Record explicit owner activation approval.
-- [ ] Only after every prior delivery and owner-approval item: configure `PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED=true` and `PLANNING_PACK_OWNER_APPROVAL_CONFIRMED=true`; retain the exact edition/checksum, Stripe Payment Link, Price, bucket, and object bindings without exposing credentials.
+- [x] Verified the provider credential resolves to the code-bound canonical FiberTools Stripe account and bound the protected preview to the exact Payment Link, one-time Price, private bucket, and object path without recording provider values in source or reports.
+- [x] Set `PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED=true` in the protected preview after verifying the exact private object and non-public bucket; this records private upload placement, not delivery success.
+- [x] Retrieved the exact object through the protected delivery path with non-customer test data and verified the manifest byte count and checksum.
+- [x] Owner approved the existing customer terms, support and refund handling, fulfillment ownership, and checkout provider for this bounded activation.
+- [x] Recorded explicit owner activation approval for edition `FT-PP-V2-2026-08-25` and its exact manifest checksum at `2026-08-26T15:14:43.614Z`.
+- [x] After every prior delivery and owner-approval item, configured `PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED=true`, `PLANNING_PACK_OWNER_APPROVAL_CONFIRMED=true`, and the exact edition/checksum bindings in production without exposing credentials; retained the exact Payment Link, Price, bucket, and object bindings.
 - [ ] Verify the exact production deployment and delivery path after an authorized release.
 
 Do not treat a checkout URL, environment value, product page, or successful build as delivery readiness.
@@ -81,7 +82,7 @@ No new public calculator, general tool, article, guide, paid service, or major f
 
 - [ ] On November 20, 2026, review verified qualified organic traffic, repeat usage, email-kit interest, consented offer events, affiliate outcomes, support load, provider readiness, privacy risk, and operating capacity.
 - [ ] Record a dated owner decision to continue, narrow, or lift the freeze. The date alone does not lift it.
-- [ ] For any exception before that date, record the exact owner-approved publication, its evidence, scope, release SHA, and rollback path.
+- [ ] Attach the final release SHA to the owner-approved Planning Pack exception. The exact edition/checksum approval and scope are recorded in the Planning Pack release manifest; rollback is to disable either manifest activation switch and the corresponding production owner gates.
 - [ ] Run the documentation/environment parity test, affected focused suites, TypeScript, quality, security, content/predeploy checks, and production build.
 - [ ] Review the pull request and required checks; do not push directly to `main`.
 - [ ] After explicit merge/deploy authorization, verify READY deployment SHA, aliases, changed routes, mobile/desktop behavior, disclosures, and fail-closed commercial state.

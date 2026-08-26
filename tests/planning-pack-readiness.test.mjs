@@ -15,7 +15,7 @@ async function releaseFixture() {
   return { manifest: JSON.parse(manifestText), publicPageSource };
 }
 
-test("planning-pack manifest records the validated private upload but stays disabled", async () => {
+test("planning-pack manifest records the exact owner-approved production activation", async () => {
   const { manifest } = await releaseFixture();
 
   assert.equal(manifest.edition.id, "FT-PP-V2-2026-08-25");
@@ -29,13 +29,16 @@ test("planning-pack manifest records the validated private upload but stays disa
   assert.equal(manifest.privateArtifact.byteSize, 134356);
   assert.equal(manifest.privateArtifact.uploadStatus, "UPLOADED");
   assert.equal(manifest.privateUploadStatus, "UPLOADED");
-  assert.equal(manifest.privateDeliveryStatus, "PENDING");
+  assert.equal(manifest.privateDeliveryStatus, "CONFIRMED");
   assert.equal(manifest.editionDifferenceStatus, "CONFIRMED");
   assert.equal(manifest.publicCopyStatus, "CONFIRMED");
-  assert.equal(manifest.ownerVerificationStatus, "PENDING");
-  assert.equal(manifest.ownerApproval.status, "PENDING");
-  assert.equal(manifest.releaseStatus, "DISABLED");
-  assert.equal(manifest.checkoutActivationStatus, "DISABLED");
+  assert.equal(manifest.ownerVerificationStatus, "VERIFIED");
+  assert.equal(manifest.ownerApproval.status, "APPROVED");
+  assert.equal(manifest.ownerApproval.editionId, manifest.edition.id);
+  assert.equal(manifest.ownerApproval.artifactSha256, manifest.privateArtifact.sha256);
+  assert.equal(manifest.ownerApproval.recordedAt, "2026-08-26T15:14:43.614Z");
+  assert.equal(manifest.releaseStatus, "ENABLED");
+  assert.equal(manifest.checkoutActivationStatus, "ENABLED");
 });
 
 test("planning-pack readiness evaluates exactly twelve fail-closed conditions", async () => {
