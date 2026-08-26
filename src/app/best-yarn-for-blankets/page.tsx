@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { amazonProductUrl, amazonSearchUrl } from "@/lib/affiliate";
+import { amazonSearchUrl } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
   title: "Best Yarn for Blankets (2026): Cozy & Durable",
@@ -213,7 +213,7 @@ export default function BestYarnForBlanketsPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">1,020 yds (16 oz)</td>
                   <td className="px-4 py-3">
-                    <a href={amazonProductUrl("B0CBPXTSB8")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
+                    <a href={amazonSearchUrl("Lion Brand Pound of Love yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
