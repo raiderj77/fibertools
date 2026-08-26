@@ -133,7 +133,7 @@ test("current operating documents carry the publication freeze and commercial bo
   }
 
   assert.match(readme, /Three starting paths/);
-  assert.match(readme, /checkout is disabled/);
+  assert.match(readme, /source release is owner-approved and enabled in the release manifest/);
   assert.match(readme, /defaults to inquiry-only/);
   assert.match(readme, /interest tests only/);
   assert.equal((checklist.match(/^## \d+\./gm) ?? []).length, 6);

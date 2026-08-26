@@ -161,3 +161,13 @@ This later subsection supersedes only the current-state statements above; it doe
 - Embed hydrated isolation, keyboard operation, noindex header, framing policy, cookie absence, mobile reflow, and zero Cache Storage responses passed. Raw Next RSC data still serializes non-hydrated footer strings, the root AdSense verification meta remains, and an installed worker may mediate static resources from HTTP cache; these qualifications are not represented as zero-footprint claims.
 - `npm ci`, the complete requested existing/new suites, TypeScript, content/predeploy, production build with 100 generated route entries, both dependency audits, and `git diff --check` passed. `npm audit` and `npm audit --omit=dev` each reported zero vulnerabilities.
 - Planning Pack and Designer Preflight readiness commands intentionally returned nonzero fail-closed results with no secrets printed. The next Planning Pack actions are exact artifact upload, non-customer delivery retrieval, owner approval/operations decisions, checkout URL configuration, merge/deploy authorization, and production verification.
+
+### 2026-08-26 Planning Pack activation evidence
+
+This subsection supersedes only the current Planning Pack state above; it does not rewrite the historical implementation record.
+
+- PR #45 merged as `070ee982559acd9b58cd63f6041ed854918a13a1` and deployed as production deployment `dpl_FXTjZukikxBkVn8TyQKJzm7BKSFk`. The canonical page remained on the closed CTA and the checkout endpoint returned `404 Checkout unavailable.` after that fulfillment-only release.
+- A protected non-customer test retrieved the exact private edition through the first-party delivery route with HTTP 200, 134,356 bytes, `application/pdf`, attachment disposition, non-cacheable/noindex headers, and SHA-256 `e5407e856ce539b1e751f8e36388c3d66d3151a649e6e61a97036ce9cbdd89a6`.
+- The owner approved production activation for exact edition `FT-PP-V2-2026-08-25` and its checksum. The production delivery, owner-approval, edition, and checksum attestations are configured without recording provider credentials.
+- The live FiberTools Payment Link in account `acct_1U5HWnD2Of3MIt94` was verified active and hardened to card-only payment, one fixed USD $17 one-time Price, disabled promotion codes, no optional items or shipping, the exact completion return, and exact release metadata on both the link and PaymentIntent. The temporary least-privilege key was expired immediately after use and a subsequent API request returned 401.
+- The activation manifest enables only this checksum-bound source release. Public availability still depends on every request-time provider, environment, artifact, and owner gate; production deployment and live route verification remain required.

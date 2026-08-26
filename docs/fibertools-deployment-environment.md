@@ -87,7 +87,7 @@ The test discovers active `process.env` references under `src` and `scripts`, in
 
 ### Fiber Project Planning Pack
 
-Current state: **checkout disabled**.
+Current state: **source release owner-approved and enabled; production availability remains runtime-gated**.
 
 All of these environment values are necessary but not sufficient:
 
@@ -105,7 +105,7 @@ All of these environment values are necessary but not sufficient:
 - mode-matched `STRIPE_MODE` and `STRIPE_SECRET_KEY`
 - verified `SUPABASE_URL` and `SUPABASE_SECRET_KEY`
 
-Edition `FT-PP-V2-2026-08-25` has been generated and validated outside Git. The upload-confirmation gate may be set after independently verifying the exact private object and non-public bucket. Delivery confirmation, owner approval, and public sales activation must remain false until the protected paid-session retrieval succeeds and the remaining customer-operations prerequisites are approved. The public-history PDF is not an approved private product.
+Edition `FT-PP-V2-2026-08-25` was generated and validated outside Git. Its exact private object and non-public bucket were verified, and a protected non-customer paid-session retrieval returned the manifest-bound byte count and checksum. The owner approved the existing customer-operations scope and production activation for that exact edition and checksum on `2026-08-26T15:14:43.614Z`. The release manifest therefore records enabled release and checkout states plus confirmed delivery and owner approval. These source records do not bypass the request-time environment and provider gates. The public-history PDF is not an approved private product.
 
 `GET /api/planning-pack/checkout` is the only public checkout destination. Before redirecting, it retrieves the configured Stripe account and Payment Link and requires the exact account, live/test mode, active link, `buy.stripe.com` URL, immediate card payments only, one-time USD $17 Price, fixed quantity one, disabled promotion codes, release metadata, and after-completion return URL. `GET /api/planning-pack/download?session_id={CHECKOUT_SESSION_ID}` independently verifies the account and exact paid Checkout Session, permits verified applicable tax without permitting a lower base price or discount, retrieves only the configured object from a non-public Supabase bucket, and rechecks its exact byte size and SHA-256 before returning it as a PDF attachment. Public checkout and the Buy action remain unavailable while any release, delivery-confirmation, owner-approval, activation, provider, or artifact gate is absent. Fulfillment for an exact already-paid session can remain available while sales are disabled, but only after the private-upload gate and every immutable provider, purchase, storage, byte-size, and checksum check pass. Responses are non-cacheable, no-referrer, and noindex; application code does not log the session ID or provider payload. Configuration and a successful build are not provider or delivery verification.
 
@@ -147,7 +147,7 @@ November 20, 2026 is the next decision date for reconsidering the freeze. Recons
 
 - Enable branch protection for `main` and require the build/quality gate.
 - Decide whether to align the Vercel Node runtime with CI.
-- Keep planning-pack checkout disabled until the validated private revision is uploaded to an approved delivery path, retrieved successfully, and explicitly approved.
+- Configure the exact approved Planning Pack production bindings and attestations, then verify the resulting production checkout and delivery routes against the deployed SHA without exposing provider values.
 - Keep Designer Pattern Preflight inquiry-only until every provider, abuse-protection, retention, fulfillment, and disposable-live-test gate is verified.
 - Keep white-label offers interest-only until the owner approves a product, contract, billing, and provisioning scope.
 - Revisit the publication freeze on November 20, 2026 using verified evidence rather than assumed demand or revenue.

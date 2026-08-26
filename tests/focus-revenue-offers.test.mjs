@@ -73,42 +73,34 @@ test("planning-pack runtime binds checkout to every release and artifact gate", 
     PLANNING_PACK_STORAGE_OBJECT_PATH: "releases/planning-pack-v2.pdf",
   };
 
+  const approved = structuredClone(manifest);
+  const afterApproval = new Date("2026-08-27T00:00:00.000Z");
+
   assert.equal(
-    getPlanningPackCheckoutUrl({ manifest, env, now: new Date("2026-08-26T00:00:00.000Z") }),
-    null,
-    "environment confirmations cannot override a disabled or unapproved manifest"
+    getPlanningPackCheckoutUrl({ manifest: approved, env, now: afterApproval }),
+    PLANNING_PACK_CHECKOUT_ROUTE
   );
 
-  const approved = structuredClone(manifest);
-  approved.releaseStatus = "ENABLED";
-  approved.checkoutActivationStatus = "ENABLED";
-  approved.privateArtifact.uploadStatus = "UPLOADED";
-  approved.privateUploadStatus = "UPLOADED";
-  approved.privateDeliveryStatus = "CONFIRMED";
-  approved.ownerVerificationStatus = "VERIFIED";
-  approved.ownerApproval = {
-    status: "APPROVED",
-    editionId: approved.edition.id,
-    artifactSha256: checksum,
-    recordedAt: "2026-08-25T20:00:00.000Z",
-  };
-
+  const disabled = structuredClone(approved);
+  disabled.releaseStatus = "DISABLED";
+  disabled.checkoutActivationStatus = "DISABLED";
   assert.equal(
-    getPlanningPackCheckoutUrl({ manifest: approved, env, now: new Date("2026-08-26T00:00:00.000Z") }),
-    PLANNING_PACK_CHECKOUT_ROUTE
+    getPlanningPackCheckoutUrl({ manifest: disabled, env, now: afterApproval }),
+    null,
+    "environment confirmations cannot override a disabled manifest"
   );
 
   for (const mutate of [
     (candidate) => { candidate.privateArtifact.uploadStatus = "NOT_UPLOADED"; },
     (candidate) => { candidate.privateArtifact.sha256 = candidate.historicallyPublicEdition.sha256; },
     (candidate) => { candidate.ownerApproval.artifactSha256 = candidate.historicallyPublicEdition.sha256; },
-    (candidate) => { candidate.ownerApproval.recordedAt = "2026-08-27T00:00:00.000Z"; },
+    (candidate) => { candidate.ownerApproval.recordedAt = "2026-08-28T00:00:00.000Z"; },
     (candidate) => { candidate.publicCopyStatus = "PENDING"; },
   ]) {
     const candidate = structuredClone(approved);
     mutate(candidate);
     assert.equal(
-      getPlanningPackCheckoutUrl({ manifest: candidate, env, now: new Date("2026-08-26T00:00:00.000Z") }),
+      getPlanningPackCheckoutUrl({ manifest: candidate, env, now: afterApproval }),
       null
     );
   }
@@ -117,7 +109,7 @@ test("planning-pack runtime binds checkout to every release and artifact gate", 
     getPlanningPackCheckoutUrl({
       manifest: approved,
       env: { ...env, PLANNING_PACK_STRIPE_PAYMENT_LINK_URL: "https://evil.com/pack" },
-      now: new Date("2026-08-26T00:00:00.000Z"),
+      now: afterApproval,
     }),
     null
   );
@@ -140,7 +132,7 @@ test("planning-pack runtime binds checkout to every release and artifact gate", 
       getPlanningPackCheckoutUrl({
         manifest: approved,
         env: incompleteEnvironment,
-        now: new Date("2026-08-26T00:00:00.000Z"),
+        now: afterApproval,
       }),
       null,
       `${requiredBinding} must fail closed before the Buy action is shown`

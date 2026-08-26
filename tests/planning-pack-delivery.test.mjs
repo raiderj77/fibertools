@@ -10,7 +10,7 @@ import {
 } from "../src/lib/planning-pack-delivery.mjs";
 
 const read = (relativePath) => readFile(new URL(relativePath, import.meta.url), "utf8");
-const NOW = new Date("2026-08-26T12:00:00.000Z");
+const NOW = new Date("2026-08-27T12:00:00.000Z");
 const SESSION_ID = "cs_test_unitfixture123";
 const PAYMENT_LINK_URL = "https://buy.stripe.com/test_unitfixture123";
 const AFTER_COMPLETION_URL =
@@ -237,13 +237,15 @@ async function invokeCheckout({ manifest, env, dependencies }) {
   });
 }
 
-test("the committed manifest blocks checkout and unconfirmed-upload delivery before provider calls", async () => {
+test("the committed activation still fails closed before provider calls when confirmations are absent", async () => {
   const manifest = await sourceManifest();
 
   const checkoutMocks = mockedDependencies();
   const checkoutResponse = await invokeCheckout({
     manifest,
-    env: readyEnvironment(manifest),
+    env: readyEnvironment(manifest, {
+      PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED: "false",
+    }),
     dependencies: checkoutMocks.implementation,
   });
   assert.equal(checkoutResponse.status, 404);

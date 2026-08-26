@@ -1,6 +1,6 @@
 # FiberTools repository instructions
 
-> Current operating source of truth. Last verified: 2026-08-25.
+> Current operating source of truth. Last verified: 2026-08-26.
 
 ## Repository identity gate
 
@@ -38,7 +38,7 @@ The featured calculator order is Blanket, Yarn, Circle, Amigurumi Shapes, and Ca
 
 - Amazon product links may use Associates tag `ytearnings-20` only when the destination genuinely helps the task. Put a clear affiliate disclosure before the first paid link, use `rel="nofollow sponsored"`, and keep privacy-notice destinations untagged.
 - AdSense is disabled unless `NEXT_PUBLIC_ADSENSE_ENABLED=true` and a valid public publisher ID is deliberately configured. Do not infer approval from source configuration.
-- The $17 Fiber Project Planning Pack checkout is disabled. Its public-history artifact is not an approved private sellable revision. Do not enable its link until the owner confirms a new private delivery source and separately approves activation.
+- The $17 Fiber Project Planning Pack source release is owner-approved for production activation against the checksum-bound private edition. Checkout remains fail-closed unless the exact private-delivery, owner, provider, environment, and artifact gates all agree; the public-history artifact remains ineligible for paid delivery.
 - Designer Pattern Preflight is a $39 bounded pilot and is inquiry-only by default. Missing, invalid, or mismatched provider configuration must fail closed to inquiry.
 - The $149/year and $299/year white-label descriptions are interest tests only. They are not active subscriptions, checkout offers, tenant provisioning, or promises of availability.
 - Embeds remain free, branded, `noindex`, isolated from site chrome and monetization, and frameable only under the dedicated embed security policy.
