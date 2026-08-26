@@ -2,7 +2,7 @@
 
 > https://fibertools.app
 
-FiberTools is a suite of 34 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, cross stitch, and sewing. Created by a fiber arts expert with 30+ years of experience. Calculator inputs and results are processed in the browser and are not sent to a server. Newsletter signup and optional paid services use their separately disclosed workflows. No login is required for self-service calculators, and many tools work offline as part of the Progressive Web App. All self-service calculators stay free. Optional professional reviews and project downloads are paid.
+FiberTools is a suite of 34 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, cross stitch, and sewing. It is maintained by the maker identified on the About page; no professional fiber-arts credential is claimed. Calculator inputs and results are processed in the browser and are not sent to a server. Newsletter signup and optional paid services use their separately disclosed workflows. No login is required for self-service calculators, and many tools work offline as part of the Progressive Web App. All self-service calculators stay free. Optional professional reviews and project downloads are paid.
 
 US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Council (CYC) standard: Lace (0), Fingering (1), Sport (2), DK (3), Worsted (4), Bulky (5), Super Bulky (6), Jumbo (7).
 
@@ -12,7 +12,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Yarn Calculator
 - URL: https://fibertools.app/yarn-calculator
-- Calculate exactly how much yarn you need for any project, blankets, sweaters, scarves, hats, socks, and more. Enter your gauge, dimensions, and yarn weight to get precise yardage and skein estimates. Supports all CYC yarn weights from Lace (0) to Jumbo (7).
+- Estimate yarn needs for supported projects such as blankets, sweaters, scarves, hats, and socks. Enter the available gauge, dimensions, and yarn-weight information to get planning estimates for yardage and skeins. Supports CYC yarn weights from Lace (0) to Jumbo (7).
 
 ### Needle & Hook Size Converter
 - URL: https://fibertools.app/needle-converter
@@ -32,7 +32,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Blanket Calculator
 - URL: https://fibertools.app/blanket-calculator
-- Find the right stitch count, row count, and yarn yardage for any blanket size from baby (30x40 in) to king (108x90 in). Enter your gauge and get complete project specifications.
+- Plan stitch count, row count, and yarn needs for listed sizes from receiving (30x30 in) through king (108x100 in), or use custom dimensions. Yarn estimates use the target dimensions together with stitch and row gauge and the yarn consumed by a measured swatch; verify the result against the pattern, yarn label, and a representative swatch.
 
 ### Increase & Decrease Calculator
 - URL: https://fibertools.app/increase-decrease-calculator
@@ -178,7 +178,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 - [Beginner's Guide to Amigurumi](https://fibertools.app/guides/amigurumi-beginners-guide): Shapes, sizes, and math for crochet amigurumi including magic ring, increases, and connecting parts.
 
 ## About
-- [About FiberTools](https://fibertools.app/about): Created by a fiber arts expert with 30+ years of experience. Free calculators for knitting, crochet, weaving, spinning, and embroidery.
+- [About FiberTools](https://fibertools.app/about): Meet the identified maker behind FiberTools and read how the free calculators are built and checked.
 - [Privacy Policy](https://fibertools.app/privacy): All calculations happen in-browser. No project data is collected or stored.
 - [Terms of Use](https://fibertools.app/terms): Terms governing use of FiberTools.
 - [Contact](https://fibertools.app/about#contact): hello@fibertools.app

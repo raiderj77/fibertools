@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 
 import { normalizeCheckoutUrl } from "../src/lib/offer-links.mjs";
+import { getPlanningPackCheckoutUrl } from "../src/lib/planning-pack-availability.mjs";
 
 const read = (path) => readFile(new URL(path, import.meta.url), "utf8");
 
@@ -37,8 +38,8 @@ test("planning-pack page presents the $17 product without exposing its tracked P
     assert.match(page, new RegExp(item));
   }
   assert.doesNotMatch(page, /output\/pdf|fibertools-project-planning-pack\.pdf/i);
-  assert.match(page, /NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL/);
-  assert.match(page, /PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED === "true"/);
+  assert.match(page, /planning-pack-release-manifest\.json/);
+  assert.match(page, /getPlanningPackCheckoutUrl/);
   assert.match(page, /checkoutUrl[\s\S]*offers/);
   assert.match(actions, /planning_pack_page_view/);
   assert.match(actions, /planning_pack_purchase_click/);
@@ -47,8 +48,71 @@ test("planning-pack page presents the $17 product without exposing its tracked P
   assert.doesNotMatch(actions, /email|name|query|amount|value/);
 });
 
+test("planning-pack runtime binds checkout to every release and artifact gate", async () => {
+  const manifest = JSON.parse(await read("../config/planning-pack-release-manifest.json"));
+  const checksum = manifest.privateArtifact.sha256;
+  const env = {
+    PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED: "true",
+    PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED: "true",
+    PLANNING_PACK_OWNER_APPROVAL_CONFIRMED: "true",
+    PLANNING_PACK_EDITION_ID: manifest.edition.id,
+    PLANNING_PACK_PRIVATE_FILE_SHA256: checksum,
+    NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL: "https://buy.stripe.com/planning_pack_v2_fixture",
+  };
+
+  assert.equal(
+    getPlanningPackCheckoutUrl({ manifest, env, now: new Date("2026-08-26T00:00:00.000Z") }),
+    null,
+    "environment confirmations cannot override a disabled or unapproved manifest"
+  );
+
+  const approved = structuredClone(manifest);
+  approved.releaseStatus = "ENABLED";
+  approved.checkoutActivationStatus = "ENABLED";
+  approved.privateArtifact.uploadStatus = "UPLOADED";
+  approved.privateUploadStatus = "UPLOADED";
+  approved.privateDeliveryStatus = "CONFIRMED";
+  approved.ownerVerificationStatus = "VERIFIED";
+  approved.ownerApproval = {
+    status: "APPROVED",
+    editionId: approved.edition.id,
+    artifactSha256: checksum,
+    recordedAt: "2026-08-25T20:00:00.000Z",
+  };
+
+  assert.equal(
+    getPlanningPackCheckoutUrl({ manifest: approved, env, now: new Date("2026-08-26T00:00:00.000Z") }),
+    env.NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL
+  );
+
+  for (const mutate of [
+    (candidate) => { candidate.privateArtifact.uploadStatus = "NOT_UPLOADED"; },
+    (candidate) => { candidate.privateArtifact.sha256 = candidate.historicallyPublicEdition.sha256; },
+    (candidate) => { candidate.ownerApproval.artifactSha256 = candidate.historicallyPublicEdition.sha256; },
+    (candidate) => { candidate.ownerApproval.recordedAt = "2026-08-27T00:00:00.000Z"; },
+    (candidate) => { candidate.publicCopyStatus = "PENDING"; },
+  ]) {
+    const candidate = structuredClone(approved);
+    mutate(candidate);
+    assert.equal(
+      getPlanningPackCheckoutUrl({ manifest: candidate, env, now: new Date("2026-08-26T00:00:00.000Z") }),
+      null
+    );
+  }
+
+  assert.equal(
+    getPlanningPackCheckoutUrl({
+      manifest: approved,
+      env: { ...env, NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL: "https://checkout.example.invalid/pack" },
+      now: new Date("2026-08-26T00:00:00.000Z"),
+    }),
+    null
+  );
+});
+
 test("preflight defaults to inquiry and the API gates checkout before reading customer data", async () => {
   const availability = await read("../src/lib/designer-preflight-availability.ts");
+  const readiness = await read("../src/lib/designer-preflight-readiness.mjs");
   const route = await read("../src/app/api/designer-preflight/submissions/route.ts");
   const page = await read("../src/app/designer-pattern-preflight/page.tsx");
   const form = await read("../src/app/designer-pattern-preflight/DesignerPreflightForm.tsx");
@@ -57,11 +121,21 @@ test("preflight defaults to inquiry and the API gates checkout before reading cu
   const successAnalytics = await read("../src/app/designer-pattern-preflight/success/PaymentSuccessAnalytics.tsx");
 
   assert.match(availability, /import "server-only"/);
-  assert.match(availability, /=== "checkout"/);
-  assert.match(availability, /CHECKOUT_REQUIREMENTS\.every/);
-  assert.match(availability, /keyMatchesMode/);
-  assert.match(availability, /startsWith\("whsec_"\)/);
+  assert.match(availability, /isDesignerPreflightCheckoutEnvironmentReady\(process\.env\)/);
   assert.match(availability, /mode: "inquiry"/);
+  assert.match(readiness, /DESIGNER_PREFLIGHT_ACTION_MODE === "checkout"/);
+  assert.match(readiness, /\^\(sk\|rk\)_test_/);
+  assert.match(readiness, /startsWith\("whsec_"\)/);
+  assert.match(readiness, /DESIGNER_PREFLIGHT_APPLIED_MIGRATION_VERSION/);
+  assert.match(readiness, /DESIGNER_PREFLIGHT_DB_FUNCTIONS_CONFIRMED/);
+  assert.match(readiness, /DESIGNER_PREFLIGHT_RETENTION_SCHEMA_CONFIRMED/);
+  assert.match(readiness, /DESIGNER_PREFLIGHT_OUTBOX_SCHEMA_CONFIRMED/);
+  assert.match(readiness, /DESIGNER_PREFLIGHT_WEBHOOK_EVENTS_CONFIRMED/);
+  assert.match(readiness, /DESIGNER_PREFLIGHT_NOTIFICATION_DELIVERY_CONFIRMED/);
+  assert.match(readiness, /DESIGNER_PREFLIGHT_ABUSE_PROTECTION_CONFIRMED/);
+  assert.match(readiness, /DESIGNER_PREFLIGHT_FULFILLMENT_CAPACITY_CONFIRMED/);
+  assert.match(readiness, /isDocumentedDesignerPreflightPlaceholder/);
+  assert.match(readiness, /isReservedExampleDestination/);
   assert.ok(route.indexOf("canAcceptDesignerPreflightCheckout()") < route.indexOf("request.json()"));
   assert.match(service, /PREFLIGHT_AMOUNT_CENTS = 3900/);
   assert.match(page, /one pattern, one version, up to 10 pages/i);

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { tools, CATEGORY_LABELS, CATEGORY_COLORS, type Tool, getToolBySlug } from "@/lib/tools";
 import { getAllGuides } from "@/lib/guides";
+import { REVIEW_DATES } from "@/lib/review-dates.mjs";
 import HomeToolDirectory from "@/components/HomeToolDirectory";
 
 const FEATURED_TOOL_SLUGS = [
@@ -83,7 +84,7 @@ export default function HomePage() {
     applicationCategory: "UtilityApplication",
     operatingSystem: "All",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    dateModified: "2026-04-16",
+    dateModified: REVIEW_DATES.homepage.iso,
   };
 
   const breadcrumbSchema = {
@@ -97,7 +98,6 @@ export default function HomePage() {
         item: "https://fibertools.app",
       },
     ],
-    dateModified: "2026-04-16",
   };
 
   const toolsCollectionSchema = {
@@ -107,7 +107,7 @@ export default function HomePage() {
     url: "https://fibertools.app",
     description:
       "A comprehensive collection of free calculators for knitting, crochet, weaving, spinning, and embroidery.",
-    dateModified: "2026-04-16",
+    dateModified: REVIEW_DATES.homepage.iso,
     hasPart: tools
       .filter((t) => t.ready)
       .map((t) => ({
@@ -122,7 +122,7 @@ export default function HomePage() {
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    dateModified: "2026-04-16",
+    dateModified: REVIEW_DATES.homepageFaq.iso,
     mainEntity: [
       {
         "@type": "Question",
@@ -225,7 +225,7 @@ export default function HomePage() {
               Fiber arts calculators for
               <span className="text-plum-500"> confident projects</span>
             </h1>
-            <p className="text-sm text-gray-600 mt-1 mb-4 text-center">Last updated: April 16, 2026</p>
+            <p className="text-sm text-gray-600 mt-1 mb-4 text-center">Last updated: {REVIEW_DATES.homepage.label}</p>
             <p className="mt-6 text-lg sm:text-xl text-bark-500 max-w-xl leading-relaxed">
               Calculate materials, correct gauge and stitch counts, or plan a knitting or crochet project with practical tools that show their work.
             </p>

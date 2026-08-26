@@ -7,6 +7,7 @@
 import { readFileSync, existsSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
+import { getPublicationFreezeViolations } from "./publication-freeze.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -153,6 +154,15 @@ check("Security headers", () => {
       fail(`${header} missing from next.config`);
     }
   }
+});
+
+check("November 20 publication freeze", () => {
+  const violations = getPublicationFreezeViolations(ROOT);
+  if (violations.length === 0) {
+    pass("No unapproved public growth, duplicate growth, or direct-main scheduled publisher detected");
+    return;
+  }
+  for (const violation of violations) fail(violation);
 });
 
 // ---------------------------------------------------------------------------

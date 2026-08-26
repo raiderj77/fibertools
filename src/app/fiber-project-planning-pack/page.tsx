@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PlanningPackActions from "./PlanningPackActions";
-import { normalizeCheckoutUrl } from "@/lib/offer-links.mjs";
+import planningPackReleaseManifest from "../../../config/planning-pack-release-manifest.json";
+import { getPlanningPackCheckoutUrl } from "@/lib/planning-pack-availability.mjs";
 
 export const metadata: Metadata = {
   title: "Fiber Project Planning Pack — $17 Digital Workbook",
@@ -48,11 +49,12 @@ const faqs = [
 ];
 
 export default function FiberProjectPlanningPackPage() {
-  // A public checkout URL is not sufficient by itself: the paid revision must
-  // first be moved to an owner-approved private delivery source.
-  const checkoutUrl = process.env.PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED === "true"
-    ? normalizeCheckoutUrl(process.env.NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL)
-    : null;
+  // The URL is exposed only when the release manifest, exact private artifact,
+  // private delivery confirmations, and owner approval all agree at build time.
+  const checkoutUrl = getPlanningPackCheckoutUrl({
+    manifest: planningPackReleaseManifest,
+    env: process.env,
+  });
   const productSchema = {
     "@context": "https://schema.org",
     "@type": "Product",

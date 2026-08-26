@@ -856,6 +856,12 @@ export const toolContent: Record<string, ToolEducationalContent> = {
         "The calculator handles the staggering math automatically, which becomes increasingly complex in later rounds. By round ten, you are working eight single crochet between increases, and the offset pattern requires careful tracking. The generated pattern eliminates counting errors and ensures a perfectly round result.",
       ],
     },
+    projectExample: "Choose single crochet and 6 rounds. The pattern starts with 6 stitches in round 1 and adds 6 stitches per round, so round 6 finishes with 36 stitches. Work the generated increase placement as written, then lay the piece flat and check it before continuing beyond the planned circle.",
+    commonMistakes: [
+      "The generated increase schedule is a starting plan, not a guarantee that every yarn, hook, and tension combination will lie perfectly flat.",
+      "A circle that cups or ripples should be checked against the actual fabric before adding rounds; hook size, stitch height, and personal tension can require adjustment.",
+      "The selected round count controls the written pattern length, not a fixed finished diameter. Measure the work at your own gauge.",
+    ],
     howToUse: {
       title: "How to Use the Perfect Circle Calculator",
       paragraphs: [
@@ -968,16 +974,22 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     howCalculated: {
       title: "How Amigurumi Shape Patterns Are Calculated",
       paragraphs: [
-        "Each shape follows a mathematical increase and decrease schedule. For a sphere starting with six single crochet in a magic ring: increase six stitches per round for six rounds, reaching forty-two stitches at the widest point. Work three even rounds at forty-two stitches to create the equator of the sphere.",
-        "Then decrease six stitches per round for six rounds, working back down to six stitches. Stuff the sphere firmly before the opening gets too small, trying to stuff through a tiny hole creates lumpy, uneven filling. Close the final six stitches by threading yarn through all loops and pulling tight.",
-        "Cones use the same six-per-round increase rate but skip the decrease phase entirely. A cylinder increases to the target circumference and then works even rounds, no increases, no decreases, for as many rounds as you need. The calculator handles the stitch placement math for all of these variations.",
+        "Each shape follows a defined increase and decrease schedule. A sphere starts with six single crochet in a magic ring, then adds six stitches on each increase round. The generator uses half of the selected total, rounded down, for the buildup phase; that count includes the opening magic-ring round. It then works one center round for an even total or two center rounds for an odd total.",
+        "The remaining numbered rounds decrease by six stitches at a time until six stitches remain. For a 12-round sphere, that is a six-round buildup consisting of one foundation round and five increase rounds, followed by one even round and five decrease rounds. Stuff before the opening becomes too small, then close the final six stitches with the yarn tail.",
+        "A cone adds six stitches on alternating rounds for a gradual taper. A cylinder builds a flat base for the selected number of base rounds, then works even to the selected total. The oval starts around both sides of a foundation chain, so its control uses starting-chain length instead of total rounds.",
       ],
     },
+    projectExample: "Choose Sphere / Ball and 12 total rounds. The generator works 1 foundation round and 5 increase rounds to reach 36 stitches, then 1 even round at 36 stitches and 5 decrease rounds, ending with 6 stitches on round 12 before the closing note.",
+    commonMistakes: [
+      "Total rounds controls the number of numbered instructions; it does not guarantee a particular finished diameter because yarn, hook size, and tension change gauge.",
+      "Stuffing amount changes the finished shape. Add filling gradually and compare the piece from several angles before the opening becomes too small.",
+      "The generated forms are basic starting shapes. Limbs, weighted bases, safety requirements, and child-safe finishing can require project-specific construction choices.",
+    ],
     howToUse: {
       title: "How to Use the Amigurumi Shapes Guide",
       paragraphs: [
-        "Select a shape, sphere, cone, cylinder, or oval, and enter the maximum stitch count for the widest round. This determines the finished size at your gauge. The calculator generates a complete round-by-round pattern starting with a magic ring and ending with a decrease closure. All shapes use single crochet worked in a continuous spiral.",
-        "The round-by-round output shows the stitch count for each round and marks where to place increases and decreases. For a sphere, the pattern increases symmetrically to the midpoint, then decreases symmetrically to close. For a cone, increases are worked at a steady rate with no decrease section."
+        "Select a sphere, cone, cylinder, or oval. Sphere, cone, and cylinder use the Total rounds control; a cylinder also asks how many of those rounds build the flat base. An oval uses the starting-chain length. The calculator generates single-crochet instructions for the selected control values.",
+        "The output lists every numbered round and its stitch count. A sphere increases to its widest section and then decreases to close; a cone increases on alternating rounds; a cylinder works even after its base; and an oval works around both sides of the starting chain. Check the resulting fabric at your own gauge before treating it as a final size."
       ],
     },
     understandingResults: {

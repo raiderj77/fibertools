@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { generateSphere } from "@/lib/amigurumi-shape-patterns.mjs";
 
 type Shape = "sphere" | "cone" | "cylinder" | "oval";
 
@@ -17,46 +18,6 @@ const SHAPES: ShapeDef[] = [
   { key: "cylinder", name: "Cylinder / Tube", emoji: "🟩", desc: "Flat circle base, then even rounds for height. Arms, legs, bodies." },
   { key: "oval", name: "Oval", emoji: "🥚", desc: "Chain start with increases on both ends. Feet, muzzles, bases." },
 ];
-
-function generateSphere(rounds: number): string[] {
-  const half = Math.ceil(rounds / 2);
-  const lines: string[] = [];
-
-  // Increase half
-  for (let r = 1; r <= half; r++) {
-    const total = 6 * r;
-    if (r === 1) {
-      lines.push(`Rnd 1: Magic ring, 6 sc. (6)`);
-    } else if (r === 2) {
-      lines.push(`Rnd 2: 2 sc in each st around. (12)`);
-    } else {
-      lines.push(`Rnd ${r}: *sc ${r - 2}, 2 sc in next st* x6. (${total})`);
-    }
-  }
-
-  // Even rounds (1-2 rounds for rounder shape)
-  const evenCount = rounds % 2 === 0 ? 2 : 1;
-  const maxSt = 6 * half;
-  for (let i = 0; i < evenCount; i++) {
-    const r = half + 1 + i;
-    lines.push(`Rnd ${r}: sc in each st around. (${maxSt})`);
-  }
-
-  // Decrease half
-  let decStart = half + evenCount + 1;
-  for (let r = half; r >= 2; r--) {
-    const total = 6 * r;
-    if (r === 2) {
-      lines.push(`Rnd ${decStart}: *sc2tog* x6. (6)`);
-    } else {
-      lines.push(`Rnd ${decStart}: *sc ${r - 2}, sc2tog* x6. (${total - 6})`);
-    }
-    decStart++;
-  }
-
-  lines.push(`Stuff firmly before closing. Fasten off, sew hole closed.`);
-  return lines;
-}
 
 function generateCone(rounds: number): string[] {
   const lines: string[] = [];

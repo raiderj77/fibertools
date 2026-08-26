@@ -11,6 +11,7 @@ import { readFileSync, readdirSync, existsSync, statSync } from "fs";
 import { resolve, dirname, relative, basename } from "path";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
+import { getPublicationFreezeViolations } from "./publication-freeze.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -243,6 +244,10 @@ for (const file of allFiles) {
 }
 
 checkPublishedSlugGrowth();
+
+for (const violation of getPublicationFreezeViolations(ROOT)) {
+  fail(resolve(ROOT, "config", "publication-approval-manifest.json"), 1, violation);
+}
 
 // ---------------------------------------------------------------------------
 // Summary

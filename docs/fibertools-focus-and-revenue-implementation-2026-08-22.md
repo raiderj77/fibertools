@@ -52,8 +52,9 @@ Focused verification completed during implementation:
 
 Planning Pack:
 
-- `PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED=true` — server-only owner confirmation. **Keep unset or false until a new sellable revision is in private delivery storage.**
-- `NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL=https://...` — HTTPS checkout destination with no embedded username or password. This is ignored unless private delivery is confirmed.
+- `PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED=true` and `PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED=true` — server-only confirmations. **Keep unset or false until the exact new revision is in approved private delivery storage and retrieval is verified.**
+- `PLANNING_PACK_OWNER_APPROVAL_CONFIRMED=true`, `PLANNING_PACK_EDITION_ID`, and `PLANNING_PACK_PRIVATE_FILE_SHA256` — bind explicit approval to the exact manifest edition and artifact.
+- `NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL=https://...` — HTTPS checkout destination with no embedded username or password. Runtime ignores it unless every manifest, artifact, private-delivery, activation, and owner-approval gate agrees.
 
 Designer Pattern Preflight:
 
@@ -105,3 +106,56 @@ Materially modified:
 - Active $9 preflight copy was updated to $39. Historical ledger and SQL fixture values were not rewritten except where current contract tests require the live $39 amount.
 - No final protected StitchProof experiment outcome was present in the reviewed evidence. Its historical gates and records remain unchanged.
 - The planning-pack PDF is already in public repository history, which conflicts with treating that exact artifact as an undisclosed paid download. Checkout therefore remains technically gated and operationally blocked pending a new private revision.
+
+## 2026-08-25 documentation and production reconciliation
+
+This section appends current evidence without rewriting the implementation tests and historical records above.
+
+### Verified repository and production state
+
+- The canonical remote is `https://github.com/raiderj77/fibertools.git`; `main` is the default and production branch.
+- PR #40, **Focus FiberTools traffic and revenue paths**, merged as `691f9dfd9453c68ae36d7e8780b8f1daa3b0771d`.
+- PR #41, **fix: label project cost calculator controls**, merged as `791b10d1ca960695b03496831040e43ea6505974`.
+- PR #42, **Fix stale Amazon product link and restore release build**, merged as `e67c27714f5353b14e6ae13f6b1291f677fdbaf3`.
+- Vercel deployment `dpl_EbDxqPo6occUQtSYv4J9aQ1Qm174` was observed READY for production from #42 with the FiberTools production aliases. Direct checks returned 200 for the homepage and the two repaired buyer pages; the retired ASIN was absent and their replacement Amazon search destinations retained the FiberTools tag.
+- The direct-main article commit before #42 failed the duplicate-slug content gate even while the live revenue monitor remained green against the earlier deployment. Live monitor health and current source deployability must therefore remain separate evidence.
+
+### Stale operating documentation corrected
+
+- Repository instructions now match the current intentional public author identity and prohibit invented credentials rather than all personal-name attribution.
+- The obsolete 30+ years expertise claim, blanket `X-Frame-Options: DENY` policy, mandatory sister-site footer rule, single-variable deployment description, and create-next-app README directions were removed.
+- The README now documents the three homepage paths, featured calculators, embed boundary, commercial states, validation commands, environment contract, and publication freeze.
+- `.env.example` now uses fail-closed defaults and fake placeholders for every active application/offer variable. `tests/environment-docs.test.mjs` enforces parity with `docs/fibertools-deployment-environment.md`.
+- Directly verified stale facts in `public/llms.txt` and `public/llms-full.txt` were corrected without changing buyer-page review dates or rewriting unreviewed content.
+
+### Commercial state and remaining actions
+
+- Fiber Project Planning Pack checkout remains **disabled** until a new sellable revision is privately stored, delivery and customer operations are verified, and the owner explicitly approves activation.
+- Designer Pattern Preflight remains **inquiry-only** until provider identity/mode, migration, webhook, retention, abuse protection, fulfillment, and a separately authorized disposable live test are verified.
+- White-label pricing remains **interest-only**. Checkout, subscriptions, tenant accounts, unbranded delivery, and customer provisioning do not exist.
+- Main branch protection and required build/quality checks remain an owner-controlled repository action.
+- Production Node/CI alignment and the non-blocking JavaScript module-type warnings remain release-hardening work.
+
+### Publication decision date
+
+No new public calculator, general tool, article, guide, paid service, or major feature before November 20, 2026 unless an explicit owner-approved publication record exists. Bug fixes, security fixes, legal corrections, factual corrections, and broken-link repairs remain permitted.
+
+November 20, 2026 is the next review date, not an automatic release. The owner should use verified qualified traffic, repeat usage, privacy-safe offer events, affiliate outcomes, support load, provider readiness, privacy risk, and operating capacity to record a continue, narrow, or lift decision.
+
+### 2026-08-25 final-completion branch evidence
+
+This later subsection supersedes only the current-state statements above; it does not rewrite earlier implementation records.
+
+- Work used isolated branch `codex/fibertools-final-completion-2026-08-25` from exact `e67c27714f5353b14e6ae13f6b1291f677fdbaf3`. The canonical dirty checkout and protected StitchProof state were excluded.
+- A new owner-private edition, `FT-PP-V2-2026-08-25`, now exists outside Git. It is 12 US Letter pages with 141 fillable fields and 141 widget appearance streams. A synthetic fill/read-back passed, all 12 pages rendered for visual review, metadata identifies only FiberTools, and prohibited affiliate/customer/personal content checks passed.
+- The private edition SHA-256 is `e5407e856ce539b1e751f8e36388c3d66d3151a649e6e61a97036ce9cbdd89a6`; the historical public artifact SHA-256 is `0304f184c8eb8a561439c862556e0e7eda8d318cfaade2baaf3541402ee226ed`.
+- `config/planning-pack-release-manifest.json` records the edition and expected checksum while upload remains `NOT_UPLOADED`, owner verification remains `PENDING`, and checkout remains `DISABLED`. Both the verifier and the runtime page block until edition, checksum, upload, delivery, enabled release states, checkout URL, and owner attestations agree.
+- Designer Preflight now binds exact checkout mode, provider formats, migration/database/retention/outbox attestations, the exact webhook event list, notification delivery, a confirmed supported durable-abuse provider, and confirmed fulfillment capacity into the same runtime contract used by its 20-check verifier. Documented placeholders and reserved example destinations fail closed; the public inquiry fallback remains active.
+- A manifest-backed publication freeze now protects the current public-route, tool, guide, quarantined-article, and price-bearing-source baselines. Tests reproduce the removed blanket duplicate and block unapproved route growth, slug/title/canonical duplicate growth, freeze-dated articles, and scheduled content workflows capable of pushing to `main`.
+- Homepage visible review text, WebApplication JSON-LD, CollectionPage JSON-LD, and sitemap now use the substantiated August 22 review date through a central registry. The unchanged FAQ retains April 16.
+- Built-output tests verify all six focused pages render one answer/calculator/method/example/limitations/references/FAQ/next-action journey with contextual affiliate recommendations last. The gate found and prompted completion of missing Circle and Amigurumi examples and limitations.
+- Live production remained on deployment `dpl_EbDxqPo6occUQtSYv4J9aQ1Qm174` from `e67c277`. All 13 requested routes returned 200 with self/canonical intent, zero console errors, and no 390-pixel overflow. No production deployment occurred from this branch.
+- The live Amigurumi sphere reproduced an off-by-one defect: selected total 12 rendered through round 13. A regression now proves the generator ends on the selected total for even and odd values; the fix is branch-only until an authorized merge/deploy.
+- Embed hydrated isolation, keyboard operation, noindex header, framing policy, cookie absence, mobile reflow, and zero Cache Storage responses passed. Raw Next RSC data still serializes non-hydrated footer strings, the root AdSense verification meta remains, and an installed worker may mediate static resources from HTTP cache; these qualifications are not represented as zero-footprint claims.
+- `npm ci`, the complete requested existing/new suites, TypeScript, content/predeploy, production build with 100 generated route entries, both dependency audits, and `git diff --check` passed. `npm audit` and `npm audit --omit=dev` each reported zero vulnerabilities.
+- Planning Pack and Designer Preflight readiness commands intentionally returned nonzero fail-closed results with no secrets printed. The next Planning Pack actions are exact artifact upload, non-customer delivery retrieval, owner approval/operations decisions, checkout URL configuration, merge/deploy authorization, and production verification.
