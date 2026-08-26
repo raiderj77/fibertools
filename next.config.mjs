@@ -45,6 +45,29 @@ const embedPageSecurityHeaders = [
   },
 ];
 
+const planningPackDownloadHeaders = [
+  {
+    key: 'Cache-Control',
+    value: 'no-store, max-age=0',
+  },
+  {
+    key: 'Pragma',
+    value: 'no-cache',
+  },
+  {
+    key: 'Referrer-Policy',
+    value: 'no-referrer',
+  },
+  {
+    key: 'X-Robots-Tag',
+    value: 'noindex, nofollow, noarchive',
+  },
+  {
+    key: 'Content-Security-Policy',
+    value: "default-src 'none'; frame-ancestors 'none'",
+  },
+];
+
 const nextConfig = {
   trailingSlash: false,
   compress: true,
@@ -65,6 +88,10 @@ const nextConfig = {
       {
         source: '/embed/:path*',
         headers: embedPageSecurityHeaders,
+      },
+      {
+        source: '/api/planning-pack/:path*',
+        headers: planningPackDownloadHeaders,
       },
     ];
   },

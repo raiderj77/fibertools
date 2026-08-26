@@ -31,12 +31,15 @@ Current state: **checkout disabled**.
 
 - [x] The tracked public-history PDF is documented as ineligible for private paid delivery.
 - [x] Runtime fails closed unless the release manifest, exact edition/checksum, private upload and delivery, owner approval, enabled release states, and a non-placeholder HTTPS checkout destination all agree.
+- [x] The server-only checkout and delivery foundation additionally fails closed unless the Stripe account, mode, active Payment Link, immediate card-only payment configuration, disabled adjustable quantity and promotion codes, redirect, release metadata, one-time Price, USD $17 base price, and exact private Supabase object all match; delivery rechecks the stored byte size and SHA-256 before returning the PDF.
 - [x] Generated distinct edition `FT-PP-V2-2026-08-25` outside Git: 12 US Letter pages, 141 fillable fields, 141 appearance streams, synthetic fill/read-back passed, and all 12 pages rendered for visual review.
 - [x] Bound the edition to the public release manifest with SHA-256 `e5407e856ce539b1e751f8e36388c3d66d3151a649e6e61a97036ce9cbdd89a6`; the historical public artifact has a different SHA-256.
-- [ ] Put that revision in owner-approved private storage and verify delivery with non-customer test data.
+- [x] Uploaded the exact revision to owner-approved private Supabase storage in a non-public bucket; the provider UI confirmed one PDF object with the expected name, MIME type, and size.
+- [ ] Retrieve the exact object through the production delivery path and verify its checksum with non-customer test data.
+- [ ] Verify the key resolves to the code-bound canonical FiberTools Stripe account, then configure the Payment Link ID, one-time Price ID, private bucket, and exact object path without copying keys or private-storage values into source or reports.
 - [ ] Approve customer terms, support, refund handling, fulfillment ownership, and checkout provider.
 - [ ] Record explicit owner activation approval.
-- [ ] Only after every prior item: configure `PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED=true`, `PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED=true`, `PLANNING_PACK_OWNER_APPROVAL_CONFIRMED=true`, the exact edition/checksum bindings, and the approved `NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL` without exposing provider state or credentials.
+- [ ] Only after every prior item: configure `PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED=true`, `PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED=true`, `PLANNING_PACK_OWNER_APPROVAL_CONFIRMED=true`, the exact edition/checksum bindings, and the exact server-only Stripe Payment Link ID, URL, Price ID, bucket, and object path without exposing credentials.
 - [ ] Verify the exact production deployment and delivery path after an authorized release.
 
 Do not treat a checkout URL, environment value, product page, or successful build as delivery readiness.

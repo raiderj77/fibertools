@@ -54,7 +54,8 @@ Planning Pack:
 
 - `PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED=true` and `PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED=true` — server-only confirmations. **Keep unset or false until the exact new revision is in approved private delivery storage and retrieval is verified.**
 - `PLANNING_PACK_OWNER_APPROVAL_CONFIRMED=true`, `PLANNING_PACK_EDITION_ID`, and `PLANNING_PACK_PRIVATE_FILE_SHA256` — bind explicit approval to the exact manifest edition and artifact.
-- `NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL=https://...` — HTTPS checkout destination with no embedded username or password. Runtime ignores it unless every manifest, artifact, private-delivery, activation, and owner-approval gate agrees.
+- `FIBERTOOLS_STRIPE_ACCOUNT_ID`, `PLANNING_PACK_STRIPE_PAYMENT_LINK_ID`, `PLANNING_PACK_STRIPE_PAYMENT_LINK_URL`, and `PLANNING_PACK_STRIPE_PRICE_ID` — server-only provider and offer bindings. The first-party checkout gate retrieves the account and exact active Payment Link before redirecting; it remains unavailable unless every manifest, artifact, delivery, activation, and owner-approval gate agrees.
+- `PLANNING_PACK_STORAGE_BUCKET` and `PLANNING_PACK_STORAGE_OBJECT_PATH` — exact non-public Supabase object binding. Delivery rechecks the stored PDF byte size and SHA-256 after a paid session is verified.
 
 Designer Pattern Preflight:
 

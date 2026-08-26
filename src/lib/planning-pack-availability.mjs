@@ -1,28 +1,14 @@
-import { normalizeCheckoutUrl } from "./offer-links.mjs";
+import { getPlanningPackDeliveryEnvironmentReadiness } from "./planning-pack-delivery-config.mjs";
 
 const EXPECTED_PRODUCT_NAME = "Fiber Project Planning Pack";
 const EXPECTED_CREATION_DATE = "2026-08-25";
 const EXPECTED_EDITION_ID = "FT-PP-V2-2026-08-25";
 const EXPECTED_PAGE_COUNT = 12;
 const EXPECTED_PRICE_USD = 17;
+const EXPECTED_PRIVATE_ARTIFACT_BYTES = 134356;
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
-
-function isUsableCheckoutUrl(value) {
-  const normalized = normalizeCheckoutUrl(value);
-  if (!normalized) return null;
-
-  const url = new URL(normalized);
-  const hostname = url.hostname.toLowerCase();
-  const placeholderHost =
-    hostname === "localhost" ||
-    hostname.endsWith(".localhost") ||
-    hostname.endsWith(".invalid") ||
-    hostname.endsWith(".test") ||
-    hostname.endsWith(".example");
-  const placeholderText = /replace[_-]?me|placeholder/i.test(normalized);
-
-  return placeholderHost || placeholderText ? null : normalized;
-}
+export const PLANNING_PACK_CHECKOUT_ROUTE =
+  "https://fibertools.app/api/planning-pack/checkout";
 
 function isRecordedApproval(value, now) {
   if (typeof value !== "string" || !value) return false;
@@ -32,8 +18,8 @@ function isRecordedApproval(value, now) {
 }
 
 /**
- * Return the checkout URL only when the immutable release record, server-side
- * confirmations, exact artifact binding, and owner approval all agree.
+ * Return the first-party checkout gate only when the immutable release record,
+ * complete server configuration, exact artifact binding, and owner approval agree.
  */
 export function getPlanningPackCheckoutUrl({ manifest, env = {}, now = new Date() }) {
   const edition = manifest?.edition ?? {};
@@ -41,7 +27,8 @@ export function getPlanningPackCheckoutUrl({ manifest, env = {}, now = new Date(
   const artifact = manifest?.privateArtifact ?? {};
   const approval = manifest?.ownerApproval ?? {};
   const checksum = artifact.sha256;
-  const checkoutUrl = isUsableCheckoutUrl(env.NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL);
+  const deliveryEnvironmentReady =
+    getPlanningPackDeliveryEnvironmentReadiness(env).ready;
 
   const releaseRecordMatches =
     manifest?.publicProductName === EXPECTED_PRODUCT_NAME &&
@@ -57,6 +44,7 @@ export function getPlanningPackCheckoutUrl({ manifest, env = {}, now = new Date(
     typeof checksum === "string" &&
     SHA256_PATTERN.test(checksum) &&
     artifact.expectedSha256 === checksum &&
+    artifact.byteSize === EXPECTED_PRIVATE_ARTIFACT_BYTES &&
     typeof historical.sha256 === "string" &&
     SHA256_PATTERN.test(historical.sha256) &&
     historical.sha256 !== checksum &&
@@ -86,7 +74,8 @@ export function getPlanningPackCheckoutUrl({ manifest, env = {}, now = new Date(
     artifactMatches &&
     privateDeliveryReady &&
     ownerApproved &&
-    activationEnabled
-    ? checkoutUrl
+    activationEnabled &&
+    deliveryEnvironmentReady
+    ? PLANNING_PACK_CHECKOUT_ROUTE
     : null;
 }

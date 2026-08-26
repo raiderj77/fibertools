@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         Privacy Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: August 16, 2026
+        Last updated: August 25, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -58,8 +58,8 @@ export default function PrivacyPolicyPage() {
           <p>
             FiberTools calculators run entirely in your browser. We do not send
             calculator inputs, results, or calculations to a server. The optional
-            paid Designer Pattern Preflight pilot is a separate manual service and
-            collects only the information described below. Here is what we collect:
+            paid Planning Pack and Designer Pattern Preflight are separate services
+            and use only the information described below. Here is what we collect:
           </p>
           <p>
             <strong>Analytics (Google Analytics 4):</strong> We use GA4 to
@@ -104,6 +104,14 @@ export default function PrivacyPolicyPage() {
             Google Drive, Dropbox, or OneDrive share link. FiberTools does not accept a direct upload
             or place the pattern in a public storage bucket during this pilot. Do not paste pattern text
             into the comments field.
+          </p>
+          <p>
+            <strong>Fiber Project Planning Pack purchase:</strong> Checkout occurs on Stripe. After
+            payment, FiberTools receives the Checkout Session ID in Stripe&apos;s return URL and retrieves
+            that session to verify the account, offer, and paid status. A Stripe Checkout Session can
+            include contact or billing details entered at checkout, but FiberTools application code does
+            not use those details to deliver the pack, place them in analytics, or copy them into a
+            FiberTools customer database. Supabase privately stores the product PDF, not a purchaser row.
           </p>
           <p>
             <strong>Local Storage:</strong> Some tools save your preferences
@@ -166,6 +174,7 @@ export default function PrivacyPolicyPage() {
             <li>Monitor site performance and fix errors</li>
             <li>Display relevant advertising to support the free self-service calculator library</li>
             <li>Record fixed, consented interactions with the optional Fiber Project Planning Pack page and checkout action</li>
+            <li>Verify payment and privately deliver the optional Fiber Project Planning Pack</li>
             <li>Accept payment for, fulfill, deliver, and support the optional Designer Pattern Preflight</li>
           </ul>
           <p>
@@ -188,9 +197,12 @@ export default function PrivacyPolicyPage() {
             The Fiber Project Planning Pack page records only fixed page-visit,
             checkout-click, or launch-interest events after analytics consent. These
             events do not contain calculator inputs, results, project names, email
-            addresses, or free-form content. If checkout is enabled, the external
-            checkout and delivery provider shown when you follow the purchase link
-            processes the information you submit under its own privacy policy.
+            addresses, or free-form content. If checkout is enabled, Stripe processes
+            the payment information you submit under its own privacy policy. After
+            payment, FiberTools receives the Stripe Checkout Session ID in the return
+            URL, verifies that the session is paid and matches the approved offer, and
+            uses it only to provide the private PDF download. FiberTools does not put
+            the Checkout Session ID or product-file contents into analytics events.
           </p>
         </section>
 
@@ -251,13 +263,18 @@ export default function PrivacyPolicyPage() {
               )
             </li>
             <li>
-              <strong>Stripe</strong>, payment processing for the optional Designer Pattern Preflight.
-              FiberTools sends Stripe the internal submission ID and customer email needed for checkout,
-              but not the pattern link, pattern content, comments, or report findings.
+              <strong>Stripe</strong>, payment processing for the optional Fiber Project Planning Pack
+              and Designer Pattern Preflight. For the Planning Pack, FiberTools uses the returned Checkout
+              Session ID and the offer and payment fields in the retrieved session to verify delivery; it
+              does not use session contact or billing details for analytics or a FiberTools customer database.
+              For Designer Pattern Preflight, FiberTools sends Stripe the internal submission ID and customer
+              email needed for checkout, but not the pattern link, pattern content, comments, or report findings.
             </li>
             <li>
-              <strong>Supabase</strong>, private database storage for Designer Pattern Preflight submission
-              details and payment status. Direct anonymous and signed-in browser access to these tables is disabled.
+              <strong>Supabase</strong>, private object storage for the Planning Pack PDF and private database
+              storage for Designer Pattern Preflight submission details and payment status. The Planning Pack
+              object is read server-side only after payment verification; its bucket is not public. Direct
+              anonymous and signed-in browser access to the Designer Pattern Preflight tables is disabled.
             </li>
           </ul>
         </section>
@@ -327,7 +344,7 @@ export default function PrivacyPolicyPage() {
             <li><strong>Identifiers:</strong> IP address, browser type, and device identifiers collected through consented analytics and, if enabled, advertising.</li>
             <li><strong>Internet or network activity:</strong> Pages visited, tools used, time on site, referring URLs.</li>
             <li><strong>Commercial information:</strong> Aggregate interactions with Amazon product links, such as the page, placement, and general product category.</li>
-            <li><strong>Optional service information:</strong> Name, email, pattern title and type, share link, consent record, payment status, and fulfillment status when you purchase Designer Pattern Preflight. A planning-pack checkout provider may separately process purchase and delivery information under the policy shown at checkout.</li>
+            <li><strong>Optional product and service information:</strong> For a Planning Pack purchase, FiberTools receives the Stripe Checkout Session ID and retrieves the offer and payment fields needed to verify and deliver the PDF; the application does not copy session contact or billing details into a FiberTools customer database. For Designer Pattern Preflight, FiberTools stores the name, email, pattern title and type, share link, consent record, payment status, and fulfillment status described above.</li>
             <li><strong>Inferred data:</strong> Interests or preferences that analytics providers and, if enabled, advertising providers may infer from browsing behavior, subject to your consent choices.</li>
           </ul>
 

@@ -1,12 +1,14 @@
 import { readFile } from "node:fs/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";
+import { getPlanningPackDeliveryEnvironmentReadiness } from "../src/lib/planning-pack-delivery.mjs";
 
 const DEFAULT_REPOSITORY_ROOT = fileURLToPath(new URL("../", import.meta.url));
 const MANIFEST_PATH = "config/planning-pack-release-manifest.json";
 const PUBLIC_COPY_PATH = "src/app/fiber-project-planning-pack/page.tsx";
 const EXPECTED_EDITION_ID = "FT-PP-V2-2026-08-25";
 const EXPECTED_PAGE_COUNT = 12;
+const EXPECTED_PRIVATE_ARTIFACT_BYTES = 134356;
 const SHA256_PATTERN = /^[a-f0-9]{64}$/;
 
 function result(id, label, passed, detail) {
@@ -29,7 +31,14 @@ function parseCheckoutUrl(value) {
       hostname.endsWith(".invalid") ||
       hostname.endsWith(".test") ||
       hostname.endsWith(".example");
-    return placeholderHost || /replace[_-]?me|placeholder/i.test(url.toString())
+    return placeholderHost ||
+      /replace[_-]?me|placeholder/i.test(url.toString()) ||
+      url.protocol !== "https:" ||
+      url.hostname.toLowerCase() !== "buy.stripe.com" ||
+      url.port ||
+      url.search ||
+      url.hash ||
+      !/^\/[A-Za-z0-9_-]+$/.test(url.pathname)
       ? null
       : url;
   } catch {
@@ -77,7 +86,8 @@ export async function verifyPlanningPackReadiness(options = {}) {
   const historical = manifest.historicallyPublicEdition ?? {};
   const privateArtifact = manifest.privateArtifact ?? {};
   const ownerApproval = manifest.ownerApproval ?? {};
-  const checkoutUrl = parseCheckoutUrl(env.NEXT_PUBLIC_PLANNING_PACK_CHECKOUT_URL);
+  const checkoutUrl = parseCheckoutUrl(env.PLANNING_PACK_STRIPE_PAYMENT_LINK_URL);
+  const deliveryEnvironment = getPlanningPackDeliveryEnvironmentReadiness(env);
   const privateChecksum = privateArtifact.sha256;
   const historicalChecksum = historical.sha256;
   const checksumReady =
@@ -113,8 +123,9 @@ export async function verifyPlanningPackReadiness(options = {}) {
       "A private artifact SHA-256 checksum is recorded",
       checksumReady &&
         privateArtifact.expectedSha256 === privateChecksum &&
+        privateArtifact.byteSize === EXPECTED_PRIVATE_ARTIFACT_BYTES &&
         env.PLANNING_PACK_PRIVATE_FILE_SHA256 === privateChecksum,
-      "Requires matching manifest and environment SHA-256 values; placeholders are rejected."
+      "Requires the exact byte size plus matching manifest and environment SHA-256 values; placeholders are rejected."
     ),
     result(
       "private-upload-confirmed",
@@ -126,17 +137,35 @@ export async function verifyPlanningPackReadiness(options = {}) {
     ),
     result(
       "valid-https-checkout-url",
-      "Checkout uses a valid HTTPS URL and is enabled in the manifest",
+      "Checkout uses an exact Stripe Payment Link URL and is enabled in the manifest",
       manifest.releaseStatus === "ENABLED" &&
         manifest.checkoutActivationStatus === "ENABLED" &&
         checkoutUrl?.protocol === "https:",
-      "Checkout remains blocked until the release is enabled and an HTTPS destination is configured."
+      "Checkout remains blocked until the release is enabled and an exact buy.stripe.com destination is configured."
     ),
     result(
       "checkout-url-has-no-credentials",
       "Checkout URL contains no embedded credentials",
       checkoutUrl !== null && !checkoutUrl.username && !checkoutUrl.password,
       "Embedded URL usernames and passwords are always rejected."
+    ),
+    result(
+      "stripe-provider-identity",
+      "Stripe mode, key, and expected account ID are configured",
+      deliveryEnvironment.checks.stripeProviderIdentity,
+      "Configuration must be mode-matched and bind delivery to the intended Stripe account; provider identity is still verified at request time."
+    ),
+    result(
+      "stripe-offer-binding",
+      "The exact Stripe Payment Link URL, ID, one-time Price ID, and site origin are configured",
+      deliveryEnvironment.checks.stripeOfferBinding,
+      "The server-only bindings must be non-placeholder values; the checkout gate retrieves and verifies the provider objects at request time."
+    ),
+    result(
+      "private-storage-binding",
+      "The private Supabase bucket and PDF object path are configured",
+      deliveryEnvironment.checks.privateStorage,
+      "Requires a valid Supabase origin and server credential plus one non-placeholder private bucket and PDF object path."
     ),
     result(
       "edition-differs-from-public-history",

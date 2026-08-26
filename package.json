@@ -20,6 +20,7 @@
     "test:designer-preflight": "node --test tests/designer-pattern-preflight.test.mjs tests/designer-preflight-sql-contract.test.mjs",
     "test:focus-revenue": "node --test tests/amigurumi-shapes-rounds.test.mjs tests/embed-pilot.test.mjs tests/focus-revenue-offers.test.mjs tests/gauge-calculations.test.mjs tests/internal-links.test.mjs",
     "test:offer-readiness": "node --test tests/planning-pack-readiness.test.mjs tests/designer-preflight-readiness.test.mjs",
+    "test:planning-pack-delivery": "node --test tests/planning-pack-delivery.test.mjs",
     "verify:planning-pack-readiness": "node scripts/verify-planning-pack-readiness.mjs",
     "verify:designer-preflight-readiness": "node scripts/verify-designer-preflight-readiness.mjs",
     "test:publication-freeze": "node --test tests/publication-freeze.test.mjs",

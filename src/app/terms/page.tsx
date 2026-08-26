@@ -29,7 +29,7 @@ export default function TermsPage() {
         Terms of Use
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: August 16, 2026
+        Last updated: August 25, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -76,10 +76,13 @@ export default function TermsPage() {
           </p>
           <p>
             The pack is a general organizational aid, not a pattern, calculator,
-            professional instruction, or guarantee of project results. Checkout,
-            digital delivery, and any purchase-specific refund terms are provided by
-            the checkout provider identified at the time of purchase. When checkout
-            is unavailable, the website shows a contact action and does not accept payment.
+            professional instruction, or guarantee of project results. Stripe processes
+            checkout. After successful payment, Stripe returns the purchaser to FiberTools,
+            where FiberTools verifies the paid Checkout Session and provides the approved
+            private PDF as a digital download. If the download does not complete, contact
+            hello@fibertools.app. Any refund must be confirmed through Stripe; a download
+            or website message is not confirmation of a refund. When checkout is unavailable,
+            the website shows a contact action and does not accept payment.
           </p>
         </section>
 
