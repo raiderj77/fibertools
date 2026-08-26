@@ -197,7 +197,7 @@ export default function BestYarnForBeginnersPage() {
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Best value, 1,020 yards per skein</td>
                   <td className="px-4 py-3">
-                    <a href={amazonProductUrl("B0CBPXTSB8")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
+                    <a href={amazonSearchUrl("Lion Brand Pound of Love yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">

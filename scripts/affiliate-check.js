@@ -155,10 +155,10 @@ assert(!/\brel="[^"]*\bsponsored\b/.test(privacyLink), "Amazon Privacy Notice mu
 assert(/\brel="[^"]*\bnoopener\b/.test(privacyLink), "Amazon Privacy Notice must retain rel=noopener");
 assert(/\brel="[^"]*\bnoreferrer\b/.test(privacyLink), "Amazon Privacy Notice must retain rel=noreferrer");
 
-for (const retiredAsin of ["B000XZS3AO", "B000XZSGEU", "B000XZS3RQ"]) {
+for (const retiredAsin of ["B000XZS3AO", "B000XZSGEU", "B000XZS3RQ", "B0CBPXTSB8"]) {
   assert(!source.includes(retiredAsin), `Retired Amazon product ${retiredAsin} must not remain linked`);
 }
-for (const currentAsin of ["B0CBPXTSB8", "B00CB39PYQ", "B00114TCMQ"]) {
+for (const currentAsin of ["B00CB39PYQ", "B00114TCMQ"]) {
   assert(source.includes(currentAsin), `Verified Amazon product ${currentAsin} is missing`);
 }
 for (const retiredUrl of [
