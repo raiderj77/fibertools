@@ -11,10 +11,6 @@ const HEADERS = {
 };
 
 export async function GET() {
-  if (process.env.VERCEL_ENV !== "preview") {
-    return new Response("Not found.", { status: 404, headers: HEADERS });
-  }
-
   const readiness = getPlanningPackDeliveryEnvironmentReadiness(process.env);
   return Response.json(
     { ready: readiness.ready, checks: readiness.checks },
