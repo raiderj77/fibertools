@@ -98,6 +98,7 @@ npm run test:affiliate
 npm run test:gpc-consent
 npm run test:security
 npm run test:quality
+npm run test:publication-freeze
 npm run lint:content
 npm run lint:predeploy
 npx tsc --noEmit --incremental false
@@ -109,6 +110,10 @@ Use the smallest relevant focused suite while iterating, then run the release-ap
 ## Content and publication controls
 
 Current guide routes are implemented in application source. Markdown under `content/published` remains quarantined unless both the application allowlist and an explicit owner-approved publication record permit release. A filename or `status: published` value is not approval.
+
+Preserve rejected publication attempts as `status: draft` under tracked `content/quarantine/`; `content/drafts/` and `content/review-required/` are intentionally Git-ignored local staging areas. Quarantine is not served by the application. The August 27, 2026 Best Crochet Hooks draft is retained there because it duplicates the existing slug and lacks publication approval; its original claims still require factual review. Changing front matter alone while leaving a file in `content/published` does not remove it from the frozen inventory.
+
+Content writers must use a pull request and pass `npm run test:publication-freeze`, `npm run lint:content`, and `npm run lint:predeploy` before merge. CI runs after a commit is submitted; preventing an external publisher from writing directly to `main` also requires the repository's owner-controlled branch protection. Never change the pinned manifest baseline or invent an approval to make a publisher's output pass.
 
 `docs/stitchproof-distribution-kit.md` and all StitchProof experiment state are protected owner records. Do not open, modify, stage, summarize, or reinterpret them without explicit authorization for that exact work.
 
