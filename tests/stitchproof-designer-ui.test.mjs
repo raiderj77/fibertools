@@ -77,9 +77,9 @@ test("report is printable and excerpts remain an explicit opt-in", () => {
   assert.match(workspace, /Off by default/);
   assert.match(workspace, /window\.print\(\)/);
   assert.match(workspace, /exportIssuesCsv/);
-  assert.match(workspace, /exportProjectJson/);
+  assert.match(workspace, /serializeRecoveryBackup/);
   assert.match(workspace, /revisedVersion,/);
-  assert.match(workspace, /setRevisedVersion\(restored\.revisedVersion/);
+  assert.match(workspace, /setRevisedVersion\(restored\.draft\.revisedVersion/);
   assert.match(workspace, /application\/json/);
   assert.match(workspace, /text\/csv/);
   assert.match(workspace, /report\.versionChanges\.map/);
@@ -124,13 +124,14 @@ test("optional unsupported feedback sends only one closed category", () => {
 });
 
 test("commercial next actions stay truthful and separate", () => {
-  assert.match(workspace, /Designer Report — proposed \$9 one-time/);
-  assert.match(workspace, /Checkout is not open, no payment is being collected/);
+  assert.match(workspace, /Designer Report — \$9 one-time per project/);
+  assert.match(workspace, /New-project checkout is unavailable/);
+  assert.match(workspace, /including its revisions\. No subscription/);
   assert.match(workspace, /mailto:hello@fibertools\.app/);
   assert.match(workspace, /trackStitchProofEvent\("paid_report_interest_submitted"\)/);
   assert.match(workspace, /Count my \$9 report interest/);
   assert.doesNotMatch(workspace, /anonymous \$9|Anonymous \$9/);
-  assert.doesNotMatch(workspace, /Buy now|Purchase now|Start checkout/);
+  assert.match(workspace, /salesAvailable && accessStatus !== "paid"/);
   assert.match(workspace, /\/designer-pattern-preflight/);
   assert.match(workspace, /\$39 Designer Pattern Preflight pilot is a separate bounded manual review/);
 });
@@ -161,4 +162,51 @@ test("comparison and report analytics are invalidated or deduplicated locally", 
   assert.match(workspace, /view === "report" && hasReviewed && !analysis\.error/);
   assert.match(workspace, /comparisonMatchesDesigner/);
   assert.match(workspace, /scrollIntoView/);
+});
+
+test("paid output actions verify the same project and draft while raw JSON recovery stays free", () => {
+  for (const functionName of ["downloadCsv", "printReport"]) {
+    const start = workspace.indexOf(`async function ${functionName}()`);
+    const end = workspace.indexOf("\n  function ", start);
+    const body = workspace.slice(start, end < 0 ? undefined : end);
+    assert.match(body, /await verifyCurrentProject\(\)/);
+    assert.match(body, /purchaseGuardRef\.current\.isCurrent\(ticket\)/);
+    assert.match(body, /draftAtRequest !== JSON\.stringify\(latestDraftRef\.current\)/);
+  }
+  const backup = workspace.slice(workspace.indexOf("function downloadJson()"), workspace.indexOf("function applyRestoredProject"));
+  assert.match(backup, /serializeRecoveryBackup/);
+  assert.doesNotMatch(backup, /verifyCurrentProject|accessStatus|salesAvailable|analysis\.error/);
+  assert.match(workspace, /disabled=\{purchaseBusy \|\| accessStatus !== "paid"\}/);
+  assert.match(workspace, /Recovery JSON stays free and available without payment/);
+});
+
+test("checkout requires a current backup plus acknowledgement and preserves the original tab", () => {
+  assert.match(workspace, /if \(!salesAvailable \|\| !backupIsCurrent \|\| !recoveryAcknowledged \|\| purchaseBusy\) return/);
+  assert.match(workspace, /I saved the current recovery JSON somewhere private/);
+  assert.match(workspace, /target="_blank" rel="noopener noreferrer"/);
+  assert.doesNotMatch(workspace, /window\.location\s*=|location\.(?:assign|replace)\(/);
+  assert.match(workspace, /Existing purchases can still be verified/);
+  assert.match(workspace, /trackStitchProofEvent\("checkout_started"\)/);
+  assert.match(workspace, /checkoutOpenedRef\.current && !purchaseTrackedRef\.current/);
+  assert.match(workspace, /trackStitchProofEvent\("purchase_completed"\)/);
+});
+
+test("restoring or starting projects resets access and return queries provide no payment proof", () => {
+  const activate = workspace.slice(workspace.indexOf("function activateProjectIdentity"), workspace.indexOf("function ensureProjectIdentity"));
+  assert.match(activate, /purchaseGuardRef\.current\.activate\(identity\)/);
+  assert.match(activate, /setAccessStatus\("unverified"\)/);
+  assert.match(activate, /checkoutOpenedRef\.current = false/);
+  const restore = workspace.slice(workspace.indexOf("function applyRestoredProject"), workspace.indexOf("async function saveProjectOnDevice"));
+  assert.match(restore, /parseRecoveryBackup\(serialized\)/);
+  assert.match(restore, /activateProjectIdentity\(restored\.identity\)/);
+  assert.doesNotMatch(restore, /purchase_completed|setAccessStatus\("paid"\)|saveLocalProject/);
+  const newProject = workspace.slice(workspace.indexOf("function startNewProject"), workspace.indexOf("function reviewPattern"));
+  assert.match(newProject, /window\.confirm/);
+  assert.match(newProject, /createPurchaseIdentity\(\)/);
+  assert.doesNotMatch(newProject, /deleteLocalProject|saveLocalProject/);
+  assert.match(workspace, /This return page does not confirm payment/);
+  const returnInstructions = workspace.slice(workspace.indexOf("const checkoutReturn"), workspace.indexOf("if (!purchaseIdentityRef.current)"));
+  assert.doesNotMatch(returnInstructions, /trackStitchProofEvent|setAccessStatus|verifyStitchProofAccess/);
+  assert.match(globalStyles, /body\.stitchproof-printing-report \.stitchproof-preview-label/);
+  assert.match(globalStyles, /min-width: 0 !important/);
 });

@@ -96,10 +96,16 @@ export default function TermsPage() {
             StitchProof applies deterministic rules to supported US-terminology
             amigurumi round notation. The free checker remains available for up to
             20 rounds. The Designer workspace preview can check larger projects,
-            record user corrections, compare two versions, and create printer-friendly,
-            CSV, and JSON outputs in the browser. The proposed $9 Designer Report is
-            not currently for sale: checkout remains disabled and this preview does
-            not accept payment.
+            record user corrections, and compare two versions in the browser. When
+            checkout is available, the Designer Report has a $9 base price once for one pattern
+            project, including its revisions and report exports. Any applicable tax
+            and the final total are shown by Stripe before payment. It is not a
+            subscription. An unrelated pattern needs its own project purchase. The
+            free checker, on-screen preview, and private JSON backup remain available
+            without payment. If the purchase controls say checkout is unavailable,
+            you cannot start a new checkout through FiberTools. A previously opened
+            Stripe checkout may remain payable until it expires; closing new sales
+            does not itself cancel that session or issue a refund.
           </p>
           <p>
             Pattern text and project metadata are not uploaded to FiberTools by the
@@ -108,6 +114,23 @@ export default function TermsPage() {
             profile. Clearing browser data may permanently remove the project. JSON
             backup and restore are provided for portability; you are responsible for
             protecting exported files and any printer or cloud destination you select.
+          </p>
+          <p>
+            Before checkout, keep a private recovery backup. It contains the project
+            and its purchase recovery key, so anyone with that file may be able to
+            restore the project and its access. Stripe processes payment in a separate
+            tab; no pattern instructions or project title are sent to Stripe. FiberTools
+            verifies the payment online before enabling professional print/PDF and CSV
+            exports. A backup, checkout redirect, or local paid label alone does not
+            prove payment. Previously exported files can be kept and used offline.
+          </p>
+          <p>
+            Restoring the same project backup preserves its purchase reference for
+            revisions; it does not require another purchase. Clearing browser data
+            without a backup can remove the local recovery key. If access cannot be
+            verified, contact hello@fibertools.app with your Stripe receipt, not your
+            pattern or recovery key. Payment or refund questions are handled separately
+            from local project storage; a website message is not confirmation of a refund.
           </p>
           <p>
             A Designer QA Report records what the deterministic parser could and could

@@ -93,6 +93,10 @@ const nextConfig = {
         source: '/api/planning-pack/:path*',
         headers: planningPackDownloadHeaders,
       },
+      {
+        source: '/api/stitchproof/:path*',
+        headers: planningPackDownloadHeaders,
+      },
     ];
   },
   async redirects() {

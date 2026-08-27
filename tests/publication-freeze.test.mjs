@@ -51,8 +51,8 @@ test("publication approval is narrow and time-bound", () => {
     contentType: "PAID_OFFER",
     title: "StitchProof Designer Report and Version Compare",
     ownerApprovalDate: "2026-08-26",
-    reason: "Owner-approved 30-day validation of a private browser-local designer report and version comparison; checkout remains disabled.",
-    approvalReference: "Owner-approved Codex build prompt dated 2026-08-26",
+    reason: "Owner-approved private browser-local Designer Report: $9 per pattern project, including revisions and report exports, with no subscription or pattern uploads. Checkout remains disabled until payment, recovery, and non-customer delivery verification pass.",
+    approvalReference: "Owner-approved Codex build prompt and explicit per-project purchase-scope confirmation dated 2026-08-26; production activation requires separate verified release evidence",
     reviewOrExpirationDate: "2026-09-25",
     indexingApproved: true,
   }]);

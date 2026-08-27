@@ -58,7 +58,7 @@ export default function PrivacyPolicyPage() {
           <p>
             FiberTools calculators run entirely in your browser. We do not send
             calculator inputs, results, or calculations to a server. The optional
-            paid Planning Pack and Designer Pattern Preflight are separate services
+            paid Planning Pack, StitchProof report exports, and Designer Pattern Preflight are separate services
             and use only the information described below. Here is what we collect:
           </p>
           <p>
@@ -138,6 +138,26 @@ export default function PrivacyPolicyPage() {
             are included only when you explicitly select that option.
           </p>
           <p>
+            <strong>StitchProof report purchase:</strong> When you choose to buy or
+            verify access, FiberTools receives a random project reference and recovery
+            key over an encrypted connection. Its private payment records store a hash
+            of that key, Stripe payment references, and payment-processing state, not
+            the key itself, pattern text, project title, nickname, or stitch values.
+            FiberTools sends Stripe only opaque purchase references and checkout
+            configuration; payment details are entered on Stripe. Payment verification may retrieve Stripe billing data,
+            but application code does not copy those billing fields into the StitchProof
+            payment records or analytics. Payment records support purchase recovery and
+            reconciliation; deleting a browser-local project does not delete them.
+          </p>
+          <p>
+            A recovery backup contains your project and a private purchase recovery key.
+            Keep it private and do not send it to support. Browser-local saving remains
+            optional, and restoring a backup does not upload its pattern contents. An
+            online payment check is required for paid exports; already downloaded files
+            do not need an online check to open. Contact hello@fibertools.app for questions
+            about payment records without sending your pattern or recovery key.
+          </p>
+          <p>
             With analytics consent, StitchProof may send fixed event names and only
             closed aggregate fields such as a selected unsupported-notation category,
             a fixed parser-rule identifier, or a bounded range for how many rounds
@@ -203,6 +223,7 @@ export default function PrivacyPolicyPage() {
             <li>Display relevant advertising to support the free self-service calculator library</li>
             <li>Record fixed, consented interactions with the optional Fiber Project Planning Pack page and checkout action</li>
             <li>Measure fixed, consented StitchProof workflow events without pattern content or calculated stitch values</li>
+            <li>Verify and recover StitchProof project purchases without storing their patterns</li>
             <li>Verify payment and privately deliver the optional Fiber Project Planning Pack</li>
             <li>Accept payment for, fulfill, deliver, and support the optional Designer Pattern Preflight</li>
           </ul>
@@ -238,8 +259,10 @@ export default function PrivacyPolicyPage() {
             reports remain in the browser. Browser-local saving is off until you
             choose it, and you can delete the saved project or export a JSON backup.
             Browser print, CSV, and JSON exports do not upload those contents to
-            FiberTools. The proposed paid Designer Report checkout is not enabled, so
-            this release does not collect payment or purchase data for that report.
+            FiberTools. Optional paid report access uses the separate payment-verification
+            flow described above. New purchases remain unavailable unless the checkout
+            readiness checks pass; an existing purchase is verified independently of
+            whether new sales are open.
           </p>
         </section>
 

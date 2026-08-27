@@ -8,11 +8,18 @@ import {
   buildDesignerReportModel,
   comparePatternVersions,
   createCorrection,
-  createDesignerProject,
   exportIssuesCsv,
-  exportProjectJson,
-  restoreProjectJson,
 } from "@/lib/stitchproof-designer.mjs";
+import {
+  createProjectRequestGuard,
+  createPurchaseIdentity,
+  getCheckoutAvailability,
+  MAX_DRAFT_TEXT_LENGTH,
+  parseRecoveryBackup,
+  prepareStitchProofCheckout,
+  serializeRecoveryBackup,
+  verifyStitchProofAccess,
+} from "@/lib/stitchproof-purchase-client.mjs";
 import {
   trackStitchProofEvent,
   type StitchProofUnsupportedCategory,
@@ -40,6 +47,17 @@ type CorrectionRecord = {
   recordedAt?: string;
   original?: Record<string, unknown> | null;
   effective?: Record<string, unknown> | null;
+};
+
+type PurchaseIdentity = { projectId: string; claimSecret: string };
+type RecoveryDraft = {
+  metadata: MetadataState;
+  patternText: string;
+  initialStartingCount: string;
+  corrections: CorrectionRecord[];
+  previousVersion: string;
+  revisedVersion: string;
+  includeExcerpts: boolean;
 };
 
 type DesignerRound = {
@@ -272,6 +290,29 @@ export default function StitchProofDesignerWorkspace() {
   const lastReviewedFingerprintRef = useRef("");
   const lastTrackedComparisonRef = useRef("");
   const paidInterestSubmittedRef = useRef(false);
+  const [purchaseIdentity, setPurchaseIdentity] = useState<PurchaseIdentity | null>(null);
+  const purchaseIdentityRef = useRef<PurchaseIdentity | null>(null);
+  const purchaseGuardRef = useRef(createProjectRequestGuard());
+  const [salesAvailable, setSalesAvailable] = useState<boolean | null>(null);
+  const [accessStatus, setAccessStatus] = useState<"unverified" | "paid" | "pending" | "unavailable">("unverified");
+  const [purchaseBusy, setPurchaseBusy] = useState(false);
+  const [purchaseMessage, setPurchaseMessage] = useState("");
+  const [returnMessage, setReturnMessage] = useState("");
+  const [checkoutUrl, setCheckoutUrl] = useState<string | null>(null);
+  const [recoveryBackupSnapshot, setRecoveryBackupSnapshot] = useState<string | null>(null);
+  const [recoveryAcknowledged, setRecoveryAcknowledged] = useState(false);
+  const checkoutOpenedRef = useRef(false);
+  const purchaseTrackedRef = useRef(false);
+  const draft = useMemo<RecoveryDraft>(() => ({
+    metadata, patternText, initialStartingCount, corrections, previousVersion, revisedVersion, includeExcerpts,
+  }), [metadata, patternText, initialStartingCount, corrections, previousVersion, revisedVersion, includeExcerpts]);
+  const latestDraftRef = useRef(draft);
+  latestDraftRef.current = draft;
+  const recoveryBackupText = useMemo(() => {
+    if (!purchaseIdentity) return null;
+    try { return serializeRecoveryBackup({ draft, identity: purchaseIdentity }); } catch { return null; }
+  }, [draft, purchaseIdentity]);
+  const backupIsCurrent = recoveryBackupText !== null && recoveryBackupSnapshot === recoveryBackupText;
 
   const analysis = useMemo(
     () => analyzeDesignerPattern(patternText, startValue(initialStartingCount), corrections) as DesignerAnalysis,
@@ -316,6 +357,32 @@ export default function StitchProofDesignerWorkspace() {
       window.history.replaceState(null, "", "#designer");
       setView("designer");
     }
+  }, []);
+
+  useEffect(() => {
+    const checkoutReturn = new URLSearchParams(window.location.search).get("stitchproof");
+    if (checkoutReturn === "return" || checkoutReturn === "cancel") {
+      setReturnMessage(checkoutReturn === "return"
+        ? "Back from Stripe? Return to your original project tab, or restore your private recovery JSON here, then choose Verify payment. This return page does not confirm payment."
+        : "Checkout was closed. Return to your original project tab, or restore your private recovery JSON here. Verify payment before considering another checkout; this page does not confirm payment status.");
+    }
+    if (!purchaseIdentityRef.current) {
+      try {
+        const identity = createPurchaseIdentity() as PurchaseIdentity;
+        purchaseIdentityRef.current = identity;
+        purchaseGuardRef.current.activate(identity);
+        setPurchaseIdentity(identity);
+      } catch {
+        setPurchaseMessage("Secure project recovery is unavailable in this browser. No checkout was opened.");
+      }
+    }
+    let active = true;
+    getCheckoutAvailability().then((available: boolean) => {
+      if (active) setSalesAvailable(available);
+    }).catch(() => {
+      if (active) setSalesAvailable(false);
+    });
+    return () => { active = false; };
   }, []);
 
   useEffect(() => {
@@ -367,21 +434,117 @@ export default function StitchProofDesignerWorkspace() {
     }));
   }
 
+  function activateProjectIdentity(identity: PurchaseIdentity) {
+    purchaseGuardRef.current.activate(identity);
+    purchaseIdentityRef.current = identity;
+    setPurchaseIdentity(identity);
+    setAccessStatus("unverified");
+    setPurchaseBusy(false);
+    setCheckoutUrl(null);
+    setRecoveryBackupSnapshot(null);
+    setRecoveryAcknowledged(false);
+    setPurchaseMessage("");
+    checkoutOpenedRef.current = false;
+    purchaseTrackedRef.current = false;
+  }
+
+  function ensureProjectIdentity(): PurchaseIdentity {
+    if (purchaseIdentityRef.current) return purchaseIdentityRef.current;
+    const identity = createPurchaseIdentity() as PurchaseIdentity;
+    activateProjectIdentity(identity);
+    return identity;
+  }
+
   function buildCurrentProject() {
-    return createDesignerProject({
-      metadata: normalizedMetadata(metadata),
-      patternText,
-      initialStartingCount: startValue(initialStartingCount),
-      corrections,
-      previousVersion: {
-        patternText: previousVersion,
-        initialStartingCount: startValue(initialStartingCount),
-        metadata: {},
-        corrections: [],
-      },
-      revisedVersion,
-      includeExcerpts,
-    });
+    return JSON.parse(serializeRecoveryBackup({ draft: latestDraftRef.current, identity: ensureProjectIdentity() }));
+  }
+
+  async function verifyCurrentProject() {
+    try { ensureProjectIdentity(); } catch {
+      setPurchaseMessage("Secure project recovery is unavailable in this browser. No purchase access was confirmed.");
+      return null;
+    }
+    const ticket = purchaseGuardRef.current.capture();
+    if (!ticket) return null;
+    setPurchaseBusy(true);
+    try {
+      const result = await verifyStitchProofAccess(ticket.identity);
+      if (!purchaseGuardRef.current.isCurrent(ticket)) return null;
+      setAccessStatus(result.status);
+      if (result.status === "paid") {
+        setPurchaseMessage("Paid access verified for this pattern project, including its revisions and formatted report/CSV exports.");
+        if (checkoutOpenedRef.current && !purchaseTrackedRef.current) {
+          trackStitchProofEvent("purchase_completed");
+          purchaseTrackedRef.current = true;
+        }
+        return ticket;
+      }
+      setPurchaseMessage(result.status === "pending"
+        ? "Paid access is not confirmed yet. If you just paid, keep your recovery backup and verify again; do not pay again while confirmation is pending."
+        : "Purchase verification is unavailable right now. Keep your recovery backup and try again later.");
+      return null;
+    } catch {
+      if (purchaseGuardRef.current.isCurrent(ticket)) {
+        setAccessStatus("unverified");
+        setPurchaseMessage("Purchase access could not be checked. Keep your recovery backup and try again later.");
+      }
+      return null;
+    } finally {
+      if (purchaseGuardRef.current.isCurrent(ticket)) setPurchaseBusy(false);
+    }
+  }
+
+  async function prepareCheckout() {
+    if (!salesAvailable || !backupIsCurrent || !recoveryAcknowledged || purchaseBusy) return;
+    const ticket = purchaseGuardRef.current.capture();
+    if (!ticket) return;
+    setPurchaseBusy(true);
+    setCheckoutUrl(null);
+    try {
+      const result = await prepareStitchProofCheckout(ticket.identity);
+      if (!purchaseGuardRef.current.isCurrent(ticket)) return;
+      if (result.status === "paid") {
+        setAccessStatus("paid");
+        setPurchaseMessage("Paid access is already verified for this project. No new checkout is needed.");
+      } else {
+        setCheckoutUrl(result.checkoutUrl ?? null);
+        setPurchaseMessage("Checkout is ready. Open Stripe in a separate tab and keep this project tab open.");
+      }
+    } catch {
+      if (purchaseGuardRef.current.isCurrent(ticket)) {
+        setPurchaseMessage("Checkout could not be prepared. No payment status was confirmed. Keep your recovery backup and try again later.");
+      }
+    } finally {
+      if (purchaseGuardRef.current.isCurrent(ticket)) setPurchaseBusy(false);
+    }
+  }
+
+  function startNewProject() {
+    if (!window.confirm("Start a different pattern project? Download a recovery JSON backup first to keep the current pattern and any paid access. This replaces only the open workspace; saved device data and downloaded files are not deleted.")) return;
+    try {
+      activateProjectIdentity(createPurchaseIdentity() as PurchaseIdentity);
+      setMetadata(EMPTY_METADATA);
+      setPatternText("");
+      setInitialStartingCount("");
+      setCorrections([]);
+      setCorrectionForm(EMPTY_CORRECTION_FORM);
+      setPreviousVersion("");
+      setRevisedVersion("");
+      setComparison(null);
+      setIncludeExcerpts(false);
+      setHasReviewed(false);
+      setLocalSavingEnabled(false);
+      setWorkspaceDirty(false);
+      setFormMessage("");
+      setExportMessage("");
+      lastReviewedFingerprintRef.current = "";
+      lastTrackedComparisonRef.current = "";
+      lastTrackedReportGenerationRef.current = reportGenerationRef.current;
+      setStorageMessage("A different project is open in memory. Existing saved device data and backups were not deleted.");
+      changeView("designer");
+    } catch {
+      setStorageMessage("A secure new project could not be created. The current workspace was not changed.");
+    }
   }
 
   function reviewPattern(event: FormEvent<HTMLFormElement>) {
@@ -476,7 +639,22 @@ export default function StitchProofDesignerWorkspace() {
     }
   }
 
-  function downloadCsv() {
+  async function downloadCsv() {
+    if (purchaseBusy) return;
+    const draftAtRequest = JSON.stringify(latestDraftRef.current);
+    const requestTicket = purchaseGuardRef.current.capture();
+    setExportMessage("Checking paid access before creating the issue CSV…");
+    const ticket = await verifyCurrentProject();
+    if (!purchaseGuardRef.current.isCurrent(requestTicket)) return;
+    if (!ticket) {
+      setExportMessage("CSV export was not started because paid access was not confirmed. Check the project payment status above; recovery JSON is still available.");
+      return;
+    }
+    if (!purchaseGuardRef.current.isCurrent(ticket)) return;
+    if (draftAtRequest !== JSON.stringify(latestDraftRef.current)) {
+      setExportMessage("The draft changed while access was checked. Review the current draft and request the CSV again.");
+      return;
+    }
     try {
       const csv = exportIssuesCsv({
         analysis,
@@ -487,7 +665,7 @@ export default function StitchProofDesignerWorkspace() {
         includeExcerpts,
       });
       downloadText(`${safeFilename(metadata.title)}-issues.csv`, csv, "text/csv;charset=utf-8");
-      const message = "Issue CSV created locally. No pattern data was uploaded.";
+      const message = "Issue CSV download requested locally. Check your downloads; no pattern data was uploaded.";
       setExportMessage(message);
       setStorageMessage(message);
       trackStitchProofEvent("csv_downloaded");
@@ -500,12 +678,15 @@ export default function StitchProofDesignerWorkspace() {
 
   function downloadJson() {
     try {
+      const serialized = serializeRecoveryBackup({ draft: latestDraftRef.current, identity: ensureProjectIdentity() });
       downloadText(
-        `${safeFilename(metadata.title)}-backup.json`,
-        exportProjectJson(buildCurrentProject()),
+        `${safeFilename(metadata.title)}-recovery.json`,
+        serialized,
         "application/json;charset=utf-8",
       );
-      const message = "JSON backup created locally. Keep it somewhere private.";
+      setRecoveryBackupSnapshot(serialized);
+      setRecoveryAcknowledged(false);
+      const message = "Recovery JSON download requested. Check that the file was saved, and keep it private: it contains the full draft and the credential needed to recover this project's paid access.";
       setExportMessage(message);
       setStorageMessage(message);
       trackStitchProofEvent("json_backup_downloaded");
@@ -516,48 +697,27 @@ export default function StitchProofDesignerWorkspace() {
     }
   }
 
-  function applyRestoredProject(value: unknown) {
-    if (!value || typeof value !== "object") throw new Error("This is not a StitchProof project backup.");
-    const restored = restoreProjectJson(JSON.stringify(value)) as {
-      metadata?: Partial<MetadataState> & {
-        patternTitle?: string;
-        patternVersion?: string;
-        reviewDate?: string;
-        sectionLabels?: string[];
-      };
-      patternText?: string;
-      initialStartingCount?: number | null;
-      corrections?: CorrectionRecord[];
-      previousVersion?: string | { patternText?: string } | null;
-      revisedVersion?: string | null;
-      preferences?: { includeInstructionExcerpts?: boolean };
-    };
-
-    setMetadata({
-      title: restored.metadata?.patternTitle ?? restored.metadata?.title ?? "",
-      designerNickname: restored.metadata?.designerNickname ?? "",
-      version: restored.metadata?.patternVersion ?? restored.metadata?.version ?? "",
-      reviewedAt: restored.metadata?.reviewDate ?? restored.metadata?.reviewedAt ?? "",
-      sectionLabels: Array.isArray(restored.metadata?.sectionLabels)
-        ? restored.metadata.sectionLabels.join(", ")
-        : String(restored.metadata?.sectionLabels ?? "").replace(/\r?\n/g, ", "),
-      designerNotes: restored.metadata?.designerNotes ?? "",
-    });
-    setPatternText(restored.patternText ?? "");
-    setInitialStartingCount(restored.initialStartingCount == null ? "" : String(restored.initialStartingCount));
-    setCorrections(Array.isArray(restored.corrections) ? restored.corrections : []);
-    setPreviousVersion(
-      typeof restored.previousVersion === "string"
-        ? restored.previousVersion
-        : restored.previousVersion?.patternText ?? "",
-    );
-    setRevisedVersion(restored.revisedVersion ?? "");
-    setIncludeExcerpts(restored.preferences?.includeInstructionExcerpts === true);
-    setHasReviewed(true);
+  function applyRestoredProject(serialized: string) {
+    const restored = parseRecoveryBackup(serialized) as { draft: RecoveryDraft; identity: PurchaseIdentity; legacy: boolean };
+    activateProjectIdentity(restored.identity);
+    setMetadata(restored.draft.metadata);
+    setPatternText(restored.draft.patternText);
+    setInitialStartingCount(restored.draft.initialStartingCount);
+    setCorrections(restored.draft.corrections);
+    setPreviousVersion(restored.draft.previousVersion);
+    setRevisedVersion(restored.draft.revisedVersion);
+    setIncludeExcerpts(restored.draft.includeExcerpts);
+    setHasReviewed(false);
     setComparison(null);
+    setCorrectionForm(EMPTY_CORRECTION_FORM);
+    setFormMessage("Draft restored. Review it locally to refresh calculations and report preview.");
+    setExportMessage("");
     setWorkspaceDirty(false);
     lastReviewedFingerprintRef.current = "";
+    lastTrackedComparisonRef.current = "";
     lastTrackedReportGenerationRef.current = reportGenerationRef.current;
+    changeView("designer");
+    return restored.legacy;
   }
 
   async function saveProjectOnDevice() {
@@ -567,16 +727,27 @@ export default function StitchProofDesignerWorkspace() {
     }
     try {
       const project = buildCurrentProject();
+      const ticket = purchaseGuardRef.current.capture();
+      const draftAtRequest = JSON.stringify(latestDraftRef.current);
       const existing = await loadLocalProject();
+      if (!purchaseGuardRef.current.isCurrent(ticket)) return;
+      if (draftAtRequest !== JSON.stringify(latestDraftRef.current)) {
+        setStorageMessage("The draft changed before the local save started. Save again to keep the current draft; the existing saved project was not replaced.");
+        return;
+      }
       if (existing
-        && localFingerprint(JSON.stringify(existing)) !== localFingerprint(JSON.stringify(project))
+        && JSON.stringify(existing) !== JSON.stringify(project)
         && !window.confirm("Replace the existing saved StitchProof project on this device? Download a JSON backup first if you may need it.")) {
         setStorageMessage("Save canceled. The existing local project was not replaced.");
         return;
       }
       await saveLocalProject(project);
-      setWorkspaceDirty(false);
-      setStorageMessage("Project saved only in this browser on this device.");
+      if (!purchaseGuardRef.current.isCurrent(ticket)) return;
+      const changedDuringSave = draftAtRequest !== JSON.stringify(latestDraftRef.current);
+      setWorkspaceDirty(changedDuringSave);
+      setStorageMessage(changedDuringSave
+        ? "The earlier draft was saved locally, but you made more changes during the save. Save again to keep the latest draft."
+        : "Draft and recovery credential saved only in this browser on this device. Saving is manual; keep a private JSON backup in case browser data is cleared.");
     } catch (error) {
       setStorageMessage(error instanceof Error ? error.message : "The project could not be saved locally.");
     }
@@ -593,13 +764,22 @@ export default function StitchProofDesignerWorkspace() {
       return;
     }
     try {
+      const ticket = purchaseGuardRef.current.capture();
+      const draftAtRequest = JSON.stringify(latestDraftRef.current);
       const restored = await loadLocalProject();
+      if (!purchaseGuardRef.current.isCurrent(ticket)) return;
+      if (draftAtRequest !== JSON.stringify(latestDraftRef.current)) {
+        setStorageMessage("The open draft changed while the saved project was loading. Restore again if you want to replace it; the current draft was not changed.");
+        return;
+      }
       if (!restored) {
         setStorageMessage("No saved StitchProof project was found in this browser.");
         return;
       }
-      applyRestoredProject(restored);
-      setStorageMessage("The project was restored from this browser.");
+      const legacy = applyRestoredProject(JSON.stringify(restored));
+      setStorageMessage(legacy
+        ? "Legacy project restored from this browser. It has no payment recovery credential; this import is a new free project."
+        : "The draft and recovery identity were restored from this browser. Choose Verify payment to check any existing paid access.");
     } catch (error) {
       setStorageMessage(error instanceof Error ? error.message : "The local project could not be restored.");
     }
@@ -635,9 +815,18 @@ export default function StitchProofDesignerWorkspace() {
         setStorageMessage("JSON restore canceled. The current workspace was not changed.");
         return;
       }
-      const restored = restoreProjectJson(await file.text());
-      applyRestoredProject(restored);
-      setStorageMessage("JSON backup restored locally. Nothing was uploaded.");
+      const ticket = purchaseGuardRef.current.capture();
+      const draftAtRequest = JSON.stringify(latestDraftRef.current);
+      const serialized = await file.text();
+      if (!purchaseGuardRef.current.isCurrent(ticket)) return;
+      if (draftAtRequest !== JSON.stringify(latestDraftRef.current)) {
+        setStorageMessage("The open draft changed while the backup was loading. Restore again if you want to replace it; the current draft was not changed.");
+        return;
+      }
+      const legacy = applyRestoredProject(serialized);
+      setStorageMessage(legacy
+        ? "Legacy JSON restored locally. It has no payment recovery credential; this import is a new free project. Nothing was uploaded."
+        : "Recovery JSON restored locally. Nothing was uploaded. Choose Verify payment to check any existing paid access.");
     } catch (error) {
       setStorageMessage(error instanceof Error ? error.message : "That JSON backup could not be restored.");
     } finally {
@@ -645,11 +834,27 @@ export default function StitchProofDesignerWorkspace() {
     }
   }
 
-  function printReport() {
+  async function printReport() {
+    if (purchaseBusy) return;
+    const draftAtRequest = JSON.stringify(latestDraftRef.current);
+    const requestTicket = purchaseGuardRef.current.capture();
+    setExportMessage("Checking paid access before opening the formatted report print dialog…");
+    const ticket = await verifyCurrentProject();
+    if (!purchaseGuardRef.current.isCurrent(requestTicket)) return;
+    if (!ticket) {
+      setExportMessage("Printing was not started because paid access was not confirmed. Check the project payment status above; recovery JSON is still available.");
+      return;
+    }
+    if (!purchaseGuardRef.current.isCurrent(ticket)) return;
+    if (draftAtRequest !== JSON.stringify(latestDraftRef.current) || !document.getElementById("stitchproof-report")) {
+      setExportMessage("The draft or view changed while access was checked. Open the current report and request printing again.");
+      return;
+    }
     document.body.classList.add("stitchproof-printing-report");
     const cleanup = () => document.body.classList.remove("stitchproof-printing-report");
     window.addEventListener("afterprint", cleanup, { once: true });
     window.print();
+    setExportMessage("Print dialog requested. Choose your printer or Save as PDF; FiberTools cannot confirm that a file was saved.");
     window.setTimeout(cleanup, 1_000);
   }
 
@@ -704,8 +909,43 @@ export default function StitchProofDesignerWorkspace() {
       <div role="note" className="no-print mt-5 rounded-xl border border-sage-200 bg-sage-50 p-4 text-sm leading-relaxed text-bark-700 dark:border-sage-800 dark:bg-sage-900/20 dark:text-cream-300">
         <strong>Private by design:</strong> pattern text, titles, names, notes, corrections, and stitch values stay
         in this browser. FiberTools does not upload them or include them in analytics. Nothing is saved unless
-        you explicitly choose browser-local saving or download a backup.
+        you explicitly choose browser-local saving or download a backup. Payment checks send only a random project
+        ID and recovery credential; Stripe handles your payment details.
       </div>
+
+      <section id="project-access" aria-labelledby="project-access-heading" className="no-print mt-5 scroll-mt-24 rounded-2xl border border-bark-200 bg-white p-5 dark:border-bark-700 dark:bg-bark-800 sm:p-6">
+        <h2 id="project-access-heading" className="text-xl font-bold text-bark-800 dark:text-cream-100">Keep this project and recover access</h2>
+        {returnMessage ? <p role="note" className="mt-3 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-bark-700 dark:border-amber-800 dark:bg-amber-950/20 dark:text-cream-300">{returnMessage}</p> : null}
+        <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">Analysis, on-screen report preview, and recovery JSON are free. Formatted report printing/PDF and issue CSV exports have a $9 one-time price for one pattern project, including its revisions. No subscription. Stripe shows any applicable tax and the final total before payment. Start a different project for a different pattern.</p>
+        <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">Your draft starts in memory only. Keep a private recovery backup before paying or closing this tab. It contains your pattern and the credential used to recover paid access on this or another device; do not share it. FiberTools cannot recover a lost draft or lost recovery credential.</p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <button type="button" onClick={downloadJson} className="btn-secondary min-h-12">Download recovery JSON</button>
+          <button type="button" onClick={() => restoreInputRef.current?.click()} className="btn-secondary min-h-12">Restore recovery JSON</button>
+          <button type="button" onClick={() => void verifyCurrentProject()} disabled={purchaseBusy || !purchaseIdentity} className="btn-secondary min-h-12 disabled:cursor-not-allowed disabled:opacity-50">{purchaseBusy ? "Checking project access…" : "Verify payment"}</button>
+        </div>
+        <input ref={restoreInputRef} type="file" accept="application/json,.json" onChange={restoreJsonBackup} tabIndex={-1} className="hidden" aria-hidden="true" />
+        <p className="mt-3 text-sm font-semibold text-bark-700 dark:text-cream-200">{accessStatus === "paid" ? "Paid exports verified for this project." : "Paid exports have not been verified for this project."} {salesAvailable === null ? "Checking checkout availability…" : salesAvailable ? "New-project checkout is available." : "New-project checkout is unavailable right now. Existing purchases can still be verified."}</p>
+        {salesAvailable && accessStatus !== "paid" ? (
+          <div className="mt-4 rounded-xl border border-plum-200 bg-plum-50 p-4 dark:border-plum-800 dark:bg-plum-900/20">
+            <label className="flex items-start gap-3 text-sm leading-relaxed text-bark-700 dark:text-cream-200">
+              <input type="checkbox" checked={backupIsCurrent && recoveryAcknowledged} disabled={!backupIsCurrent || purchaseBusy} onChange={(event) => setRecoveryAcknowledged(event.target.checked)} className="mt-1 h-5 w-5 rounded border-bark-300 text-sage-600 focus:ring-sage-500 disabled:opacity-50" />
+              <span>I saved the current recovery JSON somewhere private and understand that I need it to restore this project and its paid access.</span>
+            </label>
+            {!backupIsCurrent ? <p className="mt-2 text-xs text-bark-600 dark:text-bark-400">Download the current recovery JSON first. If you edit the draft, download the updated backup before checkout.</p> : null}
+            {!checkoutUrl ? <button type="button" onClick={() => void prepareCheckout()} disabled={!backupIsCurrent || !recoveryAcknowledged || purchaseBusy} className="btn-primary mt-4 min-h-12 disabled:cursor-not-allowed disabled:opacity-50">Prepare $9 project checkout</button> : null}
+            {checkoutUrl && backupIsCurrent && recoveryAcknowledged ? (
+              <a href={checkoutUrl} target="_blank" rel="noopener noreferrer" onClick={() => {
+                if (!checkoutOpenedRef.current) trackStitchProofEvent("checkout_started");
+                checkoutOpenedRef.current = true;
+                setPurchaseMessage("Stripe opens in a separate tab. Keep this project tab open, then return here and choose Verify payment. Do not pay again while confirmation is pending.");
+              }} className="btn-primary mt-4 inline-flex min-h-12 items-center justify-center">Open $9 Stripe checkout in a new tab</a>
+            ) : null}
+            <p className="mt-3 text-xs leading-relaxed text-bark-600 dark:text-bark-400">Stripe shows any applicable tax and the final total before payment. After payment, return to this tab and choose Verify payment. Verification needs an internet connection and is checked again before each formatted print/PDF or CSV export. A return URL or a backup file alone does not confirm payment.</p>
+          </div>
+        ) : null}
+        {purchaseMessage ? <p role="status" aria-live="polite" className="mt-3 text-sm text-bark-600 dark:text-bark-400">{purchaseMessage}</p> : null}
+        {storageMessage ? <p role="status" className="mt-3 text-sm text-bark-600 dark:text-bark-400">{storageMessage}</p> : null}
+      </section>
 
       {view === "designer" ? (
         <div id="designer" className="no-print mt-6 grid gap-6 xl:grid-cols-[minmax(0,1.2fr)_minmax(22rem,0.8fr)]">
@@ -758,10 +998,10 @@ export default function StitchProofDesignerWorkspace() {
 
               <label className="mt-5 block text-sm font-semibold text-bark-700 dark:text-cream-200">
                 Pattern rounds
-                <textarea value={patternText} onChange={(event) => { setPatternText(event.target.value); setHasReviewed(false); setWorkspaceDirty(true); }} rows={14} spellCheck={false} className="mt-2 w-full rounded-xl border border-bark-300 bg-cream-50 px-4 py-3 font-mono text-sm leading-7 text-bark-800 focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-200 dark:border-bark-600 dark:bg-bark-900 dark:text-cream-100" aria-describedby="designer-pattern-help" />
+                <textarea value={patternText} onChange={(event) => { setPatternText(event.target.value); setHasReviewed(false); setWorkspaceDirty(true); }} rows={14} maxLength={MAX_DRAFT_TEXT_LENGTH} spellCheck={false} className="mt-2 w-full rounded-xl border border-bark-300 bg-cream-50 px-4 py-3 font-mono text-sm leading-7 text-bark-800 focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-200 dark:border-bark-600 dark:bg-bark-900 dark:text-cream-100" aria-describedby="designer-pattern-help" />
               </label>
               <p id="designer-pattern-help" className="mt-2 text-xs leading-relaxed text-bark-500 dark:text-bark-400">
-                Use US crochet terminology and one round per line. Unsupported notation is labeled for human review instead of guessed.
+                Use US crochet terminology and one round per line. Unsupported notation is labeled for human review instead of guessed. Each pattern input supports up to 250,000 characters; recovery JSON works even before the round math can be reviewed.
               </p>
 
               <button type="submit" className="btn-primary mt-5 min-h-12 w-full sm:w-auto">
@@ -916,13 +1156,12 @@ export default function StitchProofDesignerWorkspace() {
               enabled={localSavingEnabled}
               dirty={workspaceDirty}
               setEnabled={setLocalSavingEnabled}
-              message={storageMessage}
               onSave={saveProjectOnDevice}
               onRestore={restoreProjectFromDevice}
               onDelete={deleteProjectFromDevice}
               onDownloadJson={downloadJson}
-              restoreInputRef={restoreInputRef}
-              onRestoreJson={restoreJsonBackup}
+              onRestoreJson={() => restoreInputRef.current?.click()}
+              onNewProject={startNewProject}
             />
           </aside>
         </div>
@@ -937,11 +1176,11 @@ export default function StitchProofDesignerWorkspace() {
               <div className="grid gap-5 lg:grid-cols-2">
                 <label className="text-sm font-semibold text-bark-700 dark:text-cream-200">
                   Previous pattern version
-                  <textarea value={previousVersion} onChange={(event) => { setPreviousVersion(event.target.value); setComparison(null); setWorkspaceDirty(true); }} rows={15} spellCheck={false} className="mt-2 w-full rounded-xl border border-bark-300 bg-cream-50 px-4 py-3 font-mono text-sm leading-7 text-bark-800 focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-200 dark:border-bark-600 dark:bg-bark-900 dark:text-cream-100" />
+                  <textarea value={previousVersion} onChange={(event) => { setPreviousVersion(event.target.value); setComparison(null); setWorkspaceDirty(true); }} rows={15} maxLength={MAX_DRAFT_TEXT_LENGTH} spellCheck={false} className="mt-2 w-full rounded-xl border border-bark-300 bg-cream-50 px-4 py-3 font-mono text-sm leading-7 text-bark-800 focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-200 dark:border-bark-600 dark:bg-bark-900 dark:text-cream-100" />
                 </label>
                 <label className="text-sm font-semibold text-bark-700 dark:text-cream-200">
                   Revised pattern version
-                  <textarea value={revisedVersion} onChange={(event) => { setRevisedVersion(event.target.value); setComparison(null); setWorkspaceDirty(true); }} rows={15} spellCheck={false} className="mt-2 w-full rounded-xl border border-bark-300 bg-cream-50 px-4 py-3 font-mono text-sm leading-7 text-bark-800 focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-200 dark:border-bark-600 dark:bg-bark-900 dark:text-cream-100" />
+                  <textarea value={revisedVersion} onChange={(event) => { setRevisedVersion(event.target.value); setComparison(null); setWorkspaceDirty(true); }} rows={15} maxLength={MAX_DRAFT_TEXT_LENGTH} spellCheck={false} className="mt-2 w-full rounded-xl border border-bark-300 bg-cream-50 px-4 py-3 font-mono text-sm leading-7 text-bark-800 focus:border-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-200 dark:border-bark-600 dark:bg-bark-900 dark:text-cream-100" />
                 </label>
               </div>
               <button type="submit" className="btn-primary mt-5 min-h-12">Compare revisions locally</button>
@@ -989,10 +1228,11 @@ export default function StitchProofDesignerWorkspace() {
       {view === "report" && hasReviewed && !analysis.error ? (
         <section id="report" className="mt-6 scroll-mt-24">
           <div className="no-print mb-5 flex flex-wrap items-center gap-3">
-            <button type="button" onClick={printReport} className="btn-primary min-h-12">Print or save as PDF</button>
-            <button type="button" onClick={downloadCsv} className="btn-secondary min-h-12">Download issue CSV</button>
+            <button type="button" onClick={() => void printReport()} disabled={purchaseBusy || accessStatus !== "paid"} className="btn-primary min-h-12 disabled:cursor-not-allowed disabled:opacity-50">Print or save as PDF</button>
+            <button type="button" onClick={() => void downloadCsv()} disabled={purchaseBusy || accessStatus !== "paid"} className="btn-secondary min-h-12 disabled:cursor-not-allowed disabled:opacity-50">Download issue CSV</button>
             <button type="button" onClick={downloadJson} className="btn-secondary min-h-12">Download JSON backup</button>
           </div>
+          <p className="no-print mb-5 text-sm text-bark-600 dark:text-bark-400">This on-screen preview stays free. Formatted print/PDF and CSV exports require verified paid access for this project and a fresh online check for each export. Recovery JSON stays free and available without payment.</p>
           {exportMessage ? <p role="status" className="no-print mb-5 text-sm text-bark-600 dark:text-bark-400">{exportMessage}</p> : null}
 
           <label className="no-print mb-5 flex items-start gap-3 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm leading-relaxed text-bark-700 dark:border-amber-800 dark:bg-amber-950/20 dark:text-cream-300">
@@ -1001,6 +1241,7 @@ export default function StitchProofDesignerWorkspace() {
           </label>
 
           <article id="stitchproof-report" className="rounded-2xl border border-bark-200 bg-white p-5 text-bark-800 shadow-sm dark:border-bark-700 dark:bg-bark-800 dark:text-cream-100 sm:p-8" aria-labelledby="report-heading">
+            <p className="stitchproof-preview-label mb-4 text-sm font-semibold text-bark-600 dark:text-bark-400">Free on-screen report preview. Use the verified Print or save as PDF control for the formatted report.</p>
             <header className="border-b-2 border-bark-800 pb-5 dark:border-cream-200">
               <p className="text-sm font-semibold uppercase tracking-widest text-plum-600 dark:text-plum-300">Private Designer QA Report</p>
               <h2 id="report-heading" tabIndex={-1} className="mt-2 scroll-mt-24 text-3xl font-bold outline-none">{metadata.title || "Untitled amigurumi pattern"}</h2>
@@ -1094,13 +1335,16 @@ export default function StitchProofDesignerWorkspace() {
 
           <div className="no-print mt-6 grid gap-5 lg:grid-cols-2">
             <section className="rounded-2xl border border-plum-200 bg-plum-50 p-5 dark:border-plum-800 dark:bg-plum-900/20 sm:p-6">
-              <p className="text-sm font-semibold uppercase tracking-wider text-plum-600 dark:text-plum-300">Founding-access validation</p>
-              <h2 className="mt-2 text-xl font-bold text-bark-800 dark:text-cream-100">Designer Report — proposed $9 one-time</h2>
-              <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">Checkout is not open, no payment is being collected, and access is not guaranteed. You can record a privacy-minimized $9 interest event through consented analytics without sending an email, pattern text, or stitch values.</p>
-              <button type="button" onClick={submitPaidReportInterest} disabled={paidInterestSubmittedRef.current} className="btn-primary mt-4 min-h-12 disabled:cursor-not-allowed disabled:opacity-60">{paidInterestSubmittedRef.current ? "Interest recorded" : "Count my $9 report interest"}</button>
-              {paidInterestMessage ? <p role="status" className="mt-3 text-sm text-bark-600 dark:text-bark-400">{paidInterestMessage}</p> : null}
-              <p className="mt-4 text-xs leading-relaxed text-bark-500 dark:text-bark-400">This consent-gated analytics signal does not reserve access. For a reply, email without attaching or pasting your pattern.</p>
-              <a href="mailto:hello@fibertools.app?subject=StitchProof%20founding-access%20request&body=I%20would%20like%20to%20hear%20when%20the%20%249%20StitchProof%20Designer%20Report%20is%20available.%0A%0APlease%20do%20not%20include%20pattern%20text%20in%20this%20email." className="btn-secondary mt-3 inline-flex min-h-12 items-center justify-center">Email a founding-access request</a>
+              <p className="text-sm font-semibold uppercase tracking-wider text-plum-600 dark:text-plum-300">One pattern project</p>
+              <h2 className="mt-2 text-xl font-bold text-bark-800 dark:text-cream-100">Designer Report — $9 one-time per project</h2>
+              <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">Includes revisions and formatted report/CSV exports for that pattern project. Stripe shows any applicable tax and the final total before payment. No subscription, account, or pattern upload. Your private recovery backup is how you return to the same project.</p>
+              <a href="#project-access" className="btn-secondary mt-4 inline-flex min-h-12 items-center justify-center">Project backup and payment controls</a>
+              {salesAvailable === false ? <>
+                <p className="mt-4 text-sm leading-relaxed text-bark-600 dark:text-bark-400">New-project checkout is unavailable. You can record a privacy-minimized $9 interest event through consented analytics without sending an email, pattern text, or stitch values. This does not reserve access.</p>
+                <button type="button" onClick={submitPaidReportInterest} disabled={paidInterestSubmittedRef.current} className="btn-secondary mt-4 min-h-12 disabled:cursor-not-allowed disabled:opacity-60">{paidInterestSubmittedRef.current ? "Interest recorded" : "Count my $9 report interest"}</button>
+                {paidInterestMessage ? <p role="status" className="mt-3 text-sm text-bark-600 dark:text-bark-400">{paidInterestMessage}</p> : null}
+                <a href="mailto:hello@fibertools.app?subject=StitchProof%20availability%20request&body=I%20would%20like%20to%20hear%20when%20the%20%249%20StitchProof%20Designer%20Report%20is%20available.%0A%0APlease%20do%20not%20include%20pattern%20text%20in%20this%20email." className="mt-3 block text-sm font-semibold underline">Ask about availability by email, without your pattern</a>
+              </> : null}
             </section>
             <section className="rounded-2xl border border-sage-200 bg-sage-50 p-5 dark:border-sage-800 dark:bg-sage-900/20 sm:p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-sage-700 dark:text-sage-300">Separate human service</p>
@@ -1119,20 +1363,19 @@ type LocalProjectControlsProps = {
   enabled: boolean;
   dirty: boolean;
   setEnabled: (enabled: boolean) => void;
-  message: string;
   onSave: () => void;
   onRestore: () => void;
   onDelete: () => void;
   onDownloadJson: () => void;
-  restoreInputRef: React.RefObject<HTMLInputElement | null>;
-  onRestoreJson: (event: ChangeEvent<HTMLInputElement>) => void;
+  onRestoreJson: () => void;
+  onNewProject: () => void;
 };
 
-function LocalProjectControls({ enabled, dirty, setEnabled, message, onSave, onRestore, onDelete, onDownloadJson, restoreInputRef, onRestoreJson }: LocalProjectControlsProps) {
+function LocalProjectControls({ enabled, dirty, setEnabled, onSave, onRestore, onDelete, onDownloadJson, onRestoreJson, onNewProject }: LocalProjectControlsProps) {
   return (
     <section className="rounded-2xl border border-sage-200 bg-sage-50 p-5 dark:border-sage-800 dark:bg-sage-900/20 sm:p-6" aria-labelledby="local-project-heading">
       <h2 id="local-project-heading" className="text-xl font-bold text-bark-800 dark:text-cream-100">Local project controls</h2>
-      <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">Saving is off by default. A saved project exists only in this browser on this device. Clearing browser data removes it, and other devices cannot access it.</p>
+      <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">Saving is off by default and never automatic. This browser has one saved-project slot. A saved draft and its recovery credential exist only in this browser on this device. Clearing browser data removes it; use a private JSON backup to restore on another device.</p>
       <p className="mt-2 text-xs font-semibold text-bark-600 dark:text-bark-400">Changes since page load or the last local save or restore: {dirty ? "not saved on this device" : "none detected"}.</p>
       <label className="mt-4 flex items-start gap-3 text-sm font-semibold text-bark-700 dark:text-cream-200">
         <input type="checkbox" checked={enabled} onChange={(event) => setEnabled(event.target.checked)} className="mt-1 h-5 w-5 rounded border-bark-300 text-sage-600 focus:ring-sage-500" />
@@ -1143,11 +1386,10 @@ function LocalProjectControls({ enabled, dirty, setEnabled, message, onSave, onR
         <button type="button" onClick={onRestore} disabled={!enabled} className="btn-secondary min-h-11 disabled:cursor-not-allowed disabled:opacity-50">Restore from device</button>
         <button type="button" onClick={onDelete} disabled={!enabled} className="min-h-11 rounded-lg border border-rose-300 px-3 py-2 text-sm font-semibold text-rose-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 disabled:cursor-not-allowed disabled:opacity-50 dark:border-rose-800 dark:text-rose-300">Delete local project</button>
         <button type="button" onClick={onDownloadJson} className="btn-secondary min-h-11">Download JSON backup</button>
-        <button type="button" onClick={() => restoreInputRef.current?.click()} className="btn-secondary min-h-11 sm:col-span-2">Restore JSON backup</button>
-        <input ref={restoreInputRef} type="file" accept="application/json,.json" onChange={onRestoreJson} tabIndex={-1} className="hidden" aria-hidden="true" />
+        <button type="button" onClick={onRestoreJson} className="btn-secondary min-h-11">Restore JSON backup</button>
+        <button type="button" onClick={onNewProject} className="btn-secondary min-h-11">Start a different project</button>
       </div>
-      <p className="mt-3 text-xs leading-relaxed text-bark-500 dark:text-bark-400">JSON backup files contain the full pattern, metadata, notes, and corrections. Keep them somewhere private. Restore reads the selected file in this browser; it is not uploaded.</p>
-      {message ? <p role="status" className="mt-3 text-sm text-bark-600 dark:text-bark-400">{message}</p> : null}
+      <p className="mt-3 text-xs leading-relaxed text-bark-500 dark:text-bark-400">JSON backup files contain the full pattern, metadata, notes, corrections, and the private paid-access recovery credential. Keep them somewhere private. Restore reads the selected file in this browser; it is not uploaded. Saving and recovery feedback appears in the project controls above.</p>
     </section>
   );
 }

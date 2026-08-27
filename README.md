@@ -54,6 +54,14 @@ The repository includes fail-closed server-only checkout and delivery gates for 
 
 See [`docs/fibertools-owner-activation-checklist.md`](docs/fibertools-owner-activation-checklist.md) before changing either offer.
 
+### StitchProof Designer Report
+
+The owner-approved scope is $9 once per pattern project, including that project's revisions and report exports, with no subscription or pattern uploads. The existing 20-round checker, Designer on-screen preview, and local JSON backup remain free. A random project reference and a private recovery key connect a local project to its purchase; patterns, titles, corrections, and calculated values never enter the payment request. A recovery backup is required before opening checkout in a separate tab.
+
+The payment implementation defaults to closed sales. It requires independently verified Stripe offer, private purchase-ledger schema, webhook, abuse-protection, and owner release gates. Existing purchases are checked separately from the new-sales switch. Each paid export rechecks the current payment state; a redirect, imported backup, or client flag cannot establish payment. This is a privacy-first local workflow, not tamper-proof DRM or a guarantee of pattern correctness.
+
+See [`docs/stitchproof-purchase-release.md`](docs/stitchproof-purchase-release.md) for the release checklist, recovery model, and provider-test limits. The protected distribution kit and experiment records are not altered by this implementation.
+
 ## Local development
 
 Requirements:

@@ -72,6 +72,19 @@ Production readiness remains narrower than offer readiness. This snapshot does n
 | `STRIPE_WEBHOOK_SECRET` | Server-only secret | Endpoint signing secret beginning with `whsec_`. Presence does not prove event delivery. |
 | `SUPABASE_URL` | Server-only provider URL | HTTPS project URL used by the Preflight service. |
 | `SUPABASE_SECRET_KEY` | Server-only secret | Server credential used by the Preflight service and operations. |
+| `STITCHPROOF_CHECKOUT_ENABLED` | Server-only sales switch | Keep `false` until a separately approved, protected purchase/recovery test passes. This switch controls new sales, not valid historical purchase verification. |
+| `STITCHPROOF_STRIPE_PRODUCT_ID` | Server-only offer binding | Exact owner-approved Stripe Product for the $9 per-project report. Fake default `prod_replace_me`. |
+| `STITCHPROOF_STRIPE_PRICE_ID` | Server-only offer binding | Exact one-time USD 900-cent Price for that Product. Fake default `price_replace_me`. |
+| `STITCHPROOF_STRIPE_WEBHOOK_SECRET` | Server-only secret | Separate signing secret for `/api/stitchproof/webhook`. Never reuse or change the manual Preflight secret as part of this activation. |
+| `STITCHPROOF_APPLIED_MIGRATION_VERSION` | Server-only schema evidence | Exact verified `20260826_stitchproof_project_entitlements` migration; keep `not_configured` until applied and checked in the intended private Supabase project. |
+| `STITCHPROOF_SCHEMA_CONFIRMED` | Server-only readiness evidence | Keep `false` until private tables, functions, role isolation, and durable attempt handling are verified. |
+| `STITCHPROOF_WEBHOOK_CONFIRMED` | Server-only readiness evidence | Keep `false` until dedicated signed webhook delivery and duplicate/adverse-event handling pass protected verification. |
+| `STITCHPROOF_ABUSE_PROTECTION_PROVIDER` | Server-only readiness evidence | Verified durable protection provider, otherwise `UNVERIFIED`. Exact supported values are enforced by the purchase configuration module. |
+| `STITCHPROOF_ABUSE_PROTECTION_CONFIRMED` | Server-only readiness evidence | Keep `false` until bot/rate protection is directly checked for all public purchase endpoints. |
+| `STITCHPROOF_TAX_MODE` | Server-only owner decision | `unconfigured` by default; only an owner-verified `none` or `automatic` setting permits activation. Do not infer tax registration, exemption, or digital-product classification. |
+| `STITCHPROOF_TAX_BEHAVIOR` | Server-only owner decision | `unconfigured` by default; verified `not_applicable`, `inclusive`, or `exclusive` must agree with the selected mode and exact Stripe Price. |
+| `STITCHPROOF_TAX_CONFIGURATION_CONFIRMED` | Server-only readiness evidence | Keep `false` until the owner verifies the intended tax treatment and provider configuration. Not a legal-compliance certification. |
+| `VERCEL_ENV` | Runtime deployment context | Vercel supplies `production`, `preview`, or `development`; the fake local template uses `development`. Never override the deployed value to bypass live/test isolation. |
 
 `NODE_ENV` is supplied by the runtime and is intentionally not copied into `.env.example`. `INDEXNOW_API_KEY` is retained only because the owner-supplied completion contract requires it; the current application does not read it, so no active provider credential should be inferred.
 
@@ -108,6 +121,14 @@ All of these environment values are necessary but not sufficient:
 Edition `FT-PP-V2-2026-08-25` was generated and validated outside Git. Its exact private object and non-public bucket were verified, and a protected non-customer paid-session retrieval returned the manifest-bound byte count and checksum. The owner approved the existing customer-operations scope and production activation for that exact edition and checksum on `2026-08-26T15:14:43.614Z`. The release manifest therefore records enabled release and checkout states plus confirmed delivery and owner approval. These source records do not bypass the request-time environment and provider gates. The public-history PDF is not an approved private product.
 
 `GET /api/planning-pack/checkout` is the only public checkout destination. Before redirecting, it retrieves the configured Stripe account and Payment Link and requires the exact account, live/test mode, active link, `buy.stripe.com` URL, immediate card payments only, one-time USD $17 Price, fixed quantity one, disabled promotion codes, release metadata, and after-completion return URL. `GET /api/planning-pack/download?session_id={CHECKOUT_SESSION_ID}` independently verifies the account and exact paid Checkout Session, permits verified applicable tax without permitting a lower base price or discount, retrieves only the configured object from a non-public Supabase bucket, and rechecks its exact byte size and SHA-256 before returning it as a PDF attachment. Public checkout and the Buy action remain unavailable while any release, delivery-confirmation, owner-approval, activation, provider, or artifact gate is absent. Fulfillment for an exact already-paid session can remain available while sales are disabled, but only after the private-upload gate and every immutable provider, purchase, storage, byte-size, and checksum check pass. Responses are non-cacheable, no-referrer, and noindex; application code does not log the session ID or provider payload. Configuration and a successful build are not provider or delivery verification.
+
+### StitchProof project report exports
+
+Current state: **implementation only; new checkout disabled by default**.
+
+The owner-approved scope is $9 once per pattern project, including revisions and report exports, without a subscription or pattern upload. Free checking, on-screen report preview, and recovery JSON remain available without payment. Activation requires exact account and Product/Price binding, the dedicated private purchase migration, signed webhook delivery, owner-confirmed tax configuration, and verified durable abuse protection. The `STITCHPROOF_*` inventory entries do not themselves prove these checks passed.
+
+Use [the StitchProof release and recovery contract](stitchproof-purchase-release.md) for exact metadata, event subscriptions, local test evidence, provider gaps, and release order. Existing paid access uses the immutable purchase contract and a fresh financial check independently of the new-sales switch. Do not reuse the Planning Pack Payment Link, webhook secret, or manual Preflight customer-submission records.
 
 ### Designer Pattern Preflight
 
