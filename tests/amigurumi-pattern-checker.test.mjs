@@ -23,6 +23,14 @@ test("finds an incorrect written stitch total", () => {
   assert.match(result.message, /2 stitches too low/);
 });
 
+test("uses accurate singular wording for one-stitch findings", () => {
+  const [writtenTotal] = checkPattern("Round 3: (sc, inc) x 6 [17]", 12).results;
+  const [consumption] = checkPattern("Round 4: 11 sc [11]", 12).results;
+  assert.match(writtenTotal.message, /1 stitch too low/);
+  assert.doesNotMatch(writtenTotal.message, /1 stitches/);
+  assert.match(consumption.message, /1 stitch from the starting count is not used/);
+});
+
 test("checks magic-ring setup and decrease rounds", () => {
   const checked = checkPattern("Rnd 1: 6 sc in magic ring (6)\nRnd 2: inc x 6 (12)\nRnd 3: (sc, dec) x 4 (8)");
   assert.deepEqual(checked.results.map((result) => result.status), ["correct", "correct", "correct"]);
@@ -39,16 +47,63 @@ test("supports even rounds, loop modifiers, chains, and joining slip stitches", 
   assert.equal(result.notes.length, 2);
 });
 
+test("counts numbered slip stitches in either notation and carries the result forward", () => {
+  for (const instruction of ["6 sl st", "sl st 6", "6 slst", "slst 6"]) {
+    const checked = checkPattern(`Round 2: ${instruction} [6]\nRound 3: 6 sc [6]`, 6);
+    assert.deepEqual(
+      checked.results.map(({ status, startingCount, consumed, created }) => ({ status, startingCount, consumed, created })),
+      [
+        { status: "correct", startingCount: 6, consumed: 6, created: 6 },
+        { status: "correct", startingCount: 6, consumed: 6, created: 6 },
+      ],
+      instruction,
+    );
+  }
+});
+
+test("numbered slip stitches still reject unsafe counts in either notation", () => {
+  for (const instruction of [
+    "9007199254740993 sl st",
+    "sl st 9007199254740993",
+    "9007199254740993 slst",
+    "slst 9007199254740993",
+  ]) {
+    const [result] = checkPattern(`Round 2: ${instruction} [6]`, 6).results;
+    assert.equal(result.status, "unsupported", instruction);
+    assert.equal(result.created, null, instruction);
+    assert.match(result.message, /Slip-stitch count is outside the supported whole-number range/);
+  }
+});
+
 test("refuses unsupported notation instead of guessing", () => {
   const [result] = checkPattern("Round 4: popcorn in each st [18]", 18).results;
   assert.equal(result.status, "unsupported");
   assert.match(result.message, /Unsupported instruction/);
 });
 
+test("does not reuse a stale count after an unsupported round", () => {
+  const checked = checkPattern([
+    "Round 1: 6 sc in magic ring [6]",
+    "Round 2: popcorn in each st [6]",
+    "Round 3: 6 sc [6]",
+  ].join("\n"));
+
+  assert.equal(checked.results[1].status, "unsupported");
+  assert.equal(checked.results[2].startingCount, null);
+  assert.equal(checked.results[2].status, "unsupported");
+});
+
 test("requires a starting count for a pasted middle round", () => {
   const [result] = checkPattern("Round 8: (5 sc, inc) x 6 [42]").results;
   assert.equal(result.status, "unsupported");
   assert.match(result.message, /Enter the stitch count/);
+});
+
+test("does not invent a fallback identity for an unsafe explicit round number", () => {
+  const [result] = checkPattern("Round 9007199254740993: 1 sc [1]", 1).results;
+  assert.equal(result.round, null);
+  assert.equal(result.status, "unsupported");
+  assert.match(result.message, /Round number is outside the supported whole-number range/);
 });
 
 test("limits the free preview to a bounded number of rounds", () => {

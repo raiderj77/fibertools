@@ -29,7 +29,7 @@ export default function TermsPage() {
         Terms of Use
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: August 25, 2026
+        Last updated: August 26, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -60,7 +60,9 @@ export default function TermsPage() {
             and embroidery. Calculator inputs run entirely in your browser and are
             not stored on our servers. FiberTools also offers an optional paid
             Fiber Project Planning Pack and a limited manual Designer Pattern
-            Preflight pilot under the separate terms below.
+            Preflight pilot under the separate terms below. The StitchProof Designer
+            workspace is a browser-local preview whose proposed paid download remains
+            unavailable unless FiberTools separately enables a verified checkout.
           </p>
         </section>
 
@@ -83,6 +85,45 @@ export default function TermsPage() {
             hello@fibertools.app. Any refund must be confirmed through Stripe; a download
             or website message is not confirmation of a refund. When checkout is unavailable,
             the website shows a contact action and does not accept payment.
+          </p>
+        </section>
+
+        <section id="stitchproof-designer-workspace">
+          <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
+            StitchProof Designer Workspace Terms
+          </h2>
+          <p>
+            StitchProof applies deterministic rules to supported US-terminology
+            amigurumi round notation. The free checker remains available for up to
+            20 rounds. The Designer workspace preview can check larger projects,
+            record user corrections, compare two versions, and create printer-friendly,
+            CSV, and JSON outputs in the browser. The proposed $9 Designer Report is
+            not currently for sale: checkout remains disabled and this preview does
+            not accept payment.
+          </p>
+          <p>
+            Pattern text and project metadata are not uploaded to FiberTools by the
+            workspace. Saving is off by default. If you explicitly save a project on
+            the device, you are responsible for access to that device and browser
+            profile. Clearing browser data may permanently remove the project. JSON
+            backup and restore are provided for portability; you are responsible for
+            protecting exported files and any printer or cloud destination you select.
+          </p>
+          <p>
+            A Designer QA Report records what the deterministic parser could and could
+            not evaluate. It is not professional tech editing, pattern testing,
+            certification, authorship detection, or a guarantee that a pattern is
+            correct, safe, original, human-written, publishable, or error-free. It does
+            not verify gauge, sizing, fit, yarn choice, assembly, images, charts, garment
+            shaping, knitting instructions, or unsupported crochet notation. User-entered
+            corrections remain the user&apos;s assertions and are not independently verified
+            by FiberTools. A human review is still appropriate before publication.
+          </p>
+          <p>
+            You retain ownership of pattern content you enter. The default report does
+            not reproduce the full pattern. If you explicitly choose to include short
+            instruction excerpts, you confirm that you have the right to reproduce those
+            excerpts in your private output.
           </p>
         </section>
 
@@ -131,10 +172,11 @@ export default function TermsPage() {
             guarantee that results will be error-free.
           </p>
           <p>
-            Yarn quantities, gauge calculations, stitch counts, and other
-            outputs are estimates. Actual results may vary based on your yarn,
-            tension, tools, and technique. Always buy extra yarn and swatch
-            before starting a project.
+            Yarn quantities, gauge calculations, stitch counts, parser results,
+            comparisons, and other outputs are planning or review aids. Actual
+            results may vary based on your yarn, tension, tools, technique, pattern
+            wording, and unsupported instructions. Always swatch and use appropriate
+            human review before relying on an output.
           </p>
         </section>
 

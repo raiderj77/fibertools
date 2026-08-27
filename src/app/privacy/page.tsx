@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         Privacy Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: August 25, 2026
+        Last updated: August 26, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -118,6 +118,34 @@ export default function PrivacyPolicyPage() {
             (such as unit toggle between yards and meters) in your
             browser&apos;s localStorage. This data never leaves your device.
           </p>
+          <p>
+            <strong>StitchProof Designer workspace:</strong> Pattern text, pattern
+            title, designer nickname, version, review date, section labels, notes,
+            corrections, and comparison data are processed in your browser and are
+            not sent to FiberTools servers. StitchProof does not use session recording.
+            It does not persist a project unless you explicitly choose to save it on
+            this device. An opted-in saved project uses browser-local IndexedDB, is
+            specific to that browser profile and device, and is removed if you delete
+            it in StitchProof or clear the relevant browser site data.
+          </p>
+          <p>
+            StitchProof can create JSON backups, CSV issue files, printer-friendly
+            reports, and PDF output through your browser&apos;s print feature. Those files
+            are created on your device. FiberTools does not receive them, but any
+            download folder, printer, cloud-drive destination, browser extension, or
+            other destination you choose may handle them under its own settings. The
+            default report excludes full pattern instructions. Instruction excerpts
+            are included only when you explicitly select that option.
+          </p>
+          <p>
+            With analytics consent, StitchProof may send fixed event names and only
+            closed aggregate fields such as a selected unsupported-notation category,
+            a fixed parser-rule identifier, or a bounded range for how many rounds
+            were unsupported. It
+            never sends pattern text, instruction excerpts, titles, designer names,
+            notes, correction text, exported files, or calculated stitch values.
+            These events are also suppressed when Global Privacy Control is active.
+          </p>
         </section>
 
         <section>
@@ -174,6 +202,7 @@ export default function PrivacyPolicyPage() {
             <li>Monitor site performance and fix errors</li>
             <li>Display relevant advertising to support the free self-service calculator library</li>
             <li>Record fixed, consented interactions with the optional Fiber Project Planning Pack page and checkout action</li>
+            <li>Measure fixed, consented StitchProof workflow events without pattern content or calculated stitch values</li>
             <li>Verify payment and privately deliver the optional Fiber Project Planning Pack</li>
             <li>Accept payment for, fulfill, deliver, and support the optional Designer Pattern Preflight</li>
           </ul>
@@ -203,6 +232,14 @@ export default function PrivacyPolicyPage() {
             URL, verifies that the session is paid and matches the approved offer, and
             uses it only to provide the private PDF download. FiberTools does not put
             the Checkout Session ID or product-file contents into analytics events.
+          </p>
+          <p>
+            StitchProof Designer workspace inputs, corrections, comparisons, and
+            reports remain in the browser. Browser-local saving is off until you
+            choose it, and you can delete the saved project or export a JSON backup.
+            Browser print, CSV, and JSON exports do not upload those contents to
+            FiberTools. The proposed paid Designer Report checkout is not enabled, so
+            this release does not collect payment or purchase data for that report.
           </p>
         </section>
 
@@ -320,6 +357,13 @@ export default function PrivacyPolicyPage() {
             not an automated retention job.
           </p>
           <p>
+            FiberTools servers do not retain StitchProof pattern projects. If you
+            explicitly save a project in the browser, it remains on that device until
+            you delete it or clear the relevant browser site data. A JSON, CSV, or PDF
+            file—or a printed copy—remains wherever you chose to save or print it; FiberTools
+            cannot delete a copy stored outside the site.
+          </p>
+          <p>
             Submitted patterns are never used for AI training, public examples, marketing,
             or product development without separate written permission. Pattern content,
             filenames, customer names, email addresses, share links, comments, and report
@@ -416,7 +460,7 @@ export default function PrivacyPolicyPage() {
           </p>
 
           <h3>Data Retention</h3>
-          <p>Analytics data is retained for 14 months. Server logs are retained for 90 days. We do not retain tool calculation inputs beyond your browser session. Designer Pattern Preflight submission data follows the manual 30-day post-delivery deletion process described above.</p>
+          <p>Analytics data is retained for 14 months. Server logs are retained for 90 days. FiberTools servers do not retain tool calculation inputs. A StitchProof project persists only when the user explicitly saves it in that browser and remains subject to the user-controlled local deletion described above. Designer Pattern Preflight submission data follows the manual 30-day post-delivery deletion process described above.</p>
         </section>
 
         <section id="state-privacy" aria-labelledby="state-heading">

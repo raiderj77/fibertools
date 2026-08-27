@@ -661,14 +661,14 @@ test("public product, privacy, and terms copy describe first-party private deliv
 
   assert.match(productPage, /FiberTools verifies the paid Checkout Session/);
   assert.match(productPage, /not stored in this page or a public bucket/);
-  assert.match(privacy, /Last updated: August 25, 2026/);
+  assert.match(privacy, /Last updated: August 26, 2026/);
   assert.match(privacy, /uses it only to provide the private PDF download/);
   assert.match(privacy, /does not put[\s\S]*Checkout Session ID[\s\S]*into analytics events/);
   assert.match(
     privacy,
     /Planning Pack[\s\S]*object is read server-side only after payment verification/
   );
-  assert.match(terms, /Last updated: August 25, 2026/);
+  assert.match(terms, /Last updated: August 26, 2026/);
   assert.match(terms, /Stripe processes[\s\S]*checkout/);
   assert.match(terms, /FiberTools verifies the paid Checkout Session/);
   assert.match(terms, /refund must be confirmed through Stripe/);

@@ -1,8 +1,10 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Link from "next/link";
 import { checkPattern, MAX_FREE_ROUNDS } from "@/lib/amigurumi-pattern-checker.mjs";
 import { trackFixedEvent } from "@/lib/fixed-analytics";
+import { getUnsupportedRoundScope, trackStitchProofEvent } from "@/lib/stitchproof-analytics";
 
 type CheckStatus = "correct" | "incorrect" | "calculated" | "unsupported";
 
@@ -43,7 +45,7 @@ const EXAMPLES = {
 };
 
 const STATUS_STYLES: Record<CheckStatus, string> = {
-  correct: "border-sage-300 bg-sage-50 dark:border-sage-800 dark:bg-sage-950/30",
+  correct: "border-sage-300 bg-sage-50 dark:border-sage-800 dark:bg-sage-900/30",
   incorrect: "border-rose-300 bg-rose-50 dark:border-rose-800 dark:bg-rose-950/30",
   calculated: "border-amber-300 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30",
   unsupported: "border-bark-300 bg-cream-100 dark:border-bark-600 dark:bg-bark-800",
@@ -65,14 +67,19 @@ export default function AmigurumiPatternCheckerTool() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    trackStitchProofEvent("free_check_started");
     const parsedStart = startingCount.trim() === "" ? null : Number(startingCount);
-    const validStart = typeof parsedStart === "number" && Number.isInteger(parsedStart) && parsedStart >= 0
+    const validStart = typeof parsedStart === "number" && Number.isSafeInteger(parsedStart) && parsedStart >= 0
       ? parsedStart
       : null;
     const result = checkPattern(pattern, validStart) as CheckResult;
     setChecked(result);
     if (!result.error) {
       trackFixedEvent("pattern_check_run", { slug: "amigurumi-pattern-checker" });
+      trackStitchProofEvent("free_check_completed");
+      const unsupportedRoundCount = result.results.filter((round) => round.status === "unsupported").length;
+      const unsupportedScope = getUnsupportedRoundScope(unsupportedRoundCount);
+      if (unsupportedScope) trackStitchProofEvent("unsupported_result_shown", { unsupported_scope: unsupportedScope });
     }
   }
 
@@ -171,7 +178,12 @@ export default function AmigurumiPatternCheckerTool() {
         </form>
       </div>
 
-      <div aria-live="polite" aria-atomic="false" className="space-y-4">
+      <p role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {checked.error
+          ? checked.error
+          : `Check complete: ${counts.correct} correct, ${counts.incorrect} need review, ${counts.calculated} calculated only, and ${counts.unsupported} not verified.`}
+      </p>
+      <div className="space-y-4">
         {checked.error ? (
           <div role="alert" className="rounded-xl border border-rose-300 bg-rose-50 p-4 text-sm text-rose-800 dark:border-rose-800 dark:bg-rose-950/30 dark:text-rose-200">
             {checked.error}
@@ -189,7 +201,9 @@ export default function AmigurumiPatternCheckerTool() {
               <article key={`${result.round}-${index}`} className={`rounded-xl border p-4 sm:p-5 ${STATUS_STYLES[result.status]}`}>
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-wide text-bark-500">Round {result.round}</p>
+                    <p className="text-xs font-semibold uppercase tracking-wide text-bark-500">
+                      {result.round == null ? "Round number not parsed" : `Round ${result.round}`}
+                    </p>
                     <p className="mt-1 break-words font-mono text-sm text-bark-800 dark:text-cream-100">{result.source}</p>
                   </div>
                   <span className="rounded-full bg-white px-3 py-1 text-xs font-bold text-bark-700 shadow-sm dark:bg-bark-900 dark:text-cream-200">
@@ -215,6 +229,27 @@ export default function AmigurumiPatternCheckerTool() {
           </>
         ) : null}
       </div>
+
+      {!checked.error && checked.results.length > 0 ? (
+        <section className="rounded-2xl border border-plum-200 bg-plum-50 p-5 dark:border-plum-800 dark:bg-plum-900/30 sm:p-6" aria-labelledby="designer-next-step-heading">
+          <h3 id="designer-next-step-heading" className="text-lg font-bold text-bark-800 dark:text-cream-100">
+            Keep working on this pattern privately
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">
+            The browser-local designer workspace handles up to 200 rounds, records corrections, compares a
+            revised version, and creates a private QA report. Nothing is copied from this free checker, so paste
+            only what you choose in the next workspace.
+          </p>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+            <Link href="/amigurumi-pattern-checker/designer#compare" className="btn-primary text-center">
+              Compare a Revised Version
+            </Link>
+            <Link href="/amigurumi-pattern-checker/designer" className="btn-secondary text-center">
+              Create a Designer QA Report
+            </Link>
+          </div>
+        </section>
+      ) : null}
     </section>
   );
 }

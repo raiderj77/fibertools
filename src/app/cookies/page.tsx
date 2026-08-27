@@ -29,7 +29,7 @@ export default function CookiePolicyPage() {
         Cookie Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: July 13, 2026
+        Last updated: August 26, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -88,6 +88,15 @@ export default function CookiePolicyPage() {
                   </td>
                   <td className="py-2">Not currently set</td>
                 </tr>
+                <tr>
+                  <td className="py-2 pr-4">empire_gpc</td>
+                  <td className="py-2 pr-4">FiberTools</td>
+                  <td className="py-2 pr-4">
+                    Preserve the browser&apos;s Global Privacy Control opt-out for
+                    client-side consent checks
+                  </td>
+                  <td className="py-2">Up to 30 days; deleted when the signal is absent</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -103,6 +112,15 @@ export default function CookiePolicyPage() {
             (yards vs. meters) and dark mode setting. This data never leaves
             your device and is not shared with anyone.
           </p>
+          <p>
+            StitchProof Designer projects use IndexedDB only after you explicitly
+            choose &ldquo;Save on this device.&rdquo; This browser-local project storage is
+            not an analytics cookie, does not sync between devices, and is specific
+            to the browser profile where it was saved. Deleting the project in
+            StitchProof or clearing the site&apos;s browser data removes it. JSON backup,
+            CSV download, and browser-print or PDF files are separate files on your
+            device and are not controlled by the cookie banner.
+          </p>
         </section>
 
         <section>
@@ -110,9 +128,11 @@ export default function CookiePolicyPage() {
             Essential vs. Non-Essential Cookies
           </h2>
           <p>
-            <strong>Essential:</strong> FiberTools does not use any cookies that
-            are strictly necessary for the site to function. All tools work
-            without cookies.
+            <strong>Functional and privacy preference:</strong> All tools work
+            without a required account or analytics cookie. When your browser sends
+            a Global Privacy Control signal, FiberTools may set the first-party
+            <code> empire_gpc</code> bridge cookie so client-side controls honor that
+            opt-out. It is not used for advertising or cross-site tracking.
           </p>
           <p>
             <strong>Non-essential (analytics &amp; advertising):</strong> Google
@@ -160,6 +180,11 @@ export default function CookiePolicyPage() {
             <li>
               <strong>Browser settings:</strong> Most browsers let you block or
               delete cookies through their settings menu
+            </li>
+            <li>
+              <strong>StitchProof projects:</strong> Use the in-tool delete control
+              for a saved project, or clear FiberTools site data in your browser.
+              Export a JSON backup first if you want a portable copy
             </li>
             <li>
               <strong>Google opt-out:</strong> Visit{" "}
