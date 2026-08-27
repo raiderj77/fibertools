@@ -171,6 +171,32 @@
     border: 1px solid #ccc !important;
     box-shadow: none !important;
   }
+
+  body.stitchproof-printing-report * {
+    visibility: hidden !important;
+  }
+
+  body.stitchproof-printing-report #stitchproof-report,
+  body.stitchproof-printing-report #stitchproof-report * {
+    visibility: visible !important;
+  }
+
+  body.stitchproof-printing-report #stitchproof-report {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    border: 0 !important;
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+
+  body.stitchproof-printing-report #stitchproof-report,
+  body.stitchproof-printing-report #stitchproof-report * {
+    background-color: white !important;
+    color: black !important;
+    text-shadow: none !important;
+  }
 }
 
 /* ── Animations ── */

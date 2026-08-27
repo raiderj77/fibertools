@@ -41,5 +41,16 @@
       "canonical": {}
     }
   },
-  "approvals": []
+  "approvals": [
+    {
+      "route": "/amigurumi-pattern-checker/designer",
+      "contentType": "PAID_OFFER",
+      "title": "StitchProof Designer Report and Version Compare",
+      "ownerApprovalDate": "2026-08-26",
+      "reason": "Owner-approved 30-day validation of a private browser-local designer report and version comparison; checkout remains disabled.",
+      "approvalReference": "Owner-approved Codex build prompt dated 2026-08-26",
+      "reviewOrExpirationDate": "2026-09-25",
+      "indexingApproved": true
+    }
+  ]
 }

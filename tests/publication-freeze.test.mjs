@@ -19,7 +19,7 @@ import {
 
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const NOW = new Date("2026-08-25T12:00:00Z");
+const NOW = new Date("2026-08-26T12:00:00Z");
 
 
 function snapshot(value) {
@@ -34,13 +34,28 @@ function listSha256(values) {
 }
 
 
-test("current main-derived publication baseline passes with no approvals", () => {
+test("current publication state passes with its owner-approved exception", () => {
   const violations = analyzePublicationState(
     readPublicationManifest(ROOT),
     collectPublicationState(ROOT),
     NOW,
   );
   assert.deepEqual(violations, []);
+});
+
+
+test("publication approval is narrow and time-bound", () => {
+  const manifest = readPublicationManifest(ROOT);
+  assert.deepEqual(manifest.approvals, [{
+    route: "/amigurumi-pattern-checker/designer",
+    contentType: "PAID_OFFER",
+    title: "StitchProof Designer Report and Version Compare",
+    ownerApprovalDate: "2026-08-26",
+    reason: "Owner-approved 30-day validation of a private browser-local designer report and version comparison; checkout remains disabled.",
+    approvalReference: "Owner-approved Codex build prompt dated 2026-08-26",
+    reviewOrExpirationDate: "2026-09-25",
+    indexingApproved: true,
+  }]);
 });
 
 
@@ -159,6 +174,7 @@ test("blocks an unapproved calculator route and permits a complete approval reco
 
 test("decision date does not lift the freeze without an explicit owner decision", () => {
   const manifest = readPublicationManifest(ROOT);
+  manifest.approvals = [];
   const state = snapshot(collectPublicationState(ROOT));
   state.publicRoutes.push("/synthetic-after-decision-date");
 
@@ -203,7 +219,7 @@ test("approvals cannot be future-dated, expired, or indexable without approval",
   };
 
   const future = snapshot(baseManifest);
-  future.approvals.push({ ...approval, ownerApprovalDate: "2026-08-26" });
+  future.approvals.push({ ...approval, ownerApprovalDate: "2026-08-27" });
   assert(
     analyzePublicationState(future, state, NOW)
       .some((message) => message.includes("ownerApprovalDate cannot be in the future")),

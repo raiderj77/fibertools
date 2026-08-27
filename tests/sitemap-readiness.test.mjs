@@ -50,6 +50,7 @@ test("sitemap includes every ready canonical tool after the dated experiment gat
 test("sitemap includes public offers but excludes minimal embed routes", () => {
   assert.match(sitemap, /path: "\/embeds"/);
   assert.match(sitemap, /path: "\/fiber-project-planning-pack"/);
+  assert.match(sitemap, /path: "\/amigurumi-pattern-checker\/designer"/);
   assert.doesNotMatch(sitemap, /path: "\/embed\//);
 });
 

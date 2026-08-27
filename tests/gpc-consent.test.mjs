@@ -10,6 +10,7 @@ const cookieConsent = fs.readFileSync("src/components/CookieConsent.tsx", "utf8"
 const middleware = fs.readFileSync("src/middleware.ts", "utf8");
 const pageViews = fs.readFileSync("src/components/SanitizedPageViewTracker.tsx", "utf8");
 const fixedAnalytics = fs.readFileSync("src/lib/fixed-analytics.ts", "utf8");
+const stitchProofAnalytics = fs.readFileSync("src/lib/stitchproof-analytics.ts", "utf8");
 const affiliateTracker = fs.readFileSync("src/components/AffiliateClickTracker.tsx", "utf8");
 const affiliateLink = fs.readFileSync("src/components/AffiliateLink.tsx", "utf8");
 
@@ -81,4 +82,10 @@ test("rechecks stored consent and GPC before every affiliate analytics event", (
     assert.match(source, /hasCurrentAnalyticsConsent\(\)/);
     assert.ok(source.indexOf("hasCurrentAnalyticsConsent()") < source.indexOf('window.gtag("event"'));
   }
+});
+
+test("rechecks GPC for each StitchProof event instead of trusting initial consent", () => {
+  assert.match(stitchProofAnalytics, /getGpcActive: \(\) => detectGPCClient\(\)/);
+  assert.match(stitchProofAnalytics, /getStorage: \(\) => window\.localStorage/);
+  assert.match(stitchProofAnalytics, /recordStitchProofBrowserEvent/);
 });

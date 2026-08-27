@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: "Verify crochet round math and written stitch totals, locally in your browser.",
     images: ["https://fibertools.app/og-image.png"],
   },
-  other: { dateModified: "2026-07-13" },
+  other: { dateModified: "2026-08-26" },
 };
 
 export default function AmigurumiPatternCheckerPage() {
@@ -40,10 +40,29 @@ export default function AmigurumiPatternCheckerPage() {
         what="A deterministic checker that calculates how many stitches each amigurumi round consumes and creates, then compares the result with the pattern's written total."
         who="Crocheters, amigurumi designers, testers, and anyone reviewing a human- or AI-written US crochet pattern."
         bottomLine="A matching total confirms the arithmetic for supported notation, not that the entire pattern will produce the intended shape."
-        lastUpdated="2026-07-13"
+        lastUpdated="2026-08-26"
       />
 
       <AmigurumiPatternCheckerTool />
+
+      <section className="mt-10 rounded-2xl border border-plum-200 bg-gradient-to-br from-plum-50 to-sage-50 p-5 dark:border-plum-800 dark:from-plum-950/30 dark:to-sage-950/20 sm:p-7">
+        <p className="text-sm font-semibold uppercase tracking-wider text-plum-600 dark:text-plum-300">For crochet designers</p>
+        <h2 className="mt-2 text-2xl font-bold text-bark-800 dark:text-cream-100">
+          Check the math. Compare the revision. Keep the report.
+        </h2>
+        <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+          StitchProof reviews supported amigurumi round math in your browser, tracks corrections, and compares
+          pattern versions without uploading your pattern.
+        </p>
+        <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+          <Link href="/amigurumi-pattern-checker/designer" className="btn-primary text-center">
+            Create a Designer Report
+          </Link>
+          <a href="#checker-heading" className="btn-secondary text-center">
+            Use the Free Checker
+          </a>
+        </div>
+      </section>
 
       <section className="mt-12">
         <h2 className="section-heading">How the crochet round checker calculates stitch totals</h2>
