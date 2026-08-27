@@ -1,8 +1,11 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import test from "node:test";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import matter from "gray-matter";
 
 import {
   analyzePublicationState,
@@ -145,6 +148,56 @@ test("reproduces and blocks the removed duplicate blanket article", () => {
   assert(violations.some((message) => message.includes('Duplicate article title "how much yarn for a blanket?"')));
   assert(violations.some((message) => message.includes("Duplicate article canonical")));
   assert(violations.some((message) => message.includes("dated inside the freeze")));
+});
+
+
+test("the duplicate crochet-hooks article is retained as a draft outside the frozen inventory", () => {
+  const file = "2026-08-27-best-crochet-hooks.md";
+  const { data } = matter(readFileSync(resolve(ROOT, "content", "quarantine", file), "utf8"));
+  assert.equal(data.status, "draft");
+  assert.equal(data.slug, "best-crochet-hooks");
+  assert.equal(data.date, "2026-08-27");
+  assert.equal(existsSync(resolve(ROOT, "content", "published", file)), false);
+
+  const state = collectPublicationState(ROOT);
+  const hooksArticles = state.articles.filter((article) => article.slug === data.slug);
+  assert.deepEqual(hooksArticles.map((article) => article.file), ["2026-05-12-best-crochet-hooks.md"]);
+  assert.equal(state.articles.length, readPublicationManifest(ROOT).baseline.quarantinedArticleFileCount);
+});
+
+
+test("a publisher cannot bypass the freeze by returning a quarantined duplicate with draft status", (t) => {
+  const fixture = mkdtempSync(resolve(tmpdir(), "fibertools-publication-guard-"));
+  t.after(() => rmSync(fixture, { recursive: true, force: true }));
+  const file = "2026-08-27-best-crochet-hooks.md";
+  const source = readFileSync(resolve(ROOT, "content", "quarantine", file), "utf8");
+  mkdirSync(resolve(fixture, "src", "lib"), { recursive: true });
+  writeFileSync(resolve(fixture, "src", "lib", "tools.ts"), "export const tools = [];\n");
+  writeFileSync(resolve(fixture, "src", "lib", "guides.ts"), "export const guides = [];\n");
+  mkdirSync(resolve(fixture, "content", "quarantine"), { recursive: true });
+  writeFileSync(resolve(fixture, "content", "quarantine", file), source);
+  assert.deepEqual(collectPublicationState(fixture).articles, []);
+
+  mkdirSync(resolve(fixture, "content", "published"), { recursive: true });
+  for (const status of ["draft", "published"]) {
+    writeFileSync(resolve(fixture, "content", "published", file), source.replace(/^status: draft$/m, `status: ${status}`));
+    const articles = collectPublicationState(fixture).articles;
+    assert.equal(articles.length, 1);
+    const state = snapshot(collectPublicationState(ROOT));
+    state.articles.push(...articles);
+    const violations = analyzePublicationState(readPublicationManifest(ROOT), state, new Date("2026-08-27T12:00:00Z"));
+    assert(violations.some((message) => message.startsWith("Quarantined article inventory changed")));
+    assert(violations.some((message) => message.includes(`Article ${file} is dated inside the freeze`)));
+    assert(violations.some((message) => message.includes('Duplicate article slug "best-crochet-hooks"')));
+    assert(violations.some((message) => message.includes('Duplicate article title "best crochet hooks"')));
+  }
+});
+
+
+test("required build CI runs the publication regression suite before the production build", () => {
+  const workflow = readFileSync(resolve(ROOT, ".github", "workflows", "empire-check.yml"), "utf8");
+  assert.match(workflow, /npm ci\s+npm run test:publication-freeze\s/);
+  assert(workflow.indexOf("npm run test:publication-freeze") < workflow.indexOf("npm run build"));
 });
 
 
