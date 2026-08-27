@@ -164,7 +164,7 @@ The displayed annual prices measure interest. Do not create checkout, contracts,
 8. Verify the changed routes directly on desktop and mobile. For commercial paths, verify disclosures and fail-closed state without submitting personal data or creating a charge unless separately authorized.
 9. Report source, checks, merge, deployment, route behavior, provider state, and business outcomes as separate evidence.
 
-The Vercel build observed on the 2026-08-25 snapshot selected Node 24 because the package engine was broad while GitHub CI used Node 20. Aligning the production runtime with CI remains a release-hardening action. Module-type warnings for the JavaScript lint scripts were non-blocking but remain maintenance work.
+The August 27 provider read verified Vercel's Node major as `24.x`. The source now pins the application and lockfile to `24.x`, and all Node-running workflows use `.nvmrc` (`24`) rather than Node 20 or an implicit runner default. `npm run test:runtime` runs in required CI and prebuild to prevent drift. Node's [support list](https://nodejs.org/en/about/previous-releases) identifies Node 24 as LTS and Node 20 as end-of-life; no Vercel runtime setting or dependency version was changed. Module-type warnings for the JavaScript lint scripts were non-blocking but remain maintenance work.
 
 ## Publication freeze and November decision
 
@@ -175,7 +175,7 @@ November 20, 2026 is the next decision date for reconsidering the freeze. Recons
 ## Remaining owner actions
 
 - Preserve and recheck the `main` PR/build/public-file protection verified on August 27, 2026.
-- Decide whether to align the Vercel Node runtime with CI.
+- Recheck the pinned Node 24 runtime contract before future runtime upgrades.
 - Configure the exact approved Planning Pack production bindings and attestations, then verify the resulting production checkout and delivery routes against the deployed SHA without exposing provider values.
 - Keep Designer Pattern Preflight inquiry-only until every provider, abuse-protection, retention, fulfillment, and disposable-live-test gate is verified.
 - Keep white-label offers interest-only until the owner approves a product, contract, billing, and provisioning scope.

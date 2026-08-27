@@ -82,6 +82,7 @@ Review branch: `codex/fibertools-managed-payments-review-2026-08-27`, fast-forwa
 | Selected privacy tests | 5 passed. The protected experiment-document test was not selected or read. |
 | Compiled page checks | Focused page output 8/8, review dates 4/4 and yarn-weight page output 2/2 passed. |
 | Focused ESLint and TypeScript | Passed with zero lint warnings. |
+| Runtime contract | Four focused assertions require Node 24 across the executing build, application/lockfile and all Node-running workflows. The observed Vercel major is already 24; this does not change provider runtime settings or dependency versions. |
 | Quality, security and affiliate checks | Passed; affiliate check covered 10 monetized tools. |
 | Content and predeployment release guards | Passed after the separate PR #50 repair. The previous 5 content findings and 4 predeployment findings are resolved without changing the pinned manifest or weakening guards. |
 | Normal `npm run build` | Passed on the repaired base, including all prebuild guards, lint/type checks, 101 generated pages and all 14 postbuild page checks. |
@@ -107,7 +108,7 @@ Unit/PGlite and local browser tests prove only the exercised application behavio
 
 ## Local change inventory and next decision
 
-The review contains 20 intended files: the shared market policy; purchase configuration, service, server adapter and client; the Designer workspace; the additive migration; privacy and terms pages; the fake environment template and two deployment documents; seven focused test files; and this handoff. The disposable `tmp/managed-payments-ui-review.mjs` fixture is ignored and is not part of a future pull request. No dependency or original migration changes are included.
+The payment integration contains 20 intended files: the shared market policy; purchase configuration, service, server adapter and client; the Designer workspace; the additive migration; privacy and terms pages; the fake environment template and two deployment documents; seven focused test files; and this handoff. The release-hardening follow-up also changes `.nvmrc`, the application and lockfile root engine metadata, all three Node-running workflows, README and the runtime test. Dependency versions and the original purchase migration remain unchanged. The disposable `tmp/managed-payments-ui-review.mjs` fixture is ignored and is not part of the pull request.
 
 The release blocker is repaired. The next activation action is the owner's verified product-category and terms/fee decision in Stripe, followed by the protected provider setup and tests above. Do not activate checkout merely because this local review or its code release passes. Stage only the intended integration files after reviewing the diff; do not stage protected records, unrelated work or local fixtures.
 
