@@ -76,7 +76,7 @@ export const tools: Tool[] = [
     slug: "yarn-weight-chart",
     name: "Yarn Weight & Substitution Guide",
     shortName: "Yarn Weights",
-    description: "Interactive yarn weight chart with US, UK, and Australian names, plus a substitution compatibility checker.",
+    description: "Yarn weight reference with common US, UK, and Australian names, knitting gauge guidelines, and a swatch-first label comparison.",
     category: "both",
     icon: "⚖️",
     tier: 1,

@@ -241,11 +241,11 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "yarn-weight-chart": {
-    disclaimer: "Yarn substitution recommendations are provided as guidance only. Fiber content, twist, and construction vary between brands. Always swatch to verify gauge before substituting yarns in a pattern.",
-    answerCapsule: "This interactive chart compares all eight Craft Yarn Council yarn weight categories across US, UK, and Australian naming systems. Use it to identify yarn weights, check substitution compatibility, and find recommended needle and hook sizes for any weight category.",
-    chartGuide: "This chart displays all eight CYC yarn weight categories (0–7) with their standard specifications. Each row shows the weight number, common names in US, UK, and Australian terminology, the standard gauge range in stitches per 4 inches, recommended needle and hook sizes in both US and metric, and typical project types. Use the chart to identify unlabeled yarn by comparing wraps-per-inch (WPI) against the listed ranges, then verify by swatching against the gauge standards. Australian ply-count names (4-ply, 8-ply, 10-ply) map directly to specific CYC categories, enabling seamless translation of international patterns.",
-    industryStandards: "The Craft Yarn Council (CYC) established the eight-category weight system in 2002 to standardize the inconsistent labeling practices of the global fiber industry. Before CYC standardization, yarn weights were named differently in nearly every country, what North Americans called 'worsted' might be 'aran' in the UK or '10-ply' in Australia. The four-inch gauge square became the standard test measurement because it provides sufficient accuracy while remaining practical for hand-measurement. CYC categories are endorsed by major yarn manufacturers and pattern publishers worldwide, though boutique mills and handspinners still use alternative nomenclature. The system remains the most recognized weight standard in English-language fiber arts communities.",
-    manufacturerNote: "In practice, yarn manufacturers often label weights inconsistently within the CYC system, and variations in twist, ply structure, and fiber content cause functionally identical-weight yarns to behave differently. Two yarns both labeled 'DK weight' may produce different gauges on identical needles, a tightly plied merino DK knits tighter than a loosely spun single-ply DK. Some manufacturers round labels to the nearest category, placing a yarn that technically measures 11.5 WPI (between categories 2 and 3) wherever it feels marketable. Yardage per 100 grams also varies significantly within the same category because fiber density differs, cotton yields fewer yards per 100g than wool or acrylic of the same weight. Always swatch before substituting.",
+    disclaimer: "This is a reference and label comparison, not a guarantee of yarn compatibility. Categories, regional names, and yardage per gram cannot predict your gauge. Swatch with the actual yarn, follow your pattern, and check the finished fabric before substituting.",
+    answerCapsule: "Compare the eight Craft Yarn Council yarn weight categories, knitting gauge guidelines, and suggested needle and hook sizes. Common US, UK, and Australian names are approximate references. Use the substitution checker to compare labels, then verify your choice with a swatch.",
+    chartGuide: "Each row shows a CYC category, common regional names, and needle and hook guidelines. The gauge column is knitting only: stockinette stitches per 4 inches. Crochet gauge ranges differ and are listed separately in the linked CYC source. Jumbo sizes have no fixed upper limit, and lace hooks distinguish steel from regular hooks. Regional ply names are approximate, not exact conversions or counts of the yarn's strands.",
+    industryStandards: "The Craft Yarn Council publishes categories 0 through 7 as yarn weight guidelines. The recommended gauges and tool sizes are reference ranges, not requirements for every project. Lace and openwork may use larger tools than the chart suggests. CYC also states that the categories do not establish whether two yarns are interchangeable; follow the pattern's gauge and evaluate a swatch.",
+    manufacturerNote: "Two yarns with the same category or yardage per gram can differ in fiber content, construction, elasticity, and drape. Even a matching stitch gauge does not guarantee matching row gauge or fabric. Check both labels, swatch in the intended stitch pattern, and assess the fabric after the care process recommended for the yarn. Use the metric tool diameter when a manufacturer's US size designation differs.",
     internalLinks: [
       { label: "Gauge Calculator", href: "/gauge-calculator", description: "Verify your gauge after substituting yarn" },
       { label: "Yarn Yardage Calculator", href: "/yarn-calculator", description: "Calculate how much substitute yarn you need" },
@@ -254,16 +254,16 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     introduction: {
       title: "Why You Need a Yarn Weight Reference Chart",
       paragraphs: [
-        "A pattern calls for DK weight yarn, but the label on your skein says 8-ply, are they the same thing? Different countries and manufacturers use different naming conventions for yarn thickness, which can lead to purchasing the wrong weight and producing fabric with incorrect drape or gauge.",
-        "Australian and British patterns use ply counts, North American patterns use category names, and European labels often list only recommended needle size in millimeters. Despite the Craft Yarn Council's standardized weight system (categories 0–7), there is still no universal international labeling standard. A comprehensive reference chart bridges these systems so you can substitute yarns confidently across international patterns.",
+        "A pattern calls for DK while a yarn label says 8-ply. Those names are commonly associated, but they do not prove that the yarn will meet the pattern's gauge. This chart helps you interpret labels before making a swatch.",
+        "Compare the category, suggested tool size, fiber content, and label length and weight. Regional names can vary between manufacturers, so treat the UK and Australian columns as approximate naming references rather than exact equivalence rules.",
       ],
     },
     whatIs: {
       title: "What Are Yarn Weight Categories?",
       paragraphs: [
-        "The Craft Yarn Council (CYC), a trade association of yarn manufacturers and distributors, established a standardized system of eight weight categories numbered 0 through 7, from lace weight at the finest end to jumbo at the heaviest. Each category defines a range of acceptable gauges, recommended needle or hook sizes, and common project applications. Worsted weight (category 4) is widely considered the most popular weight category in North America.",
-        "These categories provide a universal language for yarn thickness. Category 3, called DK or light worsted, is the same as 8-ply in Australian terminology and roughly corresponds to what many European brands label as suitable for 4.0mm needles. The chart maps all these naming systems together.",
-        "Within each category there is still variation, a loosely spun DK and a tightly plied DK will behave differently despite sharing a label. The weight category is a starting point for selection, and swatching confirms whether a specific yarn performs as expected for your chosen pattern.",
+        "The CYC system groups yarns into eight categories, from 0 (Lace) through 7 (Jumbo). Its chart gives separate knitting and crochet gauge guidelines plus suggested needle and hook sizes.",
+        "For example, category 3 includes DK and light worsted. CYC's knitting guideline is 21–24 stockinette stitches per 4 inches on 3.75–4.5 mm needles. This is a reference range, not a prediction for a particular yarn or knitter.",
+        "A category is a starting point for selection. Yarn construction, the stitch pattern, the tools, and your tension all affect the fabric. A swatch is needed to assess whether a substitution meets the pattern's requirements.",
       ],
     },
     howCalculated: {
@@ -271,30 +271,30 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       paragraphs: [
         "A practical method for estimating yarn weight is the wraps-per-inch test. Wrap yarn around a consistent tool without stretching or overlapping, then count the wraps across one inch. The Craft Yarn Council publishes overlapping WPI guideline ranges and warns that results can vary by how tightly the yarn is wrapped.",
         "Because adjacent WPI ranges overlap, one measurement can point to more than one possible category. Use WPI as a starting point, then make a gauge swatch with the intended needles or hook and follow the pattern or yarn manufacturer's guidance.",
-        "The calculator cross-references WPI ranges, standard gauge ranges, and recommended needle sizes for all eight CYC categories, giving you multiple ways to confirm your yarn weight classification before committing to a pattern or purchasing additional skeins.",
+        "This chart shows category and tool-size references; it does not measure or identify an unlabeled yarn. The substitution checker compares the categories you select and optional label yardage, without calculating a compatibility percentage.",
       ],
     },
     howToUse: {
       title: "How to Use the Yarn Weight & Substitution Guide",
       paragraphs: [
-        "Browse the interactive chart to look up any standard yarn weight from lace (0) through jumbo (7). Each weight shows the Craft Yarn Council category number, typical gauge range, recommended needle and hook sizes, and common project types. The chart includes US, UK, and Australian naming conventions, what Americans call worsted, Australians call 10-ply, and the UK calls aran or DK depending on the specific weight.",
-        "Use the substitution checker to compare two yarn weights side by side. Enter the yarn weight your pattern calls for and the weight you want to use. The checker tells you whether the substitution is compatible, borderline, or incompatible, and explains what adjustments to make if the substitution is borderline."
+        "Search by a category number or common name, then select a category number for additional naming notes. Read the knitting gauge and needle or hook guidance alongside the actual yarn label and pattern.",
+        "In the substitution checker, select the pattern yarn's category and the proposed substitute's category. You may also enter yards per gram from both labels. Divide total yards by grams and use the same unit for both yarns; do not mix meters per gram with yards per gram."
       ],
     },
     understandingResults: {
       title: "Understanding Your Results",
       paragraphs: [
-        "A \"compatible\" result from the substitution checker means the two yarns are in the same thickness range and will produce similar gauge on the same needles. It does not mean the finished fabric will look or feel identical. Fiber content, ply structure, and spin direction all affect drape, stitch definition, and halo. A tightly plied merino worsted and a loosely spun single-ply worsted are the same weight but produce very different fabric.",
-        "The \"borderline\" result means the substitution may work with a needle size adjustment. For example, a heavy DK yarn can sometimes work in place of a light worsted if you go up one needle size. Always swatch with the substitute yarn to confirm before starting the full project."
+        "Same category, adjacent categories, and different categories describe only the selected labels. Every result requires a swatch. Matching categories or yards per gram do not establish matching gauge, thickness, or drape.",
+        "The checker cannot determine a needle-size change from the labels. Swatch in the pattern's stitch pattern, follow the yarn's care instructions, then compare stitch gauge, row gauge, and the fabric. Even when gauge matches, consider whether the feel and drape suit the project."
       ],
     },
     proTips: {
       title: "Pro Tips",
       tips: [
-        "When substituting yarn, match meters per 100 grams first, then check fiber content. Two yarns with the same m/100g will knit at nearly the same gauge regardless of what category name is on the label.",
-        "Do not substitute acrylic for wool in stranded colorwork. Acrylic does not felt or bloom, so the floats will not lock together during blocking and the fabric will be loose and sloppy.",
-        "Lace weight yarns vary wildly within their category. A cobweb-weight lace at 1,300 yards per 100g is not interchangeable with a heavy lace at 800 yards per 100g, even though both are labeled \"lace.\"",
-        "Sport weight and DK weight overlap significantly. If a pattern calls for DK and you have sport weight, swatch on the recommended needles, it may work without changes."
+        "Use length per gram only to compare label information. Similar values do not prove that two yarns will make the same fabric.",
+        "For colorwork, test the intended stitch pattern and assess elasticity, stitch definition, and drape with the actual substitute yarn.",
+        "For lace and openwork, follow the pattern's gauge and suggested tools rather than assuming the compact stockinette range applies.",
+        "Check yarn quantity using the label and a representative swatch. Equal skein weights do not necessarily contain equal lengths."
       ],
     },
   },

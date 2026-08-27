@@ -15,6 +15,7 @@
     "test:indexnow": "node --test tests/indexnow-urls.test.mjs",
     "test:gpc-consent": "node --test tests/gpc-consent.test.mjs",
     "test:blanket-gauge": "node --test tests/blanket-gauge.test.mjs",
+    "test:yarn-weight": "node --test tests/yarn-weight-reference.test.mjs",
     "test:pattern-checker": "node --test tests/amigurumi-pattern-checker.test.mjs tests/stitchproof-designer-core.test.mjs tests/stitchproof-designer-ui.test.mjs tests/stitchproof-analytics.test.mjs tests/stitchproof-privacy.test.mjs",
     "test:stitchproof-purchase": "node --test tests/stitchproof-purchase*.test.mjs",
     "test:fabric-substitution": "node --test tests/fabric-substitution.test.mjs",
@@ -30,7 +31,7 @@
     "test:review-dates": "node --test tests/review-dates.test.mjs",
     "ops:designer-preflight-watchdog": "node scripts/designer-preflight-ops-watchdog.mjs",
     "test:revenue-path": "node --test tests/revenue-path-check.test.js",
-    "test:search-traffic": "node --test tests/formula-library-and-newsletter.test.mjs tests/homepage-focus-and-navigation.test.mjs tests/legacy-search-redirects.test.mjs tests/seo-content-accuracy.test.mjs tests/sitemap-readiness.test.mjs tests/social-preview-metadata.test.mjs tests/tool-referral-loop.test.mjs",
+    "test:search-traffic": "node --test tests/formula-library-and-newsletter.test.mjs tests/homepage-focus-and-navigation.test.mjs tests/legacy-search-redirects.test.mjs tests/seo-content-accuracy.test.mjs tests/sitemap-readiness.test.mjs tests/social-preview-metadata.test.mjs tests/tool-referral-loop.test.mjs tests/yarn-weight-reference.test.mjs",
     "test:stitchproof-distribution": "node --test tests/stitchproof-distribution.test.mjs",
     "test:ui-accessibility": "node --test tests/ui-accessibility.test.mjs",
     "check:revenue-path": "node scripts/revenue-path-check.js",
@@ -38,7 +39,7 @@
     "test:quality": "node scripts/quality-gate.js",
     "lint:predeploy": "node scripts/predeploy-check.js",
     "prebuild": "npm run lint:predeploy && npm run lint:content && npm run test:environment-docs",
-    "postbuild": "npm run test:focused-page-output && npm run test:review-dates"
+    "postbuild": "npm run test:focused-page-output && npm run test:review-dates && node --test tests/yarn-weight-page-output.test.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.50.0",
