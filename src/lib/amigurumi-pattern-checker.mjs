@@ -285,7 +285,7 @@ export function evaluatePatternRound(line, startingCount, fallbackRound = 1) {
     explicitRoundNumber: Boolean(roundMatch),
     instructionBody: body,
     hasMagicRing,
-    instructionClassification: "unsupported",
+    instructionClassification: "not-evaluated",
     parsedRepeatCount: null,
     repeatUnitConsumed: null,
     repeatUnitCreated: null,
@@ -381,6 +381,7 @@ export function evaluatePatternRound(line, startingCount, fallbackRound = 1) {
       notes: [],
       message: error instanceof Error ? error.message : "This notation is not supported yet.",
       ...details,
+      instructionClassification: error instanceof PatternEvaluationError ? "not-evaluated" : "unsupported",
       failureKind: error instanceof PatternEvaluationError ? error.failureKind : "unsupported-notation",
     };
   }

@@ -85,6 +85,8 @@ const REPORT_LIMITATIONS = Object.freeze([
   "A passing result is not certification and does not replace a sample, technical edit, or human test crochet.",
 ]);
 
+const USER_MARKED_UNSUPPORTED_MESSAGE = "This round was marked as unsupported notation by the user.";
+
 function isPlainObject(value) {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
@@ -153,12 +155,16 @@ function snapshotFromEvaluation(evaluated) {
   return snapshot;
 }
 
-function publicMessage(snapshot, hasMagicRing, fallbackMessage, failureKind = null) {
+function publicMessage(snapshot, hasMagicRing, fallbackMessage, failureKind = null, classificationWasCorrected = false) {
   if (snapshot.classification === "manual-review") {
     return "This round was marked for manual review by the user.";
   }
+  if (snapshot.classification === "unsupported" && classificationWasCorrected) {
+    return USER_MARKED_UNSUPPORTED_MESSAGE;
+  }
   if (
     snapshot.classification === "unsupported"
+    || snapshot.classification === "not-evaluated"
     || snapshot.startingCount == null
     || snapshot.consumed == null
     || snapshot.created == null
@@ -189,7 +195,7 @@ function publicMessage(snapshot, hasMagicRing, fallbackMessage, failureKind = nu
 }
 
 function statusForSnapshot(snapshot, hasMagicRing, failureKind = null) {
-  if (snapshot.classification === "manual-review") return "unresolved";
+  if (snapshot.classification === "manual-review" || snapshot.classification === "not-evaluated") return "unresolved";
   if (snapshot.startingCount == null || snapshot.consumed == null || snapshot.created == null) {
     return failureKind === "unsupported-notation" ? "unsupported" : "unresolved";
   }
@@ -684,7 +690,13 @@ export function analyzeDesignerPattern(patternText, initialStartingCount = null,
       ? "The repeat correction could not be applied to this instruction, so the round remains unresolved."
       : effectiveEvaluation.failureKind === "missing-starting-count" && index > 0
         ? "No verified stitch count is available from the prior round, so this round could not be evaluated."
-        : publicMessage(effective, effectiveEvaluation.hasMagicRing, effectiveEvaluation.message, effectiveEvaluation.failureKind);
+        : publicMessage(
+          effective,
+          effectiveEvaluation.hasMagicRing,
+          effectiveEvaluation.message,
+          effectiveEvaluation.failureKind,
+          lineCorrections.some((correction) => own(correction.changes, "classification")),
+        );
     const frozenOriginal = deepFreeze({ ...original });
     const frozenEffective = deepFreeze({ ...effective });
     const effect = correctionEffect(frozenOriginal, frozenEffective, lineCorrections.length);
@@ -721,6 +733,7 @@ export function analyzeDesignerPattern(patternText, initialStartingCount = null,
     if (!invalidRepeatCorrection
       && effective.created != null
       && effective.classification !== "unsupported"
+      && effective.classification !== "not-evaluated"
       && effective.classification !== "manual-review") {
       effectiveNextStartingCount = effective.created;
     } else {
@@ -1114,6 +1127,7 @@ export function createDesignerProject(input) {
 
 function reportSafeMessage(issueEntry, includeExcerpts) {
   if (!includeExcerpts && issueEntry.code === ISSUE_CODES.UNSUPPORTED_NOTATION) {
+    if (issueEntry.message === USER_MARKED_UNSUPPORTED_MESSAGE) return USER_MARKED_UNSUPPORTED_MESSAGE;
     return "This round uses notation the deterministic parser does not support.";
   }
   return issueEntry.message;

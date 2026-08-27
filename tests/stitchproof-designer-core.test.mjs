@@ -573,6 +573,37 @@ test("supported around repeats explain a count-fit failure and recover with a st
   assert.equal(corrected.results[0].consumed, 6);
   assert.equal(corrected.results[0].created, 8);
   assert.equal(corrected.results[0].correctionEffect, "resolved");
+  assert.equal(corrected.corrections[0].original.classification, "not-evaluated");
+  assert.equal(corrected.corrections[0].original.status, "unresolved");
+});
+
+test("uncomputed arithmetic is not classified as unsupported in snapshots or silently verified by partial overrides", () => {
+  const source = "Round 1: 9007199254740993 sc in magic ring [6]\nRound 2: 6 sc [6]";
+  const analysis = analyzeDesignerPattern(source, null, [createCorrection({ lineIndex: 0, consumed: 0, created: 6 })]);
+  assert.equal(analysis.results[0].original.classification, "not-evaluated");
+  assert.equal(analysis.results[0].effective.classification, "not-evaluated");
+  assert.equal(analysis.results[0].status, "unresolved");
+  assert.match(analysis.results[0].message, /outside the supported whole-number range/);
+  assert.equal(analysis.results[1].startingCount, null);
+  assert.equal(analysis.results[1].status, "unresolved");
+  assert.equal(analysis.results[1].original.classification, "not-evaluated");
+});
+
+test("user-marked unsupported notation is attributed to the user in results, reports, and CSV", () => {
+  const analysis = analyzeDesignerPattern("Round 1: 6 sc in magic ring [6]", null, [
+    createCorrection({ lineIndex: 0, classification: "unsupported" }),
+  ]);
+  const expectedMessage = "This round was marked as unsupported notation by the user.";
+  assert.equal(analysis.results[0].original.status, "correct");
+  assert.equal(analysis.results[0].status, "unsupported");
+  assert.equal(analysis.results[0].message, expectedMessage);
+  for (const includeExcerpts of [false, true]) {
+    const report = buildDesignerReportModel({ analysis, includeExcerpts });
+    assert.equal(report.issueRows[0].message, expectedMessage);
+  }
+  const csv = exportIssuesCsv({ analysis });
+  assert.match(csv, /marked as unsupported notation by the user/);
+  assert.doesNotMatch(csv, /parser does not support/);
 });
 
 test("unsupported math makes dependent rounds unresolved until a correction restores the count chain", () => {
