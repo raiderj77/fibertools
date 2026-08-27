@@ -16,6 +16,7 @@
     "test:gpc-consent": "node --test tests/gpc-consent.test.mjs",
     "test:blanket-gauge": "node --test tests/blanket-gauge.test.mjs",
     "test:pattern-checker": "node --test tests/amigurumi-pattern-checker.test.mjs tests/stitchproof-designer-core.test.mjs tests/stitchproof-designer-ui.test.mjs tests/stitchproof-analytics.test.mjs tests/stitchproof-privacy.test.mjs",
+    "test:stitchproof-purchase": "node --test tests/stitchproof-purchase*.test.mjs",
     "test:fabric-substitution": "node --test tests/fabric-substitution.test.mjs",
     "test:designer-preflight": "node --test tests/designer-pattern-preflight.test.mjs tests/designer-preflight-sql-contract.test.mjs",
     "test:focus-revenue": "node --test tests/amigurumi-shapes-rounds.test.mjs tests/embed-pilot.test.mjs tests/focus-revenue-offers.test.mjs tests/gauge-calculations.test.mjs tests/internal-links.test.mjs",

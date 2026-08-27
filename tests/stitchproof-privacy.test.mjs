@@ -25,19 +25,33 @@ test("privacy copy documents browser-local processing, opt-in storage, and expor
 test("cookie copy separates explicit project storage from consent storage and exports", () => {
   assert.match(cookies, /Last updated: August 26, 2026/);
   assert.match(cookies, /empire_gpc/);
-  assert.match(cookies, /IndexedDB only after you explicitly/);
+  assert.match(cookies, /stored in IndexedDB only when you explicitly/);
   assert.match(cookies, /does not sync between devices/);
   assert.match(cookies, /clearing the site&apos;s browser data removes it/);
   assert.match(cookies, /JSON backup,[\s\S]*browser-print or PDF files are separate files/);
 });
 
-test("terms keep the $9 checkout closed and state deterministic-report limitations", () => {
+test("terms define the approved project purchase, fail-closed sales, and deterministic-report limitations", () => {
   assert.match(terms, /Last updated: August 26, 2026/);
-  assert.match(terms, /proposed \$9 Designer Report is[\s\S]*not currently for sale/);
-  assert.match(terms, /checkout remains disabled[\s\S]*does\s+not accept payment/);
+  assert.match(terms, /Designer Report has a \$9 base price once for one pattern[\s\S]*project, including its revisions and report exports/);
+  assert.match(terms, /not a[\s\S]*subscription/);
+  assert.match(terms, /checkout is unavailable,[\s\S]*cannot start a new checkout/);
+  assert.match(terms, /previously opened[\s\S]*Stripe checkout may remain payable/);
+  assert.match(terms, /Any applicable tax[\s\S]*final total are shown by Stripe before payment/);
+  assert.match(terms, /private JSON backup remain available[\s\S]*without payment/);
+  assert.match(terms, /verifies the payment online/);
+  assert.match(terms, /Restoring the same project backup preserves its purchase reference/);
   assert.match(terms, /not professional tech editing, pattern testing,[\s\S]*certification/);
   assert.match(terms, /not independently verified/);
   assert.match(terms, /default report does[\s\S]*not reproduce the full pattern/);
+});
+
+test("purchase privacy separates local patterns, recovery keys, and private payment records", () => {
+  assert.match(privacy, /private payment records store a hash[\s\S]*not[\s\S]*the key itself, pattern text, project title/);
+  assert.match(privacy, /deleting a browser-local project does not delete them/);
+  assert.match(privacy, /existing purchase is verified independently/);
+  assert.match(cookies, /not an analytics cookie/);
+  assert.match(cookies, /never the pattern or its metadata/);
 });
 
 test("validation dashboard keeps metrics evidence-led and excludes owner and sandbox activity", () => {

@@ -113,13 +113,21 @@ export default function CookiePolicyPage() {
             your device and is not shared with anyone.
           </p>
           <p>
-            StitchProof Designer projects use IndexedDB only after you explicitly
+            StitchProof Designer projects are stored in IndexedDB only when you explicitly
             choose &ldquo;Save on this device.&rdquo; This browser-local project storage is
             not an analytics cookie, does not sync between devices, and is specific
             to the browser profile where it was saved. Deleting the project in
             StitchProof or clearing the site&apos;s browser data removes it. JSON backup,
             CSV download, and browser-print or PDF files are separate files on your
             device and are not controlled by the cookie banner.
+          </p>
+          <p>
+            A StitchProof purchase recovery key is included only in the local project
+            backup or saved project you choose to keep. It is not an analytics cookie.
+            Payment verification sends the random project reference and recovery key
+            to FiberTools, never the pattern or its metadata. Keep recovery files
+            private; deleting browser data does not remove backups you downloaded or
+            the separate payment records needed to verify a purchase.
           </p>
         </section>
 

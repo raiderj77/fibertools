@@ -197,6 +197,25 @@
     color: black !important;
     text-shadow: none !important;
   }
+
+  body.stitchproof-printing-report .stitchproof-preview-label {
+    display: none !important;
+  }
+
+  body.stitchproof-printing-report #stitchproof-report .overflow-x-auto {
+    overflow: visible !important;
+  }
+
+  body.stitchproof-printing-report #stitchproof-report table {
+    min-width: 0 !important;
+    width: 100% !important;
+    table-layout: fixed;
+    overflow-wrap: anywhere;
+  }
+
+  body.stitchproof-printing-report #stitchproof-report tr {
+    break-inside: avoid;
+  }
 }
 
 /* ── Animations ── */

@@ -28,6 +28,7 @@ jobs:
           npm run test:blanket-gauge
           npm run test:indexnow
           npm run test:pattern-checker
+          npm run test:stitchproof-purchase
           npm run test:fabric-substitution
           npm run test:designer-preflight
           npm run test:focus-revenue
