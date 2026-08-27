@@ -6,10 +6,9 @@ const read = (path) => readFileSync(path, "utf8");
 const privacy = read("src/app/privacy/page.tsx");
 const cookies = read("src/app/cookies/page.tsx");
 const terms = read("src/app/terms/page.tsx");
-const validation = read("docs/stitchproof-designer-validation.md");
 
 test("privacy copy documents browser-local processing, opt-in storage, and exports", () => {
-  assert.match(privacy, /Last updated: August 26, 2026/);
+  assert.match(privacy, /Last updated: August 27, 2026/);
   assert.match(privacy, /Pattern text,[\s\S]*processed in your browser[\s\S]*not sent to FiberTools servers/);
   assert.match(privacy, /does not use session recording/);
   assert.match(privacy, /unless you explicitly choose to save it on[\s\S]*this device/);
@@ -32,7 +31,7 @@ test("cookie copy separates explicit project storage from consent storage and ex
 });
 
 test("terms define the approved project purchase, fail-closed sales, and deterministic-report limitations", () => {
-  assert.match(terms, /Last updated: August 26, 2026/);
+  assert.match(terms, /Last updated: August 27, 2026/);
   assert.match(terms, /Designer Report has a \$9 base price once for one pattern[\s\S]*project, including its revisions and report exports/);
   assert.match(terms, /not a[\s\S]*subscription/);
   assert.match(terms, /checkout is unavailable,[\s\S]*cannot start a new checkout/);
@@ -54,7 +53,18 @@ test("purchase privacy separates local patterns, recovery keys, and private paym
   assert.match(cookies, /never the pattern or its metadata/);
 });
 
+test("managed purchase copy distinguishes the checkout declaration from billing data and local drafts", () => {
+  assert.match(privacy, /If Managed Payments checkout is available/);
+  assert.match(privacy, /selected country code[\s\S]*market-policy version, and the product tax code/);
+  assert.match(privacy, /not independently verified[\s\S]*not saved in your draft,[\s\S]*recovery backup, or analytics/);
+  assert.match(terms, /base price is in US dollars/);
+  assert.match(terms, /may display a local-currency price/);
+  assert.match(terms, /Review the seller details, currency, any applicable tax, and final total/);
+});
+
 test("validation dashboard keeps metrics evidence-led and excludes owner and sandbox activity", () => {
+  // Keep protected experiment reads local to their explicitly selected test.
+  const validation = read("docs/stitchproof-designer-validation.md");
   for (const threshold of [
     "Designer-mode starts | 40",
     "Completed reports | 20",

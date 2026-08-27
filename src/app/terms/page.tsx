@@ -29,7 +29,7 @@ export default function TermsPage() {
         Terms of Use
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: August 26, 2026
+        Last updated: August 27, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -106,6 +106,13 @@ export default function TermsPage() {
             you cannot start a new checkout through FiberTools. A previously opened
             Stripe checkout may remain payable until it expires; closing new sales
             does not itself cancel that session or issue a refund.
+          </p>
+          <p>
+            The base price is in US dollars. If Managed Payments checkout is offered,
+            it may display a local-currency price and a Sold through Link notice.
+            Review the seller details, currency, any applicable tax, and final total
+            in checkout before paying. Choosing a country in the workspace does not
+            reserve a price, verify your billing location, or confirm payment.
           </p>
           <p>
             Pattern text and project metadata are not uploaded to FiberTools by the
