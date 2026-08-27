@@ -112,14 +112,14 @@ export const guides: Guide[] = [
   {
     slug: "blanket-yarn-guide",
     title: "How Much Yarn Do You Need for a Blanket?",
-    description: "Figure out exactly how much yarn to buy for any blanket size. Covers yardage by blanket type, how yarn weight and stitch pattern affect totals, and when to use a calculator.",
+    description: "Estimate how much yarn to buy for a blanket from a measured swatch. Covers size, yarn weight, stitch pattern, planning buffers, and when to use a calculator.",
     toolSlug: "blanket-calculator",
     date: "2026-03-06",
     keywords: ["blanket yarn yardage", "how much yarn for a blanket", "blanket size chart", "yarn for baby blanket", "throw blanket yarn", "blanket calculator"],
     sections: [
       {
         heading: "Blanket Size Chart: Baby to King",
-        content: "Blanket sizes vary, but standard dimensions give you a reliable starting point. A baby or receiving blanket typically measures 30 × 36 inches. A stroller blanket runs about 30 × 40 inches. A lap blanket is roughly 36 × 48 inches. A throw blanket, the most popular project size, measures around 50 × 60 inches. A twin bed blanket is approximately 66 × 90 inches. A queen comes in at 90 × 90 inches, and a king at 108 × 90 inches.\n\nThese are finished dimensions. If your stitch pattern has significant draw-in (cables, for instance, pull fabric narrower than stockinette), you'll need to cast on extra stitches to hit the target width. Blocking can also change dimensions, cotton and linen tend to grow, while wool can either shrink or bloom depending on the fiber preparation.\n\nChoose your size before calculating yardage. The jump from a throw to a queen blanket nearly triples the square footage, which has a massive impact on how much yarn you need to buy."
+        content: "Blanket sizes vary, so preset dimensions are starting points rather than universal standards. The FiberTools calculator uses 30 × 30 inches for a receiving blanket, 30 × 40 inches for a stroller blanket, 36 × 48 inches for a lap blanket, 50 × 60 inches for a throw, 66 × 90 inches for a twin, 90 × 100 inches for a queen, and 108 × 100 inches for a king. Measure the bed or intended use and edit the dimensions when you need a different fit.\n\nThese are finished dimensions. If your stitch pattern has significant draw-in (cables, for instance, pull fabric narrower than stockinette), you'll need to cast on extra stitches to hit the target width. Blocking can also change dimensions, cotton and linen tend to grow, while wool can either shrink or bloom depending on the fiber preparation.\n\nChoose your size before calculating yardage. The jump from a throw to a queen blanket nearly triples the square footage, which has a massive impact on how much yarn you need to buy."
       },
       {
         heading: "How Yarn Weight Changes Yardage Dramatically",
@@ -139,7 +139,7 @@ export const guides: Guide[] = [
       },
       {
         heading: "Using a Calculator vs Estimating",
-        content: "Rough estimates work for casual projects where running out of yarn isn't catastrophic, you can always add a contrasting border or switch to stripes. But for single-color blankets or gifts with a deadline, precision matters. A blanket calculator removes the guesswork by taking your gauge, blanket dimensions, and yarn weight, then outputting total yardage and skein count.\n\nThe Blanket Calculator on fibertools.app handles this math instantly. Pair it with the Yarn Calculator to figure out how many skeins of a specific brand you need. If you're making a striped blanket, the Stripe Generator helps plan color distribution so you can buy the right amount of each color. And the Project Cost Calculator lets you estimate total material cost before you commit to buying.\n\nPlanning ahead saves money and frustration. A few minutes with a calculator before you shop means you buy the right amount, from the same dye lot, on the first trip."
+        content: "Rough estimates work for casual projects where running out of yarn isn't catastrophic, you can always add a contrasting border or switch to stripes. But a calculator cannot derive yarn use reliably from gauge, blanket dimensions, and yarn-weight category alone. FiberTools scales the grams used by a measured swatch made in your actual stitch pattern to the chosen blanket area, then adds a visible 10% planning buffer. The yarn label's length and weight convert that result to total yardage and whole skeins. Gauge is used separately for stitch and row counts.\n\nThe Blanket Calculator on fibertools.app handles this measured-swatch method. Use the Yarn Calculator for a rough project-type estimate when you do not have a weighed swatch. If you're making a striped blanket, the Stripe Generator helps plan color distribution so you can buy the right amount of each color. And the Project Cost Calculator lets you estimate total material cost before you commit to buying.\n\nPlanning ahead reduces surprises. Measure your project and swatch, check the yarn label, and treat the result as a planning estimate rather than a guarantee."
       }
     ]
   },
