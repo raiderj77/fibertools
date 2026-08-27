@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 const packageManifest = JSON.parse(read("package.json"));
@@ -32,4 +34,18 @@ test("normal builds and required CI enforce the runtime contract", () => {
   assert.equal(packageManifest.scripts["test:runtime"], "node --test tests/runtime-contract.test.mjs");
   assert.match(packageManifest.scripts.prebuild, /^npm run test:runtime && /);
   assert.match(read(".github/workflows/empire-check.yml"), /npm run test:runtime/);
+});
+
+test("the security gate accepts the reviewed runtime and retains its dependency checks", () => {
+  const output = execFileSync(process.execPath, ["scripts/security-check.js"], {
+    cwd: fileURLToPath(new URL("../", import.meta.url)),
+    encoding: "utf8",
+  });
+  assert.match(output, /Security dependency and service-worker checks passed\./);
+});
+
+test("development prerequisites do not advertise the retired Node runtime", () => {
+  const readme = read("README.md");
+  assert.match(readme, /Node\.js 24 LTS/);
+  assert.doesNotMatch(readme, /Node\.js 20|CI currently uses Node 20/);
 });

@@ -66,7 +66,7 @@ See [`docs/stitchproof-purchase-release.md`](docs/stitchproof-purchase-release.m
 
 Requirements:
 
-- Node.js 20.9 or later; CI currently uses Node 20.
+- Node.js 24 LTS; use the shared version in `.nvmrc` for development and CI.
 - npm.
 
 Install and run:
