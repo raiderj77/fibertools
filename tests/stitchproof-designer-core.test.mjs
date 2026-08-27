@@ -37,6 +37,19 @@ test("designer analysis preserves the free boundary and handles 20 or 100 determ
   assert.equal(tooMany.results.length, 0);
 });
 
+test("designer review and reports preserve numbered slip-stitch arithmetic", () => {
+  for (const instruction of ["6 sl st", "sl st 6", "6 slst", "slst 6"]) {
+    const analysis = analyzeDesignerPattern(`Round 2: ${instruction} [6]\nRound 3: 6 sc [6]`, 6);
+    const report = buildDesignerReportModel({ analysis });
+    assert.equal(analysis.error, null, instruction);
+    assert.equal(analysis.summary.passedRounds, 2, instruction);
+    assert.equal(analysis.results[0].effective.consumed, 6, instruction);
+    assert.equal(analysis.results[0].effective.created, 6, instruction);
+    assert.equal(analysis.results[1].effective.startingCount, 6, instruction);
+    assert.equal(report.issueRows.length, 0, instruction);
+  }
+});
+
 test("reports duplicate and missing round numbers with structured issue codes", () => {
   const analyzed = analyzeDesignerPattern(duplicateAndMissingPattern, 1);
   const report = buildDesignerReportModel({ analysis: analyzed });
@@ -521,6 +534,45 @@ test("unsafe numeric inputs remain unresolved and huge numbering gaps are aggreg
     () => createCorrection({ lineIndex: 0, created: Number.MAX_SAFE_INTEGER + 1 }),
     /non-negative integer/,
   );
+});
+
+test("instruction and repeat overflow are unresolved without claiming unsupported notation", () => {
+  for (const [source, startingCount] of [
+    ["Round 1: 9007199254740993 sc in magic ring [1]", null],
+    ["Round 2: (sc, inc) x 4503599627370496 [1]", 1],
+    ["Round 2: sl st 9007199254740993 [6]", 6],
+    ["Round 2: 9007199254740993 sl st [6]", 6],
+  ]) {
+    const analysis = analyzeDesignerPattern(source, startingCount);
+    const report = buildDesignerReportModel({ analysis });
+    assert.equal(analysis.results[0].status, "unresolved", source);
+    assert.equal(analysis.results[0].created, null, source);
+    assert.equal(analysis.summary.unsupportedNotation, 0, source);
+    assert.equal(analysis.summary.unresolvedRounds, 1, source);
+    assert.ok(analysis.results[0].issueCodes.includes(ISSUE_CODES.UNRESOLVED_ROUND));
+    assert.ok(!analysis.results[0].issueCodes.includes(ISSUE_CODES.UNSUPPORTED_NOTATION));
+    assert.match(report.issueRows[0].message, /outside the supported whole-number range/);
+    assert.doesNotMatch(report.issueRows[0].message, /notation.*does not support/i);
+  }
+});
+
+test("supported around repeats explain a count-fit failure and recover with a starting-count correction", () => {
+  const source = "Round 2: (2 sc, inc) around [8]";
+  const analysis = analyzeDesignerPattern(source, 5);
+  const report = buildDesignerReportModel({ analysis });
+  assert.equal(analysis.results[0].status, "unresolved");
+  assert.equal(analysis.results[0].created, null);
+  assert.equal(analysis.summary.unsupportedNotation, 0);
+  assert.equal(analysis.summary.unresolvedRounds, 1);
+  assert.ok(analysis.results[0].issueCodes.includes(ISSUE_CODES.UNRESOLVED_ROUND));
+  assert.match(report.issueRows[0].message, /3-stitch repeat does not fit evenly into 5 stitches available/);
+  assert.doesNotMatch(report.issueRows[0].message, /notation.*does not support/i);
+
+  const corrected = analyzeDesignerPattern(source, 5, [createCorrection({ lineIndex: 0, startingCount: 6 })]);
+  assert.equal(corrected.results[0].status, "correct");
+  assert.equal(corrected.results[0].consumed, 6);
+  assert.equal(corrected.results[0].created, 8);
+  assert.equal(corrected.results[0].correctionEffect, "resolved");
 });
 
 test("unsupported math makes dependent rounds unresolved until a correction restores the count chain", () => {

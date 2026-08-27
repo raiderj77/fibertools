@@ -47,6 +47,34 @@ test("supports even rounds, loop modifiers, chains, and joining slip stitches", 
   assert.equal(result.notes.length, 2);
 });
 
+test("counts numbered slip stitches in either notation and carries the result forward", () => {
+  for (const instruction of ["6 sl st", "sl st 6", "6 slst", "slst 6"]) {
+    const checked = checkPattern(`Round 2: ${instruction} [6]\nRound 3: 6 sc [6]`, 6);
+    assert.deepEqual(
+      checked.results.map(({ status, startingCount, consumed, created }) => ({ status, startingCount, consumed, created })),
+      [
+        { status: "correct", startingCount: 6, consumed: 6, created: 6 },
+        { status: "correct", startingCount: 6, consumed: 6, created: 6 },
+      ],
+      instruction,
+    );
+  }
+});
+
+test("numbered slip stitches still reject unsafe counts in either notation", () => {
+  for (const instruction of [
+    "9007199254740993 sl st",
+    "sl st 9007199254740993",
+    "9007199254740993 slst",
+    "slst 9007199254740993",
+  ]) {
+    const [result] = checkPattern(`Round 2: ${instruction} [6]`, 6).results;
+    assert.equal(result.status, "unsupported", instruction);
+    assert.equal(result.created, null, instruction);
+    assert.match(result.message, /Slip-stitch count is outside the supported whole-number range/);
+  }
+});
+
 test("refuses unsupported notation instead of guessing", () => {
   const [result] = checkPattern("Round 4: popcorn in each st [18]", 18).results;
   assert.equal(result.status, "unsupported");

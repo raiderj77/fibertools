@@ -2,6 +2,13 @@ export const MAX_FREE_ROUNDS = 20;
 
 const STITCH_NAMES = "sc|hdc|dc";
 
+class PatternEvaluationError extends Error {
+  constructor(message, failureKind) {
+    super(message);
+    this.failureKind = failureKind;
+  }
+}
+
 function stitchCountLabel(value) {
   return `${value} ${value === 1 ? "stitch" : "stitches"}`;
 }
@@ -9,7 +16,7 @@ function stitchCountLabel(value) {
 function safeCount(value, label, { positive = false } = {}) {
   const parsed = typeof value === "number" ? value : Number(value);
   if (!Number.isSafeInteger(parsed) || parsed < (positive ? 1 : 0)) {
-    throw new Error(`${label} is outside the supported whole-number range`);
+    throw new PatternEvaluationError(`${label} is outside the supported whole-number range`, "invalid-number");
   }
   return parsed;
 }
@@ -71,9 +78,9 @@ function parseToken(token) {
     return operation(0, 0, value, "Chains are treated as setup stitches and excluded from amigurumi totals", "setup");
   }
 
-  match = value.match(/^(\d+)\s*(sl\s*st|slst)$/i) || value.match(/^(sl\s*st|slst)\s*(\d+)$/i);
+  match = value.match(/^(\d+)\s*(?:sl\s*st|slst)$/i) || value.match(/^(?:sl\s*st|slst)\s*(\d+)$/i);
   if (match) {
-    const count = safeCount(match[1] ?? match[2], "Slip-stitch count");
+    const count = safeCount(match[1], "Slip-stitch count");
     return operation(count, count, value, null);
   }
 
@@ -192,7 +199,10 @@ function parseBody(body, startingCount, hasMagicRing) {
     if (startingCount == null) throw new Error("Enter a starting stitch count for an 'around' repeat");
     const unit = parseSequence(aroundMatch[1]);
     if (unit.consumed === 0 || startingCount % unit.consumed !== 0) {
-      throw new Error(`The ${unit.consumed}-stitch repeat does not fit evenly into ${stitchCountLabel(startingCount)} available`);
+      throw new PatternEvaluationError(
+        `The ${unit.consumed}-stitch repeat does not fit evenly into ${stitchCountLabel(startingCount)} available`,
+        "invalid-repeat-fit",
+      );
     }
     const repeats = startingCount / unit.consumed;
     return {
@@ -371,7 +381,7 @@ export function evaluatePatternRound(line, startingCount, fallbackRound = 1) {
       notes: [],
       message: error instanceof Error ? error.message : "This notation is not supported yet.",
       ...details,
-      failureKind: "unsupported-notation",
+      failureKind: error instanceof PatternEvaluationError ? error.failureKind : "unsupported-notation",
     };
   }
 }

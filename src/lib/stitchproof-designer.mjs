@@ -153,7 +153,7 @@ function snapshotFromEvaluation(evaluated) {
   return snapshot;
 }
 
-function publicMessage(snapshot, hasMagicRing, fallbackMessage) {
+function publicMessage(snapshot, hasMagicRing, fallbackMessage, failureKind = null) {
   if (snapshot.classification === "manual-review") {
     return "This round was marked for manual review by the user.";
   }
@@ -163,7 +163,9 @@ function publicMessage(snapshot, hasMagicRing, fallbackMessage) {
     || snapshot.consumed == null
     || snapshot.created == null
   ) {
-    if (fallbackMessage?.includes("outside the supported whole-number range")) return fallbackMessage;
+    if (failureKind === "invalid-number" || failureKind === "invalid-repeat-fit") {
+      return fallbackMessage || "The stitch math could not be evaluated with these counts.";
+    }
     return fallbackMessage?.startsWith("Enter ")
       ? fallbackMessage
       : "This round uses notation the deterministic parser does not support yet.";
@@ -682,7 +684,7 @@ export function analyzeDesignerPattern(patternText, initialStartingCount = null,
       ? "The repeat correction could not be applied to this instruction, so the round remains unresolved."
       : effectiveEvaluation.failureKind === "missing-starting-count" && index > 0
         ? "No verified stitch count is available from the prior round, so this round could not be evaluated."
-        : publicMessage(effective, effectiveEvaluation.hasMagicRing, effectiveEvaluation.message);
+        : publicMessage(effective, effectiveEvaluation.hasMagicRing, effectiveEvaluation.message, effectiveEvaluation.failureKind);
     const frozenOriginal = deepFreeze({ ...original });
     const frozenEffective = deepFreeze({ ...effective });
     const effect = correctionEffect(frozenOriginal, frozenEffective, lineCorrections.length);
