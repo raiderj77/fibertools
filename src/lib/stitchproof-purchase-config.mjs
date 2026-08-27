@@ -1,8 +1,12 @@
+import { STITCHPROOF_MARKET_POLICY_VERSION } from "./stitchproof-markets.mjs";
+
 export const STITCHPROOF_STRIPE_ACCOUNT_ID = "acct_1U5HWnD2Of3MIt94";
 export const STITCHPROOF_SERVICE = "stitchproof_designer_project";
 export const STITCHPROOF_OFFER_VERSION = "STITCHPROOF-PROJECT-V1";
+export const STITCHPROOF_MANAGED_OFFER_VERSION = "STITCHPROOF-PROJECT-MANAGED-V1";
 export const STITCHPROOF_AMOUNT_CENTS = 900;
 export const STITCHPROOF_SCHEMA_VERSION = "20260826_stitchproof_project_entitlements";
+export const STITCHPROOF_MANAGED_SCHEMA_VERSION = "20260827_stitchproof_managed_payments";
 export const STITCHPROOF_CREATE_RETRY_MS = 60 * 60 * 1000;
 
 export const STITCHPROOF_PURCHASE_ENV_NAMES = Object.freeze([
@@ -12,6 +16,9 @@ export const STITCHPROOF_PURCHASE_ENV_NAMES = Object.freeze([
   "STITCHPROOF_WEBHOOK_CONFIRMED", "STITCHPROOF_ABUSE_PROTECTION_PROVIDER",
   "STITCHPROOF_ABUSE_PROTECTION_CONFIRMED", "STITCHPROOF_TAX_MODE",
   "STITCHPROOF_TAX_BEHAVIOR", "STITCHPROOF_TAX_CONFIGURATION_CONFIRMED",
+  "STITCHPROOF_MANAGED_PAYMENTS_CONFIRMED", "STITCHPROOF_MANAGED_TAX_CODE",
+  "STITCHPROOF_MANAGED_COUNTRY_POLICY", "STITCHPROOF_MANAGED_COUNTRY_ENFORCEMENT_CONFIRMED",
+  "STITCHPROOF_MANAGED_PAYMENT_METHODS_CONFIRMED", "STITCHPROOF_MANAGED_DELIVERY_TEST_CONFIRMED",
   "FIBERTOOLS_STRIPE_ACCOUNT_ID", "STRIPE_MODE", "STRIPE_SECRET_KEY",
   "SUPABASE_URL", "SUPABASE_SECRET_KEY", "NEXT_PUBLIC_SITE_URL",
   "NODE_ENV", "VERCEL_ENV",
@@ -46,8 +53,10 @@ function siteOrigin(value, live, production) {
 
 export function validStitchProofTaxContract(mode, behavior) {
   return (mode === "none" && behavior === "not_applicable")
-    || (mode === "automatic" && (behavior === "inclusive" || behavior === "exclusive"));
+    || (["automatic", "managed"].includes(mode) && (behavior === "inclusive" || behavior === "exclusive"));
 }
+
+export const validStitchProofProductTaxCode = (value) => typeof value === "string" && /^txcd_[0-9]{8}$/.test(value);
 
 /** Readiness booleans are configuration evidence, never provider verification. */
 export function getStitchProofEnvironmentReadiness(env = process.env) {
@@ -63,6 +72,8 @@ export function getStitchProofEnvironmentReadiness(env = process.env) {
   const productId = text(env.STITCHPROOF_STRIPE_PRODUCT_ID);
   const priceId = text(env.STITCHPROOF_STRIPE_PRICE_ID);
   const webhookSecret = text(env.STITCHPROOF_STRIPE_WEBHOOK_SECRET);
+  const managed = env.STITCHPROOF_TAX_MODE === "managed";
+  const schemaVersion = env.STITCHPROOF_APPLIED_MIGRATION_VERSION;
   const checks = {
     providerIdentity: env.FIBERTOOLS_STRIPE_ACCOUNT_ID === STITCHPROOF_STRIPE_ACCOUNT_ID,
     stripeMode: (stripeMode === "live" || stripeMode === "test") && (!production || live),
@@ -73,7 +84,8 @@ export function getStitchProofEnvironmentReadiness(env = process.env) {
     checkoutEnabled: env.STITCHPROOF_CHECKOUT_ENABLED === "true",
     offerBinding: /^prod_[A-Za-z0-9]+$/.test(productId) && !placeholder(productId)
       && /^price_[A-Za-z0-9]+$/.test(priceId) && !placeholder(priceId),
-    schema: env.STITCHPROOF_APPLIED_MIGRATION_VERSION === STITCHPROOF_SCHEMA_VERSION
+    schema: (managed ? schemaVersion === STITCHPROOF_MANAGED_SCHEMA_VERSION
+      : [STITCHPROOF_SCHEMA_VERSION, STITCHPROOF_MANAGED_SCHEMA_VERSION].includes(schemaVersion))
       && env.STITCHPROOF_SCHEMA_CONFIRMED === "true",
     webhook: /^whsec_.+/.test(webhookSecret) && !placeholder(webhookSecret)
       && env.STITCHPROOF_WEBHOOK_CONFIRMED === "true",
@@ -81,6 +93,14 @@ export function getStitchProofEnvironmentReadiness(env = process.env) {
       && env.STITCHPROOF_ABUSE_PROTECTION_CONFIRMED === "true",
     taxConfiguration: env.STITCHPROOF_TAX_CONFIGURATION_CONFIRMED === "true"
       && validStitchProofTaxContract(env.STITCHPROOF_TAX_MODE, env.STITCHPROOF_TAX_BEHAVIOR),
+    managedPayments: !managed || env.STITCHPROOF_MANAGED_PAYMENTS_CONFIRMED === "true",
+    managedProductTaxCode: !managed || validStitchProofProductTaxCode(env.STITCHPROOF_MANAGED_TAX_CODE),
+    managedCountryPolicy: !managed || env.STITCHPROOF_MANAGED_COUNTRY_POLICY === STITCHPROOF_MARKET_POLICY_VERSION,
+    // Protected Stripe test-mode exercises must precede these live release attestations.
+    // A client country selector is not provider-side pre-payment enforcement.
+    managedCountryEnforcement: !managed || !live || env.STITCHPROOF_MANAGED_COUNTRY_ENFORCEMENT_CONFIRMED === "true",
+    managedPaymentMethods: !managed || !live || env.STITCHPROOF_MANAGED_PAYMENT_METHODS_CONFIRMED === "true",
+    managedDeliveryTest: !managed || !live || env.STITCHPROOF_MANAGED_DELIVERY_TEST_CONFIRMED === "true",
   };
   return { ready: Object.values(checks).every(Boolean), checks };
 }
@@ -111,5 +131,9 @@ export function getStitchProofConfiguration(env = process.env, { checkout = fals
     priceId: text(env.STITCHPROOF_STRIPE_PRICE_ID),
     taxMode: env.STITCHPROOF_TAX_MODE,
     taxBehavior: env.STITCHPROOF_TAX_BEHAVIOR,
+    schemaVersion: env.STITCHPROOF_APPLIED_MIGRATION_VERSION === STITCHPROOF_MANAGED_SCHEMA_VERSION
+      ? STITCHPROOF_MANAGED_SCHEMA_VERSION : STITCHPROOF_SCHEMA_VERSION,
+    managedProductTaxCode: text(env.STITCHPROOF_MANAGED_TAX_CODE),
+    marketPolicyVersion: text(env.STITCHPROOF_MANAGED_COUNTRY_POLICY),
   };
 }

@@ -11,15 +11,18 @@ import {
   exportIssuesCsv,
 } from "@/lib/stitchproof-designer.mjs";
 import {
+  createCheckoutCountryGuard,
   createProjectRequestGuard,
   createPurchaseIdentity,
-  getCheckoutAvailability,
+  getCheckoutOffer,
   MAX_DRAFT_TEXT_LENGTH,
   parseRecoveryBackup,
+  prepareManagedStitchProofCheckout,
   prepareStitchProofCheckout,
   serializeRecoveryBackup,
   verifyStitchProofAccess,
 } from "@/lib/stitchproof-purchase-client.mjs";
+import { STITCHPROOF_MARKETS, isStitchProofPurchaseCountry } from "@/lib/stitchproof-markets.mjs";
 import {
   trackStitchProofEvent,
   type StitchProofUnsupportedCategory,
@@ -294,6 +297,9 @@ export default function StitchProofDesignerWorkspace() {
   const purchaseIdentityRef = useRef<PurchaseIdentity | null>(null);
   const purchaseGuardRef = useRef(createProjectRequestGuard());
   const [salesAvailable, setSalesAvailable] = useState<boolean | null>(null);
+  const [checkoutMode, setCheckoutMode] = useState<"legacy" | "managed" | null>(null);
+  const [checkoutCountry, setCheckoutCountry] = useState("");
+  const checkoutCountryGuardRef = useRef(createCheckoutCountryGuard());
   const [accessStatus, setAccessStatus] = useState<"unverified" | "paid" | "pending" | "unavailable">("unverified");
   const [purchaseBusy, setPurchaseBusy] = useState(false);
   const [purchaseMessage, setPurchaseMessage] = useState("");
@@ -313,6 +319,7 @@ export default function StitchProofDesignerWorkspace() {
     try { return serializeRecoveryBackup({ draft, identity: purchaseIdentity }); } catch { return null; }
   }, [draft, purchaseIdentity]);
   const backupIsCurrent = recoveryBackupText !== null && recoveryBackupSnapshot === recoveryBackupText;
+  const managedCheckoutAvailable = salesAvailable === true && checkoutMode === "managed";
 
   const analysis = useMemo(
     () => analyzeDesignerPattern(patternText, startValue(initialStartingCount), corrections) as DesignerAnalysis,
@@ -377,10 +384,17 @@ export default function StitchProofDesignerWorkspace() {
       }
     }
     let active = true;
-    getCheckoutAvailability().then((available: boolean) => {
-      if (active) setSalesAvailable(available);
+    getCheckoutOffer().then((offer) => {
+      if (active) {
+        setSalesAvailable(offer.available);
+        setCheckoutMode(offer.available && offer.checkoutMode === "managed"
+          ? "managed" : offer.available && offer.checkoutMode === "legacy" ? "legacy" : null);
+      }
     }).catch(() => {
-      if (active) setSalesAvailable(false);
+      if (active) {
+        setSalesAvailable(false);
+        setCheckoutMode(null);
+      }
     });
     return () => { active = false; };
   }, []);
@@ -441,6 +455,8 @@ export default function StitchProofDesignerWorkspace() {
     setAccessStatus("unverified");
     setPurchaseBusy(false);
     setCheckoutUrl(null);
+    checkoutCountryGuardRef.current.select("");
+    setCheckoutCountry("");
     setRecoveryBackupSnapshot(null);
     setRecoveryAcknowledged(false);
     setPurchaseMessage("");
@@ -494,14 +510,32 @@ export default function StitchProofDesignerWorkspace() {
     }
   }
 
+  function changeCheckoutCountry(country: string) {
+    try { checkoutCountryGuardRef.current.select(country); } catch {
+      setPurchaseMessage("Choose a listed checkout country before preparing managed checkout.");
+      return;
+    }
+    setCheckoutCountry(country);
+    setCheckoutUrl(null);
+    setPurchaseMessage(checkoutUrl || purchaseBusy || checkoutOpenedRef.current
+      ? "Changing the selected country does not cancel an existing checkout. Verify any existing payment before preparing another checkout."
+      : "");
+  }
+
   async function prepareCheckout() {
     if (!salesAvailable || !backupIsCurrent || !recoveryAcknowledged || purchaseBusy) return;
+    const countryTicket = checkoutCountryGuardRef.current.capture();
+    const managedRequest = checkoutMode === "managed";
+    if (!checkoutMode || (managedRequest && !isStitchProofPurchaseCountry(countryTicket.country))) return;
     const ticket = purchaseGuardRef.current.capture();
     if (!ticket) return;
     setPurchaseBusy(true);
     setCheckoutUrl(null);
     try {
-      const result = await prepareStitchProofCheckout(ticket.identity);
+      const result = managedRequest
+        ? await prepareManagedStitchProofCheckout(ticket.identity, countryTicket.country)
+        : await prepareStitchProofCheckout(ticket.identity);
+      if (managedRequest && !checkoutCountryGuardRef.current.isCurrent(countryTicket)) return;
       if (!purchaseGuardRef.current.isCurrent(ticket)) return;
       if (result.status === "paid") {
         setAccessStatus("paid");
@@ -511,7 +545,8 @@ export default function StitchProofDesignerWorkspace() {
         setPurchaseMessage("Checkout is ready. Open Stripe in a separate tab and keep this project tab open.");
       }
     } catch {
-      if (purchaseGuardRef.current.isCurrent(ticket)) {
+      if (purchaseGuardRef.current.isCurrent(ticket)
+        && (!managedRequest || checkoutCountryGuardRef.current.isCurrent(countryTicket))) {
         setPurchaseMessage("Checkout could not be prepared. No payment status was confirmed. Keep your recovery backup and try again later.");
       }
     } finally {
@@ -909,14 +944,17 @@ export default function StitchProofDesignerWorkspace() {
       <div role="note" className="no-print mt-5 rounded-xl border border-sage-200 bg-sage-50 p-4 text-sm leading-relaxed text-bark-700 dark:border-sage-800 dark:bg-sage-900/20 dark:text-cream-300">
         <strong>Private by design:</strong> pattern text, titles, names, notes, corrections, and stitch values stay
         in this browser. FiberTools does not upload them or include them in analytics. Nothing is saved unless
-        you explicitly choose browser-local saving or download a backup. Payment checks send only a random project
+        you explicitly choose browser-local saving or download a backup. Payment verification sends only a random project
         ID and recovery credential; Stripe handles your payment details.
+        {managedCheckoutAvailable ? " Preparing managed checkout also sends the country you select; it is not added to your draft, recovery backup, or analytics." : null}
       </div>
 
       <section id="project-access" aria-labelledby="project-access-heading" className="no-print mt-5 scroll-mt-24 rounded-2xl border border-bark-200 bg-white p-5 dark:border-bark-700 dark:bg-bark-800 sm:p-6">
         <h2 id="project-access-heading" className="text-xl font-bold text-bark-800 dark:text-cream-100">Keep this project and recover access</h2>
         {returnMessage ? <p role="note" className="mt-3 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm text-bark-700 dark:border-amber-800 dark:bg-amber-950/20 dark:text-cream-300">{returnMessage}</p> : null}
-        <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">Analysis, on-screen report preview, and recovery JSON are free. Formatted report printing/PDF and issue CSV exports have a $9 one-time price for one pattern project, including its revisions. No subscription. Stripe shows any applicable tax and the final total before payment. Start a different project for a different pattern.</p>
+        <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">Analysis, on-screen report preview, and recovery JSON are free. {managedCheckoutAvailable
+          ? "Formatted report printing/PDF and issue CSV exports have a US$9 base price, paid once for this pattern project and its revisions. Checkout may display a local-currency price. Review the currency, any applicable tax, and final total before paying. No subscription."
+          : "Formatted report printing/PDF and issue CSV exports have a $9 one-time price for one pattern project, including its revisions. No subscription. Stripe shows any applicable tax and the final total before payment."} Start a different project for a different pattern.</p>
         <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">Your draft starts in memory only. Keep a private recovery backup before paying or closing this tab. It contains your pattern and the credential used to recover paid access on this or another device; do not share it. FiberTools cannot recover a lost draft or lost recovery credential.</p>
         <div className="mt-4 flex flex-wrap gap-3">
           <button type="button" onClick={downloadJson} className="btn-secondary min-h-12">Download recovery JSON</button>
@@ -927,18 +965,30 @@ export default function StitchProofDesignerWorkspace() {
         <p className="mt-3 text-sm font-semibold text-bark-700 dark:text-cream-200">{accessStatus === "paid" ? "Paid exports verified for this project." : "Paid exports have not been verified for this project."} {salesAvailable === null ? "Checking checkout availability…" : salesAvailable ? "New-project checkout is available." : "New-project checkout is unavailable right now. Existing purchases can still be verified."}</p>
         {salesAvailable && accessStatus !== "paid" ? (
           <div className="mt-4 rounded-xl border border-plum-200 bg-plum-50 p-4 dark:border-plum-800 dark:bg-plum-900/20">
+            {managedCheckoutAvailable ? (
+              <div className="mb-4">
+                <label htmlFor="stitchproof-checkout-country" className="block text-sm font-semibold text-bark-700 dark:text-cream-200">Checkout country</label>
+                <select id="stitchproof-checkout-country" value={checkoutCountry} onChange={(event) => changeCheckoutCountry(event.target.value)}
+                  aria-describedby="stitchproof-country-note" className="mt-2 min-h-12 w-full rounded-xl border border-bark-300 bg-white px-3 text-bark-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage-500 dark:border-bark-600 dark:bg-bark-900 dark:text-cream-100">
+                  <option value="">Choose your checkout country</option>
+                  {STITCHPROOF_MARKETS.map(({ code, name }) => <option key={code} value={code}>{name}</option>)}
+                </select>
+                <p id="stitchproof-country-note" className="mt-2 text-xs leading-relaxed text-bark-600 dark:text-bark-400">Use your billing country. Stripe collects the billing address in checkout. This selection is a declaration, not independent verification, and is not saved in your draft or recovery backup.</p>
+                <p className="mt-2 text-xs leading-relaxed text-bark-600 dark:text-bark-400">Sold through Link. Review the seller details and final total in checkout.</p>
+              </div>
+            ) : null}
             <label className="flex items-start gap-3 text-sm leading-relaxed text-bark-700 dark:text-cream-200">
               <input type="checkbox" checked={backupIsCurrent && recoveryAcknowledged} disabled={!backupIsCurrent || purchaseBusy} onChange={(event) => setRecoveryAcknowledged(event.target.checked)} className="mt-1 h-5 w-5 rounded border-bark-300 text-sage-600 focus:ring-sage-500 disabled:opacity-50" />
               <span>I saved the current recovery JSON somewhere private and understand that I need it to restore this project and its paid access.</span>
             </label>
             {!backupIsCurrent ? <p className="mt-2 text-xs text-bark-600 dark:text-bark-400">Download the current recovery JSON first. If you edit the draft, download the updated backup before checkout.</p> : null}
-            {!checkoutUrl ? <button type="button" onClick={() => void prepareCheckout()} disabled={!backupIsCurrent || !recoveryAcknowledged || purchaseBusy} className="btn-primary mt-4 min-h-12 disabled:cursor-not-allowed disabled:opacity-50">Prepare $9 project checkout</button> : null}
+            {!checkoutUrl ? <button type="button" onClick={() => void prepareCheckout()} disabled={!backupIsCurrent || !recoveryAcknowledged || purchaseBusy || (managedCheckoutAvailable && !isStitchProofPurchaseCountry(checkoutCountry))} className="btn-primary mt-4 min-h-12 disabled:cursor-not-allowed disabled:opacity-50">{managedCheckoutAvailable ? "Prepare checkout" : "Prepare $9 project checkout"}</button> : null}
             {checkoutUrl && backupIsCurrent && recoveryAcknowledged ? (
               <a href={checkoutUrl} target="_blank" rel="noopener noreferrer" onClick={() => {
                 if (!checkoutOpenedRef.current) trackStitchProofEvent("checkout_started");
                 checkoutOpenedRef.current = true;
                 setPurchaseMessage("Stripe opens in a separate tab. Keep this project tab open, then return here and choose Verify payment. Do not pay again while confirmation is pending.");
-              }} className="btn-primary mt-4 inline-flex min-h-12 items-center justify-center">Open $9 Stripe checkout in a new tab</a>
+              }} className="btn-primary mt-4 inline-flex min-h-12 items-center justify-center">{managedCheckoutAvailable ? "Open checkout in a new tab" : "Open $9 Stripe checkout in a new tab"}</a>
             ) : null}
             <p className="mt-3 text-xs leading-relaxed text-bark-600 dark:text-bark-400">Stripe shows any applicable tax and the final total before payment. After payment, return to this tab and choose Verify payment. Verification needs an internet connection and is checked again before each formatted print/PDF or CSV export. A return URL or a backup file alone does not confirm payment.</p>
           </div>
@@ -1336,7 +1386,7 @@ export default function StitchProofDesignerWorkspace() {
           <div className="no-print mt-6 grid gap-5 lg:grid-cols-2">
             <section className="rounded-2xl border border-plum-200 bg-plum-50 p-5 dark:border-plum-800 dark:bg-plum-900/20 sm:p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-plum-600 dark:text-plum-300">One pattern project</p>
-              <h2 className="mt-2 text-xl font-bold text-bark-800 dark:text-cream-100">Designer Report — $9 one-time per project</h2>
+              <h2 className="mt-2 text-xl font-bold text-bark-800 dark:text-cream-100">{managedCheckoutAvailable ? "Designer Report — US$9 base price per project" : "Designer Report — $9 one-time per project"}</h2>
               <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">Includes revisions and formatted report/CSV exports for that pattern project. Stripe shows any applicable tax and the final total before payment. No subscription, account, or pattern upload. Your private recovery backup is how you return to the same project.</p>
               <a href="#project-access" className="btn-secondary mt-4 inline-flex min-h-12 items-center justify-center">Project backup and payment controls</a>
               {salesAvailable === false ? <>

@@ -2,19 +2,23 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   createProjectRequestGuard,
+  createCheckoutCountryGuard,
   createPurchaseIdentity,
   createRecoveryEnvelope,
   getCheckoutAvailability,
+  getCheckoutOffer,
   MAX_DRAFT_TEXT_LENGTH,
   MAX_RECOVERY_BYTES,
   parseRecoveryBackup,
   prepareStitchProofCheckout,
+  prepareManagedStitchProofCheckout,
   serializeRecoveryBackup,
   validatePurchaseIdentity,
   validateRecoveryDraft,
   verifyStitchProofAccess,
 } from "../src/lib/stitchproof-purchase-client.mjs";
 import { createCorrection, createDesignerProject, exportProjectJson } from "../src/lib/stitchproof-designer.mjs";
+import { STITCHPROOF_MARKET_POLICY_VERSION, STITCHPROOF_MARKETS } from "../src/lib/stitchproof-markets.mjs";
 
 const identity = { projectId: "00000000-0000-4000-8000-000000000001", claimSecret: "a".repeat(64) };
 const otherIdentity = { projectId: "00000000-0000-4000-8000-000000000002", claimSecret: "b".repeat(64) };
@@ -155,4 +159,84 @@ test("provider failures and malformed replies never echo credentials or provider
     await assert.rejects(() => verifyStitchProofAccess(identity, fetchImpl), (error) => error.message === "Purchase access could not be checked. Keep your recovery backup and try again later." && !error.message.includes(identity.claimSecret));
   }
   await assert.rejects(() => verifyStitchProofAccess(identity, async () => response({ status: "something-untrusted", message: identity.claimSecret })), /Purchase access could not be checked/);
+});
+
+test("managed availability requires the exact mode and approved policy without weakening legacy availability", async () => {
+  const managed = { available: true, checkoutMode: "managed", marketPolicyVersion: STITCHPROOF_MARKET_POLICY_VERSION };
+  assert.deepEqual(await getCheckoutOffer(async () => response(managed)), managed);
+  assert.equal(await getCheckoutAvailability(async () => response(managed)), true);
+  assert.deepEqual(await getCheckoutOffer(async () => response({ available: true })), { available: true, checkoutMode: "legacy" });
+  for (const value of [
+    { ...managed, marketPolicyVersion: "unverified" }, { ...managed, checkoutMode: "unknown" },
+    { ...managed, extra: true }, { available: true, checkoutMode: "managed" },
+    { available: true, checkoutMode: "legacy" }, [], null,
+  ]) assert.deepEqual(await getCheckoutOffer(async () => response(value)), { available: false });
+});
+
+test("managed checkout alone adds the approved country; access and backups never include it", async () => {
+  const calls = [];
+  const fetchImpl = async (url, options) => {
+    calls.push({ url, options });
+    return response(url.endsWith("/access") ? { status: "paid" } : { checkoutUrl: "https://checkout.stripe.com/c/pay/synthetic" });
+  };
+  const originalBackup = serializeRecoveryBackup({ draft: draft(), identity });
+  for (const { code } of STITCHPROOF_MARKETS) {
+    await prepareManagedStitchProofCheckout(identity, code, fetchImpl);
+    assert.deepEqual(JSON.parse(calls.at(-1).options.body), { ...identity, country: code });
+    assert.equal(calls.at(-1).options.cache, "no-store");
+    assert.equal(calls.at(-1).options.redirect, "error");
+    assert.equal(calls.at(-1).options.credentials, "same-origin");
+  }
+  await verifyStitchProofAccess(identity, fetchImpl);
+  assert.deepEqual(JSON.parse(calls.at(-1).options.body), identity);
+  assert.equal(serializeRecoveryBackup({ draft: draft(), identity }), originalBackup);
+  assert.doesNotMatch(originalBackup, /country|marketPolicyVersion|productTaxCode/);
+  assert.throws(() => validatePurchaseIdentity({ ...identity, country: "US" }));
+  assert.throws(() => validateRecoveryDraft(draft({ country: "US" })));
+});
+
+test("invalid countries and extra identity data never reach the client transport", async () => {
+  let calls = 0;
+  const fetchImpl = async () => { calls += 1; return response({ status: "paid" }); };
+  for (const country of [undefined, null, "", "us", "US ", "MX", "UK", ["US"], { country: "US" }]) {
+    await assert.rejects(() => prepareManagedStitchProofCheckout(identity, country, fetchImpl), /Purchase access could not be checked/);
+  }
+  await assert.rejects(() => prepareManagedStitchProofCheckout({ ...identity, patternText: example }, "US", fetchImpl));
+  await assert.rejects(() => verifyStitchProofAccess({ ...identity, country: "US" }, fetchImpl));
+  assert.equal(calls, 0);
+});
+
+test("country generation rejects A to B to A responses without replacing project identity", () => {
+  const country = createCheckoutCountryGuard();
+  const project = createProjectRequestGuard();
+  project.activate(identity);
+  const projectTicket = project.capture();
+  assert.deepEqual(country.capture(), { generation: 0, country: "" });
+  country.select("US");
+  const first = country.capture();
+  assert.equal(country.isCurrent(first), true);
+  country.select("CA");
+  const second = country.capture();
+  country.select("US");
+  assert.equal(country.isCurrent(first), false);
+  assert.equal(country.isCurrent(second), false);
+  assert.equal(country.isCurrent(country.capture()), true);
+  assert.equal(project.isCurrent(projectTicket), true);
+  country.select("");
+  assert.equal(country.isCurrent(first), false);
+  assert.throws(() => country.select("MX"));
+});
+
+test("an asynchronous managed response is discarded after a country switch", async () => {
+  const guard = createCheckoutCountryGuard();
+  guard.select("US");
+  const ticket = guard.capture();
+  let resolve;
+  const pending = prepareManagedStitchProofCheckout(identity, ticket.country, () => new Promise((done) => { resolve = done; }));
+  guard.select("CA");
+  guard.select("US");
+  resolve(response({ checkoutUrl: "https://checkout.stripe.com/c/pay/synthetic" }));
+  const result = await pending;
+  assert.ok(result.checkoutUrl);
+  assert.equal(guard.isCurrent(ticket), false);
 });

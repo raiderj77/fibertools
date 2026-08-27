@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import { STITCHPROOF_PURCHASE_ENV_NAMES } from "../src/lib/stitchproof-purchase-config.mjs";
 
 import {
   collectActiveEnvironmentNames,
@@ -52,7 +53,8 @@ test("every active application environment reference is in the example and deplo
   ]);
   const example = parseEnvironmentExample(exampleSource);
   const documented = documentedEnvironmentNames(deploymentSource);
-  const required = new Set([...activeNames, ...REQUIRED_OFFER_ENVIRONMENT]);
+  const required = new Set([...activeNames, ...REQUIRED_OFFER_ENVIRONMENT,
+    ...STITCHPROOF_PURCHASE_ENV_NAMES.filter((name) => name !== "NODE_ENV")]);
 
   assert.deepEqual(
     [...required].filter((name) => !example.has(name)).sort(),
@@ -82,11 +84,18 @@ test("example offer configuration is fake and fails closed", async () => {
     "DESIGNER_PREFLIGHT_ABUSE_PROTECTION_CONFIRMED",
     "DESIGNER_PREFLIGHT_FULFILLMENT_CAPACITY_CONFIRMED",
     "NEXT_PUBLIC_ADSENSE_ENABLED",
+    "STITCHPROOF_CHECKOUT_ENABLED",
+    "STITCHPROOF_MANAGED_PAYMENTS_CONFIRMED",
+    "STITCHPROOF_MANAGED_COUNTRY_ENFORCEMENT_CONFIRMED",
+    "STITCHPROOF_MANAGED_PAYMENT_METHODS_CONFIRMED",
+    "STITCHPROOF_MANAGED_DELIVERY_TEST_CONFIRMED",
   ]) {
     assert.equal(example.get(name), "false", `${name} must default to false`);
   }
 
   assert.equal(example.get("DESIGNER_PREFLIGHT_ACTION_MODE"), "inquiry");
+  assert.equal(example.get("STITCHPROOF_MANAGED_COUNTRY_POLICY"), "not_configured");
+  assert.equal(example.get("STITCHPROOF_MANAGED_TAX_CODE"), "txcd_replace_me");
   assert.equal(example.get("DESIGNER_PREFLIGHT_APPLIED_MIGRATION_VERSION"), "not_configured");
   assert.equal(example.get("DESIGNER_PREFLIGHT_ABUSE_PROTECTION_PROVIDER"), "UNVERIFIED");
   assert.equal(example.get("PLANNING_PACK_EDITION_ID"), "replace_me_edition_id");

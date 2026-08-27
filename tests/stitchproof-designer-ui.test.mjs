@@ -210,3 +210,33 @@ test("restoring or starting projects resets access and return queries provide no
   assert.match(globalStyles, /body\.stitchproof-printing-report \.stitchproof-preview-label/);
   assert.match(globalStyles, /min-width: 0 !important/);
 });
+
+test("managed sales expose a labeled blank-default country selector with neutral price and provider copy", () => {
+  assert.match(workspace, /getCheckoutOffer\(\)/);
+  assert.match(workspace, /const managedCheckoutAvailable = salesAvailable === true && checkoutMode === "managed"/);
+  assert.match(workspace, /\[checkoutCountry, setCheckoutCountry\] = useState\(""\)/);
+  assert.match(workspace, /htmlFor="stitchproof-checkout-country"/);
+  assert.match(workspace, /<select id="stitchproof-checkout-country"/);
+  assert.match(workspace, /aria-describedby="stitchproof-country-note"/);
+  assert.match(workspace, /<option value="">Choose your checkout country/);
+  assert.match(workspace, /STITCHPROOF_MARKETS\.map/);
+  assert.match(workspace, /managedCheckoutAvailable && !isStitchProofPurchaseCountry\(checkoutCountry\)/);
+  assert.match(workspace, /US\$9 base price, paid once/);
+  assert.match(workspace, /Checkout may display a local-currency price/);
+  assert.match(workspace, /Sold through Link\. Review the seller details and final total in checkout/);
+  assert.match(workspace, /managedCheckoutAvailable \? "Open checkout in a new tab"/);
+});
+
+test("country changes clear stale checkout links without touching draft, paid access or recovery identity", () => {
+  const change = workspace.slice(workspace.indexOf("function changeCheckoutCountry"), workspace.indexOf("async function prepareCheckout"));
+  assert.match(change, /setCheckoutUrl\(null\)/);
+  assert.match(change, /checkoutCountryGuardRef\.current\.select\(country\)/);
+  assert.doesNotMatch(change, /createPurchaseIdentity|setAccessStatus|activateProjectIdentity|trackStitchProofEvent|saveLocalProject/);
+  const prepare = workspace.slice(workspace.indexOf("async function prepareCheckout"), workspace.indexOf("function startNewProject"));
+  assert.match(prepare, /prepareManagedStitchProofCheckout\(ticket\.identity, countryTicket\.country\)/);
+  assert.match(prepare, /if \(managedRequest && !checkoutCountryGuardRef\.current\.isCurrent\(countryTicket\)\) return/);
+  const draft = workspace.slice(workspace.indexOf("const draft = useMemo"), workspace.indexOf("const latestDraftRef"));
+  assert.doesNotMatch(draft, /country|Country|marketPolicyVersion/);
+  const verification = workspace.slice(workspace.indexOf("async function verifyCurrentProject"), workspace.indexOf("function changeCheckoutCountry"));
+  assert.doesNotMatch(verification, /country|Country/);
+});

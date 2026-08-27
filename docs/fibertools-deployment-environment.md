@@ -1,6 +1,6 @@
 # FiberTools deployment and environment contract
 
-Last verified: 2026-08-25 (America/Los_Angeles).
+Environment contract reviewed: 2026-08-27 (America/Los_Angeles). Provider and release snapshots below retain their individual verification dates.
 
 This document records the source/deployment identity, safe configuration defaults, offer gates, and release evidence required to operate FiberTools without exposing credentials or accidentally enabling a commercial flow.
 
@@ -76,14 +76,20 @@ Production readiness remains narrower than offer readiness. This snapshot does n
 | `STITCHPROOF_STRIPE_PRODUCT_ID` | Server-only offer binding | Exact owner-approved Stripe Product for the $9 per-project report. Fake default `prod_replace_me`. |
 | `STITCHPROOF_STRIPE_PRICE_ID` | Server-only offer binding | Exact one-time USD 900-cent Price for that Product. Fake default `price_replace_me`. |
 | `STITCHPROOF_STRIPE_WEBHOOK_SECRET` | Server-only secret | Separate signing secret for `/api/stitchproof/webhook`. Never reuse or change the manual Preflight secret as part of this activation. |
-| `STITCHPROOF_APPLIED_MIGRATION_VERSION` | Server-only schema evidence | Exact verified `20260826_stitchproof_project_entitlements` migration; keep `not_configured` until applied and checked in the intended private Supabase project. |
+| `STITCHPROOF_APPLIED_MIGRATION_VERSION` | Server-only schema evidence | Exact verified `20260826_stitchproof_project_entitlements`, or `20260827_stitchproof_managed_payments` after the additive migration is separately approved, applied and checked. Keep `not_configured` until verified. Retain the applied version when sales close so historical managed purchases keep using v2 RPCs. |
 | `STITCHPROOF_SCHEMA_CONFIRMED` | Server-only readiness evidence | Keep `false` until private tables, functions, role isolation, and durable attempt handling are verified. |
 | `STITCHPROOF_WEBHOOK_CONFIRMED` | Server-only readiness evidence | Keep `false` until dedicated signed webhook delivery and duplicate/adverse-event handling pass protected verification. |
 | `STITCHPROOF_ABUSE_PROTECTION_PROVIDER` | Server-only readiness evidence | Verified durable protection provider, otherwise `UNVERIFIED`. Exact supported values are enforced by the purchase configuration module. |
 | `STITCHPROOF_ABUSE_PROTECTION_CONFIRMED` | Server-only readiness evidence | Keep `false` until bot/rate protection is directly checked for all public purchase endpoints. |
-| `STITCHPROOF_TAX_MODE` | Server-only owner decision | `unconfigured` by default; only an owner-verified `none` or `automatic` setting permits activation. Do not infer tax registration, exemption, or digital-product classification. |
+| `STITCHPROOF_TAX_MODE` | Server-only owner decision | `unconfigured` by default. Legacy `none` or `automatic`, or separately verified `managed` with all additional gates. Do not infer tax registration, exemption, enrollment, or digital-product classification. |
 | `STITCHPROOF_TAX_BEHAVIOR` | Server-only owner decision | `unconfigured` by default; verified `not_applicable`, `inclusive`, or `exclusive` must agree with the selected mode and exact Stripe Price. |
 | `STITCHPROOF_TAX_CONFIGURATION_CONFIRMED` | Server-only readiness evidence | Keep `false` until the owner verifies the intended tax treatment and provider configuration. Not a legal-compliance certification. |
+| `STITCHPROOF_MANAGED_PAYMENTS_CONFIRMED` | Server-only readiness evidence | Default `false`. Record only after the owner accepts the applicable terms and the exact FiberTools account's Managed Payments eligibility/enrollment is verified. No code path enrolls an account. |
+| `STITCHPROOF_MANAGED_TAX_CODE` | Server-only owner classification | Fake `txcd_replace_me`. Exact owner-confirmed, provider-eligible Product tax code; the application checks it against the retrieved Product and binds it to new managed attempts. A syntactically valid code is not legal classification evidence. |
+| `STITCHPROOF_MANAGED_COUNTRY_POLICY` | Server-only sales scope | Default `not_configured`; managed mode requires `STITCHPROOF-MARKETS-2026-08-27`, the approved 24-country list. This is not proof of billing location or tax coverage. |
+| `STITCHPROOF_MANAGED_COUNTRY_ENFORCEMENT_CONFIRMED` | Server-only live release gate | Default `false`. Confirm only after scoped pre-charge Radar rules, missing-country handling, Allow-rule bypass review and out-of-scope negative tests pass on every enabled method. No customer address is collected by the site. |
+| `STITCHPROOF_MANAGED_PAYMENT_METHODS_CONFIRMED` | Server-only live release gate | Default `false`. Verify Stripe Support's no-local-method configuration and country-rule coverage, including Link funding sources. The server checks returned methods are limited to card/Link before exposing a checkout URL; it does not configure them. |
+| `STITCHPROOF_MANAGED_DELIVERY_TEST_CONFIRMED` | Server-only live release gate | Default `false`. Requires protected non-customer tax, localized payment, webhook, recovery/export, refund/dispute and failure-path evidence. Local synthetic tests do not satisfy this gate. |
 | `VERCEL_ENV` | Runtime deployment context | Vercel supplies `production`, `preview`, or `development`; the fake local template uses `development`. Never override the deployed value to bypass live/test isolation. |
 
 `NODE_ENV` is supplied by the runtime and is intentionally not copied into `.env.example`. `INDEXNOW_API_KEY` is retained only because the owner-supplied completion contract requires it; the current application does not read it, so no active provider credential should be inferred.
@@ -130,6 +136,8 @@ The owner-approved scope is $9 once per pattern project, including revisions and
 
 Use [the StitchProof release and recovery contract](stitchproof-purchase-release.md) for exact metadata, event subscriptions, local test evidence, provider gaps, and release order. Existing paid access uses the immutable purchase contract and a fresh financial check independently of the new-sales switch. Do not reuse the Planning Pack Payment Link, webhook secret, or manual Preflight customer-submission records.
 
+The [Managed Payments review handoff](stitchproof-managed-payments-review.md) adds a distinct offer and additive schema without enrolling, activating, or changing other payment flows. Managed Payments owns currency localization, tax and method selection; do not advertise a card-only USD final charge for that mode. The three managed live release gates can remain false during protected **Stripe test-mode** validation, but are mandatory for live sales. Test keys are rejected on the canonical production origin. Configuration flags record operational evidence; they never establish it by themselves.
+
 ### Designer Pattern Preflight
 
 Current state: **inquiry-only**.
@@ -151,12 +159,12 @@ The displayed annual prices measure interest. Do not create checkout, contracts,
 3. Make the smallest scoped change and add focused regression coverage.
 4. Run the relevant focused tests, documentation parity, TypeScript, quality, security, content/predeploy checks, and production build.
 5. Open a narrow pull request. Do not push directly to `main`.
-6. Require the GitHub build/quality check before merge. Branch protection is an owner-controlled repository setting.
+6. Require the GitHub build/quality and public-file checks before merge. On August 27, 2026, main was verified to require an up-to-date PR and both GitHub-Actions-bound checks, including administrators; force pushes and branch deletion are blocked. Branch protection is still an owner-controlled repository setting and must be rechecked before future releases.
 7. After an authorized merge, match the READY production deployment to the expected commit and aliases.
 8. Verify the changed routes directly on desktop and mobile. For commercial paths, verify disclosures and fail-closed state without submitting personal data or creating a charge unless separately authorized.
 9. Report source, checks, merge, deployment, route behavior, provider state, and business outcomes as separate evidence.
 
-The Vercel build observed on the 2026-08-25 snapshot selected Node 24 because the package engine was broad while GitHub CI used Node 20. Aligning the production runtime with CI remains a release-hardening action. Module-type warnings for the JavaScript lint scripts were non-blocking but remain maintenance work.
+The August 27 provider read verified Vercel's Node major as `24.x`. The source now pins the application and lockfile to `24.x`, and all Node-running workflows use `.nvmrc` (`24`) rather than Node 20 or an implicit runner default. `npm run test:runtime` runs in required CI and prebuild to prevent drift. Node's [support list](https://nodejs.org/en/about/previous-releases) identifies Node 24 as LTS and Node 20 as end-of-life; no Vercel runtime setting or dependency version was changed. Module-type warnings for the JavaScript lint scripts were non-blocking but remain maintenance work.
 
 ## Publication freeze and November decision
 
@@ -166,8 +174,8 @@ November 20, 2026 is the next decision date for reconsidering the freeze. Recons
 
 ## Remaining owner actions
 
-- Enable branch protection for `main` and require the build/quality gate.
-- Decide whether to align the Vercel Node runtime with CI.
+- Preserve and recheck the `main` PR/build/public-file protection verified on August 27, 2026.
+- Recheck the pinned Node 24 runtime contract before future runtime upgrades.
 - Configure the exact approved Planning Pack production bindings and attestations, then verify the resulting production checkout and delivery routes against the deployed SHA without exposing provider values.
 - Keep Designer Pattern Preflight inquiry-only until every provider, abuse-protection, retention, fulfillment, and disposable-live-test gate is verified.
 - Keep white-label offers interest-only until the owner approves a product, contract, billing, and provisioning scope.

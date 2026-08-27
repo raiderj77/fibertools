@@ -3,18 +3,20 @@ import "server-only";
 import { createClient, type SupabaseClient } from "@supabase/supabase-js";
 import Stripe from "stripe";
 
-import { getStitchProofConfiguration } from "./stitchproof-purchase-config.mjs";
+import { getStitchProofConfiguration, STITCHPROOF_MANAGED_SCHEMA_VERSION } from "./stitchproof-purchase-config.mjs";
 import { buildStitchProofCheckoutParameters } from "./stitchproof-purchase-service.mjs";
 
 type ProviderConfiguration = {
   stripeSecretKey: string;
   webhookSecret: string;
   priceId: string;
+  taxMode?: string;
 };
 type ClaimKey = { projectId: string; claimSha256: string; stripeLivemode: boolean };
 type PurchaseContract = {
   stripeAccountId: string; productId: string; priceId: string; offerVersion: string;
   amountCents: number; currency: string; taxMode: string; taxBehavior: string;
+  purchaseCountry?: string | null; marketPolicyVersion?: string | null; productTaxCode?: string | null;
 };
 type Purchase = ClaimKey & {
   attempt: PurchaseContract & {
@@ -67,15 +69,19 @@ export function createStitchProofPurchaseDependencies(env: NodeJS.ProcessEnv = p
     p_payment_intent_id: observation.paymentIntentId, p_status: observation.status,
     p_verified_at: observation.verifiedAt,
   });
+  // Do not require unapplied v2 RPCs for historical purchases on the old schema.
+  // Keep this version configured after applying it, even when new sales close.
+  const purchaseRpc = (name: string) => env.STITCHPROOF_APPLIED_MIGRATION_VERSION === STITCHPROOF_MANAGED_SCHEMA_VERSION
+    ? `${name}_v2` : name;
   return {
     repository: {
-      verifySchema: () => rpc<string | null>("stitchproof_purchase_schema_version"),
-      loadPurchase: (claim: ClaimKey) => rpc<Purchase | null>("stitchproof_purchase_load", claimParameters(claim)),
-      loadWebhookAttempt: (claim: ClaimKey & { attemptId: string }) => rpc<Purchase | null>("stitchproof_purchase_load_webhook", {
+      verifySchema: () => rpc<string | null>(purchaseRpc("stitchproof_purchase_schema_version")),
+      loadPurchase: (claim: ClaimKey) => rpc<Purchase | null>(purchaseRpc("stitchproof_purchase_load"), claimParameters(claim)),
+      loadWebhookAttempt: (claim: ClaimKey & { attemptId: string }) => rpc<Purchase | null>(purchaseRpc("stitchproof_purchase_load_webhook"), {
         ...claimParameters(claim), p_attempt_id: claim.attemptId,
       }),
       reserveAttempt: (claim: ClaimKey & { attemptId: string; expectedAttemptId: string | null; contract: PurchaseContract }) =>
-        rpc<Purchase | null>("stitchproof_purchase_reserve", {
+        rpc<Purchase | null>(purchaseRpc("stitchproof_purchase_reserve"), {
           ...claimParameters(claim), p_attempt_id: claim.attemptId,
           p_expected_attempt_id: claim.expectedAttemptId, p_contract: claim.contract,
         }),
@@ -97,7 +103,9 @@ export function createStitchProofPurchaseDependencies(env: NodeJS.ProcessEnv = p
     },
     stripe: {
       retrieveAccount: (configuration: ProviderConfiguration) => stripeClient(configuration).accounts.retrieve(null),
-      retrievePrice: (configuration: ProviderConfiguration) => stripeClient(configuration).prices.retrieve(configuration.priceId, { expand: ["product"] }),
+      retrievePrice: (configuration: ProviderConfiguration) => stripeClient(configuration).prices.retrieve(configuration.priceId, {
+        expand: configuration.taxMode === "managed" ? ["product", "currency_options"] : ["product"],
+      }),
       createCheckoutSession: (input: { purchase: Purchase; successUrl: string; cancelUrl: string },
         idempotencyKey: string, configuration: ProviderConfiguration) => {
         // Never put the raw claim secret or pattern inputs in provider metadata.

@@ -1,6 +1,7 @@
 "use client";
 
 import { createCorrection, restoreProjectJson, STITCHPROOF_PROJECT_SCHEMA } from "./stitchproof-designer.mjs";
+import { STITCHPROOF_MARKET_POLICY_VERSION, isStitchProofPurchaseCountry } from "./stitchproof-markets.mjs";
 
 export const STITCHPROOF_RECOVERY_SCHEMA = "fibertools.stitchproof-recovery";
 export const STITCHPROOF_RECOVERY_VERSION = 1;
@@ -142,16 +143,33 @@ export function createProjectRequestGuard() {
   };
 }
 
-async function purchaseRequest(path, method, identity, fetchImpl) {
+/** Checkout country is ephemeral request state, never part of a recovery identity. */
+export function createCheckoutCountryGuard() {
+  let generation = 0;
+  let country = "";
+  return {
+    select(value) {
+      if (value !== "" && !isStitchProofPurchaseCountry(value)) throw new TypeError("Choose a listed checkout country.");
+      country = value;
+      generation += 1;
+    },
+    capture() { return { generation, country }; },
+    isCurrent(ticket) {
+      return Boolean(ticket && ticket.generation === generation && ticket.country === country);
+    },
+  };
+}
+
+async function purchaseRequest(path, method, payloadFactory, fetchImpl) {
   try {
     const response = await fetchImpl(path, {
       method,
       credentials: "same-origin",
       cache: "no-store",
       redirect: "error",
-      ...(identity ? {
+      ...(payloadFactory ? {
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(validatePurchaseIdentity(identity)),
+        body: JSON.stringify(payloadFactory()),
       } : {}),
     });
     if (!response.ok) throw new Error(PURCHASE_ERROR);
@@ -161,13 +179,23 @@ async function purchaseRequest(path, method, identity, fetchImpl) {
   }
 }
 
-export async function getCheckoutAvailability(fetchImpl = globalThis.fetch) {
+export async function getCheckoutOffer(fetchImpl = globalThis.fetch) {
   const result = await purchaseRequest("/api/stitchproof/checkout", "GET", null, fetchImpl);
-  return result?.available === true;
+  if (!plainObject(result) || result.available !== true) return { available: false };
+  const keys = Object.keys(result);
+  if (keys.length === 1) return { available: true, checkoutMode: "legacy" };
+  if (keys.length === 3 && keys.every((key) => ["available", "checkoutMode", "marketPolicyVersion"].includes(key))
+    && result.checkoutMode === "managed" && result.marketPolicyVersion === STITCHPROOF_MARKET_POLICY_VERSION) {
+    return { available: true, checkoutMode: "managed", marketPolicyVersion: STITCHPROOF_MARKET_POLICY_VERSION };
+  }
+  return { available: false };
 }
 
-export async function prepareStitchProofCheckout(identity, fetchImpl = globalThis.fetch) {
-  const result = await purchaseRequest("/api/stitchproof/checkout", "POST", identity, fetchImpl);
+export async function getCheckoutAvailability(fetchImpl = globalThis.fetch) {
+  return (await getCheckoutOffer(fetchImpl)).available;
+}
+
+function checkoutResult(result) {
   if (result?.status === "paid") return { status: "paid" };
   try {
     const url = new URL(result?.checkoutUrl);
@@ -180,8 +208,20 @@ export async function prepareStitchProofCheckout(identity, fetchImpl = globalThi
   }
 }
 
+export async function prepareStitchProofCheckout(identity, fetchImpl = globalThis.fetch) {
+  return checkoutResult(await purchaseRequest("/api/stitchproof/checkout", "POST",
+    () => validatePurchaseIdentity(identity), fetchImpl));
+}
+
+export async function prepareManagedStitchProofCheckout(identity, country, fetchImpl = globalThis.fetch) {
+  return checkoutResult(await purchaseRequest("/api/stitchproof/checkout", "POST", () => {
+    if (!isStitchProofPurchaseCountry(country)) throw new TypeError("Choose a listed checkout country.");
+    return { ...validatePurchaseIdentity(identity), country };
+  }, fetchImpl));
+}
+
 export async function verifyStitchProofAccess(identity, fetchImpl = globalThis.fetch) {
-  const result = await purchaseRequest("/api/stitchproof/access", "POST", identity, fetchImpl);
+  const result = await purchaseRequest("/api/stitchproof/access", "POST", () => validatePurchaseIdentity(identity), fetchImpl);
   if (!["paid", "pending", "unavailable"].includes(result?.status)) throw new Error(PURCHASE_ERROR);
   return { status: result.status };
 }

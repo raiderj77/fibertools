@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": ">=20.9.0"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "next dev",
@@ -27,6 +27,7 @@
     "verify:designer-preflight-readiness": "node scripts/verify-designer-preflight-readiness.mjs",
     "test:publication-freeze": "node --test tests/publication-freeze.test.mjs",
     "test:environment-docs": "node --test tests/environment-docs.test.mjs",
+    "test:runtime": "node --test tests/runtime-contract.test.mjs",
     "test:focused-page-output": "node --test tests/focused-page-output.test.mjs",
     "test:review-dates": "node --test tests/review-dates.test.mjs",
     "ops:designer-preflight-watchdog": "node scripts/designer-preflight-ops-watchdog.mjs",
@@ -38,7 +39,7 @@
     "test:security": "node scripts/security-check.js && node --check public/sw.js",
     "test:quality": "node scripts/quality-gate.js",
     "lint:predeploy": "node scripts/predeploy-check.js",
-    "prebuild": "npm run lint:predeploy && npm run lint:content && npm run test:environment-docs",
+    "prebuild": "npm run test:runtime && npm run lint:predeploy && npm run lint:content && npm run test:environment-docs",
     "postbuild": "npm run test:focused-page-output && npm run test:review-dates && node --test tests/yarn-weight-page-output.test.mjs"
   },
   "dependencies": {

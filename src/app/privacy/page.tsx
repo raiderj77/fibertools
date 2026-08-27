@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         Privacy Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: August 26, 2026
+        Last updated: August 27, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -148,6 +148,15 @@ export default function PrivacyPolicyPage() {
             but application code does not copy those billing fields into the StitchProof
             payment records or analytics. Payment records support purchase recovery and
             reconciliation; deleting a browser-local project does not delete them.
+          </p>
+          <p>
+            If Managed Payments checkout is available, preparing a new checkout also
+            sends your selected country code to FiberTools. The private purchase
+            record and Stripe checkout metadata bind that declared country, the
+            market-policy version, and the product tax code to the attempt. The
+            selection is not independently verified and is not saved in your draft,
+            recovery backup, or analytics. Billing addresses are entered on Stripe,
+            not in the workspace, and are not copied into these private payment records.
           </p>
           <p>
             A recovery backup contains your project and a private purchase recovery key.
