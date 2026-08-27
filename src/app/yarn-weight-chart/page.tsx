@@ -6,7 +6,7 @@ import YarnWeightChartTool from "./YarnWeightChartTool";
 export const metadata: Metadata = {
   title: "Yarn Weight Chart & Substitution, Free",
   description:
-    "Interactive yarn weight chart with US, UK, and Australian names. Check substitution compatibility and fiber properties. Free, instant, no signup.",
+    "Compare CYC yarn weight categories, knitting gauge guidelines, and common regional names. Compare yarn labels, then verify substitutions with a swatch. Free.",
   keywords: [
     "yarn weight chart",
     "yarn weight conversion",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Yarn Weight Chart & Substitution, Free",
     description:
-      "Interactive yarn weight chart with US, UK, and Australian names. Check substitution compatibility and fiber properties. Free, instant, no signup.",
+      "Compare CYC yarn weight categories, knitting gauge guidelines, and common regional names. Compare yarn labels, then verify substitutions with a swatch. Free.",
     url: "https://fibertools.app/yarn-weight-chart",
     images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Yarn Weight Chart & Substitution, Free" }],
   },
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Yarn Weight Chart & Substitution, Free",
     description:
-      "Interactive yarn weight chart with US, UK, and Australian names. Check substitution compatibility and fiber properties. Free, instant, no signup.",
+      "Compare CYC yarn weight categories, knitting gauge guidelines, and common regional names. Compare yarn labels, then verify substitutions with a swatch. Free.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/yarn-weight-chart" },
@@ -51,11 +51,11 @@ export default function YarnWeightChartPage() {
       </div>
       <YarnWeightChartTool />
       <p style={{ marginTop: "1.5rem", fontSize: "0.95rem" }}>
-        Choosing a weight for your next project? See{" "}
-        <Link href="/blog/crochet-color-trends-2026">
-          Crochet Color Trends 2026
+        Ready to evaluate your substitute yarn? Make a swatch, then use the{" "}
+        <Link href="/gauge-calculator">
+          Gauge Calculator
         </Link>{" "}
-        for which palettes pair best with each yarn weight this season.
+        to compare its stitch and row gauge with your pattern.
       </p>
     </ToolLayout>
   );

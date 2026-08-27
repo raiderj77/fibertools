@@ -2,129 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
-
-// ── DATA ──────────────────────────────────────────────────────────
-
-interface YarnWeight {
-  number: string;
-  usName: string;
-  ukName: string;
-  auPly: string;
-  altNames: string[];
-  ydsPerGram: [number, number]; // range
-  needleMm: [number, number];
-  needleUS: string;
-  hookMm: [number, number];
-  hookUS: string;
-  gaugeStPer4in: [number, number];
-}
-
-const WEIGHTS: YarnWeight[] = [
-  {
-    number: "0",
-    usName: "Lace",
-    ukName: "Lace / Cobweb",
-    auPly: "1–2 ply",
-    altNames: ["thread", "cobweb", "light fingering"],
-    ydsPerGram: [5.0, 8.0],
-    needleMm: [1.5, 2.25],
-    needleUS: "000–1",
-    hookMm: [1.5, 2.25],
-    hookUS: "6 steel–B",
-    gaugeStPer4in: [32, 40],
-  },
-  {
-    number: "1",
-    usName: "Fingering / Sock",
-    ukName: "4-ply",
-    auPly: "3–4 ply",
-    altNames: ["sock", "baby", "fingering"],
-    ydsPerGram: [3.5, 5.5],
-    needleMm: [2.25, 3.25],
-    needleUS: "1–3",
-    hookMm: [2.25, 3.5],
-    hookUS: "B–E",
-    gaugeStPer4in: [27, 32],
-  },
-  {
-    number: "2",
-    usName: "Sport / Baby",
-    ukName: "5-ply",
-    auPly: "5 ply",
-    altNames: ["sport", "baby", "light DK"],
-    ydsPerGram: [3.0, 4.5],
-    needleMm: [3.25, 3.75],
-    needleUS: "3–5",
-    hookMm: [3.5, 4.5],
-    hookUS: "E–7",
-    gaugeStPer4in: [23, 26],
-  },
-  {
-    number: "3",
-    usName: "DK / Light Worsted",
-    ukName: "DK",
-    auPly: "8 ply",
-    altNames: ["DK", "double knitting", "light worsted"],
-    ydsPerGram: [2.5, 3.8],
-    needleMm: [3.75, 4.5],
-    needleUS: "5–7",
-    hookMm: [4.5, 5.5],
-    hookUS: "7–I",
-    gaugeStPer4in: [21, 24],
-  },
-  {
-    number: "4",
-    usName: "Worsted / Aran",
-    ukName: "Aran",
-    auPly: "10 ply",
-    altNames: ["worsted", "aran", "afghan", "medium"],
-    ydsPerGram: [1.8, 3.0],
-    needleMm: [4.5, 5.5],
-    needleUS: "7–9",
-    hookMm: [5.5, 6.5],
-    hookUS: "I–K",
-    gaugeStPer4in: [16, 20],
-  },
-  {
-    number: "5",
-    usName: "Bulky / Chunky",
-    ukName: "Chunky",
-    auPly: "12 ply",
-    altNames: ["bulky", "chunky", "craft", "rug"],
-    ydsPerGram: [1.2, 2.0],
-    needleMm: [5.5, 8.0],
-    needleUS: "9–11",
-    hookMm: [6.5, 9.0],
-    hookUS: "K–M/N",
-    gaugeStPer4in: [12, 15],
-  },
-  {
-    number: "6",
-    usName: "Super Bulky",
-    ukName: "Super Chunky",
-    auPly: "14+ ply",
-    altNames: ["super bulky", "super chunky", "roving"],
-    ydsPerGram: [0.7, 1.3],
-    needleMm: [8.0, 12.0],
-    needleUS: "11–17",
-    hookMm: [9.0, 16.0],
-    hookUS: "M/N–Q",
-    gaugeStPer4in: [7, 11],
-  },
-  {
-    number: "7",
-    usName: "Jumbo",
-    ukName: "Jumbo",
-    auPly: "–",
-    altNames: ["jumbo", "roving", "arm knitting"],
-    ydsPerGram: [0.3, 0.7],
-    needleMm: [12.0, 25.0],
-    needleUS: "17–50",
-    hookMm: [15.0, 25.0],
-    hookUS: "Q–S+",
-    gaugeStPer4in: [1, 6],
-  },
-];
+import { YARN_WEIGHTS as WEIGHTS, compareYarnLabels, filterYarnWeights } from "@/lib/yarn-weight-reference.mjs";
 
 // ── FIBER GUIDE ───────────────────────────────────────────────────
 
@@ -160,74 +38,18 @@ export default function YarnWeightChartTool() {
 
   // Substitution checker
   const [yarn1Weight, setYarn1Weight] = useState("");
-  const [yarn1Mpg, setYarn1Mpg] = useState(""); // meters per gram (or yds per gram)
+  const [yarn1Ypg, setYarn1Ypg] = useState("");
   const [yarn2Weight, setYarn2Weight] = useState("");
-  const [yarn2Mpg, setYarn2Mpg] = useState("");
+  const [yarn2Ypg, setYarn2Ypg] = useState("");
 
   // Chart filtering
-  const filteredWeights = useMemo(() => {
-    if (!search.trim()) return WEIGHTS;
-    const q = search.trim().toLowerCase();
-    return WEIGHTS.filter((w) =>
-      w.usName.toLowerCase().includes(q) ||
-      w.ukName.toLowerCase().includes(q) ||
-      w.auPly.toLowerCase().includes(q) ||
-      w.altNames.some((n) => n.includes(q)) ||
-      w.number === q ||
-      `${w.number} ply` === q ||
-      `ply ${w.number}` === q
-    );
-  }, [search]);
+  const filteredWeights = useMemo(() => filterYarnWeights(search), [search]);
 
   // Substitution result
-  const subResult = useMemo(() => {
-    if (!yarn1Weight || !yarn2Weight) return null;
-    const w1 = WEIGHTS.find((w) => w.number === yarn1Weight);
-    const w2 = WEIGHTS.find((w) => w.number === yarn2Weight);
-    if (!w1 || !w2) return null;
-
-    const weightDiff = Math.abs(parseInt(w1.number) - parseInt(w2.number));
-    let score = 100;
-    const notes: string[] = [];
-
-    // Weight category difference
-    if (weightDiff === 0) {
-      notes.push("Same weight category, great starting point.");
-    } else if (weightDiff === 1) {
-      score -= 25;
-      notes.push("One weight category apart, may work with needle size adjustment.");
-    } else {
-      score -= weightDiff * 20;
-      notes.push(`${weightDiff} weight categories apart, significant gauge difference expected.`);
-    }
-
-    // Meters per gram comparison (if provided)
-    const mpg1 = parseFloat(yarn1Mpg);
-    const mpg2 = parseFloat(yarn2Mpg);
-    if (mpg1 > 0 && mpg2 > 0) {
-      const ratio = Math.min(mpg1, mpg2) / Math.max(mpg1, mpg2);
-      if (ratio >= 0.85) {
-        score = Math.max(score, 85);
-        notes.push(`Yardage per gram is very close (${Math.round(ratio * 100)}% match), excellent substitute.`);
-      } else if (ratio >= 0.7) {
-        score = Math.min(score, 70);
-        notes.push(`Yardage differs by ${Math.round((1 - ratio) * 100)}%, swatch carefully.`);
-      } else {
-        score = Math.min(score, 40);
-        notes.push(`Yardage differs significantly (${Math.round((1 - ratio) * 100)}%), likely needs needle change and will produce different gauge.`);
-      }
-    }
-
-    score = Math.max(0, Math.min(100, score));
-
-    let rating: string;
-    let color: string;
-    if (score >= 80) { rating = "Excellent match"; color = "text-sage-600 dark:text-sage-400"; }
-    else if (score >= 60) { rating = "Possible with adjustments"; color = "text-amber-600 dark:text-amber-400"; }
-    else { rating = "Not recommended"; color = "text-rose-600 dark:text-rose-400"; }
-
-    return { score, rating, color, notes, w1, w2 };
-  }, [yarn1Weight, yarn2Weight, yarn1Mpg, yarn2Mpg]);
+  const subResult = useMemo(
+    () => compareYarnLabels(yarn1Weight, yarn2Weight, yarn1Ypg, yarn2Ypg),
+    [yarn1Weight, yarn2Weight, yarn1Ypg, yarn2Ypg],
+  );
 
   return (
     <div className="space-y-6">
@@ -241,6 +63,7 @@ export default function YarnWeightChartTool() {
           <button
             key={key}
             type="button"
+            aria-pressed={tab === key}
             onClick={() => setTab(key)}
             className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-150 ${
               tab === key
@@ -270,12 +93,15 @@ export default function YarnWeightChartTool() {
           </div>
 
           <p className="text-sm text-bark-400 dark:text-bark-500">
-            Tap a row to highlight it. Use the substitution tab to check if two specific yarns are compatible.
+            Select a category number for notes. Regional names are approximate; use the yarn label and a swatch to check a substitution.
           </p>
 
-          <div className="overflow-x-auto -mx-4 sm:mx-0">
+          <div className="overflow-x-auto -mx-4 sm:mx-0" tabIndex={0} role="region" aria-label="Yarn weight reference table">
             <div className="inline-block min-w-full align-middle px-4 sm:px-0">
               <table className="min-w-full text-sm">
+                <caption className="text-left text-sm text-bark-600 dark:text-cream-300 pb-3">
+                  CYC knitting gauge guidelines: stockinette stitches per 4 inches. These are not crochet gauge ranges. Follow your pattern, especially for lace and openwork.
+                </caption>
                 <thead>
                   <tr className="border-b-2 border-cream-300 dark:border-bark-600">
                     <th className="text-left py-3 px-2 font-semibold text-bark-700 dark:text-cream-200">#</th>
@@ -290,8 +116,8 @@ export default function YarnWeightChartTool() {
                       Hooks
                     </th>
                     <th className="text-left py-3 px-2 font-semibold text-bark-700 dark:text-cream-200">
-                      Gauge
-                      <Tooltip text="Typical stitches per 4 inches (10 cm) in stockinette or single crochet." />
+                      Knitting gauge
+                      <Tooltip text="Stockinette stitches per 4 inches. Crochet gauges differ; use the CYC reference and your pattern." />
                     </th>
                   </tr>
                 </thead>
@@ -299,27 +125,36 @@ export default function YarnWeightChartTool() {
                   {filteredWeights.map((w) => (
                     <tr
                       key={w.number}
-                      onClick={() => setHighlightWeight(highlightWeight === w.number ? null : w.number)}
-                      className={`cursor-pointer transition-colors ${
+                      className={`transition-colors ${
                         highlightWeight === w.number
                           ? "bg-sage-100 dark:bg-sage-900/20"
                           : "hover:bg-sage-50/50 dark:hover:bg-sage-900/10"
                       }`}
                     >
-                      <td className="py-3 px-2 font-bold text-sage-600 dark:text-sage-400">{w.number}</td>
+                      <td className="py-3 px-2 font-bold text-sage-600 dark:text-sage-400">
+                        <button
+                          type="button"
+                          aria-label={`Notes for category ${w.number}, ${w.usName}`}
+                          aria-expanded={highlightWeight === w.number}
+                          onClick={() => setHighlightWeight((current) => current === w.number ? null : w.number)}
+                          className="min-h-11 min-w-11 rounded focus-visible:outline focus-visible:outline-2 focus-visible:outline-sage-600"
+                        >
+                          {w.number}
+                        </button>
+                      </td>
                       <td className="py-3 px-2 font-medium text-bark-800 dark:text-cream-100">{w.usName}</td>
                       <td className="py-3 px-2 text-bark-600 dark:text-cream-300">{w.ukName}</td>
                       <td className="py-3 px-2 text-bark-600 dark:text-cream-300">{w.auPly}</td>
                       <td className="py-3 px-2 text-bark-500 dark:text-bark-400 text-xs">
-                        {w.needleMm[0]}–{w.needleMm[1]}mm
+                        {w.needleMm}
                         <br />US {w.needleUS}
                       </td>
                       <td className="py-3 px-2 text-bark-500 dark:text-bark-400 text-xs">
-                        {w.hookMm[0]}–{w.hookMm[1]}mm
+                        {w.hookMm}
                         <br />US {w.hookUS}
                       </td>
                       <td className="py-3 px-2 text-bark-500 dark:text-bark-400">
-                        {w.gaugeStPer4in[0]}–{w.gaugeStPer4in[1]} st
+                        {w.knitGaugeStPer4in} st
                       </td>
                     </tr>
                   ))}
@@ -340,12 +175,15 @@ export default function YarnWeightChartTool() {
                 <p className="text-sm text-bark-500 dark:text-bark-400 mt-1">
                   Also known as: {w.altNames.join(", ")}
                 </p>
-                <p className="text-sm text-bark-500 dark:text-bark-400">
-                  Typical yardage: {w.ydsPerGram[0]}–{w.ydsPerGram[1]} yards per gram
-                </p>
+                <p className="text-sm text-bark-500 dark:text-bark-400">Names and category numbers do not guarantee matching gauge or fabric. Check the label and make a swatch.</p>
               </div>
             );
           })()}
+
+          <p className="text-sm text-bark-500 dark:text-bark-400">
+            Source: <a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" className="underline">Craft Yarn Council yarn weight guidelines</a>.
+            {" "}Steel and regular lace hooks use different sizing systems. US hook labels vary by manufacturer; check the metric diameter.
+          </p>
 
           <div className="text-center pt-2">
             <button type="button" onClick={() => window.print()} className="btn-secondary text-sm">
@@ -359,7 +197,7 @@ export default function YarnWeightChartTool() {
       {tab === "substitution" && (
         <div className="space-y-6">
           <p className="text-sm text-bark-400 dark:text-bark-500">
-            Compare two yarns to see if they&apos;re compatible substitutes. For the best result, check the label for yards (or meters) per gram.
+            Compare two yarn labels as a starting point, not a compatibility verdict. Optional length values must both use yards per gram; do not mix yards and meters.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -367,8 +205,8 @@ export default function YarnWeightChartTool() {
             <div className="p-4 bg-cream-100 dark:bg-bark-800 rounded-xl space-y-3">
               <p className="font-medium text-bark-700 dark:text-cream-200 text-sm">🧶 Pattern Yarn</p>
               <div>
-                <label className="label text-xs">Weight category</label>
-                <select aria-label="First yarn weight category" value={yarn1Weight} onChange={(e) => setYarn1Weight(e.target.value)} className="select">
+                <label htmlFor="pattern-yarn-category" className="label text-xs">Weight category</label>
+                <select id="pattern-yarn-category" aria-label="First yarn weight category" value={yarn1Weight} onChange={(e) => setYarn1Weight(e.target.value)} className="select">
                   <option value="">Select…</option>
                   {WEIGHTS.map((w) => (
                     <option key={w.number} value={w.number}>{w.number}, {w.usName}</option>
@@ -376,11 +214,11 @@ export default function YarnWeightChartTool() {
                 </select>
               </div>
               <div>
-                <label className="label text-xs">
+                <label htmlFor="pattern-yarn-yardage" className="label text-xs">
                   Yards per gram (optional)
                   <Tooltip text="Divide the skein's total yardage by its weight in grams. E.g., 220 yds ÷ 100g = 2.2 yd/g" />
                 </label>
-                <input aria-label="First yarn yards per gram" type="number" value={yarn1Mpg} onChange={(e) => setYarn1Mpg(e.target.value)} placeholder="e.g. 2.2" className="input" min="0" inputMode="decimal" />
+                <input id="pattern-yarn-yardage" aria-label="First yarn yards per gram" type="number" value={yarn1Ypg} onChange={(e) => setYarn1Ypg(e.target.value)} placeholder="e.g. 2.2" className="input" min="0" step="any" inputMode="decimal" aria-invalid={Boolean(subResult?.yardageError)} aria-describedby={subResult?.yardageError ? "yarn-yardage-error" : undefined} />
               </div>
             </div>
 
@@ -388,8 +226,8 @@ export default function YarnWeightChartTool() {
             <div className="p-4 bg-sage-50 dark:bg-sage-900/10 rounded-xl space-y-3">
               <p className="font-medium text-sage-700 dark:text-sage-300 text-sm">🧶 Substitute Yarn</p>
               <div>
-                <label className="label text-xs">Weight category</label>
-                <select aria-label="Second yarn weight category" value={yarn2Weight} onChange={(e) => setYarn2Weight(e.target.value)} className="select">
+                <label htmlFor="substitute-yarn-category" className="label text-xs">Weight category</label>
+                <select id="substitute-yarn-category" aria-label="Second yarn weight category" value={yarn2Weight} onChange={(e) => setYarn2Weight(e.target.value)} className="select">
                   <option value="">Select…</option>
                   {WEIGHTS.map((w) => (
                     <option key={w.number} value={w.number}>{w.number}, {w.usName}</option>
@@ -397,38 +235,16 @@ export default function YarnWeightChartTool() {
                 </select>
               </div>
               <div>
-                <label className="label text-xs">Yards per gram (optional)</label>
-                <input aria-label="Second yarn yards per gram" type="number" value={yarn2Mpg} onChange={(e) => setYarn2Mpg(e.target.value)} placeholder="e.g. 2.5" className="input" min="0" inputMode="decimal" />
+                <label htmlFor="substitute-yarn-yardage" className="label text-xs">Yards per gram (optional)</label>
+                <input id="substitute-yarn-yardage" aria-label="Second yarn yards per gram" type="number" value={yarn2Ypg} onChange={(e) => setYarn2Ypg(e.target.value)} placeholder="e.g. 2.5" className="input" min="0" step="any" inputMode="decimal" aria-invalid={Boolean(subResult?.yardageError)} aria-describedby={subResult?.yardageError ? "yarn-yardage-error" : undefined} />
               </div>
             </div>
           </div>
 
           {subResult && (
-            <div className="result-card space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="flex-1">
-                  <h3 className={`text-lg font-bold ${subResult.color}`}>
-                    {subResult.rating}
-                  </h3>
-                  <p className="text-sm text-bark-500 dark:text-bark-400 mt-1">
-                    Compatibility: {subResult.score}%
-                  </p>
-                </div>
-                {/* Score bar */}
-                <div className="w-20 h-20 relative">
-                  <svg viewBox="0 0 36 36" className="w-full h-full -rotate-90">
-                    <path d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" className="text-cream-300 dark:text-bark-600" strokeWidth="3" />
-                    <path d="M18 2.0845a 15.9155 15.9155 0 0 1 0 31.831a 15.9155 15.9155 0 0 1 0 -31.831" fill="none"
-                      className={subResult.score >= 80 ? "text-sage-500" : subResult.score >= 60 ? "text-amber-500" : "text-rose-500"}
-                      stroke="currentColor" strokeWidth="3"
-                      strokeDasharray={`${subResult.score}, 100`}
-                    />
-                  </svg>
-                  <span className="absolute inset-0 flex items-center justify-center text-sm font-bold text-bark-700 dark:text-cream-200">
-                    {subResult.score}
-                  </span>
-                </div>
-              </div>
+            <div className="result-card space-y-4" aria-live="polite">
+              <h3 className="text-lg font-bold text-amber-700 dark:text-amber-400">{subResult.title}</h3>
+              {subResult.yardageError && <p id="yarn-yardage-error" role="alert" className="text-sm text-rose-700 dark:text-rose-400">{subResult.yardageError}</p>}
 
               <ul className="space-y-1">
                 {subResult.notes.map((note, i) => (
@@ -437,7 +253,7 @@ export default function YarnWeightChartTool() {
               </ul>
 
               <p className="text-xs text-bark-400 dark:text-bark-500">
-                Always swatch with your substitute yarn before starting your project.
+                Swatch in the pattern&apos;s stitch pattern, wash and dry as directed by the yarn label, then compare stitch and row gauge and the finished fabric. Matching gauge alone does not guarantee the same feel or drape.
               </p>
             </div>
           )}
@@ -510,11 +326,14 @@ export default function YarnWeightChartTool() {
           💡 Substitution Tips
         </h3>
         <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
-          <li><strong>Yards per gram</strong> is the most reliable way to compare yarns, more accurate than weight category alone.</li>
+          <li><strong>Yards per gram</strong> compares label length and weight, not gauge. Matching values do not prove that yarns are interchangeable.</li>
           <li><strong>Fiber content matters.</strong> Swapping cotton for wool changes drape, stretch, and warmth even at the same weight.</li>
           <li><strong>Always swatch</strong> with your substitute yarn. Even yarns in the same weight category can knit up differently.</li>
-          <li>The <strong>same yarn in different colors</strong> can have slightly different gauges, dark dyes especially.</li>
+          <li><strong>Check the actual yarn label</strong> for fiber content and care instructions before buying or substituting.</li>
         </ul>
+        <p className="text-sm text-bark-500 dark:text-bark-400 mt-3">
+          The <a href="https://www.craftyarncouncil.com/standards/faqs" className="underline">CYC substitution guidance</a> requires swatching, even within one category.
+        </p>
       </div>
     </div>
   );
