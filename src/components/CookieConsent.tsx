@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import Script from "next/script";
 import Link from "next/link";
 import { detectGPCClient } from "@/lib/gpc";
+import {
+  buildInitialAnalyticsConfig,
+  GOOGLE_MEASUREMENT_ID,
+} from "@/lib/analytics-page-context.mjs";
 import SanitizedPageViewTracker from "@/components/SanitizedPageViewTracker";
 
 type ConsentStatus = "granted" | "denied";
@@ -19,7 +23,6 @@ type StoredConsent = ConsentState | null | "loading";
 const CONSENT_STORAGE_KEY = "cookie_consent";
 const CONSENT_CHANGED_EVENT = "fibertools:consent-changed";
 const PRIVACY_CHOICES_EVENT = "fibertools:privacy-choices";
-const GOOGLE_MEASUREMENT_ID = "G-T92LYDE8NN";
 const ADSENSE_CLIENT_ID = "ca-pub-7171402107622932";
 
 function updateGoogleConsent(analytics: ConsentStatus, ads: ConsentStatus) {
@@ -61,20 +64,65 @@ function clearGoogleAnalyticsCookies() {
 }
 
 function GoogleServices({ adsenseEnabled }: { adsenseEnabled: boolean }) {
+  const initialAnalyticsConfig =
+    typeof window === "undefined" ? null : buildInitialAnalyticsConfig(window.location);
+  if (!initialAnalyticsConfig) return null;
+
+  const serializedAnalyticsConfig = JSON.stringify({
+    ...initialAnalyticsConfig,
+    anonymize_ip: true,
+    ignore_referrer: true,
+    send_page_view: false,
+  }).replaceAll("<", "\\u003c");
+  const serializedInitialPageView = JSON.stringify({
+    page_path: initialAnalyticsConfig.page_path,
+    page_location: initialAnalyticsConfig.page_location,
+    page_referrer: initialAnalyticsConfig.page_referrer,
+  }).replaceAll("<", "\\u003c");
+  const currentConsentCheck = `
+    var storedConsent = null;
+    try {
+      storedConsent = JSON.parse(window.localStorage.getItem('${CONSENT_STORAGE_KEY}') || 'null');
+    } catch (_error) {
+      storedConsent = null;
+    }
+    var gpcActive = window.navigator.globalPrivacyControl === true ||
+      document.cookie.split(';').some(function(part) {
+        return part.trim() === 'empire_gpc=1';
+      });
+    var analyticsAllowed = !gpcActive && storedConsent && storedConsent.analytics === 'granted';
+    var adsAllowed = !gpcActive && storedConsent && storedConsent.ads === 'granted';
+  `;
+
   return (
     <>
       <Script id="google-consent-granted" strategy="afterInteractive">
         {`
-          window.dataLayer = window.dataLayer || [];
-          window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
-          window.gtag('consent', 'default', {
-            ad_storage: 'granted',
-            ad_user_data: 'granted',
-            ad_personalization: 'granted',
-            analytics_storage: 'granted',
-            functionality_storage: 'granted',
-            personalization_storage: 'granted'
-          });
+          (function(){
+            ${currentConsentCheck}
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function(){
+              if (arguments[0] === 'event') {
+                var eventParameters = arguments[2] && typeof arguments[2] === 'object'
+                  ? arguments[2]
+                  : {};
+                arguments[2] = Object.assign({}, eventParameters, {
+                  page_path: window.location.pathname,
+                  page_location: window.location.origin + window.location.pathname,
+                  page_referrer: ''
+                });
+              }
+              window.dataLayer.push(arguments);
+            };
+            window.gtag('consent', 'default', {
+              ad_storage: adsAllowed ? 'granted' : 'denied',
+              ad_user_data: adsAllowed ? 'granted' : 'denied',
+              ad_personalization: adsAllowed ? 'granted' : 'denied',
+              analytics_storage: analyticsAllowed ? 'granted' : 'denied',
+              functionality_storage: analyticsAllowed ? 'granted' : 'denied',
+              personalization_storage: analyticsAllowed ? 'granted' : 'denied'
+            });
+          })();
         `}
       </Script>
       <Script
@@ -83,17 +131,40 @@ function GoogleServices({ adsenseEnabled }: { adsenseEnabled: boolean }) {
       />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
-          window.dataLayer = window.dataLayer || [];
-          window.gtag = window.gtag || function(){window.dataLayer.push(arguments);};
-          window.gtag('js', new Date());
-          window.gtag('config', '${GOOGLE_MEASUREMENT_ID}', {
-            anonymize_ip: true,
-            ignore_referrer: true,
-            send_page_view: false
-          });
+          (function(){
+            ${currentConsentCheck}
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = window.gtag || function(){
+              if (arguments[0] === 'event') {
+                var eventParameters = arguments[2] && typeof arguments[2] === 'object'
+                  ? arguments[2]
+                  : {};
+                arguments[2] = Object.assign({}, eventParameters, {
+                  page_path: window.location.pathname,
+                  page_location: window.location.origin + window.location.pathname,
+                  page_referrer: ''
+                });
+              }
+              window.dataLayer.push(arguments);
+            };
+            if (!analyticsAllowed) {
+              window.gtag('consent', 'update', {
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                analytics_storage: 'denied',
+                functionality_storage: 'denied',
+                personalization_storage: 'denied'
+              });
+              return;
+            }
+            window.gtag('js', new Date());
+            window.gtag('config', '${GOOGLE_MEASUREMENT_ID}', ${serializedAnalyticsConfig});
+            window.gtag('event', 'page_view', ${serializedInitialPageView});
+          })();
         `}
       </Script>
-      <SanitizedPageViewTracker />
+      <SanitizedPageViewTracker initialPathname={initialAnalyticsConfig.page_path} />
       {adsenseEnabled ? (
         <Script
           id="adsense"
@@ -173,6 +244,45 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
       setVisible(true);
     }
     // Consent is initialized once per page load. GPC is checked again before any grant.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    const syncConsentFromAnotherTab = (event: StorageEvent) => {
+      if (event.key !== CONSENT_STORAGE_KEY) return;
+
+      if (detectGPCClient()) {
+        enforceGPC(false);
+        return;
+      }
+
+      try {
+        const parsed = event.newValue
+          ? (JSON.parse(event.newValue) as Partial<ConsentState>)
+          : null;
+        if (
+          !parsed ||
+          (parsed.analytics !== "granted" && parsed.analytics !== "denied") ||
+          (parsed.ads !== "granted" && parsed.ads !== "denied")
+        ) {
+          throw new Error("Invalid consent state");
+        }
+
+        setGpcActive(false);
+        updateGoogleConsent(parsed.analytics, parsed.ads);
+        if (parsed.analytics === "denied") clearGoogleAnalyticsCookies();
+        setConsent(parsed as ConsentState);
+      } catch {
+        updateGoogleConsent("denied", "denied");
+        clearGoogleAnalyticsCookies();
+        setConsent(null);
+        setVisible(true);
+      }
+    };
+
+    window.addEventListener("storage", syncConsentFromAnotherTab);
+    return () => window.removeEventListener("storage", syncConsentFromAnotherTab);
+    // The listener is registered once and reads the current GPC signal when invoked.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
