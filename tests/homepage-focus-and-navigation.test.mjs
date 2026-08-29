@@ -45,6 +45,12 @@ test("focuses the homepage on three visitor paths and the approved calculator or
   assert.doesNotMatch(homepage, /tier1|tier2|tier3|Essential Fiber Arts Tools|More Fiber Arts Calculators|Specialty Fiber Arts Tools/u);
 });
 
+test("describes featured calculators without unsupported popularity claims", () => {
+  assert.match(homepage, /Five calculators to help size projects, estimate materials, and work through construction math\./u);
+  assert.match(homepage, />Also featured<\/p>/u);
+  assert.doesNotMatch(homepage, /proven tools|most visitors|Also popular|Evidence-backed featured|Secondary proven/iu);
+});
+
 test("keeps every remaining registered tool in the complete searchable directory", () => {
   const readyTools = [
     ...toolsSource.matchAll(/\{\s*slug:\s*"([^"]+)"[\s\S]*?ready:\s*(true|false),[\s\S]*?\},/gu),

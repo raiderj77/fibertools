@@ -3,6 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { getToolBySlug } from "../src/lib/tools.ts";
 
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -36,6 +37,32 @@ function visibleText(html) {
     .replace(/&quot;/g, '"')
     .replace(/\s+/g, " ")
     .trim();
+}
+
+test("built homepage uses qualified tool descriptions and neutral featured labels", () => {
+  const html = readFileSync(resolve(ROOT, ".next/server/app/index.html"), "utf8");
+  const text = visibleText(html);
+
+  assert.ok(text.includes("Five calculators to help size projects, estimate materials, and work through construction math."));
+  assert.ok(text.includes("Also featured"));
+  for (const slug of ["yarn-calculator", "spinning-ratio-calculator"]) {
+    assert.ok(text.includes(getToolBySlug(slug).description), `${slug}: corrected description must be visible`);
+  }
+  assert.doesNotMatch(text, /Calculate exactly how much yarn you need for any project|the only online tool for spinners|proven tools|most visitors|Also popular/iu);
+});
+
+for (const slug of ["yarn-calculator", "spinning-ratio-calculator"]) {
+  test(`${slug} built introduction and structured data share the qualified description`, () => {
+    const html = readFileSync(resolve(ROOT, `.next/server/app/${slug}.html`), "utf8");
+    const description = getToolBySlug(slug).description;
+    assert.ok(visibleText(html).includes(description), `${slug}: introduction must use the shared description`);
+
+    const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gu)]
+      .map((match) => JSON.parse(match[1]));
+    const toolSchema = schemas.find((schema) => schema["@type"] === "WebApplication" && schema.url === `https://fibertools.app/${slug}`);
+    assert.ok(toolSchema, `${slug}: missing WebApplication schema`);
+    assert.equal(toolSchema.description, description);
+  });
 }
 
 
