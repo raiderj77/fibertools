@@ -1,18 +1,33 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
+import {
+  recordSanitizedPageView,
+} from "@/lib/analytics-page-context.mjs";
+import { hasCurrentAnalyticsConsent } from "@/lib/fixed-analytics";
 
-export default function SanitizedPageViewTracker() {
+export default function SanitizedPageViewTracker({
+  initialPathname,
+}: {
+  initialPathname: string;
+}) {
   const pathname = usePathname();
+  const initialPathnameRef = useRef(initialPathname);
 
   useEffect(() => {
-    if (typeof window.gtag !== "function") return;
+    if (initialPathnameRef.current === pathname) {
+      initialPathnameRef.current = "";
+      return;
+    }
 
-    window.gtag("event", "page_view", {
-      page_path: pathname,
-      page_location: `${window.location.origin}${pathname}`,
-      page_referrer: "",
+    recordSanitizedPageView({
+      location: {
+        origin: window.location.origin,
+        pathname,
+      },
+      analyticsAllowed: hasCurrentAnalyticsConsent(),
+      gtag: window.gtag,
     });
   }, [pathname]);
 
