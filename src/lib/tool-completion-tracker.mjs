@@ -11,9 +11,25 @@ export function hasAnalyticsConsent(storage) {
   }
 }
 
+export function shouldStartToolCompletionTracker({
+  sent,
+  eligible,
+  initialResult,
+  resultMarker,
+}) {
+  return (
+    !sent &&
+    eligible &&
+    resultMarker !== null &&
+    resultMarker !== undefined &&
+    !Object.is(resultMarker, initialResult)
+  );
+}
+
 export function createToolCompletionTracker({
   toolSlug,
   storage,
+  getGpcActive,
   getGtag,
   addEventListener,
   removeEventListener,
@@ -35,8 +51,16 @@ export function createToolCompletionTracker({
     }
   };
 
+  const hasCurrentAnalyticsPermission = () => {
+    try {
+      return !getGpcActive() && hasAnalyticsConsent(storage);
+    } catch {
+      return false;
+    }
+  };
+
   const sendIfAllowed = () => {
-    if (disposed || sent || !hasAnalyticsConsent(storage)) return false;
+    if (disposed || sent || !hasCurrentAnalyticsPermission()) return false;
     const gtag = getGtag();
     if (typeof gtag !== "function") return false;
 
@@ -53,7 +77,7 @@ export function createToolCompletionTracker({
     retryCount += 1;
     if (
       sendIfAllowed() ||
-      !hasAnalyticsConsent(storage) ||
+      !hasCurrentAnalyticsPermission() ||
       retryCount >= maxRetries
     ) {
       stopRetrying();
@@ -61,7 +85,7 @@ export function createToolCompletionTracker({
   };
 
   const start = () => {
-    if (disposed || sent || !hasAnalyticsConsent(storage)) return;
+    if (disposed || sent || !hasCurrentAnalyticsPermission()) return;
     if (sendIfAllowed() || timerId !== null) return;
 
     retryCount = 0;

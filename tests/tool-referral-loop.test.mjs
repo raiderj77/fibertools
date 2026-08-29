@@ -6,6 +6,7 @@ import {
   CONSENT_CHANGED_EVENT,
   createToolCompletionTracker,
   hasAnalyticsConsent,
+  shouldStartToolCompletionTracker,
 } from "../src/lib/tool-completion-tracker.mjs";
 
 const read = (path) => fs.readFileSync(path, "utf8");
@@ -59,6 +60,50 @@ test("tracks one privacy-minimized completion and exposes result sharing on sele
   );
 });
 
+test("tracks a privacy-minimized completion on the color pooling calculator", () => {
+  const source = read(
+    "src/app/color-pooling-calculator/ColorPoolingCalculatorTool.tsx",
+  );
+  const hook = read("src/lib/useToolCompletion.ts");
+
+  assert.match(
+    source,
+    /useToolCompletion\("color-pooling-calculator", result\)/,
+  );
+  assert.match(hook, /shouldStartToolCompletionTracker/);
+  assert.match(hook, /getGpcActive: \(\) => detectGPCClient\(\)/);
+});
+
+test("starts completion tracking only after a new eligible result", () => {
+  const initialResult = { chainCount: 16 };
+  const changedResult = { chainCount: 17 };
+
+  assert.equal(shouldStartToolCompletionTracker({
+    sent: false,
+    eligible: true,
+    initialResult,
+    resultMarker: initialResult,
+  }), false);
+  assert.equal(shouldStartToolCompletionTracker({
+    sent: false,
+    eligible: true,
+    initialResult,
+    resultMarker: changedResult,
+  }), true);
+  assert.equal(shouldStartToolCompletionTracker({
+    sent: true,
+    eligible: true,
+    initialResult,
+    resultMarker: changedResult,
+  }), false);
+  assert.equal(shouldStartToolCompletionTracker({
+    sent: false,
+    eligible: false,
+    initialResult,
+    resultMarker: changedResult,
+  }), false);
+});
+
 test("keeps the protected StitchProof checker outside the generic traffic loop", () => {
   const checker = read("src/app/amigurumi-pattern-checker/AmigurumiPatternCheckerTool.tsx");
   assert.doesNotMatch(checker, /useToolCompletion|ResultShareButton/);
@@ -74,7 +119,7 @@ function consentStorage(status) {
   };
 }
 
-function trackerHarness(initialConsent, initialGtag) {
+function trackerHarness(initialConsent, initialGtag, initialGpc = false) {
   const status = { current: initialConsent };
   const listeners = new Map();
   const timers = new Map();
@@ -83,10 +128,12 @@ function trackerHarness(initialConsent, initialGtag) {
   let gtag = initialGtag
     ? (...args) => calls.push(args)
     : undefined;
+  let gpcActive = initialGpc;
 
   const tracker = createToolCompletionTracker({
     toolSlug: "cast-on-calculator",
     storage: consentStorage(status),
+    getGpcActive: () => gpcActive,
     getGtag: () => gtag,
     addEventListener: (name, listener) => listeners.set(name, listener),
     removeEventListener: (name) => listeners.delete(name),
@@ -112,6 +159,9 @@ function trackerHarness(initialConsent, initialGtag) {
     },
     loadGtag() {
       gtag = (...args) => calls.push(args);
+    },
+    setGpc(active) {
+      gpcActive = active;
     },
     runTimers() {
       for (const callback of [...timers.values()]) callback();
@@ -147,5 +197,21 @@ test("sends once when consent is granted and analytics finishes loading", () => 
   assert.deepEqual(harness.calls, [
     ["event", "tool_completion", { tool_slug: "cast-on-calculator" }],
   ]);
+  harness.dispose();
+});
+
+test("does not send with a stored grant while GPC is active", () => {
+  const harness = trackerHarness("granted", true, true);
+  harness.runTimers();
+  assert.deepEqual(harness.calls, []);
+  harness.dispose();
+});
+
+test("stops a pending retry when GPC becomes active", () => {
+  const harness = trackerHarness("granted", false);
+  harness.setGpc(true);
+  harness.loadGtag();
+  harness.runTimers();
+  assert.deepEqual(harness.calls, []);
   harness.dispose();
 });

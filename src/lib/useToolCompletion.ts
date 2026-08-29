@@ -1,7 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { createToolCompletionTracker } from "@/lib/tool-completion-tracker.mjs";
+import { detectGPCClient } from "@/lib/gpc";
+import {
+  createToolCompletionTracker,
+  shouldStartToolCompletionTracker,
+} from "@/lib/tool-completion-tracker.mjs";
 
 export default function useToolCompletion(
   toolSlug: string,
@@ -12,13 +16,12 @@ export default function useToolCompletion(
   const sent = useRef(false);
 
   useEffect(() => {
-    if (
-      sent.current ||
-      !eligible ||
-      resultMarker === null ||
-      resultMarker === undefined ||
-      Object.is(resultMarker, initialResult.current)
-    ) {
+    if (!shouldStartToolCompletionTracker({
+      sent: sent.current,
+      eligible,
+      initialResult: initialResult.current,
+      resultMarker,
+    })) {
       return;
     }
 
@@ -27,6 +30,7 @@ export default function useToolCompletion(
       storage: {
         getItem: (key: string) => window.localStorage.getItem(key),
       },
+      getGpcActive: () => detectGPCClient(),
       getGtag: () => window.gtag,
       addEventListener: (name: string, listener: EventListener) =>
         window.addEventListener(name, listener),

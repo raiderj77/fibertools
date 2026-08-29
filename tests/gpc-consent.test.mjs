@@ -13,6 +13,7 @@ const fixedAnalytics = fs.readFileSync("src/lib/fixed-analytics.ts", "utf8");
 const stitchProofAnalytics = fs.readFileSync("src/lib/stitchproof-analytics.ts", "utf8");
 const affiliateTracker = fs.readFileSync("src/components/AffiliateClickTracker.tsx", "utf8");
 const affiliateLink = fs.readFileSync("src/components/AffiliateLink.tsx", "utf8");
+const toolCompletion = fs.readFileSync("src/lib/useToolCompletion.ts", "utf8");
 
 test("recognizes only the explicit FiberTools GPC cookie", () => {
   assert.equal(hasGPCConsentCookie("empire_gpc=1"), true);
@@ -88,4 +89,8 @@ test("rechecks GPC for each StitchProof event instead of trusting initial consen
   assert.match(stitchProofAnalytics, /getGpcActive: \(\) => detectGPCClient\(\)/);
   assert.match(stitchProofAnalytics, /getStorage: \(\) => window\.localStorage/);
   assert.match(stitchProofAnalytics, /recordStitchProofBrowserEvent/);
+});
+
+test("rechecks GPC for each calculator completion event", () => {
+  assert.match(toolCompletion, /getGpcActive: \(\) => detectGPCClient\(\)/);
 });
