@@ -286,7 +286,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Evidence-backed featured calculators */}
+      {/* Featured calculators */}
       <section id="featured-calculators" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6" aria-labelledby="featured-calculators-heading">
         <div className="max-w-3xl">
           <p className="text-sm font-semibold uppercase tracking-wider text-plum-500">Start here</p>
@@ -294,7 +294,7 @@ export default function HomePage() {
             Featured calculators
           </h2>
           <p className="mt-3 text-bark-500 dark:text-bark-400">
-            The five proven tools most visitors use to size projects, estimate materials, and work through construction math.
+            Five calculators to help size projects, estimate materials, and work through construction math.
           </p>
         </div>
         <div className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -304,12 +304,12 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Secondary proven calculator */}
+      {/* Secondary featured calculator */}
       {secondaryTool?.ready && (
         <section className="mx-auto max-w-6xl px-4 pb-4 sm:px-6" aria-labelledby="sock-calculator-heading">
           <div className="rounded-2xl border border-rose-200 bg-rose-50 p-6 dark:border-rose-800 dark:bg-rose-900/20 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">
             <div className="max-w-3xl">
-              <p className="text-sm font-semibold uppercase tracking-wider text-rose-600 dark:text-rose-300">Also popular</p>
+              <p className="text-sm font-semibold uppercase tracking-wider text-rose-600 dark:text-rose-300">Also featured</p>
               <h2 id="sock-calculator-heading" className="mt-2 text-2xl font-display font-bold text-bark-800 dark:text-cream-100">
                 Sock Calculator
               </h2>

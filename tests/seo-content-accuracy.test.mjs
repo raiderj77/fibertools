@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
+import { getToolBySlug } from "../src/lib/tools.ts";
 
 const read = (path) => fs.readFileSync(path, "utf8");
 const blanketTool = read("src/app/blanket-calculator/BlanketCalculatorTool.tsx");
@@ -15,6 +16,20 @@ const toolLayout = read("src/components/ToolLayout.tsx");
 const tools = read("src/lib/tools.ts");
 const yarnPage = read("src/app/yarn-calculator/page.tsx");
 const yarnTool = read("src/app/yarn-calculator/YarnCalculatorTool.tsx");
+
+test("describes yarn quantities as estimates in the shared tool registry", () => {
+  assert.equal(
+    getToolBySlug("yarn-calculator")?.description,
+    "Estimate yarn yardage and skein counts for blankets, sweaters, scarves, and other knitting or crochet projects.",
+  );
+});
+
+test("describes spinning functions without an unsupported exclusivity claim", () => {
+  assert.equal(
+    getToolBySlug("spinning-ratio-calculator")?.description,
+    "Calculate drive ratios, twists per inch, and plying twist for handspinning.",
+  );
+});
 
 test("does not publish the unsupported FiberTools audience and sales statistics", () => {
   assert.doesNotMatch(homepage, /45 million Americans|\$3 billion/);
