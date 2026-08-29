@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
+import useToolCompletion from "@/lib/useToolCompletion";
 
 // ── TYPES ─────────────────────────────────────────────────────────
 
@@ -96,6 +97,8 @@ export default function ColorPoolingCalculatorTool() {
       isAligned,
     };
   }, [sections, chainAdjust, previewRows]);
+
+  useToolCompletion("color-pooling-calculator", result);
 
   return (
     <div className="space-y-6">
