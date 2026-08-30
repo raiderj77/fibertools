@@ -52,8 +52,27 @@ function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+const ISOLATED_STITCH_TERMS = new Set([
+  "double treble crochet",
+  "double treble",
+  "half treble crochet",
+  "half treble",
+  "treble crochet",
+  "treble",
+  "double crochet",
+]);
+
 function termMatcher(term) {
   const escaped = escapeRegex(term).replace(/ /g, "\\s+");
+  if (ISOLATED_STITCH_TERMS.has(term)) {
+    // A spelled-out stitch phrase is changed only when it is isolated like a
+    // label or list item. This avoids rewriting a supported phrase nested in
+    // an unknown compound stitch name or ordinary prose.
+    return new RegExp(
+      `(^\\s*|[\\n,:;(\\[{\"'\\-]\\s*)(${escaped})(?=$|\\s*[\\n,.;:!?\\)\\]}\"'\\-])`,
+      "giu",
+    );
+  }
   return new RegExp(`(^|[^\\p{L}\\p{N}])(${escaped})(?=$|[^\\p{L}\\p{N}])`, "giu");
 }
 
@@ -69,6 +88,7 @@ function isUnsupportedCompoundContext(text, start, end) {
 
 function collectMatches(text) {
   const matches = [];
+  const blockedMatches = [];
 
   for (const entry of UK_TO_US_TERMS) {
     for (const term of entry.terms) {
@@ -79,7 +99,10 @@ function collectMatches(text) {
         const matchedText = match[2];
         const start = match.index + prefixLength;
         const end = start + matchedText.length;
-        if (isUnsupportedCompoundContext(text, start, end)) continue;
+        if (isUnsupportedCompoundContext(text, start, end)) {
+          blockedMatches.push({ start, end });
+          continue;
+        }
         matches.push({
           start,
           end,
@@ -90,7 +113,11 @@ function collectMatches(text) {
     }
   }
 
-  matches.sort((left, right) => (
+  const eligibleMatches = matches.filter((match) => !blockedMatches.some((blocked) => (
+    blocked.start <= match.start && blocked.end >= match.end
+  )));
+
+  eligibleMatches.sort((left, right) => (
     left.start - right.start
       || (right.end - right.start) - (left.end - left.start)
       || left.entry.label.localeCompare(right.entry.label)
@@ -98,7 +125,7 @@ function collectMatches(text) {
 
   const chosen = [];
   let cursor = 0;
-  for (const match of matches) {
+  for (const match of eligibleMatches) {
     if (match.start >= cursor) {
       chosen.push(match);
       cursor = match.end;
@@ -107,12 +134,19 @@ function collectMatches(text) {
   return chosen;
 }
 
+function hasUnicodeBoundedMatch(text, source) {
+  return new RegExp(
+    `(^|[^\\p{L}\\p{N}])(?:${source})(?=$|[^\\p{L}\\p{N}])`,
+    "iu",
+  ).test(text);
+}
+
 function buildSignals(text, convention) {
   const signals = [];
 
   if (
     convention === "unknown"
-    && /\b(double\s+crochet|treble(?:\s+crochet)?|half\s+treble|dtr|htr|dc|tr)\b/i.test(text)
+    && hasUnicodeBoundedMatch(text, "double\\s+crochet|treble(?:\\s+crochet)?|half\\s+treble|dtr|htr|dc|tr")
   ) {
     signals.push({
       title: "Crochet convention not established",
@@ -120,28 +154,31 @@ function buildSignals(text, convention) {
     });
   }
 
-  if (/\b(tension|miss|cast\s+off|work\s+straight)\b/i.test(text)) {
+  if (hasUnicodeBoundedMatch(text, "tension|miss|cast\\s+off|work\\s+straight")) {
     signals.push({
       title: "Wording that may follow UK conventions",
       note: "These terms can appear in UK sources, but wording alone does not establish a pattern's country or publication date.",
     });
   }
 
-  if (/\b(wool\s+(?:over|forward|back|round\s+needle)|wl\.?\s*(?:fwd|bk)\.?|wf\.?|wb\.?)\b/i.test(text)) {
+  if (hasUnicodeBoundedMatch(text, "wool\\s+(?:over|forward|back|round\\s+needle)|wl\\.?\\s*(?:fwd|bk)\\.?|wf\\.?|wb\\.?")) {
     signals.push({
       title: "Older yarn-position wording",
       note: "This language may describe yarn placement or a yarn over. Confirm the source abbreviation key and the next stitch before changing the technique.",
     });
   }
 
-  if (/\bno\.?\s*\d+\b/i.test(text) || /\bsize\s+\d+\b[^\n]{0,24}\b(?:needle|hook)\b/i.test(text)) {
+  if (
+    hasUnicodeBoundedMatch(text, "no\\.?\\s*\\d+")
+    || hasUnicodeBoundedMatch(text, "size\\s+\\d+[^\\n]{0,24}(?:needle|hook)")
+  ) {
     signals.push({
       title: "Numbered needle or hook size",
       note: "A bare size number does not identify the sizing system or diameter. Verify the source system and millimeter size before selecting a tool.",
     });
   }
 
-  if (/\b\d+(?:\.\d+)?\s*oz(?:s|\.)?\b/i.test(text)) {
+  if (hasUnicodeBoundedMatch(text, "\\d+(?:\\.\\d+)?\\s*oz(?:s|\\.)?")) {
     signals.push({
       title: "Yarn amount stated by weight",
       note: "Weight alone does not establish modern yardage. Match the original yarn construction and verify length per unit weight before substituting.",

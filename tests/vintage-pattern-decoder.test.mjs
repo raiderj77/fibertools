@@ -74,6 +74,15 @@ test("supported multi-word terms tolerate copied spacing without changing surrou
   assert.equal(result.substitutionCount, 1);
 });
 
+test("spelled-out terms nested in ordinary prose are preserved conservatively", () => {
+  const input = "Work double crochet across, then use treble crochet cluster; keep half double crochet.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, input);
+  assert.equal(result.substitutionCount, 0);
+});
+
 test("unsupported compound and attached-count abbreviations are preserved", () => {
   const result = decodeVintagePattern(
     "dc2tog, tr3tog, dtr2tog, 2dc; 3 tr.",
@@ -95,6 +104,8 @@ test("unsupported multiword stitch names are preserved rather than partially rew
     "triple treble crochet",
     "double crochet three together",
     "treble crochet cluster",
+    "front post double treble crochet",
+    "front post half treble crochet",
   ].join("; ");
   const result = decodeVintagePattern(input, "uk");
 
@@ -110,6 +121,11 @@ test("Unicode letters and numbers beside a supported token keep the prose unchan
   assert.equal(result.status, "ready");
   assert.equal(result.output, "très bien; dcé; htrø; trβ; dtr٣; double crochet (dc) alone.");
   assert.equal(result.substitutionCount, 1);
+
+  const unknown = decodeVintagePattern("très bien; dcé; htrø; trβ; dtr٣", "unknown");
+  assert.equal(unknown.status, "ready");
+  assert.equal(unknown.output, "très bien; dcé; htrø; trβ; dtr٣");
+  assert.equal(unknown.signals.some((signal) => signal.title === "Crochet convention not established"), false);
 });
 
 test("older wording remains unchanged and is reported only as a review clue", () => {

@@ -1946,7 +1946,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       title: "How Does the Term Review Work?",
       paragraphs: [
         "The input is limited to 20,000 characters and is processed locally in the page. The tool does not accept files or run a document parser.",
-        "When UK is selected, the CYC-documented crochet terms are matched longest-first so a phrase such as 'double treble crochet' is handled before the shorter 'treble crochet.' Each source span is changed at most once, and all unsupported or older wording remains unchanged.",
+        "When UK is selected, supported abbreviations use Unicode-aware token boundaries and spelled-out stitch phrases are changed only when separated like labels or list items. Longer terms are considered first, each source span is changed at most once, and unsupported or older wording remains unchanged.",
         "Unknown and US modes bypass the mapping step. This prevents valid US wording such as 'double crochet' from being silently rewritten.",
       ],
     },
