@@ -65,6 +65,8 @@ test("tension maps only in recognizable gauge contexts", () => {
     "Tension 20 tr = 4 inches.",
     "Pattern tension: 16 dc = 4 inches.",
     "Make a tension square before starting.",
+    "Maintain tension\n20 stitches remain.",
+    "Keep tension\nSquare the edges.",
   ].join("\n");
   const result = decodeVintagePattern(input, "uk");
 
@@ -78,6 +80,8 @@ test("tension maps only in recognizable gauge contexts", () => {
       "gauge 20 double crochet (dc) = 4 inches.",
       "Pattern gauge: 16 single crochet (sc) = 4 inches.",
       "Make a gauge square before starting.",
+      "Maintain tension\n20 stitches remain.",
+      "Keep tension\nSquare the edges.",
     ].join("\n"),
   );
   assert.equal(result.substitutionCount, 6);
@@ -116,14 +120,14 @@ test("spelled-out terms nested in ordinary prose are preserved conservatively", 
 
 test("unsupported compound and attached-count abbreviations are preserved", () => {
   const result = decodeVintagePattern(
-    "dc2tog, tr3tog, dtr2tog, 2dc; 3 tr.",
+    "dc2tog, tr3tog, dtr2tog, 2dc; dc shell; tr bobble; dc popcorn; htr puff; 3 tr.",
     "uk",
   );
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "dc2tog, tr3tog, dtr2tog, 2dc; 3 double crochet (dc).",
+    "dc2tog, tr3tog, dtr2tog, 2dc; dc shell; tr bobble; dc popcorn; htr puff; 3 double crochet (dc).",
   );
   assert.equal(result.substitutionCount, 1);
 });
@@ -205,6 +209,8 @@ test("URL-like tokens and email addresses are preserved byte-for-byte", () => {
     "Chart: https://site.test/?st=tr",
     "Mirror: www.example.test/htr",
     "Bare: example.test/dtr",
+    "Query: example.test?st=tr",
+    "Fragment: example.test#tr",
     "Contact: dc@example.com",
     "Work dc in next stitch.",
   ].join("\n");
@@ -217,7 +223,7 @@ test("URL-like tokens and email addresses are preserved byte-for-byte", () => {
   );
   assert.equal(result.substitutionCount, 1);
 
-  const unknown = decodeVintagePattern("https://example.com/dc/pattern", "unknown");
+  const unknown = decodeVintagePattern("https://example.com/dc/pattern example.test?st=tr example.test#tr", "unknown");
   assert.equal(unknown.signals.some(({ title }) => title === "Crochet convention not established"), false);
 });
 

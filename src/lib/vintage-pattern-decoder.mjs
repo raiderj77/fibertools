@@ -62,7 +62,7 @@ const ISOLATED_STITCH_TERMS = new Set([
   "double crochet",
 ]);
 
-const URL_LIKE_MATCHER = /(?:\b(?:https?|ftp):\/\/[^\s<>"'`]+|\bwww\.[^\s<>"'`]+|\b[\p{L}\p{M}\p{N}._%+-]+@[\p{L}\p{M}\p{N}.-]+\.[\p{L}\p{M}]{2,}|\b(?:[\p{L}\p{M}\p{N}](?:[\p{L}\p{M}\p{N}-]{0,62}\.)+[\p{L}\p{M}]{2,})(?:\/[^\s<>"'`]*)?)/giu;
+const URL_LIKE_MATCHER = /(?:\b(?:https?|ftp):\/\/[^\s<>"'`]+|\bwww\.[^\s<>"'`]+|\b[\p{L}\p{M}\p{N}._%+-]+@[\p{L}\p{M}\p{N}.-]+\.[\p{L}\p{M}]{2,}|\b(?:[\p{L}\p{M}\p{N}](?:[\p{L}\p{M}\p{N}-]{0,62}\.)+[\p{L}\p{M}]{2,})(?:[/?#][^\s<>"'`]*)?)/giu;
 
 function findUrlLikeRanges(text) {
   const ranges = [];
@@ -167,7 +167,7 @@ function hasUnsupportedWhitespacePrefix(text, start) {
   return !ALLOWED_PRECEDING_INSTRUCTION_WORDS.has(precedingToken.toLocaleLowerCase("en-US"));
 }
 const UNSUPPORTED_SUFFIX_MODIFIERS = new RegExp(
-  `^(?:\\s+|${COMPOUND_DASH}\\s*)(?:crochet(?:\\s+|${COMPOUND_DASH}\\s*))?(?:(?:two|three|four|\\d+)(?:\\s+|${COMPOUND_DASH}\\s*)together|cluster|decrease|increase|through(?:\\s+|${COMPOUND_DASH}\\s*)(?:the(?:\\s+|${COMPOUND_DASH}\\s*))?(?:front|back)(?:\\s+|${COMPOUND_DASH}\\s*)loop)\\b`,
+  `^(?:\\s+|${COMPOUND_DASH}\\s*)(?:crochet(?:\\s+|${COMPOUND_DASH}\\s*))?(?:(?:two|three|four|\\d+)(?:\\s+|${COMPOUND_DASH}\\s*)together|cluster|shell|bobble|puff|popcorn|decrease|increase|through(?:\\s+|${COMPOUND_DASH}\\s*)(?:the(?:\\s+|${COMPOUND_DASH}\\s*))?(?:front|back)(?:\\s+|${COMPOUND_DASH}\\s*)loop)\\b`,
   "iu",
 );
 
@@ -184,9 +184,15 @@ function isUnsupportedCompoundContext(text, start, end) {
 function isTensionGaugeContext(text, start, end) {
   const before = text.slice(0, start);
   const after = text.slice(end);
-  const isGaugeSquare = /^\s+square\b/iu.test(after);
-  const isMeasurement = /^\s*(?:(?:is|of)\s+|:\s*)?\d+(?:\.\d+)?\s*(?:st(?:s|itch(?:es)?)?|rows?|double\s+treble(?:\s+crochet)?|dtr|half\s+treble(?:\s+crochet)?|htr|treble(?:\s+crochet)?|tr|double\s+crochet|dc)\b/iu.test(after);
-  const isHeading = /(?:^|\n)\s*$/u.test(before) && /^\s*:/u.test(after);
+  const horizontalSpace = "[\\t\\p{Zs}]";
+  const measurementUnit = "(?:st(?:s|itch(?:es)?)?|rows?|double\\s+treble(?:\\s+crochet)?|dtr|half\\s+treble(?:\\s+crochet)?|htr|treble(?:\\s+crochet)?|tr|double\\s+crochet|dc)";
+  const isGaugeSquare = new RegExp(`^${horizontalSpace}+square\\b`, "iu").test(after);
+  const isMeasurement = new RegExp(
+    `^${horizontalSpace}*(?:(?:is|of)${horizontalSpace}+|:${horizontalSpace}*)?\\d+(?:\\.\\d+)?${horizontalSpace}*${measurementUnit}\\b`,
+    "iu",
+  ).test(after);
+  const isHeading = new RegExp(`(?:^|\\n)${horizontalSpace}*$`, "u").test(before)
+    && new RegExp(`^${horizontalSpace}*:`, "u").test(after);
   return isGaugeSquare || isMeasurement || isHeading;
 }
 
