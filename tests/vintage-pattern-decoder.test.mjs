@@ -171,16 +171,28 @@ test("single-stitch parenthesized instructions are converted outside custom labe
 
 test("recognized term and abbreviation pairs are converted atomically", () => {
   const result = decodeVintagePattern(
-    "double crochet (dc); treble (tr); half treble (htr); dtr (double treble)",
+    "double crochet (dc); treble (tr); half treble (htr); dtr (double treble); Work double crochet (dc) in each stitch",
     "uk",
   );
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "single crochet (sc); double crochet (dc); half double crochet (hdc); treble crochet (tr)",
+    "single crochet (sc); double crochet (dc); half double crochet (hdc); treble crochet (tr); Work single crochet (sc) in each stitch",
   );
-  assert.equal(result.substitutionCount, 4);
+  assert.equal(result.substitutionCount, 5);
+});
+
+test("positional instruction words do not suppress supported abbreviations", () => {
+  const input = "Work dc in same dc; work tr in second dc from hook; repeat in previous tr.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(
+    result.output,
+    "Work single crochet (sc) in same single crochet (sc); work double crochet (dc) in second single crochet (sc) from hook; repeat in previous double crochet (dc).",
+  );
+  assert.equal(result.substitutionCount, 5);
 });
 
 test("parenthesized abbreviations in unsupported phrases are preserved", () => {

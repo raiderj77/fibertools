@@ -76,9 +76,9 @@ function termMatcher(term) {
   return new RegExp(`(^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])(${escaped})(?=$|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])`, "giu");
 }
 
-function isolatedPatternMatcher(source) {
+function boundedPatternMatcher(source) {
   return new RegExp(
-    `(^\\s*|[\\n,:;/(\\[{\"'\\-]\\s*)(${source})(?=$|\\s*[\\n,./;:!?\\)\\]}\"'\\-])`,
+    `(^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])(${source})(?=$|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])`,
     "giu",
   );
 }
@@ -95,8 +95,8 @@ function parenthesizedPairMatchers(entry) {
     .flatMap((term) => {
       const escapedTerm = escapeRegex(term).replace(/ /g, "\\s+");
       return [
-        isolatedPatternMatcher(`${escapedTerm}\\s*\\(\\s*${escapedAbbreviation}\\s*\\)`),
-        isolatedPatternMatcher(`${escapedAbbreviation}\\s*\\(\\s*${escapedTerm}\\s*\\)`),
+        boundedPatternMatcher(`${escapedTerm}\\s*\\(\\s*${escapedAbbreviation}\\s*\\)`),
+        boundedPatternMatcher(`${escapedAbbreviation}\\s*\\(\\s*${escapedTerm}\\s*\\)`),
       ];
     });
 }
@@ -138,10 +138,10 @@ const UNSUPPORTED_PREFIX_MODIFIERS = new RegExp(
 
 const ALLOWED_PRECEDING_INSTRUCTION_WORDS = new Set([
   "a", "across", "add", "an", "and", "around", "at", "ch", "chain", "continue",
-  "dc", "dtr", "each", "every", "first", "followed", "four", "from",
+  "center", "centre", "corresponding", "dc", "dtr", "each", "every", "fifth", "first", "followed", "four", "fourth", "from",
   "htr", "in", "into", "join", "last", "make", "miss", "next", "of",
-  "one", "or", "place", "repeat", "rnd", "round", "row", "skip", "space",
-  "spaces", "st", "stitch", "stitches", "then", "three", "times", "tr",
+  "marked", "one", "or", "place", "previous", "remaining", "repeat", "rnd", "round", "row", "same", "second", "sixth", "skip", "space",
+  "spaces", "st", "stitch", "stitches", "then", "third", "three", "times", "tr",
   "the", "turn", "twice", "two", "under", "using", "with", "work",
 ]);
 
