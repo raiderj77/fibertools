@@ -173,6 +173,20 @@ test("Unicode letters and numbers beside a supported token keep the prose unchan
   assert.equal(unknown.signals.some((signal) => signal.title === "Crochet convention not established"), false);
 });
 
+test("decomposed Unicode marks beside a supported token keep the prose unchanged", () => {
+  const input = "dc\u0301; htr\u0308; tr alone.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, "dc\u0301; htr\u0308; double crochet (dc) alone.");
+  assert.equal(result.substitutionCount, 1);
+
+  const unknown = decodeVintagePattern("dc\u0301; htr\u0308", "unknown");
+  assert.equal(unknown.status, "ready");
+  assert.equal(unknown.output, "dc\u0301; htr\u0308");
+  assert.equal(unknown.signals.some((signal) => signal.title === "Crochet convention not established"), false);
+});
+
 test("older wording remains unchanged and is reported only as a review clue", () => {
   const input = "Miss one, cast off, work straight, then wool forward.";
   const result = decodeVintagePattern(input, "uk");

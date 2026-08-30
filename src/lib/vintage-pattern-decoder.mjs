@@ -73,7 +73,7 @@ function termMatcher(term) {
       "giu",
     );
   }
-  return new RegExp(`(^|[^\\p{L}\\p{N}])(${escaped})(?=$|[^\\p{L}\\p{N}])`, "giu");
+  return new RegExp(`(^|[^\\p{L}\\p{M}\\p{N}])(${escaped})(?=$|[^\\p{L}\\p{M}\\p{N}])`, "giu");
 }
 
 function isolatedPatternMatcher(source) {
@@ -107,7 +107,7 @@ function isImmediatelyParenthesized(text, start) {
 
 const COMPOUND_DASH = "[-‐‑‒–—]";
 const UNSUPPORTED_PREFIX_MODIFIERS = new RegExp(
-  `(?:^|[^\\p{L}\\p{N}])(?:half|single|triple|front(?:\\s+|${COMPOUND_DASH})post|back(?:\\s+|${COMPOUND_DASH})post|extended|linked|foundation|standing|reverse|crossed|relief|raised)(?:\\s+|${COMPOUND_DASH}\\s*)$`,
+  `(?:^|[^\\p{L}\\p{M}\\p{N}])(?:half|single|triple|front(?:\\s+|${COMPOUND_DASH})post|back(?:\\s+|${COMPOUND_DASH})post|extended|linked|foundation|standing|reverse|crossed|relief|raised)(?:\\s+|${COMPOUND_DASH}\\s*)$`,
   "iu",
 );
 const UNSUPPORTED_SUFFIX_MODIFIERS = new RegExp(
@@ -177,7 +177,7 @@ function collectMatches(text) {
 
 function hasUnicodeBoundedMatch(text, source) {
   return new RegExp(
-    `(^|[^\\p{L}\\p{N}])(?:${source})(?=$|[^\\p{L}\\p{N}])`,
+    `(^|[^\\p{L}\\p{M}\\p{N}])(?:${source})(?=$|[^\\p{L}\\p{M}\\p{N}])`,
     "iu",
   ).test(text);
 }
