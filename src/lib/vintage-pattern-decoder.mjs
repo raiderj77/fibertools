@@ -85,7 +85,7 @@ function termMatcher(term) {
     // label or list item. This avoids rewriting a supported phrase nested in
     // an unknown compound stitch name or ordinary prose.
     return new RegExp(
-      `(^\\s*|[\\n,:;/(\\[{\"'\\-]\\s*|(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])\\p{N}+[\\t\\p{Zs}]+)(${escaped})(?=$|\\s*[\\n,./;:!?\\)\\]}\"'\\-])`,
+      `(^\\s*|[\\n,:;/(\\[{\"'\\-]\\s*|(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])\\p{N}+[\\t\\p{Zs}]+)(${escaped})(?=$|\\s*[\\n,./;:!?\\)\\]}\"'\\-]|[\\t\\p{Zs}]+(?:and|or|then|in|into|across|around|at|before|behind|below|between|from|on|over|through|to|under|until|with|within)\\b)`,
       "giu",
     );
   }
@@ -129,12 +129,19 @@ const UNSUPPORTED_DEFINITION_LINE = new RegExp(
   "giu",
 );
 
+const UNSUPPORTED_MULTILINE_DEFINITION = new RegExp(
+  String.raw`(?:^|\r?\n)[\t\p{Zs}]*${UNSUPPORTED_DEFINITION_LABEL_SOURCE}[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*(?:\r?\n[\t\p{Zs}]*[^\r\n:=‐‑‒–—]+?[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*[^\r\n]+)+`,
+  "giu",
+);
+
 function findUnsupportedDefinitionRanges(text) {
   const ranges = [];
-  const matcher = new RegExp(UNSUPPORTED_DEFINITION_LINE.source, UNSUPPORTED_DEFINITION_LINE.flags);
-  let match;
-  while ((match = matcher.exec(text)) !== null) {
-    ranges.push({ start: match.index, end: match.index + match[0].length });
+  for (const expression of [UNSUPPORTED_DEFINITION_LINE, UNSUPPORTED_MULTILINE_DEFINITION]) {
+    const matcher = new RegExp(expression.source, expression.flags);
+    let match;
+    while ((match = matcher.exec(text)) !== null) {
+      ranges.push({ start: match.index, end: match.index + match[0].length });
+    }
   }
   return ranges;
 }

@@ -110,12 +110,24 @@ test("supported multi-word terms tolerate copied spacing without changing surrou
 });
 
 test("counted spelled-out stitch instructions convert without consuming the count", () => {
-  const input = "Row 1: 2 double crochet, then 1 treble crochet.";
+  const input = "Row 1: 2 double crochet, then 1 treble crochet. Work 2 double crochet in next stitch, then 1 treble crochet across row.";
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
-  assert.equal(result.output, "Row 1: 2 single crochet (sc), then 1 double crochet (dc).");
-  assert.equal(result.substitutionCount, 2);
+  assert.equal(result.output, "Row 1: 2 single crochet (sc), then 1 double crochet (dc). Work 2 single crochet (sc) in next stitch, then 1 double crochet (dc) across row.");
+  assert.equal(result.substitutionCount, 4);
+});
+
+test("multiline custom abbreviation definitions remain unchanged", () => {
+  const input = "Abbreviations:\ndc = drop color\ntr = turn right\n\nWork dc in next stitch.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(
+    result.output,
+    "Abbreviations:\ndc = drop color\ntr = turn right\n\nWork single crochet (sc) in next stitch.",
+  );
+  assert.equal(result.substitutionCount, 1);
 });
 
 test("spelled-out terms nested in ordinary prose are preserved conservatively", () => {
