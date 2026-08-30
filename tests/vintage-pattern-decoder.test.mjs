@@ -119,15 +119,15 @@ test("counted spelled-out stitch instructions convert without consuming the coun
 });
 
 test("multiline custom abbreviation definitions remain unchanged", () => {
-  const input = "Abbreviations:\ndc = drop color\ntr = turn right\n\nWork dc in next stitch.";
+  const input = "Abbreviations:\ndc = drop color\ntr = turn right\nRow 1: Work dc in next stitch.\nRound 2: Work tr across.";
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "Abbreviations:\ndc = drop color\ntr = turn right\n\nWork single crochet (sc) in next stitch.",
+    "Abbreviations:\ndc = drop color\ntr = turn right\nRow 1: Work single crochet (sc) in next stitch.\nRound 2: Work double crochet (dc) across.",
   );
-  assert.equal(result.substitutionCount, 1);
+  assert.equal(result.substitutionCount, 2);
 });
 
 test("spelled-out terms nested in ordinary prose are preserved conservatively", () => {

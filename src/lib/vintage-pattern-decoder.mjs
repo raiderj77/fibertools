@@ -130,7 +130,7 @@ const UNSUPPORTED_DEFINITION_LINE = new RegExp(
 );
 
 const UNSUPPORTED_MULTILINE_DEFINITION = new RegExp(
-  String.raw`(?:^|\r?\n)[\t\p{Zs}]*${UNSUPPORTED_DEFINITION_LABEL_SOURCE}[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*(?:\r?\n[\t\p{Zs}]*[^\r\n:=‐‑‒–—]+?[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*[^\r\n]+)+`,
+  String.raw`(?:^|\r?\n)[\t\p{Zs}]*${UNSUPPORTED_DEFINITION_LABEL_SOURCE}[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*(?:\r?\n[\t\p{Zs}]*(?!(?:row|round|rnd|instructions?|pattern|repeat)\b)[^\r\n:=‐‑‒–—]+?[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*[^\r\n]+)+`,
   "giu",
 );
 
