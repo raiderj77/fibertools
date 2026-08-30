@@ -228,6 +228,31 @@ test("Unicode letters and numbers beside a supported token keep the prose unchan
   assert.equal(unknown.signals.some((signal) => signal.title === "Crochet convention not established"), false);
 });
 
+test("connector and format characters beside a supported token keep identifiers unchanged", () => {
+  const input = "dc_sp; foo_dc_bar; tr\u200Dlabel; htr\u200Cnote; dc alone.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, "dc_sp; foo_dc_bar; tr\u200Dlabel; htr\u200Cnote; single crochet (sc) alone.");
+  assert.equal(result.substitutionCount, 1);
+
+  const unknown = decodeVintagePattern("dc_sp; tr\u200Dlabel", "unknown");
+  assert.equal(unknown.status, "ready");
+  assert.equal(unknown.signals.some((signal) => signal.title === "Crochet convention not established"), false);
+});
+
+test("unlisted whitespace modifiers are preserved while instruction grammar still converts", () => {
+  const input = "long dc; spike dc; waistcoat dc; work dc, then tr; dtr tr dc.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(
+    result.output,
+    "long dc; spike dc; waistcoat dc; work single crochet (sc), then double crochet (dc); treble crochet (tr) double crochet (dc) single crochet (sc).",
+  );
+  assert.equal(result.substitutionCount, 5);
+});
+
 test("decomposed Unicode marks beside a supported token keep the prose unchanged", () => {
   const input = "dc\u0301; htr\u0308; tr alone.";
   const result = decodeVintagePattern(input, "uk");

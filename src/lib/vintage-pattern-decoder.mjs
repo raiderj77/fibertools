@@ -73,7 +73,7 @@ function termMatcher(term) {
       "giu",
     );
   }
-  return new RegExp(`(^|[^\\p{L}\\p{M}\\p{N}])(${escaped})(?=$|[^\\p{L}\\p{M}\\p{N}])`, "giu");
+  return new RegExp(`(^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])(${escaped})(?=$|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])`, "giu");
 }
 
 function isolatedPatternMatcher(source) {
@@ -113,9 +113,24 @@ function isUnsupportedParentheticalContext(text, start) {
 const COMPOUND_DASH = "[-‐‑‒–—]";
 const COMPOUND_DASH_CHARACTER = /[-‐‑‒–—]/u;
 const UNSUPPORTED_PREFIX_MODIFIERS = new RegExp(
-  `(?:^|[^\\p{L}\\p{M}\\p{N}])(?:half|single|triple|front(?:\\s+|${COMPOUND_DASH})post|back(?:\\s+|${COMPOUND_DASH})post|extended|linked|foundation|standing|reverse|crossed|relief|raised)(?:\\s+|${COMPOUND_DASH}\\s*)$`,
+  `(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])(?:half|single|triple|front(?:\\s+|${COMPOUND_DASH})post|back(?:\\s+|${COMPOUND_DASH})post|extended|linked|foundation|standing|reverse|crossed|relief|raised)(?:\\s+|${COMPOUND_DASH}\\s*)$`,
   "iu",
 );
+
+const ALLOWED_PRECEDING_INSTRUCTION_WORDS = new Set([
+  "a", "across", "add", "an", "and", "around", "at", "ch", "chain", "continue",
+  "dc", "dtr", "each", "every", "first", "followed", "four", "from",
+  "htr", "in", "into", "join", "last", "make", "miss", "next", "of",
+  "one", "or", "place", "repeat", "rnd", "round", "row", "skip", "space",
+  "spaces", "st", "stitch", "stitches", "then", "three", "times", "tr",
+  "the", "turn", "twice", "two", "under", "using", "with", "work",
+]);
+
+function hasUnsupportedWhitespacePrefix(text, start) {
+  const precedingToken = text.slice(0, start).match(/([\p{L}\p{M}\p{N}\p{Pc}\p{Cf}]+)\s+$/u)?.[1];
+  if (!precedingToken || /^\p{N}+$/u.test(precedingToken)) return false;
+  return !ALLOWED_PRECEDING_INSTRUCTION_WORDS.has(precedingToken.toLocaleLowerCase("en-US"));
+}
 const UNSUPPORTED_SUFFIX_MODIFIERS = new RegExp(
   `^(?:\\s+|${COMPOUND_DASH}\\s*)(?:crochet(?:\\s+|${COMPOUND_DASH}\\s*))?(?:(?:two|three|four|\\d+)(?:\\s+|${COMPOUND_DASH}\\s*)together|cluster|decrease|increase|through(?:\\s+|${COMPOUND_DASH}\\s*)(?:the(?:\\s+|${COMPOUND_DASH}\\s*))?(?:front|back)(?:\\s+|${COMPOUND_DASH}\\s*)loop)\\b`,
   "iu",
@@ -125,8 +140,8 @@ function isUnsupportedCompoundContext(text, start, end) {
   return (
     COMPOUND_DASH_CHARACTER.test(text[start - 1] ?? "")
     || COMPOUND_DASH_CHARACTER.test(text[end] ?? "")
-    ||
-    UNSUPPORTED_PREFIX_MODIFIERS.test(text.slice(0, start))
+    || hasUnsupportedWhitespacePrefix(text, start)
+    || UNSUPPORTED_PREFIX_MODIFIERS.test(text.slice(0, start))
     || UNSUPPORTED_SUFFIX_MODIFIERS.test(text.slice(end))
   );
 }
@@ -196,7 +211,7 @@ function collectMatches(text) {
 
 function hasUnicodeBoundedMatch(text, source) {
   return new RegExp(
-    `(^|[^\\p{L}\\p{M}\\p{N}])(?:${source})(?=$|[^\\p{L}\\p{M}\\p{N}])`,
+    `(^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])(?:${source})(?=$|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])`,
     "iu",
   ).test(text);
 }
