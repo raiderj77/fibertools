@@ -63,6 +63,7 @@ test("tension maps only in recognizable gauge contexts", () => {
     "Do not tighten the yarn tension.",
     "Tension: 20 stitches and 28 rows to 10 cm.",
     "Tension 20 tr = 4 inches.",
+    "Pattern tension: 16 dc = 4 inches.",
     "Make a tension square before starting.",
   ].join("\n");
   const result = decodeVintagePattern(input, "uk");
@@ -75,10 +76,11 @@ test("tension maps only in recognizable gauge contexts", () => {
       "Do not tighten the yarn tension.",
       "gauge: 20 stitches and 28 rows to 10 cm.",
       "gauge 20 double crochet (dc) = 4 inches.",
+      "Pattern gauge: 16 single crochet (sc) = 4 inches.",
       "Make a gauge square before starting.",
     ].join("\n"),
   );
-  assert.equal(result.substitutionCount, 4);
+  assert.equal(result.substitutionCount, 6);
 });
 
 test("longest source term wins and generated text is not converted again", () => {
@@ -186,15 +188,37 @@ test("recognized term and abbreviation pairs are converted atomically", () => {
 });
 
 test("positional instruction words do not suppress supported abbreviations", () => {
-  const input = "Work dc in same dc; work tr in second dc from hook; repeat in previous tr; Ch 3 counts as dc; work 1 dc between dc stitches; work 1 dc over dc below.";
+  const input = "Work dc in same dc; work tr in second dc from hook; repeat in previous tr; Ch 3 counts as dc; work 1 dc between dc stitches; work 1 dc over dc below; work dc on following dc; repeat dc until dc remains.";
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "Work single crochet (sc) in same single crochet (sc); work double crochet (dc) in second single crochet (sc) from hook; repeat in previous double crochet (dc); Ch 3 counts as single crochet (sc); work 1 single crochet (sc) between single crochet (sc) stitches; work 1 single crochet (sc) over single crochet (sc) below.",
+    "Work single crochet (sc) in same single crochet (sc); work double crochet (dc) in second single crochet (sc) from hook; repeat in previous double crochet (dc); Ch 3 counts as single crochet (sc); work 1 single crochet (sc) between single crochet (sc) stitches; work 1 single crochet (sc) over single crochet (sc) below; work single crochet (sc) on following single crochet (sc); repeat single crochet (sc) until single crochet (sc) remains.",
   );
-  assert.equal(result.substitutionCount, 10);
+  assert.equal(result.substitutionCount, 14);
+});
+
+test("URL-like tokens and email addresses are preserved byte-for-byte", () => {
+  const input = [
+    "Source: https://example.com/dc/pattern",
+    "Chart: https://site.test/?st=tr",
+    "Mirror: www.example.test/htr",
+    "Bare: example.test/dtr",
+    "Contact: dc@example.com",
+    "Work dc in next stitch.",
+  ].join("\n");
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(
+    result.output,
+    input.replace("Work dc in next stitch.", "Work single crochet (sc) in next stitch."),
+  );
+  assert.equal(result.substitutionCount, 1);
+
+  const unknown = decodeVintagePattern("https://example.com/dc/pattern", "unknown");
+  assert.equal(unknown.signals.some(({ title }) => title === "Crochet convention not established"), false);
 });
 
 test("parenthesized abbreviations in unsupported phrases are preserved", () => {
@@ -335,7 +359,7 @@ test("possible signals avoid era and origin conclusions", () => {
 
 test("numbered-size signals require explicit needle or hook grammar", () => {
   const ordinaryNumbers = decodeVintagePattern(
-    "Pattern No. 123. Repeat motif no. 2 three times.",
+    "Pattern No. 123. Repeat motif no. 2 three times. Pattern No. 123 uses knitting needles. Catalog No. 4 steel crochet hooks are pictured.",
     "unknown",
   );
   const toolNumbers = decodeVintagePattern(

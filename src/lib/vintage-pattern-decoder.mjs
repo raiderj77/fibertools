@@ -62,6 +62,22 @@ const ISOLATED_STITCH_TERMS = new Set([
   "double crochet",
 ]);
 
+const URL_LIKE_MATCHER = /(?:\b(?:https?|ftp):\/\/[^\s<>"'`]+|\bwww\.[^\s<>"'`]+|\b[\p{L}\p{M}\p{N}._%+-]+@[\p{L}\p{M}\p{N}.-]+\.[\p{L}\p{M}]{2,}|\b(?:[\p{L}\p{M}\p{N}](?:[\p{L}\p{M}\p{N}-]{0,62}\.)+[\p{L}\p{M}]{2,})(?:\/[^\s<>"'`]*)?)/giu;
+
+function findUrlLikeRanges(text) {
+  const ranges = [];
+  const matcher = new RegExp(URL_LIKE_MATCHER.source, URL_LIKE_MATCHER.flags);
+  let match;
+  while ((match = matcher.exec(text)) !== null) {
+    ranges.push({ start: match.index, end: match.index + match[0].length });
+  }
+  return ranges;
+}
+
+function maskUrlLikeText(text) {
+  return text.replace(URL_LIKE_MATCHER, (match) => " ".repeat(match.length));
+}
+
 function termMatcher(term) {
   const escaped = escapeRegex(term).replace(/ /g, "\\s+");
   if (ISOLATED_STITCH_TERMS.has(term)) {
@@ -137,12 +153,12 @@ const UNSUPPORTED_PREFIX_MODIFIERS = new RegExp(
 );
 
 const ALLOWED_PRECEDING_INSTRUCTION_WORDS = new Set([
-  "a", "above", "across", "add", "after", "along", "an", "and", "around", "as", "at", "before", "behind", "below", "beneath", "beside", "between", "ch", "chain", "continue",
-  "center", "centre", "corresponding", "dc", "dtr", "each", "every", "fifth", "first", "followed", "four", "fourth", "from",
+  "a", "above", "across", "add", "adjacent", "after", "along", "an", "and", "around", "as", "at", "atop", "before", "behind", "below", "beneath", "beside", "between", "ch", "chain", "continue",
+  "center", "centre", "corresponding", "dc", "dtr", "each", "every", "fifth", "first", "followed", "following", "four", "fourth", "from",
   "htr", "in", "into", "join", "last", "make", "miss", "next", "of",
-  "marked", "one", "or", "over", "place", "previous", "remaining", "repeat", "rnd", "round", "row", "same", "second", "sixth", "skip", "space",
+  "inside", "marked", "near", "on", "one", "opposite", "or", "outside", "over", "place", "previous", "remaining", "repeat", "rnd", "round", "row", "same", "second", "sixth", "skip", "space",
   "spaces", "st", "stitch", "stitches", "then", "third", "three", "through", "times", "to", "toward", "towards", "tr",
-  "the", "turn", "twice", "two", "under", "upon", "using", "with", "work",
+  "the", "turn", "twice", "two", "under", "until", "upon", "using", "with", "within", "work",
 ]);
 
 function hasUnsupportedWhitespacePrefix(text, start) {
@@ -178,6 +194,7 @@ function collectMatches(text) {
   const matches = [];
   const blockedMatches = [];
   const unsupportedParentheticalRanges = findUnsupportedParentheticalRanges(text);
+  const urlLikeRanges = findUrlLikeRanges(text);
 
   for (const entry of UK_TO_US_TERMS) {
     const variants = [
@@ -192,9 +209,11 @@ function collectMatches(text) {
         const matchedText = match[2];
         const start = match.index + prefixLength;
         const end = start + matchedText.length;
+        if (urlLikeRanges.some((range) => range.start <= start && range.end >= end)) continue;
         if (unsupportedParentheticalRanges.some((range) => range.start < start && range.end >= end)) continue;
-        if (entry.label === "Tension" && !isTensionGaugeContext(text, start, end)) continue;
-        if (isUnsupportedCompoundContext(text, start, end)) {
+        const isTensionMeasurement = entry.label === "Tension" && isTensionGaugeContext(text, start, end);
+        if (entry.label === "Tension" && !isTensionMeasurement) continue;
+        if (!isTensionMeasurement && isUnsupportedCompoundContext(text, start, end)) {
           blockedMatches.push({ start, end });
           continue;
         }
@@ -238,10 +257,11 @@ function hasUnicodeBoundedMatch(text, source) {
 
 function buildSignals(text, convention) {
   const signals = [];
+  const reviewText = maskUrlLikeText(text);
 
   if (
     convention === "unknown"
-    && hasUnicodeBoundedMatch(text, "double\\s+crochet|treble(?:\\s+crochet)?|half\\s+treble|dtr|htr|dc|tr")
+    && hasUnicodeBoundedMatch(reviewText, "double\\s+crochet|treble(?:\\s+crochet)?|half\\s+treble|dtr|htr|dc|tr")
   ) {
     signals.push({
       title: "Crochet convention not established",
@@ -249,14 +269,14 @@ function buildSignals(text, convention) {
     });
   }
 
-  if (hasUnicodeBoundedMatch(text, "tension|miss|cast\\s+off|work\\s+straight")) {
+  if (hasUnicodeBoundedMatch(reviewText, "tension|miss|cast\\s+off|work\\s+straight")) {
     signals.push({
       title: "Wording that may follow UK conventions",
       note: "These terms can appear in UK sources, but wording alone does not establish a pattern's country or publication date.",
     });
   }
 
-  if (hasUnicodeBoundedMatch(text, "wool\\s+(?:over|forward|back|round\\s+needle)|wl\\.?\\s*(?:fwd|bk)\\.?|wf\\.?|wb\\.?")) {
+  if (hasUnicodeBoundedMatch(reviewText, "wool\\s+(?:over|forward|back|round\\s+needle)|wl\\.?\\s*(?:fwd|bk)\\.?|wf\\.?|wb\\.?")) {
     signals.push({
       title: "Older yarn-position wording",
       note: "This language may describe yarn placement or a yarn over. Confirm the source abbreviation key and the next stitch before changing the technique.",
@@ -265,8 +285,8 @@ function buildSignals(text, convention) {
 
   if (
     hasUnicodeBoundedMatch(
-      text,
-      "(?:(?:needles?|hooks?)\\s+(?:(?:no\\.?|size)\\s*)\\d+|(?:no\\.?|size)\\s*\\d+(?:\\s+[\\p{L}\\p{M}-]+){0,3}\\s+(?:needles?|hooks?))",
+      reviewText,
+      "(?:(?:needles?|hooks?)\\s+(?:(?:no\\.?|size)\\s*)\\d+|(?<!\\bpattern\\s)(?<!\\bcatalog\\s)(?<!\\bmotif\\s)(?<!\\bdesign\\s)(?<!\\bstyle\\s)(?<!\\bitem\\s)(?:no\\.?|size)\\s*\\d+(?:\\s+(?:alumin(?:um|ium)|bamboo|bone|circular|crochet|double[-‐‑‒–—]?pointed|knitting|metal|plastic|single[-‐‑‒–—]?pointed|steel|straight|tunisian|wood(?:en)?)){0,3}\\s+(?:needles?|hooks?))",
     )
   ) {
     signals.push({
@@ -275,7 +295,7 @@ function buildSignals(text, convention) {
     });
   }
 
-  if (hasUnicodeBoundedMatch(text, "\\d+(?:\\.\\d+)?\\s*oz(?:s|\\.)?")) {
+  if (hasUnicodeBoundedMatch(reviewText, "\\d+(?:\\.\\d+)?\\s*oz(?:s|\\.)?")) {
     signals.push({
       title: "Yarn amount stated by weight",
       note: "Weight alone does not establish modern yardage. Match the original yarn construction and verify length per unit weight before substituting.",
