@@ -1,0 +1,149 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import test from "node:test";
+
+import {
+  MAX_VINTAGE_PATTERN_TEXT_LENGTH,
+  SUPPORTED_VINTAGE_UK_TERMS,
+  decodeVintagePattern,
+} from "../src/lib/vintage-pattern-decoder.mjs";
+
+test("unknown convention preserves valid US double-crochet text byte-for-byte", () => {
+  const input = "Row 1: Double crochet in each stitch; dc in the last stitch.\nKeep punctuation.";
+  const result = decodeVintagePattern(input, "unknown");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, input);
+  assert.equal(result.substitutionCount, 0);
+  assert.deepEqual(result.substitutions, []);
+  assert.deepEqual(result.segments, [{ type: "text", content: input }]);
+});
+
+test("US convention never rewrites double crochet or dc", () => {
+  const input = "Double crochet, dc, 2dc in next stitch, and a US treble crochet.";
+  const result = decodeVintagePattern(input, "us");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, input);
+  assert.equal(result.substitutionCount, 0);
+});
+
+test("only explicit UK mode maps the supported UK terms", () => {
+  const input = "Double crochet, dc; treble crochet, tr; half treble crochet; tension square.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(
+    result.output,
+    "single crochet (sc), single crochet (sc); double crochet (dc), double crochet (dc); half double crochet (hdc); gauge swatch.",
+  );
+  assert.equal(result.substitutionCount, 6);
+  assert.equal(result.substitutions.find((term) => term.label === "Double crochet")?.count, 2);
+});
+
+test("every advertised UK source term has one finite direct mapping", () => {
+  for (const entry of SUPPORTED_VINTAGE_UK_TERMS) {
+    for (const term of entry.terms) {
+      const result = decodeVintagePattern(term, "uk");
+      assert.equal(result.status, "ready", term);
+      assert.equal(result.output, entry.replacement, term);
+      assert.equal(result.substitutionCount, 1, term);
+    }
+  }
+});
+
+test("longest source term wins and generated text is not converted again", () => {
+  const result = decodeVintagePattern(
+    "double treble crochet; treble crochet; double crochet; dtr tr dc",
+    "uk",
+  );
+
+  assert.equal(result.status, "ready");
+  assert.equal(
+    result.output,
+    "treble crochet (tr); double crochet (dc); single crochet (sc); treble crochet (tr) double crochet (dc) single crochet (sc)",
+  );
+  assert.equal(result.substitutionCount, 6);
+});
+
+test("supported multi-word terms tolerate copied spacing without changing surrounding text", () => {
+  const result = decodeVintagePattern("Row 1: double   crochet, then work\tstraight.", "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, "Row 1: single crochet (sc), then work even.");
+  assert.equal(result.substitutionCount, 2);
+});
+
+test("input length is accepted at the exact boundary and rejected above it", () => {
+  const atLimit = "x".repeat(MAX_VINTAGE_PATTERN_TEXT_LENGTH);
+  const accepted = decodeVintagePattern(atLimit, "unknown");
+  const rejected = decodeVintagePattern(`${atLimit}x`, "unknown");
+
+  assert.equal(accepted.status, "ready");
+  assert.equal(accepted.output.length, MAX_VINTAGE_PATTERN_TEXT_LENGTH);
+  assert.equal(rejected.status, "invalid");
+  assert.match(rejected.message, new RegExp(MAX_VINTAGE_PATTERN_TEXT_LENGTH.toLocaleString()));
+});
+
+test("blank, non-string, and invalid-convention requests fail closed", () => {
+  assert.equal(decodeVintagePattern("   ", "unknown").status, "invalid");
+  assert.equal(decodeVintagePattern(null, "unknown").status, "invalid");
+  assert.equal(decodeVintagePattern("double crochet", "automatic").status, "invalid");
+});
+
+test("possible signals avoid era and origin conclusions", () => {
+  const result = decodeVintagePattern(
+    "Tension: 20 stitches. Use No. 9 needles and 6 oz wool. Wool forward before next stitch.",
+    "unknown",
+  );
+
+  assert.equal(result.status, "ready");
+  assert.ok(result.signals.length >= 3);
+  const signalText = result.signals.map(({ title, note }) => `${title} ${note}`).join(" ");
+  assert.doesNotMatch(signalText, /likely|appears to be|originated|19\d{2}s/i);
+  assert.match(signalText, /does not establish|does not identify/i);
+});
+
+test("the UI is text-only, bounded, convention-gated, and reports clipboard outcomes", () => {
+  const source = fs.readFileSync(
+    "src/app/vintage-pattern-decoder/VintagePatternDecoderTool.tsx",
+    "utf8",
+  );
+
+  assert.match(source, /maxLength=\{MAX_VINTAGE_PATTERN_TEXT_LENGTH\}/);
+  assert.match(source, /slice\(0, MAX_VINTAGE_PATTERN_TEXT_LENGTH\)/);
+  assert.match(source, /Unknown \/ not established/);
+  assert.match(source, /US terms/);
+  assert.match(source, /UK terms/);
+  assert.match(source, /await navigator\.clipboard\.writeText/);
+  assert.match(source, /role="status"/);
+  assert.match(source, /aria-live="polite"/);
+  assert.match(source, /Could not copy/);
+  assert.match(source, /\{term\.count\}/);
+  assert.doesNotMatch(source, /term\.count > 1[\s\S]*?,\s*"/);
+  assert.doesNotMatch(
+    source,
+    /pdfjs|pdf\.js|cdnjs|type="file"|FileReader|getDocument|arrayBuffer|PDFJS_|useEffect|useRef/i,
+  );
+});
+
+test("public decoder copy states its limited, non-diagnostic boundary", () => {
+  const page = fs.readFileSync("src/app/vintage-pattern-decoder/page.tsx", "utf8");
+  const content = fs.readFileSync("src/lib/toolContent.ts", "utf8");
+  const decoderContent = content.slice(content.indexOf('"vintage-pattern-decoder": {'));
+  const faqs = fs.readFileSync("src/lib/faqs.ts", "utf8");
+  const decoderFaqs = faqs.slice(
+    faqs.indexOf('"vintage-pattern-decoder": ['),
+    faqs.indexOf('"fabric-substitute": ['),
+  );
+
+  assert.match(page, /Unknown and US modes preserve the text/);
+  assert.match(page, /does not validate the pattern or determine its age, origin, sizing, or yarn requirements/);
+  assert.match(page, /craftyarncouncil\.com\/standards\/crochet-abbreviations/);
+  assert.match(decoderContent, /Unknown and US preserve the input exactly/);
+  assert.match(decoderFaqs, /does not establish its terminology convention/);
+  assert.doesNotMatch(
+    `${page}\n${decoderContent}\n${decoderFaqs}`,
+    /era detection|translates all|all UK-to-US|most vintage crochet patterns used British|high confidence/i,
+  );
+});

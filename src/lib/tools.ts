@@ -406,12 +406,12 @@ export const tools: Tool[] = [
     slug: "vintage-pattern-decoder",
     name: "Vintage Pattern Decoder",
     shortName: "Pattern Decoder",
-    description: "Translate vintage and UK knitting and crochet patterns into modern US terminology. Converts UK-to-US stitch names, archaic abbreviations, and flags era-specific measurements.",
+    description: "Review pasted pattern terms. Unknown and US text stays unchanged; explicit UK mode maps a supported term set and flags possible clues for manual review.",
     category: "both",
     icon: "📜",
     tier: 1,
     ready: true,
-    keywords: ["vintage pattern decoder", "UK to US crochet conversion", "old crochet abbreviations", "vintage knitting pattern translator", "translate vintage pattern"],
+    keywords: ["vintage pattern terms", "UK to US crochet terms", "old crochet abbreviations", "pattern terminology review", "vintage pattern reference"],
   },
 ];
 
