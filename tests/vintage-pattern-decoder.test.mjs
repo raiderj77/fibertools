@@ -146,15 +146,27 @@ test("hyphenated compound stitch names are preserved", () => {
 });
 
 test("supported stitches inside parenthesized instruction groups are converted together", () => {
-  const input = "(dc, tr) in next stitch; repeat (htr / dtr).";
+  const input = "(dc, tr) in next stitch; repeat (htr / dtr); (double crochet / treble crochet).";
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "(single crochet (sc), double crochet (dc)) in next stitch; repeat (half double crochet (hdc) / treble crochet (tr)).",
+    "(single crochet (sc), double crochet (dc)) in next stitch; repeat (half double crochet (hdc) / treble crochet (tr)); (single crochet (sc) / double crochet (dc)).",
   );
-  assert.equal(result.substitutionCount, 4);
+  assert.equal(result.substitutionCount, 6);
+});
+
+test("single-stitch parenthesized instructions are converted outside custom labels", () => {
+  const input = "(dc) in the next stitch; (tr in next stitch); Work (htr) twice.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(
+    result.output,
+    "(single crochet (sc)) in the next stitch; (double crochet (dc) in next stitch); Work (half double crochet (hdc)) twice.",
+  );
+  assert.equal(result.substitutionCount, 3);
 });
 
 test("recognized term and abbreviation pairs are converted atomically", () => {

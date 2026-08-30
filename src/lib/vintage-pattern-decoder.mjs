@@ -52,21 +52,6 @@ function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-const PARENTHESIZED_STITCH_GROUP = new RegExp(
-  `^\\s*(?:${UK_TO_US_TERMS
-    .filter((entry) => entry.label !== "Tension")
-    .flatMap((entry) => entry.terms)
-    .sort((left, right) => right.length - left.length)
-    .map((term) => escapeRegex(term).replace(/ /g, "\\s+"))
-    .join("|")})(?:\\s*[,;/]\\s*(?:${UK_TO_US_TERMS
-    .filter((entry) => entry.label !== "Tension")
-    .flatMap((entry) => entry.terms)
-    .sort((left, right) => right.length - left.length)
-    .map((term) => escapeRegex(term).replace(/ /g, "\\s+"))
-    .join("|")}))+\\s*$`,
-  "iu",
-);
-
 const ISOLATED_STITCH_TERMS = new Set([
   "double treble crochet",
   "double treble",
@@ -84,7 +69,7 @@ function termMatcher(term) {
     // label or list item. This avoids rewriting a supported phrase nested in
     // an unknown compound stitch name or ordinary prose.
     return new RegExp(
-      `(^\\s*|[\\n,:;(\\[{\"'\\-]\\s*)(${escaped})(?=$|\\s*[\\n,.;:!?\\)\\]}\"'\\-])`,
+      `(^\\s*|[\\n,:;/(\\[{\"'\\-]\\s*)(${escaped})(?=$|\\s*[\\n,./;:!?\\)\\]}\"'\\-])`,
       "giu",
     );
   }
@@ -93,7 +78,7 @@ function termMatcher(term) {
 
 function isolatedPatternMatcher(source) {
   return new RegExp(
-    `(^\\s*|[\\n,:;(\\[{\"'\\-]\\s*)(${source})(?=$|\\s*[\\n,.;:!?\\)\\]}\"'\\-])`,
+    `(^\\s*|[\\n,:;/(\\[{\"'\\-]\\s*)(${source})(?=$|\\s*[\\n,./;:!?\\)\\]}\"'\\-])`,
     "giu",
   );
 }
@@ -116,13 +101,13 @@ function parenthesizedPairMatchers(entry) {
     });
 }
 
-function isSupportedParenthesizedStitchGroup(text, start, end) {
+const UNSUPPORTED_PARENTHETICAL_LEAD = /(?:\b(?:custom|special|half|single|triple|extended|linked|foundation|standing|reverse|crossed|relief|raised)\b[^\n,;:.!?()]{0,80}|\b(?:front|back)(?:\s+|[-‐‑‒–—])post\b[^\n,;:.!?()]{0,80}|\b(?:cluster|label|abbreviation|key|definition|variant|version|named\s+stitch|special\s+stitch))\s*$/iu;
+
+function isUnsupportedParentheticalContext(text, start) {
   const open = text.lastIndexOf("(", start);
   const previousClose = text.lastIndexOf(")", start);
   if (open < 0 || previousClose > open) return false;
-  const close = text.indexOf(")", end);
-  if (close < 0) return false;
-  return PARENTHESIZED_STITCH_GROUP.test(text.slice(open + 1, close));
+  return UNSUPPORTED_PARENTHETICAL_LEAD.test(text.slice(0, open));
 }
 
 const COMPOUND_DASH = "[-‐‑‒–—]";
@@ -172,8 +157,7 @@ function collectMatches(text) {
         const matchedText = match[2];
         const start = match.index + prefixLength;
         const end = start + matchedText.length;
-        const isInsideParentheses = text.lastIndexOf("(", start) > text.lastIndexOf(")", start);
-        if (!atomicPair && isInsideParentheses && !isSupportedParenthesizedStitchGroup(text, start, end)) continue;
+        if (!atomicPair && isUnsupportedParentheticalContext(text, start)) continue;
         if (entry.label === "Tension" && !isTensionGaugeContext(text, start, end)) continue;
         if (isUnsupportedCompoundContext(text, start, end)) {
           blockedMatches.push({ start, end });
