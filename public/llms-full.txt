@@ -28,7 +28,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Stitch Counter
 - URL: https://fibertools.app/stitch-counter
-- Free online stitch and row counter with multiple named counters, row reminder alerts, pattern repeat tracking, and offline support. Works on mobile mid-project.
+- Track up to six named counts. Reminders are checked at one exact count on the first counter, and browser-local saving is attempted but not guaranteed.
 
 ### Blanket Calculator
 - URL: https://fibertools.app/blanket-calculator
@@ -72,7 +72,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Project Cost Calculator
 - URL: https://fibertools.app/project-cost-calculator
-- Calculate the total cost of a fiber arts project including yarn, notions, patterns, and time estimate. Helps price handmade items for commissions or craft fairs.
+- Total entered yarn, notions, patterns, and other extras. Optionally estimate stitching time from an entered stitch count and rate, then compare an entered selling price without treating the result as net profit or a price recommendation.
 
 ### Color Pooling Calculator
 - URL: https://fibertools.app/color-pooling-calculator
@@ -96,7 +96,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Sleeve Shaping Calculator
 - URL: https://fibertools.app/sleeve-calculator
-- Get row-by-row increase or decrease instructions for tapered sleeves in knit or crochet. Enter upper arm, wrist, and length measurements for precise shaping.
+- Plan a bounded paired-decrease sleeve taper from entered upper-arm, wrist, length, cuff, and gauge values. The calculator declines odd stitch gaps and schedules denser than one event per shaping row.
 
 ### Raglan Calculator
 - URL: https://fibertools.app/raglan-calculator
@@ -160,7 +160,6 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 - [Spinning Wheel Ratios Explained](https://fibertools.app/blog/spinning-wheel-guide): How to calculate drive ratio and TPI for handspinning.
 - [Cross Stitch Fabric Calculator](https://fibertools.app/blog/cross-stitch-fabric-guide): How to figure out the right size Aida cloth.
 - [How to Calculate Sett for Weaving](https://fibertools.app/blog/weaving-sett-guide): EPI guide for every yarn weight.
-- [How Much Does It Cost to Crochet a Blanket?](https://fibertools.app/blog/project-cost-guide): The honest price breakdown for handmade projects.
 - [Color Pooling Calculator Guide](https://fibertools.app/blog/color-pooling-guide): How to plan pooling with variegated yarn.
 - [DMC to Anchor Thread Conversion](https://fibertools.app/blog/thread-conversion-guide): The complete searchable embroidery thread conversion chart.
 - [Stitch Multiples for Sampler Blankets](https://fibertools.app/blog/stitch-multiples-sampler-blanket-guide): How to calculate compatible stitch counts for sampler blankets.

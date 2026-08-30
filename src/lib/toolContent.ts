@@ -301,49 +301,49 @@ export const toolContent: Record<string, ToolEducationalContent> = {
 
   "stitch-counter": {
     skillLevel: "Beginner",
-    techniqueEffect: "Digital stitch counting prevents the physical and cognitive load of tracking position within a complex pattern, eliminating anxiety and frogging. Unlike mental counting (which fails the moment attention lapses) or physical counters (which get lost or fall apart), a persistent digital counter survives interruptions and remains always accessible. The technique improves accuracy on patterns with repeating rows, variable row types, or multiple parallel counts, a sweater body might require three simultaneous counters (total rows, pattern repeats, decrease intervals). The psychological effect is significant: knowing exact position at any moment builds confidence and allows longer, uninterrupted knitting sessions. This is especially critical for reversible or non-obvious patterns where a single miscounted row becomes invisible until the finished piece is too far along to frog.",
+    techniqueEffect: "A digital counter can reduce the mental load of tracking a pattern, but it is only as accurate as each tap. Multiple counters can help separate totals, pattern repeats, and shaping intervals. This browser attempts to save counter state locally; that state can be unavailable or cleared, so important counts still need a separate note.",
     techniqueSteps: [
       "Before beginning your project, list all rows or rounds that require special attention (decreases on rows 12, 14, 16; color changes at row 24; pattern repeats every 8 rows).",
       "Create one counter for each distinct tracking need, do not try to track everything with a single counter.",
       "Name each counter descriptively (\"Body Rows,\" \"Decrease Rows,\" \"Pattern Repeat\") before starting.",
-      "Tap or click the counter at the end of each relevant row or round, and use the reminder feature to alert you to special rows in advance."
+      "Tap or click the appropriate counter at the end of each relevant row or round. A reminder can be attached to one exact count on the first counter; it does not generate a repeating schedule."
     ],
-    fiberNotes: "Stitch counting affects all fibers equally, it is a cognitive tracking tool, not a fiber-dependent technique. However, understanding your yarn's characteristics can help you plan resets: wool's elasticity means you can safely rip back several rows and reknit if a miscount is discovered, while brittle fibers like some acrylics may show permanent damage if ripped. Smooth yarns (silk, cotton) are easier to reknit smoothly; textured or fluffy yarns (mohair, eyelash) show rips and damage more noticeably.",
+    fiberNotes: "The counter does not calculate fiber behavior. If a count is wrong, decide whether and how to undo work using the pattern, yarn care instructions, and the condition of the actual fabric rather than a generic fiber rule.",
     practiceProject: "Work a simple lace baby blanket pattern (any 8-row repeat lace) using DK weight yarn, setting up three counters: one for total rows, one for the row position within the lace repeat (1-8), and one for reminder rows when the lace chart resets. This practice establishes the habit of accurate tracking without the consequences of a garment.",
     introduction: {
       title: "Why You Need a Digital Stitch and Row Counter",
       paragraphs: [
-        "Losing count on row 47 of a lace pattern means ripping back hours of careful work, stitch by stitch. Physical counters get lost between cushions, and mental counting fails the moment someone asks you a question. A reliable digital counter that stays right on your screen is essential for complex projects.",
-        "Reliable stitch and row tracking is especially critical for patterns with repeating sequences, cables every eighth row, decreases every sixth row, or color changes at specific intervals. One missed count can cascade into visible errors that are impossible to fix without unraveling significant progress.",
+        "A counter can help record where you are in a pattern after an interruption. It does not verify that a row was worked correctly, and a missed tap can make its total wrong.",
+        "Separate counters can be useful for total rows, repeats, and shaping intervals. Compare the displayed counts with the written pattern and keep a separate checkpoint when losing the count would matter.",
       ],
     },
     whatIs: {
       title: "What Is a Stitch and Row Counter?",
       paragraphs: [
         "A stitch and row counter is a tracking tool that records your current position within a knitting or crochet pattern. Unlike physical barrel counters that click one number at a time, a digital counter can track multiple counts simultaneously, total rows, pattern repeat position, and shaping intervals all at once.",
-        "This digital counter persists in your browser, meaning your count survives closing the tab or shutting down your computer. It functions as a dedicated project notebook that is always accessible from any device, eliminating the need for pencil tick marks or separate tracking apps.",
+        "The tool attempts to store its state in the current browser profile. It does not sync to other browsers or devices, and the saved state can be unavailable or lost when local storage is blocked, cleared, or reset.",
       ],
     },
     howCalculated: {
       title: "How Stitch Counting Works",
       paragraphs: [
-        "Unlike other calculators, the stitch counter is not a mathematical formula tool, it is a tracking and reminder system. The value comes from methodical position tracking within your pattern, ensuring you always know exactly where you are in a sequence of instructions.",
+        "The stitch counter is a manual tracking and reminder tool, not a pattern verifier. Its display reflects the taps you record; it cannot establish that the fabric and pattern are at that same position.",
         "For example, suppose your pattern says work 12 rows even in stockinette, then decrease one stitch each side every other row for 8 rows. Set the counter to zero at the start of the section and note that row 12 triggers the first decrease. Rows 12, 14, 16, 18, 20, 22, 24, and 26 are all decrease rows.",
-        "By recording these milestones before you begin, you transform a complicated set of written instructions into a simple numerical checklist. Each click of the counter tells you instantly whether the current row requires action or is a plain pass-through row.",
+        "Recording selected milestones before you begin can turn part of a written instruction into a numerical checkpoint. Only an explicitly configured reminder can display its note at an exact count; ordinary counter taps do not interpret the pattern.",
       ],
     },
     howToUse: {
       title: "How to Use the Stitch & Row Counter",
       paragraphs: [
         "Tap the plus button to add a new counter. You can run multiple counters simultaneously, one for row count, one for pattern repeat tracking, one for increase intervals, or any other count you need to track. Name each counter before you start so you can tell them at a glance. Tap the counter to increment by one, or use the minus button to correct mistakes.",
-        "Set row reminders on any counter to get a notification at a specific count. This is useful for patterns that say \"increase every 6th row\" or \"change color at row 40.\" The counter works offline, so it stays active even when you lose signal or switch to airplane mode."
+        "A reminder is checked only when the first counter reaches its exact configured count. It does not repeat at an interval or attach independently to the other counters. Once the page is loaded, counter interactions happen in the browser, but a later restore depends on that browser profile's local-storage availability."
       ],
     },
     understandingResults: {
       title: "Understanding Your Results",
       paragraphs: [
-        "Each counter displays a running total that persists until you reset it. If you are using multiple counters, each one tracks independently. A typical setup for a sweater might use three counters: one for total rows worked, one counting rows since the last increase, and one tracking pattern repeats within a row.",
-        "The row reminder triggers at the exact count you set, then can be configured to repeat at the same interval. If you set a reminder at row 6, it can repeat at 12, 18, 24, and so on, matching the cadence of evenly spaced increases or color changes."
+        "Each counter displays an independent running total. The current browser attempts to save those totals locally, but a successful future restore is not guaranteed. A typical setup might use separate counters for total rows, shaping intervals, and pattern repeats.",
+        "A row reminder is tied to one exact count on the first counter. Reaching that count can open its note; the tool does not automatically create later reminders at the same interval."
       ],
     },
     proTips: {
@@ -351,8 +351,8 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       tips: [
         "Name your counters descriptively before starting, \"Body Rows,\" \"Sleeve Inc,\" \"Cable Repeat\", so you do not confuse them when you pick up your project after a break.",
         "Use a dedicated counter for stitch marker positions if you tend to lose track of which marker you are at in a complex pattern.",
-        "The counter works offline and stores state locally, so you can use it at a craft fair, waiting room, or anywhere without cell signal.",
-        "Reset counters to zero only after you have recorded the final count somewhere permanent. There is no undo for a reset."
+        "The current browser attempts a local save. Keep a separate checkpoint because browser storage can be unavailable or cleared and does not sync to another device.",
+        "The reset control on one counter is recorded as one undoable count change. The Settings action that resets all counters clears the undo and redo history, so record important totals elsewhere first."
       ],
     },
   },
@@ -427,7 +427,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       "If the division leaves a remainder, split the increases or decreases into two groups: some at the base interval and some at the interval plus one, distributing remainders evenly across the total rows."
     ],
     fiberNotes: "Wool, being elastic, accommodates both increases and decreases beautifully without stress, the fibers stretch and compress easily, making even tightly worked shaping blend seamlessly. Cotton and linen, being inelastic and stiffer, show shaping more obviously; decreases appear as visible lines and increases may create loose-looking spots that block out somewhat but remain perceptible. Acrylic's moderate elasticity means shaping appears visible but recovers reasonably well with blocking. Alpaca and mohair, being delicate and prone to stretching, require gentle handling during shaping, avoid over-tightening decreases, which can permanently weaken the yarn fibers. Blends behave according to their dominant fiber: a 70% wool/30% acrylic blend shapes more like pure wool, while a 50/50 blend shows characteristics of both fibers.",
-    practiceProject: "Make a simple decrease practice rectangle: cast on 40 stitches in stockinette using worsted weight yarn on size 7 needles. Work 8 rows even, then distribute 10 decreases evenly over the next 20 rows (one decrease at each end every 4 rows, evenly spaced). Bind off the remaining 20 stitches. Block lightly and examine how evenly the shaping tapers from 40 to 20 stitches. The edges should narrow smoothly with no visible bunching.",
+    practiceProject: "For a simple arithmetic check, start with 40 stitches and set a target of 30 stitches. The difference is 10 stitches, so distributing 10 single-stitch decreases leaves 30 stitches. Follow the selected pattern for the decrease method, placement, edge stitches, and whether changes are worked singly or in pairs.",
     introduction: {
       title: "Why You Need an Increase and Decrease Calculator",
       paragraphs: [
@@ -1140,59 +1140,59 @@ export const toolContent: Record<string, ToolEducationalContent> = {
 
   "project-cost-calculator": {
     commonMistakes: [
-      "Underestimating project time. Many crafters estimate a sweater at 40 hours when it actually takes 60–80. At $20/hour, that's a $400–$800 difference in true cost, enough to completely change pricing decisions.",
-      "Forgetting notions costs like buttons, zippers, stitch markers, blocking supplies, and finishing materials. A $60 sweater in yarn may need $25 in notions, adding 40% to material cost.",
-      "Using an unrealistic hourly rate for commission work. Many makers charge $10–15/hour when their time value should be $25–40/hour based on skill and customer expectations, leading to burnout and unsustainable pricing.",
+      "Treating the displayed material subtotal as a complete project or business cost. It includes only the yarn and notion amounts you enter; taxes, shipping, fees, reusable tools, overhead, and other costs are absent unless you add them manually as extras.",
+      "Reading the time estimate as measured labor. It divides the entered total stitches by the entered stitches per minute and assumes that rate remains constant; it does not time the project or model setup, finishing, corrections, or breaks.",
+      "Reading the selling-price remainder as net profit or a pricing recommendation. It is only the entered selling price minus the entered material subtotal and does not subtract fees, taxes, overhead, or a labor charge.",
     ],
-    projectExample: "A crocheter calculates the true cost of a throw blanket: 12 skeins of worsted at $8 each = $96. Notions = $8. Labor: 45 hours × $18/hour = $810. Total: $914. Fair retail price would be $1,200–1,400. At $400, they'd be undercharging by over 50%. The cost-per-use metric shows: 2,600 uses over 10 years = $0.35/use, justifying the heirloom price.",
+    projectExample: "Suppose you enter 3 skeins at $8 each and $6 of notions. The material subtotal is 3 × $8 + $6 = $30. If you also enter 12,000 stitches at 20 stitches per minute, the time estimate is 12,000 ÷ 20 ÷ 60 = 10 hours. With an entered selling price of $100, the displayed amount after materials is $100 − $30 = $70 and the effective hourly remainder is $70 ÷ 10 = $7 per hour. Neither figure includes fees, taxes, overhead, or a labor charge, and neither recommends a selling price.",
     useCases: [
-      "Setting fair prices for commission work so you don't undervalue your labor and materials, many talented makers underprice and burn out.",
-      "Deciding whether a personal project is worth the investment. A $1,200 sweater worn 200 times ($6/wear) is reasonable; the same worn 10 times ($120/wear) may not be.",
-      "Comparing the true cost of making versus buying, a handmade blanket typically costs 3–5× a store-bought one, putting the value into perspective.",
+      "Adding the entered skein quantities and per-skein prices to the entered notion or extra amounts.",
+      "Estimating project time from an entered stitch count and personal stitches-per-minute assumption.",
+      "Comparing an entered selling-price scenario with the entered material subtotal and estimated time, without treating the result as a recommended price or complete profit calculation.",
     ],
     introduction: {
-      title: "Why You Need a Project Cost Calculator",
+      title: "What This Project Cost Calculator Totals",
       paragraphs: [
-        "Someone asks how much you would charge for a hand-knit blanket, and you freeze. You know the yarn cost, maybe the notions, but what about the fifty-plus hours of skilled labor? Without real numbers, most makers drastically underprice their work or avoid selling altogether.",
-        "Pricing handmade items fairly requires an honest accounting of every cost, materials, tools, and time. This calculator gives you a clear total so you can set prices that respect your craft, whether you are selling at a market, taking commissions, or simply understanding the true investment in a gift.",
+        "Enter each yarn quantity and price per skein, then add any notion or extra amounts you choose. The calculator multiplies and sums those entries into a material subtotal.",
+        "The optional time section estimates hours from total stitches and an entered stitches-per-minute rate. If you enter a selling price, the calculator subtracts the material subtotal and divides the remainder by estimated hours. It does not add a labor charge or recommend a price.",
       ],
     },
     whatIs: {
-      title: "What Is Project Cost Estimation?",
+      title: "What Does the Result Represent?",
       paragraphs: [
-        "Project cost estimation is the process of calculating the total expense of a handmade fiber arts project, including yarn, notions, and the monetary value of your labor hours. It produces a single number that represents what the finished item actually costs to create from start to finish.",
-        "Beyond the raw total, cost estimation also generates per-item and per-use pricing. If you knit ten pairs of socks from the same pattern, your per-pair cost drops because you amortize tools and pattern purchases. Cost-per-wear reframes expensive projects as long-term investments when the item gets heavy daily use.",
+        "The displayed total is the sum of the yarn and notion or extra amounts entered in the form. It is a material subtotal, not a complete accounting of every expense and not materials plus labor.",
+        "The optional selling-price outputs are scenario arithmetic. 'Selling price minus entered materials' is the remainder after the displayed material subtotal, and 'hourly remainder after entered materials' divides it by the displayed time estimate. The calculator has no cost-per-use, expected-use, target-rate, tax, fee, or overhead input.",
       ],
     },
     howCalculated: {
       title: "How Project Cost Is Calculated",
       paragraphs: [
-        "The formula is straightforward: total materials plus total labor equals project cost. Consider a throw blanket requiring six skeins of worsted yarn at eight dollars each, that is forty-eight dollars in yarn. Add five dollars for notions like a tapestry needle and stitch markers, and your material cost is fifty-three dollars.",
-        "Now add labor. A throw blanket in a simple stitch pattern takes roughly fifty hours for an experienced crocheter. At a target rate of fifteen dollars per hour, labor comes to seven hundred fifty dollars. Your true project cost is eight hundred three dollars. Selling that blanket at one hundred twenty dollars means an effective labor rate of just one dollar and thirty-four cents per hour.",
-        "This math is not meant to discourage you, it is meant to inform your pricing decisions. Many makers choose to absorb some labor cost for gifts or personal projects, but commission and retail pricing should reflect the real numbers so you can make sustainable choices about your craft business.",
+        "Yarn subtotal = the sum of each entered skein quantity multiplied by its entered price per skein. Notion subtotal = the sum of the entered notion or extra prices. The displayed total adds those two subtotals.",
+        "Estimated hours = entered total stitches ÷ entered stitches per minute ÷ 60. The visible time is labeled approximate and formatted to at most two decimals; the hourly remainder uses the unrounded time estimate. The model assumes one constant stitch rate and excludes work not represented by the stitch count.",
+        "When both estimated hours and a selling price are present, amount after materials = selling price − material subtotal, and effective hourly remainder = amount after materials ÷ estimated hours. Those values are not labor cost, net profit, or a fair-price calculation.",
       ],
     },
     howToUse: {
       title: "How to Use the Project Cost Calculator",
       paragraphs: [
-        "Enter the cost per skein and number of skeins for your yarn. Add notions costs, needles, hooks, buttons, zippers, stitch markers, blocking mats, or any other supplies you need for this project. Optionally enter your hourly rate and estimated project hours to see the time-value cost of the project.",
-        "The calculator outputs the total material cost, total time cost, combined project cost, and a cost-per-use estimate if you enter expected lifetime uses. This last number is useful for justifying expensive projects, a $200 sweater worn 100 times costs $2 per wear."
+        "Enter the quantity and price per skein for each yarn line. Add any one-time notion or extra amounts you want included. The calculator does not decide which expenses belong to the project, so review the entries yourself.",
+        "Optionally enter a total stitch count and your own stitches-per-minute assumption. Entering a selling price adds the after-materials and effective-hourly-remainder scenario; there is no hourly-rate, labor-cost, expected-use, or cost-per-use input."
       ],
     },
     understandingResults: {
       title: "Understanding Your Results",
       paragraphs: [
-        "Handmade items almost always cost more than their retail equivalents when you factor in labor. A hand-knit sweater in quality yarn typically runs $80-200 in materials and 40-80 hours in labor. At any reasonable hourly rate, the total cost exceeds what a comparable store-bought sweater costs. This is not a reason not to knit, it is context for understanding the real value of what you make.",
-        "The cost-per-use metric reframes the conversation. Expensive projects that get heavy use, winter hats, everyday socks, blankets, have a low cost per use over their lifetime. Display pieces that sit in a closet have a high cost per use. Use this number when deciding whether a project is worth the investment."
+        "Use the material subtotal to check the arithmetic for the entries currently in the form. Missing or estimated expenses remain missing or estimated; the calculator does not verify receipts, quantities, currency conversion, or whether the list is complete.",
+        "Use the time and selling-price outputs only as sensitivity checks for your own inputs. Pricing, taxes, fees, legal requirements, overhead, demand, and compensation decisions are outside this calculator."
       ],
     },
     proTips: {
-      title: "Pro Tips",
+      title: "Input Checks",
       tips: [
-        "Track your time honestly. A stockinette sweater in worsted takes 40-60 hours for an experienced knitter. A cabled or colorwork sweater takes 80-120 hours. At $20/hour, that is $800-2,400 in time alone.",
-        "For commission pricing, charge at minimum your materials cost plus 50% of your time at a fair hourly rate. Most hand-knit commissions are underpriced because makers do not value their time.",
-        "Include blocking supplies, project bags, and shipping costs in your notions total. These hidden costs add up across multiple projects.",
-        "Compare yarn cost per yard, not per skein. A $12 skein with 220 yards costs $0.055 per yard. A $9 skein with 120 yards costs $0.075 per yard, the cheaper skein is more expensive."
+        "Use the same currency for all entries. Selecting a currency changes the displayed symbol; it does not convert amounts or exchange rates.",
+        "Enter shipping, taxes, fees, packaging, or other costs as extras only if you want them included in the material subtotal.",
+        "Measure your own stitch rate for a representative section if you use the time estimate; setup, finishing, corrections, and breaks require separate treatment.",
+        "Keep the entered selling price distinct from a recommended or accepted price. The calculator performs arithmetic on that scenario but does not evaluate the market or business obligations."
       ],
     },
   },
@@ -1696,61 +1696,62 @@ export const toolContent: Record<string, ToolEducationalContent> = {
 
   "sleeve-calculator": {
     commonMistakes: [
-      "Using the full sleeve length for shaping instead of accounting for underarm and cuff buffers. Decreases that extend into the armhole seam or cuff ribbing create harsh lines; the calculator reserves 1 inch at each end for smooth transitions.",
-      "Working all decreases on the same side of the sleeve instead of symmetrically. Decreases must be at each edge every decrease round to create balanced, professional-looking tapering.",
-      "Miscalculating shaping rows using stockinette row gauge when the sleeve uses a different stitch pattern. Row gauge changes with different stitches, throwing off the decrease count.",
+      "Treating the model's two fixed one-inch exclusions as a universal construction rule. Use this arithmetic only when those exclusions match the measurement definitions and shaping zone in the selected pattern.",
+      "Assuming the calculator forces both stitch counts to even numbers. It rounds each circumference-times-gauge result to the nearest whole stitch and refuses an odd difference because paired events cannot reach that displayed cuff count exactly.",
+      "Using a row gauge from a different stitch pattern or treating a refused dense schedule as usable. The calculator will not create a zero-row interval when the number of paired-decrease events exceeds the available shaping rows.",
     ],
-    projectExample: "A knitter shapes a sleeve from 12-inch upper arm to 7-inch wrist over 18 inches (2 inches of cuff ribbing). At 5 stitches per inch and 6 rows per inch: 60 stitches at top, 35 at wrist, 25-stitch difference = 13 decrease events. Shaping zone: 18 − 1 − 2 − 1 = 14 inches × 6 rows = 84 rows ÷ 13 ≈ 6.5. The calculator outputs: decrease every 6 rows ten times, then every 7 rows three times.",
+    projectExample: "A knitter enters a 12-inch upper arm, an 8-inch wrist, an 18-inch sleeve, 2 inches of cuff ribbing, 5 stitches per inch, and 6 rows per inch. The calculator rounds to 60 upper-arm stitches and 40 cuff stitches: 20 stitches must be removed in 10 paired-decrease events, because each event removes one stitch at each edge. The shaping zone is 18 − 1 − 2 − 1 = 14 inches, or 84 rows. Dividing 84 rows across 10 events gives six 8-row intervals and four 9-row intervals: 6 × 8 + 4 × 9 = 84, and 10 events × 2 stitches = 20 stitches removed, leaving 40.",
     useCases: [
-      "Creating a seamless, professional sleeve taper for any gauge. The calculator distributes decreases evenly so no single area looks bunched.",
-      "Comparing sleeve shaping across different arm circumferences, a fitted sleeve tapers more than a relaxed one, and the calculator shows the exact difference in decrease schedule.",
-      "Working sleeves top-down or bottom-up. Reverse the increase/decrease direction and the math works the same way.",
+      "Checking the whole-stitch and whole-row arithmetic for one straight, paired-decrease taper described by a selected pattern.",
+      "Comparing pattern-supported measurement or gauge inputs while keeping the model's fixed exclusions and omitted construction details visible.",
+      "Identifying inputs that this model cannot schedule, including an odd stitch-count difference or more decrease events than shaping rows.",
     ],
     introduction: {
       title: "Why You Need a Sleeve Shaping Calculator",
       paragraphs: [
-        "Sleeves are where many sweater projects stall. The body is finished, the excitement is fading, and now you have to figure out how to taper from the wide upper arm to the narrow cuff with decreases spaced evenly over dozens of rows. Uneven shaping creates visible jogs and bumps in the fabric. Too many decreases too fast produces a cinched look; too few too slowly leaves a baggy sleeve.",
-        "This calculator distributes your decreases mathematically across the available shaping rows. It accounts for the cuff ribbing, leaves buffer zones at each end, and handles the remainder when the rows do not divide evenly. The result is a smooth, professional taper with row-by-row instructions you can follow without thinking.",
+        "A straight sleeve taper can require several linked calculations: converting two pattern-defined circumferences to whole stitches, finding the paired-decrease event count, and partitioning a defined shaping zone into whole-row intervals.",
+        "This calculator checks that bounded arithmetic for one paired-decrease model. It does not choose ease, construction, landmarks, technique, or fit, so its output must be compared with the selected pattern and a representative sample.",
       ],
     },
     whatIs: {
       title: "What Is Sleeve Shaping?",
       paragraphs: [
-        "Sleeve shaping refers to the gradual narrowing (or widening, if working bottom-up) of a sleeve from the upper arm to the wrist. In a standard tapered sleeve, you start with the number of stitches needed for the upper arm circumference and decrease evenly until you reach the number of stitches needed for the wrist or cuff.",
-        "Decreases are always worked in pairs, one at each end of the row, so that the shaping is symmetrical. In knitting, the standard technique is SSK at the beginning of the row (leans left) and K2tog at the end (leans right), creating mirrored decreases. In crochet, SC2tog or DC2tog is worked at each end.",
-        "The shaping zone does not extend the full length of the sleeve. Typically, you leave a 1-inch buffer below the underarm seam for a smooth join and another 1-inch buffer above the cuff ribbing so the last decrease is not immediately next to the ribbing transition. The calculator accounts for both buffers and for the cuff ribbing length you specify.",
+        "Sleeve shaping changes stitch count over a section of a sleeve. This calculator covers only a straight taper whose modeled event removes two stitches, one at each edge; other constructions may use different counts, placement, or sequencing.",
+        "The selected pattern must define the actual decrease or increase technique, lean, side, edge treatment, and row-count convention. The calculator supplies none of those instructions.",
+        "For its shaping-zone arithmetic, the model subtracts the entered cuff length and two fixed one-inch exclusions from the entered sleeve length. Those exclusions are calculator assumptions, not general sleeve-design rules.",
       ],
     },
     howCalculated: {
       title: "How Sleeve Shaping Is Calculated",
       paragraphs: [
-        "The calculator converts your upper arm and wrist circumferences into stitch counts using your stitch gauge, rounding both to even numbers. The difference between these counts divided by 2 gives the number of decrease events needed, since each event removes 2 stitches (one at each end).",
-        "The shaping zone in inches equals the sleeve length minus 1 inch (top buffer) minus the cuff ribbing length minus 1 inch (bottom buffer). This zone is converted to rows using your row gauge and rounded to an even number.",
-        "The calculator then divides shaping rows by decrease events. If the division is exact, you decrease every N rows for the entire shaping zone. If there is a remainder, the decreases are split into two groups: some worked every N rows and the rest every N+1 rows. This two-rate approach distributes the shaping smoothly without bunching decreases at one end.",
+        "The calculator multiplies each entered circumference by the entered stitch gauge and rounds each result to the nearest whole stitch. It does not round the counts to even numbers. If their difference is odd, the paired-decrease model returns an unsupported result instead of changing either target.",
+        "For an even difference, decrease events equal the stitch difference divided by 2. Shaping inches equal entered sleeve length minus entered cuff length minus two fixed inches; multiplying by row gauge and rounding gives a whole-number shaping-row count.",
+        "If decrease events exceed shaping rows, the model refuses the schedule. Otherwise it uses the whole-number quotient and remainder to assign some events an N-row interval and the rest an N+1-row interval, with the displayed intervals totaling the modeled shaping rows.",
       ],
     },
     howToUse: {
       title: "How to Use the Sleeve Calculator",
       paragraphs: [
-        "Enter your upper arm circumference (measure the fullest part, about 1 inch below the armpit, and add 1 to 2 inches for ease) and your wrist or cuff circumference. Enter the total sleeve length from underarm to wrist, and the length of cuff ribbing you plan to work.",
-        "Enter your stitch gauge (stitches per inch) and row gauge (rows per inch). These should come from a swatch worked in the same stitch pattern you plan to use for the sleeve body, not the ribbing.",
-        "The calculator outputs the upper arm and cuff stitch counts, the total stitches to decrease, the shaping instruction (every N rows for X times, then every N+1 rows for Y times), and both knitting and crochet notation for the decrease technique.",
+        "Enter the finished upper-arm and cuff circumferences and length landmarks defined by the selected pattern. The calculator does not add ease or determine where those measurements belong on the body or garment.",
+        "Enter stitch and row gauge from a representative sample in the sleeve fabric, using the pattern's measuring and finishing instructions. Confirm that the model's cuff subtraction and two fixed one-inch exclusions match the pattern before using the result.",
+        "For supported inputs, the output shows rounded stitch counts, stitches to remove, shaping rows, and a paired-decrease interval sequence. The pattern must still supply technique, placement, the first-event convention, construction, and fit checks.",
       ],
     },
     understandingResults: {
       title: "Understanding Your Results",
       paragraphs: [
-        "The shaping instruction is the key output. A simple result like 'Decrease 1 st each end every 6 rows, 12 times' means you work 5 plain rows, then a decrease row, and repeat 12 times. A split result like 'every 6 rows 8 times, then every 7 rows 4 times' means you start at the faster rate and switch to the slower rate for the remaining decreases.",
-        "The total shaping rows should fit within your sleeve length. If the calculator shows more shaping rows than available rows, your sleeve is too short for the amount of taper needed. Either lengthen the sleeve, reduce the upper arm ease, or increase the cuff width.",
+        "A displayed instruction such as 'every 6 rows' is an interval summary for this model, not a complete pattern instruction. Confirm how the selected pattern counts the first event, decrease row, intervening rows, and any change between interval groups.",
+        "An unsupported result is deliberate: an odd stitch difference cannot be removed exactly by two-stitch events, and more events than shaping rows would require a zero-row interval. Use a tested pattern or revise pattern-supported inputs rather than silently changing the target.",
+        "The output does not model ease, sleeve caps, armholes, pickups, compound shaping, stitch-pattern constraints, construction, or fit.",
       ],
     },
     proTips: {
       title: "Pro Tips",
       tips: [
-        "Work decreases 2 to 3 stitches in from each edge rather than right at the edge. This creates a visible decrease line (called fully-fashioned shaping) that looks professional and is easier to seam.",
-        "If working the sleeve bottom-up (from cuff to upper arm), reverse the instructions, increase instead of decrease at the same intervals.",
-        "Knit both sleeves at the same time on a long circular needle or from two balls of yarn on separate sections of one needle. This ensures both sleeves have identical shaping and length.",
-        "Always try on or measure the sleeve against the body before binding off. The upper arm stitches should match the armhole depth of your garment body.",
+        "Use the selected pattern's decrease placement and method; moving an event can alter an edge, seam, motif, or visible line.",
+        "Do not automatically reverse the output for bottom-up work. Confirm the pattern's increase method, placement, interval order, and row-count convention.",
+        "Recheck gauge in representative sleeve fabric after the finishing treatment specified for the actual yarn and project.",
+        "Compare the arithmetic with the pattern's construction and checkpoints; a valid interval calculation does not establish fit.",
       ],
     },
   },

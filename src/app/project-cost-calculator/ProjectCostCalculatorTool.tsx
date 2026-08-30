@@ -4,6 +4,7 @@ import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import StickyResult from "@/components/StickyResult";
 import PlanningPackResultCta from "@/components/PlanningPackResultCta";
+import { calculateProjectCostSummary } from "@/lib/project-cost.mjs";
 
 // ── TYPES ─────────────────────────────────────────────────────────
 
@@ -31,6 +32,15 @@ const CURRENCIES = [
 
 function genId() { return Math.random().toString(36).substring(2, 8); }
 
+function formatEstimatedTime(minutes: number) {
+  const value = minutes < 60 ? minutes : minutes / 60;
+  const rounded = Number(value.toFixed(2));
+  const unit = minutes < 60
+    ? (rounded === 1 ? "minute" : "minutes")
+    : (rounded === 1 ? "hour" : "hours");
+  return `${rounded} ${unit}`;
+}
+
 // ── COMPONENT ─────────────────────────────────────────────────────
 
 export default function ProjectCostCalculatorTool() {
@@ -42,7 +52,7 @@ export default function ProjectCostCalculatorTool() {
 
   // Time estimator
   const [totalStitches, setTotalStitches] = useState("");
-  const [stitchesPerMin, setStitchesPerMin] = useState("25");
+  const [stitchesPerMin, setStitchesPerMin] = useState("");
   const [sellingPrice, setSellingPrice] = useState("");
 
   const sym = CURRENCIES.find((c) => c.code === currency)?.symbol || "$";
@@ -76,40 +86,21 @@ export default function ProjectCostCalculatorTool() {
   };
 
   // Results
-  const result = useMemo(() => {
-    const yarnCost = yarns.reduce((sum, y) => {
-      const skeins = parseFloat(y.skeins) || 0;
-      const price = parseFloat(y.pricePerSkein) || 0;
-      return sum + skeins * price;
-    }, 0);
+  const result = useMemo(
+    () => calculateProjectCostSummary(
+      yarns,
+      notions,
+      totalStitches,
+      stitchesPerMin,
+      sellingPrice,
+    ),
+    [yarns, notions, totalStitches, stitchesPerMin, sellingPrice],
+  );
+  const hasResult = result.totalCost > 0 || result.minutes > 0;
+  const estimatedTime = result.minutes > 0 ? formatEstimatedTime(result.minutes) : "";
 
-    const notionCost = notions.reduce((sum, n) => sum + (parseFloat(n.price) || 0), 0);
-    const totalCost = yarnCost + notionCost;
-
-    // Time
-    const stitches = parseInt(totalStitches) || 0;
-    const spm = parseInt(stitchesPerMin) || 25;
-    const minutes = stitches > 0 ? stitches / spm : 0;
-    const hours = minutes / 60;
-
-    // Hourly rate
-    const sell = parseFloat(sellingPrice) || 0;
-    const hourlyRate = hours > 0 && sell > 0 ? (sell - totalCost) / hours : 0;
-
-    return {
-      yarnCost: +yarnCost.toFixed(2),
-      notionCost: +notionCost.toFixed(2),
-      totalCost: +totalCost.toFixed(2),
-      hours: +hours.toFixed(1),
-      minutes: Math.round(minutes),
-      hourlyRate: +hourlyRate.toFixed(2),
-      sell,
-      profit: +(sell - totalCost).toFixed(2),
-    };
-  }, [yarns, notions, totalStitches, stitchesPerMin, sellingPrice]);
-
-  const stickySummary = result.totalCost > 0
-    ? `${sym}${result.totalCost.toFixed(2)} total${result.hours > 0 ? ` • ${result.hours}h` : ""}`
+  const stickySummary = hasResult
+    ? `${sym}${result.totalCost.toFixed(2)} entered materials${estimatedTime ? ` • ~${estimatedTime}` : ""}`
     : "";
 
   return (
@@ -218,8 +209,8 @@ export default function ProjectCostCalculatorTool() {
               </div>
               <div>
                 <label htmlFor="project-cost-stitches-per-minute" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">
-                  Your speed (st/min)
-                  <Tooltip text="Average stitches per minute. Beginners: 15-20. Intermediate: 25-35. Fast: 40+." />
+                  Assumed stitch rate (st/min)
+                  <Tooltip text="Enter a measured stitches-per-minute assumption for a representative section. One constant rate cannot include setup, finishing, corrections, or breaks." />
                 </label>
                 <input id="project-cost-stitches-per-minute" type="number" value={stitchesPerMin} onChange={(e) => setStitchesPerMin(e.target.value)}
                   placeholder="25" className="input text-sm" min="1" inputMode="numeric" />
@@ -229,7 +220,7 @@ export default function ProjectCostCalculatorTool() {
             <div>
               <label htmlFor="project-cost-selling-price" className="text-xs text-bark-500 dark:text-bark-400 block mb-1">
                 Selling price ({sym}), optional
-                <Tooltip text="If you were to sell this item, what would you charge? We will calculate your effective hourly rate." />
+                <Tooltip text="This optional scenario subtracts entered materials and divides the remainder by estimated stitching hours. It is not labor cost, net profit, or a price recommendation." />
               </label>
               <input id="project-cost-selling-price" type="number" value={sellingPrice} onChange={(e) => setSellingPrice(e.target.value)}
                 placeholder="0.00" className="input text-sm max-w-[160px]" min="0" step="0.01" inputMode="decimal" />
@@ -239,10 +230,10 @@ export default function ProjectCostCalculatorTool() {
 
         {/* Right: results */}
         <div>
-          <StickyResult summary={stickySummary} visible={result.totalCost > 0}>
+          <StickyResult summary={stickySummary} visible={hasResult}>
             <div className="result-card space-y-5 sticky top-24">
               <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                Project Cost
+                Entered Material Subtotal
               </h3>
 
               <div className="space-y-3">
@@ -257,7 +248,7 @@ export default function ProjectCostCalculatorTool() {
                   </div>
                 )}
                 <div className="flex justify-between text-bark-800 dark:text-cream-100 border-t border-cream-300 dark:border-bark-600 pt-3">
-                  <span className="font-bold text-lg">Total</span>
+                  <span className="font-bold text-lg">Entered materials total</span>
                   <span className="font-bold text-2xl">{sym}{result.totalCost.toFixed(2)}</span>
                 </div>
               </div>
@@ -265,8 +256,8 @@ export default function ProjectCostCalculatorTool() {
               {result.hours > 0 && (
                 <div className="border-t border-cream-300 dark:border-bark-600 pt-4 space-y-2">
                   <div className="flex justify-between text-bark-600 dark:text-cream-300">
-                    <span>Estimated time</span>
-                    <span className="font-medium">{result.hours} hours</span>
+                    <span>Estimated time (approx.)</span>
+                    <span className="font-medium">{estimatedTime}</span>
                   </div>
                   {result.sell > 0 && (
                     <>
@@ -275,15 +266,18 @@ export default function ProjectCostCalculatorTool() {
                         <span className="font-medium">{sym}{result.sell.toFixed(2)}</span>
                       </div>
                       <div className="flex justify-between text-bark-600 dark:text-cream-300">
-                        <span>Profit after materials</span>
-                        <span className={`font-medium ${result.profit >= 0 ? "text-sage-600 dark:text-sage-400" : "text-rose-500"}`}>
-                          {sym}{result.profit.toFixed(2)}
+                        <span>Selling price minus entered materials</span>
+                        <span className={`font-medium ${result.remainder >= 0 ? "text-sage-600 dark:text-sage-400" : "text-rose-500"}`}>
+                          {sym}{result.remainder.toFixed(2)}
                         </span>
                       </div>
                       <div className="flex justify-between text-bark-800 dark:text-cream-100 border-t border-cream-300 dark:border-bark-600 pt-2">
-                        <span className="font-bold">Effective hourly rate</span>
-                        <span className={`font-bold text-lg ${result.hourlyRate >= 0 ? "text-sage-600 dark:text-sage-400" : "text-rose-500"}`}>
-                          {sym}{result.hourlyRate.toFixed(2)}/hr
+                        <span className="font-bold">
+                          Hourly remainder after entered materials
+                          <span className="block text-xs font-normal">Uses the unrounded time estimate</span>
+                        </span>
+                        <span className={`font-bold text-lg ${result.hourlyRemainder >= 0 ? "text-sage-600 dark:text-sage-400" : "text-rose-500"}`}>
+                          {sym}{result.hourlyRemainder.toFixed(2)}/hr
                         </span>
                       </div>
                     </>
@@ -292,9 +286,10 @@ export default function ProjectCostCalculatorTool() {
               )}
 
               <button type="button" onClick={() => {
-                const lines = [`Project cost: ${sym}${result.totalCost.toFixed(2)}`];
-                yarns.forEach((y) => { if (y.skeins && y.pricePerSkein) lines.push(`  ${y.name}: ${y.skeins} skeins × ${sym}${y.pricePerSkein}`); });
-                if (result.hours > 0) lines.push(`Est. time: ${result.hours} hours`);
+                const lines = [`Entered material subtotal: ${sym}${result.totalCost.toFixed(2)}`];
+                lines.push(`Yarn subtotal: ${sym}${result.yarnCost.toFixed(2)}`);
+                if (result.notionCost > 0) lines.push(`Notions and extras subtotal: ${sym}${result.notionCost.toFixed(2)}`);
+                if (estimatedTime) lines.push(`Estimated stitching time: ~${estimatedTime}`);
                 navigator.clipboard.writeText(lines.join("\n"));
               }} className="btn-secondary text-sm">
                 📋 Copy breakdown

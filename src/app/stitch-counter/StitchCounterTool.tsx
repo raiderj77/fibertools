@@ -45,6 +45,55 @@ export default function StitchCounterTool() {
   const [newReminderNote, setNewReminderNote] = useState("");
   const [isFullscreen, setIsFullscreen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const reminderDialogRef = useRef<HTMLDivElement>(null);
+  const reminderCloseRef = useRef<HTMLButtonElement>(null);
+  const reminderReturnFocusRef = useRef<HTMLElement | null>(null);
+
+  const closeReminder = useCallback(() => {
+    setActiveReminder(null);
+    window.requestAnimationFrame(() => reminderReturnFocusRef.current?.focus());
+  }, []);
+
+  useEffect(() => {
+    if (!activeReminder) return;
+
+    reminderReturnFocusRef.current = document.activeElement instanceof HTMLElement
+      ? document.activeElement
+      : null;
+    reminderCloseRef.current?.focus();
+
+    const handleDialogKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeReminder();
+        return;
+      }
+
+      if (event.key !== "Tab" || !reminderDialogRef.current) return;
+      const focusable = Array.from(
+        reminderDialogRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+      if (focusable.length === 0) {
+        event.preventDefault();
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleDialogKeyDown);
+    return () => document.removeEventListener("keydown", handleDialogKeyDown);
+  }, [activeReminder, closeReminder]);
 
   // ── PERSISTENCE ─────────────────────────────────────────────────
   // Load from localStorage on mount
@@ -55,7 +104,10 @@ export default function StitchCounterTool() {
         const data = JSON.parse(saved);
         if (data.counters?.length) setCounters(data.counters);
         if (data.reminders) setReminders(data.reminders);
-        if (data.milestoneEvery) setMilestoneEvery(data.milestoneEvery);
+        if (
+          Number.isInteger(data.milestoneEvery)
+          && data.milestoneEvery >= 0
+        ) setMilestoneEvery(data.milestoneEvery);
       }
     } catch {
       // ignore bad data
@@ -170,11 +222,19 @@ export default function StitchCounterTool() {
   // ── FULLSCREEN ──────────────────────────────────────────────────
   const toggleFullscreen = async () => {
     if (!document.fullscreenElement && containerRef.current) {
-      await containerRef.current.requestFullscreen().catch(() => {});
-      setIsFullscreen(true);
+      try {
+        await containerRef.current.requestFullscreen();
+        setIsFullscreen(true);
+      } catch {
+        return;
+      }
     } else {
-      await document.exitFullscreen().catch(() => {});
-      setIsFullscreen(false);
+      try {
+        await document.exitFullscreen();
+        setIsFullscreen(false);
+      } catch {
+        return;
+      }
     }
   };
 
@@ -201,16 +261,25 @@ export default function StitchCounterTool() {
     >
       {/* Reminder popup */}
       {activeReminder && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4" onClick={() => setActiveReminder(null)}>
-          <div className="bg-white dark:bg-bark-800 rounded-2xl p-6 max-w-sm w-full shadow-xl text-center" onClick={(e) => e.stopPropagation()}>
-            <p className="text-3xl mb-2">📌</p>
-            <p className="text-lg font-bold text-bark-800 dark:text-cream-100">
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4" onClick={closeReminder}>
+          <div
+            ref={reminderDialogRef}
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="stitch-reminder-title"
+            aria-describedby="stitch-reminder-description"
+            className="bg-white dark:bg-bark-800 rounded-2xl p-6 max-w-sm w-full shadow-xl text-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="text-3xl mb-2" aria-hidden="true">📌</p>
+            <p id="stitch-reminder-title" className="text-lg font-bold text-bark-800 dark:text-cream-100">
               Row {activeReminder.row}
             </p>
-            <p className="text-bark-600 dark:text-cream-300 mt-2">{activeReminder.note}</p>
+            <p id="stitch-reminder-description" className="text-bark-600 dark:text-cream-300 mt-2">{activeReminder.note}</p>
             <button
+              ref={reminderCloseRef}
               type="button"
-              onClick={() => setActiveReminder(null)}
+              onClick={closeReminder}
               className="btn-primary mt-4 w-full"
             >
               Got it!
@@ -237,6 +306,8 @@ export default function StitchCounterTool() {
         </button>
         <div className="flex-1" />
         <button type="button" onClick={() => setShowSettings(!showSettings)}
+          aria-expanded={showSettings}
+          aria-controls="stitch-counter-settings"
           className="btn-secondary text-sm">
           ⚙️ Settings
         </button>
@@ -244,46 +315,49 @@ export default function StitchCounterTool() {
 
       {/* Settings panel */}
       {showSettings && (
-        <div className="p-4 bg-cream-100 dark:bg-bark-800 rounded-xl space-y-4">
+        <div id="stitch-counter-settings" className="p-4 bg-cream-100 dark:bg-bark-800 rounded-xl space-y-4">
           <div className="flex items-center gap-3">
-            <label className="text-sm text-bark-600 dark:text-cream-300">Milestone every</label>
+            <label htmlFor="stitch-counter-milestone" className="text-sm text-bark-600 dark:text-cream-300">Milestone every</label>
             <input
+              id="stitch-counter-milestone"
               type="number" value={milestoneEvery}
               onChange={(e) => setMilestoneEvery(Math.max(0, parseInt(e.target.value) || 0))}
               className="input w-20 text-sm" min="0" inputMode="numeric"
             />
-            <span className="text-xs text-bark-400 dark:text-bark-500">rows (0 = off). Vibrates on milestone rows.</span>
+            <span className="text-xs text-bark-400 dark:text-bark-500">rows (0 = off). Requests vibration on milestone rows when supported.</span>
           </div>
 
           {/* Reminders */}
           <div>
             <div className="flex items-center gap-2 mb-2">
               <p className="text-sm font-medium text-bark-700 dark:text-cream-200">Row Reminders</p>
-              <button type="button" onClick={() => setShowAddReminder(true)} className="text-sage-600 dark:text-sage-400 text-sm hover:underline">
+              <button type="button" onClick={() => setShowAddReminder(true)} aria-expanded={showAddReminder} aria-controls="stitch-counter-add-reminder" className="text-sage-600 dark:text-sage-400 text-sm hover:underline">
                 + Add
               </button>
             </div>
 
             {showAddReminder && (
-              <div className="flex gap-2 mb-2">
-                <input type="number" value={newReminderRow} onChange={(e) => setNewReminderRow(e.target.value)}
+              <form id="stitch-counter-add-reminder" className="flex gap-2 mb-2" onSubmit={(event) => { event.preventDefault(); addReminder(); }}>
+                <label htmlFor="stitch-counter-reminder-row" className="sr-only">Reminder count on the first counter</label>
+                <input id="stitch-counter-reminder-row" type="number" value={newReminderRow} onChange={(e) => setNewReminderRow(e.target.value)}
                   placeholder="Row #" className="input w-24 text-sm" min="1" inputMode="numeric" />
-                <input type="text" value={newReminderNote} onChange={(e) => setNewReminderNote(e.target.value)}
+                <label htmlFor="stitch-counter-reminder-note" className="sr-only">Reminder note</label>
+                <input id="stitch-counter-reminder-note" type="text" value={newReminderNote} onChange={(e) => setNewReminderNote(e.target.value)}
                   placeholder="Note (e.g., start decreases)" className="input flex-1 text-sm" />
-                <button type="button" onClick={addReminder} className="btn-primary text-sm px-3">Add</button>
-                <button type="button" onClick={() => setShowAddReminder(false)} className="btn-secondary text-sm px-3">✕</button>
-              </div>
+                <button type="submit" className="btn-primary text-sm px-3">Add</button>
+                <button type="button" onClick={() => setShowAddReminder(false)} aria-label="Cancel adding reminder" className="btn-secondary text-sm px-3">✕</button>
+              </form>
             )}
 
             {reminders.length > 0 ? (
               <div className="space-y-1">
-                {reminders.sort((a, b) => a.row - b.row).map((r) => (
+                {[...reminders].sort((a, b) => a.row - b.row).map((r) => (
                   <div key={r.id} className="flex items-center gap-2 text-sm">
                     <span className="inline-block px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300 text-xs font-medium">
                       Row {r.row}
                     </span>
                     <span className="text-bark-600 dark:text-cream-300 flex-1">{r.note}</span>
-                    <button type="button" onClick={() => removeReminder(r.id)} className="text-bark-400 hover:text-rose-500 text-xs">✕</button>
+                    <button type="button" onClick={() => removeReminder(r.id)} aria-label={`Remove reminder at row ${r.row}: ${r.note}`} className="text-bark-400 hover:text-rose-500 text-xs">✕</button>
                   </div>
                 ))}
               </div>
@@ -308,6 +382,7 @@ export default function StitchCounterTool() {
             {/* Editable name */}
             <input
               type="text"
+              aria-label={`Name for ${counter.name || "unnamed counter"}`}
               value={counter.name}
               onChange={(e) => renameCounter(counter.id, e.target.value)}
               className="text-center text-sm font-medium text-bark-500 dark:text-bark-400 bg-transparent border-none outline-none focus:text-bark-700 dark:focus:text-cream-200 w-full mb-2"
@@ -315,14 +390,21 @@ export default function StitchCounterTool() {
             />
 
             {/* Count display */}
-            <p className="text-6xl sm:text-7xl font-bold text-bark-800 dark:text-cream-100 font-display tabular-nums select-none mb-4">
+            <output
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+              aria-label={`${counter.name || "Unnamed counter"} count: ${counter.count}`}
+              className="text-6xl sm:text-7xl font-bold text-bark-800 dark:text-cream-100 font-display tabular-nums select-none mb-4"
+            >
               {counter.count}
-            </p>
+            </output>
 
             {/* Main buttons */}
             <div className="flex items-center gap-3 w-full">
               <button
                 type="button"
+                aria-label={`Subtract 1 from ${counter.name || "unnamed counter"}`}
                 onClick={() => updateCounter(counter.id, -1)}
                 className="flex-1 h-14 sm:h-16 rounded-xl bg-rose-100 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400 text-2xl font-bold hover:bg-rose-200 dark:hover:bg-rose-900/30 active:scale-95 transition-all select-none"
               >
@@ -330,6 +412,7 @@ export default function StitchCounterTool() {
               </button>
               <button
                 type="button"
+                aria-label={`Add 1 to ${counter.name || "unnamed counter"}`}
                 onClick={() => updateCounter(counter.id, 1)}
                 className="flex-[2] h-14 sm:h-16 rounded-xl bg-sage-500 dark:bg-sage-600 text-white text-2xl font-bold hover:bg-sage-600 dark:hover:bg-sage-500 active:scale-95 transition-all select-none shadow-sm"
               >
@@ -343,6 +426,7 @@ export default function StitchCounterTool() {
                 <button
                   key={n}
                   type="button"
+                  aria-label={`Add ${n} to ${counter.name || "unnamed counter"}`}
                   onClick={() => updateCounter(counter.id, n)}
                   className="flex-1 py-2 text-xs font-medium rounded-lg bg-cream-200 dark:bg-bark-700 text-bark-500 dark:text-bark-400 hover:bg-cream-300 dark:hover:bg-bark-600 active:scale-95 transition-all select-none"
                 >
@@ -351,6 +435,7 @@ export default function StitchCounterTool() {
               ))}
               <button
                 type="button"
+                aria-label={`Reset ${counter.name || "unnamed counter"} to 0`}
                 onClick={() => updateCounter(counter.id, -counter.count)}
                 className="flex-1 py-2 text-xs font-medium rounded-lg bg-cream-200 dark:bg-bark-700 text-bark-500 dark:text-bark-400 hover:bg-cream-300 dark:hover:bg-bark-600 active:scale-95 transition-all select-none"
               >
@@ -363,6 +448,7 @@ export default function StitchCounterTool() {
               <button
                 type="button"
                 onClick={() => removeCounter(counter.id)}
+                aria-label={`Remove ${counter.name || "unnamed counter"}`}
                 className="text-xs text-bark-400 dark:text-bark-500 hover:text-rose-500 mt-3"
               >
                 Remove counter
@@ -411,10 +497,10 @@ export default function StitchCounterTool() {
           💡 Tips
         </h3>
         <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
-          <li><strong>Your counts auto-save</strong>, close the tab, come back later, they&apos;ll still be here.</li>
+          <li><strong>This browser attempts a local save.</strong> Storage can be unavailable or cleared, so keep a separate note when the count matters.</li>
           <li><strong>Tap the counter name</strong> to rename it (e.g., &ldquo;Cable repeats&rdquo;, &ldquo;Sleeve rows&rdquo;).</li>
-          <li><strong>Row reminders</strong> pop up when you reach a specific row, great for decrease schedules or color changes.</li>
-          <li><strong>Fullscreen mode</strong> hides browser chrome so you can count without distractions.</li>
+          <li><strong>Row reminders</strong> are checked against the first counter at the exact count. They do not repeat automatically at intervals or attach independently to every counter.</li>
+          <li><strong>Fullscreen mode</strong> requests the browser&apos;s full-screen view when the browser and its permissions allow it.</li>
         </ul>
       </div>
     </div>
