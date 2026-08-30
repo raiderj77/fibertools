@@ -119,15 +119,15 @@ test("counted spelled-out stitch instructions convert without consuming the coun
 });
 
 test("multiline custom abbreviation definitions remain unchanged", () => {
-  const input = "Abbreviations:\ndc = drop color\ntr = turn right\nRow 1: Work dc in next stitch.\nRound 2: Work tr across.";
+  const input = "Abbreviations:\ndc = drop color\ntr = turn right\nGauge: 20 dc = 4 inches\nSize: adult\nNotes: Work tr across.\nRow 1: Work dc in next stitch.\nRound 2: Work tr across.";
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "Abbreviations:\ndc = drop color\ntr = turn right\nRow 1: Work single crochet (sc) in next stitch.\nRound 2: Work double crochet (dc) across.",
+    "Abbreviations:\ndc = drop color\ntr = turn right\nGauge: 20 single crochet (sc) = 4 inches\nSize: adult\nNotes: Work double crochet (dc) across.\nRow 1: Work single crochet (sc) in next stitch.\nRound 2: Work double crochet (dc) across.",
   );
-  assert.equal(result.substitutionCount, 2);
+  assert.equal(result.substitutionCount, 4);
 });
 
 test("spelled-out terms nested in ordinary prose are preserved conservatively", () => {
@@ -213,15 +213,15 @@ test("recognized term and abbreviation pairs are converted atomically", () => {
 });
 
 test("positional instruction words do not suppress supported abbreviations", () => {
-  const input = "Work dc in same dc; work tr in second dc from hook; repeat in previous tr; Ch 3 counts as dc; work 1 dc between dc stitches; work 1 dc over dc below; work dc on following dc; repeat dc until dc remains.";
+  const input = "Work dc in same dc; work tr in second dc from hook; repeat in previous tr; Ch 3 counts as dc; work 1 dc between dc stitches; work 1 dc over dc below; work dc on following dc; repeat dc until dc remains; work dc in 3rd dc; work tr in 7th dc.";
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "Work single crochet (sc) in same single crochet (sc); work double crochet (dc) in second single crochet (sc) from hook; repeat in previous double crochet (dc); Ch 3 counts as single crochet (sc); work 1 single crochet (sc) between single crochet (sc) stitches; work 1 single crochet (sc) over single crochet (sc) below; work single crochet (sc) on following single crochet (sc); repeat single crochet (sc) until single crochet (sc) remains.",
+    "Work single crochet (sc) in same single crochet (sc); work double crochet (dc) in second single crochet (sc) from hook; repeat in previous double crochet (dc); Ch 3 counts as single crochet (sc); work 1 single crochet (sc) between single crochet (sc) stitches; work 1 single crochet (sc) over single crochet (sc) below; work single crochet (sc) on following single crochet (sc); repeat single crochet (sc) until single crochet (sc) remains; work single crochet (sc) in 3rd single crochet (sc); work double crochet (dc) in 7th single crochet (sc).",
   );
-  assert.equal(result.substitutionCount, 14);
+  assert.equal(result.substitutionCount, 18);
 });
 
 test("URL-like tokens and email addresses are preserved byte-for-byte", () => {

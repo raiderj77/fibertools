@@ -130,7 +130,7 @@ const UNSUPPORTED_DEFINITION_LINE = new RegExp(
 );
 
 const UNSUPPORTED_MULTILINE_DEFINITION = new RegExp(
-  String.raw`(?:^|\r?\n)[\t\p{Zs}]*${UNSUPPORTED_DEFINITION_LABEL_SOURCE}[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*(?:\r?\n[\t\p{Zs}]*(?!(?:row|round|rnd|instructions?|pattern|repeat)\b)[^\r\n:=‐‑‒–—]+?[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*[^\r\n]+)+`,
+  String.raw`(?:^|\r?\n)[\t\p{Zs}]*${UNSUPPORTED_DEFINITION_LABEL_SOURCE}[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*(?:\r?\n[\t\p{Zs}]*(?!(?:row|round|rnd|instructions?|pattern|repeat|gauge|tension|sizes?|notes?|materials?|measurements?|finished(?:\s+size)?|directions?|assembly|finishing|yarn|needles?|hooks?)\b)[^\r\n:=‐‑‒–—]+?[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*[^\r\n]+)+`,
   "giu",
 );
 
@@ -187,7 +187,11 @@ const ALLOWED_PRECEDING_INSTRUCTION_WORDS = new Set([
 
 function hasUnsupportedWhitespacePrefix(text, start) {
   const precedingToken = text.slice(0, start).match(/([\p{L}\p{M}\p{N}\p{Pc}\p{Cf}]+)[\t\p{Zs}]+$/u)?.[1];
-  if (!precedingToken || /^\p{N}+$/u.test(precedingToken)) return false;
+  if (
+    !precedingToken
+    || /^\p{N}+$/u.test(precedingToken)
+    || /^\p{N}+(?:st|nd|rd|th)$/iu.test(precedingToken)
+  ) return false;
   return !ALLOWED_PRECEDING_INSTRUCTION_WORDS.has(precedingToken.toLocaleLowerCase("en-US"));
 }
 const UNSUPPORTED_SUFFIX_MODIFIERS = new RegExp(
