@@ -54,7 +54,17 @@ function escapeRegex(value) {
 
 function termMatcher(term) {
   const escaped = escapeRegex(term).replace(/ /g, "\\s+");
-  return new RegExp(`(^|[^A-Za-z0-9])(${escaped})(?=$|[^A-Za-z0-9])`, "gi");
+  return new RegExp(`(^|[^\\p{L}\\p{N}])(${escaped})(?=$|[^\\p{L}\\p{N}])`, "giu");
+}
+
+const UNSUPPORTED_PREFIX_MODIFIERS = /(?:^|[^\p{L}\p{N}])(?:half|single|triple|front\s+post|back\s+post|extended|linked|foundation|standing|reverse|crossed|relief|raised)\s+$/iu;
+const UNSUPPORTED_SUFFIX_MODIFIERS = /^\s+(?:crochet\s+)?(?:(?:two|three|four|\d+)\s+together|cluster|decrease|increase|through\s+(?:the\s+)?(?:front|back)\s+loop)\b/iu;
+
+function isUnsupportedCompoundContext(text, start, end) {
+  return (
+    UNSUPPORTED_PREFIX_MODIFIERS.test(text.slice(0, start))
+    || UNSUPPORTED_SUFFIX_MODIFIERS.test(text.slice(end))
+  );
 }
 
 function collectMatches(text) {
@@ -67,9 +77,12 @@ function collectMatches(text) {
       while ((match = matcher.exec(text)) !== null) {
         const prefixLength = match[1].length;
         const matchedText = match[2];
+        const start = match.index + prefixLength;
+        const end = start + matchedText.length;
+        if (isUnsupportedCompoundContext(text, start, end)) continue;
         matches.push({
-          start: match.index + prefixLength,
-          end: match.index + prefixLength + matchedText.length,
+          start,
+          end,
           matchedText,
           entry,
         });

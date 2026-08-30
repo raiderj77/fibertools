@@ -88,6 +88,30 @@ test("unsupported compound and attached-count abbreviations are preserved", () =
   assert.equal(result.substitutionCount, 1);
 });
 
+test("unsupported multiword stitch names are preserved rather than partially rewritten", () => {
+  const input = [
+    "half double crochet",
+    "front post double crochet",
+    "triple treble crochet",
+    "double crochet three together",
+    "treble crochet cluster",
+  ].join("; ");
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, input);
+  assert.equal(result.substitutionCount, 0);
+});
+
+test("Unicode letters and numbers beside a supported token keep the prose unchanged", () => {
+  const input = "très bien; dcé; htrø; trβ; dtr٣; tr alone.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, "très bien; dcé; htrø; trβ; dtr٣; double crochet (dc) alone.");
+  assert.equal(result.substitutionCount, 1);
+});
+
 test("older wording remains unchanged and is reported only as a review clue", () => {
   const input = "Miss one, cast off, work straight, then wool forward.";
   const result = decodeVintagePattern(input, "uk");
