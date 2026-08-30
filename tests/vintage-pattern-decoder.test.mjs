@@ -62,6 +62,7 @@ test("tension maps only in recognizable gauge contexts", () => {
     "Maintain an even tension throughout.",
     "Do not tighten the yarn tension.",
     "Tension: 20 stitches and 28 rows to 10 cm.",
+    "Tension 20 tr = 4 inches.",
     "Make a tension square before starting.",
   ].join("\n");
   const result = decodeVintagePattern(input, "uk");
@@ -73,10 +74,11 @@ test("tension maps only in recognizable gauge contexts", () => {
       "Maintain an even tension throughout.",
       "Do not tighten the yarn tension.",
       "gauge: 20 stitches and 28 rows to 10 cm.",
+      "gauge 20 double crochet (dc) = 4 inches.",
       "Make a gauge square before starting.",
     ].join("\n"),
   );
-  assert.equal(result.substitutionCount, 2);
+  assert.equal(result.substitutionCount, 4);
 });
 
 test("longest source term wins and generated text is not converted again", () => {
@@ -184,15 +186,15 @@ test("recognized term and abbreviation pairs are converted atomically", () => {
 });
 
 test("positional instruction words do not suppress supported abbreviations", () => {
-  const input = "Work dc in same dc; work tr in second dc from hook; repeat in previous tr.";
+  const input = "Work dc in same dc; work tr in second dc from hook; repeat in previous tr; Ch 3 counts as dc.";
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "Work single crochet (sc) in same single crochet (sc); work double crochet (dc) in second single crochet (sc) from hook; repeat in previous double crochet (dc).",
+    "Work single crochet (sc) in same single crochet (sc); work double crochet (dc) in second single crochet (sc) from hook; repeat in previous double crochet (dc); Ch 3 counts as single crochet (sc).",
   );
-  assert.equal(result.substitutionCount, 5);
+  assert.equal(result.substitutionCount, 6);
 });
 
 test("parenthesized abbreviations in unsupported phrases are preserved", () => {
@@ -202,6 +204,7 @@ test("parenthesized abbreviations in unsupported phrases are preserved", () => {
     "custom cluster (tr in next stitch)",
     "custom label (double crochet)",
     "custom label (double crochet (dc))",
+    "custom stitch (dc in next stitch)",
     "special stitch (tr (treble))",
   ].join("; ");
   const result = decodeVintagePattern(input, "uk");

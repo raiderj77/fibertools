@@ -102,7 +102,7 @@ function parenthesizedPairMatchers(entry) {
 }
 
 const UNSUPPORTED_PARENTHETICAL_LEAD = new RegExp(
-  String.raw`(?:\b(?:cluster|label|abbreviation|key|definition|variant|version|motif|shell|bobble|puff|popcorn|sequence|name|term|named\s+stitch|special\s+stitch)\s*$|\b(?:half\s+double\s+crochet|single\s+crochet|triple\s+treble(?:\s+crochet)?|(?:front|back)(?:\s+|[-‐‑‒–—])post(?:\s+|[-‐‑‒–—])(?:double\s+treble(?:\s+crochet)?|half\s+treble(?:\s+crochet)?|treble(?:\s+crochet)?|double\s+crochet|dtr|htr|tr|dc)|(?:extended|linked|foundation|standing|reverse|crossed|relief|raised)(?:\s+|[-‐‑‒–—])(?:double\s+treble(?:\s+crochet)?|half\s+treble(?:\s+crochet)?|treble(?:\s+crochet)?|double\s+crochet|dtr|htr|tr|dc))\s*$)`,
+  String.raw`(?:\b(?:cluster|label|abbreviation|key|definition|variant|version|motif|shell|bobble|puff|popcorn|sequence|name|term|custom\s+stitch|named\s+stitch|special\s+stitch)\s*$|\b(?:half\s+double\s+crochet|single\s+crochet|triple\s+treble(?:\s+crochet)?|(?:front|back)(?:\s+|[-‐‑‒–—])post(?:\s+|[-‐‑‒–—])(?:double\s+treble(?:\s+crochet)?|half\s+treble(?:\s+crochet)?|treble(?:\s+crochet)?|double\s+crochet|dtr|htr|tr|dc)|(?:extended|linked|foundation|standing|reverse|crossed|relief|raised)(?:\s+|[-‐‑‒–—])(?:double\s+treble(?:\s+crochet)?|half\s+treble(?:\s+crochet)?|treble(?:\s+crochet)?|double\s+crochet|dtr|htr|tr|dc))\s*$)`,
   "iu",
 );
 
@@ -137,7 +137,7 @@ const UNSUPPORTED_PREFIX_MODIFIERS = new RegExp(
 );
 
 const ALLOWED_PRECEDING_INSTRUCTION_WORDS = new Set([
-  "a", "across", "add", "an", "and", "around", "at", "ch", "chain", "continue",
+  "a", "across", "add", "an", "and", "around", "as", "at", "ch", "chain", "continue",
   "center", "centre", "corresponding", "dc", "dtr", "each", "every", "fifth", "first", "followed", "four", "fourth", "from",
   "htr", "in", "into", "join", "last", "make", "miss", "next", "of",
   "marked", "one", "or", "place", "previous", "remaining", "repeat", "rnd", "round", "row", "same", "second", "sixth", "skip", "space",
@@ -169,7 +169,7 @@ function isTensionGaugeContext(text, start, end) {
   const before = text.slice(0, start);
   const after = text.slice(end);
   const isGaugeSquare = /^\s+square\b/iu.test(after);
-  const isMeasurement = /^\s*(?:(?:is|of)\s+|:\s*)?\d+(?:\.\d+)?\s*(?:st(?:s|itch(?:es)?)?|rows?)\b/iu.test(after);
+  const isMeasurement = /^\s*(?:(?:is|of)\s+|:\s*)?\d+(?:\.\d+)?\s*(?:st(?:s|itch(?:es)?)?|rows?|double\s+treble(?:\s+crochet)?|dtr|half\s+treble(?:\s+crochet)?|htr|treble(?:\s+crochet)?|tr|double\s+crochet|dc)\b/iu.test(after);
   const isHeading = /(?:^|\n)\s*$/u.test(before) && /^\s*:/u.test(after);
   return isGaugeSquare || isMeasurement || isHeading;
 }
