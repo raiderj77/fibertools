@@ -60,9 +60,7 @@ export default function VintagePatternDecoderTool() {
 
   function resetResult() {
     setResult(null);
-    setError(null);
     setCopyStatus("idle");
-    setInputRejected(false);
   }
 
   function handleInputChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -76,6 +74,8 @@ export default function VintagePatternDecoderTool() {
       return;
     }
     setInput(nextInput);
+    setInputRejected(false);
+    setError(null);
   }
 
   function handleConventionChange(nextConvention: SourceConvention) {
@@ -100,6 +100,8 @@ export default function VintagePatternDecoderTool() {
   function handleClear() {
     setInput("");
     setConvention("unknown");
+    setInputRejected(false);
+    setError(null);
     resetResult();
   }
 

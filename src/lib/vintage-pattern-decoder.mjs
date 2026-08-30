@@ -76,6 +76,35 @@ function termMatcher(term) {
   return new RegExp(`(^|[^\\p{L}\\p{N}])(${escaped})(?=$|[^\\p{L}\\p{N}])`, "giu");
 }
 
+function isolatedPatternMatcher(source) {
+  return new RegExp(
+    `(^\\s*|[\\n,:;(\\[{\"'\\-]\\s*)(${source})(?=$|\\s*[\\n,.;:!?\\)\\]}\"'\\-])`,
+    "giu",
+  );
+}
+
+function parenthesizedPairMatchers(entry) {
+  const abbreviation = entry.terms
+    .filter((term) => /^[a-z]+$/iu.test(term))
+    .sort((left, right) => left.length - right.length)[0];
+  if (!abbreviation) return [];
+
+  const escapedAbbreviation = escapeRegex(abbreviation);
+  return entry.terms
+    .filter((term) => term !== abbreviation && ISOLATED_STITCH_TERMS.has(term))
+    .flatMap((term) => {
+      const escapedTerm = escapeRegex(term).replace(/ /g, "\\s+");
+      return [
+        isolatedPatternMatcher(`${escapedTerm}\\s*\\(\\s*${escapedAbbreviation}\\s*\\)`),
+        isolatedPatternMatcher(`${escapedAbbreviation}\\s*\\(\\s*${escapedTerm}\\s*\\)`),
+      ];
+    });
+}
+
+function isImmediatelyParenthesized(text, start) {
+  return /\(\s*$/u.test(text.slice(0, start));
+}
+
 const COMPOUND_DASH = "[-‐‑‒–—]";
 const UNSUPPORTED_PREFIX_MODIFIERS = new RegExp(
   `(?:^|[^\\p{L}\\p{N}])(?:half|single|triple|front(?:\\s+|${COMPOUND_DASH})post|back(?:\\s+|${COMPOUND_DASH})post|extended|linked|foundation|standing|reverse|crossed|relief|raised)(?:\\s+|${COMPOUND_DASH}\\s*)$`,
@@ -98,14 +127,19 @@ function collectMatches(text) {
   const blockedMatches = [];
 
   for (const entry of UK_TO_US_TERMS) {
-    for (const term of entry.terms) {
-      const matcher = termMatcher(term);
+    const variants = [
+      ...parenthesizedPairMatchers(entry).map((matcher) => ({ matcher, atomicPair: true })),
+      ...entry.terms.map((term) => ({ matcher: termMatcher(term), atomicPair: false })),
+    ];
+
+    for (const { matcher, atomicPair } of variants) {
       let match;
       while ((match = matcher.exec(text)) !== null) {
         const prefixLength = match[1].length;
         const matchedText = match[2];
         const start = match.index + prefixLength;
         const end = start + matchedText.length;
+        if (!atomicPair && isImmediatelyParenthesized(text, start)) continue;
         if (isUnsupportedCompoundContext(text, start, end)) {
           blockedMatches.push({ start, end });
           continue;

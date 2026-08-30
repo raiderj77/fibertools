@@ -114,6 +114,34 @@ test("hyphenated compound stitch names are preserved", () => {
   assert.equal(result.substitutionCount, 0);
 });
 
+test("recognized term and abbreviation pairs are converted atomically", () => {
+  const result = decodeVintagePattern(
+    "double crochet (dc); treble (tr); half treble (htr); dtr (double treble)",
+    "uk",
+  );
+
+  assert.equal(result.status, "ready");
+  assert.equal(
+    result.output,
+    "single crochet (sc); double crochet (dc); half double crochet (hdc); treble crochet (tr)",
+  );
+  assert.equal(result.substitutionCount, 4);
+});
+
+test("parenthesized abbreviations in unsupported phrases are preserved", () => {
+  const input = [
+    "front post double crochet (dc)",
+    "front post dc (double crochet)",
+    "custom cluster (tr in next stitch)",
+    "custom label (double crochet)",
+  ].join("; ");
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, input);
+  assert.equal(result.substitutionCount, 0);
+});
+
 test("unsupported multiword stitch names are preserved rather than partially rewritten", () => {
   const input = [
     "half double crochet",
@@ -194,6 +222,11 @@ test("the UI is text-only, bounded, convention-gated, and reports clipboard outc
   assert.match(source, /nextInput\.length > MAX_VINTAGE_PATTERN_TEXT_LENGTH/);
   assert.match(source, /not accepted or stored/);
   assert.match(source, /previous text is unchanged/);
+  assert.match(source, /setInputRejected\(false\);[\s\S]*resetResult\(\);/);
+  assert.doesNotMatch(
+    source.slice(source.indexOf("function resetResult"), source.indexOf("function handleInputChange")),
+    /setInputRejected|setError/,
+  );
   assert.doesNotMatch(source, /\.slice\([\s\S]*MAX_VINTAGE_PATTERN_TEXT_LENGTH \+ 1/);
   assert.match(source, /inputTooLong/);
   assert.match(source, /disabled=\{!input\.trim\(\) \|\| inputTooLong\}/);
