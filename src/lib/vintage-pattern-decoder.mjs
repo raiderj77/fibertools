@@ -137,12 +137,12 @@ const UNSUPPORTED_PREFIX_MODIFIERS = new RegExp(
 );
 
 const ALLOWED_PRECEDING_INSTRUCTION_WORDS = new Set([
-  "a", "across", "add", "an", "and", "around", "as", "at", "ch", "chain", "continue",
+  "a", "above", "across", "add", "after", "along", "an", "and", "around", "as", "at", "before", "behind", "below", "beneath", "beside", "between", "ch", "chain", "continue",
   "center", "centre", "corresponding", "dc", "dtr", "each", "every", "fifth", "first", "followed", "four", "fourth", "from",
   "htr", "in", "into", "join", "last", "make", "miss", "next", "of",
-  "marked", "one", "or", "place", "previous", "remaining", "repeat", "rnd", "round", "row", "same", "second", "sixth", "skip", "space",
-  "spaces", "st", "stitch", "stitches", "then", "third", "three", "times", "tr",
-  "the", "turn", "twice", "two", "under", "using", "with", "work",
+  "marked", "one", "or", "over", "place", "previous", "remaining", "repeat", "rnd", "round", "row", "same", "second", "sixth", "skip", "space",
+  "spaces", "st", "stitch", "stitches", "then", "third", "three", "through", "times", "to", "toward", "towards", "tr",
+  "the", "turn", "twice", "two", "under", "upon", "using", "with", "work",
 ]);
 
 function hasUnsupportedWhitespacePrefix(text, start) {
@@ -264,8 +264,10 @@ function buildSignals(text, convention) {
   }
 
   if (
-    hasUnicodeBoundedMatch(text, "no\\.?\\s*\\d+")
-    || hasUnicodeBoundedMatch(text, "size\\s+\\d+[^\\n]{0,24}(?:needle|hook)")
+    hasUnicodeBoundedMatch(
+      text,
+      "(?:(?:needles?|hooks?)\\s+(?:(?:no\\.?|size)\\s*)\\d+|(?:no\\.?|size)\\s*\\d+(?:\\s+[\\p{L}\\p{M}-]+){0,3}\\s+(?:needles?|hooks?))",
+    )
   ) {
     signals.push({
       title: "Numbered needle or hook size",

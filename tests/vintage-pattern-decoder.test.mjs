@@ -186,15 +186,15 @@ test("recognized term and abbreviation pairs are converted atomically", () => {
 });
 
 test("positional instruction words do not suppress supported abbreviations", () => {
-  const input = "Work dc in same dc; work tr in second dc from hook; repeat in previous tr; Ch 3 counts as dc.";
+  const input = "Work dc in same dc; work tr in second dc from hook; repeat in previous tr; Ch 3 counts as dc; work 1 dc between dc stitches; work 1 dc over dc below.";
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "Work single crochet (sc) in same single crochet (sc); work double crochet (dc) in second single crochet (sc) from hook; repeat in previous double crochet (dc); Ch 3 counts as single crochet (sc).",
+    "Work single crochet (sc) in same single crochet (sc); work double crochet (dc) in second single crochet (sc) from hook; repeat in previous double crochet (dc); Ch 3 counts as single crochet (sc); work 1 single crochet (sc) between single crochet (sc) stitches; work 1 single crochet (sc) over single crochet (sc) below.",
   );
-  assert.equal(result.substitutionCount, 6);
+  assert.equal(result.substitutionCount, 10);
 });
 
 test("parenthesized abbreviations in unsupported phrases are preserved", () => {
@@ -331,6 +331,28 @@ test("possible signals avoid era and origin conclusions", () => {
   const signalText = result.signals.map(({ title, note }) => `${title} ${note}`).join(" ");
   assert.doesNotMatch(signalText, /likely|appears to be|originated|19\d{2}s/i);
   assert.match(signalText, /does not establish|does not identify/i);
+});
+
+test("numbered-size signals require explicit needle or hook grammar", () => {
+  const ordinaryNumbers = decodeVintagePattern(
+    "Pattern No. 123. Repeat motif no. 2 three times.",
+    "unknown",
+  );
+  const toolNumbers = decodeVintagePattern(
+    "Use No. 9 steel knitting needles. Crochet hook size 4.",
+    "unknown",
+  );
+
+  assert.equal(ordinaryNumbers.status, "ready");
+  assert.equal(toolNumbers.status, "ready");
+  assert.equal(
+    ordinaryNumbers.signals.some(({ title }) => title === "Numbered needle or hook size"),
+    false,
+  );
+  assert.equal(
+    toolNumbers.signals.some(({ title }) => title === "Numbered needle or hook size"),
+    true,
+  );
 });
 
 test("the UI is text-only, bounded, convention-gated, and reports clipboard outcomes", () => {
