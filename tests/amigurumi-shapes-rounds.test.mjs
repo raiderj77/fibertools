@@ -24,7 +24,7 @@ test("sphere generator rejects unsupported totals", () => {
 
 test("12-round explanation distinguishes the foundation from increase rounds", () => {
   const content = readFileSync(new URL("../src/lib/toolContent.ts", import.meta.url), "utf8");
-  assert.match(content, /six-round buildup consisting of one foundation round and five increase rounds/);
-  assert.match(content, /1 foundation round and 5 increase rounds to reach 36 stitches/);
+  assert.match(content, /six buildup rounds ending at 36 stitches/);
+  assert.match(content, /one even round at 36, and five decrease rounds ending at six stitches/);
   assert.doesNotMatch(content, /six increase rounds/);
 });

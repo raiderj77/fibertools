@@ -1,14 +1,16 @@
 "use client";
 
-import { useState, useMemo, useCallback } from "react";
-
-// ── TYPES ─────────────────────────────────────────────────────────
+import { useCallback, useMemo, useState } from "react";
+import {
+  STRIPE_PATTERN_LIMITS,
+  planStripePattern,
+} from "@/lib/stripe-pattern-plan.mjs";
 
 interface ColorEntry {
   id: string;
   hex: string;
   name: string;
-  weight: number; // relative weight for randomizer
+  weight: string;
 }
 
 interface Stripe {
@@ -16,11 +18,13 @@ interface Stripe {
   rows: number;
 }
 
+type StripeMode = "random" | "fixed" | "sequence";
+
 const DEFAULT_COLORS: ColorEntry[] = [
-  { id: "c1", hex: "#4A6741", name: "Sage", weight: 1 },
-  { id: "c2", hex: "#D4A574", name: "Honey", weight: 1 },
-  { id: "c3", hex: "#8B4513", name: "Bark", weight: 1 },
-  { id: "c4", hex: "#E8D5C4", name: "Cream", weight: 1 },
+  { id: "c1", hex: "#4A6741", name: "Sage", weight: "1" },
+  { id: "c2", hex: "#D4A574", name: "Honey", weight: "1" },
+  { id: "c3", hex: "#8B4513", name: "Bark", weight: "1" },
+  { id: "c4", hex: "#E8D5C4", name: "Cream", weight: "1" },
 ];
 
 const PRESETS = [
@@ -29,13 +33,35 @@ const PRESETS = [
   { name: "🌸 Spring", colors: [{ hex: "#FFB6C1", name: "Blush" }, { hex: "#DDA0DD", name: "Lavender" }, { hex: "#F0E68C", name: "Butter" }, { hex: "#98FB98", name: "Mint" }] },
   { name: "🖤 Neutral", colors: [{ hex: "#2C2C2C", name: "Charcoal" }, { hex: "#6B6B6B", name: "Gray" }, { hex: "#D3D3D3", name: "Silver" }, { hex: "#F5F5F5", name: "Ivory" }] },
   { name: "🌈 Rainbow", colors: [{ hex: "#E74C3C", name: "Red" }, { hex: "#F39C12", name: "Orange" }, { hex: "#F1C40F", name: "Yellow" }, { hex: "#27AE60", name: "Green" }, { hex: "#2980B9", name: "Blue" }, { hex: "#8E44AD", name: "Purple" }] },
+] as const;
+
+const MODES: Array<{ id: StripeMode; label: string; description: string }> = [
+  {
+    id: "random",
+    label: "Random widths",
+    description: "Weighted color selection without immediate repeats, plus a uniformly selected whole-number width in the entered range.",
+  },
+  {
+    id: "fixed",
+    label: "Fixed width",
+    description: "Weighted color selection without immediate repeats; every stripe uses the same entered row count.",
+  },
+  {
+    id: "sequence",
+    label: "Palette sequence",
+    description: "Repeats the displayed palette order at one fixed row count. Relative color weights and the re-roll seed are ignored.",
+  },
 ];
 
-function genId() { return Math.random().toString(36).substring(2, 8); }
+const EMPTY_STRIPES: Stripe[] = [];
+const EMPTY_TOTALS: Record<string, number> = {};
 
-type StripeMode = "random" | "fixed" | "sequence";
-
-// ── COMPONENT ─────────────────────────────────────────────────────
+function genId() {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+  return `color-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+}
 
 export default function StripeGeneratorTool() {
   const [colors, setColors] = useState<ColorEntry[]>(DEFAULT_COLORS);
@@ -44,241 +70,352 @@ export default function StripeGeneratorTool() {
   const [minRows, setMinRows] = useState("2");
   const [maxRows, setMaxRows] = useState("8");
   const [totalStripes, setTotalStripes] = useState("20");
-  const [seed, setSeed] = useState(Date.now());
+  const [seed, setSeed] = useState(1);
+  const [copyStatus, setCopyStatus] = useState("");
 
-  // Add color
   const addColor = () => {
-    if (colors.length >= 12) return;
+    if (colors.length >= STRIPE_PATTERN_LIMITS.maximumColors) return;
     const hue = Math.floor(Math.random() * 360);
-    const hex = `hsl(${hue}, 60%, 50%)`;
-    // Convert HSL to hex roughly
+    const hsl = `hsl(${hue}, 60%, 50%)`;
     const canvas = typeof document !== "undefined" ? document.createElement("canvas") : null;
-    let hexVal = "#888888";
+    let hex = "#888888";
     if (canvas) {
-      canvas.width = 1; canvas.height = 1;
-      const ctx = canvas.getContext("2d");
-      if (ctx) { ctx.fillStyle = hex; ctx.fillRect(0, 0, 1, 1); const d = ctx.getImageData(0, 0, 1, 1).data; hexVal = `#${d[0].toString(16).padStart(2, "0")}${d[1].toString(16).padStart(2, "0")}${d[2].toString(16).padStart(2, "0")}`; }
+      canvas.width = 1;
+      canvas.height = 1;
+      const context = canvas.getContext("2d");
+      if (context) {
+        context.fillStyle = hsl;
+        context.fillRect(0, 0, 1, 1);
+        const data = context.getImageData(0, 0, 1, 1).data;
+        hex = `#${data[0].toString(16).padStart(2, "0")}${data[1].toString(16).padStart(2, "0")}${data[2].toString(16).padStart(2, "0")}`;
+      }
     }
-    setColors((prev) => [...prev, { id: genId(), hex: hexVal, name: `Color ${prev.length + 1}`, weight: 1 }]);
+    setColors((previous) => [
+      ...previous,
+      { id: genId(), hex, name: `Color ${previous.length + 1}`, weight: "1" },
+    ]);
   };
 
   const removeColor = (id: string) => {
-    if (colors.length <= 2) return;
-    setColors((prev) => prev.filter((c) => c.id !== id));
+    if (colors.length <= STRIPE_PATTERN_LIMITS.minimumColors) return;
+    setColors((previous) => previous.filter((color) => color.id !== id));
   };
 
-  const updateColor = (id: string, field: Partial<ColorEntry>) => {
-    setColors((prev) => prev.map((c) => c.id === id ? { ...c, ...field } : c));
+  const updateColor = (id: string, fields: Partial<ColorEntry>) => {
+    setColors((previous) => previous.map((color) => (
+      color.id === id ? { ...color, ...fields } : color
+    )));
   };
 
-  const applyPreset = (preset: typeof PRESETS[0]) => {
-    setColors(preset.colors.map((c) => ({ ...c, id: genId(), weight: 1 })));
-    setSeed(Date.now());
+  const applyPreset = (preset: (typeof PRESETS)[number]) => {
+    setColors(preset.colors.map((color) => ({ ...color, id: genId(), weight: "1" })));
+    setSeed((value) => (value + 1) >>> 0);
   };
 
-  // Generate stripe pattern
-  const stripes = useMemo(() => {
-    const count = parseInt(totalStripes) || 20;
-    const result: Stripe[] = [];
+  const calculation = useMemo(() => planStripePattern({
+    mode: stripeMode,
+    colors,
+    totalStripes,
+    fixedRows,
+    minRows,
+    maxRows,
+    seed,
+  }), [colors, fixedRows, maxRows, minRows, seed, stripeMode, totalStripes]);
 
-    if (colors.length === 0) return result;
+  const result = calculation.status === "ready" ? calculation : null;
+  const validationMessage = calculation.status === "invalid" ? calculation.message : "";
+  const stripes = result?.stripes ?? EMPTY_STRIPES;
+  const perColorRows = result?.perColorRows ?? EMPTY_TOTALS;
+  const totalRows = result?.totalRows ?? 0;
+  const activeMode = MODES.find((mode) => mode.id === stripeMode) ?? MODES[0];
 
-    // Weighted random selection
-    const pickColor = (rng: () => number, lastId?: string) => {
-      const available = colors.filter((c) => c.id !== lastId || colors.length === 1);
-      const availWeight = available.reduce((s, c) => s + c.weight, 0);
-      let r = rng() * availWeight;
-      for (const c of available) {
-        r -= c.weight;
-        if (r <= 0) return c.id;
-      }
-      return available[available.length - 1].id;
-    };
+  const reroll = useCallback(() => {
+    setSeed((value) => (value + 1) >>> 0);
+    setCopyStatus("");
+  }, []);
 
-    // Simple seeded RNG
-    let s = seed;
-    const rng = () => { s = (s * 1664525 + 1013904223) & 0xffffffff; return (s >>> 0) / 0xffffffff; };
-
-    if (stripeMode === "sequence") {
-      const rows = parseInt(fixedRows) || 4;
-      for (let i = 0; i < count; i++) {
-        result.push({ colorId: colors[i % colors.length].id, rows });
-      }
-    } else if (stripeMode === "fixed") {
-      const rows = parseInt(fixedRows) || 4;
-      let lastId: string | undefined;
-      for (let i = 0; i < count; i++) {
-        const colorId = pickColor(rng, lastId);
-        result.push({ colorId, rows });
-        lastId = colorId;
-      }
-    } else {
-      const min = parseInt(minRows) || 2;
-      const max = parseInt(maxRows) || 8;
-      let lastId: string | undefined;
-      for (let i = 0; i < count; i++) {
-        const colorId = pickColor(rng, lastId);
-        const rows = min + Math.floor(rng() * (max - min + 1));
-        result.push({ colorId, rows });
-        lastId = colorId;
-      }
+  const copyPattern = async () => {
+    if (!result) return;
+    const lines = result.stripes.map((stripe: Stripe, index: number) => {
+      const color = colors.find((candidate) => candidate.id === stripe.colorId);
+      return `Stripe ${index + 1}: ${color?.name || "Unnamed color"}, ${stripe.rows} rows`;
+    });
+    try {
+      await navigator.clipboard.writeText(lines.join("\n"));
+      setCopyStatus("Pattern copied.");
+    } catch {
+      setCopyStatus("Copy failed. Select and copy the pattern manually.");
     }
-
-    return result;
-  }, [colors, stripeMode, fixedRows, minRows, maxRows, totalStripes, seed]);
-
-  // Stats
-  const stats = useMemo(() => {
-    const perColor: Record<string, number> = {};
-    let totalRows = 0;
-    for (const s of stripes) {
-      perColor[s.colorId] = (perColor[s.colorId] || 0) + s.rows;
-      totalRows += s.rows;
-    }
-    return { perColor, totalRows };
-  }, [stripes]);
-
-  const reroll = useCallback(() => setSeed(Date.now()), []);
+  };
 
   return (
     <div className="space-y-6">
-      {/* Color palette */}
-      <div>
-        <div className="flex items-center justify-between mb-3">
-          <label className="label mb-0">Colors ({colors.length})</label>
-          <div className="flex gap-2">
-            {colors.length < 12 && (
-              <button type="button" onClick={addColor} className="text-sage-600 dark:text-sage-400 text-sm hover:underline">+ Add color</button>
-            )}
-          </div>
+      <div className="rounded-xl border border-sage-200 bg-sage-50/60 p-4 text-sm text-bark-700 dark:border-sage-800 dark:bg-sage-950/20 dark:text-cream-300">
+        <p className="font-semibold text-bark-800 dark:text-cream-100">Row-sequence planner only</p>
+        <p className="mt-1">
+          This tool assigns colors and row counts to stripes. Row shares are not yarn consumption,
+          yardage, or per-color purchasing quantities.
+        </p>
+      </div>
+
+      <fieldset>
+        <legend className="label mb-2">Pattern mode</legend>
+        <div className="grid gap-2 sm:grid-cols-3" role="group" aria-label="Stripe pattern mode">
+          {MODES.map((mode) => (
+            <button
+              key={mode.id}
+              type="button"
+              onClick={() => { setStripeMode(mode.id); setCopyStatus(""); }}
+              aria-pressed={stripeMode === mode.id}
+              className={`min-h-11 rounded-xl border px-3 py-2 text-sm font-medium transition-colors ${
+                stripeMode === mode.id
+                  ? "border-sage-600 bg-sage-600 text-white"
+                  : "border-bark-200 bg-white text-bark-700 hover:border-sage-400 dark:border-bark-700 dark:bg-bark-800 dark:text-cream-300"
+              }`}
+            >
+              {mode.label}
+            </button>
+          ))}
+        </div>
+        <p className="mt-2 text-xs text-bark-400 dark:text-bark-500">{activeMode.description}</p>
+      </fieldset>
+
+      <fieldset>
+        <legend className="label mb-2">Color palette ({colors.length})</legend>
+        <div className="mb-3 flex justify-end">
+          {colors.length < STRIPE_PATTERN_LIMITS.maximumColors && (
+            <button type="button" onClick={addColor} className="text-sm text-sage-600 hover:underline dark:text-sage-400">
+              + Add color
+            </button>
+          )}
         </div>
 
-        {/* Presets */}
-        <div className="flex flex-wrap gap-2 mb-3">
-          {PRESETS.map((p) => (
-            <button key={p.name} type="button" onClick={() => applyPreset(p)}
-              className="px-3 py-1.5 text-xs font-medium rounded-lg bg-cream-200 dark:bg-bark-700 text-bark-600 dark:text-bark-300 hover:bg-cream-300 dark:hover:bg-bark-600 transition-colors">
-              {p.name}
+        <p className="mb-3 text-xs text-bark-400 dark:text-bark-500">
+          In randomized modes, relative weight is a whole number from 1 to {STRIPE_PATTERN_LIMITS.maximumRelativeWeight}
+          and changes the odds among colors eligible for the next stripe. It does not represent yarn on hand.
+          With two colors, avoiding an immediate repeat means the plan alternates after the first pick.
+          Palette sequence mode ignores weights.
+        </p>
+
+        <div className="mb-3 flex flex-wrap gap-2" role="group" aria-label="Color palette presets">
+          {PRESETS.map((preset) => (
+            <button
+              key={preset.name}
+              type="button"
+              onClick={() => applyPreset(preset)}
+              className="rounded-lg bg-cream-200 px-3 py-1.5 text-xs font-medium text-bark-600 transition-colors hover:bg-cream-300 dark:bg-bark-700 dark:text-bark-300 dark:hover:bg-bark-600"
+            >
+              {preset.name}
             </button>
           ))}
         </div>
 
-        <div className="space-y-2">
-          {colors.map((c) => (
-            <div key={c.id} className="flex items-center gap-3">
-              <input type="color" value={c.hex} onChange={(e) => updateColor(c.id, { hex: e.target.value })}
-                className="w-10 h-10 rounded-lg border-2 border-cream-300 dark:border-bark-600 cursor-pointer p-0.5" />
-              <input type="text" value={c.name} onChange={(e) => updateColor(c.id, { name: e.target.value })}
-                className="input flex-1 text-sm" maxLength={20} />
-              <div className="flex items-center gap-1">
-                <label className="text-xs text-bark-400 dark:text-bark-500">Wt:</label>
-                <input type="number" value={c.weight} onChange={(e) => updateColor(c.id, { weight: Math.max(0.1, parseFloat(e.target.value) || 1) })}
-                  className="input w-16 text-sm text-center" min="0.1" step="0.5" inputMode="decimal" />
+        <div className="space-y-3">
+          {colors.map((color, index) => {
+            const colorInputId = `stripe-color-${color.id}`;
+            const nameInputId = `stripe-name-${color.id}`;
+            const weightInputId = `stripe-weight-${color.id}`;
+            return (
+              <div key={color.id} className="grid grid-cols-[auto_minmax(0,1fr)] items-end gap-3 sm:grid-cols-[auto_minmax(0,1fr)_8rem_auto]">
+                <div>
+                  <label htmlFor={colorInputId} className="sr-only">Color {index + 1} swatch</label>
+                  <input
+                    id={colorInputId}
+                    type="color"
+                    value={color.hex}
+                    onChange={(event) => updateColor(color.id, { hex: event.target.value })}
+                    className="h-11 w-11 cursor-pointer rounded-lg border-2 border-cream-300 p-0.5 dark:border-bark-600"
+                  />
+                </div>
+                <div>
+                  <label htmlFor={nameInputId} className="label text-xs">Color {index + 1} name</label>
+                  <input
+                    id={nameInputId}
+                    type="text"
+                    value={color.name}
+                    onChange={(event) => updateColor(color.id, { name: event.target.value })}
+                    className="input text-sm"
+                    maxLength={20}
+                  />
+                </div>
+                <div className="col-start-2 sm:col-start-auto">
+                  <label htmlFor={weightInputId} className="label text-xs">Relative weight</label>
+                  <input
+                    id={weightInputId}
+                    type="number"
+                    value={color.weight}
+                    onChange={(event) => updateColor(color.id, { weight: event.target.value })}
+                    className="input text-center text-sm"
+                    min="1"
+                    max={STRIPE_PATTERN_LIMITS.maximumRelativeWeight}
+                    step="1"
+                    inputMode="numeric"
+                    disabled={stripeMode === "sequence"}
+                  />
+                </div>
+                {colors.length > STRIPE_PATTERN_LIMITS.minimumColors && (
+                  <button
+                    type="button"
+                    onClick={() => removeColor(color.id)}
+                    className="min-h-11 text-sm text-bark-400 hover:text-rose-500"
+                    aria-label={`Remove ${color.name || `color ${index + 1}`}`}
+                  >
+                    ✕
+                  </button>
+                )}
               </div>
-              {colors.length > 2 && (
-                <button type="button" onClick={() => removeColor(c.id)} className="text-bark-400 hover:text-rose-500 text-sm">✕</button>
-              )}
-            </div>
-          ))}
+            );
+          })}
         </div>
-      </div>
+      </fieldset>
 
-      {/* Stripe settings */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label className="label">Pattern Mode</label>
-          <select value={stripeMode} onChange={(e) => setStripeMode(e.target.value as StripeMode)} className="select">
-            <option value="random">Random widths (weighted)</option>
-            <option value="fixed">Fixed width (random colors)</option>
-            <option value="sequence">Sequence (A-B-C-A-B-C…)</option>
-          </select>
-        </div>
-
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {stripeMode === "random" ? (
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="label text-sm">Min rows</label>
-              <input type="number" value={minRows} onChange={(e) => setMinRows(e.target.value)} className="input" min="1" inputMode="numeric" />
+              <label htmlFor="stripe-min-rows" className="label text-sm">Minimum rows</label>
+              <input
+                id="stripe-min-rows"
+                type="number"
+                value={minRows}
+                onChange={(event) => setMinRows(event.target.value)}
+                className="input"
+                min="1"
+                max={STRIPE_PATTERN_LIMITS.maximumRowsPerStripe}
+                step="1"
+                inputMode="numeric"
+              />
             </div>
             <div>
-              <label className="label text-sm">Max rows</label>
-              <input type="number" value={maxRows} onChange={(e) => setMaxRows(e.target.value)} className="input" min="1" inputMode="numeric" />
+              <label htmlFor="stripe-max-rows" className="label text-sm">Maximum rows</label>
+              <input
+                id="stripe-max-rows"
+                type="number"
+                value={maxRows}
+                onChange={(event) => setMaxRows(event.target.value)}
+                className="input"
+                min="1"
+                max={STRIPE_PATTERN_LIMITS.maximumRowsPerStripe}
+                step="1"
+                inputMode="numeric"
+              />
             </div>
           </div>
         ) : (
           <div>
-            <label className="label text-sm">Rows per stripe</label>
-            <input type="number" value={fixedRows} onChange={(e) => setFixedRows(e.target.value)} className="input" min="1" inputMode="numeric" />
+            <label htmlFor="stripe-fixed-rows" className="label text-sm">Rows per stripe</label>
+            <input
+              id="stripe-fixed-rows"
+              type="number"
+              value={fixedRows}
+              onChange={(event) => setFixedRows(event.target.value)}
+              className="input"
+              min="1"
+              max={STRIPE_PATTERN_LIMITS.maximumRowsPerStripe}
+              step="1"
+              inputMode="numeric"
+            />
           </div>
         )}
 
         <div>
-          <label className="label text-sm">Number of stripes</label>
-          <input type="number" value={totalStripes} onChange={(e) => setTotalStripes(e.target.value)} className="input" min="1" max="200" inputMode="numeric" />
+          <label htmlFor="stripe-count" className="label text-sm">Number of stripes</label>
+          <input
+            id="stripe-count"
+            type="number"
+            value={totalStripes}
+            onChange={(event) => setTotalStripes(event.target.value)}
+            className="input"
+            min="1"
+            max={STRIPE_PATTERN_LIMITS.maximumStripes}
+            step="1"
+            inputMode="numeric"
+          />
         </div>
 
-        <div className="flex items-end">
-          <button type="button" onClick={reroll} className="btn-primary w-full">
-            🎲 Re-roll Pattern
+        <div className="flex items-end sm:col-span-2">
+          <button
+            type="button"
+            onClick={reroll}
+            disabled={stripeMode === "sequence" || !result}
+            className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            Re-roll weighted color plan
           </button>
         </div>
       </div>
 
-      {/* Visual preview */}
-      <div>
-        <p className="label">Preview ({stats.totalRows} rows total)</p>
-        <div className="rounded-xl overflow-hidden border border-cream-300 dark:border-bark-600" style={{ maxHeight: "400px", overflowY: "auto" }}>
-          {stripes.map((s, i) => {
-            const color = colors.find((c) => c.id === s.colorId);
-            return (
+      <div aria-live="polite" aria-atomic="true">
+        {validationMessage ? (
+          <div role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700 dark:border-rose-800 dark:bg-rose-900/10 dark:text-rose-300">
+            {validationMessage}
+          </div>
+        ) : result ? (
+          <div className="space-y-6">
+            <div>
+              <p className="label">Preview ({result.totalRows} planned rows)</p>
+              <p className="mb-2 text-xs text-bark-400 dark:text-bark-500">
+                Visual stripe height is capped for readability; the accessible label and copied plan retain each exact row count.
+              </p>
               <div
-                key={i}
-                style={{
-                  backgroundColor: color?.hex || "#ccc",
-                  height: `${Math.max(4, s.rows * 4)}px`,
-                  minHeight: "4px",
-                }}
-                title={`${color?.name}: ${s.rows} rows`}
-              />
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Per-color breakdown */}
-      <div className="result-card">
-        <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-3">Per-Color Breakdown</h3>
-        <div className="space-y-2">
-          {colors.map((c) => {
-            const rows = stats.perColor[c.id] || 0;
-            const pct = stats.totalRows > 0 ? Math.round((rows / stats.totalRows) * 100) : 0;
-            return (
-              <div key={c.id} className="flex items-center gap-3">
-                <div className="w-5 h-5 rounded" style={{ backgroundColor: c.hex }} />
-                <span className="text-sm text-bark-700 dark:text-cream-200 w-24 truncate">{c.name}</span>
-                <div className="flex-1 h-3 bg-cream-200 dark:bg-bark-700 rounded-full overflow-hidden">
-                  <div className="h-full rounded-full transition-all" style={{ width: `${pct}%`, backgroundColor: c.hex }} />
-                </div>
-                <span className="text-xs text-bark-500 dark:text-bark-400 w-20 text-right">{rows} rows ({pct}%)</span>
+                className="max-h-[400px] overflow-y-auto rounded-xl border border-cream-300 dark:border-bark-600"
+                role="list"
+                aria-label="Generated stripe row plan"
+              >
+                {stripes.map((stripe: Stripe, index: number) => {
+                  const color = colors.find((candidate) => candidate.id === stripe.colorId);
+                  const name = color?.name || "Unnamed color";
+                  return (
+                    <div
+                      key={`${index}-${stripe.colorId}`}
+                      role="listitem"
+                      aria-label={`Stripe ${index + 1}: ${name}, ${stripe.rows} rows`}
+                      style={{
+                        backgroundColor: color?.hex || "#cccccc",
+                        height: `${Math.max(4, Math.min(80, stripe.rows * 4))}px`,
+                      }}
+                    />
+                  );
+                })}
               </div>
-            );
-          })}
-        </div>
-        <p className="text-xs text-bark-400 dark:text-bark-500 mt-3">
-          💡 Adjust the &ldquo;Wt&rdquo; (weight) slider to use more of colors you have extra yarn for.
-        </p>
+            </div>
+
+            <div className="result-card">
+              <h3 className="mb-3 font-semibold text-bark-700 dark:text-cream-200">Planned Row Share by Color</h3>
+              <div className="space-y-2">
+                {colors.map((color) => {
+                  const rows = perColorRows[color.id] || 0;
+                  const percent = totalRows > 0 ? Math.round((rows / totalRows) * 100) : 0;
+                  return (
+                    <div key={color.id} className="flex items-center gap-3">
+                      <div className="h-5 w-5 rounded" style={{ backgroundColor: color.hex }} aria-hidden="true" />
+                      <span className="w-24 truncate text-sm text-bark-700 dark:text-cream-200">{color.name || "Unnamed"}</span>
+                      <div className="h-3 flex-1 overflow-hidden rounded-full bg-cream-200 dark:bg-bark-700" aria-hidden="true">
+                        <div className="h-full rounded-full" style={{ width: `${percent}%`, backgroundColor: color.hex }} />
+                      </div>
+                      <span className="w-24 text-right text-xs text-bark-500 dark:text-bark-400">{rows} rows ({percent}%)</span>
+                    </div>
+                  );
+                })}
+              </div>
+              <p className="mt-3 text-xs text-bark-400 dark:text-bark-500">
+                Percentages describe planned rows only. Different stitches, widths, gauges, and tensions can use different amounts of yarn per row.
+              </p>
+            </div>
+          </div>
+        ) : null}
       </div>
 
-      {/* Actions */}
-      <div className="flex gap-2">
-        <button type="button" onClick={() => {
-          const lines = stripes.map((s, i) => {
-            const c = colors.find((cl) => cl.id === s.colorId);
-            return `Stripe ${i + 1}: ${c?.name}, ${s.rows} rows`;
-          });
-          navigator.clipboard.writeText(lines.join("\n"));
-        }} className="btn-secondary text-sm">📋 Copy pattern</button>
-        <button type="button" onClick={() => window.print()} className="btn-secondary text-sm">🖨️ Print</button>
+      <div className="flex flex-wrap gap-2">
+        <button type="button" onClick={() => void copyPattern()} disabled={!result} className="btn-secondary text-sm disabled:opacity-50">
+          Copy row plan
+        </button>
+        <button type="button" onClick={() => window.print()} disabled={!result} className="btn-secondary text-sm disabled:opacity-50">
+          Print
+        </button>
+        <span className="self-center text-xs text-bark-500 dark:text-bark-400" role="status" aria-live="polite">
+          {copyStatus}
+        </span>
       </div>
     </div>
   );

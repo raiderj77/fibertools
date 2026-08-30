@@ -498,32 +498,21 @@ export default function ToolLayout({
       {/* Project tracking callout */}
       <section className="mt-12">
         <div className="bg-cream-100 rounded-2xl border border-cream-300 p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <span className="text-3xl flex-shrink-0">🎙️</span>
+          <span className="text-3xl flex-shrink-0">🧶</span>
           <div className="flex-1 min-w-0">
             <h3 className="font-semibold text-bark-700 text-sm mb-1">
-              Ready to start your project?
+              Keep your place while you work
             </h3>
             <p className="text-sm text-bark-500 leading-relaxed">
-              {"You've done the planning, now keep track while you craft. "}
-              <a
-                href="https://mycrochetkit.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-plum-500 hover:text-plum-600 hover:underline font-medium"
-              >
-                MyCrochetKit
-              </a>
-              {" is a separate voice-activated row-counter service. Review its current features, pricing, privacy, and storage terms before relying on it for project records."}
+              Use the FiberTools stitch counter for rows, rounds, repeats, and local project notes.
             </p>
           </div>
-          <a
-            href="https://mycrochetkit.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/stitch-counter"
             className="btn-primary text-sm whitespace-nowrap flex-shrink-0"
           >
-            Visit MyCrochetKit →
-          </a>
+            Open stitch counter →
+          </Link>
         </div>
       </section>
 

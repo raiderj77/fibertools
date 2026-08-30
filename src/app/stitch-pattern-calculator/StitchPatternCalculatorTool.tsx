@@ -2,6 +2,24 @@
 
 import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
+import {
+  MAX_EDGE_STITCHES_PER_SIDE,
+  MAX_GAUGE_STITCHES,
+  MAX_STITCH_COUNT,
+  MAX_STITCH_MULTIPLE,
+  MAX_STITCH_PATTERNS,
+  MAX_STITCH_PLUS,
+  MAX_TARGET_WIDTH,
+  MAX_WIDTH_TOLERANCE,
+  deriveGaugeStitchRange,
+  solveStitchPatternCounts,
+} from "@/lib/stitch-pattern-plan.mjs";
+import {
+  MAX_ROW_PLANNER_SECTIONS,
+  MAX_ROW_REPEAT,
+  MAX_TARGET_SECTION_ROWS,
+  buildRowPatternPlan,
+} from "@/lib/row-pattern-plan.mjs";
 
 // ── TYPES ─────────────────────────────────────────────────────────
 
@@ -22,6 +40,63 @@ interface PatternEntry {
   plus: number;
   name: string;
 }
+
+interface SolverFailure {
+  ok: false;
+  reason: string;
+  error: string;
+}
+
+interface GaugeRangeSuccess {
+  ok: true;
+  stitchesPerInch: number;
+  minCount: number;
+  maxCount: number;
+  targetWidth: number;
+  tolerance: number;
+}
+
+interface PatternPlanSuccess {
+  ok: true;
+  lcm: number;
+  counts: number[];
+  patterns: PatternEntry[];
+  minCount: number;
+  maxCount: number;
+  edgeStitchesPerSide: number;
+  totalEdgeStitches: number;
+  totalMatches: number;
+  truncated: boolean;
+}
+
+interface CalculatorResult extends PatternPlanSuccess {
+  validEntries: PatternEntry[];
+  gaugePerInch: number;
+  effectiveMin: number;
+  effectiveMax: number;
+}
+
+type GaugeRangeOutcome = GaugeRangeSuccess | SolverFailure;
+type PatternPlanOutcome = PatternPlanSuccess | SolverFailure;
+
+interface RowPlanSection {
+  id: number;
+  stitch: string;
+  rowRepeat: number;
+  targetRows: number;
+  fullRepeats: number;
+  actualRows: number;
+  addedRows: number;
+}
+
+interface RowPlanSuccess {
+  ok: true;
+  sections: RowPlanSection[];
+  totalTargetRows: number;
+  totalActualRows: number;
+}
+
+type RowPlanOutcome = RowPlanSuccess | SolverFailure;
 
 type Tab = "calculator" | "database" | "planner";
 
@@ -92,72 +167,6 @@ const STITCH_DATABASE: StitchPattern[] = [
   { name: "Stockinette / SC rows", multiple: 1, plus: 0, minRows: 1, craft: "both", category: "solid", difficulty: 1, notes: "Basic flat fabric. Any count works." },
 ];
 
-// ── MATH UTILITIES ────────────────────────────────────────────────
-
-function gcd(a: number, b: number): number {
-  a = Math.abs(a);
-  b = Math.abs(b);
-  while (b) {
-    [a, b] = [b, a % b];
-  }
-  return a;
-}
-
-function lcm(a: number, b: number): number {
-  return (a / gcd(a, b)) * b;
-}
-
-function lcmArray(nums: number[]): number {
-  return nums.reduce((acc, n) => lcm(acc, n), 1);
-}
-
-/**
- * Given multiples with plus values and a width range,
- * find stitch counts that satisfy ALL patterns:
- *   count ≡ plus_i (mod multiple_i) for every i
- * Also adds edge stitches on top.
- */
-function findCompatibleCounts(
-  patterns: PatternEntry[],
-  minWidth: number,
-  maxWidth: number,
-  edgeStitches: number
-): number[] {
-  if (patterns.length === 0) return [];
-
-  const multOnly = patterns.map((p) => p.multiple);
-  const step = lcmArray(multOnly);
-
-  // Find a starting base that satisfies all plus conditions
-  // Brute force within one LCM cycle, fine since LCMs are small
-  let base = -1;
-  for (let candidate = 0; candidate < step; candidate++) {
-    const allMatch = patterns.every(
-      (p) => (candidate - p.plus + 1000 * p.multiple) % p.multiple === 0
-    );
-    if (allMatch) {
-      base = candidate;
-      break;
-    }
-  }
-
-  if (base === -1) return []; // No solution (conflicting plus values)
-
-  const results: number[] = [];
-  const searchMin = Math.max(1, minWidth - edgeStitches);
-  const searchMax = maxWidth - edgeStitches;
-
-  // Start from nearest candidate at or above searchMin
-  let start = base;
-  while (start < searchMin) start += step;
-
-  for (let c = start; c <= searchMax; c += step) {
-    if (c > 0) results.push(c + edgeStitches);
-  }
-
-  return results;
-}
-
 // ── CATEGORY META ─────────────────────────────────────────────────
 
 const CATEGORY_META: Record<string, { label: string; color: string }> = {
@@ -208,41 +217,57 @@ export default function StitchPatternCalculatorTool() {
 
   // Planner tab
   const [plannerSections, setPlannerSections] = useState<
-    { id: number; stitch: string; rowRepeat: number; targetRows: number }[]
+    { id: number; stitch: string; rowRepeat: string; targetRows: string }[]
   >([
-    { id: 1, stitch: "Waffle Stitch", rowRepeat: 4, targetRows: 20 },
-    { id: 2, stitch: "Moss Stitch", rowRepeat: 2, targetRows: 16 },
-    { id: 3, stitch: "Shell Stitch", rowRepeat: 2, targetRows: 12 },
+    { id: 1, stitch: "Waffle Stitch", rowRepeat: "4", targetRows: "20" },
+    { id: 2, stitch: "Moss Stitch", rowRepeat: "2", targetRows: "16" },
+    { id: 3, stitch: "Shell Stitch", rowRepeat: "2", targetRows: "12" },
   ]);
   const [plannerNextId, setPlannerNextId] = useState(4);
 
   // ── Gauge-derived range ──────────────────────────────────────
-  const gaugePerInch = useGauge
-    ? (parseFloat(gaugeStitches) || 0) / (gaugeOver === "4" ? 4 : 1)
-    : 0;
+  const gaugeRange = useMemo<GaugeRangeOutcome | null>(() => {
+    if (!useGauge) return null;
+    return deriveGaugeStitchRange({
+      gaugeStitches: Number(gaugeStitches),
+      gaugeSpan: Number(gaugeOver),
+      targetWidth: Number(targetWidthIn),
+      tolerance: Number(widthTolerance),
+    }) as GaugeRangeOutcome;
+  }, [gaugeOver, gaugeStitches, targetWidthIn, useGauge, widthTolerance]);
 
-  const effectiveMin = useGauge && gaugePerInch > 0
-    ? Math.floor(gaugePerInch * ((parseFloat(targetWidthIn) || 50) - (parseFloat(widthTolerance) || 2)))
-    : parseInt(minWidth) || 100;
-
-  const effectiveMax = useGauge && gaugePerInch > 0
-    ? Math.ceil(gaugePerInch * ((parseFloat(targetWidthIn) || 50) + (parseFloat(widthTolerance) || 2)))
-    : parseInt(maxWidth) || 200;
+  const effectiveMin = useGauge
+    ? (gaugeRange?.ok ? gaugeRange.minCount : 0)
+    : Number(minWidth);
+  const effectiveMax = useGauge
+    ? (gaugeRange?.ok ? gaugeRange.maxCount : 0)
+    : Number(maxWidth);
 
   // ── Calculator results ────────────────────────────────────────
 
-  const calcResults = useMemo(() => {
-    const validEntries = entries.filter((e) => e.multiple > 0);
-    if (validEntries.length === 0) return null;
+  const calcOutcome = useMemo<PatternPlanOutcome>(() => {
+    if (useGauge && gaugeRange && !gaugeRange.ok) return gaugeRange;
+    if (useGauge && !gaugeRange) {
+      return { ok: false, reason: "invalid-gauge", error: "Enter a valid gauge range." };
+    }
+    return solveStitchPatternCounts({
+      patterns: entries,
+      minCount: effectiveMin,
+      maxCount: effectiveMax,
+      edgeStitchesPerSide: Number(edgeStitches),
+    }) as PatternPlanOutcome;
+  }, [edgeStitches, effectiveMax, effectiveMin, entries, gaugeRange, useGauge]);
 
-    const multiples = validEntries.map((e) => e.multiple);
-    const lcmVal = lcmArray(multiples);
-    const edge = parseInt(edgeStitches) || 0;
-
-    const counts = findCompatibleCounts(validEntries, effectiveMin, effectiveMax, edge);
-
-    return { lcm: lcmVal, counts, validEntries, edge, gaugePerInch: useGauge ? gaugePerInch : 0, effectiveMin, effectiveMax };
-  }, [entries, effectiveMin, effectiveMax, edgeStitches, useGauge, gaugePerInch]);
+  const calcResults: CalculatorResult | null = calcOutcome.ok
+    ? {
+        ...calcOutcome,
+        validEntries: calcOutcome.patterns,
+        gaugePerInch: useGauge && gaugeRange?.ok ? gaugeRange.stitchesPerInch : 0,
+        effectiveMin: calcOutcome.minCount,
+        effectiveMax: calcOutcome.maxCount,
+      }
+    : null;
+  const calcError = !calcOutcome.ok ? calcOutcome.error : "";
 
   // ── Database filtering ────────────────────────────────────────
 
@@ -262,19 +287,18 @@ export default function StitchPatternCalculatorTool() {
 
   // ── Planner calculations ──────────────────────────────────────
 
-  const plannerResults = useMemo(() => {
-    return plannerSections.map((s) => {
-      const fullRepeats = Math.round(s.targetRows / s.rowRepeat);
-      const actualRows = fullRepeats * s.rowRepeat;
-      return { ...s, fullRepeats, actualRows };
-    });
-  }, [plannerSections]);
-
-  const totalPlannerRows = plannerResults.reduce((sum, r) => sum + r.actualRows, 0);
+  const plannerOutcome = useMemo<RowPlanOutcome>(() => (
+    buildRowPatternPlan(plannerSections) as RowPlanOutcome
+  ), [plannerSections]);
+  const plannerPlan = plannerOutcome.ok ? plannerOutcome : null;
+  const plannerResults = plannerPlan?.sections ?? [];
+  const totalPlannerRows = plannerPlan?.totalActualRows ?? 0;
+  const plannerError = !plannerOutcome.ok ? plannerOutcome.error : "";
 
   // ── Handlers ──────────────────────────────────────────────────
 
   const addEntry = () => {
+    if (entries.length >= MAX_STITCH_PATTERNS) return;
     setEntries([...entries, { id: nextId, multiple: 2, plus: 0, name: "" }]);
     setNextId(nextId + 1);
   };
@@ -289,6 +313,7 @@ export default function StitchPatternCalculatorTool() {
   };
 
   const addFromDatabase = (stitch: StitchPattern) => {
+    if (entries.length >= MAX_STITCH_PATTERNS) return;
     setEntries([
       ...entries,
       { id: nextId, multiple: stitch.multiple, plus: stitch.plus, name: stitch.name },
@@ -298,9 +323,10 @@ export default function StitchPatternCalculatorTool() {
   };
 
   const addPlannerSection = () => {
+    if (plannerSections.length >= MAX_ROW_PLANNER_SECTIONS) return;
     setPlannerSections([
       ...plannerSections,
-      { id: plannerNextId, stitch: "", rowRepeat: 2, targetRows: 12 },
+      { id: plannerNextId, stitch: "", rowRepeat: "2", targetRows: "12" },
     ]);
     setPlannerNextId(plannerNextId + 1);
   };
@@ -312,8 +338,8 @@ export default function StitchPatternCalculatorTool() {
 
   const updatePlannerSection = (
     id: number,
-    field: keyof (typeof plannerSections)[0],
-    value: string | number
+    field: "stitch" | "rowRepeat" | "targetRows",
+    value: string
   ) => {
     setPlannerSections(plannerSections.map((s) => (s.id === id ? { ...s, [field]: value } : s)));
   };
@@ -329,7 +355,8 @@ export default function StitchPatternCalculatorTool() {
       ),
       ``,
       `LCM of multiples: ${calcResults.lcm}`,
-      `Edge stitches: ${calcResults.edge}`,
+      `Edge stitches: ${calcResults.edgeStitchesPerSide} per side (${calcResults.totalEdgeStitches} total)`,
+      `Arithmetic reference only: confirm the pattern, construction, gauge, fit, and yarn separately.`,
     ];
     if (calcResults.gaugePerInch > 0) {
       lines.push(`Gauge: ${gaugeStitches} sts / ${gaugeOver === "4" ? "4 in" : "1 in"} (${calcResults.gaugePerInch.toFixed(2)} per inch)`);
@@ -345,6 +372,9 @@ export default function StitchPatternCalculatorTool() {
           })
         : ["  No compatible counts in this range."]),
     );
+    if (calcResults.truncated) {
+      lines.push(`Showing the first ${calcResults.counts.length.toLocaleString()} of ${calcResults.totalMatches.toLocaleString()} arithmetic matches.`);
+    }
     navigator.clipboard.writeText(lines.join("\n"));
   };
 
@@ -353,7 +383,7 @@ export default function StitchPatternCalculatorTool() {
   return (
     <div className="space-y-6">
       {/* Tabs */}
-      <div className="flex gap-1 p-1 bg-cream-200/60 dark:bg-bark-700/60 rounded-lg">
+      <div className="flex flex-wrap gap-1 p-1 bg-cream-200/60 dark:bg-bark-700/60 rounded-lg" role="group" aria-label="Stitch pattern tool view">
         {(
           [
             { key: "calculator", label: "🧮 Multiple Calculator" },
@@ -363,7 +393,9 @@ export default function StitchPatternCalculatorTool() {
         ).map(({ key, label }) => (
           <button
             key={key}
+            type="button"
             onClick={() => setTab(key)}
+            aria-pressed={tab === key}
             className={`flex-1 py-2 px-3 text-sm font-medium rounded-md transition-all ${
               tab === key
                 ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm"
@@ -385,7 +417,12 @@ export default function StitchPatternCalculatorTool() {
                 Stitch Patterns
                 <Tooltip text="Enter the stitch multiple for each pattern you want to combine. Add the '+' value if the pattern is 'multiple of X plus Y'." />
               </label>
-              <button onClick={addEntry} className="btn-secondary text-sm">
+              <button
+                type="button"
+                onClick={addEntry}
+                className="btn-secondary text-sm"
+                disabled={entries.length >= MAX_STITCH_PATTERNS}
+              >
                 + Add Pattern
               </button>
             </div>
@@ -393,56 +430,68 @@ export default function StitchPatternCalculatorTool() {
             {entries.map((entry, i) => (
               <div
                 key={entry.id}
-                className="flex items-center gap-2 p-3 bg-cream-100/50 dark:bg-bark-700/50 rounded-lg"
+                className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 rounded-lg bg-cream-100/50 p-3 dark:bg-bark-700/50 sm:flex"
               >
                 <span className="text-xs font-bold text-bark-400 dark:text-bark-500 w-5 text-center">
                   {i + 1}
                 </span>
                 <input
+                  id={`pattern-name-${entry.id}`}
                   type="text"
                   value={entry.name}
                   onChange={(e) => updateEntry(entry.id, "name", e.target.value)}
                   placeholder="Pattern name (optional)"
                   className="input flex-1 min-w-0"
+                  aria-label={`Pattern ${i + 1} name`}
                 />
-                <div className="flex items-center gap-1">
-                  <span className="text-xs text-bark-400 dark:text-bark-500 whitespace-nowrap">
+                <div className="col-span-2 flex flex-wrap items-center gap-1 sm:col-auto sm:flex-nowrap">
+                  <label htmlFor={`pattern-multiple-${entry.id}`} className="text-xs text-bark-400 dark:text-bark-500 whitespace-nowrap">
                     Multiple of
-                  </span>
+                  </label>
                   <input
+                    id={`pattern-multiple-${entry.id}`}
                     type="number"
                     min={1}
+                    max={MAX_STITCH_MULTIPLE}
+                    step={1}
                     value={entry.multiple || ""}
                     onChange={(e) =>
-                      updateEntry(entry.id, "multiple", parseInt(e.target.value) || 0)
+                      updateEntry(entry.id, "multiple", Number(e.target.value))
                     }
                     className="input w-16 text-center"
                   />
                   <span className="text-xs text-bark-400 dark:text-bark-500">+</span>
                   <input
+                    id={`pattern-plus-${entry.id}`}
                     type="number"
                     min={0}
+                    max={MAX_STITCH_PLUS}
+                    step={1}
                     value={entry.plus || ""}
                     onChange={(e) =>
-                      updateEntry(entry.id, "plus", parseInt(e.target.value) || 0)
+                      updateEntry(entry.id, "plus", Number(e.target.value))
                     }
                     className="input w-14 text-center"
                     placeholder="0"
+                    aria-label={`Pattern ${i + 1} additional stitches`}
                   />
                 </div>
                 <button
+                  type="button"
                   onClick={() => removeEntry(entry.id)}
                   className="text-bark-400 hover:text-rose-500 transition-colors p-1"
                   disabled={entries.length <= 1}
-                  title="Remove"
+                  aria-label={`Remove pattern ${i + 1}`}
                 >
                   ✕
                 </button>
               </div>
             ))}
             <p className="text-xs text-bark-400 dark:text-bark-500">
+              Use no more than {MAX_STITCH_PATTERNS} patterns; multiples are limited to {MAX_STITCH_MULTIPLE.toLocaleString()}.
+              {" "}
               💡 Not sure about your stitch multiples? Check the{" "}
-              <button onClick={() => setTab("database")} className="underline text-sage-600 dark:text-sage-400">
+              <button type="button" onClick={() => setTab("database")} className="underline text-sage-600 dark:text-sage-400">
                 Stitch Library
               </button>{" "}
               and add patterns directly.
@@ -452,7 +501,10 @@ export default function StitchPatternCalculatorTool() {
           {/* Gauge toggle */}
           <div className="rounded-xl border border-cream-200 dark:border-bark-700 overflow-hidden">
             <button
+              type="button"
               onClick={() => setUseGauge(!useGauge)}
+              aria-expanded={useGauge}
+              aria-controls="stitch-pattern-gauge-controls"
               className="w-full flex items-center justify-between p-4 hover:bg-cream-50 dark:hover:bg-bark-700/50 transition-colors"
             >
               <div className="flex items-center gap-2">
@@ -470,19 +522,21 @@ export default function StitchPatternCalculatorTool() {
             </button>
 
             {useGauge && (
-              <div className="border-t border-cream-200 dark:border-bark-700 p-4 bg-cream-50/50 dark:bg-bark-800/50 space-y-4">
+              <div id="stitch-pattern-gauge-controls" className="border-t border-cream-200 dark:border-bark-700 p-4 bg-cream-50/50 dark:bg-bark-800/50 space-y-4">
                 <p className="text-xs text-bark-400 dark:text-bark-500">
                   Enter your gauge swatch measurement. We&apos;ll calculate the stitch count range from your desired blanket width.
                 </p>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                   <div>
-                    <label className="label text-xs">
+                    <label htmlFor="pattern-gauge-stitches" className="label text-xs">
                       Gauge Stitches
                       <Tooltip text="How many stitches in your swatch measurement? Count the stitches across your gauge swatch." />
                     </label>
                     <input
+                      id="pattern-gauge-stitches"
                       type="number"
                       min={1}
+                      max={MAX_GAUGE_STITCHES}
                       step="0.5"
                       value={gaugeStitches}
                       onChange={(e) => setGaugeStitches(e.target.value)}
@@ -491,8 +545,9 @@ export default function StitchPatternCalculatorTool() {
                     />
                   </div>
                   <div>
-                    <label className="label text-xs">Measured Over</label>
+                    <label htmlFor="pattern-gauge-over" className="label text-xs">Measured Over</label>
                     <select
+                      id="pattern-gauge-over"
                       value={gaugeOver}
                       onChange={(e) => setGaugeOver(e.target.value as "4" | "1")}
                       className="input"
@@ -502,14 +557,16 @@ export default function StitchPatternCalculatorTool() {
                     </select>
                   </div>
                   <div>
-                    <label className="label text-xs">
+                    <label htmlFor="pattern-target-width" className="label text-xs">
                       Target Width
                       <Tooltip text="Desired blanket width in inches." />
                     </label>
                     <div className="flex items-center gap-1">
                       <input
+                        id="pattern-target-width"
                         type="number"
                         min={1}
+                        max={MAX_TARGET_WIDTH}
                         value={targetWidthIn}
                         onChange={(e) => setTargetWidthIn(e.target.value)}
                         className="input flex-1"
@@ -519,15 +576,17 @@ export default function StitchPatternCalculatorTool() {
                     </div>
                   </div>
                   <div>
-                    <label className="label text-xs">
+                    <label htmlFor="pattern-width-tolerance" className="label text-xs">
                       Tolerance
                       <Tooltip text="How many inches wider or narrower is acceptable? A ±2 inch tolerance gives more compatible stitch counts." />
                     </label>
                     <div className="flex items-center gap-1">
                       <span className="text-xs text-bark-400 dark:text-bark-500">±</span>
                       <input
+                        id="pattern-width-tolerance"
                         type="number"
                         min={0}
+                        max={MAX_WIDTH_TOLERANCE}
                         step="0.5"
                         value={widthTolerance}
                         onChange={(e) => setWidthTolerance(e.target.value)}
@@ -538,16 +597,16 @@ export default function StitchPatternCalculatorTool() {
                     </div>
                   </div>
                 </div>
-                {gaugePerInch > 0 && (
+                {gaugeRange?.ok && (
                   <div className="flex flex-wrap gap-3 text-xs">
                     <span className="bg-cream-200 dark:bg-bark-600 px-2 py-1 rounded text-bark-600 dark:text-cream-300">
-                      {gaugePerInch.toFixed(2)} sts/inch
+                      {gaugeRange.stitchesPerInch.toFixed(2)} sts/inch
                     </span>
                     <span className="bg-cream-200 dark:bg-bark-600 px-2 py-1 rounded text-bark-600 dark:text-cream-300">
                       Range: {effectiveMin}–{effectiveMax} stitches
                     </span>
                     <span className="bg-cream-200 dark:bg-bark-600 px-2 py-1 rounded text-bark-600 dark:text-cream-300">
-                      ({(parseFloat(targetWidthIn) - parseFloat(widthTolerance)).toFixed(1)}&quot;–{(parseFloat(targetWidthIn) + parseFloat(widthTolerance)).toFixed(1)}&quot;)
+                      ({(gaugeRange.targetWidth - gaugeRange.tolerance).toFixed(1)}&quot;–{(gaugeRange.targetWidth + gaugeRange.tolerance).toFixed(1)}&quot;)
                     </span>
                   </div>
                 )}
@@ -559,13 +618,16 @@ export default function StitchPatternCalculatorTool() {
           {!useGauge && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <label className="label">
+              <label htmlFor="pattern-min-stitches" className="label">
                 Min Stitch Count
                 <Tooltip text="Lower bound of your desired stitch count range." />
               </label>
               <input
+                id="pattern-min-stitches"
                 type="number"
                 min={1}
+                max={MAX_STITCH_COUNT}
+                step={1}
                 value={minWidth}
                 onChange={(e) => setMinWidth(e.target.value)}
                 className="input"
@@ -573,13 +635,16 @@ export default function StitchPatternCalculatorTool() {
               />
             </div>
             <div>
-              <label className="label">
+              <label htmlFor="pattern-max-stitches" className="label">
                 Max Stitch Count
                 <Tooltip text="Upper bound of your desired stitch count range." />
               </label>
               <input
+                id="pattern-max-stitches"
                 type="number"
                 min={1}
+                max={MAX_STITCH_COUNT}
+                step={1}
                 value={maxWidth}
                 onChange={(e) => setMaxWidth(e.target.value)}
                 className="input"
@@ -587,13 +652,16 @@ export default function StitchPatternCalculatorTool() {
               />
             </div>
             <div>
-              <label className="label">
-                Edge Stitches
-                <Tooltip text="Extra stitches added to each side for borders or selvedge. This number is added on top of the pattern repeat count." />
+              <label htmlFor="pattern-edge-stitches" className="label">
+                Edge Stitches per Side
+                <Tooltip text="Extra stitches added independently to each side for borders or selvedges. The returned total includes twice this number." />
               </label>
               <input
+                id="pattern-edge-stitches"
                 type="number"
                 min={0}
+                max={MAX_EDGE_STITCHES_PER_SIDE}
+                step={1}
                 value={edgeStitches}
                 onChange={(e) => setEdgeStitches(e.target.value)}
                 className="input"
@@ -606,13 +674,16 @@ export default function StitchPatternCalculatorTool() {
           {/* Edge stitches (show separately when gauge is on) */}
           {useGauge && (
             <div className="w-full sm:w-48">
-              <label className="label">
-                Edge Stitches
-                <Tooltip text="Extra stitches added to each side for borders or selvedge." />
+              <label htmlFor="pattern-edge-stitches" className="label">
+                Edge Stitches per Side
+                <Tooltip text="Extra stitches added independently to each side for borders or selvedges. The returned total includes twice this number." />
               </label>
               <input
+                id="pattern-edge-stitches"
                 type="number"
                 min={0}
+                max={MAX_EDGE_STITCHES_PER_SIDE}
+                step={1}
                 value={edgeStitches}
                 onChange={(e) => setEdgeStitches(e.target.value)}
                 className="input"
@@ -621,17 +692,27 @@ export default function StitchPatternCalculatorTool() {
             </div>
           )}
 
+          {calcError && (
+            <p role="alert" className="text-sm text-rose-700 dark:text-rose-300">
+              {calcError}
+            </p>
+          )}
+
           {/* Results */}
           {calcResults && (
-            <div className="rounded-xl border-2 border-sage-200 dark:border-sage-800 bg-sage-50/50 dark:bg-sage-900/20 p-5 space-y-4">
+            <div className="rounded-xl border-2 border-sage-200 dark:border-sage-800 bg-sage-50/50 dark:bg-sage-900/20 p-5 space-y-4" aria-live="polite">
               <div className="flex items-center justify-between">
                 <h3 className="font-display font-bold text-bark-800 dark:text-cream-100 text-lg">
-                  Results
+                  Arithmetic Results
                 </h3>
-                <button onClick={copyResults} className="btn-secondary text-sm">
+                <button type="button" onClick={copyResults} className="btn-secondary text-sm">
                   📋 Copy
                 </button>
               </div>
+              <p className="text-xs text-bark-500 dark:text-bark-400">
+                These results only check the entered stitch-count arithmetic. They do not validate a pattern,
+                construction, gauge, fit, or yarn requirement.
+              </p>
 
               {/* LCM display */}
               <div className="flex flex-wrap gap-4">
@@ -643,7 +724,7 @@ export default function StitchPatternCalculatorTool() {
                     {calcResults.lcm}
                   </div>
                   <div className="text-xs text-bark-400 dark:text-bark-500 mt-0.5">
-                    Pattern repeats every {calcResults.lcm} stitches
+                    Spacing between simultaneous solutions, when offsets are compatible
                   </div>
                 </div>
                 {calcResults.gaugePerInch > 0 && (
@@ -664,7 +745,7 @@ export default function StitchPatternCalculatorTool() {
                     Compatible Counts
                   </div>
                   <div className="text-2xl font-bold font-mono text-sage-700 dark:text-sage-300">
-                    {calcResults.counts.length}
+                    {calcResults.totalMatches}
                   </div>
                   <div className="text-xs text-bark-400 dark:text-bark-500 mt-0.5">
                     in {calcResults.effectiveMin}–{calcResults.effectiveMax} range
@@ -679,12 +760,14 @@ export default function StitchPatternCalculatorTool() {
               {calcResults.counts.length > 0 ? (
                 <div>
                   <h4 className="text-sm font-semibold text-bark-600 dark:text-cream-300 mb-2">
-                    Use any of these stitch counts:
+                    Arithmetic matches in the selected range:
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {calcResults.counts.map((count) => (
                       <button
                         key={count}
+                        type="button"
+                        aria-label={`Copy ${count} stitch arithmetic match`}
                         onClick={() => navigator.clipboard.writeText(String(count))}
                         className="px-3 py-1.5 bg-white dark:bg-bark-600 border border-cream-300 dark:border-bark-500 rounded-lg hover:border-sage-400 dark:hover:border-sage-500 transition-colors cursor-pointer text-left"
                         title="Click to copy"
@@ -694,16 +777,22 @@ export default function StitchPatternCalculatorTool() {
                         </span>
                         {calcResults.gaugePerInch > 0 && (
                           <span className="block text-[10px] text-bark-400 dark:text-bark-500 font-mono">
-                            {(count / calcResults.gaugePerInch).toFixed(1)}&quot; wide
+                            nominal {(count / calcResults.gaugePerInch).toFixed(1)}&quot; at entered gauge
                           </span>
                         )}
                       </button>
                     ))}
                   </div>
-                  {calcResults.edge > 0 && (
+                  {calcResults.truncated && (
+                    <p className="text-xs text-amber-700 dark:text-amber-300 mt-2">
+                      Showing the first {calcResults.counts.length.toLocaleString()} of {calcResults.totalMatches.toLocaleString()} arithmetic matches.
+                    </p>
+                  )}
+                  {calcResults.totalEdgeStitches > 0 && (
                     <p className="text-xs text-bark-400 dark:text-bark-500 mt-2">
-                      Includes {calcResults.edge} edge stitch{calcResults.edge !== 1 ? "es" : ""}. Pattern
-                      stitches: {calcResults.counts.map((c) => c - calcResults.edge).join(", ")}.
+                      Includes {calcResults.edgeStitchesPerSide} edge stitch{calcResults.edgeStitchesPerSide !== 1 ? "es" : ""} per side
+                      {" "}({calcResults.totalEdgeStitches} total). Pattern stitches:{" "}
+                      {calcResults.counts.map((c) => c - calcResults.totalEdgeStitches).join(", ")}.
                     </p>
                   )}
                 </div>
@@ -711,8 +800,7 @@ export default function StitchPatternCalculatorTool() {
                 <div className="text-center py-4 text-bark-400 dark:text-bark-500">
                   <p className="text-lg mb-1">No compatible counts found</p>
                   <p className="text-sm">
-                    Try widening your range or adjusting the &ldquo;plus&rdquo; values. Some combinations of plus
-                    values have no shared solution.
+                    The repeat offsets are compatible, but no whole total falls in this range after adding both edge allowances.
                   </p>
                 </div>
               )}
@@ -743,7 +831,7 @@ export default function StitchPatternCalculatorTool() {
                       </thead>
                       <tbody className="divide-y divide-cream-200 dark:divide-bark-700">
                         {calcResults.validEntries.map((entry) => {
-                          const patternSt = calcResults.counts[0] - calcResults.edge;
+                          const patternSt = calcResults.counts[0] - calcResults.totalEdgeStitches;
                           const baseSt = patternSt - entry.plus;
                           const repeats = Math.floor(baseSt / entry.multiple);
                           const remainder = baseSt % entry.multiple;
@@ -764,7 +852,7 @@ export default function StitchPatternCalculatorTool() {
                               <td className="py-2 px-3 text-center">
                                 {remainder === 0 ? (
                                   <span className="text-emerald-600 dark:text-emerald-400 font-bold">
-                                    ✓ Perfect
+                                    Arithmetic match
                                   </span>
                                 ) : (
                                   <span className="text-amber-600 dark:text-amber-400 font-mono">
@@ -791,8 +879,9 @@ export default function StitchPatternCalculatorTool() {
           {/* Filters */}
           <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
             <div>
-              <label className="label text-xs">Search</label>
+              <label htmlFor="stitch-library-search" className="label text-xs">Search</label>
               <input
+                id="stitch-library-search"
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -801,8 +890,9 @@ export default function StitchPatternCalculatorTool() {
               />
             </div>
             <div>
-              <label className="label text-xs">Craft</label>
+              <label htmlFor="stitch-library-craft" className="label text-xs">Craft</label>
               <select
+                id="stitch-library-craft"
                 value={craftFilter}
                 onChange={(e) => setCraftFilter(e.target.value)}
                 className="input"
@@ -813,8 +903,9 @@ export default function StitchPatternCalculatorTool() {
               </select>
             </div>
             <div>
-              <label className="label text-xs">Category</label>
+              <label htmlFor="stitch-library-category" className="label text-xs">Category</label>
               <select
+                id="stitch-library-category"
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
                 className="input"
@@ -828,8 +919,9 @@ export default function StitchPatternCalculatorTool() {
               </select>
             </div>
             <div>
-              <label className="label text-xs">Max Multiple</label>
+              <label htmlFor="stitch-library-max-multiple" className="label text-xs">Max Multiple</label>
               <input
+                id="stitch-library-max-multiple"
                 type="number"
                 min={1}
                 value={maxMultiple}
@@ -839,8 +931,9 @@ export default function StitchPatternCalculatorTool() {
               />
             </div>
             <div>
-              <label className="label text-xs">Max Row Repeat</label>
+              <label htmlFor="stitch-library-max-rows" className="label text-xs">Max Row Repeat</label>
               <input
+                id="stitch-library-max-rows"
                 type="number"
                 min={1}
                 value={maxRows}
@@ -852,8 +945,8 @@ export default function StitchPatternCalculatorTool() {
           </div>
 
           <p className="text-xs text-bark-400 dark:text-bark-500">
-            Showing {filteredStitches.length} of {STITCH_DATABASE.length} stitches. Click{" "}
-            <strong>+ Add</strong> to send a stitch to the calculator.
+            Showing {filteredStitches.length} of {STITCH_DATABASE.length} named example variants. Multiples and row repeats can vary by source;
+            verify the exact instructions you plan to use. Choose <strong>+ Add</strong> to send an example to the calculator.
           </p>
 
           {/* Stitch cards */}
@@ -894,7 +987,9 @@ export default function StitchPatternCalculatorTool() {
                   <p className="text-xs text-bark-400 dark:text-bark-500 mt-1">{stitch.notes}</p>
                 </div>
                 <button
+                  type="button"
                   onClick={() => addFromDatabase(stitch)}
+                  disabled={entries.length >= MAX_STITCH_PATTERNS}
                   className="btn-secondary text-xs whitespace-nowrap flex-shrink-0"
                 >
                   + Add
@@ -921,7 +1016,7 @@ export default function StitchPatternCalculatorTool() {
                 Blanket Sections
                 <Tooltip text="Plan each section of a sampler blanket. Enter the stitch name, its row repeat, and roughly how many rows you want. The planner rounds each section to complete full repeats." />
               </label>
-              <button onClick={addPlannerSection} className="btn-secondary text-sm">
+              <button type="button" onClick={addPlannerSection} disabled={plannerSections.length >= MAX_ROW_PLANNER_SECTIONS} className="btn-secondary text-sm">
                 + Add Section
               </button>
             </div>
@@ -930,12 +1025,13 @@ export default function StitchPatternCalculatorTool() {
               {plannerSections.map((section, i) => (
                 <div
                   key={section.id}
-                  className="flex items-center gap-2 p-3 bg-cream-100/50 dark:bg-bark-700/50 rounded-lg"
+                  className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 rounded-lg bg-cream-100/50 p-3 dark:bg-bark-700/50 sm:flex"
                 >
                   <span className="text-xs font-bold text-bark-400 dark:text-bark-500 w-5 text-center">
                     {i + 1}
                   </span>
                   <input
+                    id={`planner-section-name-${section.id}`}
                     type="text"
                     value={section.stitch}
                     onChange={(e) =>
@@ -943,48 +1039,45 @@ export default function StitchPatternCalculatorTool() {
                     }
                     placeholder="Stitch name"
                     className="input flex-1 min-w-0"
+                    maxLength={80}
+                    aria-label={`Section ${i + 1} name`}
                   />
-                  <div className="flex items-center gap-1">
-                    <span className="text-xs text-bark-400 dark:text-bark-500 whitespace-nowrap">
+                  <div className="col-span-2 flex flex-wrap items-center gap-1 sm:col-auto sm:flex-nowrap">
+                    <label htmlFor={`planner-row-repeat-${section.id}`} className="text-xs text-bark-400 dark:text-bark-500 whitespace-nowrap">
                       Row repeat
-                    </span>
+                    </label>
                     <input
+                      id={`planner-row-repeat-${section.id}`}
                       type="number"
                       min={1}
-                      value={section.rowRepeat || ""}
-                      onChange={(e) =>
-                        updatePlannerSection(
-                          section.id,
-                          "rowRepeat",
-                          parseInt(e.target.value) || 1
-                        )
-                      }
+                      max={MAX_ROW_REPEAT}
+                      step="1"
+                      value={section.rowRepeat}
+                      onChange={(e) => updatePlannerSection(section.id, "rowRepeat", e.target.value)}
                       className="input w-14 text-center"
                     />
                   </div>
-                  <div className="flex items-center gap-1">
-                    <span className="text-xs text-bark-400 dark:text-bark-500 whitespace-nowrap">
+                  <div className="col-span-2 flex flex-wrap items-center gap-1 sm:col-auto sm:flex-nowrap">
+                    <label htmlFor={`planner-target-rows-${section.id}`} className="text-xs text-bark-400 dark:text-bark-500 whitespace-nowrap">
                       Target rows
-                    </span>
+                    </label>
                     <input
+                      id={`planner-target-rows-${section.id}`}
                       type="number"
                       min={1}
-                      value={section.targetRows || ""}
-                      onChange={(e) =>
-                        updatePlannerSection(
-                          section.id,
-                          "targetRows",
-                          parseInt(e.target.value) || 1
-                        )
-                      }
+                      max={MAX_TARGET_SECTION_ROWS}
+                      step="1"
+                      value={section.targetRows}
+                      onChange={(e) => updatePlannerSection(section.id, "targetRows", e.target.value)}
                       className="input w-16 text-center"
                     />
                   </div>
                   <button
+                    type="button"
                     onClick={() => removePlannerSection(section.id)}
                     className="text-bark-400 hover:text-rose-500 transition-colors p-1"
                     disabled={plannerSections.length <= 1}
-                    title="Remove"
+                    aria-label={`Remove section ${i + 1}`}
                   >
                     ✕
                   </button>
@@ -993,13 +1086,19 @@ export default function StitchPatternCalculatorTool() {
             </div>
           </div>
 
+          {plannerError && (
+            <p role="alert" className="text-sm text-rose-700 dark:text-rose-300">{plannerError}</p>
+          )}
+
           {/* Planner results */}
-          <div className="rounded-xl border-2 border-sage-200 dark:border-sage-800 bg-sage-50/50 dark:bg-sage-900/20 p-5 space-y-4">
+          {plannerPlan && (
+          <div className="rounded-xl border-2 border-sage-200 dark:border-sage-800 bg-sage-50/50 dark:bg-sage-900/20 p-5 space-y-4" aria-live="polite">
             <div className="flex items-center justify-between">
               <h3 className="font-display font-bold text-bark-800 dark:text-cream-100 text-lg">
                 Row Plan
               </h3>
               <button
+                type="button"
                 onClick={() => {
                   const lines = [
                     "Sampler Blanket Row Plan",
@@ -1110,7 +1209,7 @@ export default function StitchPatternCalculatorTool() {
                       Total
                     </td>
                     <td className="py-2 px-3 text-center font-mono text-bark-400">
-                      {plannerSections.reduce((s, sec) => s + sec.targetRows, 0)}
+                      {plannerPlan.totalTargetRows}
                     </td>
                     <td className="py-2 px-3 text-center font-mono font-bold text-sage-700 dark:text-sage-300 text-lg">
                       {totalPlannerRows}
@@ -1121,6 +1220,7 @@ export default function StitchPatternCalculatorTool() {
               </table>
             </div>
           </div>
+          )}
         </div>
       )}
     </div>

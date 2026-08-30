@@ -126,7 +126,15 @@ test("names filters and makes horizontally scrolling reference tables keyboard a
     assert.match(yarn, new RegExp(`id="${id}"`));
   }
 
-  for (const id of ["weaving-yarn-weight", "weaving-structure", "weaving-fiber-type", "weaving-reed-dent"]) {
+  for (const id of [
+    "weaving-yarn-weight",
+    "weaving-structure",
+    "weaving-custom-wpi",
+    "weaving-project-width",
+    "weaving-project-length",
+    "weaving-length-allowance",
+    "weaving-reed-dent",
+  ]) {
     assert.match(weaving, new RegExp(`htmlFor="${id}"`));
     assert.match(weaving, new RegExp(`id="${id}"`));
   }

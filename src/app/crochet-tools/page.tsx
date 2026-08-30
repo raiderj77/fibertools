@@ -161,27 +161,26 @@ export default function CrochetToolsPage() {
             mid-project when your gauge turns out different from the pattern&rsquo;s assumption.
           </p>
           <p className="leading-relaxed">
-            FiberTools crochet calculators are built on established Craft Yarn Council (CYC) standards
-            and cross-referenced against published industry measurements. The yarn yardage calculator
-            uses your actual gauge swatch data, stitches per inch, rows per inch, and skein yardage, so every estimate reflects your real tension rather than a generic chart number. The gauge
-            calculator works bidirectionally: give it your swatch measurement and your target stitch
-            count, and it tells you exactly what hook size adjustment to make. Blanket sizes use
-            standard dimensions from baby (30&times;36&rdquo;) through queen (60&times;80&rdquo;) with
-            an automatic 10% buffer calculation built in for swatching and border waste.
+            FiberTools crochet calculators use the inputs and arithmetic models stated on each page.
+            The yarn calculator scales yarn length actually consumed by a representative swatch to a
+            flat rectangle; it does not infer consumption from stitch gauge or choose a hook. The gauge
+            calculator compares measured proportions and counts, but it cannot prescribe an exact hook
+            change because yarn, stitch pattern, technique, and maker tension also affect the fabric.
+            Blanket sizes use nominal presets and measured-swatch inputs. Its displayed 10% planning
+            allowance is part of the model, not a measurement of borders, joins, or every source of waste.
           </p>
           <p className="leading-relaxed">
-            The construction tools are purpose-built for crochet geometry. The amigurumi shapes
-            calculator generates the spherical increase and decrease schedules that every amigurumi
-            pattern uses but rarely explains step by step. The circle calculator produces round-by-round
-            stitch counts for flat circles, oval foundations, and worked bases. The granny square
-            planner calculates per-color yardage and final layout dimensions for projects assembled from
-            individual squares.
+            The construction tools provide bounded arithmetic references for their displayed models.
+            The amigurumi and circle tools generate basic count schedules that still require a suitable
+            pattern and physical sample. The granny square planner rounds a target up to a nominal grid,
+            counts unique internal seam distance, and can scale measured yarn per square; it does not
+            infer joining yarn or guarantee finished dimensions.
           </p>
           <p className="leading-relaxed">
-            Whether you&rsquo;re planning your first baby blanket or calculating the exact yarn
-            requirement for a corner-to-corner king-size afghan in three colors, these tools give you a
-            precise number rather than a rough estimate. Every self-service calculator listed here is
-            free. Optional professional reviews and project downloads are separate paid offers.
+            Treat each result according to the inputs and limitations shown by that tool. Rounded counts,
+            nominal dimensions, and measured-input yarn scenarios are planning references rather than
+            exact finished-size or purchase guarantees. Every self-service calculator listed here is free.
+            Optional professional reviews and project downloads are separate paid offers.
           </p>
         </div>
       </div>

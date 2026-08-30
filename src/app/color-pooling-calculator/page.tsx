@@ -4,129 +4,108 @@ import ToolLayout from "@/components/ToolLayout";
 import AnswerBlock from "@/components/AnswerBlock";
 import ColorPoolingCalculatorTool from "./ColorPoolingCalculatorTool";
 
+const description =
+  "Build a bounded, idealized color-placement grid from stitch counts measured across one variegated-yarn repeat. Compare turned rows with same-direction rows before swatching.";
+
 export const metadata: Metadata = {
-  title: "Planned Pooling Crochet Calculator, Free",
-  description:
-    "Calculate exact stitch counts for planned pooling with variegated yarn. Live argyle and plaid preview before you start. Free, no login.",
+  title: "Planned Color Pooling Sequence Preview",
+  description,
   keywords: [
-    "color pooling calculator", "planned pooling crochet", "variegated yarn pooling",
-    "color pooling stitch count", "how to plan color pooling crochet",
-    "color pooling calculator moss stitch", "variegated yarn color repeat length",
-    "planned pooling argyle", "color pooling foundation chain",
-    "planned pooling calculator", "yarn pooling pattern generator",
+    "color pooling preview",
+    "planned pooling crochet",
+    "variegated yarn color repeat",
+    "planned pooling swatch",
+    "color sequence stitch grid",
   ],
   openGraph: {
-    title: "Planned Pooling Crochet Calculator, Free",
-    description:
-      "Calculate exact stitch counts for planned pooling with variegated yarn. Live argyle and plaid preview before you start. Free, no login.",
+    title: "Planned Color Pooling Sequence Preview",
+    description,
     url: "https://fibertools.app/color-pooling-calculator",
-    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Planned Pooling Crochet Calculator, Free" }],
+    images: [{
+      url: "https://fibertools.app/og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Idealized planned color pooling stitch grid",
+    }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Planned Pooling Crochet Calculator, Free",
-    description:
-      "Calculate exact stitch counts for planned pooling with variegated yarn. Live argyle and plaid preview before you start. Free, no login.",
+    title: "Planned Color Pooling Sequence Preview",
+    description,
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/color-pooling-calculator" },
-  other: { dateModified: "2026-07-07" },
+  other: { dateModified: "2026-08-29" },
 };
 
 export default function ColorPoolingCalculatorPage() {
   return (
     <ToolLayout slug="color-pooling-calculator" widgetFirst>
       <AnswerBlock
-        what="A calculator that determines the exact stitch count and foundation chain length for planned pooling with variegated yarn, with a live argyle preview."
-        who="Crocheters who want to create intentional argyle or plaid patterns from variegated yarn by controlling stitch placement."
-        bottomLine="Enter your yarn's color repeat length and stitch gauge to see exactly how many stitches you need for a clean pooling pattern."
-        lastUpdated="2026-07-07"
+        what="A bounded stitch-grid simulator that repeats your measured color-section counts across rows and places return rows in the selected direction."
+        who="Knitters and crocheters comparing trial row widths for a consistently repeating variegated yarn before making a physical swatch."
+        bottomLine="The grid is an idealized sequence preview, not an exact foundation-chain calculation or a guarantee of argyle, plaid, or vertical pooling."
+        lastUpdated="2026-08-29"
       />
       <ColorPoolingCalculatorTool />
 
-      {/* Content sections */}
-
       <section className="mt-12">
-        <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100 mb-3">
-          How does a planned pooling calculator work?
+        <h2 className="mb-3 text-xl font-semibold text-bark-800 dark:text-cream-100">
+          What does the color pooling preview calculate?
         </h2>
-        <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
-          <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
-            A planned pooling calculator turns two measurements into a working stitch count: how many
-            stitches each color in your variegated yarn covers, and your gauge. From those it finds the
-            row width where the colors stack into diagonal columns instead of landing randomly. That
-            stacking is what creates the argyle look.
-          </p>
-        </div>
-        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          The math behind it is simple to state and tedious to do by hand. Every color section in the
-          yarn uses up a fixed number of stitches. When your row width is close to one full color repeat,
-          each new row shifts the colors over by a stitch or two. That steady shift is what draws the
-          diagonal argyle lines. If the row width is far off the repeat, the shift becomes irregular and
-          the colors scatter.
+        <p className="mb-4 text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+          The preview expands the entered color sections into one idealized stitch-by-stitch repeat. Its
+          trial row width is the repeat total plus your adjustment. It then consumes that sequence
+          continuously across the requested rows. When you choose turned rows, the second, fourth, and
+          other return rows are placed from right to left so the grid matches the visual direction of flat work.
         </p>
-        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          The calculator handles the counting so you only swatch once. If you have not measured your
-          gauge yet, run a quick swatch through the{' '}
-          <Link href="/gauge-calculator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">gauge calculator</Link>
-          {' '}first. Knowing your stitches per inch makes the pooling numbers far more reliable.
+        <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+          The model begins with the first listed color and does not consume yarn for a foundation chain,
+          turning chain, skipped chain, join, or edge treatment. The reported row width is therefore a count
+          of worked stitches in the idealized row, not a foundation-chain prescription. Follow the setup
+          instructions for the stitch you actually plan to use.
         </p>
       </section>
 
       <section className="mt-10">
-        <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100 mb-3">
-          How do you plan color pooling step by step?
+        <h2 className="mb-3 text-xl font-semibold text-bark-800 dark:text-cream-100">
+          How should you measure and test a trial width?
         </h2>
-        <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
-          <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
-            Work a small swatch in your planned stitch. Count exactly how many stitches each color makes
-            before the next color starts. Enter those counts into the calculator in order, chain the
-            suggested length, and crochet the first three or four rows. If the columns lean the wrong way,
-            add or remove one chain and try again.
+        <div className="mb-5 rounded-r-lg border-l-4 border-sage-500 bg-sage-50/50 py-3 pl-4 dark:bg-sage-950/20">
+          <p className="text-[15px] leading-relaxed text-bark-700 dark:text-cream-300">
+            Swatch in the intended stitch, tool size, and tension. Starting at a recognizable point in the
+            color order, count the whole stitches covered by each color section through a complete repeat.
+            Measure several repeats when possible and note any variation before treating an integer count as representative.
           </p>
         </div>
-        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Count color sections in stitches, not inches. The same colorway can crochet up differently for
-          two people because tension changes how much yarn each stitch uses. Your swatch tells you what
-          the yarn does in your hands, which is the only measurement that matters for pooling.
+        <p className="mb-4 text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+          Enter the colors in yarn order, choose whether the work turns after each row, and compare small
+          row-width adjustments. Then make a physical swatch at the selected worked-stitch count. A color
+          transition that falls partway through a stitch, changes length between repeats, or is consumed by
+          setup work cannot be reproduced exactly by this whole-stitch grid.
         </p>
-        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Expect to restart the first rows once or twice. Even with exact numbers, most crocheters adjust
-          the starting chain by a stitch or two before the pattern locks in. That is normal. Once the
-          first full repeat stacks cleanly, the rest of the project tends to hold the pattern as long as
-          your tension stays steady.
-        </p>
-        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
+        <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
           Buy enough yarn from one dye lot before you start. Color section lengths can vary between lots
           of the same colorway, and a mid-project lot change can break the sequence. The{' '}
           <Link href="/yarn-calculator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">yarn calculator</Link>
-          {' '}estimates total yardage so you can buy it all up front.
+          {' '}can scale yarn use from a representative pooled swatch when the finished piece is a flat rectangle. It does not predict how a colorway will pool or cover shaped pieces.
         </p>
       </section>
 
       <section className="mt-10">
-        <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100 mb-3">
-          Why does my color pooling drift or stop lining up?
+        <h2 className="mb-3 text-xl font-semibold text-bark-800 dark:text-cream-100">
+          Why can the real fabric differ from the grid?
         </h2>
-        <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
-          <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
-            Drift almost always comes from a tension change or a knot in the yarn. A tighter or looser
-            stretch of stitches shifts where each color lands. Fix small drift by easing your tension
-            back, or by quietly adding or skipping one stitch at the end of a row to bring the columns
-            back in line.
-          </p>
-        </div>
-        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Factory knots are the most common pattern breaker. When a knot joins the yarn mid-ball, the
-          color sequence usually restarts at a different point. Cut the knot out, find the spot in the
-          new end that matches where your sequence left off, and rejoin there. It wastes a little yarn
-          and saves the whole pattern.
+        <p className="mb-4 text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+          The grid assumes each listed color always spans the same whole number of stitches. Real placement
+          can move when tension changes, a color boundary lands within a stitch, a factory join interrupts
+          the sequence, a new skein starts at another point, or setup and turning chains consume part of the repeat.
+          Those effects are reasons to swatch, not defects the preview can solve.
         </p>
-        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          If a colorway refuses to pool no matter what you try, the repeat may simply be too long or too
-          uneven for your project width. Those yarns still make beautiful fabric in regular stripes. The{' '}
-          <Link href="/stripe-generator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">stripe generator</Link>
-          {' '}can turn the same skein into a planned stripe sequence instead.
+        <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+          If the repeat is too irregular for a stable comparison, use the yarn without trying to force a
+          geometric pool or plan a separate solid-yarn stripe sequence with the{' '}
+          <Link href="/stripe-generator" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">stripe generator</Link>.
         </p>
       </section>
     </ToolLayout>

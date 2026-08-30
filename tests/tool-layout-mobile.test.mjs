@@ -12,8 +12,9 @@ test("stacks the shared title actions below the small-screen breakpoint", () => 
   assert.match(source, /flex min-w-0 items-center gap-3/);
 });
 
-test("does not guarantee an external tracking service's price or persistence", () => {
-  assert.match(source, /Review its current features, pricing, privacy, and storage terms/);
-  assert.match(source, /Visit MyCrochetKit/);
-  assert.doesNotMatch(source, /Try It Free|never lose count again|save your progress/i);
+test("uses the maintained internal stitch counter instead of an external service claim", () => {
+  assert.match(source, /href="\/stitch-counter"/);
+  assert.match(source, /Open stitch counter/);
+  assert.match(source, /local project notes/);
+  assert.doesNotMatch(source, /MyCrochetKit|Try It Free|never lose count again/i);
 });

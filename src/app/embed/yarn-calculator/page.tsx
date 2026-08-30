@@ -13,7 +13,7 @@ export default function YarnCalculatorEmbedPage() {
   return (
     <EmbedCalculatorShell
       name="Yarn Yardage Calculator"
-      description="Estimate yarn length and whole skeins for a knitting or crochet project using dimensions, yarn weight, and optional gauge."
+      description="Scale measured yarn use from a representative swatch to a flat rectangular knit or crochet project, then convert the estimate to whole skeins from the yarn label."
       fullCalculatorPath="/yarn-calculator"
     >
       <YarnCalculatorTool embedded />
