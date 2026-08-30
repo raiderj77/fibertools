@@ -109,6 +109,15 @@ test("supported multi-word terms tolerate copied spacing without changing surrou
   assert.equal(result.substitutionCount, 1);
 });
 
+test("counted spelled-out stitch instructions convert without consuming the count", () => {
+  const input = "Row 1: 2 double crochet, then 1 treble crochet.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, "Row 1: 2 single crochet (sc), then 1 double crochet (dc).");
+  assert.equal(result.substitutionCount, 2);
+});
+
 test("spelled-out terms nested in ordinary prose are preserved conservatively", () => {
   const input = "Work double crochet across, then use treble crochet cluster; keep half double crochet.";
   const result = decodeVintagePattern(input, "uk");
@@ -240,6 +249,8 @@ test("parenthesized abbreviations in unsupported phrases are preserved", () => {
     "Special stitches (dc in next stitch)",
     "Definitions: (dc means drop color)",
     "Abbreviations — (tr means turn right)",
+    "Custom stitch: Bobble = double crochet (dc)",
+    "Definitions: dc = drop color",
   ].join("; ");
   const result = decodeVintagePattern(input, "uk");
 
