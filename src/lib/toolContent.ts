@@ -178,68 +178,67 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "gauge-calculator": {
-    answerCapsule: "Gauge is the number of stitches and rows per inch in your knitted or crocheted fabric. Enter your swatch measurements to calculate stitches per inch, compare against your pattern's gauge, and resize stitch counts to match your actual tension.",
+    answerCapsule: "Enter measured swatch dimensions and counts to calculate gauge. The other modes proportionally scale only the stitch or row counts you enter or produce an at-or-above width checkpoint; they do not regrade a complete pattern.",
     commonMistakes: [
-      "Measuring gauge on stockinette swatch edges instead of the center. The first and last few stitches distort due to edge tension and loose casting on, throwing off the gauge reading by a quarter to a half stitch per inch, compounding into a sweater 2–3 inches wrong in width.",
-      "Swatching in a different stitch than the project. Many crafters swatch in stockinette for speed, then knit the project in cable or colorwork. These patterns pull in width dramatically, so the finished dimensions are completely off despite matching the stated pattern gauge.",
-      "Measuring a swatch before the treatment the finished project will receive. Follow the pattern and product care instructions, complete the full treatment and drying cycle, and record the observed change instead of assuming a universal blocking percentage.",
+      "A gauge measured in a different stitch pattern, construction direction, or finishing state may not represent the intended fabric. Follow the selected pattern's swatch and care instructions.",
+      "A proportional count does not verify shaping, repeats, edges, yarn behavior, construction, or fit. Review every affected instruction before changing a tested pattern.",
+      "Target-width mode rounds at or above the entered width and shows the modeled result. Treat user-entered edge stitches or chains as pattern-specific additions, not calculator recommendations.",
     ],
-    projectExample: "A knitter wants to knit a fitted pullover that calls for 5 stitches per inch. Their swatch shows 22 stitches over 4 inches, actual gauge 5.5 stitches per inch. The pattern requires 200 stitches across 40 inches at the correct gauge. At 5.5 stitches per inch, those same 200 stitches produce only 36.4 inches, 3.5 inches too narrow. Using resize mode, the calculator shows 220 stitches are needed to achieve the intended 40-inch width.",
+    projectExample: "A pattern count of 200 stitches is based on 20 stitches per 4 inches. A representative swatch measures 22 stitches per 4 inches. The proportional checkpoint is 200 × (22 ÷ 20) = 220 stitches before any repeat adjustment. That arithmetic alone does not validate the pattern's shaping or fit.",
     useCases: [
-      "Adjusting a pattern's stitch count when your gauge differs from the designer's specification, essential for every fitted garment.",
-      "Determining whether to go up or down a needle size to match a pattern gauge. The calculator shows exactly how far off you are (0.25 stitches per inch? Half a stitch?) to guide the decision.",
-      "Checking a new yarn's gauge in a specific stitch pattern before committing 50+ hours to a project.",
+      "Calculating stitches and rows per displayed unit from a representative measured swatch.",
+      "Checking the proportional effect of a gauge difference on one entered stitch or row count.",
+      "Producing a whole-stitch width checkpoint and reviewing the modeled width after repeat rounding.",
     ],
     internalLinks: [
-      { label: "Stitch Pattern Calculator", href: "/stitch-pattern-calculator", description: "Find compatible stitch counts for your gauge" },
-      { label: "Yarn Weight Chart", href: "/yarn-weight-chart", description: "Check recommended gauge ranges for each yarn weight" },
-      { label: "Needle & Hook Converter", href: "/needle-converter", description: "Adjust needle size to match your target gauge" },
+      { label: "Stitch Pattern Calculator", href: "/stitch-pattern-calculator", description: "Solve the bounded repeat constraints you enter" },
+      { label: "Yarn Weight Chart", href: "/yarn-weight-chart", description: "Review published guideline gauge ranges" },
+      { label: "Needle & Hook Converter", href: "/needle-converter", description: "Look up entries in the included size tables" },
     ],
     introduction: {
-      title: "Why Gauge Matters in Knitting and Crochet",
+      title: "What This Gauge Worksheet Can Check",
       paragraphs: [
-        "Gauge is the single most important measurement in fitted knitting and crochet. Even half a stitch per inch difference from the pattern specification can mean a sweater that is three sizes too large or impossibly tight. Incorrect gauge is one of the most commonly cited reasons for frogging (unraveling) finished garments in the knitting community.",
-        "Professional designers spend significant time establishing gauge because every pattern instruction depends on it. Stitch counts, shaping calculations, and yarn estimates all derive from this foundational measurement. Getting gauge right before you begin saves significant time that would otherwise be spent ripping out and reworking later.",
+        "Gauge records how many stitches and rows occupy a measured span in a particular fabric. Yarn, tools, tension, stitch pattern, construction, and finishing can all change that measurement.",
+        "This worksheet performs bounded arithmetic on the values you enter. It does not decide whether a fabric is suitable or whether changing counts preserves a pattern's construction.",
       ],
     },
     whatIs: {
       title: "What Is Knitting and Crochet Gauge?",
       paragraphs: [
-        "Gauge is the number of stitches and rows produced per unit of measurement, typically counted over a four-inch or ten-centimeter square of knitted or crocheted fabric. It reflects the combined effect of your yarn weight, needle or hook size, tension, and stitch pattern on the finished fabric density.",
-        "Every knitter and crocheter produces slightly different gauge even with identical materials because hand tension is personal. This is why patterns specify a target gauge and recommend swatching before starting. The swatch tells you whether to adjust your needle size up or down to match.",
-        "Stitch gauge (horizontal) usually matters more than row gauge (vertical) for garments, because width determines fit while length can often be adjusted by working more or fewer rows. However, both matter for shaped pieces like armholes, necklines, and set-in sleeves.",
+        "Gauge is the number of stitches and rows in a stated measurement span. A useful project comparison requires a representative swatch made and treated as directed by the selected pattern.",
+        "Stitch and row gauge affect different dimensions. Which one controls a construction depends on the pattern, so the calculator does not rank one as universally more important.",
       ],
     },
     howCalculated: {
       title: "How Gauge Is Calculated",
       paragraphs: [
-        "To measure gauge, knit or crochet a swatch at least six inches square, then count stitches over a four-inch span in the center, avoiding edge stitches which tend to distort. Divide the stitch count by four to get stitches per inch. For example, 22 stitches over four inches equals 5.5 stitches per inch.",
-        "Now compare to the pattern gauge. If a pattern calls for 5 stitches per inch across 40 inches, it expects 200 stitches wide. But at your gauge of 5.5 stitches per inch, those same 200 stitches produce only 36.4 inches, nearly four inches too narrow for the intended fit.",
-        "The solution is to go up a needle size and swatch again until you match the pattern gauge, or use the calculator to determine the correct stitch count for your actual gauge. At 5.5 stitches per inch, you would need 220 stitches to achieve the 40-inch width.",
+        "Swatch mode divides entered stitch and row counts by the entered measured dimensions. It also expresses the same density over 4 inches or 10 centimeters.",
+        "Count scaling multiplies an entered pattern count by actual gauge divided by pattern gauge. Row scaling is calculated only when both row gauges and the row count are present.",
+        "Target-width mode multiplies entered width by stitches per unit, rounds upward to a whole stitch, then rounds upward again when necessary to satisfy the entered multiple-plus constraint. The modeled width makes that rounding effect visible.",
       ],
     },
     howToUse: {
       title: "How to Use the Gauge Calculator",
       paragraphs: [
-        "The calculator operates in three modes. In swatch mode, enter the number of stitches and rows you counted in your swatch, along with the swatch dimensions in inches. The calculator returns your stitches per inch and rows per inch. In resize mode, enter the original pattern gauge and your actual gauge, and the calculator adjusts stitch and row counts for the entire pattern. In target width mode, enter your gauge and desired finished width, and the calculator returns the exact cast-on or starting chain count.",
-        "For swatch mode, knit or crochet a swatch at least 6 inches square in the stitch pattern you plan to use. Measure the center 4 inches, edge stitches distort gauge readings. Count stitches and rows within that measured area and enter those numbers.",
-        "For resize mode, you need both the pattern's stated gauge (printed at the top of most patterns) and your own measured gauge. The calculator multiplies every stitch and row count in the pattern by the ratio between these two gauges."
+        "Choose swatch mode for measured density, count scaling for one entered pattern checkpoint, or target-width mode for an at-or-above whole-stitch count.",
+        "Complete each optional group. In count scaling, a row result requires both row gauges and the original row count. In target-width mode, row gauge and target height must be entered together or both left blank.",
+        "Changing units converts populated dimensions and standardized gauge counts instead of merely changing their labels."
       ],
     },
     understandingResults: {
       title: "Understanding Your Results",
       paragraphs: [
-        "Stitches per inch controls the width of your finished piece. Rows per inch controls the length. For most flat projects, scarves, blankets, dishcloths, stitch gauge is critical because you cast on a fixed number of stitches, but you can knit to any length by adding or subtracting rows. Row gauge matters most when shaping is involved: raglan yokes, short rows, sock heels, and any section where you must hit a specific length at a specific row count.",
-        "A difference of even half a stitch per inch compounds over the width of a garment. At 4.5 stitches per inch instead of 5, a 200-stitch sweater body comes out 44.4 inches wide instead of 40 inches, over 4 inches too large. This is why swatching is not optional for fitted garments."
+        "The displayed proportional count is an arithmetic checkpoint. If a repeat is entered, the stitch result is the nearest compatible count and may differ from the unadjusted ratio.",
+        "The target-width result is deliberately at or above the requested width. Compare its modeled width with the selected pattern before using the count."
       ],
     },
     proTips: {
       title: "Pro Tips",
       tips: [
-        "If your project is knit in the round, swatch in the round. Most knitters purl at a different tension than they knit, so flat gauge and circular gauge often differ by a quarter stitch per inch or more.",
-        "Wash and block your swatch before measuring. Many fibers relax, bloom, or shrink after the first wash, and your gauge will shift accordingly.",
-        "Measure in the center of your swatch, not near the edges. Edge stitches are distorted by the cast-on, bind-off, and selvedge, and they do not represent your working gauge.",
-        "If you are between needle sizes for your target gauge, go with the size that gives you fabric you like. A slightly off gauge with good drape beats a perfect gauge number with stiff fabric."
+        "Make the swatch in the same construction and stitch pattern required by the selected pattern.",
+        "Apply the pattern- and yarn-directed treatment before recording the measurement used for planning.",
+        "Record the exact span, counts, tools, yarn, and treatment so the result can be reproduced.",
+        "Recheck every shaping and repeat constraint before substituting a proportional count into a pattern."
       ],
     },
   },
@@ -832,73 +831,69 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "circle-calculator": {
-    designPrinciples: "Flat circles require precise increase mathematics based on stitch height and the geometry of circumference expansion. Every stitch has an inherent height-to-width ratio: single crochet is nearly square, half-double is taller-than-wide, and double crochet is significantly taller. To keep a circle flat as it grows outward, the number of increases per round must match this ratio. Single crochet needs six increases per round; half-double needs eight; double needs twelve. This is not arbitrary, it emerges from the mathematical relationship between the circumference growth and the stitch dimensions. Staggering increases (offsetting them each round so they do not stack) prevents the visible ridges and hexagonal points that arise when increases align vertically, distributing the expansion evenly around the full circumference.",
+    designPrinciples: "This planner applies transparent arithmetic to one selected starting-count preset. For preset p and round r, the ending count is p × r. That count progression does not model the actual stitch dimensions, yarn, hook, tension, joins, or chain convention that determine the fabric's shape.",
     patternVariations: [
-      "Tightly cupped disk variation, use one hook size smaller than yarn weight recommends and work all planned rounds without modification, creating a fabric that naturally cups slightly; useful for hat crowns, basket bottoms, or decorative elements.",
-      "Flat medallion variation, increase consistently round by round without ever beginning to decrease, creating a completely flat, growing circular disc that can reach any desired diameter; perfect for blanket centers or decorative wall hangings.",
-      "Rippled edge variation, maintain the standard increase rate but switch to a stitch with more height (like treble) in the final few rounds, causing the edges to naturally ruffle and wave, creating a decorative scalloped appearance."
+      "Use the center start, join, and chain-counting convention stated by the selected pattern.",
+      "Pause to compare the real fabric after each round; the included preset may need project-specific adjustment.",
+      "Use a tested construction method for hats, bowls, spheres, ovals, and other shaped pieces rather than inferring them from this count schedule."
     ],
     introduction: {
-      title: "Why You Need a Perfect Circle Calculator",
+      title: "What the Circle Round Planner Provides",
       paragraphs: [
-        "Crocheting a flat circle that does not cup into a bowl or ruffle at the edges requires exactly the right number of increases per round. Too few increases and the fabric cups upward. Too many and the edges wave and ruffle. The correct number depends entirely on your stitch type.",
-        "Whether you are making a hat crown, a basket bottom, a coaster, or a circular blanket, getting the increase rate right from round one saves you from frogging and reworking. This calculator generates the complete round-by-round pattern with staggered increases for a smooth, flat circle every time.",
+        "The planner writes a bounded 3-to-30-round schedule from one of four included starting-count presets. Each later round adds the selected preset amount.",
+        "It is a count reference, not a finished pattern. It does not accept gauge or diameter and does not guarantee a particular shape or project result.",
       ],
     },
     whatIs: {
-      title: "What Is a Crochet Circle Pattern?",
+      title: "What Is a Selected-Preset Round Schedule?",
       paragraphs: [
-        "A crochet circle pattern is a round-by-round set of instructions that produces a flat circular piece of fabric. It starts with a small center ring and expands outward by adding a fixed number of increases in each round. The increase count per round depends on the height-to-width ratio of the stitch being used.",
-        "Staggered increases are the key to a smooth circle versus a hexagonal shape. If you place every increase directly above the increase from the previous round, the increases stack and create visible points, turning your circle into a hexagon. Staggering offsets the increase positions each round, distributing them evenly around the circumference.",
-        "Single crochet circles use six increases per round because single crochet has a nearly one-to-one height-to-width ratio. Half double crochet needs eight increases per round. Double crochet, being taller, requires twelve increases per round to keep the fabric flat.",
+        "The included options associate common crochet stitch labels with arithmetic presets of 6, 8, 12, or 16. Those values are starting assumptions, not universal standards.",
+        "Each generated repeat consumes every stitch in the previous round exactly once and adds the preset number of stitches. Alternating placement is a counting arrangement, not proof that increases will be visually hidden.",
       ],
     },
     howCalculated: {
-      title: "How Circle Patterns Are Calculated",
+      title: "How the Round Schedule Is Calculated",
       paragraphs: [
-        "The math starts with the stitch ratio. Single crochet has a nearly square profile, its height roughly equals its width. This means each round adds one stitch-width of circumference, requiring six new stitches per round to maintain a flat circle (based on the geometric relationship between radius and circumference).",
-        "For a single crochet circle: start with six single crochet in a magic ring. Round two: increase in every stitch for twelve total. Round three: alternate one single crochet and one increase around for eighteen total. Each subsequent round adds six stitches, with the increases staggered to avoid stacking.",
-        "The calculator handles the staggering math automatically, which becomes increasingly complex in later rounds. By round ten, you are working eight single crochet between increases, and the offset pattern requires careful tracking. The generated pattern eliminates counting errors and ensures a perfectly round result.",
+        "For selected preset p, round 1 ends with p stitches and round r ends with p × r stitches. Every later round therefore adds p stitches.",
+        "At round r, each of p repeats consumes r − 1 prior stitches: one stitch receives an increase and r − 2 remain plain. The repeats consume p × (r − 1) stitches, exactly the prior-round count.",
+        "The displayed arrangement alternates increase placement as a counting aid. It does not calculate physical curvature or establish a finished diameter.",
       ],
     },
-    projectExample: "Choose single crochet and 6 rounds. The pattern starts with 6 stitches in round 1 and adds 6 stitches per round, so round 6 finishes with 36 stitches. Work the generated increase placement as written, then lay the piece flat and check it before continuing beyond the planned circle.",
+    projectExample: "Choose the single-crochet 6 preset and 6 rounds. The schedule starts with 6 stitches in round 1 and adds 6 stitches per later round, so round 6 ends with 36 stitches. That verifies the selected arithmetic only; compare the actual fabric and selected pattern before continuing.",
     commonMistakes: [
-      "The generated increase schedule is a starting plan, not a guarantee that every yarn, hook, and tension combination will lie perfectly flat.",
+      "The generated increase schedule is a starting plan, not a guarantee that every yarn, hook, and tension combination will lie flat.",
       "A circle that cups or ripples should be checked against the actual fabric before adding rounds; hook size, stitch height, and personal tension can require adjustment.",
       "The selected round count controls the written pattern length, not a fixed finished diameter. Measure the work at your own gauge.",
     ],
     howToUse: {
-      title: "How to Use the Perfect Circle Calculator",
+      title: "How to Use the Round Planner",
       paragraphs: [
-        "Select your stitch type, single crochet, half double crochet, or double crochet. Each stitch height requires a different number of increases per round to keep the circle flat. Enter the number of rounds you want, and the calculator generates a complete round-by-round pattern with exact stitch counts and increase placement.",
-        "The output uses staggered increases, meaning the position of each increase shifts from round to round. This prevents the visible points that appear when increases stack directly on top of each other, giving you a smooth circular edge instead of a hexagon or star shape."
+        "Choose the preset required by your selected pattern or swatch plan, then choose a supported round limit. Read the ending count and count-preserving arrangement for each round.",
+        "Follow the selected pattern for center start, joins, chains, and whether chains count as stitches. Compare the real fabric after each round."
       ],
     },
     understandingResults: {
       title: "Understanding Your Results",
       paragraphs: [
-        "The pattern output shows the stitch count for each round and marks exactly where to place increases. For single crochet circles, each round adds 6 increases. For half double crochet, 8 per round. For double crochet, 12 per round. These numbers match the mathematical requirement for a flat circle at each stitch height.",
-        "The staggering pattern offsets increases so they do not align vertically across rounds. Without staggering, increases stack and create visible ridges that pull the circle into a polygon shape. The calculator's staggered placement distributes the increases around the full circumference of each round."
+        "Ending count is the selected preset multiplied by the round number. Preset additions report only the arithmetic increase between consecutive rounds.",
+        "The schedule cannot tell whether the actual work is flat, round, the desired diameter, or suitable for a hat, basket, toy, rug, or blanket."
       ],
     },
     proTips: {
       title: "Pro Tips",
       tips: [
-        "Place a stitch marker at the beginning of each round. Flat circles worked in a continuous spiral have no visible row break, and it is easy to lose your place without a marker.",
-        "For large circles like basket bottoms or rug bases, go up one or two hook sizes from the yarn label recommendation to prevent the circle from cupping.",
-        "If your circle cups upward instead of lying flat, your tension is too tight or you need fewer increases per round. Try a larger hook before modifying the pattern.",
-        "For oval shapes, add a foundation chain between the starting increases. The calculator generates true circles, ovals require a different construction method."
+        "Mark and recount the round boundary using the convention in the selected pattern.",
+        "Record whether chains count as stitches before using any generated count.",
+        "If the real fabric cups or ripples, pause and compare it with the selected pattern before changing hook size or increase placement.",
+        "Use a separate tested construction for non-circular shapes and three-dimensional projects."
       ],
     },
     projectIdeas: {
-      title: "Project Ideas Using Crochet Circles",
+      title: "Where a Round Count Reference May Help",
       ideas: [
-        "Coasters, a 5-round single crochet circle in cotton yarn makes a firm, absorbent coaster. Work 8–10 rounds for a placemat.",
-        "Basket base, generate a 12-round double crochet circle for a sturdy basket bottom, then continue without increases for the sides.",
-        "Circular bag base, a 15-round half double crochet circle in a sturdy cotton-linen blend creates a flat base for a market bag or bucket bag.",
-        "Amigurumi sphere, combine two matching circles and decrease back down to the center for a perfectly round stuffed ball or head.",
-        "Circular blanket, work a large-scale double crochet circle using bulky yarn and a 12mm hook for a lap blanket that grows from the center.",
-        "Hat crown, generate a 7-round single crochet circle as the starting point for a top-down hat, then stop increases and continue even for the body.",
+        "Checking the arithmetic in a tested circular motif that uses one of the included presets.",
+        "Recording ending counts while swatching a circular construction.",
+        "Comparing a written round schedule with the previous count before continuing the project.",
       ],
     },
   },

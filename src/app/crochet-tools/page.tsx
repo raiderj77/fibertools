@@ -155,10 +155,9 @@ export default function CrochetToolsPage() {
         <p className="text-sm text-gray-600 mt-1 mb-4 text-center">Last updated: July 13, 2026</p>
         <div className="space-y-4 text-bark-600 dark:text-cream-300 max-w-3xl">
           <p className="text-lg leading-relaxed">
-            Every crochet project starts with numbers: how much yarn to buy, what hook size to use,
-            how many chains to start, how many rounds to increase before a flat circle becomes a sphere.
-            These calculations are straightforward in principle but tedious to do by hand, especially
-            mid-project when your gauge turns out different from the pattern&rsquo;s assumption.
+            Crochet projects can involve material estimates, gauge measurements, compatible stitch counts,
+            and round-by-round arithmetic. The needed model depends on the actual construction, so each
+            calculator states the inputs and limits it supports instead of inferring a whole project.
           </p>
           <p className="leading-relaxed">
             FiberTools crochet calculators use the inputs and arithmetic models stated on each page.

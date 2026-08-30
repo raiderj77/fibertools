@@ -88,7 +88,7 @@ const recommendationSource = read("src/components/ToolAffiliateRecommendations.t
 const recommendationLayout = read("src/components/AffiliateRecommendations.tsx");
 const disclosureComponent = read("src/components/AffiliateDisclosure.tsx");
 const configuredTools = [...recommendationSource.matchAll(/^  "([a-z0-9-]+)": \{$/gm)].map((match) => match[1]);
-assert(configuredTools.length === 10, `Expected 10 monetized tools, found ${configuredTools.length}`);
+assert(configuredTools.length === 11, `Expected 11 monetized tools, found ${configuredTools.length}`);
 
 for (const slug of configuredTools) {
   assert(fs.existsSync(path.join(root, "src", "app", slug, "page.tsx")), `Missing page for ${slug}`);

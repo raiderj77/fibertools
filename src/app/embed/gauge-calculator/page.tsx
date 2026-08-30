@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 export default function GaugeCalculatorEmbedPage() {
   return (
     <EmbedCalculatorShell
-      name="Gauge Calculator & Pattern Resizer"
-      description="Calculate gauge from a swatch, resize stitch and row counts, or convert a target size into project counts."
+      name="Gauge Calculator & Count Scaler"
+      description="Calculate gauge from entered swatch measurements and proportionally scale the stitch or row counts you enter."
       fullCalculatorPath="/gauge-calculator"
     >
       <GaugeCalculatorTool embedded />

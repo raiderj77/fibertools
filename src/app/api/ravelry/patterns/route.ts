@@ -7,27 +7,41 @@ import { NextResponse } from "next/server";
 //   RAVELRY_API_USERNAME, read-only "Basic Auth: read only access" username
 //   RAVELRY_API_PASSWORD, its paired password
 //
-// Query params: q (keyword), craft (knitting|crochet), weight (worsted|dk|...),
-//               pc (pattern category e.g. blanket, pullover), limit (default 6, max 12)
+// Query params are limited to the closed filter vocabulary used by the Yarn
+// Calculator. This keeps the credentialed proxy bounded and cacheable.
 
 const RAVELRY_API = "https://api.ravelry.com";
+const ALLOWED_QUERIES = new Set(["", "blanket", "scarf", "wrap"]);
+const ALLOWED_CRAFTS = new Set(["", "knitting", "crochet"]);
+const ALLOWED_WEIGHTS = new Set(["", "lace", "fingering", "sport", "dk", "worsted", "bulky", "super bulky", "jumbo"]);
+const ALLOWED_PARAMETER_NAMES = new Set(["q", "craft", "weight", "limit"]);
 
-type RavPhoto = {
-  square_url?: string;
-  small_url?: string;
-  thumbnail_url?: string;
-  medium_url?: string;
-};
 type RavPattern = {
   name?: string;
   permalink?: string;
   designer?: { name?: string };
   pattern_author?: { name?: string };
-  first_photo?: RavPhoto;
   free?: boolean;
 };
 
 export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const query = searchParams.get("q") || "";
+  const craft = searchParams.get("craft") || "";
+  const weight = searchParams.get("weight") || "";
+  const requestedLimit = searchParams.get("limit");
+  const parameterNames = [...searchParams.keys()];
+  const hasUnsupportedShape = parameterNames.some((name) => !ALLOWED_PARAMETER_NAMES.has(name))
+    || [...ALLOWED_PARAMETER_NAMES].some((name) => searchParams.getAll(name).length > 1);
+  if (hasUnsupportedShape
+    || !ALLOWED_QUERIES.has(query)
+    || !ALLOWED_CRAFTS.has(craft)
+    || !ALLOWED_WEIGHTS.has(weight)
+    || (requestedLimit !== null && requestedLimit !== "6")) {
+    return NextResponse.json({ patterns: [], error: "unsupported_filters" }, { status: 400 });
+  }
+  const limit = 6;
+
   const user = process.env.RAVELRY_API_USERNAME;
   const pass = process.env.RAVELRY_API_PASSWORD;
 
@@ -39,21 +53,13 @@ export async function GET(request: Request) {
     );
   }
 
-  const { searchParams } = new URL(request.url);
-  const query = searchParams.get("q") || "";
-  const craft = searchParams.get("craft") || "";
-  const weight = searchParams.get("weight") || "";
-  const pc = searchParams.get("pc") || "";
-  const limit = Math.min(Math.max(Number(searchParams.get("limit")) || 6, 1), 12);
-
   const params = new URLSearchParams({
     page_size: String(limit),
-    sort: "projects", // most-made = most useful/proven
+    sort: "projects",
   });
   if (query) params.set("query", query);
   if (craft) params.set("craft", craft);
   if (weight) params.set("weight", weight);
-  if (pc) params.set("pc", pc);
 
   const auth = Buffer.from(`${user}:${pass}`).toString("base64");
 
@@ -68,9 +74,8 @@ export async function GET(request: Request) {
     });
 
     if (!r.ok) {
-      const detail = (await r.text()).slice(0, 300);
       return NextResponse.json(
-        { patterns: [], error: `ravelry_${r.status}`, detail },
+        { patterns: [], error: `ravelry_${r.status}` },
         { status: 200 }
       );
     }
@@ -83,11 +88,6 @@ export async function GET(request: Request) {
           ? `https://www.ravelry.com/patterns/library/${p.permalink}`
           : undefined,
         designer: p.designer?.name || p.pattern_author?.name,
-        thumbnail:
-          p.first_photo?.square_url ||
-          p.first_photo?.small_url ||
-          p.first_photo?.thumbnail_url ||
-          p.first_photo?.medium_url,
         free: Boolean(p.free),
       })
     );
@@ -98,9 +98,9 @@ export async function GET(request: Request) {
       "public, s-maxage=86400, stale-while-revalidate=604800"
     );
     return res;
-  } catch (err) {
+  } catch {
     return NextResponse.json(
-      { patterns: [], error: String(err) },
+      { patterns: [], error: "ravelry_unavailable" },
       { status: 200 }
     );
   }

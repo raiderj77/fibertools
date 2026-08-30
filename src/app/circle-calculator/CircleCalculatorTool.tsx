@@ -1,121 +1,62 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
+import {
+  CIRCLE_ROUND_LIMITS,
+  CIRCLE_ROUND_PRESETS,
+  buildCircleRoundPlan,
+} from "@/lib/circle-round-plan.mjs";
 
-interface StitchType {
-  key: string;
-  name: string;
-  abbr: string;
-  startingInc: number;
-  chainHeight: number;
-  startNote: string;
-}
-
-const STITCH_TYPES: StitchType[] = [
-  {
-    key: "sc",
-    name: "Single Crochet",
-    abbr: "sc",
-    startingInc: 6,
-    chainHeight: 1,
-    startNote: "Magic ring, 6 sc into ring. Pull tight.",
-  },
-  {
-    key: "hdc",
-    name: "Half Double Crochet",
-    abbr: "hdc",
-    startingInc: 8,
-    chainHeight: 2,
-    startNote:
-      "Magic ring, ch 2, 7 hdc into ring. Pull tight. (ch 2 counts as first hdc = 8 total)",
-  },
-  {
-    key: "dc",
-    name: "Double Crochet",
-    abbr: "dc",
-    startingInc: 12,
-    chainHeight: 3,
-    startNote:
-      "Magic ring, ch 3, 11 dc into ring. Pull tight. (ch 3 counts as first dc = 12 total)",
-  },
-  {
-    key: "tr",
-    name: "Treble Crochet",
-    abbr: "tr",
-    startingInc: 16,
-    chainHeight: 4,
-    startNote:
-      "Magic ring, ch 4, 15 tr into ring. Pull tight. (ch 4 counts as first tr = 16 total)",
-  },
-];
-
-function generatePattern(stitch: StitchType, rows: number): string[] {
-  const inc = stitch.startingInc;
-  const abbr = stitch.abbr;
-  const lines: string[] = [];
-
-  for (let r = 1; r <= rows; r++) {
-    const totalSt = inc * r;
-
-    if (r === 1) {
-      lines.push(`Round 1: ${stitch.startNote} (${totalSt} ${abbr})`);
-    } else if (r === 2) {
-      lines.push(`Round ${r}: 2 ${abbr} in each st around. (${totalSt} ${abbr})`);
-    } else {
-      const normalBetween = r - 2;
-      const stagger = r % 2 === 0;
-      if (stagger) {
-        lines.push(
-          `Round ${r}: *${abbr} ${normalBetween}, 2 ${abbr} in next st* repeat ${inc} times. (${totalSt} ${abbr})`
-        );
-      } else {
-        lines.push(
-          `Round ${r}: *2 ${abbr} in next st, ${abbr} ${normalBetween}* repeat ${inc} times. (${totalSt} ${abbr})`
-        );
-      }
-    }
-  }
-
-  return lines;
-}
+const STITCH_TYPES = Object.values(CIRCLE_ROUND_PRESETS);
 
 export default function CircleCalculatorTool() {
-  const [stitchKey, setStitchKey] = useState("sc");
+  const [stitchKey, setStitchKey] = useState<keyof typeof CIRCLE_ROUND_PRESETS>("sc6");
   const [rows, setRows] = useState(8);
-  const [copied, setCopied] = useState(false);
+  const [copyStatus, setCopyStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const stitch = STITCH_TYPES.find((s) => s.key === stitchKey)!;
+  const plan = useMemo(
+    () => buildCircleRoundPlan({ presetKey: stitchKey, rounds: rows }),
+    [stitchKey, rows],
+  );
+  const selectedPreset = CIRCLE_ROUND_PRESETS[stitchKey] ?? CIRCLE_ROUND_PRESETS.sc6;
 
-  const pattern = useMemo(() => {
-    return generatePattern(stitch, rows);
-  }, [stitch, rows]);
-
-  const totalStitches = stitch.startingInc * rows;
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(pattern.join("\n"));
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleCopy = async () => {
+    if (!plan.ok) return;
+    const limitation = "Reference only: this selected-preset arithmetic does not guarantee flatness, roundness, diameter, fit, or a project-ready pattern.";
+    try {
+      await navigator.clipboard.writeText([
+        `${plan.preset.name}; ${plan.rounds} rounds`,
+        ...plan.schedule.map((entry) => entry.instruction),
+        limitation,
+      ].join("\n"));
+      setCopyStatus("success");
+    } catch {
+      setCopyStatus("error");
+    }
+    setTimeout(() => setCopyStatus("idle"), 2500);
   };
 
   return (
     <div className="space-y-6">
-      {/* Stitch Type */}
+      <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm leading-relaxed text-amber-900 dark:border-amber-800 dark:bg-amber-950/20 dark:text-amber-200">
+        Choose a common starting-count preset and a round limit. The schedule preserves that arithmetic only; it does not use gauge or target diameter, choose join or chain conventions, or guarantee a flat or round result.
+      </div>
+
       <fieldset>
-        <legend className="text-sm font-medium text-bark-500 dark:text-bark-400 mb-2 block">
-          Stitch Type
+        <legend className="mb-2 block text-sm font-medium text-bark-500 dark:text-bark-400">
+          Common starting-count preset
         </legend>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {STITCH_TYPES.map((st) => (
             <button
               key={st.key}
               type="button"
               onClick={() => setStitchKey(st.key)}
               aria-pressed={stitchKey === st.key}
-              className={`min-h-11 py-2.5 px-3 rounded-xl text-sm font-medium transition-colors ${
+              className={`min-h-11 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
                 stitchKey === st.key
                   ? "bg-sage-600 text-white"
-                  : "bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 text-bark-700 dark:text-cream-300 hover:border-sage-400"
+                  : "border border-bark-200 bg-white text-bark-700 hover:border-sage-400 dark:border-bark-700 dark:bg-bark-800 dark:text-cream-300"
               }`}
             >
               {st.name}
@@ -124,82 +65,84 @@ export default function CircleCalculatorTool() {
         </div>
       </fieldset>
 
-      {/* Rounds Slider */}
       <div>
-        <div className="flex items-center justify-between mb-2">
+        <div className="mb-2 flex items-center justify-between">
           <label htmlFor="circle-rounds" className="text-sm font-medium text-bark-500 dark:text-bark-400">
-            Number of Rounds
+            Number of rounds
           </label>
           <span className="text-sm font-bold text-bark-700 dark:text-cream-300">{rows}</span>
         </div>
         <input
           id="circle-rounds"
           type="range"
-          min={3}
-          max={30}
+          min={CIRCLE_ROUND_LIMITS.minimumRounds}
+          max={CIRCLE_ROUND_LIMITS.maximumRounds}
           value={rows}
-          onChange={(e) => setRows(Number(e.target.value))}
+          onChange={(event) => setRows(Number(event.target.value))}
           className="h-11 w-full accent-sage-600"
         />
-        <div className="flex justify-between text-xs text-bark-400 dark:text-bark-500 mt-1">
-          <span>3 rounds</span>
-          <span>30 rounds</span>
+        <div className="mt-1 flex justify-between text-xs text-bark-400 dark:text-bark-500">
+          <span>{CIRCLE_ROUND_LIMITS.minimumRounds} rounds</span>
+          <span>{CIRCLE_ROUND_LIMITS.maximumRounds} rounds</span>
         </div>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-3">
-        <div className="bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 rounded-xl p-3 text-center">
-          <p className="text-xs text-bark-400 dark:text-bark-500">Rounds</p>
-          <p className="text-lg font-bold text-bark-700 dark:text-cream-300">{rows}</p>
-        </div>
-        <div className="bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 rounded-xl p-3 text-center">
-          <p className="text-xs text-bark-400 dark:text-bark-500">Final Count</p>
-          <p className="text-lg font-bold text-bark-700 dark:text-cream-300">{totalStitches}</p>
-        </div>
-        <div className="bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 rounded-xl p-3 text-center">
-          <p className="text-xs text-bark-400 dark:text-bark-500">Inc/Round</p>
-          <p className="text-lg font-bold text-sage-600 dark:text-sage-400">{stitch.startingInc}</p>
-        </div>
-      </div>
+      {plan.ok ? (
+        <div className="space-y-4">
+          <p aria-live="polite" aria-atomic="true" className="sr-only">
+            {plan.rounds} rounds selected; ending count {plan.endingCount}; {selectedPreset.additionsPerRound} preset additions per round.
+          </p>
+          <div className="grid grid-cols-3 gap-3">
+            <div className="rounded-xl border border-bark-200 bg-white p-3 text-center dark:border-bark-700 dark:bg-bark-800">
+              <p className="text-xs text-bark-400 dark:text-bark-500">Rounds</p>
+              <p className="text-lg font-bold text-bark-700 dark:text-cream-300">{plan.rounds}</p>
+            </div>
+            <div className="rounded-xl border border-bark-200 bg-white p-3 text-center dark:border-bark-700 dark:bg-bark-800">
+              <p className="text-xs text-bark-400 dark:text-bark-500">Ending count</p>
+              <p className="text-lg font-bold text-bark-700 dark:text-cream-300">{plan.endingCount}</p>
+            </div>
+            <div className="rounded-xl border border-bark-200 bg-white p-3 text-center dark:border-bark-700 dark:bg-bark-800">
+              <p className="text-xs text-bark-400 dark:text-bark-500">Preset additions</p>
+              <p className="text-lg font-bold text-sage-600 dark:text-sage-400">{selectedPreset.additionsPerRound}</p>
+            </div>
+          </div>
 
-      {/* Pattern Output */}
-      <div className="bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 rounded-xl overflow-hidden">
-        <div className="px-5 py-3 border-b border-bark-200 dark:border-bark-700 flex items-center justify-between">
-          <h2 className="font-bold text-bark-700 dark:text-cream-300">Pattern Instructions</h2>
-          <button
-            type="button"
-            onClick={handleCopy}
-            aria-live="polite"
-            className="inline-flex min-h-11 items-center px-3 text-sm font-medium text-sage-600 hover:underline dark:text-sage-400"
-          >
-            {copied ? "✓ Copied!" : "Copy"}
-          </button>
+          <section className="overflow-hidden rounded-xl border border-bark-200 bg-white dark:border-bark-700 dark:bg-bark-800" aria-labelledby="circle-schedule-heading">
+            <div className="flex items-center justify-between border-b border-bark-200 px-5 py-3 dark:border-bark-700">
+              <h2 id="circle-schedule-heading" className="font-bold text-bark-700 dark:text-cream-300">Reference round schedule</h2>
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="inline-flex min-h-11 items-center px-3 text-sm font-medium text-sage-600 hover:underline dark:text-sage-400"
+              >
+                Copy
+              </button>
+            </div>
+            <div className="space-y-2 p-5">
+              {plan.schedule.map((entry) => (
+                <p key={entry.round} className="font-mono text-sm leading-relaxed text-bark-700 dark:text-cream-300">
+                  {entry.instruction}
+                </p>
+              ))}
+            </div>
+          </section>
         </div>
-        <div className="p-5 space-y-2">
-          {pattern.map((line, i) => (
-            <p
-              key={`${stitchKey}-${rows}-${i}`}
-              className="text-sm text-bark-700 dark:text-cream-300 font-mono leading-relaxed"
-            >
-              {line}
-            </p>
-          ))}
-        </div>
-      </div>
-
-      {/* Tips */}
-      <div className="bg-cream-100 dark:bg-bark-700 border border-bark-200 dark:border-bark-600 rounded-xl p-4">
-        <p className="text-sm font-semibold text-bark-700 dark:text-cream-300 mb-1">
-          Tips for flat circles
+      ) : (
+        <p role="alert" className="rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-700 dark:border-rose-800 dark:bg-rose-950/20 dark:text-rose-300">
+          {plan.error}
         </p>
+      )}
+
+      <p aria-live="polite" className="min-h-5 text-sm text-bark-500 dark:text-bark-400">
+        {copyStatus === "success" ? "Schedule and limitations copied." : copyStatus === "error" ? "Copy failed. Select the text and copy it manually." : ""}
+      </p>
+
+      <div className="rounded-xl border border-bark-200 bg-cream-100 p-4 dark:border-bark-600 dark:bg-bark-700">
+        <p className="mb-1 text-sm font-semibold text-bark-700 dark:text-cream-300">Check the actual fabric</p>
         <p className="text-sm text-bark-500 dark:text-bark-400">
-          If your circle cups or bowls, you need more increases, try going up one hook size. If it
-          ruffles or waves, you have too many increases, go down a hook size. This pattern staggers
-          increases automatically to avoid visible lines that create a hexagonal shape.
+          Yarn, hook, tension, stitch dimensions, joins, and chain-counting conventions can change the shape. Compare each round with the selected pattern and adjust from observed cupping or rippling instead of treating a preset as a flatness guarantee.
         </p>
       </div>
-
     </div>
   );
 }

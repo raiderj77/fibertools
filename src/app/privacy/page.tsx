@@ -29,7 +29,7 @@ export default function PrivacyPolicyPage() {
         Privacy Policy
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: August 27, 2026
+        Last updated: August 29, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -58,8 +58,8 @@ export default function PrivacyPolicyPage() {
           <p>
             Core calculator arithmetic runs in your browser. Measured swatch values and
             calculated results are not sent to FiberTools by the calculation itself. The Yarn
-            Calculator can also request optional pattern recommendations after a result is shown;
-            that request sends the selected yarn-weight category, craft, and project-type filter
+            Calculator can also request optional pattern recommendations after a result is shown and
+            you select &ldquo;Load Ravelry recommendations&rdquo;; that request sends the selected yarn-weight category, craft, and project-type filter
             through a FiberTools endpoint to Ravelry, but not the measured swatch values or calculated
             yardage. The optional paid Planning Pack, StitchProof report exports, and Designer Pattern
             Preflight are separate services and use only the information described below. Here is what we collect:
@@ -305,6 +305,21 @@ export default function PrivacyPolicyPage() {
                 className="text-sage-600 dark:text-sage-400 underline"
               >
                 How Google uses cookies in advertising
+              </a>
+              )
+            </li>
+            <li>
+              <strong>Ravelry</strong>, optional pattern recommendations loaded only after you select the
+              recommendation button in the Yarn Calculator. FiberTools sends the selected yarn-weight category,
+              craft, and project-type filter through its server endpoint; measured swatch values and calculated
+              yarn amounts are not included. (
+              <a
+                href="https://www.ravelry.com/about/privacy"
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                className="text-sage-600 dark:text-sage-400 underline"
+              >
+                Ravelry Privacy Policy
               </a>
               )
             </li>
