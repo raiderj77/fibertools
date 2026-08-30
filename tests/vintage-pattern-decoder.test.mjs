@@ -189,6 +189,8 @@ test("parenthesized abbreviations in unsupported phrases are preserved", () => {
     "front post dc (double crochet)",
     "custom cluster (tr in next stitch)",
     "custom label (double crochet)",
+    "custom label (double crochet (dc))",
+    "special stitch (tr (treble))",
   ].join("; ");
   const result = decodeVintagePattern(input, "uk");
 

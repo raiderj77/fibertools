@@ -103,11 +103,27 @@ function parenthesizedPairMatchers(entry) {
 
 const UNSUPPORTED_PARENTHETICAL_LEAD = /(?:\b(?:custom|special|half|single|triple|extended|linked|foundation|standing|reverse|crossed|relief|raised)\b[^\n,;:.!?()]{0,80}|\b(?:front|back)(?:\s+|[-‐‑‒–—])post\b[^\n,;:.!?()]{0,80}|\b(?:cluster|label|abbreviation|key|definition|variant|version|named\s+stitch|special\s+stitch))\s*$/iu;
 
-function isUnsupportedParentheticalContext(text, start) {
-  const open = text.lastIndexOf("(", start);
-  const previousClose = text.lastIndexOf(")", start);
-  if (open < 0 || previousClose > open) return false;
-  return UNSUPPORTED_PARENTHETICAL_LEAD.test(text.slice(0, open));
+function findUnsupportedParentheticalRanges(text) {
+  const ranges = [];
+  const stack = [];
+
+  for (let index = 0; index < text.length; index += 1) {
+    if (text[index] === "(") {
+      const lead = text.slice(Math.max(0, index - 100), index);
+      stack.push({
+        start: index,
+        unsupported: stack.some((item) => item.unsupported) || UNSUPPORTED_PARENTHETICAL_LEAD.test(lead),
+      });
+    } else if (text[index] === ")" && stack.length > 0) {
+      const item = stack.pop();
+      if (item.unsupported) ranges.push({ start: item.start, end: index + 1 });
+    }
+  }
+
+  for (const item of stack) {
+    if (item.unsupported) ranges.push({ start: item.start, end: text.length });
+  }
+  return ranges;
 }
 
 const COMPOUND_DASH = "[-‐‑‒–—]";
@@ -158,21 +174,22 @@ function isTensionGaugeContext(text, start, end) {
 function collectMatches(text) {
   const matches = [];
   const blockedMatches = [];
+  const unsupportedParentheticalRanges = findUnsupportedParentheticalRanges(text);
 
   for (const entry of UK_TO_US_TERMS) {
     const variants = [
-      ...parenthesizedPairMatchers(entry).map((matcher) => ({ matcher, atomicPair: true })),
-      ...entry.terms.map((term) => ({ matcher: termMatcher(term), atomicPair: false })),
+      ...parenthesizedPairMatchers(entry),
+      ...entry.terms.map((term) => termMatcher(term)),
     ];
 
-    for (const { matcher, atomicPair } of variants) {
+    for (const matcher of variants) {
       let match;
       while ((match = matcher.exec(text)) !== null) {
         const prefixLength = match[1].length;
         const matchedText = match[2];
         const start = match.index + prefixLength;
         const end = start + matchedText.length;
-        if (!atomicPair && isUnsupportedParentheticalContext(text, start)) continue;
+        if (unsupportedParentheticalRanges.some((range) => range.start < start && range.end >= end)) continue;
         if (entry.label === "Tension" && !isTensionGaugeContext(text, start, end)) continue;
         if (isUnsupportedCompoundContext(text, start, end)) {
           blockedMatches.push({ start, end });
