@@ -62,11 +62,12 @@ const ISOLATED_STITCH_TERMS = new Set([
   "double crochet",
 ]);
 
-const URL_LIKE_MATCHER = /(?:\b(?:https?|ftp):\/\/[^\s<>"'`]+|\bwww\.[^\s<>"'`]+|\b[\p{L}\p{M}\p{N}._%+-]+@[\p{L}\p{M}\p{N}.-]+\.[\p{L}\p{M}]{2,}|\b(?:[\p{L}\p{M}\p{N}](?:[\p{L}\p{M}\p{N}-]{0,62}\.)+[\p{L}\p{M}]{2,})(?:[/?#][^\s<>"'`]*)?)/giu;
+const SOURCE_REFERENCE_MATCHER = /(?:\b[\p{L}][\p{L}\p{M}\p{N}+.-]*:\/\/[^\s<>"'`]+|\bwww\.[^\s<>"'`]+|\b[\p{L}\p{M}\p{N}._%+-]+@[\p{L}\p{M}\p{N}.-]+\.[\p{L}\p{M}]{2,}|\b(?:[\p{L}\p{M}\p{N}](?:[\p{L}\p{M}\p{N}-]{0,62}\.)+[\p{L}\p{M}]{2,})(?:[/?#][^\s<>"'`]*)?|\b(?:localhost|(?:\d{1,3}\.){3}\d{1,3})(?::\d+)?(?:[/?#][^\s<>"'`]*)?|\b[A-Za-z]:[\\/][^\s<>"'`]+|\\\\[^\s\\/<>"'`]+[\\/][^\s<>"'`]+|(?<![\p{L}\p{M}\p{N}\p{Pc}\p{Cf}])(?:\/(?!\/)|\.{1,2}[\\/])[^\s<>"'`)\]}]+)/giu;
+const NON_INSTRUCTION_METADATA_LINE = /(?:^|\r?\n)[\t\p{Zs}]*(?:publisher|source|author|designer|publication|book|magazine|title|copyright|address|location|pattern[\t\p{Zs}]+(?:name|number))[\t\p{Zs}]*:[^\r\n]*/giu;
 
-function findUrlLikeRanges(text) {
+function findSourceReferenceRanges(text) {
   const ranges = [];
-  const matcher = new RegExp(URL_LIKE_MATCHER.source, URL_LIKE_MATCHER.flags);
+  const matcher = new RegExp(SOURCE_REFERENCE_MATCHER.source, SOURCE_REFERENCE_MATCHER.flags);
   let match;
   while ((match = matcher.exec(text)) !== null) {
     ranges.push({ start: match.index, end: match.index + match[0].length });
@@ -74,8 +75,29 @@ function findUrlLikeRanges(text) {
   return ranges;
 }
 
-function maskUrlLikeText(text) {
-  return text.replace(URL_LIKE_MATCHER, (match) => " ".repeat(match.length));
+function findNonInstructionMetadataRanges(text) {
+  const ranges = [];
+  const matcher = new RegExp(NON_INSTRUCTION_METADATA_LINE.source, NON_INSTRUCTION_METADATA_LINE.flags);
+  let match;
+  while ((match = matcher.exec(text)) !== null) {
+    ranges.push({ start: match.index, end: match.index + match[0].length });
+  }
+  return ranges;
+}
+
+function maskRanges(text, ranges) {
+  const orderedRanges = [...ranges].sort((left, right) => left.start - right.start || left.end - right.end);
+  let cursor = 0;
+  let masked = "";
+  for (const range of orderedRanges) {
+    const start = Math.max(cursor, range.start);
+    const end = Math.max(start, range.end);
+    if (end <= cursor) continue;
+    masked += text.slice(cursor, start);
+    masked += text.slice(start, end).replace(/[^\r\n]/gu, " ");
+    cursor = end;
+  }
+  return masked + text.slice(cursor);
 }
 
 function termMatcher(term) {
@@ -117,7 +139,7 @@ function parenthesizedPairMatchers(entry) {
     });
 }
 
-const UNSUPPORTED_DEFINITION_LABEL_SOURCE = String.raw`(?:clusters?|labels?|abbreviations?|keys?|definitions?|variants?|versions?|motifs?|shells?|bobbles?|puffs?|popcorns?|sequences?|names?|terms?|custom\s+stitch(?:es)?|named\s+stitch(?:es)?|special\s+stitch(?:es)?)`;
+const UNSUPPORTED_DEFINITION_LABEL_SOURCE = String.raw`(?:pattern\s+keys?|stitch\s+guides?|legends?|explanations?|terms?\s+used|special\s+abbreviations?|clusters?|labels?|abbreviations?|keys?|definitions?|variants?|versions?|motifs?|shells?|bobbles?|puffs?|popcorns?|sequences?|names?|terms?|custom\s+stitch(?:es)?|named\s+stitch(?:es)?|special\s+stitch(?:es)?)`;
 
 const UNSUPPORTED_PARENTHETICAL_LEAD = new RegExp(
   String.raw`(?:\b${UNSUPPORTED_DEFINITION_LABEL_SOURCE}\s*(?:[:;=.]|[-‐‑‒–—])?\s*$|\b(?:half\s+double\s+crochet|single\s+crochet|triple\s+treble(?:\s+crochet)?|(?:front|back)(?:\s+|[-‐‑‒–—])post(?:\s+|[-‐‑‒–—])(?:double\s+treble(?:\s+crochet)?|half\s+treble(?:\s+crochet)?|treble(?:\s+crochet)?|double\s+crochet|dtr|htr|tr|dc)|(?:extended|linked|foundation|standing|reverse|crossed|relief|raised)(?:\s+|[-‐‑‒–—])(?:double\s+treble(?:\s+crochet)?|half\s+treble(?:\s+crochet)?|treble(?:\s+crochet)?|double\s+crochet|dtr|htr|tr|dc))\s*$)`,
@@ -125,22 +147,97 @@ const UNSUPPORTED_PARENTHETICAL_LEAD = new RegExp(
 );
 
 const UNSUPPORTED_DEFINITION_LINE = new RegExp(
-  String.raw`(?:^|\r?\n|;[\t\p{Zs}]*)[\t\p{Zs}]*${UNSUPPORTED_DEFINITION_LABEL_SOURCE}[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[^\r\n;]*`,
+  String.raw`(?:^|\r?\n|;[\t\p{Zs}]*)[\t\p{Zs}]*${UNSUPPORTED_DEFINITION_LABEL_SOURCE}[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[^\r\n]*`,
   "giu",
 );
 
-const UNSUPPORTED_MULTILINE_DEFINITION = new RegExp(
-  String.raw`(?:^|\r?\n)[\t\p{Zs}]*${UNSUPPORTED_DEFINITION_LABEL_SOURCE}[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*(?:\r?\n[\t\p{Zs}]*(?!(?:row|round|rnd|instructions?|pattern|repeat|gauge|tension|sizes?|notes?|materials?|measurements?|finished(?:\s+size)?|directions?|assembly|finishing|yarn|needles?|hooks?|body|bodice|front|back|sleeves?|cuffs?|collars?|neck(?:line)?|shoulders?|yoke|hem|border|edging|bands?|waist(?:band)?|legs?|feet|foot|arms?|hands?|head|ears?|tail|panels?|pieces?|sides?|top|bottom|left|right|main|chart|stitch\s+pattern|skill\s+level|difficulty|supplies?|notions?|colou?rs?)\b)[^\r\n:=‐‑‒–—]+?[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*[^\r\n]+)+`,
-  "giu",
+const UNSUPPORTED_DEFINITION_HEADER = new RegExp(
+  String.raw`^[\t\p{Zs}]*${UNSUPPORTED_DEFINITION_LABEL_SOURCE}[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*$`,
+  "iu",
 );
+const UNSUPPORTED_DEFINITION_ENTRY = /^[\t\p{Zs}]*([^\r\n:=‐‑‒–—]+?)[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*(\S[^\r\n]*)$/iu;
+const INSTRUCTION_SECTION_KEY = /(?:\b(?:row|round|rnd|step)\b|^(?:instructions?|pattern|repeat|gauge|tension|sizes?|notes?|materials?|measurements?|finished(?:\s+size)?|directions?|assembly|finishing|yarn|needles?|hooks?|body|bodice|front|back|sleeves?|cuffs?|collars?|neck(?:line)?|shoulders?|yoke|hem|border|edging|bands?|waist(?:band)?|skirt|crown|brim|hood|cape|pockets?|straps?|handles?|closures?|lining|thumbs?|fingers?|heel|toe|gusset|instep|sole|flaps?|legs?|feet|foot|arms?|hands?|head|ears?|tail|wings?|beak|muzzle|snout|mane|panels?|pieces?|sides?|top|bottom|left|right|main|chart|stitch\s+pattern|skill\s+level|difficulty|supplies?|notions?|colou?rs?|sections?|parts?)\b)/iu;
+
+function splitTextLines(text) {
+  const lines = [];
+  let start = 0;
+  while (start <= text.length) {
+    const newline = text.indexOf("\n", start);
+    const next = newline === -1 ? text.length : newline + 1;
+    const contentEnd = newline === -1
+      ? text.length
+      : (text[newline - 1] === "\r" ? newline - 1 : newline);
+    lines.push({ start, end: contentEnd, next, content: text.slice(start, contentEnd) });
+    if (newline === -1) break;
+    start = next;
+  }
+  return lines;
+}
+
+function findMultilineDefinitionRanges(text) {
+  const ranges = [];
+  const lines = splitTextLines(text);
+  for (let index = 0; index < lines.length; index += 1) {
+    const header = lines[index];
+    if (!UNSUPPORTED_DEFINITION_HEADER.test(header.content)) continue;
+
+    let end = header.end;
+    let entryCount = 0;
+    for (let entryIndex = index + 1; entryIndex < lines.length; entryIndex += 1) {
+      const entry = lines[entryIndex];
+      const match = entry.content.match(UNSUPPORTED_DEFINITION_ENTRY);
+      if (!match || INSTRUCTION_SECTION_KEY.test(match[1].trim())) break;
+      entryCount += 1;
+      end = entry.end;
+    }
+    if (entryCount > 0) ranges.push({ start: header.start, end });
+  }
+  return ranges;
+}
 
 function findUnsupportedDefinitionRanges(text) {
+  const ranges = findMultilineDefinitionRanges(text);
+  const matcher = new RegExp(UNSUPPORTED_DEFINITION_LINE.source, UNSUPPORTED_DEFINITION_LINE.flags);
+  let match;
+  while ((match = matcher.exec(text)) !== null) {
+    ranges.push({ start: match.index, end: match.index + match[0].length });
+  }
+  return ranges;
+}
+
+function findCustomDefinitionEntryLabels(text, ranges) {
+  const labels = new Set();
+  for (const range of ranges) {
+    const definitionText = text.slice(range.start, range.end);
+    for (const entry of UK_TO_US_TERMS) {
+      for (const term of entry.terms) {
+        const source = escapeRegex(term).replace(/ /g, "\\s+");
+        const matcher = new RegExp(
+          `(?:^|[\\n;:])[\\t\\p{Zs}]*${source}[\\t\\p{Zs}]*(?=[:=]|[-‐‑‒–—])`,
+          "iu",
+        );
+        if (matcher.test(definitionText)) labels.add(entry.label);
+      }
+    }
+  }
+  return labels;
+}
+
+function findCustomDefinitionTermRanges(text, labels) {
   const ranges = [];
-  for (const expression of [UNSUPPORTED_DEFINITION_LINE, UNSUPPORTED_MULTILINE_DEFINITION]) {
-    const matcher = new RegExp(expression.source, expression.flags);
-    let match;
-    while ((match = matcher.exec(text)) !== null) {
-      ranges.push({ start: match.index, end: match.index + match[0].length });
+  for (const entry of UK_TO_US_TERMS) {
+    if (!labels.has(entry.label)) continue;
+    for (const term of entry.terms) {
+      const source = escapeRegex(term).replace(/ /g, "\\s+");
+      const matcher = new RegExp(
+        `(^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])(${source})(?=$|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])`,
+        "giu",
+      );
+      let match;
+      while ((match = matcher.exec(text)) !== null) {
+        const start = match.index + match[1].length;
+        ranges.push({ start, end: start + match[2].length });
+      }
     }
   }
   return ranges;
@@ -184,9 +281,59 @@ const ALLOWED_PRECEDING_INSTRUCTION_WORDS = new Set([
   "spaces", "st", "stitch", "stitches", "then", "third", "three", "through", "times", "to", "toward", "towards", "tr",
   "the", "turn", "twice", "two", "under", "until", "upon", "using", "with", "within", "work",
 ]);
+const SUPPORTED_ABBREVIATION_TERMS = new Set(
+  UK_TO_US_TERMS.flatMap((entry) => entry.terms.filter((term) => /^[a-z]{1,3}$/iu.test(term))),
+);
+const SUPPORTED_ABBREVIATION_SOURCE = [...SUPPORTED_ABBREVIATION_TERMS].map(escapeRegex).join("|");
+const FOLLOWING_SUPPORTED_ABBREVIATION = new RegExp(
+  `^[\\t\\p{Zs}]*(?:(?:[,;/]|\\))[\\t\\p{Zs}]*)?(?:${SUPPORTED_ABBREVIATION_SOURCE})\\b`,
+  "iu",
+);
+const PRECEDING_SUPPORTED_ABBREVIATION = new RegExp(
+  `(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])(?:${SUPPORTED_ABBREVIATION_SOURCE})[\\t\\p{Zs}]+$`,
+  "iu",
+);
+const PAIRED_LONG_TERM_BEFORE = new Map(
+  UK_TO_US_TERMS.map((entry) => [
+    entry.label,
+    entry.terms
+      .filter((term) => term.includes(" "))
+      .map((term) => new RegExp(`${escapeRegex(term).replace(/ /g, "\\s+")}[\\t\\p{Zs}]*[,;/][\\t\\p{Zs}]*$`, "iu")),
+  ]),
+);
+
+function isRecognizableAbbreviationInstruction(text, start, end, matchedText, entry) {
+  const normalized = matchedText.toLocaleLowerCase("en-US");
+  if (!SUPPORTED_ABBREVIATION_TERMS.has(normalized)) return true;
+  if (
+    text.length - matchedText.length <= 20
+    && text.trim().toLocaleLowerCase("en-US") === normalized
+  ) return true;
+
+  const before = text.slice(Math.max(0, start - 160), start);
+  const after = text.slice(end, Math.min(text.length, end + 160));
+  const precedingToken = before.match(/([\p{L}\p{M}\p{N}\p{Pc}\p{Cf}]+)[\t\p{Zs}]+$/u)?.[1];
+  if (
+    precedingToken
+    && (
+      /^\p{N}+(?:st|nd|rd|th)?$/iu.test(precedingToken)
+      || ALLOWED_PRECEDING_INSTRUCTION_WORDS.has(precedingToken.toLocaleLowerCase("en-US"))
+    )
+  ) return true;
+
+  if (/(?:^|\n)[\t\p{Zs}]*(?:row|round|rnd|step)[^\r\n:]*:[\t\p{Zs}]*$/iu.test(before)) return true;
+  if (/^[\t\p{Zs}]*(?:[,;:/]|\))[\t\p{Zs}]*(?:alone|and|or|then|in|into|across|around|at|before|behind|below|between|from|on|over|through|times?|to|under|until|with|within|st(?:s|itch(?:es)?)?)\b/iu.test(after)) return true;
+  if (/^[\t\p{Zs}]+(?:alone|and|or|then|in|into|across|around|at|before|behind|below|between|from|on|over|through|to|under|until|with|within|st(?:s|itch(?:es)?)?|times?)\b/iu.test(after)) return true;
+
+  if (FOLLOWING_SUPPORTED_ABBREVIATION.test(after)) return true;
+  if (PRECEDING_SUPPORTED_ABBREVIATION.test(before)) return true;
+  if (/[(/,;*][\t\p{Zs}]*$/u.test(before) && /^[\t\p{Zs}]*(?:[),;/]|\b(?:alone|and|or|then|in|into|across|around|times?)\b)/iu.test(after)) return true;
+
+  return PAIRED_LONG_TERM_BEFORE.get(entry.label)?.some((matcher) => matcher.test(before)) ?? false;
+}
 
 function hasUnsupportedWhitespacePrefix(text, start) {
-  const precedingToken = text.slice(0, start).match(/([\p{L}\p{M}\p{N}\p{Pc}\p{Cf}]+)[\t\p{Zs}]+$/u)?.[1];
+  const precedingToken = text.slice(Math.max(0, start - 80), start).match(/([\p{L}\p{M}\p{N}\p{Pc}\p{Cf}]+)[\t\p{Zs}]+$/u)?.[1];
   if (
     !precedingToken
     || /^\p{N}+$/u.test(precedingToken)
@@ -200,12 +347,14 @@ const UNSUPPORTED_SUFFIX_MODIFIERS = new RegExp(
 );
 
 function isUnsupportedCompoundContext(text, start, end) {
+  const before = text.slice(Math.max(0, start - 120), start);
+  const after = text.slice(end, Math.min(text.length, end + 120));
   return (
     COMPOUND_DASH_CHARACTER.test(text[start - 1] ?? "")
     || COMPOUND_DASH_CHARACTER.test(text[end] ?? "")
     || hasUnsupportedWhitespacePrefix(text, start)
-    || UNSUPPORTED_PREFIX_MODIFIERS.test(text.slice(0, start))
-    || UNSUPPORTED_SUFFIX_MODIFIERS.test(text.slice(end))
+    || UNSUPPORTED_PREFIX_MODIFIERS.test(before)
+    || UNSUPPORTED_SUFFIX_MODIFIERS.test(after)
   );
 }
 
@@ -227,13 +376,19 @@ function isTensionGaugeContext(text, start, end) {
 function collectMatches(text) {
   const matches = [];
   const blockedMatches = [];
+  const unsupportedDefinitionRanges = findUnsupportedDefinitionRanges(text);
+  const customDefinitionEntryLabels = findCustomDefinitionEntryLabels(text, unsupportedDefinitionRanges);
   const unsupportedParentheticalRanges = [
     ...findUnsupportedParentheticalRanges(text),
-    ...findUnsupportedDefinitionRanges(text),
+    ...unsupportedDefinitionRanges,
   ];
-  const urlLikeRanges = findUrlLikeRanges(text);
+  const sourceReferenceRanges = [
+    ...findSourceReferenceRanges(text),
+    ...findNonInstructionMetadataRanges(text),
+  ];
 
   for (const entry of UK_TO_US_TERMS) {
+    if (customDefinitionEntryLabels.has(entry.label)) continue;
     const variants = [
       ...parenthesizedPairMatchers(entry),
       ...entry.terms.map((term) => termMatcher(term)),
@@ -246,8 +401,9 @@ function collectMatches(text) {
         const matchedText = match[2];
         const start = match.index + prefixLength;
         const end = start + matchedText.length;
-        if (urlLikeRanges.some((range) => range.start <= start && range.end >= end)) continue;
+        if (sourceReferenceRanges.some((range) => range.start <= start && range.end >= end)) continue;
         if (unsupportedParentheticalRanges.some((range) => range.start < start && range.end >= end)) continue;
+        if (!isRecognizableAbbreviationInstruction(text, start, end, matchedText, entry)) continue;
         const isTensionMeasurement = entry.label === "Tension" && isTensionGaugeContext(text, start, end);
         if (entry.label === "Tension" && !isTensionMeasurement) continue;
         if (!isTensionMeasurement && isUnsupportedCompoundContext(text, start, end)) {
@@ -294,7 +450,16 @@ function hasUnicodeBoundedMatch(text, source) {
 
 function buildSignals(text, convention) {
   const signals = [];
-  const reviewText = maskUrlLikeText(text);
+  const unsupportedDefinitionRanges = findUnsupportedDefinitionRanges(text);
+  const customDefinitionEntryLabels = findCustomDefinitionEntryLabels(text, unsupportedDefinitionRanges);
+  const excludedRanges = [
+    ...findSourceReferenceRanges(text),
+    ...findNonInstructionMetadataRanges(text),
+    ...unsupportedDefinitionRanges,
+    ...findUnsupportedParentheticalRanges(text),
+    ...findCustomDefinitionTermRanges(text, customDefinitionEntryLabels),
+  ];
+  const reviewText = maskRanges(text, excludedRanges);
 
   if (
     convention === "unknown"

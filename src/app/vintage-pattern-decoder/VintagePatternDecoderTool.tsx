@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   MAX_VINTAGE_PATTERN_TEXT_LENGTH,
   decodeVintagePattern,
@@ -26,7 +26,7 @@ interface ReadyResult {
   substitutionCount: number;
   signals: Array<{ title: string; note: string }>;
 }
-type CopyStatus = "idle" | "success" | "error";
+type CopyFeedback = { attempt: number; status: "success" | "error" } | null;
 
 const CONVENTION_OPTIONS: Array<{
   value: SourceConvention;
@@ -55,12 +55,27 @@ export default function VintagePatternDecoderTool() {
   const [convention, setConvention] = useState<SourceConvention>("unknown");
   const [result, setResult] = useState<ReadyResult | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [copyStatus, setCopyStatus] = useState<CopyStatus>("idle");
+  const [copyFeedback, setCopyFeedback] = useState<CopyFeedback>(null);
   const [inputRejected, setInputRejected] = useState(false);
+  const copyAttemptRef = useRef(0);
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      copyAttemptRef.current += 1;
+    };
+  }, []);
+
+  function resetCopyFeedback() {
+    copyAttemptRef.current += 1;
+    setCopyFeedback(null);
+  }
 
   function resetResult() {
     setResult(null);
-    setCopyStatus("idle");
+    resetCopyFeedback();
   }
 
   function handleInputChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -85,7 +100,7 @@ export default function VintagePatternDecoderTool() {
 
   function handleReview() {
     const reviewed = decodeVintagePattern(input, convention);
-    setCopyStatus("idle");
+    resetCopyFeedback();
 
     if (reviewed.status === "invalid") {
       setResult(null);
@@ -107,15 +122,23 @@ export default function VintagePatternDecoderTool() {
 
   async function handleCopy() {
     if (!result) return;
+    const output = result.output;
+    const attempt = copyAttemptRef.current + 1;
+    copyAttemptRef.current = attempt;
+    setCopyFeedback(null);
 
     try {
       if (!navigator.clipboard?.writeText) {
         throw new Error("Clipboard API unavailable");
       }
-      await navigator.clipboard.writeText(result.output);
-      setCopyStatus("success");
+      await navigator.clipboard.writeText(output);
+      if (mountedRef.current && copyAttemptRef.current === attempt) {
+        setCopyFeedback({ attempt, status: "success" });
+      }
     } catch {
-      setCopyStatus("error");
+      if (mountedRef.current && copyAttemptRef.current === attempt) {
+        setCopyFeedback({ attempt, status: "error" });
+      }
     }
   }
 
@@ -141,7 +164,7 @@ export default function VintagePatternDecoderTool() {
         ? "No substitutions were made. US mode preserves the pattern text."
         : result.substitutionCount > 0
           ? `${result.substitutionCount} supported UK term${result.substitutionCount === 1 ? " was" : "s were"} mapped to US wording. Verify each change against the pattern key.`
-          : "No supported UK terms were found. The pattern text was preserved."
+          : "No supported mappings were applied. The pattern text was preserved."
     : null;
 
   return (
@@ -221,7 +244,7 @@ export default function VintagePatternDecoderTool() {
             onChange={handleInputChange}
             rows={10}
             placeholder="Paste a pattern excerpt here. Do not include account details, purchase records, or other private information."
-            className="w-full resize-y rounded-xl border border-cream-300 bg-white px-3 py-2.5 font-mono text-sm leading-relaxed text-bark-800 placeholder:text-bark-300 focus:outline-none focus:ring-2 focus:ring-plum-300 dark:border-bark-600 dark:bg-bark-800 dark:text-cream-100 dark:placeholder:text-bark-500 dark:focus:ring-plum-700"
+            className="w-full resize-y rounded-xl border border-cream-300 bg-white px-3 py-2.5 font-mono text-sm leading-relaxed text-bark-800 placeholder:text-bark-400 focus:outline-none focus:ring-2 focus:ring-plum-300 dark:border-bark-600 dark:bg-bark-800 dark:text-cream-100 dark:placeholder:text-bark-300 dark:focus:ring-plum-700"
             aria-describedby="vintage-input-help vintage-character-count vintage-input-error"
             aria-invalid={inputTooLong}
           />
@@ -250,7 +273,7 @@ export default function VintagePatternDecoderTool() {
             type="button"
             onClick={handleReview}
             disabled={!input.trim() || inputTooLong}
-            className="rounded-xl bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-amber-600 active:bg-amber-700 disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-xl bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-amber-700 active:bg-amber-800 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Review Pattern Text
           </button>
@@ -275,7 +298,7 @@ export default function VintagePatternDecoderTool() {
                 {resultSummary}
               </p>
               <div
-                className="whitespace-pre-wrap rounded-xl border border-cream-300 bg-cream-50 p-4 font-mono text-sm leading-relaxed text-bark-800 dark:border-bark-600 dark:bg-bark-800 dark:text-cream-100"
+                className="min-w-0 whitespace-pre-wrap break-words [overflow-wrap:anywhere] rounded-xl border border-cream-300 bg-cream-50 p-4 font-mono text-sm leading-relaxed text-bark-800 dark:border-bark-600 dark:bg-bark-800 dark:text-cream-100"
                 role="region"
                 aria-label="Reviewed pattern output"
               >
@@ -367,11 +390,11 @@ export default function VintagePatternDecoderTool() {
               <button type="button" onClick={() => window.print()} className="btn-secondary text-sm" aria-label="Print reviewed pattern">
                 Print
               </button>
-              {copyStatus === "success" && (
-                <span role="status" aria-live="polite" className="text-sm font-medium text-sage-700 dark:text-sage-300">Copied.</span>
+              {copyFeedback?.status === "success" && (
+                <span key={copyFeedback.attempt} role="status" aria-live="polite" className="text-sm font-medium text-sage-700 dark:text-sage-300">Copied.</span>
               )}
-              {copyStatus === "error" && (
-                <span role="alert" className="text-sm font-medium text-red-700 dark:text-red-300">
+              {copyFeedback?.status === "error" && (
+                <span key={copyFeedback.attempt} role="alert" className="text-sm font-medium text-red-700 dark:text-red-300">
                   Could not copy. Select the output text and copy it manually.
                 </span>
               )}
@@ -380,7 +403,7 @@ export default function VintagePatternDecoderTool() {
         )}
 
         <div className="result-card vintage-print-hide">
-          <h3 className="mb-3 font-semibold text-bark-700 dark:text-cream-200">What this review does</h3>
+          <h2 className="mb-3 font-semibold text-bark-700 dark:text-cream-200">What this review does</h2>
           <ul className="space-y-2 text-sm leading-relaxed text-bark-500 dark:text-bark-400">
             <li>Preserves every character when the source convention is unknown or US.</li>
             <li>Maps the supported CYC-documented UK crochet terms only when UK is selected.</li>

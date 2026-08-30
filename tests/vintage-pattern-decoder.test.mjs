@@ -126,16 +126,47 @@ test("asterisk repeat markers delimit supported spelled-out instructions", () =>
   assert.equal(result.substitutionCount, 1);
 });
 
-test("multiline custom abbreviation definitions remain unchanged", () => {
-  const input = "Abbreviations:\ndc = drop color\ntr = turn right\nGauge: 20 dc = 4 inches\nSize: adult\nNotes: Work tr across.\nBody: Work dc in next stitch.\nSleeve: Work tr across.\nRow 1: Work dc in next stitch.\nRound 2: Work tr across.";
+test("multiline definitions stop before structural and qualified instruction headings", () => {
+  const input = "Abbreviations:\nxy = drop color\nzz = turn right\nGauge: 20 dc = 4 inches\nSize: adult\nNotes: Work tr across.\nBody: Work dc in next stitch.\nSleeve: Work tr across.\nSkirt: Work dc in next stitch.\nCrown: Work tr across.\nSetup Row: Work dc in next stitch.\nFoundation Row: Work tr across.\nStep 1: Work dc in next stitch.\nRow 1: Work dc in next stitch.\nRound 2: Work tr across.";
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "Abbreviations:\ndc = drop color\ntr = turn right\nGauge: 20 single crochet (sc) = 4 inches\nSize: adult\nNotes: Work double crochet (dc) across.\nBody: Work single crochet (sc) in next stitch.\nSleeve: Work double crochet (dc) across.\nRow 1: Work single crochet (sc) in next stitch.\nRound 2: Work double crochet (dc) across.",
+    "Abbreviations:\nxy = drop color\nzz = turn right\nGauge: 20 single crochet (sc) = 4 inches\nSize: adult\nNotes: Work double crochet (dc) across.\nBody: Work single crochet (sc) in next stitch.\nSleeve: Work double crochet (dc) across.\nSkirt: Work single crochet (sc) in next stitch.\nCrown: Work double crochet (dc) across.\nSetup Row: Work single crochet (sc) in next stitch.\nFoundation Row: Work double crochet (dc) across.\nStep 1: Work single crochet (sc) in next stitch.\nRow 1: Work single crochet (sc) in next stitch.\nRound 2: Work double crochet (dc) across.",
   );
-  assert.equal(result.substitutionCount, 6);
+  assert.equal(result.substitutionCount, 11);
+});
+
+test("explicit custom source keys override supported terms throughout the pattern", () => {
+  const cases = [
+    ["Abbreviations:", "dc", "drop color"],
+    ["Pattern key:", "dc", "drop color"],
+    ["Special abbreviations:", "tr", "turn right"],
+    ["Stitch guide:", "tr", "turn right"],
+    ["Legend:", "dc", "drop color"],
+    ["Explanations:", "tr", "turn right"],
+    ["Terms used:", "dc", "drop color"],
+  ];
+
+  for (const [heading, term, definition] of cases) {
+    const input = `${heading}\n${term} = ${definition}\nRow 1: ${term}, then turn.`;
+    const result = decodeVintagePattern(input, "uk");
+    const unknown = decodeVintagePattern(input, "unknown");
+
+    assert.equal(result.output, input, heading);
+    assert.equal(result.substitutionCount, 0, heading);
+    assert.equal(
+      unknown.signals.some(({ title }) => title === "Crochet convention not established"),
+      false,
+      heading,
+    );
+  }
+
+  const sameLine = "Definitions: dc = drop color; tr = turn right\nRow 1: dc, then tr.";
+  const sameLineResult = decodeVintagePattern(sameLine, "uk");
+  assert.equal(sameLineResult.output, sameLine);
+  assert.equal(sameLineResult.substitutionCount, 0);
 });
 
 test("spelled-out terms nested in ordinary prose are preserved conservatively", () => {
@@ -232,7 +263,7 @@ test("positional instruction words do not suppress supported abbreviations", () 
   assert.equal(result.substitutionCount, 18);
 });
 
-test("URL-like tokens and email addresses are preserved byte-for-byte", () => {
+test("source references, paths, URL-like tokens, and email addresses are preserved byte-for-byte", () => {
   const input = [
     "Source: https://example.com/dc/pattern",
     "Chart: https://site.test/?st=tr",
@@ -241,6 +272,16 @@ test("URL-like tokens and email addresses are preserved byte-for-byte", () => {
     "Query: example.test?st=tr",
     "Fragment: example.test#tr",
     "Contact: dc@example.com",
+    "Root path: /patterns/dc/tr/example",
+    "Relative path: ../patterns/htr/draft.txt",
+    "Windows path: C:\\patterns\\dc\\draft.txt",
+    "UNC path: \\\\server\\patterns\\tr\\draft.txt",
+    "App link: ravelry://patterns/dc/tr",
+    "Local link: http://localhost:3000/patterns/dc",
+    "IP link: http://127.0.0.1:3000/patterns/tr",
+    "Markdown: [chart](/patterns/dc/tr)",
+    "Publisher: DC Thomson",
+    "Location: Washington, DC",
     "Work dc in next stitch.",
   ].join("\n");
   const result = decodeVintagePattern(input, "uk");
@@ -252,7 +293,7 @@ test("URL-like tokens and email addresses are preserved byte-for-byte", () => {
   );
   assert.equal(result.substitutionCount, 1);
 
-  const unknown = decodeVintagePattern("https://example.com/dc/pattern example.test?st=tr example.test#tr", "unknown");
+  const unknown = decodeVintagePattern("https://example.com/dc/pattern example.test?st=tr example.test#tr /patterns/dc/tr C:\\patterns\\dc\\draft.txt", "unknown");
   assert.equal(unknown.signals.some(({ title }) => title === "Crochet convention not established"), false);
 });
 
@@ -441,14 +482,23 @@ test("the UI is text-only, bounded, convention-gated, and reports clipboard outc
   assert.match(source, /US terms/);
   assert.match(source, /UK terms/);
   assert.match(source, /await navigator\.clipboard\.writeText/);
+  assert.match(source, /copyAttemptRef\.current === attempt/);
+  assert.match(source, /key=\{copyFeedback\.attempt\}/);
   assert.match(source, /role="status"/);
   assert.match(source, /aria-live="polite"/);
   assert.match(source, /Could not copy/);
+  assert.match(source, /\[overflow-wrap:anywhere\]/);
+  assert.match(source, /<h2[^>]*>What this review does<\/h2>/);
+  assert.doesNotMatch(source, /<h3[^>]*>What this review does<\/h3>/);
+  assert.match(source, /No supported mappings were applied/);
+  assert.doesNotMatch(source, /No supported UK terms were found/);
+  assert.match(source, /placeholder:text-bark-400/);
+  assert.match(source, /hover:bg-amber-700/);
   assert.match(source, /\{term\.count\}/);
   assert.doesNotMatch(source, /term\.count > 1[\s\S]*?,\s*"/);
   assert.doesNotMatch(
     source,
-    /pdfjs|pdf\.js|cdnjs|type="file"|FileReader|getDocument|arrayBuffer|PDFJS_|useEffect|useRef/i,
+    /pdfjs|pdf\.js|cdnjs|type="file"|FileReader|getDocument|arrayBuffer|PDFJS_/i,
   );
 });
 
