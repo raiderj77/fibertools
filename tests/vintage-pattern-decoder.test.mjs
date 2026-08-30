@@ -230,6 +230,10 @@ test("parenthesized abbreviations in unsupported phrases are preserved", () => {
     "custom label (double crochet (dc))",
     "custom stitch (dc in next stitch)",
     "special stitch (tr (treble))",
+    "Special stitch: (dc in next stitch)",
+    "Special stitches (dc in next stitch)",
+    "Definitions: (dc means drop color)",
+    "Abbreviations — (tr means turn right)",
   ].join("; ");
   const result = decodeVintagePattern(input, "uk");
 
