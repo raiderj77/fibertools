@@ -52,6 +52,21 @@ function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+const PARENTHESIZED_STITCH_GROUP = new RegExp(
+  `^\\s*(?:${UK_TO_US_TERMS
+    .filter((entry) => entry.label !== "Tension")
+    .flatMap((entry) => entry.terms)
+    .sort((left, right) => right.length - left.length)
+    .map((term) => escapeRegex(term).replace(/ /g, "\\s+"))
+    .join("|")})(?:\\s*[,;/]\\s*(?:${UK_TO_US_TERMS
+    .filter((entry) => entry.label !== "Tension")
+    .flatMap((entry) => entry.terms)
+    .sort((left, right) => right.length - left.length)
+    .map((term) => escapeRegex(term).replace(/ /g, "\\s+"))
+    .join("|")}))+\\s*$`,
+  "iu",
+);
+
 const ISOLATED_STITCH_TERMS = new Set([
   "double treble crochet",
   "double treble",
@@ -101,11 +116,17 @@ function parenthesizedPairMatchers(entry) {
     });
 }
 
-function isImmediatelyParenthesized(text, start) {
-  return /\(\s*$/u.test(text.slice(0, start));
+function isSupportedParenthesizedStitchGroup(text, start, end) {
+  const open = text.lastIndexOf("(", start);
+  const previousClose = text.lastIndexOf(")", start);
+  if (open < 0 || previousClose > open) return false;
+  const close = text.indexOf(")", end);
+  if (close < 0) return false;
+  return PARENTHESIZED_STITCH_GROUP.test(text.slice(open + 1, close));
 }
 
 const COMPOUND_DASH = "[-‐‑‒–—]";
+const COMPOUND_DASH_CHARACTER = /[-‐‑‒–—]/u;
 const UNSUPPORTED_PREFIX_MODIFIERS = new RegExp(
   `(?:^|[^\\p{L}\\p{M}\\p{N}])(?:half|single|triple|front(?:\\s+|${COMPOUND_DASH})post|back(?:\\s+|${COMPOUND_DASH})post|extended|linked|foundation|standing|reverse|crossed|relief|raised)(?:\\s+|${COMPOUND_DASH}\\s*)$`,
   "iu",
@@ -117,6 +138,9 @@ const UNSUPPORTED_SUFFIX_MODIFIERS = new RegExp(
 
 function isUnsupportedCompoundContext(text, start, end) {
   return (
+    COMPOUND_DASH_CHARACTER.test(text[start - 1] ?? "")
+    || COMPOUND_DASH_CHARACTER.test(text[end] ?? "")
+    ||
     UNSUPPORTED_PREFIX_MODIFIERS.test(text.slice(0, start))
     || UNSUPPORTED_SUFFIX_MODIFIERS.test(text.slice(end))
   );
@@ -148,7 +172,8 @@ function collectMatches(text) {
         const matchedText = match[2];
         const start = match.index + prefixLength;
         const end = start + matchedText.length;
-        if (!atomicPair && isImmediatelyParenthesized(text, start)) continue;
+        const isInsideParentheses = text.lastIndexOf("(", start) > text.lastIndexOf(")", start);
+        if (!atomicPair && isInsideParentheses && !isSupportedParenthesizedStitchGroup(text, start, end)) continue;
         if (entry.label === "Tension" && !isTensionGaugeContext(text, start, end)) continue;
         if (isUnsupportedCompoundContext(text, start, end)) {
           blockedMatches.push({ start, end });

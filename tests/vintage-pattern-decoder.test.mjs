@@ -133,12 +133,28 @@ test("hyphenated compound stitch names are preserved", () => {
     "extended-dc",
     "dc-cluster",
     "dc-through-back-loop",
+    "dc-stitch",
+    "back-loop-dc",
+    "dc—motif",
+    "edge–tr",
   ].join("; ");
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
   assert.equal(result.output, input);
   assert.equal(result.substitutionCount, 0);
+});
+
+test("supported stitches inside parenthesized instruction groups are converted together", () => {
+  const input = "(dc, tr) in next stitch; repeat (htr / dtr).";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(
+    result.output,
+    "(single crochet (sc), double crochet (dc)) in next stitch; repeat (half double crochet (hdc) / treble crochet (tr)).",
+  );
+  assert.equal(result.substitutionCount, 4);
 });
 
 test("recognized term and abbreviation pairs are converted atomically", () => {
