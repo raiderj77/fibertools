@@ -101,7 +101,10 @@ function parenthesizedPairMatchers(entry) {
     });
 }
 
-const UNSUPPORTED_PARENTHETICAL_LEAD = /(?:\b(?:custom|special|half|single|triple|extended|linked|foundation|standing|reverse|crossed|relief|raised)\b[^\n,;:.!?()]{0,80}|\b(?:front|back)(?:\s+|[-‐‑‒–—])post\b[^\n,;:.!?()]{0,80}|\b(?:cluster|label|abbreviation|key|definition|variant|version|named\s+stitch|special\s+stitch))\s*$/iu;
+const UNSUPPORTED_PARENTHETICAL_LEAD = new RegExp(
+  String.raw`(?:\b(?:cluster|label|abbreviation|key|definition|variant|version|motif|shell|bobble|puff|popcorn|sequence|name|term|named\s+stitch|special\s+stitch)\s*$|\b(?:half\s+double\s+crochet|single\s+crochet|triple\s+treble(?:\s+crochet)?|(?:front|back)(?:\s+|[-‐‑‒–—])post(?:\s+|[-‐‑‒–—])(?:double\s+treble(?:\s+crochet)?|half\s+treble(?:\s+crochet)?|treble(?:\s+crochet)?|double\s+crochet|dtr|htr|tr|dc)|(?:extended|linked|foundation|standing|reverse|crossed|relief|raised)(?:\s+|[-‐‑‒–—])(?:double\s+treble(?:\s+crochet)?|half\s+treble(?:\s+crochet)?|treble(?:\s+crochet)?|double\s+crochet|dtr|htr|tr|dc))\s*$)`,
+  "iu",
+);
 
 function findUnsupportedParentheticalRanges(text) {
   const ranges = [];
@@ -143,7 +146,7 @@ const ALLOWED_PRECEDING_INSTRUCTION_WORDS = new Set([
 ]);
 
 function hasUnsupportedWhitespacePrefix(text, start) {
-  const precedingToken = text.slice(0, start).match(/([\p{L}\p{M}\p{N}\p{Pc}\p{Cf}]+)\s+$/u)?.[1];
+  const precedingToken = text.slice(0, start).match(/([\p{L}\p{M}\p{N}\p{Pc}\p{Cf}]+)[\t\p{Zs}]+$/u)?.[1];
   if (!precedingToken || /^\p{N}+$/u.test(precedingToken)) return false;
   return !ALLOWED_PRECEDING_INSTRUCTION_WORDS.has(precedingToken.toLocaleLowerCase("en-US"));
 }

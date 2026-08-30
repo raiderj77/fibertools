@@ -244,15 +244,24 @@ test("connector and format characters beside a supported token keep identifiers 
 });
 
 test("unlisted whitespace modifiers are preserved while instruction grammar still converts", () => {
-  const input = "long dc; spike dc; waistcoat dc; work dc, then tr; dtr tr dc.";
+  const input = "long dc; spike dc; waistcoat dc; work dc, then tr; dtr tr dc; Instructions\ndc in next stitch.";
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "long dc; spike dc; waistcoat dc; work single crochet (sc), then double crochet (dc); treble crochet (tr) double crochet (dc) single crochet (sc).",
+    "long dc; spike dc; waistcoat dc; work single crochet (sc), then double crochet (dc); treble crochet (tr) double crochet (dc) single crochet (sc); Instructions\nsingle crochet (sc) in next stitch.",
   );
-  assert.equal(result.substitutionCount, 5);
+  assert.equal(result.substitutionCount, 6);
+});
+
+test("ordinary parenthesized instructions are not suppressed by distant descriptive words", () => {
+  const input = "Use special yarn and work (dc, tr) in next stitch.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, "Use special yarn and work (single crochet (sc), double crochet (dc)) in next stitch.");
+  assert.equal(result.substitutionCount, 2);
 });
 
 test("decomposed Unicode marks beside a supported token keep the prose unchanged", () => {
