@@ -3,86 +3,73 @@ import ToolLayout from "@/components/ToolLayout";
 import AnswerBlock from "@/components/AnswerBlock";
 import BlockingCalculatorTool from "./BlockingCalculatorTool";
 
+const description = "Calculate the signed percentage change between current and requested project dimensions before testing a finishing method on a representative swatch.";
+
 export const metadata: Metadata = {
-  title: "Blocking Calculator & Fiber Guide",
-  description:
-    "Get the right blocking method for your fiber type with stretch feasibility ratings and step-by-step instructions.",
+  title: "Blocking Dimension Change Calculator",
+  description,
   keywords: [
     "blocking calculator",
-    "how to block knitting",
-    "blocking guide",
-    "wet blocking",
-    "steam blocking",
-    "blocking crochet",
-    "fiber blocking method",
+    "blocking dimension calculator",
+    "knitting size percentage change",
+    "crochet size percentage change",
+    "blocking swatch",
   ],
   alternates: { canonical: "/blocking-calculator" },
   openGraph: {
-    title: "Blocking Calculator & Fiber Guide",
-    description:
-      "Get the right blocking method for your fiber type with stretch feasibility ratings and step-by-step instructions.",
+    title: "Blocking Dimension Change Calculator",
+    description,
     url: "https://fibertools.app/blocking-calculator",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Blocking Calculator & Fiber Guide" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Blocking Dimension Change Calculator" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blocking Calculator & Fiber Guide",
-    description:
-      "Get the right blocking method for your fiber type with stretch feasibility ratings and step-by-step instructions.",
+    title: "Blocking Dimension Change Calculator",
+    description,
     images: ["/og-image.png"],
   },
 };
 
 export default function BlockingCalculatorPage() {
   return (
-    <ToolLayout slug="blocking-calculator">
+    <ToolLayout slug="blocking-calculator" pageTitle="Blocking Dimension Change Calculator">
       <AnswerBlock
-        what="A tool that recommends the correct blocking method for your fiber type with stretch feasibility ratings and step-by-step instructions."
-        who="Fiber artists who need to know whether to wet block, steam block, or spray block their finished project based on fiber content."
-        bottomLine="Enter your fiber type to get the recommended blocking method, always test on a swatch first if you are unsure."
-        lastUpdated="2026-03-16"
+        what="A calculator for the signed percentage difference between current and requested width or length."
+        who="Fiber artists comparing measurements before testing a care-instruction-compatible finishing method."
+        bottomLine="The result describes the requested size change only. It cannot determine a safe method or predict what the fabric will do."
+        lastUpdated="2026-08-29"
       />
-      <div className="sr-only">
-        <h2>Blocking Calculator Tool</h2>
-        <h2>How to Choose a Blocking Method</h2>
-        <h2>Blocking Method Results and Step-by-Step Guide</h2>
-      </div>
       <BlockingCalculatorTool />
-
-      {/* Content sections */}
 
       <section className="mt-12">
         <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100 mb-3">
-          What is the difference between wet blocking and steam blocking for your fiber type?
+          What does the percentage mean?
         </h2>
-        <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
-          <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
-            Wet blocking soaks your finished piece in cool water and lets it dry flat, perfect for natural fibers like wool, cotton, and linen that need relaxation. Steam blocking uses heat from a steamer or iron held above the fabric, ideal for synthetics and blends that hold their shape better with heat.
-          </p>
-        </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Wet blocking is gentler and allows more dramatic reshaping, which is why it works so well on delicate lace or openwork patterns. You can stretch and pin the piece to your exact desired dimensions, and the relaxed fibers will remember that shape as they dry. This method takes longer but gives you the most control.
+          The calculator uses (requested dimension − current dimension) ÷ current dimension × 100.
+          Positive results are requested increases, negative results are requested decreases, and zero
+          means the entered dimensions match. Width and length are calculated independently.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          Steam blocking is faster and works well when you just need to soften stitches or even out texture without major reshaping. Many spinners and fiber artists use it as a finishing touch on garments before wearing. Always test any method on your gauge swatch first, and hold the steamer at least 1 inch above the fabric to avoid creating shine or flattening your stitches too much.
+          For example, 48 to 50 is a +4.2% requested width change, while 60 to 57 is a −5.0%
+          requested length change. Those figures do not establish that a fabric can reach or retain either target.
         </p>
       </section>
 
       <section className="mt-10">
         <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100 mb-3">
-          How do you avoid over-blocking knitting and crochet projects?
+          How do I choose a blocking or finishing method?
         </h2>
-        <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
-          <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
-            Over-blocking happens when you stretch a piece too much or block it when it does not need it, which can distort your stitches, flatten texture, or make garments sag. Work with your fiber type and block only as much as needed to even out tension and open lace.
-          </p>
-        </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          The best approach is to block each fiber type less aggressively than you think. Most natural fibers only need 10 to 20 percent extra stretch, not dramatic reshaping. Use the calculator to match your fiber, then aim for the lower end of the stretch range. For example, acrylic should barely move at all since heat relaxation is limited.
+          Start with the pattern and the item&apos;s care instructions. Fiber names alone do not capture blends,
+          dyes, construction, finishes, equipment, or manufacturer-specific limits, so this calculator does not
+          choose wet, spray, or steam treatment for you.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          Textured stitches like popcorn, bobble, or cable patterns often should not be wet blocked at all because flattening will destroy the dimensional quality you worked to create. Instead, gently pin the piece to shape without stretching those sections. If your finished project already has even tension and the right drape, you may only need a light mist spray to relax wrinkles, not a full blocking session.
+          Test the intended treatment on a representative swatch and measure it after the full treatment and
+          drying cycle. Use heat only when the product and appliance instructions permit it. If a valuable item
+          lacks clear instructions, get qualified textile-care guidance before proceeding.
         </p>
       </section>
     </ToolLayout>

@@ -27,7 +27,7 @@ test("describes yarn quantities as estimates in the shared tool registry", () =>
 test("describes spinning functions without an unsupported exclusivity claim", () => {
   assert.equal(
     getToolBySlug("spinning-ratio-calculator")?.description,
-    "Calculate drive ratios, twists per inch, and plying twist for handspinning.",
+    "Calculate the ideal geometric ratio between a drive wheel and its connected pulley.",
   );
 });
 

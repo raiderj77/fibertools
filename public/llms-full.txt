@@ -102,9 +102,9 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 - URL: https://fibertools.app/raglan-calculator
 - Calculate neck cast-on stitches, stitch distribution across front/back/sleeves, and increase rounds for a top-down raglan sweater. Supports any gauge and neck circumference.
 
-### Blocking Calculator
+### Blocking Dimension Change Calculator
 - URL: https://fibertools.app/blocking-calculator
-- Get the right blocking method (wet, steam, spray, pin) for your fiber type with stretch feasibility ratings and step-by-step instructions. Covers wool, cotton, acrylic, silk, and blends.
+- Calculate the signed percentage change between current and requested width or length. The tool does not choose a finishing method or predict what the fabric will achieve.
 
 ### Yarn Stash Estimator
 - URL: https://fibertools.app/stash-estimator
@@ -122,9 +122,9 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ## Tools, Spinning (1 tool)
 
-### Spinning Ratio Calculator
+### Spinning Wheel Drive Ratio Calculator
 - URL: https://fibertools.app/spinning-ratio-calculator
-- Calculate drive ratios, twists per inch (TPI), and plying ratios for handspinning. Supports scotch tension, double drive, and bobbin-lead systems.
+- Calculate the ideal geometric ratio between a drive wheel and the pulley connected by its drive band. Use the wheel manual to identify the driven component; no yarn-weight, twist, or plying result is inferred.
 
 ## Tools, Weaving (1 tool)
 
@@ -157,7 +157,6 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 - [How to Increase and Decrease Evenly](https://fibertools.app/blog/increase-decrease-guide): The math made easy for distributing increases or decreases across a row.
 - [How to Plan Stripe Patterns](https://fibertools.app/blog/stripe-pattern-guide): Random, weighted, and sequence stripes with yardage planning.
 - [Knitting and Crochet Abbreviations](https://fibertools.app/blog/knitting-abbreviations-guide): The complete reference guide to abbreviations.
-- [Spinning Wheel Ratios Explained](https://fibertools.app/blog/spinning-wheel-guide): How to calculate drive ratio and TPI for handspinning.
 - [Cross Stitch Fabric Calculator](https://fibertools.app/blog/cross-stitch-fabric-guide): How to figure out the right size Aida cloth.
 - [How to Calculate Sett for Weaving](https://fibertools.app/blog/weaving-sett-guide): EPI guide for every yarn weight.
 - [Color Pooling Calculator Guide](https://fibertools.app/blog/color-pooling-guide): How to plan pooling with variegated yarn.

@@ -184,7 +184,7 @@ const ABBREVIATIONS: Abbreviation[] = [
   { abbr: "FO", full: "Fasten Off", craft: "crochet", category: "finishing", desc: "Cut yarn, pull through last loop to secure.",
     steps: ["Cut yarn leaving a 6-inch tail", "Yarn over, pull tail completely through last loop", "Pull tight to secure"] },
   { abbr: "Weave", full: "Weave in Ends", craft: "both", category: "finishing", desc: "Thread tail through yarn needle and work into fabric to secure." },
-  { abbr: "Block", full: "Blocking", craft: "both", category: "finishing", desc: "Wet or steam the finished piece to set stitches and shape." },
+  { abbr: "Block", full: "Blocking", craft: "both", category: "finishing", desc: "Finish a project using its pattern and product care instructions; test the intended treatment on a representative swatch." },
   { abbr: "Gauge", full: "Gauge/Tension", craft: "both", category: "basic", desc: "Number of stitches and rows per inch/cm. UK: tension." },
 ];
 

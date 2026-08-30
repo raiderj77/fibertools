@@ -177,7 +177,7 @@ export default function HomePage() {
         name: "What is blocking in knitting and crochet?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Blocking is the process of washing and shaping a finished piece to its intended dimensions. Wet blocking involves soaking the item in water, gently squeezing out moisture, and pinning or shaping it flat to dry. Blocking evens out stitches, opens up lace patterns, and can increase finished dimensions by 10–15% for natural fibers like wool and alpaca.",
+          text: "Finishing or laundering can change a project's dimensions and appearance. Follow the pattern and product care instructions, then test the intended treatment on a representative swatch; there is no universal growth percentage for a fiber category.",
         },
       },
       {
@@ -561,7 +561,7 @@ export default function HomePage() {
             },
             {
               q: "What is blocking in knitting and crochet?",
-              a: "Blocking is the process of washing and shaping a finished piece to its intended dimensions. Wet blocking involves soaking the item in water, gently squeezing out moisture, and pinning it flat to dry. Blocking evens out stitches, opens up lace patterns, and can increase finished dimensions by 10–15% for natural fibers like wool and alpaca.",
+              a: "Finishing or laundering can change a project's dimensions and appearance. Follow the pattern and product care instructions, then test the intended treatment on a representative swatch; there is no universal growth percentage for a fiber category.",
             },
             {
               q: "What is amigurumi and what yarn do I use?",

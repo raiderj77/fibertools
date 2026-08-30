@@ -19,13 +19,13 @@ const weavingTools = WEAVING_SLUGS.map((s) => getToolBySlug(s)).filter(
 export const metadata: Metadata = {
   title: "Free Weaving & Spinning Calculators (2026)",
   description:
-    "Free online calculators for weavers and spinners, sett, EPI, drive ratio, TPI, and yarn weight. No signup required.",
+    "Free online calculators for weavers and spinners, including sett, EPI, WPI, yarn-weight references, and geometric drive ratio. No signup required.",
   keywords: [
     "weaving calculator",
     "sett calculator",
     "EPI calculator",
     "spinning wheel calculator",
-    "TPI calculator",
+    "WPI calculator",
     "drive ratio calculator",
     "weaving tools online",
     "handspinning calculator",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Free Weaving & Spinning Calculators (2026)",
     description:
-      "Free online calculators for weavers and spinners, sett, EPI, drive ratio, TPI, and yarn weight. No signup required.",
+      "Free online calculators for weavers and spinners, including sett, EPI, WPI, yarn-weight references, and geometric drive ratio. No signup required.",
     url: "https://fibertools.app/weaving-tools",
     images: [
       {
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Free Weaving & Spinning Calculators (2026)",
     description:
-      "Free online calculators for weavers and spinners, sett, EPI, drive ratio, TPI, and yarn weight. No signup required.",
+      "Free online calculators for weavers and spinners, including sett, EPI, WPI, yarn-weight references, and geometric drive ratio. No signup required.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/weaving-tools" },
@@ -85,7 +85,7 @@ export default function WeavingToolsPage() {
     "@type": "CollectionPage",
     name: "Free Weaving & Spinning Calculators",
     description:
-      "Free online calculators for weavers and spinners, sett, EPI, drive ratio, TPI, and yarn weight.",
+      "Free online calculators for weavers and spinners, including sett, EPI, WPI, yarn-weight references, and geometric drive ratio.",
     url: "https://fibertools.app/weaving-tools",
     numberOfItems: weavingTools.length,
     hasPart: weavingTools.map((t) => ({
@@ -138,8 +138,8 @@ export default function WeavingToolsPage() {
             a weaver throws the first shuttle, they need to know the correct ends per inch (EPI) for
             their yarn and intended sett, how many yards to wind onto the warp beam, and how much loom
             waste to factor in. Before a handspinner winds off the bobbin, they need to confirm their
-            drive ratio and whorl size are producing the twist-per-inch their target yarn weight
-            requires. Get this math wrong and you waste fiber, warp thread, and hours of setup time.
+            drive-wheel and connected-pulley measurements before comparing manufacturer-approved
+            settings. Sampling remains necessary because a pulley ratio does not determine finished yarn.
           </p>
           <p className="leading-relaxed">
             FiberTools weaving and spinning calculators are built on the technical specifications used
@@ -148,15 +148,15 @@ export default function WeavingToolsPage() {
             generate a recommended EPI from your actual yarn rather than a generic chart value. The WPI
             calculator walks you through the wrapping procedure to measure your yarn&rsquo;s true weight
             category, which is the necessary first step before any other weaving calculation. The
-            spinning ratio calculator handles multi-whorl wheel setups so you can compare drive
-            combinations on paper before committing at the wheel.
+            spinning ratio calculator reports one measured pulley pair at a time, so you can record and
+            compare compatible settings without assigning a yarn weight from the ratio.
           </p>
           <p className="leading-relaxed">
             The thread converter bridges the gap between commercial weaving thread systems: denier,
             tex, and yards-per-pound all appear on thread labels from different manufacturers with no
             direct comparison, and this tool converts between all three in both directions. For
-            finished yarn, the standard yarn calculator estimates yardage requirements from sett and
-            project dimensions.
+            finished yarn, the standard yarn calculator provides a rough planning estimate from its
+            displayed project inputs; it does not use weaving sett.
           </p>
           <p className="leading-relaxed">
             These calculators are built for weavers, spinners, and fiber artists who need accurate

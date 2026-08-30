@@ -197,9 +197,9 @@ export default function KnittingToolsPage() {
             colorwork projects with multiple decreasing methods.
           </p>
           <p className="leading-relaxed">
-            For finishing and project planning, the blocking calculator estimates how much your fabric
-            will grow after wet blocking, essential for lace and fitted garments where blocked
-            dimensions differ significantly from needles-off measurements. The{" "}
+            For finishing and project planning, the blocking calculator reports the signed percentage
+            change between current and requested dimensions. It does not predict fabric growth or choose
+            a treatment; compare the request with a representative swatch treated under the item&apos;s care instructions. The{" "}
             <Link
               href="/cast-on-calculator"
               className="text-sage-700 dark:text-sage-300 underline underline-offset-2"

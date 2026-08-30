@@ -164,18 +164,17 @@ export default function CastOnCalculatorPage() {
         </h2>
         <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
           <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
-            Knit a swatch at least 6 inches wide and 4 inches tall in your pattern stitch. Block it the way
-            you&rsquo;ll block the finished project. Lay flat, measure 4 inches across the center (away from
+            Knit a swatch at least 6 inches wide and 4 inches tall in your pattern stitch. Treat it using
+            the same pattern and product care instructions you will use for the finished project. Lay it as
+            directed, measure 4 inches across the center (away from
             edges), and count the stitches. That&rsquo;s your stitch gauge. Repeat vertically for row gauge.
             Always swatch flat for flat projects, in the round for circular projects.<sup>4</sup>
           </p>
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Blocking before measuring matters because most yarns relax 5&ndash;10% after wet-finishing. A wool
-          swatch that measures 20 stitches per 4 inches dry may measure 19 after blocking, that single
-          stitch per 4 inches changes the cast-on count for a 50-inch blanket by more than 10 stitches. Block
-          your swatch the same way you&rsquo;ll block the finished project: wet-finishing for wool, steam for
-          acrylic, or just pinning for lace.
+          Measure after the intended treatment because the swatch may change. Record the actual before-and-after
+          measurements instead of applying a generic fiber percentage. Use the exact treatment permitted by the
+          pattern and care instructions, and include the complete drying or cooling cycle before measuring.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
           If your gauge doesn&rsquo;t match the pattern, change needle size rather than trying to adjust your
@@ -198,8 +197,9 @@ export default function CastOnCalculatorPage() {
         <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
           <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
             Gauge shifts between a 4-inch swatch and a full-width project. Knitters often work tighter when
-            concentrating on cables or colorwork than on plain stockinette. Blocking changes dimensions, most natural fibers grow 5&ndash;10% during wet-finishing. Measure your project periodically as you
-            knit and adjust if dimensions drift more than 5% from target.<sup>5</sup>
+            concentrating on cables or colorwork than on plain stockinette. Finishing can also change dimensions
+            in ways that depend on the specific yarn, construction, and approved treatment. Compare against your
+            treated swatch and selected pattern rather than assuming a universal growth percentage.<sup>5</sup>
           </p>
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
@@ -219,10 +219,10 @@ export default function CastOnCalculatorPage() {
           significant discrepancy before starting a fitted piece.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          A partial-skein test helps predict yarn behavior across a full project. Knit approximately 20% of the
-          project yardage, then wet-finish that section and measure. A full project scales predictably from this
-          sample, if the test section grew 5% after blocking, the full project will too. This approach
-          surfaces both gauge drift and dye lot issues before you&rsquo;re committed to the entire project.
+          A representative swatch can reveal behavior that a dry measurement misses. Treat and measure it using
+          the intended yarn, stitch pattern, gauge, and care-instruction-compatible process. It is useful evidence,
+          but it does not guarantee that a larger, heavier, seamed, or differently constructed project will scale
+          identically.
         </p>
       </section>
 

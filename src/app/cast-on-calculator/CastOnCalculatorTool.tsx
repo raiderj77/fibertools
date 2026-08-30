@@ -235,7 +235,7 @@ export default function CastOnCalculatorTool() {
           <li><strong>Always swatch first.</strong> Your actual gauge may differ from the yarn label recommendation.</li>
           <li><strong>Edge stitches</strong> are extra stitches (usually 1 or 2 per side) that create a neat selvedge for seaming or picking up stitches.</li>
           <li><strong>Stitch multiples</strong> ensure your pattern repeat fits evenly. For example, a 4-stitch rib needs a multiple of 4.</li>
-          <li><strong>Blocking can change width.</strong> If you plan to block aggressively, consider casting on slightly fewer stitches.</li>
+          <li><strong>Finishing can change width.</strong> Base the cast-on on a representative swatch treated under the pattern and product care instructions.</li>
         </ul>
       </div>
     </div>
