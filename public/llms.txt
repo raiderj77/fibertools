@@ -31,7 +31,7 @@ Calculator inputs and results are processed in the browser and are not sent to a
 - [Sock Knitting Calculator](https://fibertools.app/sock-calculator): Calculate sock stitch counts for top-down or toe-up with heel flap, gusset, and short-row heel instructions.
 - [Sleeve Shaping Calculator](https://fibertools.app/sleeve-calculator): Plan a bounded paired-decrease sleeve taper; odd stitch gaps and schedules denser than one event per shaping row are declined.
 - [Raglan Calculator](https://fibertools.app/raglan-calculator): Calculate neck cast-on, stitch distribution, and increase rounds for a top-down raglan sweater.
-- [Blocking Calculator](https://fibertools.app/blocking-calculator): Get the right blocking method for your fiber type with stretch feasibility ratings and step-by-step instructions.
+- [Blocking Dimension Change Calculator](https://fibertools.app/blocking-calculator): Calculate the signed percentage change between current and requested width or length; method selection remains care-instruction and swatch led.
 - [Yarn Stash Estimator](https://fibertools.app/stash-estimator): Estimate remaining yardage in partial skeins by weight, plus a yardage reference table for unlabeled yarn.
 
 ### Crochet
@@ -39,7 +39,7 @@ Calculator inputs and results are processed in the browser and are not sent to a
 - [Granny Square Planner](https://fibertools.app/granny-square-planner): Plan a granny square blanket with grid layout, total squares, per-color yardage, and joining yarn estimates.
 
 ### Spinning
-- [Spinning Ratio Calculator](https://fibertools.app/spinning-ratio-calculator): Calculate drive ratios, twists per inch, and plying ratios for handspinning.
+- [Spinning Wheel Drive Ratio Calculator](https://fibertools.app/spinning-ratio-calculator): Calculate the ideal geometric ratio between a drive wheel and its connected pulley without inferring finished yarn.
 
 ### Weaving
 - [Weaving Sett Calculator](https://fibertools.app/weaving-sett-calculator): Find the right sett (EPI) for your yarn and weave structure, plus warp length and reed substitution.
@@ -61,7 +61,6 @@ Calculator inputs and results are processed in the browser and are not sent to a
 - [How to Increase and Decrease Evenly](https://fibertools.app/blog/increase-decrease-guide): The math made easy for distributing increases or decreases across a row.
 - [How to Plan Stripe Patterns](https://fibertools.app/blog/stripe-pattern-guide): Random, weighted, and sequence stripes with yardage planning.
 - [Knitting and Crochet Abbreviations](https://fibertools.app/blog/knitting-abbreviations-guide): The complete reference guide to abbreviations.
-- [Spinning Wheel Ratios Explained](https://fibertools.app/blog/spinning-wheel-guide): How to calculate drive ratio and TPI for handspinning.
 - [Cross Stitch Fabric Calculator](https://fibertools.app/blog/cross-stitch-fabric-guide): How to figure out the right size Aida cloth.
 - [How to Calculate Sett for Weaving](https://fibertools.app/blog/weaving-sett-guide): EPI guide for every yarn weight.
 - [Color Pooling Calculator Guide](https://fibertools.app/blog/color-pooling-guide): How to plan pooling with variegated yarn.
@@ -69,7 +68,6 @@ Calculator inputs and results are processed in the browser and are not sent to a
 - [Stitch Multiples for Sampler Blankets](https://fibertools.app/blog/stitch-multiples-sampler-blanket-guide): How to calculate compatible stitch counts for sampler blankets.
 - [Crochet Stitch Quick Reference](https://fibertools.app/blog/crochet-stitch-quick-reference-guide): Yarn overs, pull-throughs, and turning chains explained.
 - [How to Crochet Basic Amigurumi Shapes](https://fibertools.app/blog/amigurumi-shapes-guide): How to crochet basic amigurumi shapes including spheres, cones, cylinders, and ovals with round-by-round instructions.
-- [How to Block Knitting and Crochet](https://fibertools.app/blog/blocking-calculator-guide): How to block knitting and crochet projects by fiber type with stretch ratings and step-by-step instructions.
 - [Corner-to-Corner Crochet (C2C) Guide](https://fibertools.app/blog/c2c-crochet-guide): How to plan a corner-to-corner crochet blanket with block counts, diagonal rows, and yardage estimates.
 - [How Many Stitches to Cast On](https://fibertools.app/blog/cast-on-guide): How to calculate the right cast-on stitch count for any width with stitch pattern multiples and edge stitches.
 - [How to Crochet a Perfect Flat Circle](https://fibertools.app/blog/crochet-circle-guide): How to crochet a flat circle using staggered increases for any stitch type and size.
@@ -146,7 +144,7 @@ Calculator inputs and results are processed in the browser and are not sent to a
 - [Knitting Socks: Sizing & Construction](https://fibertools.app/guides/knitting-socks-sizing-guide): Sock anatomy, heel construction options, top-down vs toe-up, and yarn recommendations.
 - [Sleeve Shaping Guide](https://fibertools.app/guides/knitting-sleeve-shaping-guide): How to calculate tapers, sleeve lengths by size, and sleeve cap shaping for set-in sleeves.
 - [Top-Down Raglan Sweaters](https://fibertools.app/guides/raglan-sweater-guide): Raglan increase math, neckline options, stitch distribution, and sizing from measurements.
-- [How to Block Knitting & Crochet](https://fibertools.app/guides/blocking-fiber-guide): Wet, steam, and spray blocking methods with fiber-specific recommendations.
+- [How to Plan Blocking](https://fibertools.app/guides/blocking-fiber-guide): Use product care instructions, representative swatch tests, and measured dimension changes to plan finishing.
 - [Yarn Stash Management](https://fibertools.app/guides/yarn-stash-management-guide): Estimating yardage from partial skeins, organizing your stash, and scrap yarn project ideas.
 - [Corner-to-Corner Crochet (C2C)](https://fibertools.app/guides/c2c-crochet-guide): How C2C construction works, increase and decrease rows, and sizing for graphghans.
 - [Granny Square Blankets](https://fibertools.app/guides/granny-square-blanket-guide): Layout planning, square counts, joining methods, and border finishing.
@@ -158,7 +156,7 @@ Calculator inputs and results are processed in the browser and are not sent to a
 
 - [Free Crochet Calculators & Tools](https://fibertools.app/crochet-tools): All crochet-relevant calculators in one place, yarn, gauge, hooks, amigurumi, granny squares, C2C, and more.
 - [Free Knitting Calculators & Tools](https://fibertools.app/knitting-tools): All knitting-relevant calculators in one place, yarn, gauge, needles, sweaters, socks, hats, and more.
-- [Free Weaving & Spinning Calculators](https://fibertools.app/weaving-tools): Calculators for weavers and spinners, sett, EPI, drive ratio, TPI, and yarn weight.
+- [Free Weaving & Spinning Calculators](https://fibertools.app/weaving-tools): Calculators and references for sett, EPI, WPI, yarn weight, and geometric drive ratio.
 
 ## Buying Guides
 

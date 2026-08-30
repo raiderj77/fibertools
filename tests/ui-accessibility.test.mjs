@@ -233,3 +233,12 @@ test("exposes selected Gauge tabs and keyboard-usable embed controls", () => {
   assert.match(embedCodeCard, /tabIndex=\{0\}/);
   assert.match(embedCodeCard, /aria-live="polite"/);
 });
+
+test("uses a native button only while the mobile sticky result control is visible", () => {
+  const source = read("src/components/StickyResult.tsx");
+
+  assert.match(source, /visible && showBar/);
+  assert.match(source, /<button[\s\S]*?type="button"/);
+  assert.match(source, /aria-label=\{"Return to calculator result: " \+ summary\}/);
+  assert.doesNotMatch(source, /role="button"|tabIndex=\{0\}|onKeyDown=/);
+});

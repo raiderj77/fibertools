@@ -4,7 +4,7 @@ import { join } from "node:path";
 import test from "node:test";
 
 const pages = [
-  ["blocking-calculator", "Blocking Calculator & Fiber Guide"],
+  ["blocking-calculator", "Blocking Dimension Change Calculator"],
   ["c2c-calculator", "C2C Blanket Calculator"],
   ["gauge-calculator", "Knitting Gauge Calculator, Stitches Per Inch"],
   ["granny-square-planner", "Granny Square Blanket Planner"],

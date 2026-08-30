@@ -81,7 +81,9 @@ export default function WpiCalculatorPage() {
           Many fiber artists inherit stash yarn, buy unmarked yarn from local spinners, or unravel old projects for reuse. The only way to turn mystery yarn into a workable project is to identify what you have. The WPI measurement takes about one minute and then you know whether that yarn can make a delicate lace scarf or a sturdy blanket. You avoid the scenario where you cast on based on a guess, work for three hours, and discover the fabric is completely wrong for your pattern.
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          A quick WPI check also helps you respect the fiber content. Delicate fingering-weight silk needs different treatment than chunky wool, and the weight category gives you the first clue about the appropriate needles, blocking method, and washing instructions. Pattern designers assume you know your yarn weight when they recommend casting on 100 stitches on size US 6 needles. By measuring your WPI first, you join those design assumptions and avoid the pattern-fit problems that plague rushed projects.
+          A quick WPI check helps compare thickness categories, but thickness does not establish fiber content,
+          care, a blocking method, or washing instructions. Use the yarn label and selected pattern for those
+          decisions, and confirm the resulting fabric with a gauge swatch before committing to the project.
         </p>
       </section>
     </ToolLayout>

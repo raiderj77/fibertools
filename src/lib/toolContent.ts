@@ -178,7 +178,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     commonMistakes: [
       "Measuring gauge on stockinette swatch edges instead of the center. The first and last few stitches distort due to edge tension and loose casting on, throwing off the gauge reading by a quarter to a half stitch per inch, compounding into a sweater 2–3 inches wrong in width.",
       "Swatching in a different stitch than the project. Many crafters swatch in stockinette for speed, then knit the project in cable or colorwork. These patterns pull in width dramatically, so the finished dimensions are completely off despite matching the stated pattern gauge.",
-      "Measuring gauge on a blocked swatch when the project will be worn unblocked (or vice versa). Blocking relaxes fiber and can change stitch dimensions by a quarter inch per inch or more. A gauge of 5 stitches per inch unblocked becomes 4.75 when blocked, producing a sweater 1–2 inches too large.",
+      "Measuring a swatch before the treatment the finished project will receive. Follow the pattern and product care instructions, complete the full treatment and drying cycle, and record the observed change instead of assuming a universal blocking percentage.",
     ],
     projectExample: "A knitter wants to knit a fitted pullover that calls for 5 stitches per inch. Their swatch shows 22 stitches over 4 inches, actual gauge 5.5 stitches per inch. The pattern requires 200 stitches across 40 inches at the correct gauge. At 5.5 stitches per inch, those same 200 stitches produce only 36.4 inches, 3.5 inches too narrow. Using resize mode, the calculator shows 220 stitches are needed to achieve the intended 40-inch width.",
     useCases: [
@@ -426,7 +426,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       "Divide the total stitches to change by the number of shaping rows or rounds to get the base interval (e.g., decrease every 6th row).",
       "If the division leaves a remainder, split the increases or decreases into two groups: some at the base interval and some at the interval plus one, distributing remainders evenly across the total rows."
     ],
-    fiberNotes: "Wool, being elastic, accommodates both increases and decreases beautifully without stress, the fibers stretch and compress easily, making even tightly worked shaping blend seamlessly. Cotton and linen, being inelastic and stiffer, show shaping more obviously; decreases appear as visible lines and increases may create loose-looking spots that block out somewhat but remain perceptible. Acrylic's moderate elasticity means shaping appears visible but recovers reasonably well with blocking. Alpaca and mohair, being delicate and prone to stretching, require gentle handling during shaping, avoid over-tightening decreases, which can permanently weaken the yarn fibers. Blends behave according to their dominant fiber: a 70% wool/30% acrylic blend shapes more like pure wool, while a 50/50 blend shows characteristics of both fibers.",
+    fiberNotes: "The appearance and durability of shaping depend on the actual yarn, stitch pattern, tension, change method, and treatment. Do not assign behavior from a broad fiber category. Work a representative swatch and follow the pattern and product care instructions.",
     practiceProject: "For a simple arithmetic check, start with 40 stitches and set a target of 30 stitches. The difference is 10 stitches, so distributing 10 single-stitch decreases leaves 30 stitches. Follow the selected pattern for the decrease method, placement, edge stitches, and whether changes are worked singly or in pairs.",
     introduction: {
       title: "Why You Need an Increase and Decrease Calculator",
@@ -595,60 +595,60 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "spinning-ratio-calculator": {
-    skillLevel: "Advanced",
-    techniqueEffect: "Understanding and controlling wheel ratios transforms handspinning from intuitive guesswork to reproducible science. Changing the ratio directly changes the twist per inch delivered to the drafting zone, affecting yarn character: higher TPI creates strong, smooth, densely structured yarn with less loft; lower TPI creates soft, lofty, more fragile yarn. The technique's effect on fabric is profound, identical fiber content spun at different TPI ratios produces visually distinct yarns suitable for different purposes. A combed top spun at 6 TPI becomes silky worsted yarn; the same top at 12 TPI becomes a tight, durable fingering yarn. Plying amplifies the effect: overtwisting the singles relative to the ply ratio creates yarn that kinks and coils back on itself; undertwisting creates a limp, weak yarn.",
+    skillLevel: "Beginner",
+    techniqueEffect: "A measured pulley ratio documents one part of a spinning-wheel setup. It can help you compare compatible pulley choices on the same wheel, but it does not by itself predict finished yarn.",
     techniqueSteps: [
-      "Measure your drive wheel and whorl diameter in inches using a ruler or calipers.",
-      "Divide the drive wheel diameter by the whorl diameter to calculate the drive ratio.",
-      "Multiply the ratio by your treadling speed (in revolutions per second) to determine the twist input rate.",
-      "Measure a sample of your spun singles by wrapping it around a ruler and counting twists per inch to confirm the ratio matches your target TPI."
+      "Use the wheel manual to identify the pulley connected to the drive wheel and confirm that the setup is compatible.",
+      "Use maker-published ratios or measure both effective drive-band paths in the same unit, not the outside flanges.",
+      "Divide the effective drive-wheel band-path diameter by the effective connected-pulley band-path diameter.",
+      "Record the complete setup and compare finished yarn samples before scaling up."
     ],
-    fiberNotes: "Different fibers respond to twist differently. Merino wool accepts moderate twist (6-12 TPI) beautifully and springs back with resilience. Long-staple wools like longwool or Leicester can support high twist (10-15 TPI) without becoming harsh, while short-staple fibers like fine merino become overtwisted and crispy-textured at the same levels. Plant fibers (cotton, linen, flax) need slightly higher twist (1-2 TPI more than wool) to bind fiber ends securely; too little twist and the fibers shift under tension. Alpaca and mohair benefit from lower twist (4-8 TPI) to showcase their softness and loft; excessive twist locks them into a dense, felt-like character.",
-    practiceProject: "On a wheel with multiple whorls, spin a series of test samples using the same fiber but different whorl sizes: one sample at 8:1 ratio, another at 10:1, another at 12:1. Record TPI for each. After spinning and plying, knit swatches from each ply and compare how they knit, their finished hand, and their appearance. This hands-on comparison builds intuition for ratio-to-character translation.",
+    fiberNotes: "Fiber preparation, staple, drafting, take-up, operation, and finishing all affect a yarn sample. The calculator intentionally does not infer settings from a generic fiber name.",
+    practiceProject: "Choose two manufacturer-approved pulley settings on one wheel. Record each measured ratio and the rest of the setup, make a small sample at each setting, finish both samples the same way, and compare the results.",
     introduction: {
-      title: "Why You Need a Spinning Wheel Ratio Calculator",
+      title: "Why Measure a Spinning Wheel Ratio?",
       paragraphs: [
-        "Spinning consistent yarn requires understanding the relationship between your drive wheel speed and the twist entering your fiber. Too much twist and your singles kink and snarl. Too little twist and the yarn drifts apart when you stop treadling. The ratio between wheel and whorl governs this balance entirely.",
-        "Whether you are setting up a new wheel, switching whorls for a different yarn weight, or troubleshooting twist problems in your current project, knowing your exact drive ratio and resulting twist per inch removes the guesswork from handspinning and lets you reproduce results from one bobbin to the next.",
+        "The ideal geometric ratio is a useful way to document the relationship between a drive wheel and its connected pulley.",
+        "It is one setup measurement, not a complete yarn specification. Reproducible sampling also requires recording how the wheel was configured and operated.",
       ],
     },
     whatIs: {
       title: "What Is a Spinning Wheel Ratio?",
       paragraphs: [
-        "The drive ratio is the number of times the flyer or spindle rotates for each full turn of the drive wheel. It is determined by dividing the drive wheel diameter by the whorl diameter. A higher ratio produces more twist per treadle cycle, suitable for fine yarns. A lower ratio produces less twist, better for bulky or art yarns.",
-        "Twist per inch (TPI) measures how many times the fiber rotates within one inch of finished yarn. TPI directly affects the yarn\u2019s strength, softness, and drape. High TPI creates smooth, durable, tightly structured yarn. Low TPI creates soft, lofty yarn with more air trapped between fibers.",
-        "Plying calculations reverse the twist direction and use a different ratio to balance the finished yarn. Two singles twisted clockwise are plied counterclockwise at roughly half the singles TPI to produce a balanced two-ply that hangs straight without twisting back on itself.",
+        "For this calculator, the drive ratio is the effective drive-wheel band-path diameter divided by the effective band-path diameter of the connected pulley groove.",
+        "The driven component depends on the wheel design. Consult the wheel manual before describing the result as flyer or bobbin rotations.",
+        "A smaller connected pulley raises the geometric ratio; a larger connected pulley lowers it.",
       ],
     },
     howCalculated: {
       title: "How Spinning Ratios Are Calculated",
       paragraphs: [
-        "The core formula divides the drive wheel diameter by the whorl diameter. For example, a drive wheel measuring 22 inches in diameter with a whorl of 2.5 inches gives a ratio of 22 divided by 2.5, which equals 8.8 to 1. Each full treadle cycle rotates the flyer 8.8 times.",
-        "At a treadling speed of one full revolution per second, that 8.8-to-1 ratio delivers 8.8 twists per second into the drafting zone. If you are spinning worsted-weight singles at a target of 5 twists per inch, you need to draft the fiber at 8.8 divided by 5, or 1.76 inches per second, to hit that target TPI consistently.",
-        "For plying, the calculator halves the singles TPI as a starting point. If your singles have 10 TPI, you ply at roughly 5 TPI in the opposite direction. The calculator then recommends a whorl size that delivers that plying TPI at your natural treadling speed.",
+        "The formula is effective drive-wheel band-path diameter divided by effective connected-pulley band-path diameter. Values of 22 and 2.5 produce an ideal geometric ratio of 8.8 to 1.",
+        "That result means about 8.8 driven-component rotations per full drive-wheel revolution in the simplified model.",
+        "Maker-published ratios are preferable because outside or flange diameters can differ from the effective band path. Actual behavior can also vary with drive-band condition, tension, slip, and setup.",
       ],
     },
     howToUse: {
       title: "How to Use the Spinning Wheel Ratio Calculator",
       paragraphs: [
-        "Enter your drive whorl diameter and flyer whorl diameter (or select your wheel model if listed) to calculate the drive ratio. The calculator shows the resulting ratio and the twist per inch (TPI) you can expect at different treadling speeds. For plying, enter your singles TPI and the number of plies to get the recommended plying ratio.",
-        "This calculator is designed for wheel spinning, double drive, scotch tension, and irish tension systems. Drop spindle ratios are determined by spindle weight and whorl diameter, which follow different physics. If you spin on a drop spindle, use the TPI measurement section independently."
+        "Enter maker-documented effective diameters, or measure both drive-band contact paths in the same unit. The calculator returns their approximate geometric ratio.",
+        "Use your wheel manual to identify the driven component and compatible settings, particularly for bobbin-led or double-drive systems."
       ],
     },
     understandingResults: {
       title: "Understanding Your Results",
       paragraphs: [
-        "The drive ratio tells you how many times the flyer rotates for each full turn of the drive wheel. A 6:1 ratio means 6 flyer rotations per treadle cycle. Higher ratios produce more twist per inch at the same treadling speed, which means finer, tighter singles. Lower ratios are better for bulky, low-twist yarns.",
-        "Twist per inch (TPI) directly affects yarn character. High TPI (above 8) creates strong, durable, smooth yarn suitable for socks and hard-wearing garments. Low TPI (below 4) creates soft, lofty, fragile yarn best for shawls and garments worn against the skin. The sweet spot depends on fiber length and intended use."
+        "The displayed ratio is an ideal geometric estimate for the measured pulley pair.",
+        "It does not determine twists per inch, yarn weight, strength, drafting speed, take-up, or plying balance. Evaluate a finished sample instead of assigning those properties from the ratio."
       ],
     },
     proTips: {
       title: "Pro Tips",
       tips: [
-        "Ply at roughly half the singles TPI for a balanced yarn. If your singles have 10 TPI, ply at approximately 5 TPI in the opposite direction.",
-        "Ashford Traveller whorls give you ratios from 5:1 to 13:1. Know your wheel's full range and which whorl you need before starting a project.",
-        "Spin a sample length and measure the TPI before committing to a full bobbin. Wrap the singles around a ruler for one inch and count the twists.",
-        "For art yarns with intentional low twist, use your largest whorl (lowest ratio) and treadle slowly. Over-twist is the most common beginner mistake in art yarn spinning."
+        "Prefer published ratios or effective diameters; do not use an outer flange when it differs from the drive-band contact path.",
+        "Use only pulley or whorl combinations that the wheel manufacturer identifies as compatible.",
+        "Label the output as the driven component unless the manual establishes whether the pulley drives the flyer or bobbin.",
+        "Record and finish a small yarn sample before committing valuable fiber to a full project."
       ],
     },
   },
@@ -1676,7 +1676,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     proTips: {
       title: "Pro Tips",
       tips: [
-        "Block every square to the exact same dimensions before joining. Uneven squares make assembly frustrating and produce a wavy, unprofessional blanket.",
+        "Measure every square before joining. If the pattern and product care instructions call for pre-joining treatment, test it on a representative square and apply it consistently without forcing the fabric to a target size.",
         "Crochet a few extra squares as insurance. If one square has a tension problem or a color you decide you dislike, you can swap it out without interrupting the assembly.",
         "For stash-busting projects, weigh your leftover yarn and divide by the yarn-per-square amount to see how many squares each leftover can produce before you start.",
         "Consider your joining method before you start crocheting squares. Join-as-you-go integrates assembly into the last round of each square, saving time and producing a flat, seamless look.",
@@ -1819,62 +1819,62 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "blocking-calculator": {
-    skillLevel: "Intermediate",
-    techniqueEffect: "Blocking transforms unfinished handwork into polished, professional-quality pieces by relaxing fibers and setting them into the intended shape and dimensions. The technique smooths uneven stitches, opens lace patterns so motifs become visible, relaxes cable crossings into their proper relief, and evens edges that curl or wave. The visual transformation is dramatic: an unblocked piece looks homemade; the same piece after blocking looks like commercial knitwear. Blocking also reveals mistakes and fixing opportunities, distorted stitches, dropped stitches, and gauge issues become obvious once the piece is pinned flat. The technique is reversible: blocked garments will gradually return toward their original shape as humidity and wear alter the fiber memory, though superwash treatment makes blocking effects more permanent.",
+    skillLevel: "Beginner",
+    techniqueEffect: "The calculator describes a requested dimension change as a signed percentage. It does not predict how a fabric will respond or select a finishing method.",
     techniqueSteps: [
-      "Before wetting, measure your unblocked piece in multiple places (length, width, and any pattern-specific dimensions) to establish starting dimensions.",
-      "Choose a blocking method appropriate to your fiber: wet blocking for wool and natural fibers, spray blocking for most fibers, steam blocking for robust fibers only.",
-      "If wet blocking, submerge the piece in cool water with wool wash, gently squeeze (never wring), and carefully remove excess water by rolling in a towel.",
-      "Pin the piece to blocking mats at target dimensions, shaping as needed, and allow to dry completely (12-24 hours) before removing pins."
+      "Measure the current width, length, or both without stretching the item.",
+      "Enter the matching requested dimensions in the same unit.",
+      "Read the signed percentage as the requested change, not an achievable-growth or safety rating.",
+      "Choose treatment from the pattern and product care instructions, then test it on a representative swatch."
     ],
-    fiberNotes: "Wool is the most forgiving fiber for blocking, it stretches dramatically when wet and holds its blocked shape beautifully. Superwash wool behaves similarly but the anti-felt treatment may affect stitch appearance slightly. Non-superwash wool requires cool water to prevent accidental felting; hot water or aggressive agitation will permanently damage it. Cotton and linen respond well to both wet and steam blocking and can stretch moderately without permanent damage. Acrylic must never be steamed, heat permanently damages the synthetic fibers, causing stiffness and color changes. Alpaca is delicate and stretches easily; use spray blocking to avoid overstretch that becomes permanent. Silk requires gentle handling; use cool water and lay flat to dry rather than pinning, as pins can create permanent holes in the delicate fibers.",
-    practiceProject: "Knit a simple stockinette swatch (12 x 12 inches unblocked) in wool, then block it wet to exact finished dimensions (the swatch will grow, potentially to 14 x 14 or larger). Measure how much the piece stretched. Repeat with a second identical swatch in acrylic using only spray blocking. Compare the final dimensions and note how much more dramatically wool stretches than acrylic.",
+    fiberNotes: "A fiber name alone cannot establish a safe method. Blends, yarn construction, dyes, finishes, stitch pattern, prior treatment, and manufacturer instructions can change how an item responds.",
+    practiceProject: "Make a representative swatch, measure it, treat it exactly as the pattern and care instructions specify, let the treatment cycle finish, and measure again. Compare the observed swatch change with the requested project change.",
     introduction: {
-      title: "Why You Need a Blocking Calculator",
+      title: "Why Calculate a Requested Dimension Change?",
       paragraphs: [
-        "Blocking transforms handknit and crocheted pieces from homemade-looking to professional-quality. Unblocked fabric has uneven stitches, curling edges, and dimensions that may not match your pattern. Blocking evens everything out, opens up lace, relaxes cable crossings, and sets the finished shape. It is the single most impactful finishing step you can take.",
-        "But blocking incorrectly can damage your work. Steaming acrylic permanently ruins the fibers. Hot water felts non-superwash wool. Aggressive stretching on delicate alpaca can cause permanent sagging. This calculator tells you the right method for your fiber type, shows you how much stretch is feasible, and gives step-by-step instructions so you block with confidence.",
+        "Comparing current and requested measurements makes the size difference explicit before you treat a project.",
+        "The percentage is useful for comparing with a representative swatch. It is not evidence that a treatment is safe or that the finished item can reach and retain the requested size.",
       ],
     },
     whatIs: {
-      title: "What Is Blocking?",
+      title: "What Does This Calculator Measure?",
       paragraphs: [
-        "Blocking is the process of setting your finished knit or crochet piece to its final dimensions using water, steam, or a combination of both. The fiber absorbs moisture, relaxes, and can be gently shaped to the desired measurements. When it dries in that position, the fibers remember the shape, at least until the next washing.",
-        "There are three main blocking methods. Wet blocking involves fully submerging the piece in water with a wool wash, gently squeezing out excess moisture (never wringing), and pinning it to blocking mats at the target dimensions. Spray blocking pins the piece first, then sprays it with water until damp. Steam blocking pins the piece and holds a steam iron above it without touching the fabric.",
-        "Different fibers respond differently to each method. Wool is the most blockable fiber, it can stretch dramatically when wet and holds its blocked shape beautifully. Cotton and linen respond well to wet blocking and steam. Acrylic must never be steamed, as heat permanently damages the synthetic fibers. The right method depends entirely on your fiber content.",
+        "It measures the signed percentage difference between a current and requested dimension.",
+        "A positive result is a requested increase, a negative result is a requested decrease, and zero means the two entries match.",
+        "Width and length are independent, so you can calculate one axis without entering the other.",
       ],
     },
     howCalculated: {
       title: "How the Blocking Calculator Works",
       paragraphs: [
-        "The calculator compares your current piece dimensions to your target dimensions and computes the stretch percentage in each direction. The formula is straightforward: the target dimension minus the current dimension, divided by the current dimension, times 100.",
-        "It then rates the feasibility of that stretch based on established fiber behavior. Less than 5 percent stretch is easy for virtually any fiber. Five to 15 percent is moderate, natural fibers handle it well, but synthetics are unlikely to hold. Fifteen to 30 percent is significant, achievable with wool lace but not with most other fibers. Over 30 percent is very aggressive and may not be achievable even with wool.",
-        "The fiber lookup table maps each fiber type to its recommended blocking method and any critical warnings. For example, non-superwash wool should only be blocked with cool water to avoid felting, alpaca should be spray-blocked to prevent irreversible stretching, and acrylic should never be exposed to steam or high heat.",
+        "For each completed axis, subtract the current dimension from the requested dimension, divide by the current dimension, and multiply by 100.",
+        "For example, 48 to 50 is a positive 4.2 percent requested change. Sixty to 57 is a negative 5.0 percent requested change.",
+        "The calculator deliberately does not convert the result into a feasibility, safety, or fiber-treatment rating.",
       ],
     },
     howToUse: {
       title: "How to Use the Blocking Calculator",
       paragraphs: [
-        "Select your fiber type from the dropdown. If your yarn is a blend, choose the fiber that requires the most gentle treatment, for an acrylic/wool blend, treat it as acrylic. If you are unsure of the fiber content, start with spray blocking, which is the safest method for unknown fibers.",
-        "Enter the current width and length of your piece as it comes off the needles or hook, without stretching. Then enter your target width and length, the dimensions you want the finished piece to be.",
-        "The calculator displays the recommended blocking method, any fiber-specific warnings, the stretch percentage in each direction, a feasibility rating, and step-by-step instructions for the recommended method. Follow the instructions carefully, especially the warnings about water temperature and steam.",
+        "Enter both current and requested values for width, length, or both. Leave both fields for an unused axis blank.",
+        "Use the same measurement unit within each pair. The percentage is unit-independent.",
+        "Then compare the requested change with measurements from a representative swatch treated according to the pattern and product care instructions.",
       ],
     },
     understandingResults: {
       title: "Understanding Your Results",
       paragraphs: [
-        "The stretch percentages tell you how much the piece needs to grow in each direction. If both percentages are under 5 percent, blocking will be easy and low-risk. If either percentage is over 15 percent, pay close attention to the feasibility rating, you may need to adjust your expectations or accept that the piece cannot reach the target dimensions.",
-        "The feasibility rating is based on general fiber behavior, not a guarantee. Your specific yarn, stitch pattern, and tension all affect how much stretch is achievable. Lace patterns stretch dramatically because the open stitches have room to expand. Dense stockinette or textured stitches have less room to move.",
-        "If the calculator shows a warning about your fiber type, take it seriously. Felting non-superwash wool and killing acrylic are irreversible. When in doubt, test your blocking method on your gauge swatch before committing to the full piece.",
+        "The magnitude shows how far the requested measurement is from the current one relative to the current size.",
+        "It does not show what treatment will work, what is safe, or what change will remain after use or laundering.",
+        "Use the actual after-treatment swatch measurement as project-specific evidence, and stop when product instructions conflict or the item is valuable.",
       ],
     },
     proTips: {
       title: "Pro Tips",
       tips: [
-        "Always test your blocking method on your gauge swatch before blocking the finished piece. This is especially important for unknown fibers or blends.",
-        "Use rustproof T-pins or dedicated blocking pins. Regular straight pins can rust and stain your work.",
-        "For straight edges on shawls and blankets, invest in blocking wires. They create a smooth, even edge without the scalloped look that individual pins create.",
-        "Never hang a wet blocked item to dry. The weight of the water will stretch the piece unevenly. Always dry flat on blocking mats or a towel.",
+        "Follow the project pattern and the yarn, fabric, or garment care instructions.",
+        "Test the complete intended treatment and drying cycle on a representative swatch.",
+        "Use steam or other heat only when the product and appliance instructions permit it.",
+        "Get qualified textile-care guidance when instructions are missing or conflict, particularly for valuable items.",
       ],
     },
   },
