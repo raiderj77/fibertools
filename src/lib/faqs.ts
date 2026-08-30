@@ -266,7 +266,7 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "What does 'wl fwd' mean in a knitting pattern?", a: "It commonly indicates moving the working yarn forward. Whether that movement forms a yarn over depends on the surrounding instruction, so verify the pattern's abbreviation key and next stitch." },
     { q: "How do I tell whether a pattern uses UK or US crochet terms?", a: "Start with the pattern's own abbreviation key and publisher information. Compare multiple defined stitches if possible. Words such as tension or gauge can be clues, but no single clue shown by this tool establishes the convention." },
     { q: "Does the tool date or identify the origin of a pattern?", a: "No. It reports a limited set of possible wording, size, and yarn-weight signals for manual research. Those signals do not establish a publication date or country." },
-    { q: "What is 'cast off' in a pattern?", a: "Cast off is commonly called bind off in US knitting instructions. The tool maps the phrase only in explicit UK mode; check the source key before relying on the substitution." },
+    { q: "What is 'cast off' in a pattern?", a: "Treat it as older wording that needs a source-specific lookup. The tool leaves the phrase unchanged and reports it only as a possible review clue; check the pattern key before deciding what technique is intended." },
   ],
   "fabric-substitute": [
     { q: "What is the best way to choose a fabric substitute?", a: "Match construction first, then compare stretch, weight, drape, structure, opacity, and recovery. A woven-to-woven or knit-to-knit substitution with overlapping ranges is safer, but a washed test swatch is still the final check." },

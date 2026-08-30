@@ -44,7 +44,7 @@ export default function VintagePatternDecoderPage() {
   return (
     <ToolLayout slug="vintage-pattern-decoder" widgetFirst>
       <AnswerBlock
-        what="A text-only review tool for a bounded set of UK and older pattern terms. Unknown and US modes preserve the text; explicit UK mode maps only the supported terms shown by the tool."
+        what="A text-only review tool for a bounded set of CYC-documented UK crochet terms and tension/gauge wording. Unknown and US modes preserve the text; explicit UK mode maps only the supported terms shown by the tool."
         who="Crafters who have a pattern excerpt and want a cautious terminology reference after checking the pattern key, publisher, or another reliable source."
         bottomLine="Paste an excerpt, choose the source convention, and review any mapped terms and possible clues. The result does not validate the pattern or determine its age, origin, sizing, or yarn requirements."
         lastUpdated="2026-08-29"
@@ -76,21 +76,26 @@ export default function VintagePatternDecoderPage() {
         </p>
       </section>
 
-      <section className="mt-10">
-        <h2 className="mb-3 text-xl font-semibold text-bark-800 dark:text-cream-100">
+      <section className="mt-10" aria-labelledby="vintage-references-heading">
+        <h2
+          id="vintage-references-heading"
+          className="mb-3 text-xl font-semibold text-bark-800 dark:text-cream-100"
+        >
           Reference
         </h2>
         <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
-          The core UK/US crochet mappings follow the{" "}
+          The crochet term pairs and tension/gauge wording used for substitutions
+          come from the{" "}
           <a
             href="https://www.craftyarncouncil.com/standards/crochet-abbreviations"
             target="_blank"
             rel="noopener noreferrer"
             className="font-medium text-plum-700 underline decoration-plum-300 underline-offset-2 hover:text-plum-800 dark:text-plum-300 dark:hover:text-plum-200"
           >
-            Craft Yarn Council crochet abbreviation reference
+            Craft Yarn Council Crochet Abbreviations Master List
           </a>
-          . Pattern-specific definitions still take precedence.
+          . Older wording shown under Possible Source Signals stays unchanged and
+          should be checked against the source pattern&apos;s own key.
         </p>
       </section>
 

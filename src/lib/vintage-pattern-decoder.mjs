@@ -32,58 +32,10 @@ const UK_TO_US_TERMS = Object.freeze([
     note: "UK double crochet is US single crochet.",
   }),
   Object.freeze({
-    label: "Tension square",
-    terms: Object.freeze(["tension square"]),
-    replacement: "gauge swatch",
-    note: "Tension square is commonly called a gauge swatch in US instructions.",
-  }),
-  Object.freeze({
     label: "Tension",
     terms: Object.freeze(["tension"]),
     replacement: "gauge",
     note: "Tension is commonly called gauge in US instructions.",
-  }),
-  Object.freeze({
-    label: "Miss",
-    terms: Object.freeze(["miss"]),
-    replacement: "skip",
-    note: "UK miss is commonly written as skip in US instructions.",
-  }),
-  Object.freeze({
-    label: "Cast off",
-    terms: Object.freeze(["cast off"]),
-    replacement: "bind off",
-    note: "Cast off is commonly called bind off in US knitting instructions.",
-  }),
-  Object.freeze({
-    label: "Work straight",
-    terms: Object.freeze(["work straight"]),
-    replacement: "work even",
-    note: "Work straight is commonly written as work even in US instructions.",
-  }),
-  Object.freeze({
-    label: "Wool round needle",
-    terms: Object.freeze(["wool round needle"]),
-    replacement: "yarn over (yo)",
-    note: "This wording commonly describes a yarn over; verify it against the source key.",
-  }),
-  Object.freeze({
-    label: "Wool over",
-    terms: Object.freeze(["wool over"]),
-    replacement: "yarn over (yo)",
-    note: "This wording commonly describes a yarn over; verify it against the source key.",
-  }),
-  Object.freeze({
-    label: "Wool forward",
-    terms: Object.freeze(["wool forward", "wl fwd", "wl. fwd", "wl.fwd", "wf"]),
-    replacement: "yarn forward (yf)",
-    note: "This wording describes moving the working yarn forward; verify the next stitch before treating it as an increase.",
-  }),
-  Object.freeze({
-    label: "Wool back",
-    terms: Object.freeze(["wool back", "wl bk", "wl. bk", "wl.bk", "wb"]),
-    replacement: "yarn back (yb)",
-    note: "This wording describes moving the working yarn to the back.",
   }),
 ]);
 
@@ -102,7 +54,7 @@ function escapeRegex(value) {
 
 function termMatcher(term) {
   const escaped = escapeRegex(term).replace(/ /g, "\\s+");
-  return new RegExp(`(^|[^A-Za-z])(${escaped})(?=$|[^A-Za-z])`, "gi");
+  return new RegExp(`(^|[^A-Za-z0-9])(${escaped})(?=$|[^A-Za-z0-9])`, "gi");
 }
 
 function collectMatches(text) {

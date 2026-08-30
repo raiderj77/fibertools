@@ -64,8 +64,17 @@ export default function VintagePatternDecoderTool() {
   }
 
   function handleInputChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setInput(event.currentTarget.value.slice(0, MAX_VINTAGE_PATTERN_TEXT_LENGTH));
+    const nextInput = event.currentTarget.value.slice(
+      0,
+      MAX_VINTAGE_PATTERN_TEXT_LENGTH + 1,
+    );
+    setInput(nextInput);
     resetResult();
+    if (nextInput.length > MAX_VINTAGE_PATTERN_TEXT_LENGTH) {
+      setError(
+        `Pattern text must be ${MAX_VINTAGE_PATTERN_TEXT_LENGTH.toLocaleString()} characters or fewer. Shorten the text before reviewing it.`,
+      );
+    }
   }
 
   function handleConventionChange(nextConvention: SourceConvention) {
@@ -121,6 +130,7 @@ export default function VintagePatternDecoderTool() {
   }
 
   const remainingCharacters = MAX_VINTAGE_PATTERN_TEXT_LENGTH - input.length;
+  const inputTooLong = input.length > MAX_VINTAGE_PATTERN_TEXT_LENGTH;
   const resultSummary = result
     ? result.convention === "unknown"
       ? "No substitutions were made because the source convention is not established."
@@ -207,21 +217,24 @@ export default function VintagePatternDecoderTool() {
             value={input}
             onChange={handleInputChange}
             rows={10}
-            maxLength={MAX_VINTAGE_PATTERN_TEXT_LENGTH}
             placeholder="Paste a pattern excerpt here. Do not include account details, purchase records, or other private information."
             className="w-full resize-y rounded-xl border border-cream-300 bg-white px-3 py-2.5 font-mono text-sm leading-relaxed text-bark-800 placeholder:text-bark-300 focus:outline-none focus:ring-2 focus:ring-plum-300 dark:border-bark-600 dark:bg-bark-800 dark:text-cream-100 dark:placeholder:text-bark-500 dark:focus:ring-plum-700"
-            aria-describedby="vintage-input-help vintage-character-count"
+            aria-describedby="vintage-input-help vintage-character-count vintage-input-error"
+            aria-invalid={inputTooLong}
           />
           <div className="mt-1 flex flex-wrap justify-between gap-2 text-xs text-bark-400 dark:text-bark-500">
             <p id="vintage-input-help">Text only. Files and scanned images are not accepted.</p>
             <p id="vintage-character-count" aria-live="polite">
-              {remainingCharacters.toLocaleString()} characters remaining
+              {inputTooLong
+                ? `Over the ${MAX_VINTAGE_PATTERN_TEXT_LENGTH.toLocaleString()}-character limit`
+                : `${remainingCharacters.toLocaleString()} characters remaining`}
             </p>
           </div>
         </div>
 
         {error && (
           <p
+            id="vintage-input-error"
             role="alert"
             className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-800 dark:bg-red-900/10 dark:text-red-300"
           >
@@ -233,7 +246,7 @@ export default function VintagePatternDecoderTool() {
           <button
             type="button"
             onClick={handleReview}
-            disabled={!input.trim()}
+            disabled={!input.trim() || inputTooLong}
             className="rounded-xl bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-amber-600 active:bg-amber-700 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Review Pattern Text
@@ -367,7 +380,7 @@ export default function VintagePatternDecoderTool() {
           <h3 className="mb-3 font-semibold text-bark-700 dark:text-cream-200">What this review does</h3>
           <ul className="space-y-2 text-sm leading-relaxed text-bark-500 dark:text-bark-400">
             <li>Preserves every character when the source convention is unknown or US.</li>
-            <li>Maps a finite set of UK crochet and pattern terms only when UK is selected.</li>
+            <li>Maps the supported CYC-documented UK crochet terms only when UK is selected.</li>
             <li>Flags possible wording, size, and yarn-weight clues without guessing an origin or era.</li>
             <li>Leaves pattern structure, stitch counts, sizing, and technique validation to manual review.</li>
           </ul>

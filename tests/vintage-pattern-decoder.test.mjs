@@ -35,7 +35,7 @@ test("only explicit UK mode maps the supported UK terms", () => {
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "single crochet (sc), single crochet (sc); double crochet (dc), double crochet (dc); half double crochet (hdc); gauge swatch.",
+    "single crochet (sc), single crochet (sc); double crochet (dc), double crochet (dc); half double crochet (hdc); gauge square.",
   );
   assert.equal(result.substitutionCount, 6);
   assert.equal(result.substitutions.find((term) => term.label === "Double crochet")?.count, 2);
@@ -67,11 +67,35 @@ test("longest source term wins and generated text is not converted again", () =>
 });
 
 test("supported multi-word terms tolerate copied spacing without changing surrounding text", () => {
-  const result = decodeVintagePattern("Row 1: double   crochet, then work\tstraight.", "uk");
+  const result = decodeVintagePattern("Row 1: double   crochet, then check this note.", "uk");
 
   assert.equal(result.status, "ready");
-  assert.equal(result.output, "Row 1: single crochet (sc), then work even.");
-  assert.equal(result.substitutionCount, 2);
+  assert.equal(result.output, "Row 1: single crochet (sc), then check this note.");
+  assert.equal(result.substitutionCount, 1);
+});
+
+test("unsupported compound and attached-count abbreviations are preserved", () => {
+  const result = decodeVintagePattern(
+    "dc2tog, tr3tog, dtr2tog, 2dc; 3 tr.",
+    "uk",
+  );
+
+  assert.equal(result.status, "ready");
+  assert.equal(
+    result.output,
+    "dc2tog, tr3tog, dtr2tog, 2dc; 3 double crochet (dc).",
+  );
+  assert.equal(result.substitutionCount, 1);
+});
+
+test("older wording remains unchanged and is reported only as a review clue", () => {
+  const input = "Miss one, cast off, work straight, then wool forward.";
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, input);
+  assert.equal(result.substitutionCount, 0);
+  assert.ok(result.signals.length >= 2);
 });
 
 test("input length is accepted at the exact boundary and rejected above it", () => {
@@ -110,8 +134,10 @@ test("the UI is text-only, bounded, convention-gated, and reports clipboard outc
     "utf8",
   );
 
-  assert.match(source, /maxLength=\{MAX_VINTAGE_PATTERN_TEXT_LENGTH\}/);
-  assert.match(source, /slice\(0, MAX_VINTAGE_PATTERN_TEXT_LENGTH\)/);
+  assert.match(source, /MAX_VINTAGE_PATTERN_TEXT_LENGTH \+ 1/);
+  assert.match(source, /inputTooLong/);
+  assert.match(source, /disabled=\{!input\.trim\(\) \|\| inputTooLong\}/);
+  assert.match(source, /Shorten the text before reviewing it/);
   assert.match(source, /Unknown \/ not established/);
   assert.match(source, /US terms/);
   assert.match(source, /UK terms/);
