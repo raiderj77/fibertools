@@ -64,8 +64,8 @@ export default function ToolLayout({
 
       {/* Title & category badge */}
       <div className="mb-8">
-        <div className="flex items-center justify-between gap-3 mb-2">
-          <div className="flex items-center gap-3">
+        <div className="flex flex-col items-start gap-3 mb-2 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex min-w-0 items-center gap-3">
             <span className="text-3xl" aria-hidden="true">{tool.icon}</span>
             <h1 className="text-2xl sm:text-3xl font-display text-bark-800">
               {pageTool.name}
@@ -513,7 +513,7 @@ export default function ToolLayout({
               >
                 MyCrochetKit
               </a>
-              {" is a free voice-activated row counter that lets you say \"next\" to count rows hands-free. Track multiple projects, save your progress, and never lose count again."}
+              {" is a separate voice-activated row-counter service. Review its current features, pricing, privacy, and storage terms before relying on it for project records."}
             </p>
           </div>
           <a
@@ -522,7 +522,7 @@ export default function ToolLayout({
             rel="noopener noreferrer"
             className="btn-primary text-sm whitespace-nowrap flex-shrink-0"
           >
-            Try It Free →
+            Visit MyCrochetKit →
           </a>
         </div>
       </section>

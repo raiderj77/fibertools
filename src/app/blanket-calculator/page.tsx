@@ -44,8 +44,8 @@ export default function BlanketCalculatorPage() {
       pageTitle="Blanket Yarn & Size Calculator"
       nextAction={{
         href: "/project-cost-calculator",
-        label: "Estimate the project cost",
-        description: "Use the whole-skein count from your result to estimate yarn, notions, and optional labor cost.",
+        label: "Total the entered materials",
+        description: "Use the whole-skein count as the yarn quantity, enter its price per skein, and add any notion or extra amounts you want included in the material subtotal.",
       }}
     >
       <AnswerBlock

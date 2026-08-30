@@ -12,7 +12,7 @@ Calculator inputs and results are processed in the browser and are not sent to a
 - [Needle & Hook Size Converter](https://fibertools.app/needle-converter): Convert knitting needle and crochet hook sizes between US, UK, metric, and Japanese systems.
 - [Gauge Calculator](https://fibertools.app/gauge-calculator): Calculate your gauge from a swatch, resize patterns to a new gauge, and get exact stitch counts.
 - [Yarn Weight Chart](https://fibertools.app/yarn-weight-chart): Interactive yarn weight chart with US, UK, and Australian names plus substitution compatibility checker.
-- [Stitch Counter](https://fibertools.app/stitch-counter): Free online stitch counter with multiple counters, row reminders, and offline support.
+- [Stitch Counter](https://fibertools.app/stitch-counter): Track up to six named counts and set exact-count reminders on the first counter. Browser-local saving is attempted but not guaranteed.
 - [Blanket Calculator](https://fibertools.app/blanket-calculator): Find the right stitch count, row count, and yarn yardage for any blanket size from baby to king.
 - [Increase & Decrease Calculator](https://fibertools.app/increase-decrease-calculator): Get stitch-by-stitch instructions for distributing increases or decreases evenly across a row or round.
 - [Stripe Generator](https://fibertools.app/stripe-generator): Generate random or structured stripe patterns with per-color yardage estimates.
@@ -23,13 +23,13 @@ Calculator inputs and results are processed in the browser and are not sent to a
 - [Perfect Circle Calculator](https://fibertools.app/circle-calculator): Generate flat circle crochet patterns with staggered increases.
 - [Sewing & Craft Needle Guide](https://fibertools.app/needle-guide): Visual guide to needle types for every project.
 - [Amigurumi Shapes Guide](https://fibertools.app/amigurumi-shapes): Round-by-round instructions for sphere, cone, cylinder, and oval shapes.
-- [Project Cost Calculator](https://fibertools.app/project-cost-calculator): Calculate the total cost of your project including yarn, notions, and time estimate.
+- [Project Cost Calculator](https://fibertools.app/project-cost-calculator): Total the yarn, notions, and extras entered, with an optional stitch-rate time estimate and selling-price scenario.
 - [Color Pooling Calculator](https://fibertools.app/color-pooling-calculator): Calculate the exact stitch count to make variegated yarn pool into argyle and plaid patterns.
 - [WPI to Yarn Weight Converter](https://fibertools.app/wpi-calculator): Enter wraps per inch to identify yarn weight, recommended needles, hooks, gauge range, and project ideas.
 - [Cast On Calculator](https://fibertools.app/cast-on-calculator): Calculate how many stitches to cast on for any width with stitch pattern multiple rounding.
 - [Hat Size Calculator](https://fibertools.app/hat-calculator): Get cast-on count, crown decrease schedule, and yardage for any head size from preemie to large adult.
 - [Sock Knitting Calculator](https://fibertools.app/sock-calculator): Calculate sock stitch counts for top-down or toe-up with heel flap, gusset, and short-row heel instructions.
-- [Sleeve Shaping Calculator](https://fibertools.app/sleeve-calculator): Get row-by-row decrease instructions for tapered sleeves in knit or crochet.
+- [Sleeve Shaping Calculator](https://fibertools.app/sleeve-calculator): Plan a bounded paired-decrease sleeve taper; odd stitch gaps and schedules denser than one event per shaping row are declined.
 - [Raglan Calculator](https://fibertools.app/raglan-calculator): Calculate neck cast-on, stitch distribution, and increase rounds for a top-down raglan sweater.
 - [Blocking Calculator](https://fibertools.app/blocking-calculator): Get the right blocking method for your fiber type with stretch feasibility ratings and step-by-step instructions.
 - [Yarn Stash Estimator](https://fibertools.app/stash-estimator): Estimate remaining yardage in partial skeins by weight, plus a yardage reference table for unlabeled yarn.
@@ -64,7 +64,6 @@ Calculator inputs and results are processed in the browser and are not sent to a
 - [Spinning Wheel Ratios Explained](https://fibertools.app/blog/spinning-wheel-guide): How to calculate drive ratio and TPI for handspinning.
 - [Cross Stitch Fabric Calculator](https://fibertools.app/blog/cross-stitch-fabric-guide): How to figure out the right size Aida cloth.
 - [How to Calculate Sett for Weaving](https://fibertools.app/blog/weaving-sett-guide): EPI guide for every yarn weight.
-- [How Much Does It Cost to Crochet a Blanket?](https://fibertools.app/blog/project-cost-guide): The honest price breakdown for handmade projects.
 - [Color Pooling Calculator Guide](https://fibertools.app/blog/color-pooling-guide): How to plan pooling with variegated yarn.
 - [DMC to Anchor Thread Conversion](https://fibertools.app/blog/thread-conversion-guide): The complete searchable embroidery thread conversion chart.
 - [Stitch Multiples for Sampler Blankets](https://fibertools.app/blog/stitch-multiples-sampler-blanket-guide): How to calculate compatible stitch counts for sampler blankets.
@@ -78,7 +77,6 @@ Calculator inputs and results are processed in the browser and are not sent to a
 - [How to Calculate Hat Size for Knitting and Crochet](https://fibertools.app/blog/hat-calculator-guide): How to calculate cast-on count, crown decreases, and yardage for any head size from preemie to adult.
 - [Sewing and Craft Needle Types Explained](https://fibertools.app/blog/needle-guide-types): A visual guide to every needle type for fiber arts including tapestry, embroidery, chenille, and beading needles.
 - [How to Calculate a Top-Down Raglan Sweater](https://fibertools.app/blog/raglan-sweater-guide): How to calculate neck cast-on, stitch distribution, and increase rounds for a top-down raglan sweater.
-- [How to Calculate Sleeve Shaping](https://fibertools.app/blog/sleeve-calculator-guide): How to calculate row-by-row decrease instructions for tapered knit and crochet sleeves.
 - [Sock Knitting Calculator Guide](https://fibertools.app/blog/sock-knitting-guide): How to calculate sock stitch counts for top-down or toe-up construction with heel and gusset instructions.
 - [How to Estimate Yarn Yardage in Partial Skeins](https://fibertools.app/blog/stash-estimator-guide): How to estimate remaining yardage in partial skeins by weight with a yardage reference table.
 - [UK vs US Crochet Terms Conversion](https://fibertools.app/blog/uk-us-crochet-terms-guide): How to convert UK crochet patterns to US terminology including abbreviations and vintage terms.
@@ -87,7 +85,6 @@ Calculator inputs and results are processed in the browser and are not sent to a
 - [How to Convert Knitting Patterns to Crochet](https://fibertools.app/blog/knitting-to-crochet-conversion-guide): Step-by-step conversion guide with gauge ratios, stitch equivalents, and yarn adjustments between crafts.
 - [Beginner's Guide to Rigid Heddle Weaving](https://fibertools.app/blog/rigid-heddle-weaving-guide): Learn rigid heddle weaving from warping to finishing with sett calculations and first project ideas.
 - [How to Choose the Right Crochet Hook Size](https://fibertools.app/blog/crochet-hook-size-guide): US, metric, and UK hook size chart with yarn weight matching and gauge adjustment tips.
-- [How to Estimate Knitting and Crochet Project Time](https://fibertools.app/blog/project-time-estimation-guide): Calculate stitches per minute, total project time, and realistic deadlines for any fiber arts project.
 - [How to Work with Variegated and Self-Striping Yarn](https://fibertools.app/blog/variegated-yarn-guide): Best stitches, planned pooling technique, and tips for getting beautiful results from multicolor yarn.
 - [How to Add Borders to Knit and Crochet Projects](https://fibertools.app/blog/knit-crochet-borders-guide): Stitch pickup ratios, corner math, popular border styles, and yarn estimation for edgings.
 - [How to Calculate Yarn for Crochet Garments](https://fibertools.app/blog/crochet-garment-yarn-guide): Yardage charts for crochet tops, cardigans, and dresses with the crochet yarn multiplier explained.
