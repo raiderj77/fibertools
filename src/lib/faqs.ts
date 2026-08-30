@@ -24,12 +24,11 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "What needle size is best for beginners?", a: "US 8 (5.0mm) needles with worsted weight yarn are the most beginner-friendly combination. The stitches are large enough to see clearly and count easily, and worsted is the most widely available yarn weight with the most pattern options." },
   ],
   "gauge-calculator": [
-    { q: "What is gauge in knitting and crochet?", a: "Gauge is the number of stitches and rows per unit of measurement (usually 4 inches or 10cm). It determines the finished size of your project. Even a half-stitch difference per inch can change a sweater by a full size." },
-    { q: "How do I measure my gauge?", a: "Knit or crochet a swatch at least 6 inches square. Lay it flat without stretching. Measure the number of stitches across 4 inches and rows down 4 inches in the center of the swatch." },
-    { q: "Why doesn\u2019t my gauge match the pattern?", a: "Everyone knits and crochets at different tensions. Try going up a needle/hook size if you have too many stitches per inch (tight), or down a size if too few (loose)." },
-    { q: "Do I really need to make a gauge swatch?", a: "For anything where size matters (garments, hats, socks), absolutely yes. For blankets and scarves where exact dimensions are flexible, you can skip it but may use more or less yarn than expected." },
-    { q: "How do I resize a pattern to my gauge?", a: "Use our Resize Pattern tab. Enter the pattern\u2019s gauge and your gauge, and we\u2019ll recalculate every stitch and row count, including stitch multiple rounding." },
-    { q: "What is a stitch multiple?", a: "Many stitch patterns repeat over a fixed number of stitches (e.g., a cable that repeats every 8 stitches). Your total stitch count must be divisible by this number, plus any edge stitches. Our calculator handles this rounding." },
+    { q: "What does the swatch mode calculate?", a: "It divides the stitch and row counts you enter by the measured width and height, then displays the equivalent count per 4 inches or 10 centimeters." },
+    { q: "Does scaling one count resize a whole pattern?", a: "No. The count scaler applies a gauge ratio only to the stitch or row counts you enter. It does not regrade shaping, construction, pattern repeats, yarn quantity, or fit." },
+    { q: "What happens if I enter only part of a row calculation?", a: "The tool asks you to complete the pattern row gauge, your row gauge, and the pattern row count together. It does not present an unchanged row count as a calculated result." },
+    { q: "How does target-width rounding work?", a: "The target-width mode rounds upward to a whole stitch, then upward again when needed to satisfy the entered multiple-plus constraint. It displays the modeled width so you can review the effect." },
+    { q: "Do edge stitches or turning chains come from the calculator?", a: "No. Those are optional additions you enter from the selected pattern. Whether turning chains count as stitches and how edges are constructed are pattern-specific decisions." },
   ],
   "yarn-weight-chart": [
     { q: "What are the yarn weight categories?", a: "The Craft Yarn Council lists 0 (Lace), 1 (Super Fine), 2 (Fine), 3 (Light), 4 (Medium), 5 (Bulky), 6 (Super Bulky), and 7 (Jumbo). Its gauge and tool-size ranges are guidelines, not guarantees for a particular yarn or project." },
@@ -156,11 +155,10 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "Is this a complete pattern translation?", a: "No. It only replaces mapped terms. It does not validate stitch counts, charts, gauge, construction, or the source convention." },
   ],
   "circle-calculator": [
-    { q: "Why is my circle turning into a hexagon?", a: "Increases are stacking on top of each other round after round. This calculator staggers increases to prevent that." },
-    { q: "My circle is cupping into a bowl shape. What do I do?", a: "Your tension is too tight. Try going up one hook size, or add 1-2 extra increases per round." },
-    { q: "Can I use this for hats?", a: "Yes! A hat crown is a flat circle. Follow this pattern for the top, then stop increasing and work even rounds for the sides." },
-    { q: "How big will my circle be?", a: "That depends on your yarn weight and gauge. A 10-round single crochet circle in worsted weight is roughly 5-6 inches across." },
-    { q: "Do I have to use a magic ring to start?", a: "No. You can chain 2 and work 6 single crochets into the second chain from the hook instead. The magic ring method closes the center hole more neatly, but the chain method works just as well and is easier for beginners." },
+    { q: "What do the 6, 8, 12, and 16 options mean?", a: "They are common starting-count presets used by this arithmetic reference. They are not universal flatness rules for every yarn, hook, stitch, tension, or join." },
+    { q: "Does the schedule guarantee a flat or round circle?", a: "No. It preserves the selected count progression only. Check each round against the selected pattern and the actual fabric, then adjust deliberately if it cups or ripples." },
+    { q: "Does the planner calculate diameter or accept gauge?", a: "No. It accepts only a preset and a round limit. It does not predict finished diameter, project size, fit, or yarn use." },
+    { q: "Does it choose a magic ring, join, or turning-chain convention?", a: "No. Use the center start and round convention required by the selected pattern, including whether chains count as stitches." },
   ],
   "needle-guide": [
     { q: "What needle should I use to weave in crochet ends?", a: "A tapestry needle (also called a yarn needle). The blunt tip slides between stitches without splitting your yarn." },

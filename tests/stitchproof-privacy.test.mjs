@@ -8,7 +8,7 @@ const cookies = read("src/app/cookies/page.tsx");
 const terms = read("src/app/terms/page.tsx");
 
 test("privacy copy documents browser-local processing, opt-in storage, and exports", () => {
-  assert.match(privacy, /Last updated: August 27, 2026/);
+  assert.match(privacy, /Last updated: August 29, 2026/);
   assert.match(privacy, /Pattern text,[\s\S]*processed in your browser[\s\S]*not sent to FiberTools servers/);
   assert.match(privacy, /does not use session recording/);
   assert.match(privacy, /unless you explicitly choose to save it on[\s\S]*this device/);

@@ -148,10 +148,10 @@ export default function AmigurumiPatternCheckerPage() {
       <section className="mt-10">
         <h2 className="section-heading">Continue planning your amigurumi project</h2>
         <ul className="space-y-3 text-[15px]">
-          <li><Link href="/amigurumi-shapes" className="font-medium text-sage-600 underline">Generate basic amigurumi shapes</Link><span className="text-bark-500"> — build spheres, cones, cylinders, and ovals round by round.</span></li>
-          <li><Link href="/circle-calculator" className="font-medium text-sage-600 underline">Check flat-circle increases</Link><span className="text-bark-500"> — compare standard increase schedules and staggered placements.</span></li>
-          <li><Link href="/increase-decrease-calculator" className="font-medium text-sage-600 underline">Distribute increases or decreases</Link><span className="text-bark-500"> — create evenly spaced shaping instructions.</span></li>
-          <li><Link href="/yarn-calculator" className="font-medium text-sage-600 underline">Estimate amigurumi yarn</Link><span className="text-bark-500"> — plan material quantities before buying a full project palette.</span></li>
+          <li><Link href="/amigurumi-shapes" className="font-medium text-sage-600 underline">Review included shape-count references</Link><span className="text-bark-500"> — inspect bounded count schedules without inferring finished dimensions.</span></li>
+          <li><Link href="/circle-calculator" className="font-medium text-sage-600 underline">Review a circle preset</Link><span className="text-bark-500"> — compare one included arithmetic schedule with the selected pattern and actual fabric.</span></li>
+          <li><Link href="/increase-decrease-calculator" className="font-medium text-sage-600 underline">Distribute supported changes</Link><span className="text-bark-500"> — place bounded one-stitch increases or decreases across an entered count.</span></li>
+          <li><Link href="/yarn-calculator" className="font-medium text-sage-600 underline">Scale measured yarn for a flat panel</Link><span className="text-bark-500"> — use only when a representative swatch and flat-rectangle model match the planned piece.</span></li>
         </ul>
       </section>
 

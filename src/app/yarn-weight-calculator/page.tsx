@@ -516,7 +516,7 @@ export default function YarnWeightCalculatorPage() {
               href: "/gauge-calculator",
               icon: "📐",
               name: "Gauge Calculator",
-              desc: "Calculate your gauge from a swatch or resize a pattern to a new gauge",
+              desc: "Calculate measured gauge or proportionally scale an entered count, then review repeats, shaping, and fit separately",
             },
             {
               href: "/yarn-calculator",

@@ -16,6 +16,7 @@ const circle = read("src/app/circle-calculator/CircleCalculatorTool.tsx");
 const shapes = read("src/app/amigurumi-shapes/AmigurumiShapesTool.tsx");
 const yarn = read("src/app/yarn-calculator/YarnCalculatorTool.tsx");
 const gauge = read("src/app/gauge-calculator/GaugeCalculatorTool.tsx");
+const tooltip = read("src/components/Tooltip.tsx");
 const projectCost = read("src/app/project-cost-calculator/ProjectCostCalculatorTool.tsx");
 const embedShell = read("src/components/EmbedCalculatorShell.tsx");
 const embedCodeCard = read("src/components/EmbedCodeCard.tsx");
@@ -235,11 +236,41 @@ test("exposes selected Gauge tabs and keyboard-usable embed controls", () => {
   assert.match(gauge, /role="tablist" aria-label="Gauge calculation mode"/);
   assert.match(gauge, /role="tab"/);
   assert.match(gauge, /aria-selected=\{tab === key\}/);
+  assert.match(gauge, /tabIndex=\{tab === key \? 0 : -1\}/);
+  assert.match(gauge, /ArrowRight/);
+  assert.match(gauge, /ArrowLeft/);
+  assert.match(gauge, /event\.key === "Home"/);
+  assert.match(gauge, /event\.key === "End"/);
   assert.match(gauge, /role="tabpanel"/);
   assert.match(embedShell, /min-h-11/);
   assert.match(embedShell, /target="_blank"/);
   assert.match(embedCodeCard, /tabIndex=\{0\}/);
   assert.match(embedCodeCard, /aria-live="polite"/);
+});
+
+test("keeps Gauge help controls outside field labels and relates open tooltips", () => {
+  for (const id of [
+    "gauge-pattern-count",
+    "gauge-resize-multiple",
+    "gauge-resize-extra",
+    "gauge-dimension-multiple",
+    "gauge-edge-stitches",
+    "gauge-turning-chains",
+  ]) {
+    assert.match(gauge, new RegExp(`htmlFor="${id}"[^>]*>[^<]+<\\/label>\\s*<Tooltip`));
+  }
+  assert.match(tooltip, /aria-describedby=\{show \? tooltipId : undefined\}/);
+  assert.match(tooltip, /id=\{tooltipId\} role="tooltip"/);
+  assert.match(tooltip, /onMouseEnter=\{\(\) => setShow\(true\)\}/);
+  assert.match(tooltip, /onMouseLeave=\{\(\) => setShow\(false\)\}/);
+  assert.match(tooltip, /event\.key === "Escape"/);
+});
+
+test("announces Gauge clipboard success and failure without an unhandled rejection", () => {
+  assert.match(gauge, /await navigator\.clipboard\.writeText\(text\)/);
+  assert.match(gauge, /Gauge result copied/);
+  assert.match(gauge, /Could not copy the gauge result/);
+  assert.match(gauge, /role=\{copyFeedback\.ok \? "status" : "alert"\}/);
 });
 
 test("uses a native button only while the mobile sticky result control is visible", () => {

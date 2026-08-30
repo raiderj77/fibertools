@@ -9,7 +9,7 @@ interface RecommendationSet {
 
 const TOOL_RECOMMENDATIONS: Record<string, RecommendationSet> = {
   "circle-calculator": {
-    intro: "Match the finished circle plan with yarn and a hook suited to the weight you intend to use.",
+    intro: "Use the round-count starting schedule while comparing yarn, hook, and marker options for a separate tested pattern.",
     items: [
       { label: "Smooth worsted yarn", description: "A practical weight for testing circle increases and stitch definition.", query: "smooth worsted weight yarn crochet", category: "yarn" },
       { label: "Ergonomic crochet hook set", description: "A range of sizes helps when you need to adjust fabric density.", query: "ergonomic crochet hook set", category: "crochet-hooks" },
@@ -22,6 +22,14 @@ const TOOL_RECOMMENDATIONS: Record<string, RecommendationSet> = {
       { label: "Blanket yarn", description: "Compare washable blanket yarn by weight, fiber, yardage, and color range.", query: "blanket yarn crochet knitting", category: "yarn" },
       { label: "Large crochet hooks", description: "Useful for bulky and super-bulky blanket yarns.", query: "large ergonomic crochet hooks bulky yarn", category: "crochet-hooks" },
       { label: "Long circular needles", description: "A flexible cable holds wide knitted blanket rows comfortably.", query: "long circular knitting needles blanket", category: "knitting-needles" },
+    ],
+  },
+  "gauge-calculator": {
+    intro: "Use a representative treated swatch and the pattern's own gauge while comparing tools for measuring and marking the fabric. Supplies do not correct gauge automatically.",
+    items: [
+      { label: "Gauge ruler", description: "A rigid ruler with clear markings helps define a consistent measurement span.", query: "knitting crochet gauge ruler", category: "measuring-tools" },
+      { label: "Removable stitch markers", description: "Mark the measured section without permanently altering the swatch.", query: "removable stitch markers knitting crochet", category: "notions" },
+      { label: "Project yarn", description: "Compare the pattern-specified weight, fiber, yardage, and care instructions before swatching.", query: "knitting crochet project yarn", category: "yarn" },
     ],
   },
   "amigurumi-shapes": {

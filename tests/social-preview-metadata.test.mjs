@@ -6,7 +6,7 @@ import test from "node:test";
 const pages = [
   ["blocking-calculator", "Blocking Dimension Change Calculator"],
   ["c2c-calculator", "C2C Blanket Calculator"],
-  ["gauge-calculator", "Knitting Gauge Calculator, Stitches Per Inch"],
+  ["gauge-calculator", "Knitting and Crochet Gauge Calculator"],
   ["granny-square-planner", "Granny Square Blanket Planner"],
   ["hat-calculator", "Eight-Section Knitted Hat Crown Calculator"],
   ["raglan-calculator", "Raglan Finished-Body Stitch Checkpoint"],

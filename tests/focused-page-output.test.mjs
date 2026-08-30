@@ -10,6 +10,7 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const ROUTES = [
   { route: "blanket-calculator", component: "BlanketCalculatorTool", marker: 'id="blanket-yarn-weight"' },
   { route: "yarn-calculator", component: "YarnCalculatorTool", marker: 'id="yarn-project-type"' },
+  { route: "gauge-calculator", component: "GaugeCalculatorTool", marker: 'id="gauge-swatch-width"' },
   { route: "circle-calculator", component: "CircleCalculatorTool", marker: 'id="circle-rounds"' },
   { route: "amigurumi-shapes", component: "AmigurumiShapesTool", marker: 'id="shape-total-rounds"' },
   { route: "cast-on-calculator", component: "CastOnCalculatorTool", marker: 'aria-label="Desired width in inches"' },
@@ -66,7 +67,7 @@ for (const slug of ["yarn-calculator", "spinning-ratio-calculator"]) {
 }
 
 
-test("six route sources use the focused two-child contract", () => {
+test("focused calculator routes use the two-child contract", () => {
   for (const { route, component } of ROUTES) {
     const source = readFileSync(resolve(ROOT, `src/app/${route}/page.tsx`), "utf8");
     assert.match(source, /<ToolLayout[\s\S]*?\bfocused\b/);
