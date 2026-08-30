@@ -56,25 +56,26 @@ export default function VintagePatternDecoderTool() {
   const [result, setResult] = useState<ReadyResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copyStatus, setCopyStatus] = useState<CopyStatus>("idle");
+  const [inputRejected, setInputRejected] = useState(false);
 
   function resetResult() {
     setResult(null);
     setError(null);
     setCopyStatus("idle");
+    setInputRejected(false);
   }
 
   function handleInputChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    const nextInput = event.currentTarget.value.slice(
-      0,
-      MAX_VINTAGE_PATTERN_TEXT_LENGTH + 1,
-    );
-    setInput(nextInput);
+    const nextInput = event.currentTarget.value;
     resetResult();
     if (nextInput.length > MAX_VINTAGE_PATTERN_TEXT_LENGTH) {
+      setInputRejected(true);
       setError(
-        `Pattern text must be ${MAX_VINTAGE_PATTERN_TEXT_LENGTH.toLocaleString()} characters or fewer. Shorten the text before reviewing it.`,
+        `The oversized change was not accepted or stored, and the previous text is unchanged. Shorten the new text to ${MAX_VINTAGE_PATTERN_TEXT_LENGTH.toLocaleString()} characters or fewer, then try again.`,
       );
+      return;
     }
+    setInput(nextInput);
   }
 
   function handleConventionChange(nextConvention: SourceConvention) {
@@ -130,7 +131,7 @@ export default function VintagePatternDecoderTool() {
   }
 
   const remainingCharacters = MAX_VINTAGE_PATTERN_TEXT_LENGTH - input.length;
-  const inputTooLong = input.length > MAX_VINTAGE_PATTERN_TEXT_LENGTH;
+  const inputTooLong = inputRejected;
   const resultSummary = result
     ? result.convention === "unknown"
       ? "No substitutions were made because the source convention is not established."
@@ -226,7 +227,7 @@ export default function VintagePatternDecoderTool() {
             <p id="vintage-input-help">Text only. Files and scanned images are not accepted.</p>
             <p id="vintage-character-count" aria-live="polite">
               {inputTooLong
-                ? `Over the ${MAX_VINTAGE_PATTERN_TEXT_LENGTH.toLocaleString()}-character limit`
+                ? "Oversized change was not accepted"
                 : `${remainingCharacters.toLocaleString()} characters remaining`}
             </p>
           </div>
@@ -251,7 +252,7 @@ export default function VintagePatternDecoderTool() {
           >
             Review Pattern Text
           </button>
-          {(input || result) && (
+          {(input || result || inputRejected) && (
             <button type="button" onClick={handleClear} className="btn-secondary text-sm">
               Clear
             </button>

@@ -76,8 +76,15 @@ function termMatcher(term) {
   return new RegExp(`(^|[^\\p{L}\\p{N}])(${escaped})(?=$|[^\\p{L}\\p{N}])`, "giu");
 }
 
-const UNSUPPORTED_PREFIX_MODIFIERS = /(?:^|[^\p{L}\p{N}])(?:half|single|triple|front\s+post|back\s+post|extended|linked|foundation|standing|reverse|crossed|relief|raised)\s+$/iu;
-const UNSUPPORTED_SUFFIX_MODIFIERS = /^\s+(?:crochet\s+)?(?:(?:two|three|four|\d+)\s+together|cluster|decrease|increase|through\s+(?:the\s+)?(?:front|back)\s+loop)\b/iu;
+const COMPOUND_DASH = "[-‐‑‒–—]";
+const UNSUPPORTED_PREFIX_MODIFIERS = new RegExp(
+  `(?:^|[^\\p{L}\\p{N}])(?:half|single|triple|front(?:\\s+|${COMPOUND_DASH})post|back(?:\\s+|${COMPOUND_DASH})post|extended|linked|foundation|standing|reverse|crossed|relief|raised)(?:\\s+|${COMPOUND_DASH}\\s*)$`,
+  "iu",
+);
+const UNSUPPORTED_SUFFIX_MODIFIERS = new RegExp(
+  `^(?:\\s+|${COMPOUND_DASH}\\s*)(?:crochet(?:\\s+|${COMPOUND_DASH}\\s*))?(?:(?:two|three|four|\\d+)(?:\\s+|${COMPOUND_DASH}\\s*)together|cluster|decrease|increase|through(?:\\s+|${COMPOUND_DASH}\\s*)(?:the(?:\\s+|${COMPOUND_DASH}\\s*))?(?:front|back)(?:\\s+|${COMPOUND_DASH}\\s*)loop)\\b`,
+  "iu",
+);
 
 function isUnsupportedCompoundContext(text, start, end) {
   return (

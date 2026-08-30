@@ -97,6 +97,23 @@ test("unsupported compound and attached-count abbreviations are preserved", () =
   assert.equal(result.substitutionCount, 1);
 });
 
+test("hyphenated compound stitch names are preserved", () => {
+  const input = [
+    "half-double crochet",
+    "front-post dc",
+    "front post-dc",
+    "front-post-dc",
+    "extended-dc",
+    "dc-cluster",
+    "dc-through-back-loop",
+  ].join("; ");
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, input);
+  assert.equal(result.substitutionCount, 0);
+});
+
 test("unsupported multiword stitch names are preserved rather than partially rewritten", () => {
   const input = [
     "half double crochet",
@@ -174,10 +191,12 @@ test("the UI is text-only, bounded, convention-gated, and reports clipboard outc
     "utf8",
   );
 
-  assert.match(source, /MAX_VINTAGE_PATTERN_TEXT_LENGTH \+ 1/);
+  assert.match(source, /nextInput\.length > MAX_VINTAGE_PATTERN_TEXT_LENGTH/);
+  assert.match(source, /not accepted or stored/);
+  assert.match(source, /previous text is unchanged/);
+  assert.doesNotMatch(source, /\.slice\([\s\S]*MAX_VINTAGE_PATTERN_TEXT_LENGTH \+ 1/);
   assert.match(source, /inputTooLong/);
   assert.match(source, /disabled=\{!input\.trim\(\) \|\| inputTooLong\}/);
-  assert.match(source, /Shorten the text before reviewing it/);
   assert.match(source, /Unknown \/ not established/);
   assert.match(source, /US terms/);
   assert.match(source, /UK terms/);
