@@ -41,15 +41,42 @@ test("only explicit UK mode maps the supported UK terms", () => {
   assert.equal(result.substitutions.find((term) => term.label === "Double crochet")?.count, 2);
 });
 
-test("every advertised UK source term has one finite direct mapping", () => {
+test("every advertised UK source term has one finite context-bounded mapping", () => {
   for (const entry of SUPPORTED_VINTAGE_UK_TERMS) {
     for (const term of entry.terms) {
-      const result = decodeVintagePattern(term, "uk");
+      const input = entry.label === "Tension" ? `${term} square` : term;
+      const result = decodeVintagePattern(input, "uk");
       assert.equal(result.status, "ready", term);
-      assert.equal(result.output, entry.replacement, term);
+      assert.equal(
+        result.output,
+        entry.label === "Tension" ? `${entry.replacement} square` : entry.replacement,
+        term,
+      );
       assert.equal(result.substitutionCount, 1, term);
     }
   }
+});
+
+test("tension maps only in recognizable gauge contexts", () => {
+  const input = [
+    "Maintain an even tension throughout.",
+    "Do not tighten the yarn tension.",
+    "Tension: 20 stitches and 28 rows to 10 cm.",
+    "Make a tension square before starting.",
+  ].join("\n");
+  const result = decodeVintagePattern(input, "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(
+    result.output,
+    [
+      "Maintain an even tension throughout.",
+      "Do not tighten the yarn tension.",
+      "gauge: 20 stitches and 28 rows to 10 cm.",
+      "Make a gauge square before starting.",
+    ].join("\n"),
+  );
+  assert.equal(result.substitutionCount, 2);
 });
 
 test("longest source term wins and generated text is not converted again", () => {

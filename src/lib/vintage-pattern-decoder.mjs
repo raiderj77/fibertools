@@ -122,6 +122,15 @@ function isUnsupportedCompoundContext(text, start, end) {
   );
 }
 
+function isTensionGaugeContext(text, start, end) {
+  const before = text.slice(0, start);
+  const after = text.slice(end);
+  const isGaugeSquare = /^\s+square\b/iu.test(after);
+  const isMeasurement = /^\s*(?:(?:is|of)\s+|:\s*)?\d+(?:\.\d+)?\s*(?:st(?:s|itch(?:es)?)?|rows?)\b/iu.test(after);
+  const isHeading = /(?:^|\n)\s*$/u.test(before) && /^\s*:/u.test(after);
+  return isGaugeSquare || isMeasurement || isHeading;
+}
+
 function collectMatches(text) {
   const matches = [];
   const blockedMatches = [];
@@ -140,6 +149,7 @@ function collectMatches(text) {
         const start = match.index + prefixLength;
         const end = start + matchedText.length;
         if (!atomicPair && isImmediatelyParenthesized(text, start)) continue;
+        if (entry.label === "Tension" && !isTensionGaugeContext(text, start, end)) continue;
         if (isUnsupportedCompoundContext(text, start, end)) {
           blockedMatches.push({ start, end });
           continue;
