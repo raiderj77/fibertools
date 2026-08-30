@@ -56,10 +56,13 @@ export default function PrivacyPolicyPage() {
             What Data We Collect
           </h2>
           <p>
-            FiberTools calculators run entirely in your browser. We do not send
-            calculator inputs, results, or calculations to a server. The optional
-            paid Planning Pack, StitchProof report exports, and Designer Pattern Preflight are separate services
-            and use only the information described below. Here is what we collect:
+            Core calculator arithmetic runs in your browser. Measured swatch values and
+            calculated results are not sent to FiberTools by the calculation itself. The Yarn
+            Calculator can also request optional pattern recommendations after a result is shown;
+            that request sends the selected yarn-weight category, craft, and project-type filter
+            through a FiberTools endpoint to Ravelry, but not the measured swatch values or calculated
+            yardage. The optional paid Planning Pack, StitchProof report exports, and Designer Pattern
+            Preflight are separate services and use only the information described below. Here is what we collect:
           </p>
           <p>
             <strong>Analytics (Google Analytics 4):</strong> We use GA4 to

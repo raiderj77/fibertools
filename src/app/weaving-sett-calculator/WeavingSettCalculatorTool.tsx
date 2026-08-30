@@ -4,6 +4,21 @@ import { useState, useMemo } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
+import {
+  MAX_REED_SETT_EPI,
+  MIN_WEAVING_DIMENSION,
+  MIN_WEAVING_WPI,
+  MAX_WEAVING_ALLOWANCE,
+  MAX_WEAVING_DIMENSION,
+  MAX_WEAVING_LENGTH_ALLOWANCE_PERCENT,
+  MAX_WEAVING_WPI,
+  MAX_WARP_EPI,
+  MAX_YARDS_PER_UNIT,
+  SUPPORTED_REED_DENTS,
+  calculateReedSleying,
+  calculateWarpEstimate,
+  estimateSettFromWpi,
+} from "@/lib/weaving-sett-plan.mjs";
 
 // ── DATA ──────────────────────────────────────────────────────────
 
@@ -11,46 +26,77 @@ interface YarnWeight {
   key: string;
   label: string;
   wpi: [number, number]; // wraps per inch range
-  maxEpi: [number, number]; // maximum sett range for plain weave
 }
 
 const YARN_WEIGHTS: YarnWeight[] = [
-  { key: "lace", label: "Lace / Cobweb", wpi: [18, 30], maxEpi: [24, 40] },
-  { key: "fingering", label: "Fingering / Sock", wpi: [14, 18], maxEpi: [18, 24] },
-  { key: "sport", label: "Sport", wpi: [12, 14], maxEpi: [15, 18] },
-  { key: "dk", label: "DK", wpi: [10, 12], maxEpi: [12, 16] },
-  { key: "worsted", label: "Worsted", wpi: [8, 10], maxEpi: [10, 14] },
-  { key: "bulky", label: "Bulky", wpi: [5, 8], maxEpi: [6, 10] },
-  { key: "superbulky", label: "Super Bulky", wpi: [3, 5], maxEpi: [4, 6] },
+  { key: "lace", label: "Lace / Cobweb", wpi: [18, 30] },
+  { key: "fingering", label: "Fingering / Sock", wpi: [14, 18] },
+  { key: "sport", label: "Sport", wpi: [12, 14] },
+  { key: "dk", label: "DK", wpi: [10, 12] },
+  { key: "worsted", label: "Worsted", wpi: [8, 10] },
+  { key: "bulky", label: "Bulky", wpi: [5, 8] },
+  { key: "superbulky", label: "Super Bulky", wpi: [3, 5] },
 ];
 
 interface WeaveStructure {
   key: string;
   label: string;
-  settFactor: number; // multiply max EPI by this
+  warpThreads: number;
+  interlacements: number;
   desc: string;
 }
 
 const STRUCTURES: WeaveStructure[] = [
-  { key: "plain", label: "Plain Weave (Tabby)", settFactor: 0.5, desc: "Over one, under one. Firmest structure." },
-  { key: "twill", label: "Twill (2/2)", settFactor: 0.6, desc: "Diagonal pattern. Denser than plain weave." },
-  { key: "twill31", label: "Twill (3/1)", settFactor: 0.65, desc: "Warp-dominant twill. Very dense." },
-  { key: "basket", label: "Basket Weave", settFactor: 0.5, desc: "Pairs of threads over and under." },
-  { key: "satin", label: "Satin (5-shaft)", settFactor: 0.7, desc: "Long floats. Drapey, dense sett." },
-  { key: "lace", label: "Lace Weave", settFactor: 0.35, desc: "Open structure. Lower sett for holes." },
-  { key: "waffle", label: "Waffle", settFactor: 0.55, desc: "Textured, thick. Medium-high sett." },
+  { key: "plain", label: "Plain Weave (Tabby)", warpThreads: 2, interlacements: 2, desc: "Two warp threads and two interlacements per repeat." },
+  { key: "twill", label: "Twill (2/2)", warpThreads: 4, interlacements: 2, desc: "Four warp threads and two interlacements per repeat." },
 ];
 
-const SHRINKAGE: Record<string, number> = {
-  cotton: 0.10,
-  wool: 0.12,
-  linen: 0.05,
-  silk: 0.08,
-  synthetic: 0.03,
-  blend: 0.08,
-};
-
 type Tab = "sett" | "warp" | "reed";
+
+interface CalculationFailure {
+  ok: false;
+  reason: string;
+  error: string;
+}
+
+interface SettEstimateSuccess {
+  ok: true;
+  wpi: number;
+  factor: number;
+  unroundedEpi: number;
+  startingEpi: number;
+}
+
+interface WarpEstimateSuccess {
+  ok: true;
+  totalWarpLengthIn: number;
+  totalWarpLengthCm: number;
+  lengthAllowancePct: number;
+  totalEnds: number;
+  warpYards: number;
+  warpMeters: number;
+  weftYards: number;
+  weftMeters: number;
+  weftAssumedPpi: number;
+  weftAllowancePct: number;
+  skeinsNeeded: number;
+}
+
+interface ReedSleyingSuccess {
+  ok: true;
+  sett: number;
+  reedDent: number;
+  ratio: number;
+  sequence: number[];
+  periodDents: number;
+  periodEnds: number;
+  actualEpi: number;
+  instruction: string;
+}
+
+type SettEstimateOutcome = SettEstimateSuccess | CalculationFailure;
+type WarpEstimateOutcome = WarpEstimateSuccess | CalculationFailure;
+type ReedSleyingOutcome = ReedSleyingSuccess | CalculationFailure;
 
 // ── COMPONENT ─────────────────────────────────────────────────────
 
@@ -69,7 +115,7 @@ export default function WeavingSettCalculatorTool() {
   const [projectWidth, setProjectWidth] = useState("");
   const [loomWaste, setLoomWaste] = useState("27");
   const [sampling, setSampling] = useState("6");
-  const [fiber, setFiber] = useState("cotton");
+  const [lengthAllowancePercent, setLengthAllowancePercent] = useState("0");
   const [epiInput, setEpiInput] = useState("");
   const [ydsPerUnit, setYdsPerUnit] = useState("");
 
@@ -78,124 +124,106 @@ export default function WeavingSettCalculatorTool() {
   const [reedDent, setReedDent] = useState("12");
 
   const dim = units === "metric" ? "cm" : "in";
+  const maximumDimension = units === "metric" ? MAX_WEAVING_DIMENSION * 2.54 : MAX_WEAVING_DIMENSION;
+  const maximumAllowance = units === "metric" ? MAX_WEAVING_ALLOWANCE * 2.54 : MAX_WEAVING_ALLOWANCE;
 
   // Sett result
-  const settResult = useMemo(() => {
+  const settOutcome = useMemo<SettEstimateOutcome>(() => {
     const yw = YARN_WEIGHTS.find((w) => w.key === yarnWeight);
     const st = STRUCTURES.find((s) => s.key === structure);
-    if (!yw || !st) return null;
-
-    const wpi = useCustomWpi && customWpi ? parseFloat(customWpi) : (yw.wpi[0] + yw.wpi[1]) / 2;
-    if (wpi <= 0) return null;
-
-    // Recommended sett = WPI × structure factor
-    const maxEpi = wpi;
-    const recEpi = Math.round(maxEpi * st.settFactor);
-    const recEpiLow = Math.round(maxEpi * st.settFactor * 0.85);
-    const recEpiHigh = Math.round(maxEpi * st.settFactor * 1.15);
-
-    return {
-      wpi,
-      recEpi,
-      recEpiLow,
-      recEpiHigh,
-      structure: st.label,
-    };
-  }, [yarnWeight, structure, customWpi, useCustomWpi]);
-
-  // Warp length result
-  const warpResult = useMemo(() => {
-    const len = parseFloat(projectLength) || 0;
-    const wid = parseFloat(projectWidth) || 0;
-    const waste = parseFloat(loomWaste) || 0;
-    const samp = parseFloat(sampling) || 0;
-    const epi = parseFloat(epiInput) || 0;
-    const ypg = parseFloat(ydsPerUnit) || 0;
-
-    if (len <= 0 || wid <= 0) return null;
-
-    const lenIn = units === "metric" ? len / 2.54 : len;
-    const widIn = units === "metric" ? wid / 2.54 : wid;
-    const wasteIn = units === "metric" ? waste / 2.54 : waste;
-    const sampIn = units === "metric" ? samp / 2.54 : samp;
-
-    const shrinkPct = SHRINKAGE[fiber] || 0.08;
-    const shrinkAllowance = lenIn * shrinkPct;
-
-    const totalWarpLength = lenIn + wasteIn + sampIn + shrinkAllowance;
-    const totalEnds = epi > 0 ? Math.round(widIn * epi) : 0;
-    const totalWarpYards = totalEnds > 0 ? (totalEnds * totalWarpLength) / 36 : 0;
-
-    // Weft estimate: roughly same yardage as warp for balanced fabrics
-    const totalWeftYards = epi > 0 ? (widIn * (lenIn / 36)) * epi * 1.1 : 0;
-
-    return {
-      totalWarpLengthIn: +totalWarpLength.toFixed(1),
-      totalWarpLengthCm: +(totalWarpLength * 2.54).toFixed(1),
-      shrinkPct: Math.round(shrinkPct * 100),
-      totalEnds,
-      warpYards: Math.round(totalWarpYards),
-      warpMeters: Math.round(totalWarpYards * 0.9144),
-      weftYards: Math.round(totalWeftYards),
-      weftMeters: Math.round(totalWeftYards * 0.9144),
-      totalYards: Math.round(totalWarpYards + totalWeftYards),
-      skeinsNeeded: ypg > 0 ? Math.ceil((totalWarpYards + totalWeftYards) / ypg) : 0,
-    };
-  }, [projectLength, projectWidth, loomWaste, sampling, fiber, epiInput, units, ydsPerUnit]);
-
-  // Reed result
-  const reedResult = useMemo(() => {
-    const sett = parseInt(desiredSett) || 0;
-    const dent = parseInt(reedDent) || 0;
-    if (sett <= 0 || dent <= 0) return null;
-
-    const ratio = sett / dent;
-    const patterns: string[] = [];
-
-    if (ratio === Math.floor(ratio)) {
-      patterns.push(`${Math.floor(ratio)} per dent (every dent)`);
-    } else if (ratio < 1) {
-      const skip = Math.round(1 / ratio);
-      patterns.push(`1 per dent, skip every ${skip}th dent`);
-    } else {
-      const base = Math.floor(ratio);
-      const extra = sett - base * dent;
-      if (extra === 0) {
-        patterns.push(`${base} per dent`);
-      } else {
-        patterns.push(`Alternate ${base} and ${base + 1} per dent`);
-        patterns.push(`${base + 1} in ${extra} dents, ${base} in ${dent - extra} dents (per ${dent} dents)`);
-      }
+    if (!yw || !st) {
+      return { ok: false, reason: "unsupported-selection", error: "Choose a supported yarn weight and weave structure." };
     }
 
-    return { sett, dent, ratio: +ratio.toFixed(2), patterns };
-  }, [desiredSett, reedDent]);
+    const wpi = useCustomWpi ? Number(customWpi) : (yw.wpi[0] + yw.wpi[1]) / 2;
+    return estimateSettFromWpi({
+      wpi,
+      warpThreads: st.warpThreads,
+      interlacements: st.interlacements,
+    }) as SettEstimateOutcome;
+  }, [yarnWeight, structure, customWpi, useCustomWpi]);
+  const settResult = settOutcome.ok
+    ? {
+        ...settOutcome,
+        structure: STRUCTURES.find((item) => item.key === structure)?.label ?? structure,
+      }
+    : null;
+  const settError = !settOutcome.ok ? settOutcome.error : "";
+
+  // Warp length result
+  const warpOutcome = useMemo<WarpEstimateOutcome>(() => (
+    calculateWarpEstimate({
+      projectLength: Number(projectLength),
+      projectWidth: Number(projectWidth),
+      loomWaste: Number(loomWaste),
+      sampling: Number(sampling),
+      epi: Number(epiInput),
+      yardsPerUnit: Number(ydsPerUnit),
+      lengthAllowancePercent: Number(lengthAllowancePercent),
+      units,
+    }) as WarpEstimateOutcome
+  ), [projectLength, projectWidth, loomWaste, sampling, lengthAllowancePercent, epiInput, units, ydsPerUnit]);
+  const warpResult = warpOutcome.ok ? warpOutcome : null;
+  const hasWarpInput = projectLength !== "" || projectWidth !== "";
+  const warpError = hasWarpInput && !warpOutcome.ok ? warpOutcome.error : "";
+
+  // Reed result
+  const reedOutcome = useMemo<ReedSleyingOutcome>(() => (
+    calculateReedSleying({
+      sett: Number(desiredSett),
+      reedDent: Number(reedDent),
+    }) as ReedSleyingOutcome
+  ), [desiredSett, reedDent]);
+  const reedResult = reedOutcome.ok ? reedOutcome : null;
+  const reedError = desiredSett !== "" && !reedOutcome.ok ? reedOutcome.error : "";
 
   // Sticky summary
   const stickySummary = (() => {
     if (tab === "sett" && settResult) {
-      return `${settResult.recEpiLow}–${settResult.recEpiHigh} EPI`;
+      return `${settResult.startingEpi} EPI starting estimate`;
     }
     if (tab === "warp" && warpResult) {
       return `${units === "metric" ? warpResult.totalWarpLengthCm + " cm" : warpResult.totalWarpLengthIn + "″"} warp${warpResult.totalEnds > 0 ? ` • ${warpResult.totalEnds} ends` : ""}`;
     }
     if (tab === "reed" && reedResult) {
-      return `${reedResult.ratio} ends/dent avg`;
+      return `${reedResult.ratio.toFixed(2)} ends/dent average`;
     }
     return "";
   })();
 
+  const changeUnits = (nextUnits: UnitSystem) => {
+    if (nextUnits === units) return;
+    const factor = nextUnits === "metric" ? 2.54 : 1 / 2.54;
+    const convert = (value: string) => {
+      if (value.trim() === "") return value;
+      const numeric = Number(value);
+      if (!Number.isFinite(numeric)) return value;
+      return String(Number((numeric * factor).toFixed(4)));
+    };
+
+    setProjectLength(convert);
+    setProjectWidth(convert);
+    setLoomWaste(convert);
+    setSampling(convert);
+    setUnits(nextUnits);
+  };
+
   return (
     <div className="space-y-6">
-      <UnitToggle value={units} onChange={setUnits} />
+      <UnitToggle value={units} onChange={changeUnits} />
 
-      <div className="inline-flex items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1 flex-wrap">
+      <div
+        className="inline-flex items-center bg-cream-200 dark:bg-bark-700 rounded-xl p-1 flex-wrap"
+        role="group"
+        aria-label="Weaving calculator view"
+      >
         {([
           ["sett", "⚙️ Sett (EPI)"],
           ["warp", "📏 Warp Length"],
           ["reed", "🔧 Reed Sub"],
         ] as [Tab, string][]).map(([key, label]) => (
           <button key={key} type="button" onClick={() => setTab(key)}
+            aria-pressed={tab === key}
             className={`px-4 py-2.5 text-sm font-medium rounded-lg transition-all ${
               tab === key ? "bg-white dark:bg-bark-600 text-bark-800 dark:text-cream-100 shadow-sm" : "text-bark-500 dark:text-bark-400"
             }`}>
@@ -231,24 +259,31 @@ export default function WeavingSettCalculatorTool() {
             I know my exact WPI
           </label>
           {useCustomWpi && (
-            <input type="number" value={customWpi} onChange={(e) => setCustomWpi(e.target.value)}
-              placeholder="e.g. 12" className="input max-w-[120px]" min="1" inputMode="numeric" />
+            <div className="max-w-[180px]">
+              <label htmlFor="weaving-custom-wpi" className="label">Measured WPI</label>
+              <input id="weaving-custom-wpi" type="number" value={customWpi} onChange={(e) => setCustomWpi(e.target.value)}
+                placeholder="e.g. 12" className="input" min={MIN_WEAVING_WPI} max={MAX_WEAVING_WPI} step="0.1" inputMode="decimal" />
+            </div>
+          )}
+
+          {settError && useCustomWpi && (
+            <p role="alert" className="text-sm text-rose-700 dark:text-rose-300">{settError}</p>
           )}
 
           <StickyResult summary={stickySummary} visible={!!settResult}>
             {settResult && (
               <div className="result-card space-y-3">
                 <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                  Recommended Sett
+                  Starting Sett Estimate
                 </h3>
                 <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                  {settResult.recEpiLow}&ndash;{settResult.recEpiHigh} EPI
+                  {settResult.startingEpi} EPI
                 </p>
                 <p className="text-sm text-bark-500 dark:text-bark-400">
-                  Target: {settResult.recEpi} ends per inch for {settResult.structure}
+                  {settResult.wpi.toFixed(1)} WPI &times; {Math.round(settResult.factor * 100)}% starting factor for {settResult.structure}
                 </p>
                 <p className="text-xs text-bark-400 dark:text-bark-500">
-                  Based on ~{Math.round(settResult.wpi)} WPI. Always sample first, fiber, twist, and finishing change sett.
+                  This is a planning midpoint, not a finished-fabric prediction. Weave and wet-finish a sample; yarn, twist, beat, desired hand, and finishing can change the useful sett.
                 </p>
               </div>
             )}
@@ -256,7 +291,7 @@ export default function WeavingSettCalculatorTool() {
 
           {/* Reference table */}
           <div>
-            <p className="label">Sett Reference by Structure</p>
+            <p className="label">Starting WPI Factor by Structure</p>
             <div className="overflow-x-auto">
               <table className="min-w-full text-sm">
                 <thead>
@@ -270,13 +305,19 @@ export default function WeavingSettCalculatorTool() {
                   {STRUCTURES.map((s) => (
                     <tr key={s.key} className={`transition-colors ${s.key === structure ? "bg-sage-50 dark:bg-sage-900/20" : ""}`}>
                       <td className="py-2 px-3 font-medium text-bark-700 dark:text-cream-200">{s.label}</td>
-                      <td className="py-2 px-3 text-bark-600 dark:text-cream-300">{Math.round(s.settFactor * 100)}% of WPI</td>
+                      <td className="py-2 px-3 text-bark-600 dark:text-cream-300">
+                        {Math.round((s.warpThreads / (s.interlacements + s.warpThreads)) * 100)}% of WPI
+                      </td>
                       <td className="py-2 px-3 text-bark-500 dark:text-bark-400 text-xs hidden sm:table-cell">{s.desc}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
+            <p className="mt-2 text-xs text-bark-400 dark:text-bark-500">
+              Starting formula: WPI &times; warp threads in one repeat &divide; (interlacements + warp threads).
+              Generic lace and waffle structures need the counts from a specific draft, so they are not assigned a universal factor here.
+            </p>
           </div>
         </div>
       )}
@@ -285,65 +326,70 @@ export default function WeavingSettCalculatorTool() {
       {tab === "warp" && (
         <div className="space-y-6">
           <p className="text-sm text-bark-400 dark:text-bark-500">
-            Calculate total warp length including loom waste, sampling, and shrinkage.
+            Build a bounded planning worksheet from entered dimensions, allowances, EPI, and optional label yardage.
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             <div>
-              <label className="label">Project width ({dim})</label>
-              <input type="number" value={projectWidth} onChange={(e) => setProjectWidth(e.target.value)}
-                placeholder="20" className="input" min="0" inputMode="decimal" />
+              <label htmlFor="weaving-project-width" className="label">Width at reed ({dim})</label>
+              <input id="weaving-project-width" type="number" value={projectWidth} onChange={(e) => setProjectWidth(e.target.value)}
+                placeholder="20" className="input" min={MIN_WEAVING_DIMENSION} max={maximumDimension} step="any" inputMode="decimal" />
             </div>
             <div>
-              <label className="label">Project length ({dim})</label>
-              <input type="number" value={projectLength} onChange={(e) => setProjectLength(e.target.value)}
-                placeholder="72" className="input" min="0" inputMode="decimal" />
+              <label htmlFor="weaving-project-length" className="label">Planned woven length ({dim})</label>
+              <input id="weaving-project-length" type="number" value={projectLength} onChange={(e) => setProjectLength(e.target.value)}
+                placeholder="72" className="input" min={MIN_WEAVING_DIMENSION} max={maximumDimension} step="any" inputMode="decimal" />
             </div>
             <div>
-              <label className="label">
-                EPI (sett)
+              <label htmlFor="weaving-warp-epi" className="label">
+                EPI (optional)
                 <Tooltip text="Ends per inch. Use the Sett tab to calculate this." />
               </label>
-              <input type="number" value={epiInput} onChange={(e) => setEpiInput(e.target.value)}
-                placeholder="12" className="input" min="0" inputMode="numeric" />
+              <input id="weaving-warp-epi" type="number" value={epiInput} onChange={(e) => setEpiInput(e.target.value)}
+                placeholder="12" className="input" min="0" max={MAX_WARP_EPI} step="any" inputMode="decimal" />
             </div>
             <div>
-              <label className="label">Loom waste ({dim})</label>
-              <input type="number" value={loomWaste} onChange={(e) => setLoomWaste(e.target.value)}
-                placeholder="27" className="input" min="0" inputMode="decimal" />
+              <label htmlFor="weaving-loom-waste" className="label">Loom waste ({dim})</label>
+              <input id="weaving-loom-waste" type="number" value={loomWaste} onChange={(e) => setLoomWaste(e.target.value)}
+                placeholder="27" className="input" min="0" max={maximumAllowance} step="any" inputMode="decimal" />
             </div>
             <div>
-              <label className="label">Sampling ({dim})</label>
-              <input type="number" value={sampling} onChange={(e) => setSampling(e.target.value)}
-                placeholder="6" className="input" min="0" inputMode="decimal" />
+              <label htmlFor="weaving-sampling" className="label">Sampling ({dim})</label>
+              <input id="weaving-sampling" type="number" value={sampling} onChange={(e) => setSampling(e.target.value)}
+                placeholder="6" className="input" min="0" max={maximumAllowance} step="any" inputMode="decimal" />
             </div>
             <div>
-              <label htmlFor="weaving-fiber-type" className="label">Fiber type</label>
-              <select id="weaving-fiber-type" value={fiber} onChange={(e) => setFiber(e.target.value)} className="select">
-                {Object.entries(SHRINKAGE).map(([k, v]) => (
-                  <option key={k} value={k}>{k.charAt(0).toUpperCase() + k.slice(1)} (~{Math.round(v * 100)}% shrink)</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="weaving-reed-dent" className="label">
-                Yards per skein
-                <Tooltip text="Optional: enter your skein yardage to get a skein count." />
+              <label htmlFor="weaving-length-allowance" className="label">
+                Warp length allowance (%)
+                <Tooltip text="Optional allowance applied only to planned warp length. Enter a project-specific measured value for warp take-up or finishing length change; width change is not modeled." />
               </label>
-              <input type="number" value={ydsPerUnit} onChange={(e) => setYdsPerUnit(e.target.value)}
-                placeholder="220" className="input" min="0" inputMode="decimal" />
+              <input id="weaving-length-allowance" type="number" value={lengthAllowancePercent}
+                onChange={(e) => setLengthAllowancePercent(e.target.value)} className="input" min="0"
+                max={MAX_WEAVING_LENGTH_ALLOWANCE_PERCENT} step="any" inputMode="decimal" />
+            </div>
+            <div>
+              <label htmlFor="weaving-yards-per-skein" className="label">
+                Yards per skein, same yarn only (optional)
+                <Tooltip text="Enter label yardage only when warp and weft use the same yarn and put-up. Different yarns need separate purchase calculations." />
+              </label>
+              <input id="weaving-yards-per-skein" type="number" value={ydsPerUnit} onChange={(e) => setYdsPerUnit(e.target.value)}
+                placeholder="220" className="input" min="0" max={MAX_YARDS_PER_UNIT} step="any" inputMode="decimal" />
             </div>
           </div>
+
+          {warpError && (
+            <p role="alert" className="text-sm text-rose-700 dark:text-rose-300">{warpError}</p>
+          )}
 
           <StickyResult summary={stickySummary} visible={!!warpResult}>
             {warpResult && (
               <div className="result-card space-y-4">
-                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">Warp Plan</h3>
+                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">Starting Warp Estimate</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">
                       {units === "metric" ? `${warpResult.totalWarpLengthCm} cm` : `${warpResult.totalWarpLengthIn}″`}
                     </p>
-                    <p className="text-sm text-bark-500 dark:text-bark-400">total warp length (incl. {warpResult.shrinkPct}% shrinkage)</p>
+                    <p className="text-sm text-bark-500 dark:text-bark-400">length per end (incl. {warpResult.lengthAllowancePct}% entered allowance)</p>
                   </div>
                   {warpResult.totalEnds > 0 && (
                     <div>
@@ -363,17 +409,22 @@ export default function WeavingSettCalculatorTool() {
                         <p className="text-xl font-semibold text-bark-700 dark:text-cream-200">
                           {units === "metric" ? `${warpResult.weftMeters} m` : `${warpResult.weftYards} yd`}
                         </p>
-                        <p className="text-sm text-bark-500 dark:text-bark-400">weft yarn (estimate)</p>
+                        <p className="text-sm text-bark-500 dark:text-bark-400">
+                          provisional weft ({warpResult.weftAssumedPpi} PPI + {warpResult.weftAllowancePct}% path allowance)
+                        </p>
                       </div>
                     </>
                   )}
                   {warpResult.skeinsNeeded > 0 && (
                     <div>
                       <p className="text-2xl font-bold text-bark-800 dark:text-cream-100">{warpResult.skeinsNeeded}</p>
-                      <p className="text-sm text-bark-500 dark:text-bark-400">skeins total (warp + weft)</p>
+                      <p className="text-sm text-bark-500 dark:text-bark-400">combined skeins, same yarn and put-up only</p>
                     </div>
                   )}
                 </div>
+                <p className="text-xs text-bark-400 dark:text-bark-500">
+                  The entered percentage applies to warp length only. Width finishing change is not modeled. The provisional weft value uses planned woven length, assumes PPI equals the entered EPI, and adds a separate 10% path allowance. Sample and replace every allowance with measured project evidence before winding or purchasing.
+                </p>
               </div>
             )}
           </StickyResult>
@@ -384,44 +435,49 @@ export default function WeavingSettCalculatorTool() {
       {tab === "reed" && (
         <div className="space-y-6">
           <p className="text-sm text-bark-400 dark:text-bark-500">
-            Figure out how to thread your reed when it doesn&apos;t exactly match your desired sett.
+            Generate one exact repeating sleying sequence for the entered whole-number sett and supported reed.
           </p>
           <div className="grid grid-cols-2 gap-4 max-w-md">
             <div>
-              <label className="label">
+              <label htmlFor="weaving-desired-sett" className="label">
                 Desired sett (EPI)
                 <Tooltip text="How many ends per inch you want." />
               </label>
-              <input type="number" value={desiredSett} onChange={(e) => setDesiredSett(e.target.value)}
-                placeholder="15" className="input" min="1" inputMode="numeric" />
+              <input id="weaving-desired-sett" type="number" value={desiredSett} onChange={(e) => setDesiredSett(e.target.value)}
+                placeholder="15" className="input" min="1" max={MAX_REED_SETT_EPI} step="1" inputMode="numeric" />
             </div>
             <div>
-              <label className="label">
+              <label htmlFor="weaving-reed-dent" className="label">
                 Reed dent
                 <Tooltip text="Your reed&apos;s dents per inch. Common sizes: 8, 10, 12, 15." />
               </label>
               <select id="weaving-reed-dent" value={reedDent} onChange={(e) => setReedDent(e.target.value)} className="select">
-                {[6, 8, 10, 12, 15, 16, 20].map((d) => (
+                {SUPPORTED_REED_DENTS.map((d) => (
                   <option key={d} value={d}>{d}-dent</option>
                 ))}
               </select>
             </div>
           </div>
 
+          {reedError && (
+            <p role="alert" className="text-sm text-rose-700 dark:text-rose-300">{reedError}</p>
+          )}
+
           <StickyResult summary={stickySummary} visible={!!reedResult}>
             {reedResult && (
               <div className="result-card space-y-3">
                 <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-                  Threading Plan
+                  Exact Sleying Arithmetic
                 </h3>
                 <p className="text-sm text-bark-500 dark:text-bark-400">
-                  {reedResult.sett} EPI in a {reedResult.dent}-dent reed ({reedResult.ratio} ends per dent average)
+                  {reedResult.sett} EPI in a {reedResult.reedDent}-dent reed ({reedResult.ratio.toFixed(2)} ends per dent average)
                 </p>
-                <div className="space-y-2">
-                  {reedResult.patterns.map((p, i) => (
-                    <p key={i} className="text-bark-700 dark:text-cream-200 font-medium">{p}</p>
-                  ))}
-                </div>
+                <p className="text-bark-700 dark:text-cream-200 font-medium">
+                  {reedResult.instruction}
+                </p>
+                <p className="text-xs text-bark-400 dark:text-bark-500">
+                  This sequence averages exactly {reedResult.actualEpi} EPI. It is a starting sleying plan, not confirmation that the chosen yarn fits the dents or that reed marks will wet-finish out; sample first.
+                </p>
               </div>
             )}
           </StickyResult>

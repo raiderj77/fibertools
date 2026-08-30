@@ -8,8 +8,8 @@ const pages = [
   ["c2c-calculator", "C2C Blanket Calculator"],
   ["gauge-calculator", "Knitting Gauge Calculator, Stitches Per Inch"],
   ["granny-square-planner", "Granny Square Blanket Planner"],
-  ["hat-calculator", "Hat Size Calculator"],
-  ["raglan-calculator", "Raglan Sweater Calculator"],
+  ["hat-calculator", "Eight-Section Knitted Hat Crown Calculator"],
+  ["raglan-calculator", "Raglan Finished-Body Stitch Checkpoint"],
   ["stash-estimator", "Yarn Stash Estimator"],
   ["wpi-calculator", "WPI to Yarn Weight Converter"],
 ];

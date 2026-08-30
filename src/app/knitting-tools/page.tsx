@@ -162,39 +162,39 @@ export default function KnittingToolsPage() {
             mid-project is where most mistakes happen.
           </p>
           <p className="leading-relaxed">
-            FiberTools knitting calculators are built on Craft Yarn Council (CYC) standards and
-            verified against industry measurement conventions. The gauge calculator is the foundation:
-            enter your swatch measurements and your pattern&rsquo;s target gauge, and it shows you
-            exactly how far off you are and what needle adjustment to try. The{" "}
+            FiberTools knitting calculators use the inputs and arithmetic models stated on each page.
+            The gauge calculator compares measured proportions and counts; it cannot prescribe an exact
+            needle change because yarn, stitch pattern, technique, and maker tension also affect the fabric. The{" "}
             <Link
               href="/yarn-calculator"
               className="text-sage-700 dark:text-sage-300 underline underline-offset-2"
             >
               yarn calculator
             </Link>{" "}
-            uses your
-            actual stitches-per-inch and skein yardage to produce an estimate based on your real
-            tension, not a chart approximation.
+            scales the measured yarn used by a representative swatch to a flat rectangular project,
+            with an optional allowance and label-based whole-skein count. It does not estimate shaped
+            garments or derive yarn use from gauge alone.
           </p>
           <p className="leading-relaxed">
-            The garment tools handle calculations that trip up even experienced knitters. The{" "}
+            Construction calculators are bounded planning references, not complete patterns or fit
+            guarantees. The{" "}
             <Link
               href="/raglan-calculator"
               className="text-sage-700 dark:text-sage-300 underline underline-offset-2"
             >
               raglan calculator
             </Link>{" "}
-            generates a full shaping schedule, increase frequency, stitch distribution, and
-            body/sleeve split, from nothing more than your gauge and target finished measurements. The
+            uses the measurements shown on its page for a limited arithmetic checkpoint. It does not
+            replace a construction-specific sweater pattern or fitting plan. The
             <Link
               href="/sock-calculator"
               className="text-sage-700 dark:text-sage-300 underline underline-offset-2"
             >
               sock calculator
             </Link>{" "}
-            covers heel turn and gusset math for both top-down and toe-up construction.
-            The hat calculator handles crown shaping from bulky beanies through fingering-weight
-            colorwork projects with multiple decreasing methods.
+            is a circumference-planning reference; heel, gusset, toe, and pull-on fit require a tested
+            construction and additional measurements. The hat calculator models one explicit bottom-up,
+            eight-section decrease schedule and does not select a universal crown method.
           </p>
           <p className="leading-relaxed">
             For finishing and project planning, the blocking calculator reports the signed percentage
@@ -219,7 +219,7 @@ export default function KnittingToolsPage() {
           Knitting Garment and Construction Calculators
         </h2>
         <p className="text-sm text-bark-500 dark:text-bark-400 mb-6 max-w-2xl">
-          Cast-on counts, hat crowns, sock construction, sleeve shaping, and raglan yoke math, everything you need for fitted knitting.
+          Bounded count and shaping checkpoints to use alongside a tested, construction-specific pattern and representative swatch.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {garmentTools.map((tool) => (

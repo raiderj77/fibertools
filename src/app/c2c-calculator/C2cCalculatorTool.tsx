@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 import Tooltip from "@/components/Tooltip";
-
-// ── COMMON BLANKET SIZES ──────────────────────────────────────────
+import { buildC2cPlan, C2C_LIMITS } from "@/lib/c2c-plan.mjs";
 
 const BLANKET_SIZES = [
   { name: "Baby", width: 30, height: 36 },
@@ -13,355 +12,170 @@ const BLANKET_SIZES = [
   { name: "Queen", width: 90, height: 100 },
 ];
 
-// ── COMPONENT ─────────────────────────────────────────────────────
+function format(value: number) {
+  return Number(value.toFixed(1)).toLocaleString();
+}
 
 export default function C2cCalculatorTool() {
   const [swatchBlocksWide, setSwatchBlocksWide] = useState("");
   const [swatchBlocksTall, setSwatchBlocksTall] = useState("");
   const [swatchWidth, setSwatchWidth] = useState("");
   const [swatchHeight, setSwatchHeight] = useState("");
-  const [desiredWidth, setDesiredWidth] = useState("");
-  const [desiredHeight, setDesiredHeight] = useState("");
+  const [targetWidth, setTargetWidth] = useState("");
+  const [targetHeight, setTargetHeight] = useState("");
   const [yarnPerBlock, setYarnPerBlock] = useState("");
+  const [allowancePercent, setAllowancePercent] = useState("10");
+  const [hasInteracted, setHasInteracted] = useState(false);
 
-  const result = useMemo(() => {
-    const sbw = parseFloat(swatchBlocksWide) || 0;
-    const sbt = parseFloat(swatchBlocksTall) || 0;
-    const sw = parseFloat(swatchWidth) || 0;
-    const sh = parseFloat(swatchHeight) || 0;
-    const dw = parseFloat(desiredWidth) || 0;
-    const dh = parseFloat(desiredHeight) || 0;
-
-    if (sbw <= 0 || sbt <= 0 || sw <= 0 || sh <= 0 || dw <= 0 || dh <= 0)
-      return null;
-
-    const blockWidth = sw / sbw;
-    const blockHeight = sh / sbt;
-    const blocksWide = Math.round(dw / blockWidth);
-    const blocksTall = Math.round(dh / blockHeight);
-    const totalBlocks = blocksWide * blocksTall;
-    const totalDiagonalRows = blocksWide + blocksTall - 1;
-    const actualWidth = +(blocksWide * blockWidth).toFixed(1);
-    const actualHeight = +(blocksTall * blockHeight).toFixed(1);
-
-    const ypb = parseFloat(yarnPerBlock) || 0;
-    let totalYards: number | null = null;
-    if (ypb > 0) {
-      totalYards = Math.ceil((totalBlocks * ypb) / 36 * 1.1);
-    }
-
-    return {
-      blockWidth: +blockWidth.toFixed(2),
-      blockHeight: +blockHeight.toFixed(2),
-      blocksWide,
-      blocksTall,
-      totalBlocks,
-      totalDiagonalRows,
-      actualWidth,
-      actualHeight,
-      totalYards,
-    };
-  }, [
+  const fieldsComplete = [
     swatchBlocksWide,
     swatchBlocksTall,
     swatchWidth,
     swatchHeight,
-    desiredWidth,
-    desiredHeight,
+    targetWidth,
+    targetHeight,
+    allowancePercent,
+  ].every((value) => value.trim() !== "");
+
+  const calculation = useMemo(() => {
+    if (!fieldsComplete) return null;
+    return buildC2cPlan({
+      swatchBlocksWide,
+      swatchBlocksTall,
+      swatchWidth,
+      swatchHeight,
+      targetWidth,
+      targetHeight,
+      yarnPerBlock,
+      allowancePercent,
+    });
+  }, [
+    allowancePercent,
+    fieldsComplete,
+    swatchBlocksTall,
+    swatchBlocksWide,
+    swatchHeight,
+    swatchWidth,
+    targetHeight,
+    targetWidth,
     yarnPerBlock,
   ]);
+  const result = calculation && "totalBlocks" in calculation ? calculation : null;
+  const validationMessage = calculation && "error" in calculation ? String(calculation.error) : "";
 
   const applyPreset = (width: number, height: number) => {
-    setDesiredWidth(String(width));
-    setDesiredHeight(String(height));
+    setHasInteracted(true);
+    setTargetWidth(String(width));
+    setTargetHeight(String(height));
   };
 
   return (
-    <div className="space-y-6">
-      <p className="text-sm text-bark-400 dark:text-bark-500">
-        Measure a C2C gauge swatch in blocks, then enter your desired blanket
-        size. We&apos;ll calculate block counts, diagonal rows, and yardage.
+    <div className="space-y-6" onChangeCapture={() => setHasInteracted(true)}>
+      <p className="text-sm text-bark-500 dark:text-bark-400">
+        Measure a representative C2C swatch in both block directions. This worksheet rounds each target axis
+        to the nearest whole block and reports nominal dimensions; it does not guarantee finished size.
       </p>
 
-      {/* Swatch inputs */}
-      <div className="space-y-3 p-4 bg-cream-100 dark:bg-bark-800 rounded-xl">
-        <p className="font-medium text-bark-700 dark:text-cream-200 text-sm">
-          Gauge Swatch
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <section className="space-y-3 rounded-xl bg-cream-100 p-4 dark:bg-bark-800" aria-labelledby="c2c-swatch-heading">
+        <h2 id="c2c-swatch-heading" className="font-medium text-bark-700 text-sm dark:text-cream-200">Measured swatch</h2>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <div>
-            <label className="label text-xs">
+            <label htmlFor="c2c-swatch-blocks-wide" className="label text-xs">
               Blocks wide
-              <Tooltip text="How many C2C blocks across your swatch." />
+              <Tooltip text="Whole C2C blocks measured across the swatch." />
             </label>
-            <input
-              type="number"
-              value={swatchBlocksWide}
-              onChange={(e) => setSwatchBlocksWide(e.target.value)}
-              placeholder="e.g. 5"
-              className="input"
-              min="1"
-              inputMode="numeric"
-            />
+            <input id="c2c-swatch-blocks-wide" type="number" value={swatchBlocksWide} onChange={(event) => setSwatchBlocksWide(event.target.value)} placeholder="5" className="input" min="1" max={C2C_LIMITS.maxSwatchBlocks} step="1" inputMode="numeric" />
           </div>
           <div>
-            <label className="label text-xs">
+            <label htmlFor="c2c-swatch-blocks-tall" className="label text-xs">
               Blocks tall
-              <Tooltip text="How many C2C blocks down your swatch." />
+              <Tooltip text="Whole C2C blocks measured down the swatch." />
             </label>
-            <input
-              type="number"
-              value={swatchBlocksTall}
-              onChange={(e) => setSwatchBlocksTall(e.target.value)}
-              placeholder="e.g. 5"
-              className="input"
-              min="1"
-              inputMode="numeric"
-            />
+            <input id="c2c-swatch-blocks-tall" type="number" value={swatchBlocksTall} onChange={(event) => setSwatchBlocksTall(event.target.value)} placeholder="5" className="input" min="1" max={C2C_LIMITS.maxSwatchBlocks} step="1" inputMode="numeric" />
           </div>
           <div>
-            <label className="label text-xs">Swatch width (in)</label>
-            <input
-              type="number"
-              value={swatchWidth}
-              onChange={(e) => setSwatchWidth(e.target.value)}
-              placeholder="e.g. 4"
-              className="input"
-              min="0"
-              inputMode="decimal"
-            />
+            <label htmlFor="c2c-swatch-width" className="label text-xs">Swatch width (in)</label>
+            <input id="c2c-swatch-width" type="number" value={swatchWidth} onChange={(event) => setSwatchWidth(event.target.value)} placeholder="4" className="input" min="0.01" max={C2C_LIMITS.maxDimension} step="any" inputMode="decimal" />
           </div>
           <div>
-            <label className="label text-xs">Swatch height (in)</label>
-            <input
-              type="number"
-              value={swatchHeight}
-              onChange={(e) => setSwatchHeight(e.target.value)}
-              placeholder="e.g. 4"
-              className="input"
-              min="0"
-              inputMode="decimal"
-            />
+            <label htmlFor="c2c-swatch-height" className="label text-xs">Swatch height (in)</label>
+            <input id="c2c-swatch-height" type="number" value={swatchHeight} onChange={(event) => setSwatchHeight(event.target.value)} placeholder="4" className="input" min="0.01" max={C2C_LIMITS.maxDimension} step="any" inputMode="decimal" />
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Blanket size inputs */}
-      <div className="space-y-3 p-4 bg-sage-50 dark:bg-sage-900/10 rounded-xl">
-        <p className="font-medium text-sage-700 dark:text-sage-300 text-sm">
-          Desired Blanket Size
-        </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      <section className="space-y-3 rounded-xl bg-sage-50 p-4 dark:bg-sage-900/10" aria-labelledby="c2c-target-heading">
+        <h2 id="c2c-target-heading" className="font-medium text-sage-700 text-sm dark:text-sage-300">Target and optional measured yarn</h2>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           <div>
-            <label className="label text-xs">Width (in)</label>
-            <input
-              type="number"
-              value={desiredWidth}
-              onChange={(e) => setDesiredWidth(e.target.value)}
-              placeholder="e.g. 50"
-              className="input"
-              min="0"
-              inputMode="decimal"
-            />
+            <label htmlFor="c2c-target-width" className="label text-xs">Target width (in)</label>
+            <input id="c2c-target-width" type="number" value={targetWidth} onChange={(event) => setTargetWidth(event.target.value)} placeholder="50" className="input" min="0.01" max={C2C_LIMITS.maxDimension} step="any" inputMode="decimal" />
           </div>
           <div>
-            <label className="label text-xs">Height (in)</label>
-            <input
-              type="number"
-              value={desiredHeight}
-              onChange={(e) => setDesiredHeight(e.target.value)}
-              placeholder="e.g. 60"
-              className="input"
-              min="0"
-              inputMode="decimal"
-            />
+            <label htmlFor="c2c-target-height" className="label text-xs">Target height (in)</label>
+            <input id="c2c-target-height" type="number" value={targetHeight} onChange={(event) => setTargetHeight(event.target.value)} placeholder="60" className="input" min="0.01" max={C2C_LIMITS.maxDimension} step="any" inputMode="decimal" />
           </div>
           <div>
-            <label className="label text-xs">
-              Yarn per block (in), optional
-              <Tooltip text="Measure how many inches of yarn one C2C block uses. Unravel a block and measure the strand." />
+            <label htmlFor="c2c-yarn-per-block" className="label text-xs">
+              Measured yarn per block (in), optional
+              <Tooltip text="Measure yarn used by representative blocks from the same fabric. Leave blank to omit yarn planning." />
             </label>
-            <input
-              type="number"
-              value={yarnPerBlock}
-              onChange={(e) => setYarnPerBlock(e.target.value)}
-              placeholder="e.g. 24"
-              className="input"
-              min="0"
-              inputMode="decimal"
-            />
+            <input id="c2c-yarn-per-block" type="number" value={yarnPerBlock} onChange={(event) => setYarnPerBlock(event.target.value)} placeholder="24" className="input" min="0.01" max={C2C_LIMITS.maxYarnPerBlock} step="any" inputMode="decimal" />
+          </div>
+          <div>
+            <label htmlFor="c2c-allowance" className="label text-xs">Yarn allowance (%)</label>
+            <input id="c2c-allowance" type="number" value={allowancePercent} onChange={(event) => setAllowancePercent(event.target.value)} className="input" min="0" max={C2C_LIMITS.maxAllowancePercent} step="any" inputMode="decimal" aria-describedby="c2c-allowance-help" />
+            <p id="c2c-allowance-help" className="mt-1 text-xs text-bark-500 dark:text-bark-400">Shown separately; it is not measured consumption.</p>
           </div>
         </div>
 
-        {/* Quick-fill presets */}
-        <div className="flex flex-wrap gap-2 pt-1">
+        <div className="flex flex-wrap gap-2 pt-1" aria-label="Nominal target presets">
           {BLANKET_SIZES.map((size) => (
-            <button
-              key={size.name}
-              type="button"
-              onClick={() => applyPreset(size.width, size.height)}
-              className="px-3 py-1.5 text-xs font-medium rounded-lg bg-cream-200 dark:bg-bark-700 text-bark-600 dark:text-cream-300 hover:bg-cream-300 dark:hover:bg-bark-600 transition-colors"
-            >
+            <button key={size.name} type="button" onClick={() => applyPreset(size.width, size.height)} className="min-h-11 rounded-lg bg-cream-200 px-3 text-xs font-medium text-bark-600 transition-colors hover:bg-cream-300 dark:bg-bark-700 dark:text-cream-300 dark:hover:bg-bark-600">
               {size.name} ({size.width}&times;{size.height})
             </button>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Results */}
-      {result && (
-        <div aria-live="polite" aria-atomic="true">
-          <div className="result-card space-y-4">
-            <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-              Your C2C Blanket
-            </h3>
+      {validationMessage && hasInteracted ? (
+        <p role="alert" className="rounded-xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-700 dark:border-rose-800 dark:bg-rose-900/10 dark:text-rose-300">{validationMessage}</p>
+      ) : null}
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
-              <div>
-                <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                  {result.totalBlocks.toLocaleString()}
-                </p>
-                <p className="text-sm text-bark-500 dark:text-bark-400">
-                  total blocks
-                </p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                  {result.blocksWide} &times; {result.blocksTall}
-                </p>
-                <p className="text-sm text-bark-500 dark:text-bark-400">
-                  blocks wide &times; tall
-                </p>
-              </div>
-              <div>
-                <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-                  {result.totalDiagonalRows}
-                </p>
-                <p className="text-sm text-bark-500 dark:text-bark-400">
-                  diagonal rows
-                </p>
-              </div>
-            </div>
+      <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {result ? `${result.blocksWide} by ${result.blocksTall} block plan updated, ${result.totalBlocks} total blocks, nominal ${format(result.nominalWidth)} by ${format(result.nominalHeight)} inches${result.plannedYards === null ? ", no optional yarn total" : `, ${format(result.baseYards ?? 0)} measured-input base yards plus ${format(result.allowancePercent)} percent allowance equals ${format(result.plannedYards)} planned yards`}.` : ""}
+      </p>
 
-            <div className="border-t border-cream-300 dark:border-bark-600 pt-4 space-y-2">
-              <p className="text-sm text-bark-600 dark:text-cream-300">
-                <strong>Actual dimensions:</strong> {result.actualWidth}&Prime;
-                &times; {result.actualHeight}&Prime;
-              </p>
-              <p className="text-sm text-bark-600 dark:text-cream-300">
-                <strong>Block size:</strong> {result.blockWidth}&Prime; wide
-                &times; {result.blockHeight}&Prime; tall
-              </p>
-              {result.totalYards !== null && (
-                <p className="text-sm text-bark-600 dark:text-cream-300">
-                  <strong>Estimated yardage:</strong>{" "}
-                  {result.totalYards.toLocaleString()} yards
-                  <span className="text-xs text-bark-400 dark:text-bark-500 ml-1">
-                    (includes 10% buffer)
-                  </span>
-                </p>
-              )}
-            </div>
-
-            {result.totalYards !== null && (
-              <div className="p-3 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl">
-                <p className="text-xs text-amber-700 dark:text-amber-300">
-                  Yardage is an estimate based on your yarn-per-block
-                  measurement. Actual usage may vary with tension and color
-                  changes.
-                </p>
-              </div>
-            )}
-
-            <p className="text-xs text-bark-400 dark:text-bark-500 italic">
-              Always swatch to confirm your measurements.
-            </p>
-
-            <button
-              type="button"
-              onClick={() => {
-                const text = `C2C Blanket: ${result.blocksWide} \u00D7 ${result.blocksTall} blocks (${result.totalBlocks} total), ${result.totalDiagonalRows} diagonal rows, ${result.actualWidth}\u2033 \u00D7 ${result.actualHeight}\u2033${result.totalYards !== null ? `, ~${result.totalYards} yards` : ""}`;
-                navigator.clipboard.writeText(text);
-              }}
-              className="btn-secondary text-sm"
-              aria-label="Copy result to clipboard"
-            >
-              Copy result
-            </button>
+      {result ? (
+        <div className="result-card space-y-4">
+          <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">Nominal C2C block plan</h3>
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-3">
+            <div><p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.totalBlocks.toLocaleString()}</p><p className="text-sm text-bark-500 dark:text-bark-400">total blocks</p></div>
+            <div><p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.blocksWide} &times; {result.blocksTall}</p><p className="text-sm text-bark-500 dark:text-bark-400">blocks wide &times; tall</p></div>
+            <div><p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.totalDiagonalRows}</p><p className="text-sm text-bark-500 dark:text-bark-400">diagonal rows</p></div>
           </div>
+          <div className="space-y-2 border-t border-cream-300 pt-4 dark:border-bark-600">
+            <p className="text-sm text-bark-600 dark:text-cream-300"><strong>Nominal grid dimensions:</strong> {format(result.nominalWidth)}&Prime; &times; {format(result.nominalHeight)}&Prime;</p>
+            <p className="text-sm text-bark-600 dark:text-cream-300"><strong>Measured block size:</strong> {format(result.blockWidth)}&Prime; wide &times; {format(result.blockHeight)}&Prime; tall</p>
+            {result.plannedYards !== null ? (
+              <>
+                <p className="text-sm text-bark-600 dark:text-cream-300"><strong>Measured-input base:</strong> {format(result.baseYards ?? 0)} yards</p>
+                <p className="text-sm text-bark-600 dark:text-cream-300"><strong>Planning total:</strong> {format(result.plannedYards)} yards ({format(result.allowancePercent)}% allowance)</p>
+              </>
+            ) : null}
+          </div>
+          <p className="text-xs italic text-bark-400 dark:text-bark-500">Nearest-block rounding can finish above or below either requested dimension. Borders, joins, gauge changes, and nonrepresentative block measurements are not modeled.</p>
+          <button type="button" onClick={() => navigator.clipboard.writeText(`C2C plan: ${result.blocksWide} × ${result.blocksTall} blocks (${result.totalBlocks} total), ${result.totalDiagonalRows} diagonal rows, nominal ${format(result.nominalWidth)}″ × ${format(result.nominalHeight)}″${result.plannedYards === null ? "" : `, ${format(result.plannedYards)} planned yards`}`)} className="btn-secondary text-sm" aria-label="Copy C2C planning result">Copy result</button>
         </div>
-      )}
+      ) : null}
 
-      {/* Common blanket sizes reference */}
-      <div className="result-card mt-8">
-        <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-3">
-          Common Blanket Sizes
-        </h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left">
-            <thead>
-              <tr className="border-b border-cream-300 dark:border-bark-600">
-                <th className="py-2 pr-3 text-bark-600 dark:text-cream-300 font-medium">
-                  Size
-                </th>
-                <th className="py-2 px-3 text-bark-600 dark:text-cream-300 font-medium">
-                  Dimensions
-                </th>
-                <th className="py-2 pl-3 text-bark-600 dark:text-cream-300 font-medium">
-                  Use
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                { name: "Baby", dims: "30\u2033 \u00D7 36\u2033", use: "Stroller, crib" },
-                { name: "Throw", dims: "50\u2033 \u00D7 60\u2033", use: "Sofa, lap blanket" },
-                { name: "Twin", dims: "66\u2033 \u00D7 90\u2033", use: "Twin bed" },
-                { name: "Full", dims: "80\u2033 \u00D7 90\u2033", use: "Full / double bed" },
-                { name: "Queen", dims: "90\u2033 \u00D7 100\u2033", use: "Queen bed" },
-              ].map((row) => (
-                <tr
-                  key={row.name}
-                  className="border-b border-cream-200 dark:border-bark-700"
-                >
-                  <td className="py-2 pr-3 text-bark-700 dark:text-cream-200 font-medium">
-                    {row.name}
-                  </td>
-                  <td className="py-2 px-3 text-bark-500 dark:text-bark-400">
-                    {row.dims}
-                  </td>
-                  <td className="py-2 pl-3 text-bark-500 dark:text-bark-400">
-                    {row.use}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      {/* Tips */}
       <div className="result-card">
-        <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-2">
-          C2C Tips
-        </h3>
-        <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
-          <li>
-            <strong>Swatch at least 5&times;5 blocks</strong> for an accurate
-            gauge. Smaller swatches magnify measurement errors.
-          </li>
-          <li>
-            <strong>C2C blocks are not always square.</strong> Measure both width
-            and height separately, they often differ.
-          </li>
-          <li>
-            <strong>The diagonal grows fast,</strong> then shrinks. The widest
-            diagonal row has as many blocks as the shorter side of your blanket.
-          </li>
-          <li>
-            <strong>Border adds size.</strong> If you plan to add a border,
-            subtract its width from your target dimensions before calculating.
-          </li>
+        <h3 className="mb-2 font-semibold text-bark-700 dark:text-cream-200">Interpretation limits</h3>
+        <ul className="space-y-1 text-sm text-bark-500 dark:text-bark-400">
+          <li><strong>Measure both axes.</strong> C2C blocks need not be square.</li>
+          <li><strong>Rounded counts are nominal.</strong> The final fabric still depends on the representative gauge and finishing.</li>
+          <li><strong>Measure yarn use.</strong> The optional yarn total scales only the per-block amount you enter.</li>
+          <li><strong>Plan borders separately.</strong> Border construction and yarn are not included.</li>
         </ul>
       </div>
     </div>

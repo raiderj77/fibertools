@@ -20,7 +20,7 @@ const yarnTool = read("src/app/yarn-calculator/YarnCalculatorTool.tsx");
 test("describes yarn quantities as estimates in the shared tool registry", () => {
   assert.equal(
     getToolBySlug("yarn-calculator")?.description,
-    "Estimate yarn yardage and skein counts for blankets, sweaters, scarves, and other knitting or crochet projects.",
+    "Scale yarn measured in a representative swatch to a flat rectangular target, then convert the planning total to whole skeins.",
   );
 });
 
@@ -48,12 +48,19 @@ test("links to the current Craft Yarn Council reference routes", () => {
   assert.doesNotMatch(toolLayout, /standards\/needle-hook-sizes/);
 });
 
-test("keeps the yarn calculator example aligned with its default quick estimate", () => {
-  assert.match(yarnTool, /worsted:.*ydsPerSqIn: 1\.3/);
-  assert.match(toolContent, /3,900 base yards/);
-  assert.match(toolContent, /4,290 yards/);
-  assert.match(toolContent, /20 skeins/);
-  assert.doesNotMatch(toolContent, /0\.018 yards per square inch|2,160 yards|2,376 yards/);
+test("keeps the yarn calculator blank until measured-swatch and label values are entered", () => {
+  assert.match(yarnTool, /\[targetWidth, setTargetWidth\] = useState\("50"\)/);
+  assert.match(yarnTool, /\[targetLength, setTargetLength\] = useState\("60"\)/);
+  assert.match(yarnTool, /\[swatchWidth, setSwatchWidth\] = useState\(""\)/);
+  assert.match(yarnTool, /\[swatchLength, setSwatchLength\] = useState\(""\)/);
+  assert.match(yarnTool, /\[swatchYarnLength, setSwatchYarnLength\] = useState\(""\)/);
+  assert.match(yarnTool, /\[allowancePercent, setAllowancePercent\] = useState\("10"\)/);
+  assert.match(yarnTool, /\[skeinLength, setSkeinLength\] = useState\(""\)/);
+  assert.match(yarnTool, /\[skeinWeight, setSkeinWeight\] = useState\(""\)/);
+  assert.match(toolContent, /measured base estimate of 3,750 yards/);
+  assert.match(toolContent, /4,125 planned yards/);
+  assert.match(toolContent, /19 skeins/);
+  assert.doesNotMatch(yarnTool, /ydsPerSqIn|gaugeRatio/);
 });
 
 test("keeps Search Console quick-win copy mapped to the correct canonical tools", () => {
@@ -65,11 +72,12 @@ test("keeps Search Console quick-win copy mapped to the correct canonical tools"
   assert.match(toolLayout, /pageTitle \? \{ \.\.\.tool, name: pageTitle \} : tool/);
   assert.match(castOnPage, /Cast On Calculator: Stitches for Any Width/);
   assert.match(castOnPage, /how many stitches to cast on/);
-  assert.match(sockPage, /heel-turn guidance/);
+  assert.match(sockPage, /Sock Circumference Stitch Calculator/);
+  assert.match(sockPage, /does not infer cuff, heel, gusset, toe, foot length, or pull-on fit/);
   assert.match(tools, /"blanket-calculator": \["cast-on-calculator", "yarn-calculator"/);
 });
 
-test("keeps the contextual yarn, cast-on, sock, and raglan journey connected", () => {
+test("keeps contextual journeys connected without sending shaped garments to the flat-panel estimator", () => {
   for (const path of [
     "/yarn-calculator",
     "/cast-on-calculator",
@@ -79,9 +87,10 @@ test("keeps the contextual yarn, cast-on, sock, and raglan journey connected", (
     assert.match(knittingToolsPage, new RegExp(`href="${path}"`));
   }
 
-  assert.match(yarnPage, /href="\/raglan-calculator"/);
+  assert.match(yarnPage, /href: "\/project-cost-calculator"/);
   assert.match(castOnPage, /href="\/sock-calculator"/);
-  assert.match(sockPage, /href="\/cast-on-calculator"/);
-  assert.match(raglanPage, /href="\/yarn-calculator"/);
-  assert.match(raglanPage, /href="\/cast-on-calculator"/);
+  assert.match(sockPage, /href: "\/gauge-calculator"/);
+  assert.doesNotMatch(sockPage, /href: "\/yarn-calculator"/);
+  assert.doesNotMatch(raglanPage, /href="\/yarn-calculator"/);
+  assert.match(raglanPage, /href="\/sleeve-calculator"/);
 });

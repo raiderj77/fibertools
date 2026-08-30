@@ -6,7 +6,7 @@ import GrannySquarePlannerTool from "./GrannySquarePlannerTool";
 export const metadata: Metadata = {
   title: "Granny Square Blanket Planner",
   description:
-    "Plan your granny square blanket with grid layout, total squares, per-color yardage, and joining yarn estimates.",
+    "Plan a nominal granny-square grid, total square count, internal seam length, and measured yarn-per-square totals.",
   keywords: [
     "granny square calculator",
     "granny square blanket planner",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Granny Square Blanket Planner",
     description:
-      "Plan your granny square blanket with grid layout, total squares, per-color yardage, and joining yarn estimates.",
+      "Plan a nominal granny-square grid, total square count, internal seam length, and measured yarn-per-square totals.",
     url: "https://fibertools.app/granny-square-planner",
     type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Granny Square Blanket Planner" }],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Granny Square Blanket Planner",
     description:
-      "Plan your granny square blanket with grid layout, total squares, per-color yardage, and joining yarn estimates.",
+      "Plan a nominal granny-square grid, total square count, internal seam length, and measured yarn-per-square totals.",
     images: ["/og-image.png"],
   },
 };
@@ -36,10 +36,10 @@ export default function GrannySquarePlannerPage() {
   return (
     <ToolLayout slug="granny-square-planner" widgetFirst>
       <AnswerBlock
-        what="A planner that calculates how many granny squares you need for a blanket, with grid layout, per-color yardage, and joining yarn estimates."
-        who="Crocheters assembling a granny square blanket who need to plan color quantities and total square count before starting."
-        bottomLine="Enter your blanket size and square dimensions to get an exact count and yarn budget for the entire project."
-        lastUpdated="2026-03-16"
+        what="A planner that rounds each grid axis up from your target dimensions and blocked test-square size, then reports total squares and unique internal seam length."
+        who="Crocheters assembling a rectangular granny-square blanket who want a bounded grid and measured-input yarn plan before starting."
+        bottomLine="The grid is a nominal plan, not a finished-size prediction. Yarn totals cover the squares only when you enter measured yarn use from a representative square."
+        lastUpdated="2026-08-29"
       />
       <div className="sr-only">
         <h2>Granny Square Planner Tool</h2>

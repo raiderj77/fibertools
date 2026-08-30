@@ -1,209 +1,211 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { generateSphere } from "@/lib/amigurumi-shape-patterns.mjs";
+import { useMemo, useState } from "react";
+import {
+  AMIGURUMI_SHAPE_LIMITS,
+  generateAmigurumiShapePlan,
+} from "@/lib/amigurumi-shape-patterns.mjs";
 
 type Shape = "sphere" | "cone" | "cylinder" | "oval";
 
-interface ShapeDef {
-  key: Shape;
-  name: string;
-  emoji: string;
-  desc: string;
-}
-
-const SHAPES: ShapeDef[] = [
-  { key: "sphere", name: "Sphere / Ball", emoji: "🔵", desc: "Increase to max width, work even, then decrease symmetrically." },
-  { key: "cone", name: "Cone", emoji: "🔺", desc: "Gradual increases from tip to base. Great for horns, carrots, noses." },
-  { key: "cylinder", name: "Cylinder / Tube", emoji: "🟩", desc: "Flat circle base, then even rounds for height. Arms, legs, bodies." },
-  { key: "oval", name: "Oval", emoji: "🥚", desc: "Chain start with increases on both ends. Feet, muzzles, bases." },
+const SHAPES: Array<{ key: Shape; name: string; description: string }> = [
+  {
+    key: "sphere",
+    name: "Sphere count schedule",
+    description: "Six-stitch increase rounds, a short widest section, then mirrored decrease counts.",
+  },
+  {
+    key: "cone",
+    name: "Stepped cone schedule",
+    description: "Six increases on alternating rounds, with even rounds between them.",
+  },
+  {
+    key: "cylinder",
+    name: "Base and tube schedule",
+    description: "A six-increase circular base followed by even rounds at the base stitch count.",
+  },
+  {
+    key: "oval",
+    name: "Oval-start schedule",
+    description: "A foundation-chain start followed by six increases per expansion round across two end curves.",
+  },
 ];
-
-function generateCone(rounds: number): string[] {
-  const lines: string[] = [];
-  lines.push(`Rnd 1: Magic ring, 6 sc. (6)`);
-
-  let totalSt = 6;
-  for (let r = 2; r <= rounds; r++) {
-    // Increase every other round for gradual taper
-    if (r % 2 === 0) {
-      totalSt += 6;
-      const normal = Math.floor(totalSt / 6) - 2;
-      if (normal <= 0) {
-        lines.push(`Rnd ${r}: 2 sc in each st around. (${totalSt})`);
-      } else {
-        lines.push(`Rnd ${r}: *sc ${normal}, 2 sc in next st* x6. (${totalSt})`);
-      }
-    } else {
-      lines.push(`Rnd ${r}: sc in each st around. (${totalSt})`);
-    }
-  }
-
-  lines.push(`Stuff as you go for narrow shapes. Fasten off.`);
-  return lines;
-}
-
-function generateCylinder(rounds: number, baseRounds: number): string[] {
-  const lines: string[] = [];
-
-  // Flat circle base
-  for (let r = 1; r <= baseRounds; r++) {
-    const total = 6 * r;
-    if (r === 1) {
-      lines.push(`Rnd 1: Magic ring, 6 sc. (6)`);
-    } else if (r === 2) {
-      lines.push(`Rnd 2: 2 sc in each st around. (12)`);
-    } else {
-      lines.push(`Rnd ${r}: *sc ${r - 2}, 2 sc in next st* x6. (${total})`);
-    }
-  }
-
-  // Even rounds for height
-  const maxSt = 6 * baseRounds;
-  for (let r = baseRounds + 1; r <= rounds; r++) {
-    lines.push(`Rnd ${r}: sc in each st around. (${maxSt})`);
-  }
-
-  lines.push(`Stuff before closing. Fasten off.`);
-  return lines;
-}
-
-function generateOval(length: number): string[] {
-  const chainCount = length + 1;
-  const lines: string[] = [];
-  const rnd1Total = (length - 1) * 2 + 6; // sc along both sides + 3 in each end
-
-  lines.push(`Ch ${chainCount}.`);
-  lines.push(`Rnd 1: Starting in 2nd ch from hook, sc ${length - 1}, 3 sc in last ch. Working along other side: sc ${length - 1}, 2 sc in last st. (${rnd1Total})`);
-
-  let total = rnd1Total;
-  const ovalRounds = Math.min(length, 6);
-  for (let r = 2; r <= ovalRounds; r++) {
-    total += 6;
-    lines.push(`Rnd ${r}: sc to 1 st before end curve, *2 sc in next st, sc 1* x3, sc across, *2 sc in next st, sc 1* x3. (${total})`);
-  }
-
-  lines.push(`Continue even rounds for desired height. Fasten off.`);
-  return lines;
-}
 
 export default function AmigurumiShapesTool() {
   const [shape, setShape] = useState<Shape>("sphere");
-  const [rounds, setRounds] = useState(12);
+  const [totalRounds, setTotalRounds] = useState(12);
   const [baseRounds, setBaseRounds] = useState(4);
-  const [ovalLength, setOvalLength] = useState(6);
+  const [ovalChain, setOvalChain] = useState(6);
+  const [ovalRounds, setOvalRounds] = useState(4);
   const [copied, setCopied] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
 
-  const pattern = useMemo(() => {
-    switch (shape) {
-      case "sphere": return generateSphere(rounds);
-      case "cone": return generateCone(rounds);
-      case "cylinder": return generateCylinder(rounds, baseRounds);
-      case "oval": return generateOval(ovalLength);
-    }
-  }, [shape, rounds, baseRounds, ovalLength]);
+  const plan = useMemo(() => generateAmigurumiShapePlan({
+    shape,
+    totalRounds,
+    baseRounds,
+    ovalChain,
+    ovalRounds,
+  }), [shape, totalRounds, baseRounds, ovalChain, ovalRounds]);
+  const result = "lines" in plan ? plan : null;
+  const selectedShape = SHAPES.find((item) => item.key === shape) ?? SHAPES[0];
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(pattern.join("\n"));
+  const handleCopy = async () => {
+    if (!result) return;
+    await navigator.clipboard.writeText(result.lines.join("\n"));
     setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    window.setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div className="space-y-6">
-      {/* Shape selector */}
+    <div className="space-y-6" onChangeCapture={() => setHasInteracted(true)}>
+      <div className="rounded-xl border border-sage-200 bg-sage-50/60 p-4 text-sm text-bark-700 dark:border-sage-800 dark:bg-sage-950/20 dark:text-cream-300">
+        <p className="font-semibold text-bark-800 dark:text-cream-100">Basic single-crochet count references</p>
+        <p className="mt-1">
+          These bounded schedules keep their written stitch totals arithmetically consistent. They do not
+          determine a guaranteed sphere, cone, cylinder, or oval: yarn, hook, gauge, stitch height, increase
+          placement, stuffing, joining, and finishing all affect the fabric.
+        </p>
+      </div>
+
       <fieldset>
-        <legend className="sr-only">Choose an amigurumi shape</legend>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <legend className="label">Choose a basic count schedule</legend>
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4">
           {SHAPES.map((s) => (
             <button
               key={s.key}
               type="button"
-              onClick={() => setShape(s.key)}
+              onClick={() => { setShape(s.key); setHasInteracted(true); }}
               aria-pressed={shape === s.key}
-              className={`py-3 px-3 rounded-xl text-sm font-medium transition-colors text-center ${
-                shape === s.key
-                  ? "bg-sage-600 text-white"
-                  : "bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 text-bark-700 dark:text-cream-300 hover:border-sage-400"
-              }`}
+              className={`min-h-11 rounded-xl border px-3 py-3 text-center text-sm font-medium ${shape === s.key ? "border-sage-600 bg-sage-600 text-white" : "border-bark-200 bg-white text-bark-700 hover:border-sage-400 dark:border-bark-700 dark:bg-bark-800 dark:text-cream-300"}`}
             >
-              <span className="text-lg block mb-0.5">{s.emoji}</span>
               {s.name}
             </button>
           ))}
         </div>
       </fieldset>
 
-      {/* Description */}
-      <p className="text-sm text-bark-500 dark:text-bark-400">
-        {SHAPES.find((s) => s.key === shape)?.desc}
-      </p>
+      <p className="text-sm text-bark-500 dark:text-bark-400">{selectedShape.description}</p>
 
-      {/* Controls */}
       {shape === "oval" ? (
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <label htmlFor="oval-chain-length" className="text-sm font-medium text-bark-500 dark:text-bark-400">
-              Starting chain length
-            </label>
-            <span className="text-sm font-bold text-bark-700 dark:text-cream-300">{ovalLength}</span>
-          </div>
-          <input id="oval-chain-length" type="range" min={4} max={20} value={ovalLength} onChange={(e) => setOvalLength(Number(e.target.value))} className="h-11 w-full accent-sage-600" />
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <RangeControl
+            id="shape-oval-chain"
+            htmlFor="shape-oval-chain"
+            label="Foundation chain"
+            value={ovalChain}
+            minimum={AMIGURUMI_SHAPE_LIMITS.minOvalChain}
+            maximum={AMIGURUMI_SHAPE_LIMITS.maxOvalChain}
+            onChange={setOvalChain}
+          />
+          <RangeControl
+            id="shape-oval-rounds"
+            htmlFor="shape-oval-rounds"
+            label="Oval expansion rounds"
+            value={ovalRounds}
+            minimum={AMIGURUMI_SHAPE_LIMITS.minOvalRounds}
+            maximum={AMIGURUMI_SHAPE_LIMITS.maxOvalRounds}
+            onChange={setOvalRounds}
+          />
         </div>
       ) : (
-        <>
-          <div>
-            <div className="flex items-center justify-between mb-2">
-              <label htmlFor="shape-total-rounds" className="text-sm font-medium text-bark-500 dark:text-bark-400">
-                Total rounds
-              </label>
-              <span className="text-sm font-bold text-bark-700 dark:text-cream-300">{rounds}</span>
-            </div>
-            <input id="shape-total-rounds" type="range" min={6} max={30} value={rounds} onChange={(e) => setRounds(Number(e.target.value))} className="h-11 w-full accent-sage-600" />
-          </div>
-          {shape === "cylinder" && (
-            <div>
-              <div className="flex items-center justify-between mb-2">
-                <label htmlFor="shape-base-rounds" className="text-sm font-medium text-bark-500 dark:text-bark-400">
-                  Base rounds (flat circle)
-                </label>
-                <span className="text-sm font-bold text-bark-700 dark:text-cream-300">{baseRounds}</span>
-              </div>
-              <input id="shape-base-rounds" type="range" min={2} max={10} value={baseRounds} onChange={(e) => setBaseRounds(Number(e.target.value))} className="h-11 w-full accent-sage-600" />
-            </div>
-          )}
-        </>
+        <div className={`grid grid-cols-1 gap-5 ${shape === "cylinder" ? "sm:grid-cols-2" : ""}`}>
+          <RangeControl
+            id="shape-total-rounds"
+            htmlFor="shape-total-rounds"
+            label="Total numbered rounds"
+            value={totalRounds}
+            minimum={AMIGURUMI_SHAPE_LIMITS.minTotalRounds}
+            maximum={AMIGURUMI_SHAPE_LIMITS.maxTotalRounds}
+            onChange={setTotalRounds}
+          />
+          {shape === "cylinder" ? (
+            <RangeControl
+              id="shape-base-rounds"
+              htmlFor="shape-base-rounds"
+              label="Rounds used for the circular base"
+              value={baseRounds}
+              minimum={AMIGURUMI_SHAPE_LIMITS.minBaseRounds}
+              maximum={AMIGURUMI_SHAPE_LIMITS.maxBaseRounds}
+              onChange={setBaseRounds}
+            />
+          ) : null}
+        </div>
       )}
 
-      {/* Pattern output */}
-      <div className="bg-white dark:bg-bark-800 border border-bark-200 dark:border-bark-700 rounded-xl overflow-hidden">
-        <div className="px-5 py-3 border-b border-bark-200 dark:border-bark-700 flex items-center justify-between">
-          <h2 className="font-bold text-bark-700 dark:text-cream-300">Pattern</h2>
-          <button type="button" onClick={handleCopy} aria-live="polite" className="inline-flex min-h-11 items-center px-3 text-sm font-medium text-sage-600 hover:underline dark:text-sage-400">
-            {copied ? "✓ Copied!" : "Copy"}
-          </button>
-        </div>
-        <div className="p-5 space-y-1.5">
-          {pattern.map((line, i) => (
-            <p key={`${shape}-${rounds}-${i}`} className="text-sm text-bark-700 dark:text-cream-300 font-mono leading-relaxed">
-              {line}
-            </p>
-          ))}
-        </div>
-      </div>
+      {!result && hasInteracted ? (
+        <p role="alert" className="rounded-lg bg-red-50 p-3 text-sm text-red-700 dark:bg-red-950/20 dark:text-red-300">
+          {"error" in plan ? plan.error : "Enter values within the supported limits."}
+        </p>
+      ) : null}
 
-      {/* Tips */}
-      <div className="bg-cream-100 dark:bg-bark-700 border border-bark-200 dark:border-bark-600 rounded-xl p-4">
-        <p className="text-sm font-semibold text-bark-700 dark:text-cream-300 mb-1">Amigurumi tips</p>
-        <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
-          <li>• Use a hook 1-2 sizes smaller than the yarn label suggests for tighter fabric that holds stuffing.</li>
-          <li>• Work in continuous rounds (no joining, no turning chain) unless your pattern says otherwise.</li>
-          <li>• Use a stitch marker in the first stitch of each round to keep track.</li>
-          <li>• Stuff firmly but not so tight that the stuffing shows between stitches.</li>
-          <li>• Safety eyes must be inserted before you close the opening.</li>
-        </ul>
-      </div>
+      <p className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+        {result ? `${shape} count reference updated${shape === "cylinder" ? ` with ${baseRounds} base rounds` : ""}: ${result.numberedRounds} numbered rounds. First: ${result.lines[0]}. Last: ${result.lines[result.lines.length - 1]}.` : ""}
+      </p>
 
+      {result ? (
+        <section className="overflow-hidden rounded-xl border border-bark-200 bg-white dark:border-bark-700 dark:bg-bark-800" aria-labelledby="amigurumi-count-reference-heading">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-bark-200 px-5 py-3 dark:border-bark-700">
+            <div>
+              <h2 id="amigurumi-count-reference-heading" className="font-bold text-bark-700 dark:text-cream-300">Basic stitch-count reference</h2>
+              <p className="text-xs text-bark-500 dark:text-bark-400">{result.numberedRounds} numbered {result.numberedRounds === 1 ? "round" : "rounds"}; US single-crochet abbreviations.</p>
+            </div>
+            <button type="button" onClick={handleCopy} className="inline-flex min-h-11 items-center rounded-lg px-3 text-sm font-medium text-sage-600 hover:bg-sage-50 dark:text-sage-400 dark:hover:bg-sage-950/20">
+              Copy reference
+            </button>
+            <span className="sr-only" role="status" aria-live="polite">{copied ? "Count reference copied." : ""}</span>
+          </div>
+          <div className="space-y-1.5 p-5">
+            {result.lines.map((line: string, index: number) => (
+              <p key={`${shape}-${index}`} className="font-mono text-sm leading-relaxed text-bark-700 dark:text-cream-300">
+                {line}
+              </p>
+            ))}
+          </div>
+          <div className="border-t border-bark-200 px-5 py-3 text-xs text-bark-500 dark:border-bark-700 dark:text-bark-400">
+            inc = two single crochets in one stitch; dec = one single crochet worked across two stitches.
+            Verify placement, gauge, structure, stuffing, and closure before treating the reference as project instructions.
+          </div>
+        </section>
+      ) : null}
+    </div>
+  );
+}
+
+function RangeControl({
+  id,
+  htmlFor,
+  label,
+  value,
+  minimum,
+  maximum,
+  onChange,
+}: {
+  id: string;
+  htmlFor: string;
+  label: string;
+  value: number;
+  minimum: number;
+  maximum: number;
+  onChange: (value: number) => void;
+}) {
+  return (
+    <div>
+      <div className="mb-2 flex items-center justify-between gap-3">
+        <label htmlFor={htmlFor} className="text-sm font-medium text-bark-500 dark:text-bark-400">{label}</label>
+        <output htmlFor={id} className="text-sm font-bold text-bark-700 dark:text-cream-300">{value}</output>
+      </div>
+      <input
+        id={id}
+        type="range"
+        min={minimum}
+        max={maximum}
+        step="1"
+        value={value}
+        onChange={(event) => onChange(Number(event.target.value))}
+        className="h-11 w-full accent-sage-600"
+      />
+      <p className="mt-1 text-xs text-bark-400 dark:text-bark-500">Supported range: {minimum}–{maximum}.</p>
     </div>
   );
 }

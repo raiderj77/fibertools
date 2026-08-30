@@ -2,7 +2,7 @@
 
 > https://fibertools.app
 
-FiberTools is a suite of 34 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, cross stitch, and sewing. It is maintained by the maker identified on the About page; no professional fiber-arts credential is claimed. Calculator inputs and results are processed in the browser and are not sent to a server. Newsletter signup and optional paid services use their separately disclosed workflows. No login is required for self-service calculators, and many tools work offline as part of the Progressive Web App. All self-service calculators stay free. Optional professional reviews and project downloads are paid.
+FiberTools is a suite of 34 free, browser-based calculators and references for fiber arts, knitting, crochet, weaving, spinning, embroidery, cross stitch, and sewing. It is maintained by the maker identified on the About page; no professional fiber-arts credential is claimed. Core calculator arithmetic runs in the browser. Optional network features, including pattern recommendations, newsletter signup, and paid services, use separately disclosed workflows and may send the filters or details needed for that feature. No login is required for self-service calculators, and many core tools work offline as part of the Progressive Web App. All self-service calculators stay free. Optional professional reviews and project downloads are paid.
 
 US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Council (CYC) standard: Lace (0), Fingering (1), Sport (2), DK (3), Worsted (4), Bulky (5), Super Bulky (6), Jumbo (7).
 
@@ -12,7 +12,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Yarn Calculator
 - URL: https://fibertools.app/yarn-calculator
-- Estimate yarn needs for supported projects such as blankets, sweaters, scarves, hats, and socks. Enter the available gauge, dimensions, and yarn-weight information to get planning estimates for yardage and skeins. Supports CYC yarn weights from Lace (0) to Jumbo (7).
+- Scale yarn measured in a representative flat swatch to a rectangular target, add an explicit planning allowance, and convert the result to whole skeins from the yarn label.
 
 ### Needle & Hook Size Converter
 - URL: https://fibertools.app/needle-converter
@@ -20,7 +20,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Gauge Calculator
 - URL: https://fibertools.app/gauge-calculator
-- Calculate your gauge from a swatch measurement, resize patterns to a new gauge, and get exact stitch and row counts for target dimensions. Essential for ensuring garments fit correctly.
+- Calculate gauge from a swatch and perform bounded stitch- and row-count arithmetic when all required values are supplied. The result does not guarantee fit.
 
 ### Yarn Weight Chart
 - URL: https://fibertools.app/yarn-weight-chart
@@ -36,11 +36,11 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Increase & Decrease Calculator
 - URL: https://fibertools.app/increase-decrease-calculator
-- Get stitch-by-stitch row instructions for distributing increases or decreases evenly across a row or round. Handles any starting and target stitch count with mathematically even distribution.
+- Build a bounded one-row or one-round stitch plan for distributing an entered increase or decrease. Unsupported or unsafe counts are declined.
 
 ### Stripe Generator
 - URL: https://fibertools.app/stripe-generator
-- Generate random, weighted, or structured stripe patterns with up to 8 colors. Calculates per-color yardage estimates based on your gauge and width.
+- Generate a bounded random, weighted, or repeating stripe-row sequence from entered colors and row limits. The tool does not calculate yarn yardage.
 
 ### Abbreviation Glossary
 - URL: https://fibertools.app/abbreviation-glossary
@@ -48,19 +48,19 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Stitch Pattern Calculator
 - URL: https://fibertools.app/stitch-pattern-calculator
-- Find compatible stitch counts for sampler blankets with 50+ stitch patterns. Enter your target width and gauge to get stitch counts that work with multiple pattern repeats.
+- Find bounded whole totals satisfying up to eight entered multiple-plus constraints, optional per-side edges, and a manual or gauge-derived range. Arithmetic compatibility does not validate a pattern or construction.
 
 ### Stitch Quick Reference
 - URL: https://fibertools.app/stitch-quick-reference
-- Visual step-by-step instructions for every basic crochet and knitting stitch including chain, slip stitch, single crochet, double crochet, knit, purl, and more.
+- Visual steps for the crochet and knitting stitches included in the reference.
 
 ### UK to US Converter
 - URL: https://fibertools.app/uk-to-us-converter
-- Convert UK crochet pattern terminology to US equivalents and vice versa. Handles the one-step offset (UK dc = US sc, UK tr = US dc, etc.) with full pattern text conversion.
+- Replace supported modern UK and US crochet terms in pasted text using a one-pass mapping. Numbers, punctuation, and all unmapped text are left unchanged; the tool does not validate a complete pattern.
 
-### Perfect Circle Calculator
+### Crochet Circle Round Planner
 - URL: https://fibertools.app/circle-calculator
-- Generate flat circle crochet patterns with staggered increases to prevent hexagonal distortion. Supports any starting stitch count and generates round-by-round instructions.
+- Generate a basic staggered-increase schedule from an entered starting count and round limit. Swatch and adjust for the material, stitch, and construction; the tool cannot guarantee a flat or round result.
 
 ### Sewing & Craft Needle Guide
 - URL: https://fibertools.app/needle-guide
@@ -68,7 +68,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Amigurumi Shapes Guide
 - URL: https://fibertools.app/amigurumi-shapes
-- Round-by-round increase/decrease instructions for sphere, cone, cylinder, oval, and flat circle shapes. Adjustable for any target diameter with magic ring starts.
+- Generate bounded arithmetic schedules for the included sphere, cone, cylinder, and oval starting shapes. Verify the technique, literal count, and suitability before use.
 
 ### Project Cost Calculator
 - URL: https://fibertools.app/project-cost-calculator
@@ -76,7 +76,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Color Pooling Calculator
 - URL: https://fibertools.app/color-pooling-calculator
-- Calculate the exact stitch count to make variegated or self-striping yarn pool into argyle and plaid patterns. Enter your yarn's color repeat length and gauge.
+- Preview how an entered repeating color-run sequence maps across a chosen stitch count. It does not solve for an argyle or plaid result; swatching is required.
 
 ### WPI to Yarn Weight Converter
 - URL: https://fibertools.app/wpi-calculator
@@ -84,23 +84,23 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Cast On Calculator
 - URL: https://fibertools.app/cast-on-calculator
-- Calculate how many stitches to cast on for any target width, accounting for stitch pattern multiples and edge stitches. Rounds to the nearest valid multiple.
+- Calculate a rounded cast-on count from entered width and gauge, with optional pattern-multiple and edge-stitch adjustments.
 
 ### Hat Size Calculator
 - URL: https://fibertools.app/hat-calculator
-- Get cast-on count, crown decrease schedule, and total yardage for any head size from preemie to large adult. Supports both knit and crochet with multiple crown shaping methods.
+- Calculate a rounded cast-on count and bounded eight-section crown schedule from entered head measurement, ease, and gauge. Verify fit and technique with the pattern and a swatch.
 
-### Sock Knitting Calculator
+### Sock Circumference Stitch Calculator
 - URL: https://fibertools.app/sock-calculator
-- Calculate sock stitch counts for top-down or toe-up construction with heel flap, gusset, and short-row heel options. Supports any foot circumference and shoe size.
+- Calculate one bounded circular stitch-count checkpoint from entered foot circumference, ease, measured gauge, and stitch multiple. It does not infer cuff, heel, gusset, toe, foot length, or pull-on fit.
 
 ### Sleeve Shaping Calculator
 - URL: https://fibertools.app/sleeve-calculator
 - Plan a bounded paired-decrease sleeve taper from entered upper-arm, wrist, length, cuff, and gauge values. The calculator declines odd stitch gaps and schedules denser than one event per shaping row.
 
-### Raglan Calculator
+### Raglan Body Stitch Checkpoint
 - URL: https://fibertools.app/raglan-calculator
-- Calculate neck cast-on stitches, stitch distribution across front/back/sleeves, and increase rounds for a top-down raglan sweater. Supports any gauge and neck circumference.
+- Calculate one bounded finished-body stitch checkpoint from entered circumference, measured gauge, and stitch multiple. It does not infer a neckline, section distribution, yoke schedule, underarm split, or fit.
 
 ### Blocking Dimension Change Calculator
 - URL: https://fibertools.app/blocking-calculator
@@ -114,11 +114,11 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### C2C Blanket Calculator
 - URL: https://fibertools.app/c2c-calculator
-- Plan a corner-to-corner (C2C) crochet blanket with block counts per diagonal row, total block count, and yardage estimates. Supports rectangular and square layouts.
+- Round entered dimensions to a bounded nominal C2C grid from a two-axis swatch, with optional measured yarn-per-block planning arithmetic. Nearest-block rounding and the optional allowance do not guarantee finished size or purchase quantity.
 
 ### Granny Square Planner
 - URL: https://fibertools.app/granny-square-planner
-- Plan a granny square blanket with grid layout dimensions, total square count, per-color yardage estimates, and joining yarn calculations. Supports multi-color schemes.
+- Plan a nominal grid, total square count, equal-share color average, and unique internal seam length from entered blanket and square dimensions.
 
 ## Tools, Spinning (1 tool)
 
@@ -130,39 +130,21 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Weaving Sett Calculator
 - URL: https://fibertools.app/weaving-sett-calculator
-- Find the right sett (ends per inch / EPI) for your yarn weight and weave structure (plain, twill, satin). Includes warp length calculations with loom waste and take-up, plus reed substitution.
+- Compare a yarn/structure lookup with entered project dimensions, warp allowances, and a supplied reed. Treat the result as a starting point and verify it with a sample.
 
 ## Tools, Cross Stitch (1 tool)
 
 ### Cross Stitch Calculator
 - URL: https://fibertools.app/cross-stitch-calculator
-- Calculate finished dimensions for any stitch count and fabric count (Aida, evenweave, linen). Estimates thread amounts per color with skein counts.
+- Calculate dimensions for entered stitch counts and supported fabric counts, with a planning estimate for stranded-cotton use. The thread result is not exact.
 
 ## Tools, Embroidery (1 tool)
 
 ### Thread Converter
 - URL: https://fibertools.app/thread-converter
-- Convert between DMC, Anchor, Cosmo, and Sulky embroidery thread numbers. Searchable database with color name lookup and closest-match suggestions.
+- Look up exact entries in the included DMC, Anchor, and Cosmo embroidery-thread table. The tool does not include Sulky or infer nearest colors.
 
 ---
-
-## Blog Posts
-
-- [How Much Yarn Do I Need?](https://fibertools.app/blog/yarn-calculator-guide): The complete guide to calculating yarn for any project, blankets, sweaters, scarves, and more.
-- [Knitting Needle & Crochet Hook Size Chart](https://fibertools.app/blog/needle-size-chart-guide): US, Metric, UK & Japanese size conversion chart for needles and hooks.
-- [How to Calculate and Adjust Gauge](https://fibertools.app/blog/gauge-calculator-guide): Why gauge matters, how to measure it, and how to resize patterns.
-- [Yarn Weight Chart](https://fibertools.app/blog/yarn-weight-chart-guide): From lace to jumbo with needle sizes and gauge ranges.
-- [How to Count Stitches and Rows](https://fibertools.app/blog/stitch-counter-guide): Tips for accurate stitch and row tracking in knitting and crochet.
-- [Blanket Size Guide](https://fibertools.app/blog/blanket-size-guide): Standard dimensions for baby, throw, and bed blankets.
-- [How to Increase and Decrease Evenly](https://fibertools.app/blog/increase-decrease-guide): The math made easy for distributing increases or decreases across a row.
-- [How to Plan Stripe Patterns](https://fibertools.app/blog/stripe-pattern-guide): Random, weighted, and sequence stripes with yardage planning.
-- [Knitting and Crochet Abbreviations](https://fibertools.app/blog/knitting-abbreviations-guide): The complete reference guide to abbreviations.
-- [Cross Stitch Fabric Calculator](https://fibertools.app/blog/cross-stitch-fabric-guide): How to figure out the right size Aida cloth.
-- [How to Calculate Sett for Weaving](https://fibertools.app/blog/weaving-sett-guide): EPI guide for every yarn weight.
-- [Color Pooling Calculator Guide](https://fibertools.app/blog/color-pooling-guide): How to plan pooling with variegated yarn.
-- [DMC to Anchor Thread Conversion](https://fibertools.app/blog/thread-conversion-guide): The complete searchable embroidery thread conversion chart.
-- [Stitch Multiples for Sampler Blankets](https://fibertools.app/blog/stitch-multiples-sampler-blanket-guide): How to calculate compatible stitch counts for sampler blankets.
-- [Crochet Stitch Quick Reference](https://fibertools.app/blog/crochet-stitch-quick-reference-guide): Yarn overs, pull-throughs, and turning chains explained.
 
 ## Guides
 
@@ -177,13 +159,13 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ## About
 - [About FiberTools](https://fibertools.app/about): Meet the identified maker behind FiberTools and read how the free calculators are built and checked.
-- [Privacy Policy](https://fibertools.app/privacy): All calculations happen in-browser. No project data is collected or stored.
+- [Privacy Policy](https://fibertools.app/privacy): Read how local calculations and optional network features handle data.
 - [Terms of Use](https://fibertools.app/terms): Terms governing use of FiberTools.
 - [Contact](https://fibertools.app/about#contact): hello@fibertools.app
 
 ## Key Facts
 - 34 free self-service tools across fiber arts disciplines
-- Calculator inputs and results stay in the browser
+- Core calculator arithmetic stays in the browser; optional network features have separate data flows
 - No login or email gate for self-service calculators
 - Optional professional reviews and project downloads are paid
 - Works offline as a Progressive Web App (PWA)

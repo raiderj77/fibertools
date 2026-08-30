@@ -386,7 +386,7 @@ export default function YarnWeightCalculatorPage() {
           <Link href="/yarn-calculator" className="text-plum-500 hover:underline">
             Yarn Yardage Calculator
           </Link>{" "}
-          to recalculate how much substitute yarn to buy.
+          to scale measured substitute-yarn use from a representative swatch when the finished piece is a flat rectangle.
         </p>
       </section>
 
@@ -522,7 +522,7 @@ export default function YarnWeightCalculatorPage() {
               href: "/yarn-calculator",
               icon: "🧮",
               name: "Yarn Yardage Calculator",
-              desc: "Estimate how much yarn you need for any project size",
+              desc: "Scale measured swatch use to a flat rectangular project",
             },
             {
               href: "/needle-converter",
