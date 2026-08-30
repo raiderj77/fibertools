@@ -118,16 +118,24 @@ test("counted spelled-out stitch instructions convert without consuming the coun
   assert.equal(result.substitutionCount, 4);
 });
 
+test("asterisk repeat markers delimit supported spelled-out instructions", () => {
+  const result = decodeVintagePattern("*double crochet in next stitch, repeat from *", "uk");
+
+  assert.equal(result.status, "ready");
+  assert.equal(result.output, "*single crochet (sc) in next stitch, repeat from *");
+  assert.equal(result.substitutionCount, 1);
+});
+
 test("multiline custom abbreviation definitions remain unchanged", () => {
-  const input = "Abbreviations:\ndc = drop color\ntr = turn right\nGauge: 20 dc = 4 inches\nSize: adult\nNotes: Work tr across.\nRow 1: Work dc in next stitch.\nRound 2: Work tr across.";
+  const input = "Abbreviations:\ndc = drop color\ntr = turn right\nGauge: 20 dc = 4 inches\nSize: adult\nNotes: Work tr across.\nBody: Work dc in next stitch.\nSleeve: Work tr across.\nRow 1: Work dc in next stitch.\nRound 2: Work tr across.";
   const result = decodeVintagePattern(input, "uk");
 
   assert.equal(result.status, "ready");
   assert.equal(
     result.output,
-    "Abbreviations:\ndc = drop color\ntr = turn right\nGauge: 20 single crochet (sc) = 4 inches\nSize: adult\nNotes: Work double crochet (dc) across.\nRow 1: Work single crochet (sc) in next stitch.\nRound 2: Work double crochet (dc) across.",
+    "Abbreviations:\ndc = drop color\ntr = turn right\nGauge: 20 single crochet (sc) = 4 inches\nSize: adult\nNotes: Work double crochet (dc) across.\nBody: Work single crochet (sc) in next stitch.\nSleeve: Work double crochet (dc) across.\nRow 1: Work single crochet (sc) in next stitch.\nRound 2: Work double crochet (dc) across.",
   );
-  assert.equal(result.substitutionCount, 4);
+  assert.equal(result.substitutionCount, 6);
 });
 
 test("spelled-out terms nested in ordinary prose are preserved conservatively", () => {

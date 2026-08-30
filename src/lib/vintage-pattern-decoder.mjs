@@ -85,7 +85,7 @@ function termMatcher(term) {
     // label or list item. This avoids rewriting a supported phrase nested in
     // an unknown compound stitch name or ordinary prose.
     return new RegExp(
-      `(^\\s*|[\\n,:;/(\\[{\"'\\-]\\s*|(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])\\p{N}+[\\t\\p{Zs}]+)(${escaped})(?=$|\\s*[\\n,./;:!?\\)\\]}\"'\\-]|[\\t\\p{Zs}]+(?:and|or|then|in|into|across|around|at|before|behind|below|between|from|on|over|through|to|under|until|with|within)\\b)`,
+      `(^\\s*|[\\n*,:;/(\\[{\"'\\-]\\s*|(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])\\p{N}+[\\t\\p{Zs}]+)(${escaped})(?=$|\\s*[\\n,./;:!?\\)\\]}\"'\\-]|[\\t\\p{Zs}]+(?:and|or|then|in|into|across|around|at|before|behind|below|between|from|on|over|through|to|under|until|with|within)\\b)`,
       "giu",
     );
   }
@@ -130,7 +130,7 @@ const UNSUPPORTED_DEFINITION_LINE = new RegExp(
 );
 
 const UNSUPPORTED_MULTILINE_DEFINITION = new RegExp(
-  String.raw`(?:^|\r?\n)[\t\p{Zs}]*${UNSUPPORTED_DEFINITION_LABEL_SOURCE}[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*(?:\r?\n[\t\p{Zs}]*(?!(?:row|round|rnd|instructions?|pattern|repeat|gauge|tension|sizes?|notes?|materials?|measurements?|finished(?:\s+size)?|directions?|assembly|finishing|yarn|needles?|hooks?)\b)[^\r\n:=‐‑‒–—]+?[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*[^\r\n]+)+`,
+  String.raw`(?:^|\r?\n)[\t\p{Zs}]*${UNSUPPORTED_DEFINITION_LABEL_SOURCE}[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*(?:\r?\n[\t\p{Zs}]*(?!(?:row|round|rnd|instructions?|pattern|repeat|gauge|tension|sizes?|notes?|materials?|measurements?|finished(?:\s+size)?|directions?|assembly|finishing|yarn|needles?|hooks?|body|bodice|front|back|sleeves?|cuffs?|collars?|neck(?:line)?|shoulders?|yoke|hem|border|edging|bands?|waist(?:band)?|legs?|feet|foot|arms?|hands?|head|ears?|tail|panels?|pieces?|sides?|top|bottom|left|right|main|chart|stitch\s+pattern|skill\s+level|difficulty|supplies?|notions?|colou?rs?)\b)[^\r\n:=‐‑‒–—]+?[\t\p{Zs}]*(?:[:=]|[-‐‑‒–—])[\t\p{Zs}]*[^\r\n]+)+`,
   "giu",
 );
 
