@@ -685,6 +685,45 @@ test("positional instruction words do not suppress supported abbreviations", () 
   assert.equal(result.substitutionCount, 18);
 });
 
+test("bounded post-target qualifiers remain instruction context", () => {
+  const input = [
+    "Join to first dc made.",
+    "Work in corresponding dc of previous row.",
+    "Join to first DC worked!",
+    "Join to first treble crochet made, then turn.",
+    "Work in corresponding half treble of the next round.",
+  ].join("\n");
+  const result = decodeVintagePattern(input, "uk");
+  assert.equal(
+    result.output,
+    [
+      "Join to first single crochet (sc) made.",
+      "Work in corresponding single crochet (sc) of previous row.",
+      "Join to first single crochet (sc) worked!",
+      "Join to first double crochet (dc) made, then turn.",
+      "Work in corresponding half double crochet (hdc) of the next round.",
+    ].join("\n"),
+  );
+  assert.equal(result.substitutionCount, 5);
+
+  for (const prose of [
+    "Join to first dc made history.",
+    "Join to first dc made in 2020.",
+    "Join to first dc made, according to the glossary.",
+    "Join to first dc made) as a label.",
+    "Join to first dc made.txt",
+    "Work in corresponding dc of previous prose.",
+    "Work in corresponding dc of previous row as a label.",
+    "Work in corresponding dc of previous row] as a label.",
+    "Work in corresponding dc of previous row.example",
+    "Use dc of previous row as a label.",
+  ]) {
+    const proseResult = decodeVintagePattern(prose, "uk");
+    assert.equal(proseResult.output, prose, prose);
+    assert.equal(proseResult.substitutionCount, 0, prose);
+  }
+});
+
 test("source references, paths, URL-like tokens, and email addresses are preserved byte-for-byte", () => {
   const input = [
     "Source: https://example.com/dc/pattern",

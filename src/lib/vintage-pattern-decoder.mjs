@@ -501,6 +501,8 @@ function maskRanges(text, ranges) {
 }
 
 const TERM_GAP_SOURCE = String.raw`(?:[\t\p{Zs}]+|[\t\p{Zs}]*\r?\n[\t\p{Zs}]*)`;
+const POSITIONAL_INSTRUCTION_TARGET_BEFORE_SOURCE = String.raw`(?:^|\n)[\t\p{Zs}]*(?:ch|chain|insert|join|make|repeat|skip|work)\b[^\r\n]{0,80}\b(?:adjacent|as|at|center|centre|corresponding|each|every|fifth|first|following|fourth|in|into|last|marked|next|on|opposite|over|previous|remaining|same|second|sixth|third|to|under|with|within)[\t\p{Zs}]+`;
+const FOLLOWING_TARGET_QUALIFIER_SOURCE = String.raw`(?:[\t\p{Zs}]+(?:made|worked|formed)|[\t\p{Zs}]+of[\t\p{Zs}]+(?:the[\t\p{Zs}]+)?(?:current|fifth|first|following|fourth|last|next|preceding|previous|same|second|sixth|third|\p{N}+(?:st|nd|rd|th)?)[\t\p{Zs}]+(?:rounds?|rows?|spaces?|st(?:s|itch(?:es)?)?))(?=[\t\p{Zs}]*(?:[.!?](?![\p{L}\p{M}\p{N}\p{Pc}\p{Cf}])|[)}\]]+[\t\p{Zs}]*(?:[.!?](?![\p{L}\p{M}\p{N}\p{Pc}\p{Cf}])|\r?\n|$)|[,;][\t\p{Zs}]*(?:(?:and|then)[\t\p{Zs}]+)?(?:begin|continue|fasten|finish|join|make|repeat|skip|turn|work)\b|\r?\n|$))`;
 
 function termMatcher(term) {
   const escaped = escapeRegex(term).replace(/ /g, TERM_GAP_SOURCE);
@@ -509,7 +511,7 @@ function termMatcher(term) {
     // instruction contexts. This avoids rewriting a supported phrase nested
     // in an unknown compound stitch name or ordinary prose.
     return new RegExp(
-      `(^\\s*|[\\n*,:;/(\\[{\"'\\-]\\s*|(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])\\p{N}+[\\t\\p{Zs}]+|(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])(?:work|make|place|add|crochet)[\\t\\p{Zs}]+(?:a|an|the|one|two|three|four|five|six|seven|eight|nine|ten)[\\t\\p{Zs}]+|(?:^|\\n)[\\t\\p{Zs}]*(?:(?:[-*•·▪◦‣]|\\p{N}+[.)]|\\(\\p{N}+\\))[\\t\\p{Zs}]+)?(?:add|begin|commence|complete|continue|crochet|decrease|finish|increase|join|make|miss|place|repeat|skip|start|turn|use|using|work)[\\t\\p{Zs}]+|(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])(?:then|now)[\\t\\p{Zs}]+|(?:^|\\n)${INSTRUCTION_HEADING_PREFIX_SOURCE}${INSTRUCTION_HEADING_SOURCE}[\\t\\p{Zs}]*(?:(?:\\*\\*|__)[\\t\\p{Zs}]*)?${INSTRUCTION_DELIMITER_SOURCE}[\\t\\p{Zs}]*(?:(?:\\*\\*|__)[\\t\\p{Zs}]*)?(?:a|an|the|one|two|three|four|five|six|seven|eight|nine|ten)[\\t\\p{Zs}]+)(${escaped})(?=$|\\s*[\\n,./;:!?\\)\\]}\"'\\-]|[\\t\\p{Zs}]+(?:and|or|then|in|into|across|around|at|before|behind|below|between|from|on|over|through|to|under|until|with|within)\\b)`,
+      `(^\\s*|[\\n*,:;/(\\[{\"'\\-]\\s*|(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])\\p{N}+[\\t\\p{Zs}]+|(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])(?:work|make|place|add|crochet)[\\t\\p{Zs}]+(?:a|an|the|one|two|three|four|five|six|seven|eight|nine|ten)[\\t\\p{Zs}]+|(?:^|\\n)[\\t\\p{Zs}]*(?:(?:[-*•·▪◦‣]|\\p{N}+[.)]|\\(\\p{N}+\\))[\\t\\p{Zs}]+)?(?:add|begin|commence|complete|continue|crochet|decrease|finish|increase|join|make|miss|place|repeat|skip|start|turn|use|using|work)[\\t\\p{Zs}]+|${POSITIONAL_INSTRUCTION_TARGET_BEFORE_SOURCE}|(?:^|[^\\p{L}\\p{M}\\p{N}\\p{Pc}\\p{Cf}])(?:then|now)[\\t\\p{Zs}]+|(?:^|\\n)${INSTRUCTION_HEADING_PREFIX_SOURCE}${INSTRUCTION_HEADING_SOURCE}[\\t\\p{Zs}]*(?:(?:\\*\\*|__)[\\t\\p{Zs}]*)?${INSTRUCTION_DELIMITER_SOURCE}[\\t\\p{Zs}]*(?:(?:\\*\\*|__)[\\t\\p{Zs}]*)?(?:a|an|the|one|two|three|four|five|six|seven|eight|nine|ten)[\\t\\p{Zs}]+)(${escaped})(?=$|\\s*[\\n,./;:!?\\)\\]}\"'\\-]|[\\t\\p{Zs}]+(?:and|or|then|in|into|across|around|at|before|behind|below|between|from|on|over|through|to|under|until|with|within)\\b|${FOLLOWING_TARGET_QUALIFIER_SOURCE})`,
       "giu",
     );
   }
@@ -1552,6 +1554,11 @@ const SAME_LINE_ACTION_LIST_CONTEXT = /(?:^|\n)[\t\p{Zs}]*(?:(?:ch(?:ain)?|work|
 const NUMBERED_INSTRUCTION_PREFIX = /(?:^|\n)[\t\p{Zs}]*(?:(?:\p{N}+[.)]|\(\p{N}+\))|step[\t\p{Zs}]+\p{N}+[.)])[\t\p{Zs}]*$/iu;
 const BOUNDED_UPPERCASE_COMMAND_BEFORE = /(?:^|\n)[\t\p{Zs}]*(?:(?:(?:at[\t\p{Zs}]+marker|with[\t\p{Zs}]+colou?r)\b[^,\r\n]{0,40},[\t\p{Zs}]*)|(?:(?:add|begin|ch(?:ain)?|commence|complete|continue|crochet|decrease|finish|increase|join|make|miss|place|repeat|skip|start|turn|use|using|work)\b[^\r\n]{0,120}))$/iu;
 const BOUNDED_UPPERCASE_SHORTHAND_BEFORE = /(?:^|\n)[\t\p{Zs}]*(?:(?:sk|yo|beg|rep|cont)\b|sl[\t\p{Zs}]+st\b|insert[\t\p{Zs}]+hook\b|pull[\t\p{Zs}]+through\b|\p{N}+[\t\p{Zs}]+ch\b)[^\r\n]{0,120}$/iu;
+const POSITIONAL_INSTRUCTION_TARGET_BEFORE = new RegExp(
+  `${POSITIONAL_INSTRUCTION_TARGET_BEFORE_SOURCE}$`,
+  "iu",
+);
+const FOLLOWING_TARGET_QUALIFIER = new RegExp(`^${FOLLOWING_TARGET_QUALIFIER_SOURCE}`, "iu");
 const BOUNDED_UPPERCASE_BARE_INSTRUCTION_PREFIX = /(?:^|\n)[\t\p{Zs}]*(?:(?:[-*•·▪◦‣]|\p{N}+[.)]|\(\p{N}+\))[\t\p{Zs}]*)?$/u;
 const COUNTED_LIST_INSTRUCTION_PREFIX = /(?:^|\n)[\t\p{Zs}]*(?:(?:[-*•·▪◦‣]|\p{N}+[.)]|\(\p{N}+\))[\t\p{Zs}]+)\p{N}+(?:st|nd|rd|th)?[\t\p{Zs}]+$/iu;
 const UPPERCASE_COMMAND_CONTINUATION = new RegExp(
@@ -1571,6 +1578,7 @@ function isRecognizableAbbreviationInstruction(text, start, end, matchedText, en
   const terminalAfter = /^[\t\p{Zs}]*[.!?]?[\t\p{Zs}]*(?:\r?\n|$)/u.test(after);
   const boundedCommandBefore = BOUNDED_UPPERCASE_COMMAND_BEFORE.test(before)
     || BOUNDED_UPPERCASE_SHORTHAND_BEFORE.test(before);
+  const positionalTargetBefore = POSITIONAL_INSTRUCTION_TARGET_BEFORE.test(before);
   if (
     (
       isAmbiguousTermProseContinuation(rawBefore, rawAfter, matchedText)
@@ -1587,6 +1595,7 @@ function isRecognizableAbbreviationInstruction(text, start, end, matchedText, en
         || UPPERCASE_COMMAND_CONTINUATION.test(after)
       )
     )
+    && !(positionalTargetBefore && FOLLOWING_TARGET_QUALIFIER.test(after))
   ) return false;
   if (!SUPPORTED_ABBREVIATION_TERMS.has(normalized)) {
     if (/(?:^|[^\p{L}\p{M}\p{N}])now[\t\p{Zs}]+$/iu.test(before)) {
@@ -1628,8 +1637,13 @@ function isRecognizableAbbreviationInstruction(text, start, end, matchedText, en
     )
   ) return true;
   if (
-    /(?:^|\n)[\t\p{Zs}]*(?:ch|chain|insert|join|make|repeat|skip|work)\b[^\r\n]{0,80}\b(?:adjacent|as|at|center|centre|corresponding|each|every|fifth|first|following|fourth|in|into|last|marked|next|on|opposite|over|previous|remaining|same|second|sixth|third|to|under|with|within)[\t\p{Zs}]+$/iu.test(before)
-    && (!uppercaseAbbreviation || terminalAfter || FOLLOWING_INSTRUCTION_CONTEXT.test(after))
+    positionalTargetBefore
+    && (
+      !uppercaseAbbreviation
+      || terminalAfter
+      || FOLLOWING_INSTRUCTION_CONTEXT.test(after)
+      || FOLLOWING_TARGET_QUALIFIER.test(after)
+    )
   ) return true;
   if (
     SAME_LINE_ACTION_LIST_CONTEXT.test(before)
