@@ -404,8 +404,8 @@ export const tools: Tool[] = [
   },
   {
     slug: "vintage-pattern-decoder",
-    name: "Vintage Pattern Decoder",
-    shortName: "Pattern Decoder",
+    name: "Vintage Pattern Term Review",
+    shortName: "Term Review",
     description: "Review pasted pattern terms. Unknown and US text stays unchanged; explicit UK mode maps a supported term set and flags possible clues for manual review.",
     category: "both",
     icon: "📜",

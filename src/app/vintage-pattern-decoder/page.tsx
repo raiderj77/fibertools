@@ -47,7 +47,7 @@ export default function VintagePatternDecoderPage() {
         what="A text-only review tool for a bounded set of CYC-documented UK crochet terms and tension/gauge wording. Unknown and US modes preserve the text; explicit UK mode maps only the supported terms shown by the tool."
         who="Crafters who have a pattern excerpt and want a cautious terminology reference after checking the pattern key, publisher, or another reliable source."
         bottomLine="Paste an excerpt, choose the source convention, and review any mapped terms and possible clues. The result does not validate the pattern or determine its age, origin, sizing, or yarn requirements."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-08-30"
       />
 
       <VintagePatternDecoderTool />
@@ -56,10 +56,10 @@ export default function VintagePatternDecoderPage() {
         <h2 className="mb-3 text-xl font-semibold text-bark-800 dark:text-cream-100">
           Confirm the terminology convention before converting
         </h2>
-        <p className="mb-4 text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+        <p className="mb-4 text-[15px] leading-relaxed text-bark-600 dark:text-bark-300">
           UK and US crochet instructions can use the same word or abbreviation for different stitches. For example, UK double crochet corresponds to US single crochet, while US double crochet remains double crochet. A date, photograph, gauge line, or isolated word is not enough to settle the convention on its own.
         </p>
-        <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+        <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-300">
           Start with the pattern&apos;s own abbreviation key and publisher information. If those do not establish the convention, leave the tool on Unknown. That mode reports limited possible signals but deliberately makes no substitutions. US mode also preserves the text. Only select UK when you have established that the instructions use UK terms.
         </p>
       </section>
@@ -68,10 +68,10 @@ export default function VintagePatternDecoderPage() {
         <h2 className="mb-3 text-xl font-semibold text-bark-800 dark:text-cream-100">
           What the output does not establish
         </h2>
-        <p className="mb-4 text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+        <p className="mb-4 text-[15px] leading-relaxed text-bark-600 dark:text-bark-300">
           This tool applies a finite term map. It does not interpret custom stitch definitions, validate row math, convert needle or hook sizes, estimate modern yardage from ounces, or prove where or when a pattern was published. Unsupported text stays unchanged.
         </p>
-        <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+        <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-300">
           Check every highlighted change against the source key, then make a gauge swatch before starting the project. When a bare needle or hook number appears, verify its millimeter diameter with a source-specific chart instead of inferring the sizing system.
         </p>
       </section>
@@ -83,7 +83,7 @@ export default function VintagePatternDecoderPage() {
         >
           Reference
         </h2>
-        <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+        <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-300">
           The crochet term pairs and tension/gauge wording used for substitutions
           come from the{" "}
           <a
@@ -94,8 +94,9 @@ export default function VintagePatternDecoderPage() {
           >
             Craft Yarn Council Crochet Abbreviations Master List
           </a>
-          . Older wording shown under Possible Source Signals stays unchanged and
-          should be checked against the source pattern&apos;s own key.
+          . Possible Source Signals are limited research prompts and may overlap terms
+          changed by the UK mapping. Check every signal against the source
+          pattern&apos;s own key.
         </p>
       </section>
 

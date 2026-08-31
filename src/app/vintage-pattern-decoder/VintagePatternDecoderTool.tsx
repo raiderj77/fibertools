@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import {
   MAX_VINTAGE_PATTERN_TEXT_LENGTH,
   decodeVintagePattern,
@@ -51,6 +51,7 @@ const CONVENTION_OPTIONS: Array<{
 ];
 
 export default function VintagePatternDecoderTool() {
+  const descriptionId = useId();
   const [input, setInput] = useState("");
   const [convention, setConvention] = useState<SourceConvention>("unknown");
   const [result, setResult] = useState<ReadyResult | null>(null);
@@ -100,6 +101,7 @@ export default function VintagePatternDecoderTool() {
 
   function handleReview() {
     const reviewed = decodeVintagePattern(input, convention);
+    setInputRejected(false);
     resetCopyFeedback();
 
     if (reviewed.status === "invalid") {
@@ -156,14 +158,13 @@ export default function VintagePatternDecoderTool() {
   }
 
   const remainingCharacters = MAX_VINTAGE_PATTERN_TEXT_LENGTH - input.length;
-  const inputTooLong = inputRejected;
   const resultSummary = result
     ? result.convention === "unknown"
       ? "No substitutions were made because the source convention is not established."
       : result.convention === "us"
         ? "No substitutions were made. US mode preserves the pattern text."
         : result.substitutionCount > 0
-          ? `${result.substitutionCount} supported UK term${result.substitutionCount === 1 ? " was" : "s were"} mapped to US wording. Verify each change against the pattern key.`
+          ? `${result.substitutionCount} supported ${result.substitutionCount === 1 ? "occurrence was" : "occurrences were"} mapped from UK to US wording. Verify each change against the pattern key.`
           : "No supported mappings were applied. The pattern text was preserved."
     : null;
 
@@ -171,16 +172,35 @@ export default function VintagePatternDecoderTool() {
     <>
       <style>{`
         @media print {
-          body > * { visibility: hidden !important; }
-          .vintage-print-output,
-          .vintage-print-output * { visibility: visible !important; }
+          body:has(.vintage-print-output)
+            *:not(.vintage-print-output):not(.vintage-print-output *):not(:has(.vintage-print-output)) {
+            display: none !important;
+          }
+          body:has(.vintage-print-output),
+          body:has(.vintage-print-output) *:has(.vintage-print-output) {
+            min-height: 0 !important;
+            max-height: none !important;
+            overflow: visible !important;
+          }
           .vintage-print-output {
-            position: fixed;
-            inset: 0;
-            padding: 24px;
-            background: #fff;
-            color: #000;
+            position: static !important;
+            max-height: none !important;
+            overflow: visible !important;
+            padding: 0;
+            background: #fff !important;
+            color: #000 !important;
             font-family: Georgia, serif;
+          }
+          .vintage-print-output,
+          .vintage-print-output > * {
+            break-inside: auto !important;
+          }
+          .vintage-print-output * {
+            max-height: none !important;
+            overflow: visible !important;
+            background-color: transparent !important;
+            color: #000 !important;
+            box-shadow: none !important;
           }
           .vintage-print-output mark {
             background: #fef3c7 !important;
@@ -193,15 +213,12 @@ export default function VintagePatternDecoderTool() {
       `}</style>
 
       <div className="space-y-6">
-        <fieldset>
+        <fieldset aria-describedby="source-convention-help">
           <legend className="label">Source terminology</legend>
-          <p id="source-convention-help" className="mb-3 text-xs leading-relaxed text-bark-500 dark:text-bark-400">
+          <p id="source-convention-help" className="mb-3 text-xs leading-relaxed text-bark-500 dark:text-bark-300">
             Choose UK only when the pattern key, publisher, or another reliable source establishes that convention.
           </p>
-          <div
-            className="grid grid-cols-1 gap-3 sm:grid-cols-3"
-            aria-describedby="source-convention-help"
-          >
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             {CONVENTION_OPTIONS.map((option) => (
               <label
                 key={option.value}
@@ -224,7 +241,7 @@ export default function VintagePatternDecoderTool() {
                     <span className="block text-sm font-semibold text-bark-700 dark:text-cream-200">
                       {option.label}
                     </span>
-                    <span className="mt-1 block text-xs leading-relaxed text-bark-500 dark:text-bark-400">
+                    <span className="mt-1 block text-xs leading-relaxed text-bark-500 dark:text-bark-300">
                       {option.description}
                     </span>
                   </span>
@@ -244,16 +261,15 @@ export default function VintagePatternDecoderTool() {
             onChange={handleInputChange}
             rows={10}
             placeholder="Paste a pattern excerpt here. Do not include account details, purchase records, or other private information."
-            className="w-full resize-y rounded-xl border border-cream-300 bg-white px-3 py-2.5 font-mono text-sm leading-relaxed text-bark-800 placeholder:text-bark-400 focus:outline-none focus:ring-2 focus:ring-plum-300 dark:border-bark-600 dark:bg-bark-800 dark:text-cream-100 dark:placeholder:text-bark-300 dark:focus:ring-plum-700"
+            className="w-full resize-y rounded-xl border border-cream-300 bg-white px-3 py-2.5 font-mono text-sm leading-relaxed text-bark-800 placeholder:text-bark-400 focus:outline-none focus:ring-2 focus:ring-plum-400 dark:border-bark-300 dark:bg-bark-800 dark:text-cream-100 dark:placeholder:text-bark-300 dark:focus:ring-plum-400"
             aria-describedby="vintage-input-help vintage-character-count vintage-input-error"
-            aria-invalid={inputTooLong}
           />
-          <div className="mt-1 flex flex-wrap justify-between gap-2 text-xs text-bark-400 dark:text-bark-500">
+          <div className="mt-1 flex flex-wrap justify-between gap-2 text-xs text-bark-400 dark:text-bark-300">
             <p id="vintage-input-help">Text only. Files and scanned images are not accepted.</p>
             <p id="vintage-character-count" aria-live="polite">
-              {inputTooLong
+              {inputRejected
                 ? "Oversized change was not accepted"
-                : `${remainingCharacters.toLocaleString()} characters remaining`}
+                : `${remainingCharacters.toLocaleString()} ${remainingCharacters === 1 ? "character" : "characters"} remaining`}
             </p>
           </div>
         </div>
@@ -272,7 +288,7 @@ export default function VintagePatternDecoderTool() {
           <button
             type="button"
             onClick={handleReview}
-            disabled={!input.trim() || inputTooLong}
+            disabled={!input.trim()}
             className="rounded-xl bg-amber-500 px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-amber-700 active:bg-amber-800 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Review Pattern Text
@@ -307,6 +323,7 @@ export default function VintagePatternDecoderTool() {
                     <mark
                       key={index}
                       className="rounded bg-amber-100 px-0.5 not-italic text-amber-900 dark:bg-amber-900/40 dark:text-amber-200"
+                      aria-describedby={`${descriptionId}-original-${index}`}
                       title={`Original: ${segment.original}`}
                     >
                       {segment.content}
@@ -316,9 +333,16 @@ export default function VintagePatternDecoderTool() {
                   )
                 ))}
               </div>
+              {result.segments.map((segment, index) => (
+                segment.type === "sub" ? (
+                  <span key={index} id={`${descriptionId}-original-${index}`} hidden>
+                    {`Original pattern text: ${segment.original ?? segment.content}.`}
+                  </span>
+                ) : null
+              ))}
               {result.substitutionCount > 0 && (
-                <p className="vintage-print-hide mt-1.5 text-xs text-bark-400 dark:text-bark-500">
-                  Mapped terms are highlighted. Hover over a highlight to see the original text.
+                <p className="vintage-print-hide mt-1.5 text-xs text-bark-400 dark:text-bark-300">
+                  Mapped occurrences are highlighted. Each highlight is described with its original wording for assistive technology, and the table below lists every mapping.
                 </p>
               )}
             </div>
@@ -326,14 +350,18 @@ export default function VintagePatternDecoderTool() {
             {result.substitutions.length > 0 && (
               <div>
                 <h2 className="section-heading">Mapped Terms ({result.substitutions.length})</h2>
-                <div className="overflow-x-auto rounded-xl border border-cream-300 dark:border-bark-600">
+                <div
+                  className="overflow-x-auto rounded-xl border border-cream-300 dark:border-bark-600"
+                  tabIndex={0}
+                  aria-label="Mapped pattern terms table"
+                >
                   <table className="w-full border-collapse text-sm">
                     <thead>
                       <tr className="border-b border-cream-300 bg-cream-100 dark:border-bark-600 dark:bg-bark-700">
-                        <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-bark-400">Original</th>
-                        <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-bark-400">US wording</th>
-                        <th className="hidden px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-bark-400 sm:table-cell">Review note</th>
-                        <th className="px-4 py-2.5 text-right text-xs font-semibold uppercase tracking-wider text-bark-400">Count</th>
+                        <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-300">Original</th>
+                        <th className="px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-300">US wording</th>
+                        <th className="hidden px-4 py-2.5 text-left text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-300 sm:table-cell">Review note</th>
+                        <th className="px-4 py-2.5 text-right text-xs font-semibold uppercase tracking-wider text-bark-400 dark:text-bark-300">Count</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -346,8 +374,8 @@ export default function VintagePatternDecoderTool() {
                           <td className="px-4 py-3">
                             <span className="inline-block rounded bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-800 dark:bg-amber-900/30 dark:text-amber-200">{term.replacement}</span>
                           </td>
-                          <td className="hidden px-4 py-3 text-xs leading-snug text-bark-500 dark:text-bark-400 sm:table-cell">{term.note}</td>
-                          <td className="px-4 py-3 text-right text-xs text-bark-500 dark:text-bark-400">{term.count}</td>
+                          <td className="hidden px-4 py-3 text-xs leading-snug text-bark-500 dark:text-bark-300 sm:table-cell">{term.note}</td>
+                          <td className="px-4 py-3 text-right text-xs text-bark-500 dark:text-bark-300">{term.count}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -404,7 +432,7 @@ export default function VintagePatternDecoderTool() {
 
         <div className="result-card vintage-print-hide">
           <h2 className="mb-3 font-semibold text-bark-700 dark:text-cream-200">What this review does</h2>
-          <ul className="space-y-2 text-sm leading-relaxed text-bark-500 dark:text-bark-400">
+          <ul className="space-y-2 text-sm leading-relaxed text-bark-500 dark:text-bark-300">
             <li>Preserves every character when the source convention is unknown or US.</li>
             <li>Maps the supported CYC-documented UK crochet terms only when UK is selected.</li>
             <li>Flags possible wording, size, and yarn-weight clues without guessing an origin or era.</li>
