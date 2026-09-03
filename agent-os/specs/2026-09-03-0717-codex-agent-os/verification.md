@@ -14,6 +14,8 @@
 | Read-only doctor | Static inspection; structural test | Verified | Contains no push, commit, checkout, switch, merge, reset, clean, PR-create, PR-merge, or PR-close command; blocks `main` |
 | Automated structural test | `node --test tests/codex-operating-layer.test.mjs` | Verified | 10 tests passed, 0 failed |
 | Additive scope only | Inventory and temporary staged Git diff inspection | Verified | 35 UTF-8 text files, all in approved operating paths; no secret-pattern hit; `git diff --cached --check` exit 0 |
+| Remote branch ancestry | GitHub compare `946de9069...46f919c9` | Verified | Branch is one commit ahead, zero behind, with the recorded base as merge base |
+| Draft pull request | GitHub PR #61 metadata | Verified | Open draft against `main`; 35 changed files, 2,019 additions, 0 deletions; no merge |
 
 ## Commands run
 
@@ -24,6 +26,9 @@
 | `node .codex/hooks/session-start.mjs` | 0 | Valid hook payload; active spec detected |
 | Temporary-repository `git diff --cached --check` | 0 | No whitespace error |
 | `npx -y node@24 --test tests/codex-operating-layer.test.mjs` | Timed out | No Node 24 result; remote repository checks remain the Node 24 authority |
+| GitHub compare recorded base to implementation commit | 0 | One commit ahead, zero behind; 35 added files and no deletions |
+| GitHub PR #61 creation | 0 | Open draft pull request against `main` |
+| Initial remote check inspection | 0 | Public-file compliance and Vercel preview comments succeeded; build and quality gate remained in progress at inspection time |
 
 ## Review
 
@@ -40,6 +45,7 @@ Result: No P0 or P1 finding identified
 ## Evidence boundaries
 
 - Local checks do not prove pull request checks.
+- A successful check on one commit does not prove a later status-only commit.
 - Pull request checks do not prove merge.
 - Merge does not prove deployment.
 - Deployment health does not prove provider, payment, fulfillment, analytics, revenue, demand, or customer outcomes.
@@ -53,4 +59,5 @@ Result: No P0 or P1 finding identified
 - Separate-model `/review`
 - Optional OmniRoute installation, providers, credentials, terms, quotas, or reliability
 - FiberTools application behavior, because no application file is in scope
+- Final remote build and quality result for the status-only follow-up commit
 - Merge, deployment, and production behavior
