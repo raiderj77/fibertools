@@ -12,13 +12,14 @@ This layer recreates the useful parts of the referenced workflow with current Co
 8. ranked next actions;
 9. optional model routing kept outside the repository.
 
-`CLAUDE.md` remains the FiberTools authority. This layer does not replace it.
+`AGENTS.md` is the primary Codex operating, evidence, and review contract. `CLAUDE.md` remains the FiberTools product and repository contract. The owner's current instruction and the most specific approved feature or release record control their exact scopes. Review the authority order in `AGENTS.md` before work.
 
 ## What lives where
 
 | Path | Purpose |
 | --- | --- |
-| `AGENTS.md` | Concise rules Codex loads for the repository |
+| `AGENTS.md` | Complete FiberTools Codex operating standard |
+| `CLAUDE.md` | FiberTools product and repository contract |
 | `.codex/config.toml` | Project-scoped hooks, goals, and multi-agent settings |
 | `.codex/hooks/` | Context restoration at startup and after compaction |
 | `.codex/agents/` | Explorer, implementer, reviewer, and verifier roles |
@@ -39,13 +40,13 @@ Run:
 pwsh -File scripts/codex/doctor.ps1 -RunChecks
 ```
 
-Open Codex at the repository root. Then:
+Open Codex at the repository root. Then run:
 
 ```text
 /hooks
 ```
 
-Review and approve the project hook. Project hooks should remain untrusted until you inspect them.
+Review and approve the project hook. Treat project hooks as untrusted until inspected.
 
 Confirm the installed skills:
 
@@ -57,7 +58,7 @@ Confirm the installed skills:
 
 ### Small, low-risk correction
 
-State the outcome, file boundary, and acceptance criteria. Ask Codex to inspect the relevant patterns, make the smallest repair, run the focused test, and use `/review`.
+State the outcome, file boundary, exclusions, acceptance criteria, and focused validation. Ask Codex to inspect the relevant pattern, make the smallest complete repair, run the focused test, and use `/review`.
 
 ### Substantial work
 
@@ -73,14 +74,14 @@ Review the saved files under `agent-os/specs/`. Then run:
 Use $ft-execute-spec on agent-os/specs/[folder].
 ```
 
-The parent agent controls task boundaries and integration. It should use no more than four concurrent agents:
+The parent agent controls scope, task boundaries, file ownership, integration, and evidence. Use no more than four concurrent agents:
 
 - `ft_explorer`, read-only investigation;
 - `ft_implementer`, one bounded task with exclusive file ownership;
 - `ft_reviewer`, independent read-only review;
 - `ft_verifier`, independent evidence collection.
 
-### Long-running work
+### Long work
 
 Use `/goal` to record the outcome, constraints, and verification target. Keep the active spec as the durable implementation record. After resume or compaction, the session hook points Codex back to the current spec and authority files.
 
@@ -96,7 +97,7 @@ Use $ft-progress-report for the active spec.
 Use $ft-bug-fix-plan for: [observed defect and evidence].
 ```
 
-### Prioritize the next work
+### Prioritize next work
 
 ```text
 Use $ft-next-actions after reviewing current specs, pull requests, and checks.
@@ -112,35 +113,45 @@ Use $ft-truth-review to double and triple check: [claims, change, or decision].
 
 Use subagents for independent areas, not as extra hands on the same file.
 
-Good parallel split:
+Good split:
 
-- agent 1 maps existing implementation and tests;
-- agent 2 checks privacy, security, and claims;
-- agent 3 checks accessibility and UI behavior;
-- agent 4 verifies acceptance criteria after integration.
+- one agent maps current implementation and tests;
+- one agent checks privacy, security, payments, and claims;
+- one agent checks accessibility and user behavior;
+- one agent verifies acceptance criteria after integration.
 
-Bad parallel split:
+Bad split:
 
-- two agents editing the same route;
-- two agents changing the same test;
-- an implementation agent approving its own work;
-- agents merging separate assumptions without parent review.
+- two agents edit the same route or test;
+- an implementation agent approves its own work;
+- agents merge conflicting assumptions without parent review;
+- a low-cost routed model makes final security, legal, payment, privacy, or release decisions.
 
-For fully separate changes, use separate Codex worktrees or branches. Keep each pull request narrow.
+For separate changes, use separate worktrees or branches. Keep each pull request narrow.
 
 ## Model strategy
 
 Use the strongest trusted OpenAI model available to the parent agent for:
 
-- repository identity and scope decisions;
-- security, privacy, payment, legal, and claims work;
+- repository identity and scope;
+- security, privacy, payment, legal, and public claims;
 - integration;
 - final review;
 - release decisions.
 
-A lower-cost or routed model is suitable only for bounded, low-risk exploration, formatting, boilerplate, or test enumeration. Independently review its output before integration.
+Use a lower-cost or routed model only for bounded, low-risk exploration, formatting, boilerplate, or test enumeration. Independently review its output before integration.
 
-Do not commit model names, providers, API keys, profiles, notifications, or telemetry configuration to this repository. Keep those choices in the user's Codex home configuration.
+Do not commit model names, providers, API keys, profiles, notifications, or telemetry configuration. Keep those choices in the user's Codex home configuration.
+
+## Validation
+
+The Codex operating layer is enforced by:
+
+```bash
+node --test tests/codex-operating-layer.test.mjs
+```
+
+The required GitHub workflow runs the publication-freeze suite first, then the Codex structural suite, the application gates, and the production build. Do not reorder or weaken an established gate without proving why the change is safe.
 
 ## Evidence standard
 
