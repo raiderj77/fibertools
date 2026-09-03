@@ -1,13 +1,6 @@
-# Project-scoped Codex settings only.
-# Model providers, API keys, profiles, notifications, and telemetry belong in
-# the user's CODEX_HOME, not in this repository.
-
 [features]
 multi_agent = true
 hooks = true
-goals = true
 
 [agents]
-enabled = true
-max_concurrent_threads_per_session = 4
-interrupt_message = true
+max_concurrent_threads_per_session = 2
