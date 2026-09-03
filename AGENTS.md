@@ -25,7 +25,7 @@ Runtime: Node.js 24.x and npm
 - Use `$ft-plan` for unclear, risky, or multi-file work. It creates one temporary `.codex/TASK.md`.
 - Use `$ft-run` to execute an approved task.
 - Use `$ft-audit` for TRUTHMODE, sensitive work, final review, progress, or next actions.
-- Use at most one read-only `ft_reviewer` unless independent workstreams and speed justify more agents. Never give writers overlapping files. An implementer never approves its own work.
+- Use at most one read-only `ft_reviewer`. Do not spawn extra agents for ordinary work. Never give writers overlapping files. An implementer never approves its own work.
 
 ## Boundaries
 

@@ -45,11 +45,11 @@ test("AGENTS.md stays small and routes detail on demand", () => {
   assert.doesNotMatch(agents, /\b(?:sk|rk|whsec|sbp)_[A-Za-z0-9_-]{12,}\b/);
 });
 
-test("project config allows one reviewer and no provider settings", () => {
+test("project config permits only one subagent and no provider settings", () => {
   const config = read(".codex/config.toml");
   assert.match(config, /^multi_agent\s*=\s*true$/m);
   assert.match(config, /^hooks\s*=\s*true$/m);
-  assert.match(config, /^max_concurrent_threads_per_session\s*=\s*2$/m);
+  assert.match(config, /^max_concurrent_threads_per_session\s*=\s*1$/m);
   assert.doesNotMatch(config, /model|provider|api_key|base_url|profile|telemetry/i);
 });
 
