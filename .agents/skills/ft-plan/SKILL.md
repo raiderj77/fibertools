@@ -1,21 +1,29 @@
 ---
 name: ft-plan
-description: Create one compact task file for risky, unclear, or multi-file FiberTools work.
+description: Plan unclear, risky, multi-file, cross-cutting, or multi-session FiberTools work.
 ---
 
 # FiberTools plan
 
-Use only when direct work would be unsafe or unclear.
+Use this skill when direct implementation would risk missed requirements, conflicting work, or incomplete verification.
 
-1. Read `AGENTS.md`.
+1. Read `AGENTS.md` and classify the task as low, medium, or high risk.
 2. Verify the repository, current `origin/main` SHA, branch, worktree, relevant commits, and overlapping pull requests.
-3. Search before reading broadly. Open only the affected code, tests, and relevant sections of `CLAUDE.md` or exact feature records.
-4. Create or replace `.codex/TASK.md` with this compact format:
+3. Gather context before planning:
+   - medium risk: read the relevant `CLAUDE.md` sections, source, tests, and exact feature records;
+   - high risk: read all of `CLAUDE.md`, then every exact manifest, environment contract, release record, source path, and test tied to the change.
+4. For unfamiliar or cross-cutting work, one read-only built-in `explorer` may map code paths, references, and tests. The parent agent owns decisions.
+5. Do not overwrite an active `.codex/TASK.md` until its evidence is preserved or the owner authorizes replacement.
+6. Create `.codex/TASK.md` using this compact format:
 
 ```md
 # [Outcome]
 Status: Active
+Risk: Low | Medium | High
 Base: [origin/main SHA]
+
+## Context read
+- `[exact path or source]`
 
 ## Scope
 [Included files and behavior]
@@ -23,23 +31,26 @@ Base: [origin/main SHA]
 ## Excluded
 [Explicit exclusions]
 
-## Risks
-[Only material risks and protected boundaries]
+## Failure modes and rollback
+[Material risks, stop conditions, and safe rollback]
 
 ## Acceptance
-- [Observable result]
+- [Observable, testable result]
 
 ## Steps
-1. [Small bounded step with file ownership]
+1. [Bounded step and file owner]
 
 ## Tests
 - `[focused command]`
-- `[broad command, once after stabilization]`
+- `[broad command after stabilization]`
+
+## Independent checks
+- [none | ft_reviewer | ft_reviewer and ft_verifier]
 
 ## Next
 [One exact action]
 ```
 
-Keep the file under 700 words. Do not copy whole policy documents into it. Link to exact paths instead.
+Keep the task under 900 words. Link to source paths instead of copying policy text. High-risk work must include focused regression coverage, both independent agents, all applicable required checks, and exact owner-controlled release boundaries.
 
-Use one main agent. Do not delegate planning. Stop before implementation if a sensitive boundary or acceptance criterion remains unresolved.
+For work that must survive another machine or worktree, preserve the approved decisions and final evidence in the pull request, issue, or exact tracked feature record. Stop before implementation when a sensitive boundary, current fact, acceptance criterion, or rollback path remains unresolved.

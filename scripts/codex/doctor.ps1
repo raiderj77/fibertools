@@ -1,5 +1,8 @@
 [CmdletBinding()]
-param([switch]$RunChecks)
+param(
+    [switch]$RunChecks,
+    [switch]$AllowDirty
+)
 
 $ErrorActionPreference = "Stop"
 $expectedOrigin = "https://github.com/raiderj77/fibertools.git"
@@ -18,6 +21,7 @@ $branch = Git @("branch", "--show-current")
 $head = Git @("rev-parse", "HEAD")
 $remote = Git @("ls-remote", "origin", "refs/heads/main")
 $remoteMain = ($remote -split "\s+")[0]
+$porcelain = Git @("status", "--porcelain")
 $status = & git status --short --branch
 
 Write-Host "Root:        $root"
@@ -33,13 +37,39 @@ if ($branch -eq "main") {
     Write-Error "Direct work on main is blocked. Create a branch or worktree."
     exit 2
 }
+if ($porcelain -and -not $AllowDirty) {
+    throw "Working tree is not clean. Preserve or isolate existing changes, or rerun with -AllowDirty after review."
+}
+
+& git cat-file -e "$remoteMain^{commit}" 2>$null
+if ($LASTEXITCODE -ne 0) {
+    throw "Current remote main is not available locally. Fetch origin before work."
+}
+$mergeBase = Git @("merge-base", "HEAD", $remoteMain)
+if ($mergeBase -ne $remoteMain) {
+    throw "The current branch is not based on the current remote main. Rebase or recreate the worktree before editing."
+}
+
+$gh = Get-Command gh -ErrorAction SilentlyContinue
+if ($null -ne $gh) {
+    Write-Host ""
+    Write-Host "Open pull requests:"
+    & gh pr list --repo raiderj77/fibertools --state open --limit 20
+    if ($LASTEXITCODE -ne 0) { Write-Warning "GitHub CLI could not list pull requests." }
+}
 
 $required = @(
     "AGENTS.md",
+    "CLAUDE.md",
     ".codex/config.toml",
     ".codex/hooks.json",
     ".codex/hooks/resume.mjs",
     ".codex/agents/ft-reviewer.toml",
+    ".codex/agents/ft-verifier.toml",
+    ".agents/skills/ft-plan/SKILL.md",
+    ".agents/skills/ft-run/SKILL.md",
+    ".agents/skills/ft-debug/SKILL.md",
+    ".agents/skills/ft-audit/SKILL.md",
     "tests/codex-operating-layer.test.mjs"
 )
 
@@ -52,11 +82,14 @@ foreach ($file in $required) {
 $agentsBytes = [Text.Encoding]::UTF8.GetByteCount(
     [IO.File]::ReadAllText((Join-Path $root "AGENTS.md"))
 )
-if ($agentsBytes -gt 3200) { throw "AGENTS.md exceeds the 3200-byte lean limit." }
+if ($agentsBytes -gt 6000) {
+    throw "AGENTS.md exceeds the 6000-byte focused-context ceiling. Remove duplication, not safeguards."
+}
 
 if ($RunChecks) {
     & node --test tests/codex-operating-layer.test.mjs
-    if ($LASTEXITCODE -ne 0) { throw "Codex operating-layer tests failed." }
+    if ($LASTEXITCODE -ne 0) { throw "Codex operating-layer tests failed."
+    }
 }
 
-Write-Host "Lean Codex doctor passed. No repository mutation was performed."
+Write-Host "FiberTools Codex doctor passed. No repository mutation was performed."
