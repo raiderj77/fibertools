@@ -12,11 +12,11 @@ function read(relativePath) {
   return readFileSync(path.join(root, relativePath), "utf8");
 }
 
-function filesIn(relativePath, predicate = () => true) {
+function filesIn(relativePath, suffix) {
   const directory = path.join(root, relativePath);
   return readdirSync(directory)
     .map((name) => path.join(directory, name))
-    .filter((entry) => statSync(entry).isFile() && predicate(entry));
+    .filter((entry) => statSync(entry).isFile() && entry.endsWith(suffix));
 }
 
 const requiredFiles = [
@@ -43,8 +43,8 @@ const requiredFiles = [
   "agent-os/standards/frontend/accessibility.md",
   "agent-os/standards/security/privacy-and-secrets.md",
   "agent-os/templates/spec/spec.md",
-  "agent-os/stemplates/spec/tasks.md",
-  "agent-os/stemplates/spec/verification.md",
+  "agent-os/templates/spec/tasks.md",
+  "agent-os/templates/spec/verification.md",
   "agent-os/templates/spec/status.md",
   "agent-os/specs/README.md",
   "agent-os/specs/2026-09-03-0717-codex-agent-os/spec.md",
@@ -63,21 +63,30 @@ test("all Codex Agent OS files exist", () => {
   }
 });
 
-test("AGENTS.md defers to the current FiberTools contract and preserves critical boundaries", () => {
+test("AGENTS.md is a complete FiberTools Codex contract", () => {
   const agents = read("AGENTS.md");
 
-  assert.match(agents, /Read `CLAUDE.md` before analysis, planning, or editing/);
-  assert.match(agents, /follow `CLAUDE\.md`/);
-  assert.match(agents, /docs\/stitchproof-distribution-kit\.md/);
-  assert.match(agents, /Never push directly to `main`/);
-  assert.match(agents, /no more than four concurrent subagents/);
-  assert.match(agents, /Never assign two writing agents to the same file/);
-  assert.match(agents, /Do not invent test results/);
-  assert.match(agents, /Do not inspect or expose `\.env\*` values/);
-  assert.match(agents, /publication freeze/);
-  assert.match(agents, /standard-page and embed security-header split/);
-  assert.match(agents, /Report each stage separately/);
-  assert.match(agents, /## Code Review Rules/);
+  for (const pattern of [
+    /Read `CLAUDE\.md` before analysis, planning, or editing/,
+    /follow `CLAUDE\.md`/,
+    /docs\/stitchproof-distribution-kit\.md/,
+    /Never push directly to `main`/,
+    /no more than four concurrent subagents/,
+    /Never assign two writing agents to the same file/,
+    /Do not invent test results/,
+    /Do not inspect or expose `\.env\*` values/,
+    /publication freeze/,
+    /standard-page and embed security-header split/,
+    /Report each stage separately/,
+    /## Code Review Rules/,
+    /## 12\. Definition of done/,
+    /P0, block immediately/,
+    /P1, block merge/,
+  ]) {
+    assert.match(agents, pattern);
+  }
+
+  assert.doesNotMatch(agents, /\b(?:sk|rk|whsec|sbp)_[A-Za-z0-9_-]{12,}\b/);
 });
 
 test("project config enables bounded features without machine-local provider settings", () => {
@@ -96,26 +105,27 @@ test("project config enables bounded features without machine-local provider set
   );
   assert.doesNotMatch(
     config,
-    /^\s*\[(model_providers|profiles|notifications|otel|telemetry)(\.|\]),/m,
+    /^\s*\[(model_providers|profiles|notifications|otel|telemetry)(?:\.|\])/m,
   );
-  assert.doesNotMatch(config, /\b(?:sk|oma)_[A-Za-z0-9_-]{8,}\b/);
+  assert.doesNotMatch(config, /\b(?:sk|rk|whsec|sbp)_[A-Za-z0-9_-]{12,}\b/);
 });
 
-test("custom agents have distinct roles and valid required fields", () => {
-  const agentFiles = filesIn(".codex/agents", (entry) => entry.endsWith(".toml"));
+test("custom agents have distinct roles and required fields", () => {
+  const agentFiles = filesIn(".codex/agents", ".toml");
   assert.equal(agentFiles.length, 4);
 
   const names = new Set();
+
   for (const agentFile of agentFiles) {
     const source = readFileSync(agentFile, "utf8");
     const name = source.match(/^name\s*=\s*"([^"]+)"$/m)?.[1];
 
-    assert.ok(name, `${agentFile} name`);
+    assert.ok(name, `${agentFile}: missing name`);
     assert.match(source, /^description\s*=\s*"[^"]+"$/m);
     assert.match(source, /^sandbox_mode\s*=\s*"(?:read-only|workspace-write)"$/m);
     assert.match(source, /^developer_instructions\s*=\s*"""/m);
     assert.match(source, /Read AGENTS\.md/);
-    assert.equal(names.has(name), false, `duplicate agent name ${name}`);
+    assert.equal(names.has(name), false, `duplicate agent name: ${name}`);
     names.add(name);
   }
 
@@ -134,17 +144,19 @@ test("skills use valid frontmatter and unique names", () => {
   assert.equal(skillFiles.length, 6);
 
   const names = new Set();
+
   for (const skillFile of skillFiles) {
     const source = readFileSync(skillFile, "utf8");
-    const frontmatter = source.match(/^---\n([s\S]+?)\n---\n/);
-    assert.ok(frontmatter, `${skillFile} frontmatter`);
+    const frontmatter = source.match(/^---\r?\n([\s\S]+?)\r?\n---\r?\n/);
 
-    const name = frontmatter[1].match(/^name:\"+ (\\S+)x$"/m)?.[1];
-    const description = frontmatter[1].match(/^description:\s*(.+)$/m)?.[1];
+    assert.ok(frontmatter, `${skillFile}: missing frontmatter`);
 
-    assert.ok(name, `${skillFile} name`);
-    assert.ok(description && description.length >= 40, `${skillFile} description`);
-    assert.equal(names.has(name), false, `duplicate skill name ${name}`);
+    const name = frontmatter[1].match(/^name:\s*(\S+)\s*$/m)?.[1];
+    const description = frontmatter[1].match(/^description:\s*(.+)\s*$/m)?.[1];
+
+    assert.ok(name, `${skillFile}: missing name`);
+    assert.ok(description && description.length >= 40, `${skillFile}: weak description`);
+    assert.equal(names.has(name), false, `duplicate skill name: ${name}`);
     names.add(name);
   }
 
@@ -190,13 +202,14 @@ test("session hook is valid JSON and emits bounded safe context", () => {
   assert.ok(context.length < 1_500);
 });
 
-test("Agent OS index points to existing concise standards", () => {
+test("Agent OS index points to existing standards and product context", () => {
   const index = read("agent-os/standards/index.yml");
   const matches = [...index.matchAll(/^\s*path:\s*(\S+)\s*$/gm)].map(
     (match) => match[1],
   );
 
   assert.equal(matches.length, 4);
+
   for (const relativePath of matches) {
     assert.equal(existsSync(path.join(root, relativePath)), true, relativePath);
     assert.match(read(relativePath), /CLAUDE\.md|Preserve|Keep|Never|Do not/);
@@ -211,16 +224,22 @@ test("Agent OS index points to existing concise standards", () => {
   }
 });
 
-test("spec templates preserve planning, investigation, and release-stage evidence", () => {
+test("spec templates preserve planning and release evidence", () => {
   assert.match(read("agent-os/templates/spec/spec.md"), /## Acceptance criteria/);
-  assert.match(read("agent-os/stemplates/spec/spec.md"), /## Release boundaries/);
+  assert.match(read("agent-os/templates/spec/spec.md"), /## Release boundaries/);
   assert.match(read("agent-os/templates/spec/tasks.md"), /explicit files/i);
-  assert.match(read("agent-os/templates/spec/verification.md"), /Acceptance-criteria matrix/);
-  assert.match(read("agent-os/stemplates/spec/status.md"), /Production verification/);
-  assert.match(read("agent-os/specs/README.md"), /completed implementation spec does not imply merge or deployment/i);
+  assert.match(
+    read("agent-os/templates/spec/verification.md"),
+    /Acceptance-criteria matrix/,
+  );
+  assert.match(read("agent-os/templates/spec/status.md"), /Production verification/);
+  assert.match(
+    read("agent-os/specs/README.md"),
+    /completed implementation spec does not imply merge or deployment/i,
+  );
 });
 
-test("optional routing guide is isolated, dry-run-first, and credential safe", () => {
+test("optional routing guide is isolated and credential safe", () => {
   const guide = read("docs/CODEX_OMNIROUTE_OPTIONAL.md");
 
   assert.match(guide, /optional third-party infrastructure/i);
@@ -231,7 +250,7 @@ test("optional routing guide is isolated, dry-run-first, and credential safe", (
   assert.match(guide, /OMNIROUTE_API_KEY/);
   assert.match(guide, /Never commit them/);
   assert.match(guide, /strongest trusted OpenAI model/i);
-  assert.doesNotMatch(guide, /\b(?:sk|omai_[A-Za-z0-9_-]{8,}\b/);
+  assert.doesNotMatch(guide, /\b(?:sk|rk|whsec|sbp)_[A-Za-z0-9_-]{12,}\b/);
 });
 
 test("doctor is read-only and blocks direct work on main", () => {
@@ -243,6 +262,9 @@ test("doctor is read-only and blocks direct work on main", () => {
   assert.match(doctor, /status --porcelain/);
   assert.match(doctor, /gh pr list/);
   assert.match(doctor, /node --test tests\/codex-operating-layer\.test\.mjs/);
-  assert.doesNotMatch(doctor, /git\s+(?:push|commit|checkout|switch|merge|reset|clean)\b/i);
+  assert.doesNotMatch(
+    doctor,
+    /git\s+(?:push|commit|checkout|switch|merge|reset|clean)\b/i,
+  );
   assert.doesNotMatch(doctor, /gh\s+pr\s+(?:create|merge|close)\b/i);
 });
