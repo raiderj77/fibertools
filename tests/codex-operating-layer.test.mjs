@@ -31,6 +31,7 @@ test("lean operating files exist and redundant layer is absent", () => {
     ".codex/agents/ft-implementer.toml",
     ".codex/agents/ft-verifier.toml",
   ]) assert.equal(existsSync(path.join(root, file)), false, file);
+  assert.match(read(".gitignore"), /^\/\.codex\/TASK\.md$/m);
 });
 
 test("AGENTS.md stays small and routes detail on demand", () => {

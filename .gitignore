@@ -24,6 +24,9 @@ __pycache__/
 # Owner-only paid product artifacts and editable sources
 /.owner-private-products/
 
+# Codex temporary task state
+/.codex/TASK.md
+
 # misc
 .DS_Store
 *.pem
