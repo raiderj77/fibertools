@@ -53,6 +53,11 @@ if ($mergeBase -ne $remoteMain) {
 $gh = Get-Command gh -ErrorAction SilentlyContinue
 if ($null -ne $gh) {
     Write-Host ""
+    Write-Host "Main protection and required checks:"
+    & gh api repos/raiderj77/fibertools/branches/main --jq '.protected, .protection.required_status_checks.contexts'
+    if ($LASTEXITCODE -ne 0) { Write-Warning "GitHub CLI could not inspect branch protection." }
+
+    Write-Host ""
     Write-Host "Open pull requests:"
     & gh pr list --repo raiderj77/fibertools --state open --limit 20
     if ($LASTEXITCODE -ne 0) { Write-Warning "GitHub CLI could not list pull requests." }
@@ -88,8 +93,7 @@ if ($agentsBytes -gt 6000) {
 
 if ($RunChecks) {
     & node --test tests/codex-operating-layer.test.mjs
-    if ($LASTEXITCODE -ne 0) { throw "Codex operating-layer tests failed."
-    }
+    if ($LASTEXITCODE -ne 0) { throw "Codex operating-layer tests failed." }
 }
 
 Write-Host "FiberTools Codex doctor passed. No repository mutation was performed."

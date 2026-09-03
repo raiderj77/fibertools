@@ -8,7 +8,7 @@ Correctness, safety, and complete evidence outrank token savings. Keep context f
 
 ## Before edits
 
-- Verify the root and `origin`. Fetch current `origin/main`, record its SHA, then inspect the branch, worktree, recent relevant commits, and overlapping pull requests.
+- Verify the root and `origin`. Fetch current `origin/main`, record its SHA, then inspect the branch, worktree, recent relevant commits, overlapping pull requests, branch protection, and required checks when GitHub access exists.
 - Work on a clean branch or worktree from current `origin/main`. Never push to `main`.
 - Preserve unrelated owner work. Define the goal, affected behavior, scope, exclusions, acceptance criteria, and validation before editing.
 - Stop when identity, scope, ownership, approval, or a protected boundary is unclear.
@@ -37,6 +37,7 @@ Correctness, safety, and complete evidence outrank token savings. Keep context f
 
 ## Boundaries
 
+- Do not modify `CLAUDE.md`, `EMPIRE_BUILD_STANDARDS.md`, or `.claude/settings.local.json` unless the owner requests that exact file change.
 - Do not inspect, expose, or commit real `.env*` values, credentials, private artifacts, personal or payment data, provider payloads, calculator inputs, recovery data, or free-form user text.
 - Preserve the publication freeze, content quarantine, browser-local calculator promise, privacy and consent behavior, Global Privacy Control, standard and embed security-header split, accessibility, and fail-closed commercial gates in current FiberTools records.
 - Do not merge, deploy, publish, change DNS, activate ads, billing, checkout, providers, delivery, real payments, production data, or user contact without exact owner authorization.

@@ -21,6 +21,7 @@ const required = [
   ".agents/skills/ft-debug/SKILL.md",
   ".agents/skills/ft-audit/SKILL.md",
   "docs/CODEX.md",
+  ".github/workflows/empire-check.yml",
   "scripts/codex/doctor.ps1",
 ];
 
@@ -50,6 +51,7 @@ test("AGENTS.md keeps focused context without lowering the quality floor", () =>
   assert.match(agents, /Resolve reviewer and verifier disagreements against direct evidence/);
   assert.match(agents, /Never push to `main`/);
   assert.match(agents, /docs\/stitchproof-distribution-kit\.md/);
+  assert.match(agents, /Do not modify `CLAUDE\.md`, `EMPIRE_BUILD_STANDARDS\.md`/);
   assert.match(agents, /## Code Review Rules/);
   assert.match(agents, /Report local change/);
   assert.doesNotMatch(agents, /\b(?:sk|rk|whsec|sbp)_[A-Za-z0-9_-]{12,}\b/);
@@ -102,6 +104,14 @@ test("four focused skills route planning, execution, debugging, and audit", () =
   assert.match(read(".agents/skills/ft-audit/SKILL.md"), /Keep the report concise, but never omit a material defect/);
 });
 
+test("required workflow enforces the structural suite after publication protection", () => {
+  const workflow = read(".github/workflows/empire-check.yml");
+  const publication = workflow.indexOf("npm run test:publication-freeze");
+  const codex = workflow.indexOf("node --test tests/codex-operating-layer.test.mjs");
+  assert.ok(publication >= 0);
+  assert.ok(codex > publication);
+});
+
 test("resume hook is silent at startup and tiny after compaction", () => {
   const hooks = JSON.parse(read(".codex/hooks.json"));
   const entry = hooks.hooks.SessionStart[0];
@@ -127,6 +137,7 @@ test("doctor blocks unsafe starts and enforces focused context without mutating 
   assert.match(doctor, /Working tree is not clean/);
   assert.match(doctor, /cat-file/);
   assert.match(doctor, /merge-base/);
+  assert.match(doctor, /gh api repos\/raiderj77\/fibertools\/branches\/main/);
   assert.match(doctor, /gh pr list/);
   assert.match(doctor, /6000-byte focused-context ceiling/);
   assert.doesNotMatch(
