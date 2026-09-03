@@ -42,4 +42,4 @@ Base: [origin/main SHA]
 
 Keep the file under 700 words. Do not copy whole policy documents into it. Link to exact paths instead.
 
-Use one main agent. Delegate only an independent read-only investigation when it avoids polluting the main context. Stop before implementation if a sensitive boundary or acceptance criterion remains unresolved.
+Use one main agent. Do not delegate planning. Stop before implementation if a sensitive boundary or acceptance criterion remains unresolved.

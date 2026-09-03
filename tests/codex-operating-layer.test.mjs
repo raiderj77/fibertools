@@ -35,10 +35,10 @@ test("lean operating files exist and redundant layer is absent", () => {
 
 test("AGENTS.md stays small and routes detail on demand", () => {
   const agents = read("AGENTS.md");
-  assert.ok(Buffer.byteLength(agents, "utf8") <= 3500);
-  assert.match(agents, /Use one main agent by default/);
+  assert.ok(Buffer.byteLength(agents, "utf8") <= 3200);
+  assert.match(agents, /Use one main agent\./);
   assert.match(agents, /read only the relevant section/);
-  assert.match(agents, /Never push directly to `main`/);
+  assert.match(agents, /Never push to `main`/);
   assert.match(agents, /docs\/stitchproof-distribution-kit\.md/);
   assert.match(agents, /Report local change/);
   assert.doesNotMatch(agents, /Read `CLAUDE\.md` before analysis, planning, or editing/);
@@ -100,7 +100,7 @@ test("doctor is read-only, blocks main, and enforces the byte limit", () => {
   assert.match(doctor, /\$branch -eq "main"/);
   assert.match(doctor, /exit 2/);
   assert.match(doctor, /ls-remote/);
-  assert.match(doctor, /3500-byte lean limit/);
+  assert.match(doctor, /3200-byte lean limit/);
   assert.doesNotMatch(doctor, /git\s+(?:push|commit|checkout|switch|merge|reset|clean)\b/i);
   assert.doesNotMatch(doctor, /gh\s+pr\s+(?:create|merge|close)\b/i);
 });

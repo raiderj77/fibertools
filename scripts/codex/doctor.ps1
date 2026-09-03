@@ -52,7 +52,7 @@ foreach ($file in $required) {
 $agentsBytes = [Text.Encoding]::UTF8.GetByteCount(
     [IO.File]::ReadAllText((Join-Path $root "AGENTS.md"))
 )
-if ($agentsBytes -gt 3500) { throw "AGENTS.md exceeds the 3500-byte lean limit." }
+if ($agentsBytes -gt 3200) { throw "AGENTS.md exceeds the 3200-byte lean limit." }
 
 if ($RunChecks) {
     & node --test tests/codex-operating-layer.test.mjs
