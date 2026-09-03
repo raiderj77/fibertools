@@ -1,0 +1,35 @@
+version: 1
+authority: CLAUDE.md
+standards:
+  - id: global/truth-and-claims
+    path: agent-os/standards/global/truth-and-claims.md
+    applies_to:
+      - user-visible copy
+      - structured data
+      - status reports
+      - research
+      - releases
+  - id: global/testing-and-release
+    path: agent-os/standards/global/testing-and-release.md
+    applies_to:
+      - code changes
+      - pull requests
+      - deployments
+      - provider work
+  - id: frontend/accessibility
+    path: agent-os/standards/frontend/accessibility.md
+    applies_to:
+      - routes
+      - components
+      - forms
+      - calculators
+      - embeds
+  - id: security/privacy-and-secrets
+    path: agent-os/standards/security/privacy-and-secrets.md
+    applies_to:
+      - analytics
+      - forms
+      - APIs
+      - payments
+      - providers
+      - configuration
