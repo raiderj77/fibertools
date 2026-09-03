@@ -22,6 +22,7 @@ jobs:
       - name: Install, test, and build
         run: |
           npm ci
+          node --test tests/codex-operating-layer.test.mjs
           npm run test:publication-freeze
           npm run test:runtime
           npm run test:quality
