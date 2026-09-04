@@ -70,7 +70,7 @@ if ($null -ne $gh) {
     if ($LASTEXITCODE -ne 0) { Write-Warning "GitHub CLI could not list pull requests." }
 }
 
-$operatingFiles = @(
+$required = @(
     "AGENTS.md",
     ".codex/config.toml",
     ".codex/hooks.json",
@@ -85,42 +85,17 @@ $operatingFiles = @(
     "docs/codex/PRODUCT_PUBLICATION.md",
     "docs/codex/PRIVACY_SECURITY_ACCESSIBILITY.md",
     "docs/codex/COMMERCIAL_RELEASE.md",
+    "scripts/codex/context-budget.mjs",
     "tests/codex-operating-layer.test.mjs"
 )
-
-foreach ($file in $operatingFiles) {
+foreach ($file in $required) {
     if (-not (Test-Path -LiteralPath (Join-Path $root $file) -PathType Leaf)) {
         throw "Missing required file: $file"
     }
 }
 
-$agentsBytes = [Text.Encoding]::UTF8.GetByteCount(
-    [IO.File]::ReadAllText((Join-Path $root "AGENTS.md"))
-)
-if ($agentsBytes -gt 8000) {
-    throw "AGENTS.md exceeds the 8000-byte root-context ceiling. Move task-specific detail to docs/codex without removing safeguards."
-}
-
-foreach ($policy in @(
-    "docs/codex/PRODUCT_PUBLICATION.md",
-    "docs/codex/PRIVACY_SECURITY_ACCESSIBILITY.md",
-    "docs/codex/COMMERCIAL_RELEASE.md"
-)) {
-    $bytes = [Text.Encoding]::UTF8.GetByteCount(
-        [IO.File]::ReadAllText((Join-Path $root $policy))
-    )
-    if ($bytes -gt 7000) {
-        throw "$policy exceeds the 7000-byte focused-policy ceiling."
-    }
-}
-
-$legacyName = ("CLA" + "UDE.md")
-foreach ($file in $operatingFiles) {
-    $text = [IO.File]::ReadAllText((Join-Path $root $file))
-    if ($text.Contains($legacyName)) {
-        throw "Codex operating file depends on a legacy assistant instruction file: $file"
-    }
-}
+& node scripts/codex/context-budget.mjs
+if ($LASTEXITCODE -ne 0) { throw "Codex context-budget checks failed." }
 
 if ($RunChecks) {
     & node --test tests/codex-operating-layer.test.mjs

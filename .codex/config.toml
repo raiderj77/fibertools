@@ -1,3 +1,6 @@
+project_doc_max_bytes = 10240
+project_doc_fallback_filenames = []
+
 [features]
 multi_agent = true
 hooks = true
