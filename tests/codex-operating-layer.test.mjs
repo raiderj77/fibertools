@@ -313,8 +313,9 @@ test("required workflow enforces native Codex config and PowerShell runtime gate
   assert.ok(publication >= 0 && codex > publication);
   assert.match(workflow, /Validate Codex PowerShell syntax/);
   assert.match(workflow, /Validate Codex project config/);
-  assert.match(workflow, /@openai\/codex@0\.144\.1/);
-  assert.match(workflow, /@openai\/codex@0\.153\.0/);
+  assert.match(workflow, /Validate Codex project config\n\s+timeout-minutes:\s+3/);
+  assert.match(workflow, /npm exec --yes --no-audit --package=@openai\/codex@0\.144\.1/);
+  assert.match(workflow, /npm exec --yes --no-audit --package=@openai\/codex@0\.153\.0/);
   assert.match(workflow, /Run Codex doctor under PowerShell/);
   assert.match(workflow, /doctor\.ps1 -RunChecks/);
   assert.match(workflow, /^\s+pull-requests:\s+read$/m);

@@ -37,9 +37,10 @@ jobs:
             exit 1
           }
       - name: Validate Codex project config
+        timeout-minutes: 3
         run: |
-          npm exec --yes --package=@openai/codex@0.144.1 -- node scripts/codex/validate-config.mjs --expected-version 0.144.1
-          npm exec --yes --package=@openai/codex@0.153.0 -- node scripts/codex/validate-config.mjs --expected-version 0.153.0
+          npm exec --yes --no-audit --package=@openai/codex@0.144.1 -- node scripts/codex/validate-config.mjs --expected-version 0.144.1
+          npm exec --yes --no-audit --package=@openai/codex@0.153.0 -- node scripts/codex/validate-config.mjs --expected-version 0.153.0
       - name: Run Codex doctor under PowerShell
         shell: pwsh
         env:
