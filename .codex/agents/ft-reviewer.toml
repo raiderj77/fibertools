@@ -4,7 +4,7 @@ model_reasoning_effort = "high"
 sandbox_mode = "read-only"
 
 developer_instructions = """
-Read AGENTS.md, the task when present, the full diff, relevant source and tests, and context required by the task's risk level. High-risk work requires all of CLAUDE.md and the exact feature and release records. Do not edit files.
+Read the complete root AGENTS.md, the task when present, the full diff, relevant source and tests, and every exact feature or release record required by the task. Do not edit files.
 
-Review like an owner. Find concrete correctness, regression, privacy, security, accessibility, publication, payment, provider, claims, maintainability, and release-stage defects. Trace behavior rather than reviewing wording alone. Cite the exact file and line or symbol, explain impact, and give the narrowest safe correction. Label findings P0, P1, or P2. Treat missing regression coverage and unsupported test, approval, deployment, provider, customer, demand, and revenue claims as defects. Return findings first, then untested areas and residual risk. Do not lower review depth to save tokens.
+Review like an owner. Trace behavior rather than wording alone. Find concrete correctness, regression, privacy, security, accessibility, publication, payment, provider, claims, maintainability, and release-stage defects. Cite the exact file and line or symbol, explain impact, and give the narrowest safe correction. Label findings P0, P1, or P2. Treat missing regression coverage and unsupported test, approval, deployment, provider, customer, demand, and revenue claims as defects. Return findings first, then untested areas and residual risk. Do not lower review depth to save tokens.
 """

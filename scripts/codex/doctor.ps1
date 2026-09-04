@@ -47,7 +47,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 $mergeBase = Git @("merge-base", "HEAD", $remoteMain)
 if ($mergeBase -ne $remoteMain) {
-    throw "The current branch is not based on the current remote main. Rebase or recreate the worktree before editing."
+    throw "The branch is not based on current remote main. Rebase or recreate the worktree before editing."
 }
 
 $gh = Get-Command gh -ErrorAction SilentlyContinue
@@ -65,7 +65,6 @@ if ($null -ne $gh) {
 
 $required = @(
     "AGENTS.md",
-    "CLAUDE.md",
     ".codex/config.toml",
     ".codex/hooks.json",
     ".codex/hooks/resume.mjs",
@@ -75,6 +74,7 @@ $required = @(
     ".agents/skills/ft-run/SKILL.md",
     ".agents/skills/ft-debug/SKILL.md",
     ".agents/skills/ft-audit/SKILL.md",
+    "docs/CODEX.md",
     "tests/codex-operating-layer.test.mjs"
 )
 
@@ -87,8 +87,16 @@ foreach ($file in $required) {
 $agentsBytes = [Text.Encoding]::UTF8.GetByteCount(
     [IO.File]::ReadAllText((Join-Path $root "AGENTS.md"))
 )
-if ($agentsBytes -gt 6000) {
-    throw "AGENTS.md exceeds the 6000-byte focused-context ceiling. Remove duplication, not safeguards."
+if ($agentsBytes -gt 16000) {
+    throw "AGENTS.md exceeds the 16000-byte quality-focused ceiling. Remove duplication, not safeguards."
+}
+
+$legacyName = ("CLA" + "UDE.md")
+foreach ($file in $required) {
+    $text = [IO.File]::ReadAllText((Join-Path $root $file))
+    if ($text.Contains($legacyName)) {
+        throw "Codex operating file depends on a legacy assistant instruction file: $file"
+    }
 }
 
 if ($RunChecks) {

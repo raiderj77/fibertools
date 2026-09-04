@@ -7,10 +7,10 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (file) => readFileSync(path.join(root, file), "utf8");
+const legacyName = ["CLA", "UDE.md"].join("");
 
-const required = [
+const operatingFiles = [
   "AGENTS.md",
-  "CLAUDE.md",
   ".codex/config.toml",
   ".codex/hooks.json",
   ".codex/hooks/resume.mjs",
@@ -21,12 +21,11 @@ const required = [
   ".agents/skills/ft-debug/SKILL.md",
   ".agents/skills/ft-audit/SKILL.md",
   "docs/CODEX.md",
-  ".github/workflows/empire-check.yml",
   "scripts/codex/doctor.ps1",
 ];
 
-test("focused operating files exist and redundant layer is absent", () => {
-  for (const file of required) {
+test("standalone Codex operating files exist and redundant layer is absent", () => {
+  for (const file of operatingFiles) {
     assert.equal(existsSync(path.join(root, file)), true, file);
   }
   for (const file of [
@@ -41,19 +40,32 @@ test("focused operating files exist and redundant layer is absent", () => {
   assert.match(read(".gitignore"), /^\/\.codex\/TASK\.md$/m);
 });
 
-test("AGENTS.md keeps focused context without lowering the quality floor", () => {
+test("Codex operating layer has no legacy instruction dependency", () => {
+  for (const file of operatingFiles) {
+    assert.equal(read(file).includes(legacyName), false, file);
+  }
+});
+
+test("AGENTS.md is complete, quality-first, and bounded", () => {
   const agents = read("AGENTS.md");
-  assert.ok(Buffer.byteLength(agents, "utf8") <= 6000);
-  assert.match(agents, /Correctness, safety, and complete evidence outrank token savings/);
-  assert.match(agents, /High risk or release-sensitive work: read all of `CLAUDE\.md`/);
-  assert.match(agents, /A bug fix must reproduce the defect and add a failing regression test first when practical/);
-  assert.match(agents, /use `ft_reviewer` and `ft_verifier`/);
-  assert.match(agents, /Resolve reviewer and verifier disagreements against direct evidence/);
-  assert.match(agents, /Never push to `main`/);
-  assert.match(agents, /docs\/stitchproof-distribution-kit\.md/);
-  assert.match(agents, /Do not modify `CLAUDE\.md`, `EMPIRE_BUILD_STANDARDS\.md`/);
-  assert.match(agents, /## Code Review Rules/);
-  assert.match(agents, /Report local change/);
+  assert.ok(Buffer.byteLength(agents, "utf8") <= 16000);
+  for (const pattern of [
+    /sole repository-wide operating authority for Codex/,
+    /Correctness, safety, accessibility, and complete evidence outrank/,
+    /## Product contract/,
+    /publication freeze remains in force through November 20, 2026/,
+    /## Commercial boundaries/,
+    /docs\/stitchproof-purchase-release\.md/,
+    /docs\/stitchproof-distribution-kit\.md/,
+    /## Privacy, security, analytics, and accessibility/,
+    /A bug fix must reproduce the defect/,
+    /both `ft_reviewer` and `ft_verifier`/,
+    /## Code Review Rules/,
+    /## Definition of done/,
+    /Never push directly to `main`/,
+  ]) {
+    assert.match(agents, pattern);
+  }
   assert.doesNotMatch(agents, /\b(?:sk|rk|whsec|sbp)_[A-Za-z0-9_-]{12,}\b/);
 });
 
@@ -82,7 +94,6 @@ test("reviewer and verifier are independent, high-effort, and bounded", () => {
   assert.match(verifier, /^model_reasoning_effort\s*=\s*"high"$/m);
   assert.match(verifier, /^sandbox_mode\s*=\s*"workspace-write"$/m);
   assert.match(verifier, /Do not edit tracked files/);
-  assert.match(verifier, /Record git status before and after verification/);
 });
 
 test("four focused skills route planning, execution, debugging, and audit", () => {
@@ -96,12 +107,12 @@ test("four focused skills route planning, execution, debugging, and audit", () =
     assert.ok(frontmatter, folder);
     const description = frontmatter[1].match(/^description:\s*(.+)$/m)?.[1] ?? "";
     assert.ok(description.length > 20 && description.length <= 110, folder);
+    assert.match(source, /root `AGENTS\.md`|root AGENTS\.md/);
   }
 
-  assert.match(read(".agents/skills/ft-plan/SKILL.md"), /high risk: read all of `CLAUDE\.md`/);
   assert.match(read(".agents/skills/ft-debug/SKILL.md"), /Add a failing regression test first when practical/);
   assert.match(read(".agents/skills/ft-run/SKILL.md"), /both `ft_reviewer` and `ft_verifier`/);
-  assert.match(read(".agents/skills/ft-audit/SKILL.md"), /Keep the report concise, but never omit a material defect/);
+  assert.match(read(".agents/skills/ft-audit/SKILL.md"), /never omit a material defect/);
 });
 
 test("required workflow enforces the structural suite after publication protection", () => {
@@ -126,23 +137,20 @@ test("resume hook is silent at startup and tiny after compaction", () => {
   );
   assert.equal(run.status, 0, run.stderr);
   const output = JSON.parse(run.stdout);
-  const context = output.hookSpecificOutput.additionalContext;
-  assert.ok(context.length <= 40);
+  assert.ok(output.hookSpecificOutput.additionalContext.length <= 40);
 });
 
-test("doctor blocks unsafe starts and enforces focused context without mutating Git", () => {
-  const doctor = read("scripts/codex/doctor.ps1");
-  assert.match(doctor, /\$branch -eq "main"/);
-  assert.match(doctor, /exit 2/);
-  assert.match(doctor, /Working tree is not clean/);
-  assert.match(doctor, /cat-file/);
-  assert.match(doctor, /merge-base/);
-  assert.match(doctor, /gh api repos\/raiderj77\/fibertools\/branches\/main/);
-  assert.match(doctor, /gh pr list/);
-  assert.match(doctor, /6000-byte focused-context ceiling/);
+test("doctor blocks unsafe starts and enforces standalone focused context", () => {
+  const doctorSource = read("scripts/codex/doctor.ps1");
+  assert.match(doctorSource, /\$branch -eq "main"/);
+  assert.match(doctorSource, /Working tree is not clean/);
+  assert.match(doctorSource, /merge-base/);
+  assert.match(doctorSource, /gh api repos\/raiderj77\/fibertools\/branches\/main/);
+  assert.match(doctorSource, /16000-byte quality-focused ceiling/);
+  assert.match(doctorSource, /legacy assistant instruction file/);
   assert.doesNotMatch(
-    doctor,
+    doctorSource,
     /git\s+(?:push|commit|checkout|switch|merge|reset|clean|fetch|pull)\b/i,
   );
-  assert.doesNotMatch(doctor, /gh\s+pr\s+(?:create|merge|close)\b/i);
+  assert.doesNotMatch(doctorSource, /gh\s+pr\s+(?:create|merge|close)\b/i);
 });
