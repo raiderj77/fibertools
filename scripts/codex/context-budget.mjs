@@ -1,5 +1,5 @@
 import { spawnSync } from "node:child_process";
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -16,7 +16,7 @@ const documents = {
   commercial: { path: "docs/codex/COMMERCIAL_RELEASE.md", max: 7_000 },
 };
 
-for (const [name, document] of Object.entries(documents)) {
+for (const document of Object.values(documents)) {
   if (!existsSync(path.join(root, document.path))) {
     failures.push(`missing ${document.path}`);
     continue;
@@ -44,35 +44,23 @@ if (documents.root.bytes) {
   }
 }
 
-const skipDirs = new Set([".git", ".next", "node_modules", "out", "coverage", "tmp"]);
-const instructionFiles = [];
-function findInstructionFiles(directory, relative = "") {
-  for (const entry of readdirSync(directory, { withFileTypes: true })) {
-    if (entry.isDirectory() && skipDirs.has(entry.name)) continue;
-    const nextRelative = relative ? `${relative}/${entry.name}` : entry.name;
-    const nextPath = path.join(directory, entry.name);
-    if (entry.isDirectory()) findInstructionFiles(nextPath, nextRelative);
-    if (entry.isFile() && /(^|\/)AGENTS(?:\.override)?\.md$/i.test(nextRelative)) {
-      instructionFiles.push(nextRelative.replaceAll("\\", "/"));
-    }
-  }
-}
-findInstructionFiles(root);
-instructionFiles.sort();
-if (instructionFiles.length !== 1 || instructionFiles[0] !== "AGENTS.md") {
-  failures.push(`unexpected Codex instruction files: ${instructionFiles.join(", ") || "none"}`);
+if (existsSync(path.join(root, "AGENTS.override.md"))) {
+  failures.push("root AGENTS.override.md would replace the reviewed root instructions");
 }
 
-const git = spawnSync("git", ["ls-files"], { cwd: root, encoding: "utf8" });
+const git = spawnSync("git", ["ls-files", "--cached", "--others", "--exclude-standard"], {
+  cwd: root,
+  encoding: "utf8",
+});
 if (git.status !== 0) {
-  failures.push(`git ls-files failed: ${git.stderr.trim()}`);
+  failures.push(`git instruction-file inventory failed: ${git.stderr.trim()}`);
 } else {
-  const tracked = git.stdout
+  const found = git.stdout
     .split(/\r?\n/)
     .filter((file) => /(^|\/)AGENTS(?:\.override)?\.md$/i.test(file))
     .sort();
-  if (tracked.length !== 1 || tracked[0] !== "AGENTS.md") {
-    failures.push(`unexpected tracked Codex instruction files: ${tracked.join(", ") || "none"}`);
+  if (found.length !== 1 || found[0] !== "AGENTS.md") {
+    failures.push(`unexpected Codex instruction files: ${found.join(", ") || "none"}`);
   }
 }
 
@@ -90,6 +78,7 @@ const operatingFiles = [
   ".agents/skills/ft-audit/SKILL.md",
   "docs/CODEX.md",
   ...Object.values(documents).map((document) => document.path),
+  "scripts/codex/context-budget.mjs",
   "scripts/codex/doctor.ps1",
   "tests/codex-operating-layer.test.mjs",
 ];
@@ -109,7 +98,9 @@ const scenarios = [
 ];
 
 console.log("FiberTools repository-owned context budget");
-console.log("Approximate tokens use bytes / 4 and exclude system, tools, source, tests, and chat history.\n");
+console.log(
+  "Approximate tokens use bytes / 4 and exclude system instructions, tool schemas, source, tests, chat history, on-demand skills, and subagent prompts.\n",
+);
 for (const [name, keys] of scenarios) {
   const total = keys.reduce((sum, key) => sum + (documents[key].bytes ?? 0), 0);
   console.log(`${name.padEnd(21)} ${String(total).padStart(6)} bytes  ~${String(approxTokens(total)).padStart(5)} tokens`);

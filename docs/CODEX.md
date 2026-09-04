@@ -1,6 +1,6 @@
 # FiberTools Codex Workflow
 
-`AGENTS.md` is the complete root Codex instruction file. Detailed policies under `docs/codex/` load only when a task touches their subject.
+`AGENTS.md` is the complete root Codex instruction file. Detailed policies under `docs/codex/` load only when a task touches their subject. Open Codex from the repository root so instruction discovery remains predictable.
 
 ## Context routing
 
@@ -58,7 +58,7 @@ The project caps automatically loaded instruction files through `project_doc_max
 - Adopted from the official Codex repository: an instruction byte budget, explicit status monitoring, side-thread isolation, hooks, and bounded subagents.
 - Adapted from GitHub Spec Kit: pre-implementation consistency analysis and post-implementation convergence against acceptance criteria.
 - Adapted from Aider's repository-map approach: begin with a small symbol, import, reference, route, and test context set, then expand only from evidence.
-- Serena is the strongest optional pilot for repeated cross-file symbol navigation and refactoring. Keep it user-level, test it on public or synthetic work, and retain it only when first-pass quality stays equal or improves while file reads, retries, and measured token use fall.
+- Serena is an optional pilot for repeated cross-file symbol navigation and refactoring. Keep it user-level, test it on public or synthetic work, and retain it only when first-pass quality stays equal or improves while file reads, retries, and measured token use fall.
 - Repomix is useful for occasional token inventories, not as a default full-repository prompt.
 - Context7 is optional for version-specific library documentation. Verify material claims against the official primary source.
 - GitHub CodeQL is a separate quality upgrade worth evaluating in its own pull request. It adds deterministic security analysis without spending model tokens during each coding task.
