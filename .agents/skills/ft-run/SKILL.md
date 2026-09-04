@@ -1,14 +1,14 @@
 ---
 name: ft-run
-description: Execute an approved FiberTools task with focused context, tests, review, and verification.
+description: Execute an existing approved .codex/TASK.md with focused tests, independent review, and verification.
 ---
 
 # FiberTools run
 
-1. Read the complete root `AGENTS.md` and `.codex/TASK.md`.
-2. Reverify repository identity, current `origin/main`, branch, worktree, overlapping pull requests, protection, required checks, risk level, and task assumptions.
-3. Read every exact source, test, feature, manifest, environment, publication, commercial, security, and release record required by the task.
-4. If a reported defect lacks reproduction or root-cause evidence, stop implementation and use `$ft-debug`.
+1. Read the complete root `AGENTS.md` and `.codex/TASK.md`. Stop if the task file is absent or unapproved.
+2. Reverify repository identity, current `origin/main`, branch, worktree, overlapping pull requests, protection, required checks, risk, and assumptions.
+3. Confirm every matching `docs/codex/` policy and exact record is listed and read. Add missing context before editing.
+4. If a defect lacks reproduction or root-cause evidence, stop and use `$ft-debug`.
 5. Make the smallest complete change. Preserve unrelated work, existing gates, and owner-controlled boundaries.
 6. Run focused tests during implementation. After stabilization, run each applicable broad suite once. Repeat after a relevant change or failure.
 7. Update `.codex/TASK.md` with completed steps, exact commands, observed results, unresolved risks, and one next action. Do not paste raw logs.
@@ -17,8 +17,8 @@ description: Execute an approved FiberTools task with focused context, tests, re
    - run every applicable required check;
    - use `ft_reviewer` for substantial medium-risk work;
    - use both `ft_reviewer` and `ft_verifier` for high-risk or final release-sensitive work;
-   - wait for independent results and resolve conflicts against direct evidence.
-9. Copy final decisions and evidence into the pull request or proper tracked record before deleting `.codex/TASK.md`.
-10. Report local work, pushed branch, pull-request checks, merge, deployment, and production verification as separate stages.
+   - resolve conflicts against direct evidence and close both agents after their results are captured.
+9. Preserve final decisions and evidence in the pull request or proper tracked record, then delete `.codex/TASK.md`.
+10. Report local work, branch, pull-request checks, merge, deployment, and production verification separately.
 
-Never merge, deploy, publish, activate commercial paths, change production, or perform real payment, provider, delivery, DNS, data, or user-contact actions without exact owner authorization.
+Never perform an owner-controlled release or production action without exact authorization.

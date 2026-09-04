@@ -21,7 +21,7 @@ $branch = Git @("branch", "--show-current")
 $head = Git @("rev-parse", "HEAD")
 $remote = Git @("ls-remote", "origin", "refs/heads/main")
 $remoteMain = ($remote -split "\s+")[0]
-$porcelain = Git @("status", "--porcelain")
+$before = Git @("status", "--porcelain")
 $status = & git status --short --branch
 
 Write-Host "Root:        $root"
@@ -37,7 +37,7 @@ if ($branch -eq "main") {
     Write-Error "Direct work on main is blocked. Create a branch or worktree."
     exit 2
 }
-if ($porcelain -and -not $AllowDirty) {
+if ($before -and -not $AllowDirty) {
     throw "Working tree is not clean. Preserve or isolate existing changes, or rerun with -AllowDirty after review."
 }
 
@@ -63,7 +63,7 @@ if ($null -ne $gh) {
     if ($LASTEXITCODE -ne 0) { Write-Warning "GitHub CLI could not list pull requests." }
 }
 
-$required = @(
+$operatingFiles = @(
     "AGENTS.md",
     ".codex/config.toml",
     ".codex/hooks.json",
@@ -75,10 +75,13 @@ $required = @(
     ".agents/skills/ft-debug/SKILL.md",
     ".agents/skills/ft-audit/SKILL.md",
     "docs/CODEX.md",
+    "docs/codex/PRODUCT_PUBLICATION.md",
+    "docs/codex/PRIVACY_SECURITY_ACCESSIBILITY.md",
+    "docs/codex/COMMERCIAL_RELEASE.md",
     "tests/codex-operating-layer.test.mjs"
 )
 
-foreach ($file in $required) {
+foreach ($file in $operatingFiles) {
     if (-not (Test-Path -LiteralPath (Join-Path $root $file) -PathType Leaf)) {
         throw "Missing required file: $file"
     }
@@ -87,12 +90,25 @@ foreach ($file in $required) {
 $agentsBytes = [Text.Encoding]::UTF8.GetByteCount(
     [IO.File]::ReadAllText((Join-Path $root "AGENTS.md"))
 )
-if ($agentsBytes -gt 16000) {
-    throw "AGENTS.md exceeds the 16000-byte quality-focused ceiling. Remove duplication, not safeguards."
+if ($agentsBytes -gt 8000) {
+    throw "AGENTS.md exceeds the 8000-byte root-context ceiling. Move task-specific detail to docs/codex without removing safeguards."
+}
+
+foreach ($policy in @(
+    "docs/codex/PRODUCT_PUBLICATION.md",
+    "docs/codex/PRIVACY_SECURITY_ACCESSIBILITY.md",
+    "docs/codex/COMMERCIAL_RELEASE.md"
+)) {
+    $bytes = [Text.Encoding]::UTF8.GetByteCount(
+        [IO.File]::ReadAllText((Join-Path $root $policy))
+    )
+    if ($bytes -gt 7000) {
+        throw "$policy exceeds the 7000-byte focused-policy ceiling."
+    }
 }
 
 $legacyName = ("CLA" + "UDE.md")
-foreach ($file in $required) {
+foreach ($file in $operatingFiles) {
     $text = [IO.File]::ReadAllText((Join-Path $root $file))
     if ($text.Contains($legacyName)) {
         throw "Codex operating file depends on a legacy assistant instruction file: $file"
@@ -102,6 +118,17 @@ foreach ($file in $required) {
 if ($RunChecks) {
     & node --test tests/codex-operating-layer.test.mjs
     if ($LASTEXITCODE -ne 0) { throw "Codex operating-layer tests failed." }
+
+    & git diff --check
+    if ($LASTEXITCODE -ne 0) { throw "Working-tree whitespace check failed." }
+
+    & git diff --cached --check
+    if ($LASTEXITCODE -ne 0) { throw "Staged whitespace check failed." }
+}
+
+$after = Git @("status", "--porcelain")
+if ($after -ne $before) {
+    throw "Doctor checks changed tracked worktree state."
 }
 
 Write-Host "FiberTools Codex doctor passed. No repository mutation was performed."

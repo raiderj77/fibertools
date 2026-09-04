@@ -9,6 +9,12 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (file) => readFileSync(path.join(root, file), "utf8");
 const legacyName = ["CLA", "UDE.md"].join("");
 
+const policies = [
+  "docs/codex/PRODUCT_PUBLICATION.md",
+  "docs/codex/PRIVACY_SECURITY_ACCESSIBILITY.md",
+  "docs/codex/COMMERCIAL_RELEASE.md",
+];
+
 const operatingFiles = [
   "AGENTS.md",
   ".codex/config.toml",
@@ -21,10 +27,11 @@ const operatingFiles = [
   ".agents/skills/ft-debug/SKILL.md",
   ".agents/skills/ft-audit/SKILL.md",
   "docs/CODEX.md",
+  ...policies,
   "scripts/codex/doctor.ps1",
 ];
 
-test("standalone Codex operating files exist and redundant layer is absent", () => {
+test("focused standalone Codex files exist and obsolete layers are absent", () => {
   for (const file of operatingFiles) {
     assert.equal(existsSync(path.join(root, file)), true, file);
   }
@@ -40,36 +47,71 @@ test("standalone Codex operating files exist and redundant layer is absent", () 
   assert.match(read(".gitignore"), /^\/\.codex\/TASK\.md$/m);
 });
 
-test("Codex operating layer has no legacy instruction dependency", () => {
+test("Codex operating layer has no legacy assistant-file dependency", () => {
   for (const file of operatingFiles) {
     assert.equal(read(file).includes(legacyName), false, file);
   }
 });
 
-test("AGENTS.md is complete, quality-first, and bounded", () => {
+test("root instructions stay quality-first, concise, and route detail", () => {
   const agents = read("AGENTS.md");
-  assert.ok(Buffer.byteLength(agents, "utf8") <= 16000);
+  assert.ok(Buffer.byteLength(agents, "utf8") <= 8000);
   for (const pattern of [
-    /sole repository-wide operating authority for Codex/,
-    /Correctness, safety, accessibility, and complete evidence outrank/,
-    /## Product contract/,
-    /publication freeze remains in force through November 20, 2026/,
-    /## Commercial boundaries/,
-    /docs\/stitchproof-purchase-release\.md/,
+    /Correctness, safety, accessibility, and evidence outrank/,
+    /docs\/codex\/PRODUCT_PUBLICATION\.md/,
+    /docs\/codex\/PRIVACY_SECURITY_ACCESSIBILITY\.md/,
+    /docs\/codex\/COMMERCIAL_RELEASE\.md/,
+    /Close it after handoff before starting reviewer and verifier/,
+    /Close every subagent after its result is captured/,
+    /publication freeze remains active through November 20, 2026/,
     /docs\/stitchproof-distribution-kit\.md/,
-    /## Privacy, security, analytics, and accessibility/,
-    /A bug fix must reproduce the defect/,
-    /both `ft_reviewer` and `ft_verifier`/,
-    /## Code Review Rules/,
-    /## Definition of done/,
     /Never push directly to `main`/,
+    /## Code Review Rules/,
+    /## Done/,
   ]) {
     assert.match(agents, pattern);
+  }
+  for (const taskSpecific of [
+    /\$17 Planning Pack/,
+    /\$39 Designer Pattern Preflight/,
+    /X-Frame-Options/,
+    /Featured order is/,
+    /ytearnings-20/,
+  ]) {
+    assert.doesNotMatch(agents, taskSpecific);
   }
   assert.doesNotMatch(agents, /\b(?:sk|rk|whsec|sbp)_[A-Za-z0-9_-]{12,}\b/);
 });
 
-test("project config allows two independent checks without provider settings", () => {
+test("focused policies preserve the detailed quality rules", () => {
+  for (const file of policies) {
+    assert.ok(Buffer.byteLength(read(file), "utf8") <= 7000, file);
+  }
+
+  const product = read(policies[0]);
+  assert.match(product, /Featured order is Blanket, Yarn, Circle, Amigurumi Shapes, and Cast-on/);
+  assert.match(product, /Craft Yarn Council labels Lace \(0\) through Jumbo \(7\)/);
+  assert.match(product, /publication freeze remains in force through November 20, 2026/);
+  assert.match(product, /Visible copy, metadata, JSON-LD, feeds, sitemaps/);
+  assert.match(product, /npm run test:publication-freeze/);
+
+  const privacy = read(policies[1]);
+  assert.match(privacy, /Global Privacy Control/);
+  assert.match(privacy, /X-Frame-Options: SAMEORIGIN/);
+  assert.match(privacy, /server-only execution and secrets/);
+  assert.match(privacy, /Do not rely on color alone/);
+  assert.match(privacy, /npm run test:security/);
+
+  const commercial = read(policies[2]);
+  assert.match(commercial, /\$17 Planning Pack/);
+  assert.match(commercial, /\$39 Designer Pattern Preflight/);
+  assert.match(commercial, /StitchProof is \$9 once per pattern project/);
+  assert.match(commercial, /docs\/stitchproof-purchase-release\.md/);
+  assert.match(commercial, /docs\/stitchproof-distribution-kit\.md/);
+  assert.match(commercial, /npm run test:stitchproof-purchase/);
+});
+
+test("project config permits two independent checks without provider settings", () => {
   const config = read(".codex/config.toml");
   assert.match(config, /^multi_agent\s*=\s*true$/m);
   assert.match(config, /^hooks\s*=\s*true$/m);
@@ -77,7 +119,7 @@ test("project config allows two independent checks without provider settings", (
   assert.doesNotMatch(config, /model|provider|api_key|base_url|profile|telemetry/i);
 });
 
-test("reviewer and verifier are independent, high-effort, and bounded", () => {
+test("reviewer and verifier are independent, high-effort, and policy-aware", () => {
   const files = readdirSync(path.join(root, ".codex", "agents"))
     .filter((name) => name.endsWith(".toml"))
     .sort();
@@ -87,6 +129,7 @@ test("reviewer and verifier are independent, high-effort, and bounded", () => {
   assert.match(reviewer, /^name\s*=\s*"ft_reviewer"$/m);
   assert.match(reviewer, /^model_reasoning_effort\s*=\s*"high"$/m);
   assert.match(reviewer, /^sandbox_mode\s*=\s*"read-only"$/m);
+  assert.match(reviewer, /each matching docs\/codex policy/);
   assert.match(reviewer, /Do not edit files/);
 
   const verifier = read(".codex/agents/ft-verifier.toml");
@@ -94,9 +137,10 @@ test("reviewer and verifier are independent, high-effort, and bounded", () => {
   assert.match(verifier, /^model_reasoning_effort\s*=\s*"high"$/m);
   assert.match(verifier, /^sandbox_mode\s*=\s*"workspace-write"$/m);
   assert.match(verifier, /Do not edit tracked files/);
+  assert.match(verifier, /Record git status before and after verification/);
 });
 
-test("four focused skills route planning, execution, debugging, and audit", () => {
+test("four narrow skills route policy, debugging, execution, and audit", () => {
   const skillRoot = path.join(root, ".agents", "skills");
   const folders = readdirSync(skillRoot).sort();
   assert.deepEqual(folders, ["ft-audit", "ft-debug", "ft-plan", "ft-run"]);
@@ -106,16 +150,19 @@ test("four focused skills route planning, execution, debugging, and audit", () =
     const frontmatter = source.match(/^---\n([\s\S]+?)\n---\n/);
     assert.ok(frontmatter, folder);
     const description = frontmatter[1].match(/^description:\s*(.+)$/m)?.[1] ?? "";
-    assert.ok(description.length > 20 && description.length <= 110, folder);
-    assert.match(source, /root `AGENTS\.md`|root AGENTS\.md/);
+    assert.ok(description.length > 25 && description.length <= 120, folder);
+    assert.ok(Buffer.byteLength(source, "utf8") <= 2300, folder);
+    assert.match(source, /root `AGENTS\.md`/);
   }
 
+  assert.match(read(".agents/skills/ft-plan/SKILL.md"), /## Policies/);
+  assert.match(read(".agents/skills/ft-plan/SKILL.md"), /Close it after its handoff/);
   assert.match(read(".agents/skills/ft-debug/SKILL.md"), /Add a failing regression test first when practical/);
   assert.match(read(".agents/skills/ft-run/SKILL.md"), /both `ft_reviewer` and `ft_verifier`/);
-  assert.match(read(".agents/skills/ft-audit/SKILL.md"), /never omit a material defect/);
+  assert.match(read(".agents/skills/ft-audit/SKILL.md"), /Never omit a material defect/);
 });
 
-test("required workflow enforces the structural suite after publication protection", () => {
+test("required workflow enforces Codex structure after publication protection", () => {
   const workflow = read(".github/workflows/empire-check.yml");
   const publication = workflow.indexOf("npm run test:publication-freeze");
   const codex = workflow.indexOf("node --test tests/codex-operating-layer.test.mjs");
@@ -140,17 +187,21 @@ test("resume hook is silent at startup and tiny after compaction", () => {
   assert.ok(output.hookSpecificOutput.additionalContext.length <= 40);
 });
 
-test("doctor blocks unsafe starts and enforces standalone focused context", () => {
-  const doctorSource = read("scripts/codex/doctor.ps1");
-  assert.match(doctorSource, /\$branch -eq "main"/);
-  assert.match(doctorSource, /Working tree is not clean/);
-  assert.match(doctorSource, /merge-base/);
-  assert.match(doctorSource, /gh api repos\/raiderj77\/fibertools\/branches\/main/);
-  assert.match(doctorSource, /16000-byte quality-focused ceiling/);
-  assert.match(doctorSource, /legacy assistant instruction file/);
+test("doctor blocks unsafe starts and enforces focused context without mutation", () => {
+  const source = read("scripts/codex/doctor.ps1");
+  assert.match(source, /\$branch -eq "main"/);
+  assert.match(source, /Working tree is not clean/);
+  assert.match(source, /merge-base/);
+  assert.match(source, /gh api repos\/raiderj77\/fibertools\/branches\/main/);
+  assert.match(source, /8000-byte root-context ceiling/);
+  assert.match(source, /7000-byte focused-policy ceiling/);
+  assert.match(source, /legacy assistant instruction file/);
+  assert.match(source, /Doctor checks changed tracked worktree state/);
+  assert.match(source, /git diff --check/);
+  assert.match(source, /git diff --cached --check/);
   assert.doesNotMatch(
-    doctorSource,
+    source,
     /git\s+(?:push|commit|checkout|switch|merge|reset|clean|fetch|pull)\b/i,
   );
-  assert.doesNotMatch(doctorSource, /gh\s+pr\s+(?:create|merge|close)\b/i);
+  assert.doesNotMatch(source, /gh\s+pr\s+(?:create|merge|close)\b/i);
 });
