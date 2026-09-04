@@ -1,14 +1,37 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { existsSync, readFileSync, readdirSync } from "node:fs";
+import {
+  chmodSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
+import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 import { validateTask } from "../scripts/codex/task-check.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const read = (file) => readFileSync(path.join(root, file), "utf8");
+const read = (file) => readFileSync(path.join(root, file), "utf8").replace(/\r\n/g, "\n");
 const legacyName = ["CLA", "UDE.md"].join("");
+
+function writeCommandShim(directory, name, scriptPath) {
+  if (process.platform === "win32") {
+    const shim = path.join(directory, `${name}.cmd`);
+    writeFileSync(shim, `@echo off\r\n"${process.execPath}" "${scriptPath}" %*\r\n`, "utf8");
+    return shim;
+  }
+
+  const shim = path.join(directory, name);
+  writeFileSync(shim, `#!/bin/sh\nexec "${process.execPath}" "${scriptPath}" "$@"\n`, "utf8");
+  chmodSync(shim, 0o755);
+  return shim;
+}
 
 const policies = [
   "docs/codex/PRODUCT_PUBLICATION.md",
@@ -31,6 +54,7 @@ const operatingFiles = [
   ...policies,
   "scripts/codex/context-budget.mjs",
   "scripts/codex/task-check.mjs",
+  "scripts/codex/validate-config.mjs",
   "scripts/codex/doctor.ps1",
 ];
 
@@ -76,7 +100,8 @@ test("project config caps automatic instructions without truncating tool evidenc
   assert.match(config, /^project_doc_fallback_filenames\s*=\s*\[\]$/m);
   assert.match(config, /^multi_agent\s*=\s*true$/m);
   assert.match(config, /^hooks\s*=\s*true$/m);
-  assert.match(config, /^max_concurrent_threads_per_session\s*=\s*2$/m);
+  assert.match(config, /^max_threads\s*=\s*2$/m);
+  assert.doesNotMatch(config, /^max_concurrent_threads_per_session\s*=/m);
   assert.doesNotMatch(config, /^codex_hooks\s*=/m);
   assert.doesNotMatch(config, /^tool_output_token_limit\s*=/m);
   assert.doesNotMatch(config, /model|provider|api_key|base_url|profile|telemetry/i);
@@ -100,7 +125,7 @@ test("context budget report passes and guards against hidden instruction files",
   assert.match(run.stdout, /all-policies\s+\d+ bytes/);
 });
 
-test("task checker enforces readiness and acceptance coverage without model tokens", () => {
+test("task checker enforces exact ordered sections and preamble metadata without model tokens", () => {
   const valid = `# Bound gauge input
 Status: Ready
 Risk: High
@@ -152,6 +177,77 @@ Run \`$ft-run\`.
     "1. Add bounded validation.\n1. Add its regression case.",
   );
   assert.ok(validateTask(duplicate).errors.includes("duplicate step number: 1"));
+
+  const prefixedHeading = valid.replace("## Scope\n", "## Scoped exclusions\n");
+  assert.ok(validateTask(prefixedHeading).errors.includes("missing section: Scope"));
+
+  const duplicateHeading = valid.replace("## Scope\n", "## Scope\nDuplicate scope.\n\n## Scope\n");
+  assert.ok(validateTask(duplicateHeading).errors.includes("duplicate section: Scope"));
+
+  const reorderedHeadings = valid
+    .replace("## Scope\nReject unsafe gauge input.", "## Excluded\nReject unsafe gauge input.")
+    .replace("## Excluded\nNo page redesign.", "## Scope\nNo page redesign.");
+  assert.ok(validateTask(reorderedHeadings).errors.includes("required sections are out of order"));
+
+  const malformedHeading = valid.replace("## Scope\n", "### Scope\n");
+  assert.ok(validateTask(malformedHeading).errors.includes("missing section: Scope"));
+
+  const fencedHeading = valid.replace("## Scope\nReject unsafe gauge input.\n", "```md\n## Scope\nFake scope.\n```\n");
+  assert.ok(validateTask(fencedHeading).errors.includes("missing section: Scope"));
+
+  const misplacedStatus = valid.replace("Status: Ready\n", "").replace("## Scope\n", "## Scope\nStatus: Ready\n");
+  assert.ok(validateTask(misplacedStatus).errors.some((error) => error.includes("Status must be")));
+
+  const duplicateStatus = valid.replace("Status: Ready\n", "Status: Ready\nStatus: Ready\n");
+  assert.ok(validateTask(duplicateStatus).errors.includes("duplicate Status metadata"));
+
+  const fencedOutcome = valid.replace("# Bound gauge input\n", "```md\n# Bound gauge input\n```\n");
+  assert.ok(validateTask(fencedOutcome).errors.includes("missing a descriptive H1 outcome"));
+
+  const fencedAcceptance = valid.replace(
+    "| A1 | Unsafe input is rejected | 1 | `node --test tests/gauge.test.mjs` |",
+    "```md\n| A1 | Unsafe input is rejected | 1 | `node --test tests/gauge.test.mjs` |\n```",
+  );
+  assert.ok(validateTask(fencedAcceptance).errors.includes("acceptance table has no A-numbered coverage row"));
+
+  const fencedStep = valid.replace(
+    "1. Add bounded validation and its regression case.",
+    "```md\n1. Add bounded validation and its regression case.\n```",
+  );
+  assert.ok(validateTask(fencedStep).errors.includes("Steps has no numbered implementation step"));
+
+  const commentedTask = valid.replace("# Bound gauge input\n", "# Bound gauge input\n<!--\n") + "-->\n";
+  const commentedErrors = validateTask(commentedTask).errors;
+  assert.ok(commentedErrors.some((error) => error.includes("Status must be")));
+  assert.ok(commentedErrors.includes("missing section: Scope"));
+
+  const sameLineComment = valid.replace("Status: Ready\n", "<!-- Status: Ready -->\n");
+  assert.ok(validateTask(sameLineComment).errors.some((error) => error.includes("Status must be")));
+
+  const secondAcceptance = "| A2 | Safe input remains accepted | 2 | `node --test tests/gauge.test.mjs` |";
+  const secondStep = "2. Verify safe input remains accepted.";
+  const twoStepTask = valid
+    .replace(
+      "| A1 | Unsafe input is rejected | 1 | `node --test tests/gauge.test.mjs` |",
+      "| A1 | Unsafe input is rejected | 1 | `node --test tests/gauge.test.mjs` |\n" + secondAcceptance,
+    )
+    .replace(
+      "1. Add bounded validation and its regression case.",
+      "1. Add bounded validation and its regression case.\n" + secondStep,
+    );
+  assert.deepEqual(validateTask(twoStepTask).errors, []);
+
+  const reorderedAcceptance = twoStepTask.replace(
+    "| A1 | Unsafe input is rejected | 1 | `node --test tests/gauge.test.mjs` |\n" + secondAcceptance,
+    secondAcceptance + "\n| A1 | Unsafe input is rejected | 1 | `node --test tests/gauge.test.mjs` |",
+  );
+  assert.ok(validateTask(reorderedAcceptance).errors.includes("acceptance IDs must be sequential from A1"));
+
+  const reorderedSteps = twoStepTask.replace(
+    "1. Add bounded validation and its regression case.\n" + secondStep,
+    secondStep + "\n1. Add bounded validation and its regression case.",
+  );
+  assert.ok(validateTask(reorderedSteps).errors.includes("step numbers must be sequential from 1"));
 
   const outside = spawnSync(
     process.execPath,
@@ -206,14 +302,23 @@ test("human guide records native and evaluated context tools honestly", () => {
   assert.match(guide, /Aider's repository-map approach/);
   assert.match(guide, /Serena is an optional pilot/);
   assert.match(guide, /GitHub CodeQL is a separate quality upgrade/);
+  assert.match(guide, /validates parser acceptance/);
+  assert.match(guide, /does not prove that every Desktop or MultiAgentV2 host enforces/);
 });
 
-test("required workflow enforces structure and PowerShell syntax after publication protection", () => {
+test("required workflow enforces native Codex config and PowerShell runtime gates", () => {
   const workflow = read(".github/workflows/empire-check.yml");
   const publication = workflow.indexOf("npm run test:publication-freeze");
   const codex = workflow.indexOf("node --test tests/codex-operating-layer.test.mjs");
   assert.ok(publication >= 0 && codex > publication);
   assert.match(workflow, /Validate Codex PowerShell syntax/);
+  assert.match(workflow, /Validate Codex project config/);
+  assert.match(workflow, /@openai\/codex@0\.144\.1/);
+  assert.match(workflow, /@openai\/codex@0\.153\.0/);
+  assert.match(workflow, /Run Codex doctor under PowerShell/);
+  assert.match(workflow, /doctor\.ps1 -RunChecks/);
+  assert.match(workflow, /^\s+pull-requests:\s+read$/m);
+  assert.match(workflow, /fetch-depth:\s+0/);
 });
 
 test("resume hook is silent at startup and tiny after compaction", () => {
@@ -221,16 +326,46 @@ test("resume hook is silent at startup and tiny after compaction", () => {
   const entry = hooks.hooks.SessionStart[0];
   assert.equal(entry.matcher, "resume|compact");
   assert.ok(entry.hooks[0].additionalContextLimit <= 80);
-  const run = spawnSync(process.execPath, [path.join(root, ".codex", "hooks", "resume.mjs")], {
-    cwd: root,
-    encoding: "utf8",
-  });
-  assert.equal(run.status, 0, run.stderr);
-  assert.ok(JSON.parse(run.stdout).hookSpecificOutput.additionalContext.length <= 40);
+  const tempRoot = mkdtempSync(path.join(tmpdir(), "fibertools-codex-hook-"));
+  try {
+    const init = spawnSync("git", ["init", "--quiet"], { cwd: tempRoot, encoding: "utf8" });
+    assert.equal(init.status, 0, init.stderr);
+
+    const inactive = spawnSync(process.execPath, [path.join(root, ".codex", "hooks", "resume.mjs")], {
+      cwd: tempRoot,
+      encoding: "utf8",
+    });
+    assert.equal(inactive.status, 0, inactive.stderr);
+    assert.equal(inactive.stdout, "");
+
+    mkdirSync(path.join(tempRoot, ".codex"));
+    writeFileSync(path.join(tempRoot, ".codex", "TASK.md"), "# Synthetic active task\n", "utf8");
+    const active = spawnSync(process.execPath, [path.join(root, ".codex", "hooks", "resume.mjs")], {
+      cwd: tempRoot,
+      encoding: "utf8",
+    });
+    assert.equal(active.status, 0, active.stderr);
+    const output = JSON.parse(active.stdout);
+    assert.equal(Object.hasOwn(output, "suppressOutput"), false);
+    assert.ok(output.hookSpecificOutput.additionalContext.length <= 40);
+  } finally {
+    rmSync(tempRoot, { recursive: true, force: true });
+  }
 });
 
 test("doctor blocks unsafe starts, detects global instructions, and validates task state", () => {
   const source = read("scripts/codex/doctor.ps1");
+  assert.match(source, /Get-Command git -CommandType Application/);
+  assert.match(source, /function Invoke-Git/);
+  assert.doesNotMatch(source, /function Git\b/);
+  assert.doesNotMatch(source, /& git\b/i);
+  assert.match(source, /Get-Command gh -CommandType Application/);
+  assert.match(source, /GitHub CLI is required/);
+  assert.match(source, /could not inspect branch protection/);
+  assert.match(source, /could not list pull requests/);
+  const originGuard = source.indexOf('$origin -notin $allowedOrigins');
+  assert.ok(originGuard >= 0 && originGuard < source.indexOf('"ls-remote"'));
+  assert.ok(originGuard < source.indexOf('Write-Host "Origin:'));
   assert.match(source, /\$branch -eq "main"/);
   assert.match(source, /Working tree is not clean/);
   assert.match(source, /merge-base/);
@@ -240,4 +375,101 @@ test("doctor blocks unsafe starts, detects global instructions, and validates ta
   assert.match(source, /Doctor checks changed tracked worktree state/);
   assert.doesNotMatch(source, /git\s+(?:push|commit|checkout|switch|merge|reset|clean|fetch|pull)\b/i);
   assert.doesNotMatch(source, /gh\s+pr\s+(?:create|merge|close)\b/i);
+});
+
+test("doctor rejects an unexpected origin before network lookup or output", () => {
+  const tempRoot = mkdtempSync(path.join(tmpdir(), "fibertools-codex-doctor-origin-"));
+  try {
+    const gitLog = path.join(tempRoot, "git-calls.jsonl");
+    const fakeGit = path.join(tempRoot, "fake-git.mjs");
+    writeFileSync(
+      fakeGit,
+      `import { appendFileSync } from "node:fs";
+const args = process.argv.slice(2);
+appendFileSync(process.env.FIBERTOOLS_GIT_LOG, JSON.stringify(args) + "\\n");
+if (args.join(" ") === "rev-parse --show-toplevel") process.stdout.write(process.env.FIBERTOOLS_TEST_ROOT);
+else if (args.join(" ") === "remote get-url origin") process.stdout.write("https://synthetic-user:synthetic-secret@example.invalid/repo.git");
+else process.exit(90);
+`,
+      "utf8",
+    );
+    writeCommandShim(tempRoot, "git", fakeGit);
+
+    const run = spawnSync(
+      process.platform === "win32" ? "pwsh.exe" : "pwsh",
+      ["-NoProfile", "-File", path.join(root, "scripts", "codex", "doctor.ps1")],
+      {
+        cwd: root,
+        encoding: "utf8",
+        env: {
+          ...process.env,
+          PATH: `${tempRoot}${path.delimiter}${process.env.PATH || ""}`,
+          FIBERTOOLS_GIT_LOG: gitLog,
+          FIBERTOOLS_TEST_ROOT: root,
+        },
+        timeout: 30_000,
+      },
+    );
+    const combined = `${run.stdout}\n${run.stderr}`;
+    assert.notEqual(run.status, 0);
+    assert.match(combined, /Unexpected origin/);
+    assert.doesNotMatch(combined, /synthetic-user|synthetic-secret|doctor passed/);
+    const calls = readFileSync(gitLog, "utf8").trim().split("\n").map(JSON.parse);
+    assert.deepEqual(calls, [
+      ["rev-parse", "--show-toplevel"],
+      ["remote", "get-url", "origin"],
+    ]);
+  } finally {
+    rmSync(tempRoot, { recursive: true, force: true });
+  }
+});
+
+test("doctor fails closed when GitHub evidence cannot be read", () => {
+  const tempRoot = mkdtempSync(path.join(tmpdir(), "fibertools-codex-doctor-gh-"));
+  try {
+    const fakeGit = path.join(tempRoot, "fake-git.mjs");
+    writeFileSync(
+      fakeGit,
+      `const args = process.argv.slice(2);
+const key = args.join(" ");
+const sha = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+if (key === "rev-parse --show-toplevel") process.stdout.write(process.env.FIBERTOOLS_TEST_ROOT);
+else if (key === "remote get-url origin") process.stdout.write("https://github.com/raiderj77/fibertools.git");
+else if (key === "branch --show-current") process.stdout.write("codex/runtime-test");
+else if (key === "rev-parse HEAD") process.stdout.write(sha);
+else if (key === "status --porcelain") process.exit(0);
+else if (key === "ls-remote origin refs/heads/main") process.stdout.write(sha + "\\trefs/heads/main");
+else if (key === "status --short --branch") process.stdout.write("## codex/runtime-test");
+else if (args[0] === "cat-file" && args[1] === "-e") process.exit(0);
+else if (args[0] === "merge-base") process.stdout.write(sha);
+else process.exit(91);
+`,
+      "utf8",
+    );
+    const fakeGh = path.join(tempRoot, "fake-gh.mjs");
+    writeFileSync(fakeGh, `process.stderr.write("synthetic GitHub failure\\n"); process.exit(1);\n`, "utf8");
+    writeCommandShim(tempRoot, "git", fakeGit);
+    writeCommandShim(tempRoot, "gh", fakeGh);
+
+    const run = spawnSync(
+      process.platform === "win32" ? "pwsh.exe" : "pwsh",
+      ["-NoProfile", "-File", path.join(root, "scripts", "codex", "doctor.ps1")],
+      {
+        cwd: root,
+        encoding: "utf8",
+        env: {
+          ...process.env,
+          PATH: `${tempRoot}${path.delimiter}${process.env.PATH || ""}`,
+          FIBERTOOLS_TEST_ROOT: root,
+        },
+        timeout: 30_000,
+      },
+    );
+    const combined = `${run.stdout}\n${run.stderr}`;
+    assert.notEqual(run.status, 0);
+    assert.match(combined, /could not inspect branch protection/);
+    assert.doesNotMatch(combined, /doctor passed/);
+  } finally {
+    rmSync(tempRoot, { recursive: true, force: true });
+  }
 });

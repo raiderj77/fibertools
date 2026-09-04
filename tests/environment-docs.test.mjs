@@ -56,6 +56,8 @@ test("every active application environment reference is in the example and deplo
   const required = new Set([...activeNames, ...REQUIRED_OFFER_ENVIRONMENT,
     ...STITCHPROOF_PURCHASE_ENV_NAMES.filter((name) => name !== "NODE_ENV")]);
 
+  assert.equal(activeNames.includes("PATH"), false, "runtime-managed PATH must not enter the deployment contract");
+
   assert.deepEqual(
     [...required].filter((name) => !example.has(name)).sort(),
     [],

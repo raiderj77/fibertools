@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const PROJECT_ROOT = fileURLToPath(new URL("../", import.meta.url));
 const SOURCE_DIRECTORIES = ["src", "scripts"];
 const SOURCE_EXTENSIONS = new Set([".js", ".mjs", ".cjs", ".ts", ".tsx"]);
-const RUNTIME_MANAGED_NAMES = new Set(["NODE_ENV"]);
+const RUNTIME_MANAGED_NAMES = new Set(["NODE_ENV", "PATH"]);
 
 async function sourceFiles(directory) {
   const entries = await readdir(directory, { withFileTypes: true });

@@ -18,42 +18,143 @@ const REQUIRED_SECTIONS = [
   "Next",
 ];
 
-function getSection(source, name) {
-  const marker = `## ${name}`;
-  const start = source.indexOf(marker);
-  if (start < 0) return null;
-  const bodyStart = start + marker.length;
-  const rest = source.slice(bodyStart).replace(/^\r?\n/, "");
-  const next = rest.search(/\r?\n##\s+/);
-  return (next < 0 ? rest : rest.slice(0, next)).trim();
+function parseMarkdown(source) {
+  const rawLines = source.split("\n");
+  const lines = [...rawLines];
+  const visible = Array(lines.length).fill(true);
+  const headings = [];
+  let fence = null;
+  let htmlComment = false;
+
+  for (const [lineIndex, rawLine] of rawLines.entries()) {
+    if (fence) {
+      visible[lineIndex] = false;
+      lines[lineIndex] = "";
+      const close = rawLine.match(/^ {0,3}(`{3,}|~{3,})[ \t]*$/);
+      if (close && close[1][0] === fence.character && close[1].length >= fence.length) fence = null;
+      continue;
+    }
+
+    let line = "";
+    let remaining = rawLine;
+    while (remaining) {
+      if (htmlComment) {
+        const closeIndex = remaining.indexOf("-->");
+        if (closeIndex < 0) {
+          remaining = "";
+          break;
+        }
+        htmlComment = false;
+        remaining = remaining.slice(closeIndex + 3);
+        continue;
+      }
+
+      const openIndex = remaining.indexOf("<!--");
+      if (openIndex < 0) {
+        line += remaining;
+        break;
+      }
+      line += remaining.slice(0, openIndex);
+      htmlComment = true;
+      remaining = remaining.slice(openIndex + 4);
+    }
+    lines[lineIndex] = line;
+    if (!line.trim()) {
+      visible[lineIndex] = false;
+      continue;
+    }
+
+    const open = line.match(/^ {0,3}(`{3,}|~{3,})(.*)$/);
+    if (open) {
+      visible[lineIndex] = false;
+      lines[lineIndex] = "";
+      fence = { character: open[1][0], length: open[1].length };
+      continue;
+    }
+
+    const heading = line.match(/^##[ \t]+(.+?)[ \t]*$/);
+    if (heading) headings.push({ name: heading[1], lineIndex });
+  }
+
+  return { lines, visible, headings };
+}
+
+function getSection(document, name) {
+  const matches = document.headings.filter((heading) => heading.name === name);
+  if (!matches.length) return { body: null, count: 0, index: -1 };
+
+  const first = matches[0];
+  const next = document.headings.find((heading) => heading.lineIndex > first.lineIndex);
+  const bodyStart = first.lineIndex + 1;
+  const bodyEnd = next?.lineIndex ?? document.lines.length;
+  return {
+    body: document.lines
+      .slice(bodyStart, bodyEnd)
+      .map((line, offset) => (document.visible[bodyStart + offset] ? line : ""))
+      .join("\n")
+      .trim(),
+    count: matches.length,
+    index: first.lineIndex,
+  };
+}
+
+function getPreambleMatches(document, pattern) {
+  const firstHeading = document.headings[0]?.lineIndex ?? document.lines.length;
+  const matches = [];
+  for (let index = 0; index < firstHeading; index += 1) {
+    if (!document.visible[index]) continue;
+    const match = document.lines[index].match(pattern);
+    if (match) matches.push(match);
+  }
+  return matches;
 }
 
 export function validateTask(source, { requireReady = false } = {}) {
   const normalized = source.replace(/\r\n/g, "\n").trim();
+  const document = parseMarkdown(normalized);
   const errors = [];
   const warnings = [];
 
-  if (!/^#\s+\S.+$/m.test(normalized)) errors.push("missing a descriptive H1 outcome");
+  const firstHeading = document.headings[0]?.lineIndex ?? document.lines.length;
+  const preambleLines = document.lines
+    .slice(0, firstHeading)
+    .filter((line, index) => document.visible[index] && line.trim());
+  const h1Lines = preambleLines.filter((line) => /^#[ \t]+\S.+$/.test(line));
+  if (!h1Lines.length || !/^#[ \t]+\S.+$/.test(preambleLines[0] ?? "")) {
+    errors.push("missing a descriptive H1 outcome");
+  } else if (h1Lines.length > 1) {
+    errors.push("duplicate H1 outcome");
+  }
 
   const words = normalized ? normalized.split(/\s+/).length : 0;
   if (words > 900) errors.push(`task has ${words} words; limit is 900`);
 
-  const status = normalized.match(/^Status:\s*(Draft|Ready|In progress|Blocked|Complete)\s*$/m)?.[1];
-  if (!status) errors.push("Status must be Draft, Ready, In progress, Blocked, or Complete");
+  const statusMatches = getPreambleMatches(document, /^Status:\s*(Draft|Ready|In progress|Blocked|Complete)\s*$/);
+  const status = statusMatches[0]?.[1];
+  if (!status) errors.push("Status must be Draft, Ready, In progress, Blocked, or Complete in the preamble");
+  else if (statusMatches.length > 1) errors.push("duplicate Status metadata");
 
-  const risk = normalized.match(/^Risk:\s*(Low|Medium|High)\s*$/m)?.[1];
-  if (!risk) errors.push("Risk must be Low, Medium, or High");
+  const riskMatches = getPreambleMatches(document, /^Risk:\s*(Low|Medium|High)\s*$/);
+  const risk = riskMatches[0]?.[1];
+  if (!risk) errors.push("Risk must be Low, Medium, or High in the preamble");
+  else if (riskMatches.length > 1) errors.push("duplicate Risk metadata");
 
-  if (!/^Base:\s*[0-9a-f]{40}\s*$/m.test(normalized)) {
-    errors.push("Base must contain a full 40-character origin/main SHA");
-  }
+  const baseMatches = getPreambleMatches(document, /^Base:\s*([0-9a-f]{40})\s*$/);
+  if (!baseMatches.length) errors.push("Base must contain a full 40-character origin/main SHA in the preamble");
+  else if (baseMatches.length > 1) errors.push("duplicate Base metadata");
 
   const sections = new Map();
+  const sectionIndexes = [];
   for (const name of REQUIRED_SECTIONS) {
-    const body = getSection(normalized, name);
-    if (body === null) errors.push(`missing section: ${name}`);
-    else if (!body) errors.push(`empty section: ${name}`);
-    sections.set(name, body ?? "");
+    const section = getSection(document, name);
+    if (section.count === 0) errors.push(`missing section: ${name}`);
+    else if (section.count > 1) errors.push(`duplicate section: ${name}`);
+    if (section.body !== null && !section.body) errors.push(`empty section: ${name}`);
+    sections.set(name, section.body ?? "");
+    if (section.index >= 0) sectionIndexes.push(section.index);
+  }
+  if (sectionIndexes.some((value, index) => index > 0 && value < sectionIndexes[index - 1])) {
+    errors.push("required sections are out of order");
   }
 
   const acceptanceRows = [];
@@ -68,7 +169,7 @@ export function validateTask(source, { requireReady = false } = {}) {
   }
   if (!acceptanceRows.length) errors.push("acceptance table has no A-numbered coverage row");
 
-  const acceptanceNumbers = [...acceptanceIds].map((id) => Number(id.slice(1))).sort((a, b) => a - b);
+  const acceptanceNumbers = acceptanceRows.map(({ id }) => Number(id.slice(1)));
   acceptanceNumbers.forEach((value, index) => {
     if (value !== index + 1) errors.push("acceptance IDs must be sequential from A1");
   });
@@ -83,7 +184,7 @@ export function validateTask(source, { requireReady = false } = {}) {
   }
   if (!steps.size) errors.push("Steps has no numbered implementation step");
 
-  const stepNumbers = [...steps.keys()].sort((a, b) => a - b);
+  const stepNumbers = [...steps.keys()];
   stepNumbers.forEach((value, index) => {
     if (value !== index + 1) errors.push("step numbers must be sequential from 1");
   });

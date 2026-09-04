@@ -11,12 +11,13 @@ try {
 } catch {}
 
 const active = existsSync(path.join(root, ".codex", "TASK.md"));
+if (!active) process.exit(0);
+
 const output = {
   continue: true,
-  suppressOutput: true,
   hookSpecificOutput: {
     hookEventName: "SessionStart",
-    additionalContext: active ? "Resume from .codex/TASK.md." : "",
+    additionalContext: "Resume from .codex/TASK.md.",
   },
 };
 

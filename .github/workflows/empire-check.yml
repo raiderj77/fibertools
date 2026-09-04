@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
   build:
@@ -14,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0
       - name: Setup Node LTS
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
@@ -33,6 +36,18 @@ jobs:
             $errors | ForEach-Object { Write-Error $_.Message }
             exit 1
           }
+      - name: Validate Codex project config
+        run: |
+          npm exec --yes --package=@openai/codex@0.144.1 -- node scripts/codex/validate-config.mjs --expected-version 0.144.1
+          npm exec --yes --package=@openai/codex@0.153.0 -- node scripts/codex/validate-config.mjs --expected-version 0.153.0
+      - name: Run Codex doctor under PowerShell
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git fetch --no-tags origin main
+          git switch -c codex-doctor-ci
+          pwsh -NoProfile -ExecutionPolicy Bypass -File ./scripts/codex/doctor.ps1 -RunChecks
       - name: Install, test, and build
         run: |
           npm ci

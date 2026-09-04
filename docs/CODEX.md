@@ -44,6 +44,12 @@ Run the repository-owned context report with:
 node scripts/codex/context-budget.mjs
 ```
 
+## Supported Codex version
+
+The required workflow validates parser acceptance of this project configuration with Codex CLI `0.144.1` and `0.153.0` under `--strict-config`. The project deliberately uses the documented legacy alias `agents.max_threads` for compatibility with that CLI range. Strict parsing does not prove that every Desktop or MultiAgentV2 host enforces this V1 setting; the behavioral rule in `AGENTS.md`—no more than two spawned agents excluding the primary—remains authoritative. Revisit the key only after the supported release range and host behavior are deliberately revalidated.
+
+The context and quality controls are design goals, not proof of lower token use or higher first-pass correctness. Keep performance claims qualitative until a representative baseline and repeated task benchmark measure token use, file reads, correction cycles, review findings, and time to green without reducing correctness.
+
 The project caps automatically loaded instruction files through `project_doc_max_bytes`. It does not set a hard `tool_output_token_limit` because middle diagnostics can be lost even when truncation keeps the beginning and end. Prefer focused commands, concise reporters, and saved local logs over blind truncation.
 
 ## Quality controls
