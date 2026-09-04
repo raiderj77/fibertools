@@ -5,7 +5,14 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$expectedOrigin = "https://github.com/raiderj77/fibertools.git"
+$allowedOrigins = @(
+    "https://github.com/raiderj77/fibertools.git",
+    "https://github.com/raiderj77/fibertools",
+    "git@github.com:raiderj77/fibertools.git",
+    "git@github.com:raiderj77/fibertools",
+    "ssh://git@github.com/raiderj77/fibertools.git",
+    "ssh://git@github.com/raiderj77/fibertools"
+)
 
 function Git([string[]]$Args) {
     $value = & git @Args 2>&1
@@ -16,7 +23,7 @@ function Git([string[]]$Args) {
 $root = Git @("rev-parse", "--show-toplevel")
 Set-Location $root
 
-$origin = Git @("remote", "get-url", "origin")
+$origin = (Git @("remote", "get-url", "origin")).TrimEnd("/")
 $branch = Git @("branch", "--show-current")
 $head = Git @("rev-parse", "HEAD")
 $remote = Git @("ls-remote", "origin", "refs/heads/main")
@@ -31,7 +38,7 @@ Write-Host "HEAD:        $head"
 Write-Host "origin/main: $remoteMain"
 $status | ForEach-Object { Write-Host $_ }
 
-if ($origin -ne $expectedOrigin) { throw "Unexpected origin." }
+if ($origin -notin $allowedOrigins) { throw "Unexpected origin." }
 if ([string]::IsNullOrWhiteSpace($branch)) { throw "Detached HEAD." }
 if ($branch -eq "main") {
     Write-Error "Direct work on main is blocked. Create a branch or worktree."

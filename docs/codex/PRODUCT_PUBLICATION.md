@@ -51,13 +51,14 @@ Do not create doorway pages, duplicate programmatic pages, generic AI articles, 
 
 Visible copy, metadata, JSON-LD, feeds, sitemaps, `robots.txt`, `llms.txt`, canonical URLs, redirects, and live behavior must agree.
 
-- Preserve intentional canonical routes and redirects.
+- Preserve intentional canonical routes and redirects. `/blog/*` remains redirected to current tool or guide destinations. Quarantined Markdown is not a public blog.
 - Keep quarantined content out of routes, navigation, feeds, sitemaps, search files, structured data, and internal links.
-- Preserve approved public owner attribution. Never expose private contact, identity, tax, payment, account, or provider data.
-- Do not claim unsupported expertise, credentials, consensus, popularity, leadership, universal availability, exact outcomes, demand, customers, conversions, sales, revenue, provider approval, testimonials, or endorsements.
+- Preserve approved public owner attribution. Personal-name publication is not categorically prohibited. Never expose private contact, identity, tax, payment, account, or provider data.
+- Do not claim 30+ years of fiber-arts expertise, professional credentials, consensus, popularity, leadership, universal availability, exact outcomes, demand, customers, conversions, sales, revenue, provider approval, testimonials, or endorsements without direct evidence.
 - Change a review date only after reviewing the represented content and destinations.
 - Use current primary sources for material time-sensitive claims and record the source and review date where the repository pattern requires it.
 - Verify external destinations and affiliate treatment before changing links.
+- Do not add mandatory sister-site links or remove useful approved links merely to satisfy an obsolete portfolio rule.
 
 ## Required context and checks
 

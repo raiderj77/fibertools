@@ -10,7 +10,7 @@ Amazon links may use tag `ytearnings-20` only when useful. Place a disclosure be
 
 ### AdSense
 
-AdSense remains disabled unless the owner approves activation and the current account, consent, Global Privacy Control, density, legal, security, and production requirements pass. Configuration or `ads.txt` does not authorize serving ads.
+AdSense remains disabled unless the owner approves activation, `NEXT_PUBLIC_ADSENSE_ENABLED=true`, and a valid public publisher ID is deliberately configured. The current account, consent, Global Privacy Control, density, legal, security, and production requirements must also pass. Source configuration or `ads.txt` alone does not authorize serving ads.
 
 ### Planning Pack
 
@@ -18,7 +18,7 @@ The $17 Planning Pack applies only to the exact checksum-bound private edition i
 
 ### Designer Pattern Preflight
 
-The $39 Designer Pattern Preflight remains inquiry-only by default. Checkout requires every documented provider, mode, database, migration, webhook, retention, notification, abuse-protection, fulfillment, URL, security, and owner-approval gate.
+The $39 Designer Pattern Preflight remains a bounded pilot and inquiry-only by default. Missing, invalid, stale, or mismatched provider, mode, database, migration, webhook, retention, notification, abuse-protection, fulfillment, URL, security, or owner evidence must fail closed to inquiry rather than checkout.
 
 ### StitchProof
 
@@ -46,11 +46,14 @@ Before changing an offer, environment reference, payment, provider, delivery, re
 - `docs/fibertools-deployment-environment.md`
 - `docs/fibertools-owner-activation-checklist.md`
 - `docs/stitchproof-purchase-release.md`
+- `.env.example`
 - exact product manifests and checksums
 - exact database migrations and SQL contracts
 - exact provider and webhook source
 - exact readiness verifiers and focused tests
 - current branch protection, required checks, provider mode, and deployment evidence
+
+Every active application or offer environment reference must appear in both `.env.example` and the canonical deployment environment document. Preserve `tests/environment-docs.test.mjs`.
 
 Do not assume this list is complete. Search references before editing. If current records disagree, stop and report the conflict.
 
@@ -77,7 +80,7 @@ Track these as separate stages:
 7. direct production verification;
 8. separately authorized payment, provider, delivery, or customer-path verification.
 
-A build, preview, URL, dashboard, redirect, configured value, or READY deployment does not prove checkout, provider readiness, delivery, customers, demand, or revenue.
+A successful homepage response does not identify the source checkout or deployed commit. A build, preview, URL, dashboard, redirect, configured value, scheduled monitor, or READY deployment does not prove checkout, provider readiness, delivery, customers, demand, or revenue.
 
 ## Required checks
 

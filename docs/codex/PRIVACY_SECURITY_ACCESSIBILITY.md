@@ -5,6 +5,7 @@ Load this file for privacy, analytics, consent, cookies, logs, uploads, forms, s
 ## Data and secrets
 
 - Do not inspect or expose real `.env*` values. `.env.example` is fake-value inventory only.
+- Every active application or offer environment reference must appear in both `.env.example` and `docs/fibertools-deployment-environment.md`, with fake placeholders in the example. Preserve `tests/environment-docs.test.mjs`.
 - Never place credentials, environment values, calculator inputs, form contents, email addresses, payment data, provider payloads, recovery keys, purchase references, customer or personal data, private artifacts, or free-form text in source, documentation, tests, issues, pull requests, screenshots, reports, analytics, ads, affiliate events, or logs.
 - Use synthetic data unless the owner authorizes a bounded production procedure.
 - Collect only what a disclosed feature needs. Preserve documented retention, deletion, and user-control behavior.
@@ -16,7 +17,7 @@ Load this file for privacy, analytics, consent, cookies, logs, uploads, forms, s
 - Analytics must use fixed allowlisted event names and non-sensitive values.
 - Never send calculator values, form contents, emails, credentials, provider payloads, recovery data, payment data, or free-form text.
 - Recheck consent and Global Privacy Control before analytics, affiliate, or advertising sends.
-- Newsletter, inquiry, payment, delivery, and upload flows are separate disclosed server workflows. Do not use one consent or disclosure to justify another.
+- Newsletter, inquiry, payment, delivery, and upload flows are separate disclosed server workflows. Do not describe every site interaction as browser-only or use one consent or disclosure to justify another.
 - Do not weaken opt-out, consent, minimization, retention, or deletion behavior to improve measurement.
 - Treat a configured analytics ID as configuration evidence only, not proof that events are correct or production traffic exists.
 

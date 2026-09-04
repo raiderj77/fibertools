@@ -19,6 +19,20 @@ jobs:
         with:
           node-version-file: ".nvmrc"
           cache: npm
+      - name: Validate Codex PowerShell syntax
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+            (Resolve-Path "scripts/codex/doctor.ps1"),
+            [ref]$tokens,
+            [ref]$errors
+          ) | Out-Null
+          if ($errors.Count -gt 0) {
+            $errors | ForEach-Object { Write-Error $_.Message }
+            exit 1
+          }
       - name: Install, test, and build
         run: |
           npm ci

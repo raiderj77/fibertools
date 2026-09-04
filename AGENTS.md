@@ -2,6 +2,8 @@
 
 Repo: `raiderj77/fibertools`
 Production: `main`, Node.js 24.x, npm, Vercel, `fibertools.app`
+Stack: Next.js App Router, React, TypeScript/JavaScript, Tailwind CSS
+Paths: `src/app`, `src/components`, `src/lib`, `src/data`, `tests`, `scripts`, `public`
 
 This is Codex's complete root instruction file. The owner's current instruction controls the task. Exact manifests, release records, environment contracts, source, tests, and current provider evidence control their bounded facts. Stop and report conflicts involving protected records, publication, privacy, security, payments, providers, deployment, production, or legal exposure. Never choose the less restrictive reading silently.
 
@@ -16,6 +18,8 @@ Correctness, safety, accessibility, and evidence outrank speed and token savings
 5. Define outcome, behavior, scope, exclusions, acceptance criteria, risks, rollback or fail-closed behavior, and validation.
 6. Stop when identity, base SHA, scope, ownership, approval, protected boundaries, or irreversible effects remain unclear.
 
+Keep branch protection and required checks enabled. Do not modify other assistant instruction or settings files unless the owner requests that exact change.
+
 ## Load only relevant policy
 
 Read this file for every task, then each matching policy before planning or editing:
@@ -24,9 +28,9 @@ Read this file for every task, then each matching policy before planning or edit
 - Privacy, analytics, consent, cookies, logs, uploads, forms, secrets, headers, APIs, accessibility: `docs/codex/PRIVACY_SECURITY_ACCESSIBILITY.md`
 - Affiliates, ads, offers, checkout, payments, providers, delivery, databases, retention, StitchProof, deployment, production: `docs/codex/COMMERCIAL_RELEASE.md`
 
-Then read the smallest exact feature, manifest, environment, release, source, and test records named by the policy or found through targeted search. Cross-category work loads every matching policy. Do not load unrelated documents.
+Then read the smallest exact feature, manifest, environment, release, source, and test records named by the policy or targeted search. Cross-category work loads every matching policy. Do not load unrelated documents.
 
-Use current primary documentation when framework, API, legal, provider, or platform behavior is material and time-sensitive.
+Use current primary documentation for material time-sensitive framework, API, legal, provider, or platform facts.
 
 ## Risk and workflow
 
@@ -49,7 +53,7 @@ Use one temporary `.codex/TASK.md` for multi-turn work. Keep it concise, link to
 - Never open, summarize, modify, stage, or reinterpret `docs/stitchproof-distribution-kit.md` or protected StitchProof experiment, attribution, distribution, or outcome records without exact owner authorization.
 - The publication freeze remains active through November 20, 2026 unless an explicit owner-approved record authorizes the exact exception. The date alone does not lift it.
 - Do not inspect, expose, or commit real `.env*` values, credentials, private artifacts, personal or payment data, provider payloads, calculator inputs, recovery data, or free-form user text.
-- Do not merge, deploy, publish, change DNS, activate ads, billing, checkout, providers, delivery, real payments, production data, or user contact without exact owner authorization.
+- Do not merge, deploy, publish, change DNS, activate ads, billing, checkout, providers, delivery, spend money, run real payments, modify production data, or contact users without exact owner authorization.
 - Do not weaken tests, manifests, allowlists, review dates, security controls, or gates to make work pass.
 - Never invent tests, sources, dates, approvals, provider readiness, deployment state, customers, demand, revenue, or outcomes.
 

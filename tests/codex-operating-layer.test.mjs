@@ -58,6 +58,7 @@ test("root instructions stay quality-first, concise, and route detail", () => {
   assert.ok(Buffer.byteLength(agents, "utf8") <= 8000);
   for (const pattern of [
     /Correctness, safety, accessibility, and evidence outrank/,
+    /Stack: Next\.js App Router/,
     /docs\/codex\/PRODUCT_PUBLICATION\.md/,
     /docs\/codex\/PRIVACY_SECURITY_ACCESSIBILITY\.md/,
     /docs\/codex\/COMMERCIAL_RELEASE\.md/,
@@ -65,6 +66,8 @@ test("root instructions stay quality-first, concise, and route detail", () => {
     /Close every subagent after its result is captured/,
     /publication freeze remains active through November 20, 2026/,
     /docs\/stitchproof-distribution-kit\.md/,
+    /Keep branch protection and required checks enabled/,
+    /Do not modify other assistant instruction or settings files/,
     /Never push directly to `main`/,
     /## Code Review Rules/,
     /## Done/,
@@ -83,7 +86,7 @@ test("root instructions stay quality-first, concise, and route detail", () => {
   assert.doesNotMatch(agents, /\b(?:sk|rk|whsec|sbp)_[A-Za-z0-9_-]{12,}\b/);
 });
 
-test("focused policies preserve the detailed quality rules", () => {
+test("focused policies preserve detailed product and safety rules", () => {
   for (const file of policies) {
     assert.ok(Buffer.byteLength(read(file), "utf8") <= 7000, file);
   }
@@ -92,23 +95,39 @@ test("focused policies preserve the detailed quality rules", () => {
   assert.match(product, /Featured order is Blanket, Yarn, Circle, Amigurumi Shapes, and Cast-on/);
   assert.match(product, /Craft Yarn Council labels Lace \(0\) through Jumbo \(7\)/);
   assert.match(product, /publication freeze remains in force through November 20, 2026/);
+  assert.match(product, /\/blog\/\*` remains redirected/);
+  assert.match(product, /30\+ years of fiber-arts expertise/);
+  assert.match(product, /mandatory sister-site links/);
   assert.match(product, /Visible copy, metadata, JSON-LD, feeds, sitemaps/);
   assert.match(product, /npm run test:publication-freeze/);
 
   const privacy = read(policies[1]);
   assert.match(privacy, /Global Privacy Control/);
+  assert.match(privacy, /Every active application or offer environment reference/);
   assert.match(privacy, /X-Frame-Options: SAMEORIGIN/);
   assert.match(privacy, /server-only execution and secrets/);
   assert.match(privacy, /Do not rely on color alone/);
   assert.match(privacy, /npm run test:security/);
 
   const commercial = read(policies[2]);
+  assert.match(commercial, /NEXT_PUBLIC_ADSENSE_ENABLED=true/);
   assert.match(commercial, /\$17 Planning Pack/);
   assert.match(commercial, /\$39 Designer Pattern Preflight/);
+  assert.match(commercial, /fail closed to inquiry rather than checkout/);
   assert.match(commercial, /StitchProof is \$9 once per pattern project/);
   assert.match(commercial, /docs\/stitchproof-purchase-release\.md/);
   assert.match(commercial, /docs\/stitchproof-distribution-kit\.md/);
+  assert.match(commercial, /tests\/environment-docs\.test\.mjs/);
   assert.match(commercial, /npm run test:stitchproof-purchase/);
+});
+
+test("every documented npm script exists in package.json", () => {
+  const scripts = JSON.parse(read("package.json")).scripts ?? {};
+  for (const file of ["AGENTS.md", "docs/CODEX.md", ...policies]) {
+    for (const match of read(file).matchAll(/\bnpm run ([A-Za-z0-9:_-]+)/g)) {
+      assert.ok(Object.hasOwn(scripts, match[1]), `${file}: ${match[1]}`);
+    }
+  }
 });
 
 test("project config permits two independent checks without provider settings", () => {
@@ -162,12 +181,14 @@ test("four narrow skills route policy, debugging, execution, and audit", () => {
   assert.match(read(".agents/skills/ft-audit/SKILL.md"), /Never omit a material defect/);
 });
 
-test("required workflow enforces Codex structure after publication protection", () => {
+test("required workflow enforces structure and PowerShell validation", () => {
   const workflow = read(".github/workflows/empire-check.yml");
   const publication = workflow.indexOf("npm run test:publication-freeze");
   const codex = workflow.indexOf("node --test tests/codex-operating-layer.test.mjs");
   assert.ok(publication >= 0);
   assert.ok(codex > publication);
+  assert.match(workflow, /Validate Codex PowerShell syntax/);
+  assert.match(workflow, /System\.Management\.Automation\.Language\.Parser/);
 });
 
 test("resume hook is silent at startup and tiny after compaction", () => {
@@ -192,6 +213,7 @@ test("doctor blocks unsafe starts and enforces focused context without mutation"
   assert.match(source, /\$branch -eq "main"/);
   assert.match(source, /Working tree is not clean/);
   assert.match(source, /merge-base/);
+  assert.match(source, /git@github\.com:raiderj77\/fibertools/);
   assert.match(source, /gh api repos\/raiderj77\/fibertools\/branches\/main/);
   assert.match(source, /8000-byte root-context ceiling/);
   assert.match(source, /7000-byte focused-policy ceiling/);
