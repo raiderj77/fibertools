@@ -42,7 +42,7 @@ Use current primary documentation for material time-sensitive framework, API, le
 
 A bug fix must reproduce the defect and add a failing regression test first when practical. Confirm the expected failure. Otherwise record why and define repeatable alternate proof. A disappearing symptom is not root-cause evidence.
 
-Make the smallest complete change. Search exact paths, symbols, references, and tests first. Reuse verified patterns. Avoid unrelated cleanup, refactors, renames, formatting, and dependencies.
+Make the smallest complete change. Search exact paths and tests first. Reuse verified patterns. Avoid unrelated cleanup or dependencies. Do not modify this operating layer or required-check workflows unless the task explicitly targets them.
 
 Use one main agent normally. Spawn no more than two agents, excluding the primary. A read-only explorer is for independent mapping only. Close it after handoff before starting reviewer and verifier. Use `ft_reviewer` for substantial medium-risk work and both independent agents for high-risk or final release-sensitive work. Never give writers overlapping files. The parent owns scope, file ownership, integration, and the final report. An implementer never approves its own work. Resolve reviewer and verifier disagreements against direct evidence. Close every subagent after its result is captured.
 

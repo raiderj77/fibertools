@@ -68,13 +68,25 @@ export function validateTask(source, { requireReady = false } = {}) {
   }
   if (!acceptanceRows.length) errors.push("acceptance table has no A-numbered coverage row");
 
+  const acceptanceNumbers = [...acceptanceIds].map((id) => Number(id.slice(1))).sort((a, b) => a - b);
+  acceptanceNumbers.forEach((value, index) => {
+    if (value !== index + 1) errors.push("acceptance IDs must be sequential from A1");
+  });
+
   const steps = new Map();
   for (const line of sections.get("Steps").split("\n")) {
     const match = line.match(/^(\d+)\.\s+(.+)$/);
     if (!match) continue;
-    steps.set(Number(match[1]), match[2]);
+    const step = Number(match[1]);
+    if (steps.has(step)) errors.push(`duplicate step number: ${step}`);
+    else steps.set(step, match[2]);
   }
   if (!steps.size) errors.push("Steps has no numbered implementation step");
+
+  const stepNumbers = [...steps.keys()].sort((a, b) => a - b);
+  stepNumbers.forEach((value, index) => {
+    if (value !== index + 1) errors.push("step numbers must be sequential from 1");
+  });
 
   for (const row of acceptanceRows) {
     if (!steps.has(row.step)) errors.push(`${row.id} maps to missing step ${row.step}`);
@@ -90,6 +102,9 @@ export function validateTask(source, { requireReady = false } = {}) {
     .get("Context set")
     .split("\n")
     .filter((line) => /^-\s+/.test(line)).length;
+  if (["Medium", "High"].includes(risk) && contextCount === 0) {
+    errors.push(`${risk}-risk work requires an evidence-based context set`);
+  }
   if (contextCount > 12) {
     warnings.push(`initial context set has ${contextCount} files; confirm each is required by evidence`);
   }
@@ -125,28 +140,38 @@ export function validateTask(source, { requireReady = false } = {}) {
       /\[none \|/,
       /\[Ready \|/,
       /\[One exact action\]/,
+      /\b(?:TBD|TODO|TBC)\b/i,
     ];
     for (const pattern of placeholders) {
       if (pattern.test(normalized)) errors.push(`unresolved template placeholder: ${pattern}`);
     }
   }
 
-  return { errors, warnings, words, status, risk };
+  return { errors: [...new Set(errors)], warnings, words, status, risk };
+}
+
+function fail(message) {
+  console.error(`Task check failed: ${message}`);
+  process.exit(1);
 }
 
 function runCli() {
-  const args = new Set(process.argv.slice(2));
-  const fileIndex = process.argv.indexOf("--file");
-  const relativePath = fileIndex >= 0 ? process.argv[fileIndex + 1] : ".codex/TASK.md";
-  const taskPath = path.resolve(root, relativePath ?? ".codex/TASK.md");
+  const argv = process.argv.slice(2);
+  const args = new Set(argv);
+  const fileIndex = argv.indexOf("--file");
+  if (fileIndex >= 0 && !argv[fileIndex + 1]) fail("--file requires a repository-relative path");
+
+  const relativePath = fileIndex >= 0 ? argv[fileIndex + 1] : ".codex/TASK.md";
+  const taskPath = path.resolve(root, relativePath);
+  const relativeToRoot = path.relative(root, taskPath);
+  if (relativeToRoot === ".." || relativeToRoot.startsWith(`..${path.sep}`) || path.isAbsolute(relativeToRoot)) {
+    fail("task file must stay inside the repository");
+  }
+
   const requireReady = args.has("--ready");
   const required = requireReady || args.has("--required");
-
   if (!existsSync(taskPath)) {
-    if (required) {
-      console.error(`Task check failed: missing ${path.relative(root, taskPath)}`);
-      process.exit(1);
-    }
+    if (required) fail(`missing ${path.relative(root, taskPath)}`);
     console.log("No active .codex/TASK.md.");
     return;
   }

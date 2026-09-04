@@ -58,6 +58,7 @@ test("root instructions stay quality-first, concise, and route detail", () => {
     /docs\/codex\/PRODUCT_PUBLICATION\.md/,
     /docs\/codex\/PRIVACY_SECURITY_ACCESSIBILITY\.md/,
     /docs\/codex\/COMMERCIAL_RELEASE\.md/,
+    /Do not modify this operating layer or required-check workflows/,
     /Close it after handoff before starting reviewer and verifier/,
     /Close every subagent after its result is captured/,
     /publication freeze remains active through November 20, 2026/,
@@ -145,6 +146,20 @@ Run \`$ft-run\`.
   assert.ok(result.errors.some((error) => error.includes("missing step 2")));
   assert.ok(result.errors.includes("step 1 is not mapped to an acceptance item"));
   assert.ok(result.errors.includes("task must have Status: Ready"));
+
+  const duplicate = valid.replace(
+    "1. Add bounded validation and its regression case.",
+    "1. Add bounded validation.\n1. Add its regression case.",
+  );
+  assert.ok(validateTask(duplicate).errors.includes("duplicate step number: 1"));
+
+  const outside = spawnSync(
+    process.execPath,
+    [path.join(root, "scripts", "codex", "task-check.mjs"), "--file", "../outside.md"],
+    { cwd: root, encoding: "utf8" },
+  );
+  assert.equal(outside.status, 1);
+  assert.match(outside.stderr, /must stay inside the repository/);
 });
 
 test("every documented npm script exists in package.json", () => {
