@@ -30,7 +30,13 @@ Use $ft-audit in readiness mode
 Use $ft-audit in convergence mode
 ```
 
-Use `/status` before and after representative tasks to observe the active model, approvals, and token usage. Use `/side` for throwaway research that should not clutter the main thread. A side conversation protects main-thread context but still consumes model tokens.
+Validate an active plan without model reasoning:
+
+```bash
+node scripts/codex/task-check.mjs --ready
+```
+
+Use `/status` before and after representative tasks to observe the active model, approvals, token usage, and loaded instruction sources. Review any global Codex instructions shown there. Use `/side` for throwaway research that should not clutter the main thread. A side conversation protects main-thread context but still consumes model tokens.
 
 Run the repository-owned context report with:
 
@@ -43,6 +49,7 @@ The project caps automatically loaded instruction files through `project_doc_max
 ## Quality controls
 
 - Plans include a small evidence-based context set and acceptance-to-test coverage matrix.
+- A deterministic task checker catches malformed or incomplete plans before implementation.
 - Plans do not become Ready until a read-only consistency pass succeeds.
 - A read-only convergence pass compares implementation against every acceptance item before completion.
 - One main agent handles ordinary work.

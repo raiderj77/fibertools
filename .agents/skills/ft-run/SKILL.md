@@ -5,10 +5,10 @@ description: Execute an approved Ready .codex/TASK.md with focused tests, indepe
 
 # FiberTools run
 
-1. Read the complete root `AGENTS.md` and `.codex/TASK.md`. Stop if the task is absent, not `Ready`, or no longer matches the owner's request.
-2. Reverify repository identity, current `origin/main`, branch, worktree, overlapping pull requests, protection, required checks, risk, policies, context set, and assumptions.
-3. Confirm every acceptance item maps to a step and proving test or inspection. Add missing context only when imports, references, tests, failures, or changed behavior justify it.
-4. If a defect lacks reproduction or root-cause evidence, stop and use `$ft-debug`.
+1. Read the complete root `AGENTS.md` and `.codex/TASK.md`.
+2. Run `node scripts/codex/task-check.mjs --ready`. Stop if it fails, the task no longer matches the owner's request, or its base and assumptions are stale.
+3. Reverify repository identity, current `origin/main`, branch, worktree, overlapping pull requests, protection, required checks, risk, policies, context set, and assumptions.
+4. Add missing context only when imports, references, tests, failures, or changed behavior justify it. If a defect lacks reproduction or root-cause evidence, stop and use `$ft-debug`.
 5. Set task status to `In progress`. Make the smallest complete change. Preserve unrelated work, existing gates, and owner-controlled boundaries.
 6. Run focused tests during implementation. After stabilization, run each applicable broad suite once. Repeat only after a relevant change or failure.
 7. Record completed steps, exact commands, observed results, unresolved risks, and one next action in `.codex/TASK.md`. Keep raw logs out.

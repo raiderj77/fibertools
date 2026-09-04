@@ -38,7 +38,7 @@ Base: [origin/main SHA]
 ## Acceptance and coverage
 | ID | Observable result | Step | Test or evidence |
 | --- | --- | --- | --- |
-| A1 | [result] | 1 | `[command or inspection]` |
+| A1 | [Observable result] | 1 | `[command or inspection]` |
 
 ## Steps
 1. [Bounded step and file owner]
@@ -55,6 +55,8 @@ Base: [origin/main SHA]
 
 Keep the task under 900 words and link to paths instead of copying policy.
 
-Before marking `Ready`, perform a read-only consistency pass. Resolve duplicate or conflicting requirements, vague acceptance criteria, unmapped steps, missing tests, invalid dependency order, and uncovered edge or failure states. Every acceptance item must map to a step and proving test or inspection. Every step must map back to an acceptance item. High-risk work requires both independent agents and every applicable required check.
+Run `node scripts/codex/task-check.mjs --required`, then perform a read-only consistency pass. Resolve duplicate or conflicting requirements, vague acceptance criteria, unmapped steps, missing tests, invalid dependency order, and uncovered edge, failure, rollback, or fail-closed states. Every acceptance item must map to a step and proving test or inspection. Every step must map back to an acceptance item.
+
+Set `Status: Ready` and `Readiness` to `Ready` only after the consistency pass succeeds. Then run `node scripts/codex/task-check.mjs --ready`. High-risk work requires both independent agents and every applicable required check.
 
 Stop when a material fact, boundary, criterion, owner, rollback path, or approval remains unresolved. The owner's explicit request to use `$ft-run` after reviewing a Ready task authorizes implementation only, never merge, deployment, publication, payment, provider, delivery, DNS, production, spending, or user contact.

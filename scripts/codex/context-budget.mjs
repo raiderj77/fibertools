@@ -79,6 +79,7 @@ const operatingFiles = [
   "docs/CODEX.md",
   ...Object.values(documents).map((document) => document.path),
   "scripts/codex/context-budget.mjs",
+  "scripts/codex/task-check.mjs",
   "scripts/codex/doctor.ps1",
   "tests/codex-operating-layer.test.mjs",
 ];

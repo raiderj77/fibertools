@@ -4,6 +4,7 @@ import { existsSync, readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
+import { validateTask } from "../scripts/codex/task-check.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (file) => readFileSync(path.join(root, file), "utf8");
@@ -29,6 +30,7 @@ const operatingFiles = [
   "docs/CODEX.md",
   ...policies,
   "scripts/codex/context-budget.mjs",
+  "scripts/codex/task-check.mjs",
   "scripts/codex/doctor.ps1",
 ];
 
@@ -97,6 +99,54 @@ test("context budget report passes and guards against hidden instruction files",
   assert.match(run.stdout, /all-policies\s+\d+ bytes/);
 });
 
+test("task checker enforces readiness and acceptance coverage without model tokens", () => {
+  const valid = `# Bound gauge input
+Status: Ready
+Risk: High
+Base: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+## Policies and records
+- \`docs/codex/PRODUCT_PUBLICATION.md\`
+
+## Context set
+- \`src/lib/gauge.ts\`: calculation path
+- \`tests/gauge.test.mjs\`: regression proof
+
+## Scope
+Reject unsafe gauge input.
+
+## Excluded
+No page redesign.
+
+## Failure modes and rollback
+Fail closed and revert the isolated commit if the focused suite regresses.
+
+## Acceptance and coverage
+| ID | Observable result | Step | Test or evidence |
+| --- | --- | --- | --- |
+| A1 | Unsafe input is rejected | 1 | \`node --test tests/gauge.test.mjs\` |
+
+## Steps
+1. Add bounded validation and its regression case.
+
+## Independent checks
+ft_reviewer and ft_verifier
+
+## Readiness
+Ready
+
+## Next
+Run \`$ft-run\`.
+`;
+  assert.deepEqual(validateTask(valid, { requireReady: true }).errors, []);
+
+  const invalid = valid.replace("Status: Ready", "Status: Draft").replace("| 1 |", "| 2 |");
+  const result = validateTask(invalid, { requireReady: true });
+  assert.ok(result.errors.some((error) => error.includes("missing step 2")));
+  assert.ok(result.errors.includes("step 1 is not mapped to an acceptance item"));
+  assert.ok(result.errors.includes("task must have Status: Ready"));
+});
+
 test("every documented npm script exists in package.json", () => {
   const scripts = JSON.parse(read("package.json")).scripts ?? {};
   for (const file of ["AGENTS.md", "docs/CODEX.md", ...policies]) {
@@ -125,7 +175,7 @@ test("four narrow skills enforce context selection, readiness, debugging, and co
     assert.ok(Buffer.byteLength(source, "utf8") <= 3_200, folder);
   }
   assert.match(read(".agents/skills/ft-plan/SKILL.md"), /initial context set of no more than 12 files/);
-  assert.match(read(".agents/skills/ft-plan/SKILL.md"), /Every acceptance item must map to a step and proving test or inspection/);
+  assert.match(read(".agents/skills/ft-plan/SKILL.md"), /task-check\.mjs --ready/);
   assert.match(read(".agents/skills/ft-debug/SKILL.md"), /Add a failing regression test first when practical/);
   assert.match(read(".agents/skills/ft-run/SKILL.md"), /Run `\$ft-audit` in convergence mode/);
   assert.match(read(".agents/skills/ft-audit/SKILL.md"), /Satisfied`, `Partial`, `Missing`, `Contradicts`, or `Not tested/);
@@ -134,11 +184,12 @@ test("four narrow skills enforce context selection, readiness, debugging, and co
 test("human guide records native and evaluated context tools honestly", () => {
   const guide = read("docs/CODEX.md");
   assert.match(guide, /Use `\/status`/);
+  assert.match(guide, /loaded instruction sources/);
   assert.match(guide, /Use `\/side`/);
   assert.match(guide, /still consumes model tokens/);
   assert.match(guide, /GitHub Spec Kit/);
   assert.match(guide, /Aider's repository-map approach/);
-  assert.match(guide, /Serena is the strongest optional pilot/);
+  assert.match(guide, /Serena is an optional pilot/);
   assert.match(guide, /GitHub CodeQL is a separate quality upgrade/);
 });
 
@@ -163,12 +214,14 @@ test("resume hook is silent at startup and tiny after compaction", () => {
   assert.ok(JSON.parse(run.stdout).hookSpecificOutput.additionalContext.length <= 40);
 });
 
-test("doctor blocks unsafe starts and runs context guards without mutation", () => {
+test("doctor blocks unsafe starts, detects global instructions, and validates task state", () => {
   const source = read("scripts/codex/doctor.ps1");
   assert.match(source, /\$branch -eq "main"/);
   assert.match(source, /Working tree is not clean/);
   assert.match(source, /merge-base/);
+  assert.match(source, /Global Codex instructions also load/);
   assert.match(source, /context-budget\.mjs/);
+  assert.match(source, /task-check\.mjs --required/);
   assert.match(source, /Doctor checks changed tracked worktree state/);
   assert.doesNotMatch(source, /git\s+(?:push|commit|checkout|switch|merge|reset|clean|fetch|pull)\b/i);
   assert.doesNotMatch(source, /gh\s+pr\s+(?:create|merge|close)\b/i);
