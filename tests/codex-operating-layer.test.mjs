@@ -14,7 +14,7 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
-import { validateTask } from "../scripts/codex/task-check.mjs";
+import { resolveCurrentMain, validateTask } from "../scripts/codex/task-check.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (file) => readFileSync(path.join(root, file), "utf8").replace(/\r\n/g, "\n");
@@ -164,10 +164,19 @@ Ready
 ## Next
 Run \`$ft-run\`.
 `;
-  assert.deepEqual(validateTask(valid, { requireReady: true }).errors, []);
+  const currentMainSha = "a".repeat(40);
+  assert.deepEqual(validateTask(valid, { requireReady: true, currentMainSha }).errors, []);
+
+  const staleBase = validateTask(valid, { requireReady: true, currentMainSha: "b".repeat(40) });
+  assert.ok(staleBase.errors.includes("Base must match the current origin/main SHA"));
+  assert.ok(
+    validateTask(valid, { requireReady: true }).errors.includes(
+      "current origin/main SHA is required for Ready validation",
+    ),
+  );
 
   const invalid = valid.replace("Status: Ready", "Status: Draft").replace("| 1 |", "| 2 |");
-  const result = validateTask(invalid, { requireReady: true });
+  const result = validateTask(invalid, { requireReady: true, currentMainSha });
   assert.ok(result.errors.some((error) => error.includes("missing step 2")));
   assert.ok(result.errors.includes("step 1 is not mapped to an acceptance item"));
   assert.ok(result.errors.includes("task must have Status: Ready"));
@@ -304,6 +313,66 @@ test("human guide records native and evaluated context tools honestly", () => {
   assert.match(guide, /GitHub CodeQL is a separate quality upgrade/);
   assert.match(guide, /validates parser acceptance/);
   assert.match(guide, /does not prove that every Desktop or MultiAgentV2 host enforces/);
+});
+
+test("ready task validation resolves live origin/main and rejects a stale tracking ref", () => {
+  const currentSha = "a".repeat(40);
+  const calls = [];
+  const current = resolveCurrentMain(root, {
+    run(command, args, options) {
+      calls.push({ command, args, options });
+      if (args[0] === "rev-parse") return { status: 0, stdout: `${currentSha}\n` };
+      return { status: 0, stdout: `${currentSha}\trefs/heads/main\n` };
+    },
+  });
+  assert.equal(current, currentSha);
+  assert.deepEqual(calls.map(({ command, args }) => [command, ...args]), [
+    ["git", "rev-parse", "--verify", "refs/remotes/origin/main^{commit}"],
+    ["git", "ls-remote", "--exit-code", "origin", "refs/heads/main"],
+  ]);
+  assert.ok(calls.every(({ options }) => options.timeout === 15_000));
+
+  assert.throws(
+    () => resolveCurrentMain(root, {
+      run(_command, args) {
+        if (args[0] === "rev-parse") return { status: 0, stdout: `${"b".repeat(40)}\n` };
+        return { status: 0, stdout: `${currentSha}\trefs/heads/main\n` };
+      },
+    }),
+    /local origin\/main is stale/,
+  );
+
+  const tempRoot = mkdtempSync(path.join(tmpdir(), "fibertools-task-base-shadow-"));
+  try {
+    const remote = path.join(tempRoot, "remote.git");
+    const repo = path.join(tempRoot, "repo");
+    const git = (args, cwd = repo) => {
+      const result = spawnSync("git", args, { cwd, encoding: "utf8" });
+      assert.equal(result.status, 0, `${args.join(" ")}\n${result.stderr}`);
+      return result.stdout.trim();
+    };
+
+    mkdirSync(repo);
+    git(["init", "--bare", "--quiet", remote], tempRoot);
+    git(["init", "--quiet", "--initial-branch=main"]);
+    git(["config", "user.name", "FiberTools Test"]);
+    git(["config", "user.email", "fibertools-test@example.invalid"]);
+    git(["commit", "--allow-empty", "--quiet", "-m", "initial"]);
+    const staleTrackingSha = git(["rev-parse", "HEAD"]);
+    git(["remote", "add", "origin", remote]);
+    git(["push", "--quiet", "--set-upstream", "origin", "main"]);
+    git(["commit", "--allow-empty", "--quiet", "-m", "current"]);
+    const liveSha = git(["rev-parse", "HEAD"]);
+    git(["push", "--quiet", "origin", "main"]);
+    git(["branch", "origin/main", liveSha]);
+    git(["update-ref", "refs/remotes/origin/main", staleTrackingSha]);
+
+    assert.equal(git(["rev-parse", "--verify", "refs/heads/origin/main^{commit}"]), liveSha);
+    assert.equal(git(["rev-parse", "--verify", "refs/remotes/origin/main^{commit}"]), staleTrackingSha);
+    assert.throws(() => resolveCurrentMain(repo), /local origin\/main is stale/);
+  } finally {
+    rmSync(tempRoot, { recursive: true, force: true });
+  }
 });
 
 test("required workflow enforces native Codex config and PowerShell runtime gates", () => {

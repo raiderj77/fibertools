@@ -36,6 +36,8 @@ Validate an active plan without model reasoning:
 node scripts/codex/task-check.mjs --ready
 ```
 
+The Ready check is read-only. It requires the task's full Base SHA to match both the local `origin/main` tracking ref and the current remote `refs/heads/main`; fetch first if the local ref is stale.
+
 Use `/status` before and after representative tasks to observe the active model, approvals, token usage, and loaded instruction sources. Review any global Codex instructions shown there. Use `/side` for throwaway research that should not clutter the main thread. A side conversation protects main-thread context but still consumes model tokens.
 
 Run the repository-owned context report with:

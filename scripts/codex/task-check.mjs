@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -109,7 +110,7 @@ function getPreambleMatches(document, pattern) {
   return matches;
 }
 
-export function validateTask(source, { requireReady = false } = {}) {
+export function validateTask(source, { requireReady = false, currentMainSha = null } = {}) {
   const normalized = source.replace(/\r\n/g, "\n").trim();
   const document = parseMarkdown(normalized);
   const errors = [];
@@ -140,6 +141,7 @@ export function validateTask(source, { requireReady = false } = {}) {
   else if (riskMatches.length > 1) errors.push("duplicate Risk metadata");
 
   const baseMatches = getPreambleMatches(document, /^Base:\s*([0-9a-f]{40})\s*$/);
+  const base = baseMatches[0]?.[1] ?? null;
   if (!baseMatches.length) errors.push("Base must contain a full 40-character origin/main SHA in the preamble");
   else if (baseMatches.length > 1) errors.push("duplicate Base metadata");
 
@@ -221,6 +223,11 @@ export function validateTask(source, { requireReady = false } = {}) {
   }
 
   if (requireReady && status !== "Ready") errors.push("task must have Status: Ready");
+  if (requireReady && !/^[0-9a-f]{40}$/.test(currentMainSha ?? "")) {
+    errors.push("current origin/main SHA is required for Ready validation");
+  } else if (requireReady && base && base !== currentMainSha) {
+    errors.push("Base must match the current origin/main SHA");
+  }
   if (status === "Ready" && !/^Ready\b/m.test(sections.get("Readiness"))) {
     errors.push("Ready task must state Ready in the Readiness section");
   }
@@ -248,7 +255,33 @@ export function validateTask(source, { requireReady = false } = {}) {
     }
   }
 
-  return { errors: [...new Set(errors)], warnings, words, status, risk };
+  return { errors: [...new Set(errors)], warnings, words, status, risk, base };
+}
+
+export function resolveCurrentMain(repoRoot, { run = spawnSync } = {}) {
+  const options = {
+    cwd: repoRoot,
+    encoding: "utf8",
+    timeout: 15_000,
+    windowsHide: true,
+    maxBuffer: 64 * 1024,
+  };
+  const local = run("git", ["rev-parse", "--verify", "refs/remotes/origin/main^{commit}"], options);
+  const localSha = local.status === 0 ? local.stdout.trim() : "";
+  if (!/^[0-9a-f]{40}$/.test(localSha)) {
+    throw new Error("could not resolve the local origin/main tracking ref");
+  }
+
+  const remote = run("git", ["ls-remote", "--exit-code", "origin", "refs/heads/main"], options);
+  const remoteMatch = remote.status === 0
+    ? remote.stdout.match(/^([0-9a-f]{40})\s+refs\/heads\/main\s*$/m)
+    : null;
+  const remoteSha = remoteMatch?.[1] ?? "";
+  if (!remoteSha) throw new Error("could not resolve the current remote origin/main SHA");
+  if (localSha !== remoteSha) {
+    throw new Error("local origin/main is stale; fetch origin/main before marking the task Ready");
+  }
+  return remoteSha;
 }
 
 function fail(message) {
@@ -277,7 +310,16 @@ function runCli() {
     return;
   }
 
-  const result = validateTask(readFileSync(taskPath, "utf8"), { requireReady });
+  let currentMainSha = null;
+  if (requireReady) {
+    try {
+      currentMainSha = resolveCurrentMain(root);
+    } catch (error) {
+      fail(error instanceof Error ? error.message : "could not verify current origin/main");
+    }
+  }
+
+  const result = validateTask(readFileSync(taskPath, "utf8"), { requireReady, currentMainSha });
   for (const warning of result.warnings) console.warn(`Task warning: ${warning}`);
   if (result.errors.length) {
     console.error("Task check failed:");
