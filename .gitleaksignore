@@ -1,0 +1,4 @@
+# Exact historical false positives reviewed during standards adoption.
+# No path-wide, rule-wide, or credential allowlist.
+# Public IndexNow verification key, intentionally published; not a private credential.
+349b531b615c8ec21b7e0e6eb270895ff20ea5b6:.github/workflows/indexnow.yml:generic-api-key:16
