@@ -38,7 +38,7 @@ jobs:
         run: python .portfolio-standards/scripts/tool.py zizmor -- --offline --no-progress .github/workflows
       - name: Scan Git history with redacted output
         if: matrix.tool == 'gitleaks'
-        run: python .portfolio-standards/scripts/tool.py gitleaks -- git --redact=100 --no-banner --log-opts="--all -- .github .portfolio-standards src scripts package.json package-lock.json" .
+        run: python .portfolio-standards/scripts/tool.py gitleaks -- git --redact=100 --no-banner --log-opts="--all -- .github .portfolio-standards src scripts tests public config .env.example next.config.* middleware.* package.json package-lock.json" .
       - name: Scan the locked dependency inventory
         if: matrix.tool == 'osv'
         run: python .portfolio-standards/scripts/tool.py osv -- scan source --lockfile package-lock.json
