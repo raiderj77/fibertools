@@ -16,3 +16,9 @@ f4ec3d3ae542e00ad1d22c80e1a4ce2c357f9ae5:tests/planning-pack-readiness.test.mjs:
 f4ec3d3ae542e00ad1d22c80e1a4ce2c357f9ae5:tests/planning-pack-delivery.test.mjs:stripe-access-token:55
 # Synthetic Stripe-format unit-test literal; exact historical finding only.
 f4ec3d3ae542e00ad1d22c80e1a4ce2c357f9ae5:tests/planning-pack-delivery.test.mjs:stripe-access-token:509
+# Identical reviewed synthetic fixture on retained historical branch; exact fingerprint only.
+7c70fe7e05ab2ac723bce1f10951b511aa61ae6e:tests/stitchproof-purchase-server.test.mjs:stripe-access-token:16
+# Identical reviewed synthetic fixture on retained historical branch; exact fingerprint only.
+7c70fe7e05ab2ac723bce1f10951b511aa61ae6e:tests/stitchproof-purchase-server.test.mjs:stripe-access-token:58
+# Identical reviewed synthetic fixture on retained historical branch; exact fingerprint only.
+7c70fe7e05ab2ac723bce1f10951b511aa61ae6e:tests/stitchproof-purchase-server.test.mjs:stripe-access-token:76
