@@ -45,7 +45,7 @@ export default async function GuidePage({ params }: { params: Params }) {
     headline: guide.title,
     description: guide.description,
     datePublished: guide.date,
-    dateModified: "2026-04-16",
+    ...(guide.modifiedDate ? { dateModified: guide.modifiedDate } : {}),
     url: `https://fibertools.app/guides/${guide.slug}`,
     mainEntityOfPage: `https://fibertools.app/guides/${guide.slug}`,
     author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
@@ -93,8 +93,7 @@ export default async function GuidePage({ params }: { params: Params }) {
         <span>By <strong className="text-bark-600 dark:text-cream-400">Jason Ramirez</strong></span>
         <span aria-hidden="true">&middot;</span>
         <span>Practical reference connected to a working calculator</span>
-        <span aria-hidden="true">&middot;</span>
-        <span>Last reviewed: April 2026</span>
+        {guide.modifiedDate && <span>Updated: <time dateTime={guide.modifiedDate}>{guide.modifiedDate}</time></span>}
         <span aria-hidden="true">&middot;</span>
         <Link href="/about" className="text-sage-600 dark:text-sage-400 hover:underline">About us</Link>
         {tool && (
@@ -142,6 +141,12 @@ export default async function GuidePage({ params }: { params: Params }) {
           );
         })}
       </article>
+      {guide.sources && <section className="mt-8" aria-label="Sources">
+        <h2 className="text-xl font-semibold mb-3">Sources</h2>
+        <ul className="space-y-2">{guide.sources.map((source) => <li key={source.url}>
+          <a href={source.url} className="underline">{source.title}</a>
+        </li>)}</ul>
+      </section>}
 
       {/* CTA to tool */}
       {tool && (

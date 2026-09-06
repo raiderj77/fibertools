@@ -48,7 +48,7 @@ export default function StitchCounterPage() {
         what="A manual stitch and row tracker with up to six named counters, undo/redo, and exact-count reminders on the first counter."
         who="Knitters and crocheters who need a digital tally counter to track stitches, rows, and pattern repeats while working."
         bottomLine="Each total reflects the taps you record. This browser attempts a local save, but storage can be unavailable or cleared, so keep a separate checkpoint when the count matters."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-09-05"
       />
       <div className="sr-only">
         <h2>Stitch and Row Counter Tool</h2>

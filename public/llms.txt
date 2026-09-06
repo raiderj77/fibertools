@@ -25,14 +25,14 @@ Core calculator arithmetic runs in the browser. Optional network features, inclu
 - [Amigurumi Shapes Guide](https://fibertools.app/amigurumi-shapes): Generate bounded arithmetic schedules for included sphere, cone, cylinder, and oval starting shapes; verify technique and counts before use.
 - [Project Cost Calculator](https://fibertools.app/project-cost-calculator): Total the yarn, notions, and extras entered, with an optional stitch-rate time estimate and selling-price scenario.
 - [Color Pooling Calculator](https://fibertools.app/color-pooling-calculator): Preview how an entered repeating color-run sequence maps across a chosen stitch count; swatching is required.
-- [WPI to Yarn Weight Converter](https://fibertools.app/wpi-calculator): Enter wraps per inch to identify yarn weight, recommended needles, hooks, gauge range, and project ideas.
-- [Cast On Calculator](https://fibertools.app/cast-on-calculator): Calculate a rounded cast-on count from entered width and gauge, with optional pattern-multiple and edge-stitch adjustments.
+- [WPI to Yarn Weight Converter](https://fibertools.app/wpi-calculator): Compare measured wraps per inch with overlapping yarn-weight guidance; verify with the actual yarn and a swatch.
+- [Cast On Calculator](https://fibertools.app/cast-on-calculator): Calculate a rounded cast-on count from entered width and gauge, with an optional whole stitch multiple; pattern offsets and edges are separate.
 - [Hat Size Calculator](https://fibertools.app/hat-calculator): Calculate a rounded cast-on count and bounded eight-section crown schedule from entered head measurement, ease, and gauge.
 - [Sock Circumference Stitch Calculator](https://fibertools.app/sock-calculator): Calculate one bounded circular stitch-count checkpoint from entered circumference, ease, measured gauge, and stitch multiple; no heel, toe, or length is inferred.
 - [Sleeve Shaping Calculator](https://fibertools.app/sleeve-calculator): Plan a bounded paired-decrease sleeve taper; odd stitch gaps and schedules denser than one event per shaping row are declined.
 - [Raglan Body Stitch Checkpoint](https://fibertools.app/raglan-calculator): Calculate one bounded finished-body stitch checkpoint from entered circumference, measured gauge, and stitch multiple; no neckline, yoke, split, or fit is inferred.
 - [Blocking Dimension Change Calculator](https://fibertools.app/blocking-calculator): Calculate the signed percentage change between current and requested width or length; method selection remains care-instruction and swatch led.
-- [Yarn Stash Estimator](https://fibertools.app/stash-estimator): Estimate remaining yardage in partial skeins by weight, plus a yardage reference table for unlabeled yarn.
+- [Yarn Stash Estimator](https://fibertools.app/stash-estimator): Estimate remaining yarn length from measured weight and the same yarn label. Category alone cannot determine yardage.
 
 ### Crochet
 - [C2C Blanket Calculator](https://fibertools.app/c2c-calculator): Round entered dimensions to a bounded nominal C2C grid from a two-axis swatch, with optional measured yarn-per-block planning arithmetic.
@@ -48,7 +48,7 @@ Core calculator arithmetic runs in the browser. Optional network features, inclu
 - [Cross Stitch Calculator](https://fibertools.app/cross-stitch-calculator): Calculate dimensions for an entered stitch count and supported fabric count, with a planning estimate for stranded-cotton use.
 
 ### Embroidery
-- [Thread Converter](https://fibertools.app/thread-converter): Look up exact entries in the included DMC, Anchor, and Cosmo embroidery-thread table.
+- [Thread Converter](https://fibertools.app/thread-converter): Look up 20 archived Anchor-chart pairings for DMC and Anchor codes; compare physical thread and preserve ambiguous results.
 
 ## Guides
 

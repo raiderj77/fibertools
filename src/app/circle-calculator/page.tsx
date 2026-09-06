@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     images: ["/og-image.png"],
   },
   alternates: { canonical: "/circle-calculator" },
-  other: { dateModified: "2026-08-29" },
+  other: { dateModified: "2026-09-05" },
 };
 
 export default function CircleCalculatorPage() {
@@ -49,7 +49,7 @@ export default function CircleCalculatorPage() {
         what="A bounded arithmetic planner for one of four common crochet starting-count presets: 6, 8, 12, or 16 additions per later round."
         who="Crocheters who want a count-preserving starting schedule to compare with a selected pattern and the actual fabric."
         bottomLine="The planner does not accept gauge or target diameter and cannot guarantee flatness, roundness, fit, or finished size."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-09-05"
       />
 
       <CircleCalculatorTool />

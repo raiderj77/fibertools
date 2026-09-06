@@ -4,6 +4,8 @@ export interface Guide {
   description: string;
   toolSlug: string;
   date: string;
+  modifiedDate?: string;
+  sources?: { title: string; url: string }[];
   keywords: string[];
   sections: { heading: string; content: string }[];
 }
@@ -12,67 +14,46 @@ export const guides: Guide[] = [
   {
     slug: "reading-yarn-labels",
     title: "The Complete Guide to Reading Yarn Labels (What Every Number Means)",
-    description: "Learn how to read yarn labels like a pro! This comprehensive guide explains yarn weight symbols, washing care instructions, gauge information, and what every number on your yarn label actually means.",
+    description: "Read the yarn identity, category, mass, length, gauge, and care information on a label, and recognize what it cannot establish about a project.",
     toolSlug: "yarn-calculator",
     date: "2026-02-23",
+    modifiedDate: "2026-09-05",
     keywords: ["how to read yarn labels", "yarn label symbols", "yarn weight chart", "yarn care instructions", "knitting yarn labels", "crochet yarn labels"],
     sections: [
-      { 
-        heading: "Why Yarn Labels Matter More Than You Think", 
-        content: "Yarn labels aren't just decorative packaging, they're essential technical documents that contain critical information about project compatibility, care requirements, material composition, gauge information, and dye lot numbers. Ignoring these details can lead to disastrous results: sweaters that shrink in the wash, blankets that pill after one use, or projects that simply don't turn out as expected." 
+      {
+        heading: "Keep the exact product information",
+        content: "Save the manufacturer, product name, color, dye lot when supplied, fiber composition, and full care instructions. A photograph can preserve the original label. Do not infer fiber composition from an unfamiliar abbreviation or assume that a missing dye-lot number means every ball will match. Ask the maker when an important field is unclear."
       },
-      { 
-        heading: "Section 1: Yarn Weight and Thickness", 
-        content: "The most prominent information on any yarn label is the weight category. According to the Craft Yarn Council's standardized system (used by most manufacturers worldwide), yarn weights range from 0 to 7. Weight 0 is Lace (1.5–2.25mm), Weight 1 is Super Fine/Fingering (2.25–3.25mm), Weight 2 is Fine/Sport (3.25–3.75mm), Weight 3 is Light/DK (3.75–4.5mm), Weight 4 is Medium/Worsted (4.5–5.5mm), Weight 5 is Bulky/Chunky (5.5–8mm), Weight 6 is Super Bulky (8–12.75mm), and Weight 7 is Jumbo (12.75mm+). Most patterns specify a yarn weight category. If your pattern calls for 'worsted weight' yarn, look for the number 4 on the label." 
+      {
+        heading: "Distinguish category, mass, and length",
+        content: "The Craft Yarn Council system runs from Lace (0) through Jumbo (7). The category is thickness guidance, not the mass of a ball or a universal length per gram. Labels may separately state grams or ounces and yards or meters. Needle diameters shown beside a category are tool recommendations, not the diameter of the yarn.\n\nFor unit conversion, one yard equals 0.9144 meters. A label stating 200 yards therefore represents 182.88 meters before label rounding. Two products with the same mass or category can contain different lengths."
       },
-      { 
-        heading: "Section 2: Fiber Content and Material Composition", 
-        content: "The fiber content tells you what your yarn is made of, and this dramatically affects how your finished project will behave. Common fiber abbreviations include WOOL or W (natural sheep's wool), ALP or A (alpaca fiber), COT or C (cotton), ACR or AC (acrylic), NYL or N (nylon), SILK or S (silk), LIN or L (linen), and HEMP or H (hemp). Many yarns are blends (like 75% wool/25% nylon for sock yarns). The percentages matter: a yarn with 80% wool and 20% alpaca will behave differently than one with 20% wool and 80% alpaca." 
+      {
+        heading: "Compare with the pattern gauge",
+        content: "Read both the measurement span and the stitch type used for label gauge. Knitting stockinette and single crochet have different reference ranges. Four inches is 10.16 centimeters, so keep the actual stated span when calculating.\n\nThe pattern gauge is the target for that pattern, and label gauge is a starting reference. Make a representative swatch in the intended stitch pattern, construction, and permitted finishing treatment. Compare stitch and row gauge separately; matching a category or needle number does not establish finished fit."
       },
-      { 
-        heading: "Section 3: Yardage and Weight", 
-        content: "These numbers tell you how much yarn you're actually getting. Yardage/Meterage is the total length of yarn in the skein (e.g., '200 yards/183 meters'). Weight is the physical weight of the skein (e.g., '100 grams/3.5 ounces'). Different fibers have different densities. A 100-gram skein of lightweight cotton might have 400 yards, while a 100-gram skein of bulky wool might only have 100 yards. Always check yardage when substituting yarns in patterns." 
+      {
+        heading: "Read the complete care instruction",
+        content: "Care symbols cover washing, bleaching, drying, ironing, and professional textile care. Their additional marks, numbers, and text matter: do not identify a treatment from the outer shape alone. Check the temperature unit and use the linked CYC chart or the manufacturer's explanation for the exact symbol.\n\nThe word superwash does not replace the care label. Check permitted washing temperature, cycle, and drying method separately. Machine washing permission does not automatically mean tumble drying is permitted. For an item combining yarns, fabric, and other components, check the applicable instructions for the whole combination and test a representative sample."
       },
-      { 
-        heading: "Section 4: Gauge Information", 
-        content: "Gauge (or 'tension' in some countries) is arguably the most important, and most overlooked, information on a yarn label. It tells you the recommended needle/hook size, stitches per 4 inches/10 cm, and rows per 4 inches/10 cm. A typical gauge statement looks like: '18 sts x 24 rows = 4\" (10 cm) on US 8 (5 mm) needles'. Always make a gauge swatch! If your gauge doesn't match the label, your finished project won't match the pattern dimensions." 
+      {
+        heading: "Treat unfamiliar logos as a verification task",
+        content: "An unfamiliar pictogram does not establish resistance to moths or flame, recycled content, or a certification. Verify it with the manufacturer or the named certification scheme. OEKO-TEX STANDARD 100 concerns testing for harmful substances against its criteria; check the certificate or QR code using the scheme's Label Check. Do not turn a logo into an unrestricted safety or organic-content claim."
       },
-      { 
-        heading: "Section 5: Care Symbols and Washing Instructions", 
-        content: "Those tiny icons aren't just decorative, they're international care symbols that tell you exactly how to care for your finished item. Washing symbols include washtub with number (maximum water temperature), washtub with hand (hand wash only), washtub with X (do not wash). Drying symbols include square with circle (tumble dry), square with circle and X (do not tumble dry). Ironing symbols include iron with dots (iron temperature), iron with X (do not iron). Bleaching symbols include triangle (bleaching allowed), triangle with X (do not bleach). Dry cleaning symbols include circle (dry clean), circle with X (do not dry clean). Always follow care instructions!" 
+      {
+        heading: "Use quantity calculations as planning arithmetic",
+        content: "Compare the actual pattern requirement or measured swatch use with the label length. For example, a planning requirement of 500 yards divided by 220 yards per skein is about 2.27, so rounding upward gives three whole skeins before any additional allowance. This does not establish that 500 yards is sufficient for a particular project. Joins, finishing, gauge changes, and waste need their own allowance.\n\nFor a partial skein, estimate length as remaining yarn mass divided by full label mass, multiplied by full label length. Exclude packaging and assume consistent length per gram within that same yarn. WPI or a weight category cannot supply a missing label ratio."
       },
-      { 
-        heading: "Section 6: Dye Lot Numbers", 
-        content: "That seemingly random number and letter combination (like 'LOT 12345A') is your dye lot number. Yarn is dyed in batches, and even with modern technology, slight color variations can occur between batches. Golden rule: Always buy enough yarn from the same dye lot for your entire project. If you need to buy more later, even if it's the same brand and color name, different dye lots might not match perfectly." 
-      },
-      { 
-        heading: "Section 7: Recommended Needle/Hook Sizes", 
-        content: "While gauge information includes recommended sizes, many labels also show this separately with icons: knitting needle icon with size (recommended knitting needle size) and crochet hook icon with size (recommended crochet hook size). These are suggestions, not rules. Your personal tension, the stitch pattern, and the desired fabric drape might require different sizes." 
-      },
-      { 
-        heading: "Common Yarn Label Symbols Decoded", 
-        content: "Beyond the standard care symbols, you might encounter specialized icons: Ball of yarn with knitting needles (suitable for knitting), ball of yarn with crochet hook (suitable for crochet), ball of yarn with both (suitable for both knitting and crochet), moth with X (moth-resistant treatment), flame with X (flame-retardant treatment), recycle symbol (contains recycled materials), OEKO-TEX® Standard 100 (certified free from harmful substances), GOTS (Global Organic Textile Standard) (certified organic fibers)." 
-      },
-      { 
-        heading: "How to Use Yarn Label Information for Project Success", 
-        content: "Now that you can read labels, here's how to apply this knowledge: 1. Pattern Matching: When choosing yarn for a pattern, compare weight category (should match exactly), gauge (should be similar), and fiber content. 2. Yarn Substitution: When substituting yarns, ensure same weight category, similar yardage per weight unit, compatible fiber properties, and similar care requirements. 3. Care Planning: Before starting a project, check care instructions. 4. Quantity Calculation: Use the yardage information to determine exactly how many skeins you need." 
-      },
-      { 
-        heading: "Troubleshooting Common Yarn Label Issues", 
-        content: "If the label doesn't show gauge for your needle size: Create a swatch with your preferred needles and measure. If the care symbols are faded/unreadable: Search online for the yarn brand and colorway, most manufacturers provide label information on their websites. If the yarn weight seems wrong for the category: Some artisanal or novelty yarns don't fit neatly into standard categories. Focus on gauge rather than weight number. If no dye lot number is listed: This usually means the yarn is space-dyed or has no dye variations (common with natural undyed yarns or some synthetics)." 
-      },
-      { 
-        heading: "Expert Tips from Professional Fiber Artists", 
-        content: "1. Save your labels, tape them into a notebook or take photos. You'll thank yourself when you need to make repairs or recreate a project. 2. Make notes, jot down needle size, modifications, and washing results on the label or in Ravelry. 3. Consider future care, if making a gift, choose yarns with easy care instructions (machine washable is always appreciated). 4. Test wash your swatch, this reveals how the yarn will behave after washing and whether it will shrink or bleed color." 
-      },
-      { 
-        heading: "Frequently Asked Questions About Yarn Labels", 
-        content: "Q: What does 'superwash' mean on a yarn label? A: Superwash wool has been treated to prevent felting, making it machine washable. It's ideal for items that will need frequent washing like socks, baby clothes, and everyday wear. Q: Why do some yarns have multiple weight categories listed? A: Some yarns fall between standard categories or have different recommended uses. A yarn might be labeled as '4-5' if it's between worsted and bulky. Always check the gauge rather than relying solely on the weight number. Q: What if my yarn has no label? A: You can often identify yarn by burn testing a small piece (safely!), examining the fiber under magnification, or comparing it to known samples. When in doubt, assume it needs gentle hand washing and flat drying. Q: Are all yarn labels standardized worldwide? A: Most follow the Craft Yarn Council standards, but there are regional variations. European labels might use different symbols or metric measurements exclusively. Japanese labels often include both metric and US measurements. Q: What does 'lot' or 'dye lot' mean? A: This refers to the specific batch in which the yarn was dyed. Always buy enough yarn from the same lot to ensure color consistency throughout your project. Q: Can I ignore the recommended needle/hook size? A: You can use different sizes, but it will affect your gauge and the finished fabric. Larger needles create looser, drapier fabric; smaller needles create tighter, denser fabric. Always swatch!" 
-      },
-      { 
-        heading: "Conclusion: Your Yarn Label is Your Best Friend", 
-        content: "Reading yarn labels might seem daunting at first, but with this guide, you now have the decoder ring for every symbol and number. Remember: your yarn label contains everything you need to know for project success, from choosing the right yarn to caring for your finished masterpiece. The next time you pick up a skein, take a moment to read the label thoroughly. Check the weight, fiber content, care instructions, and gauge. Your future self (and your finished projects) will thank you." 
+      {
+        heading: "When information is missing",
+        content: "Keep unknown fiber content and care requirements unresolved. Ask the seller or maker for the exact product information; do not use an open flame to identify mystery yarn. Appearance, feel, or WPI alone cannot prove fiber composition or a safe care method. If identification affects safety or the intended use, obtain qualified textile identification before committing the yarn to that use."
       }
+    ],
+    sources: [
+      { title: "Craft Yarn Council: Standard Yarn Weight System", url: "https://www.craftyarncouncil.com/standards/yarn-weight-system" },
+      { title: "Craft Yarn Council: Care Symbols", url: "https://www.craftyarncouncil.com/standards/care-symbols" },
+      { title: "Woolmark: Tumble Drying Wool", url: "https://www.woolmark.com/care/tumble-drying-wool/" },
+      { title: "OEKO-TEX: STANDARD 100 and Label Check", url: "https://www.oeko-tex.com/en/our-standards/oeko-tex-standard-100" }
     ]
   },
   {
@@ -81,6 +62,7 @@ export const guides: Guide[] = [
     description: "Learn what knitting gauge measures, how to prepare a representative swatch, and how to review stitch and row differences without treating one count as a full pattern regrade.",
     toolSlug: "gauge-calculator",
     date: "2026-03-06",
+    modifiedDate: "2026-09-05",
     keywords: ["knitting gauge", "gauge swatch", "stitch gauge", "row gauge", "knitting tension", "gauge calculator"],
     sections: [
       {
@@ -105,7 +87,7 @@ export const guides: Guide[] = [
       },
       {
         heading: "How to Resize a Pattern for Your Gauge",
-        content: "Sometimes you love a yarn that simply won't match the pattern gauge at any needle size. In that case, you can resize limited pattern math. Divide the desired finished width by your measured stitches per inch to get an initial stitch count, then reconcile that count with the pattern repeat. Shaping, necklines, sleeves, and construction may require a full pattern regrade rather than a single proportional adjustment.\n\nThe Gauge Calculator compares measured and target gauge and can scale a stated stitch or row count proportionally. The Needle Converter provides size references, and the Inc/Dec Calculator can distribute a supported one-stitch-at-a-time change across a fixed row or round count. None of these tools verifies fit, pattern-repeat compatibility, or a garment's yarn requirement. Use the designer's grading guidance or a comparable proven pattern for those decisions.\n\nThe practical safeguard is a representative, washed swatch and a check of every affected measurement before you commit to the project."
+        content: "Sometimes you love a yarn that simply won't match the pattern gauge at any needle size. In that case, you can resize limited pattern math. Multiply the desired finished width by your measured stitches per inch to get an initial stitch count, then reconcile that count with the pattern repeat. For example, 20 inches at 5 stitches per inch gives 100 stitches before repeat adjustments. Shaping, necklines, sleeves, and construction may require a full pattern regrade rather than a single proportional adjustment.\n\nThe Gauge Calculator compares measured and target gauge and can scale a stated stitch or row count proportionally. The Needle Converter provides size references, and the Inc/Dec Calculator can distribute a supported one-stitch-at-a-time change across a fixed row or round count. None of these tools verifies fit, pattern-repeat compatibility, or a garment's yarn requirement. Use the designer's grading guidance or a comparable proven pattern for those decisions.\n\nThe practical safeguard is a representative, washed swatch and a check of every affected measurement before you commit to the project."
       }
     ]
   },
@@ -115,6 +97,7 @@ export const guides: Guide[] = [
     description: "Plan blanket yarn from representative measurements and understand how size, yarn, stitch pattern, and allowance affect an estimate; no calculator can guarantee a purchase quantity.",
     toolSlug: "blanket-calculator",
     date: "2026-03-06",
+    modifiedDate: "2026-09-05",
     keywords: ["blanket yarn yardage", "how much yarn for a blanket", "blanket size chart", "yarn for baby blanket", "throw blanket yarn", "blanket calculator"],
     sections: [
       {
@@ -127,15 +110,15 @@ export const guides: Guide[] = [
       },
       {
         heading: "Stitch Pattern Affects Yarn Usage",
-        content: "A blanket worked entirely in garter stitch uses roughly 10–15% less yarn than stockinette at the same gauge, because garter fabric is thicker and squishier, it compresses vertically, meaning fewer rows per inch. Seed stitch and moss stitch fall somewhere in between. Cables, on the other hand, are yarn-hungry: a heavily cabled blanket can use 25–30% more yarn than a plain stockinette one because each cable crossing pulls extra yarn to the front of the fabric.\n\nCrochet stitches generally use more yarn than knit stitches for the same area. Single crochet produces a dense fabric and eats yarn; double crochet is more efficient. Granny squares are moderately efficient but generate waste yarn from frequent color changes and weaving in ends.\n\nIf you're designing your own blanket, swatch your chosen stitch pattern and weigh the swatch. Divide the swatch weight by its area to get grams per square inch, then multiply by your blanket's total square inches. This gives you the total grams needed, which you can convert to skeins."
+        content: "Yarn use depends on the actual yarn, stitch pattern, gauge, construction, and finishing. A stitch name alone does not establish a fixed percentage increase or decrease in yarn consumption. Compare representative swatches rather than applying a universal garter, stockinette, cable, or crochet ratio.\n\nFor a flat rectangular blanket, weigh the yarn used by a representative swatch made in the intended stitch pattern and treated according to the care instructions. Divide that weight by the measured swatch area to get grams per square inch, then multiply by the planned blanket area in square inches. This gives a measured-input base estimate. Account separately for borders, joins, tails, sampling, and other project-specific allowance before converting to whole skeins from the same yarn label."
       },
       {
-        heading: "Why You Should Always Buy Extra",
-        content: "The standard advice is to buy 10–15% more yarn than your calculated total. This buffer accounts for gauge variations across the project (your tension may shift over weeks of knitting), yarn lost to weaving in ends, and the occasional mistake that requires ripping back and re-knitting a section.\n\nDye lots matter here. If you need 12 skeins, buy 14 from the same dye lot. Running out mid-project and finding that your local shop only has a different dye lot is a common and frustrating problem. Even skeins labeled the same color name can show a visible stripe where the dye lot changes.\n\nMost yarn shops accept returns of unused skeins with intact labels. Ask about the return policy before buying, this makes it painless to purchase a few extra skeins as insurance. Leftover yarn is never wasted; it goes into the stash for future projects, swatches, or repairs."
+        heading: "Choose an Explicit Yarn Allowance",
+        content: "Choose an allowance for the actual project and record what it covers: representative sampling, joins, tails, borders, gauge variation, or other expected waste. Check whether the pattern or calculator already includes an allowance so that it is not counted twice. There is no percentage that guarantees enough yarn for every blanket.\n\nIf color continuity matters, compare the available yarn and dye-lot information before buying. Check the actual seller's return policy, deadlines, and condition requirements rather than assuming unused skeins can be returned."
       },
       {
         heading: "How to Calculate Yardage from a Pattern",
-        content: "Published patterns list required yardage, but those numbers assume you match the designer's gauge exactly and make no modifications. If you're substituting yarn, compare the pattern's listed yardage against the yardage per skein of your substitute. Divide total yardage needed by yardage per skein, round up, and add your 10–15% buffer.\n\nFor patterns that list yarn by weight (grams) rather than yardage, you need to convert. Check the yards-per-gram ratio of both the original yarn and your substitute. If the original yarn yields 4 yards per gram and yours yields 3.5 yards per gram, you'll need proportionally more skeins of the substitute.\n\nWhen no pattern is involved, you're freestyling a blanket, you need to swatch, measure, and calculate from scratch. Knit a swatch of at least 6 × 6 inches, weigh it, calculate area, then scale up to your blanket dimensions."
+        content: "Start with the pattern requirement for the selected size and the yarn used in that pattern. Review its gauge, construction, modifications, and any included allowance. Divide the planned length, including only the additional allowance you intend, by the actual substitute label length and round upward to whole skeins. A matching category alone does not prove that the substitute will use the same length.\n\nWhen a pattern specifies grams, use the original yarn label to estimate its length first. Convert that planned length to skeins using the substitute label, then verify the candidate yarn with a representative swatch. The length-per-gram ratio alone does not determine skein count without the substitute skein size.\n\nWithout a pattern requirement, make a representative swatch in the intended construction and permitted finishing treatment. Measure its finished area and yarn use, then scale that measurement to the planned flat rectangle. Budget borders and other distinct sections separately."
       },
       {
         heading: "Using a Calculator vs Estimating",
@@ -146,34 +129,52 @@ export const guides: Guide[] = [
   {
     slug: "needle-sizes-guide",
     title: "Knitting Needle Sizes: US, UK, and Metric Explained",
-    description: "Understand the three knitting needle sizing systems, US, UK, and metric, their history, how to convert between them, and how to identify unlabeled needles.",
+    description: "Compare metric diameter with US, UK, and Japanese needle labels, and verify the exact product before matching gauge.",
     toolSlug: "needle-converter",
     date: "2026-03-06",
-    keywords: ["knitting needle sizes", "needle size chart", "US UK metric needles", "needle conversion", "knitting needle guide", "crochet hook sizes"],
+    keywords: [
+      "knitting needle sizes",
+      "needle size chart",
+      "US UK metric needles",
+      "needle conversion",
+      "knitting needle guide",
+      "crochet hook sizes"
+    ],
     sections: [
       {
-        heading: "Why There Are Three Sizing Systems",
-        content: "Knitting needles are manufactured and sold worldwide, but three distinct sizing conventions survived into modern use: US numbers, old UK/Canadian numbers, and metric millimeters. Each system emerged from a different manufacturing tradition, and none of them agreed to unify, so pattern books, needle packaging, and online tutorials still mix all three.\n\nThe confusion compounds when you realize that US and UK systems both use plain numbers, but the numbers mean completely different sizes. A US size 8 needle is 5.0 mm. A UK size 8 needle is 4.0 mm, a full millimeter smaller. Grabbing the wrong one changes your gauge dramatically. This is why metric has become the de facto universal system: millimeters are unambiguous.\n\nModern patterns increasingly list metric sizes as the primary reference, with US or UK equivalents in parentheses. If you encounter an older pattern that only gives one system, a conversion chart, or a converter tool, is essential."
+        heading: "Compare diameter, not the number alone",
+        content: "Needle numbering systems are not interchangeable or linear. Metric labels describe diameter in millimeters. A number such as 8 can identify different diameters in US and Japanese systems."
       },
       {
-        heading: "The US Number System",
-        content: "The US system assigns ascending numbers to ascending needle diameters. US 0 is 2.0 mm, US 1 is 2.25 mm, and the numbers climb from there: US 4 is 3.5 mm, US 7 is 4.5 mm, US 10 is 6.0 mm, and US 15 is 10.0 mm. Above US 15, sizes switch to direct millimeter labeling (US 17 is 12.75 mm, US 19 is 15.0 mm, and so on).\n\nThe progression isn't perfectly linear, the gaps between millimeter equivalents vary. Between US 5 (3.75 mm) and US 6 (4.0 mm) there's only a 0.25 mm difference, while between US 10 (6.0 mm) and US 10.5 (6.5 mm) the jump is 0.5 mm. This unevenness is a historical artifact; the US system was standardized around commonly manufactured wire gauges, not around even metric intervals.\n\nMost American knitting patterns published after 2000 list both the US number and the metric equivalent. If a pattern only says \"size 8 needles,\" assume US 8 (5.0 mm) unless the pattern is explicitly British."
+        heading: "A concrete example",
+        content: "The included reference lists US 8 knitting needles as 5.0 mm. Clover Japanese size 8 is 4.5 mm, size 0 is 2.1 mm, and size 15 is 6.6 mm. Japanese patterns can use numbered sizes; they do not exclusively use metric labels."
       },
       {
-        heading: "The Old UK Sizing System",
-        content: "The UK system (also used historically in Canada and Australia) runs in reverse: higher numbers mean smaller needles. UK 14 is 2.0 mm, UK 12 is 2.75 mm, UK 8 is 4.0 mm, UK 4 is 6.0 mm, and UK 000 is 10.0 mm. The system originated from the Standard Wire Gauge used in British manufacturing, where higher gauge numbers indicated thinner wire.\n\nThis reverse ordering is the source of most conversion errors. A knitter accustomed to US sizing sees \"size 10\" in a vintage British pattern and reaches for a 6.0 mm needle (US 10), when the pattern actually calls for a 3.25 mm needle (UK 10). The difference is enormous, nearly double the diameter.\n\nThe UK system is largely obsolete in new publications. British patterns printed after the mid-1990s typically use metric sizing. But vintage pattern books, charity shop finds, and heirloom patterns passed down through families still use the old numbers. If you collect vintage patterns, keep a conversion reference handy."
+        heading: "Check manufacturer conventions",
+        content: "Some legacy UK and hook-size conventions differ or have uncertain equivalents. FiberTools leaves unsupported cells empty rather than guessing. Check the actual manufacturer label and diameter instead of treating every row as a universal standard."
       },
       {
-        heading: "Metric as the Universal Standard",
-        content: "Metric sizing expresses the needle diameter directly in millimeters. A 4.0 mm needle is exactly 4.0 mm across, no interpretation needed. This eliminates the ambiguity of numbered systems entirely. Metric sizes run in 0.25 mm increments through the common range (2.0 mm to about 6.0 mm), then in 0.5 mm or larger increments above that.\n\nJapanese knitting patterns use metric exclusively, as do most European patterns. Metric is also the standard used by interchangeable needle set manufacturers like Chiaogoo, Lykke, and KnitPro. If you invest in an interchangeable set, learning to think in millimeters will save you constant conversion lookups.\n\nWhen buying needles online from international sellers, always confirm the metric size. A listing that says \"size 6\" could mean US 6 (4.0 mm), UK 6 (5.0 mm), or Japanese 6 (3.9 mm, close to but not identical to US 6). Millimeters are the only measurement that means the same thing everywhere."
+        heading: "Use the converter",
+        content: "Choose knitting needles or crochet hooks and search a supplied label or a metric value such as 5mm. Read the complete matching row and its source limitations. A search match is a table entry, not a recommendation for the project."
       },
       {
-        heading: "How to Find Your Needle Size Without a Label",
-        content: "Unlabeled needles are common, vintage sets, hand-me-downs, or needles whose size markings have worn off. The simplest tool is a needle gauge: a flat card or ruler with graduated holes. Slide the needle into holes until you find the one it fits snugly. The hole's label gives you the metric size.\n\nIf you don't have a needle gauge, a digital caliper from a hardware store measures the shaft diameter to the hundredth of a millimeter. This is the most precise method and works for any needle, including unusual sizes between standard increments.\n\nIn a pinch, you can compare the mystery needle against a labeled one from your collection. Hold them side by side and roll them together between your fingers, even small differences in diameter are detectable by touch. Once you identify the metric size, a converter tool translates it to US or UK numbers for pattern reference."
+        heading: "Make a representative swatch",
+        content: "Begin with the pattern and exact yarn guidance, then measure a swatch in the intended stitch pattern, construction, and finishing. The same nominal diameter can produce different fabric with different tools, yarn, or tension. Matching the label alone does not guarantee gauge or fit."
+      }
+    ],
+    modifiedDate: "2026-09-05",
+    sources: [
+      {
+        title: "Clover: Japanese knitting-needle specifications (2026)",
+        url: "https://www.clover.co.jp/recipe/takumikikakus.pdf"
       },
       {
-        heading: "Crochet Hook Sizing Differences",
-        content: "Crochet hooks follow a similar multi-system pattern but with their own quirks. US crochet hooks use a letter-number combination: B/1 (2.25 mm), G/6 (4.0 mm), J/10 (6.0 mm), and so on. The letter system is unique to crochet, there's no knitting needle equivalent. UK crochet hooks historically used the same reverse-number system as knitting needles, adding another layer of confusion.\n\nSteel crochet hooks for thread crochet have their own separate numbering where higher numbers mean smaller hooks (US steel 7 is 1.65 mm, steel 1 is 2.75 mm). These numbers don't correspond to regular hook sizes at all. Steel hooks are used almost exclusively for lace and doily work with fine cotton thread.\n\nThe Needle Converter on fibertools.app handles both knitting needles and crochet hooks across all sizing systems. The Needle Guide provides visual references, the Gauge Calculator helps verify that your hook or needle choice produces the right fabric density, and the Yarn Weights chart shows recommended hook and needle ranges for each yarn weight category."
+        title: "Craft Yarn Council: Hooks and Needles",
+        url: "https://www.craftyarncouncil.com/standards/hooks-and-needles"
+      },
+      {
+        title: "Craft Yarn Council: Standard Yarn Weight System",
+        url: "https://www.craftyarncouncil.com/standards/yarn-weight-system"
       }
     ]
   },
@@ -214,34 +215,52 @@ export const guides: Guide[] = [
   {
     slug: "wpi-guide",
     title: "What is WPI (Wraps Per Inch) and How to Measure It",
-    description: "Learn what Wraps Per Inch measures, how to wrap yarn correctly, WPI ranges for every yarn weight, and how to use WPI for yarn substitution and handspun identification.",
+    description: "Measure wraps per inch, interpret overlapping CYC guidance, and verify the actual yarn with a swatch.",
     toolSlug: "yarn-weight-chart",
     date: "2026-03-06",
-    keywords: ["wraps per inch", "WPI yarn", "yarn weight measurement", "how to measure WPI", "yarn substitution", "handspun yarn weight"],
+    keywords: [
+      "wraps per inch",
+      "WPI yarn",
+      "yarn weight measurement",
+      "how to measure WPI",
+      "yarn substitution",
+      "handspun yarn weight"
+    ],
     sections: [
       {
-        heading: "What WPI Measures",
-        content: "Wraps Per Inch (WPI) is a way to determine yarn thickness by counting how many times a strand of yarn wraps around a ruler, dowel, or WPI tool within one inch. It gives you a direct, physical measurement of a yarn's diameter, no label required. This makes it invaluable for mystery yarns from your stash, handspun skeins, and any situation where the ball band is missing or unreliable.\n\nWPI correlates directly with yarn weight categories. Thinner yarns produce more wraps per inch; thicker yarns produce fewer. Lace-weight yarn wraps about 30–40 times per inch. Worsted wraps about 9–12 times. Super bulky wraps only 5–6 times. These ranges overlap at the boundaries, yarn weight categories are bands, not hard lines.\n\nThe measurement is simple enough that it requires no specialized equipment, yet accurate enough to guide yarn substitution decisions. Combined with a knitted or crocheted gauge swatch, WPI gives you a reliable picture of how an unknown yarn will behave in a finished project."
+        heading: "What WPI measures",
+        content: "Wraps per inch measures how many adjacent wraps of a yarn occupy one inch. It is an approximate thickness reference, not a measure of fiber content, length per gram, or finished project size."
       },
       {
-        heading: "How to Wrap Yarn Correctly",
-        content: "Wrap the yarn around a smooth, cylindrical object, a pencil, a thin dowel, or a dedicated WPI tool with a notch. Wrap in a single layer, with each wrap sitting snugly beside the previous one. The wraps should touch but not overlap, and the yarn should lie naturally without being stretched or compressed.\n\nConsistency is critical. If you pull the yarn taut, the wraps will pack tighter and give a falsely high WPI. If you leave slack, the wraps will be loose and the count will be too low. Use the same light tension you'd apply when winding a ball by hand. Wrap at least one full inch, two inches is better, then divide the total count by two for a more reliable average.\n\nTextured yarns, boucle, chenille, thick-and-thin, are harder to measure accurately because the surface isn't smooth. For these, wrap gently and accept that the WPI will be approximate. Focus on the thickest sections of a thick-and-thin yarn, since those sections dominate the fabric's gauge."
+        heading: "How to measure",
+        content: "Wrap the yarn around an object with a consistent circumference, such as a pencil. Lay the wraps beside each other without overlap or large gaps, and do not stretch the yarn. Count the wraps within an inch at several places. Repeat the measurement when wrapping tension is uncertain."
       },
       {
-        heading: "WPI Ranges for Each Yarn Weight",
-        content: "The Craft Yarn Council's weight categories map roughly to these WPI ranges. Lace (weight 0) measures 30–40+ WPI. Fingering or sock (weight 1) falls at 19–22 WPI. Sport (weight 2) is 15–18 WPI. DK or light worsted (weight 3) is 12–14 WPI. Worsted (weight 4) is 9–11 WPI. Bulky (weight 5) is 7–8 WPI. Super bulky (weight 6) is 5–6 WPI. Jumbo (weight 7) is 4 or fewer WPI.\n\nThese ranges are guidelines, not rigid boundaries. A firmly spun sport-weight yarn might register at 18 WPI, while a loosely spun one of the same weight category might only reach 15 WPI. Fiber content also affects WPI, a cotton yarn and a wool yarn of the same weight category may wrap differently because cotton is denser and less elastic.\n\nWhen your WPI lands between two categories, knit or crochet a gauge swatch at the recommended needle or hook size for both adjacent categories and see which fabric you prefer. The WPI gets you in the right neighborhood; the swatch confirms the address."
+        heading: "Read overlapping ranges",
+        content: "The cited CYC guide gives Lace 30–40+, Super Fine 14–30, Fine 12–18, Light 11–15, Medium 9–12, Bulky 6–9, Super Bulky 5–6, and Jumbo 1–4 WPI. These are subjective guidance ranges, not mutually exclusive bins. A fractional value in a gap should remain unresolved rather than being forced into a category."
       },
       {
-        heading: "How WPI Helps with Yarn Substitution",
-        content: "Substituting yarn is one of the most common tasks in knitting and crochet, and WPI provides an objective comparison point. If your pattern calls for a specific yarn that's discontinued or unavailable, measure its WPI (if you have a remnant) or look it up in a yarn database. Then measure the WPI of your candidate substitute. If the two numbers are within 1–2 wraps of each other, the yarns are close enough in thickness to be viable substitutes.\n\nWPI alone doesn't guarantee a successful substitution, fiber content, drape, elasticity, and stitch definition all matter too. A cotton yarn and a wool yarn with identical WPI will produce very different fabrics. But WPI eliminates the most common substitution error: choosing a yarn that's simply the wrong thickness.\n\nFor best results, match WPI, then swatch the substitute yarn at the pattern's recommended gauge. If your gauge matches, proceed with confidence. If it's close but not exact, adjust your needle or hook size. The combination of WPI matching and gauge swatching gives you the highest probability of a successful substitution."
+        heading: "Worked comparison: 12 WPI",
+        content: "A reading of 12 WPI falls in Fine, Light, and Medium ranges. The result therefore suggests several candidates. It does not prove that a yarn is DK or worsted. Compare the actual label, pattern gauge, and representative swatch."
       },
       {
-        heading: "Using WPI for Handspun Yarn",
-        content: "Handspinners rely on WPI more than any other group of fiber artists. When you spin yarn by hand, there's no manufacturer's label to tell you the weight category. WPI is the primary tool for classifying what you've made and deciding how to use it.\n\nMeasure WPI at several points along the skein, because handspun yarn typically varies in thickness. Take readings at five or six different spots and average them. If the variation is large, say, some sections measure 10 WPI and others measure 14 WPI, the yarn is a thick-and-thin style. Use the average WPI for project planning, but expect gauge to be less consistent than with commercial yarn.\n\nWPI also helps spinners adjust their technique. If you're aiming for a DK-weight yarn (12–14 WPI) and your sample measures 16 WPI, you know to draft thicker or add less twist on the next bobbin. Measuring frequently during spinning keeps you on target and reduces wasted fiber."
+        heading: "Use the right gauge comparison",
+        content: "CYC distinguishes stockinette knitting gauge from single-crochet gauge. Do not compare a crochet swatch to knitting stitch ranges. Follow the pattern stitch and row gauge and check the resulting fabric."
       },
       {
-        heading: "WPI vs Weight Categories: Which to Trust",
-        content: "Yarn weight labels and WPI are both category references rather than complete performance specifications. Wrap tension, yarn construction, loft, and irregularity can change a WPI reading, so take several gentle measurements and confirm the resulting fabric with a gauge swatch.\n\nWhen a label and WPI category differ, keep both observations rather than treating either as exact. The selected pattern's gauge and a representative swatch are the practical checks for the intended fabric.\n\nThe Yarn Weights tool lists reference WPI ranges. The Spinning Wheel Drive Ratio Calculator documents one measured pulley pair; it does not plan fiber quantity or assign yarn weight. The Weaving Sett Calculator provides a separate starting estimate for weaving, and the Yarn Calculator provides only the planning estimate described by its displayed inputs."
+        heading: "What to do next",
+        content: "Use the WPI calculator to compare ranges, then swatch the actual yarn. If you need remaining yardage, use its label or measured length-to-weight ratio; WPI alone cannot supply that ratio."
+      }
+    ],
+    modifiedDate: "2026-09-05",
+    sources: [
+      {
+        title: "Craft Yarn Council: How to Measure Wraps Per Inch",
+        url: "https://www.craftyarncouncil.com/standards/how-measure-wraps-inch-wpi"
+      },
+      {
+        title: "Craft Yarn Council: Standard Yarn Weight System",
+        url: "https://www.craftyarncouncil.com/standards/yarn-weight-system"
       }
     ]
   },
@@ -251,6 +270,7 @@ export const guides: Guide[] = [
     description: "Learn how to price handmade knit and crochet items fairly. Covers materials cost, valuing your time, pricing for different markets, and common mistakes that lose money.",
     toolSlug: "project-cost-calculator",
     date: "2026-03-06",
+    modifiedDate: "2026-09-05",
     keywords: ["pricing handmade crochet", "how to price knitting", "handmade pricing formula", "crochet business pricing", "knitting commission price", "craft pricing guide"],
     sections: [
       {
@@ -275,7 +295,7 @@ export const guides: Guide[] = [
       },
       {
         heading: "Tools That Help You Calculate Before You Start",
-        content: "Running the numbers before you buy yarn or cast on makes assumptions visible. The Project Cost Calculator combines the material, time, overhead, and pricing inputs you provide; its output is a scenario, not a guarantee that an item will sell or be profitable.\n\nFor flat rectangular knitting or crochet, the Yarn Calculator can scale measured swatch use and convert the estimate to whole skeins from a label. Other constructions need a pattern-specific or measured method. The Blanket Calculator is a rough model with displayed assumptions, while the Gauge Calculator compares measured and target gauge; neither verifies a finished project's fit, quantity, or market value.\n\nRecord the source of every input, add only the contingency you intend, and revisit the estimate when the design or material changes."
+        content: "Running the numbers before you buy yarn or cast on makes assumptions visible. The Project Cost Calculator totals the yarn, notions, and extras you enter and can model time from an entered stitch count and rate. An optional selling price shows the amount left after entered materials; the tool does not calculate overhead, taxes, selling fees, or a labor charge. Its output is a scenario, not a guarantee that an item will sell or be profitable.\n\nFor flat rectangular knitting or crochet, the Yarn Calculator can scale measured swatch use and convert the estimate to whole skeins from a label. Other constructions need a pattern-specific or measured method. The Blanket Calculator is a rough model with displayed assumptions, while the Gauge Calculator compares measured and target gauge; neither verifies a finished project's fit, quantity, or market value.\n\nRecord the source of every input, add only the contingency you intend, and revisit the estimate when the design or material changes."
       }
     ]
   },
@@ -439,6 +459,7 @@ export const guides: Guide[] = [
     description: "Learn how to calculate sleeve tapers, space decreases evenly, and understand sleeve cap shaping for set-in sleeves. Includes standard sleeve lengths by size.",
     toolSlug: "sleeve-calculator",
     date: "2026-03-11",
+    modifiedDate: "2026-09-05",
     keywords: ["sleeve shaping knitting", "sleeve taper calculator", "knitting sleeve decreases", "sleeve cap shaping", "set-in sleeve knitting", "sleeve length chart"],
     sections: [
       {
@@ -447,7 +468,7 @@ export const guides: Guide[] = [
       },
       {
         heading: "How to Calculate a Sleeve Taper",
-        content: "The decrease-every-N-rows formula is the core calculation for sleeve shaping. Here is the process:\n\n1. Find your stitch difference: subtract cuff stitches from upper arm stitches. Example: 60 upper arm stitches minus 40 cuff stitches = 20 stitches to decrease.\n2. Divide by 2: decreases happen on both sides of the sleeve, so you need 10 decrease rounds (each round removes 2 stitches, one on each side).\n3. Find your row count: multiply the sleeve length in inches by your row gauge. Example: 17 inches × 7 rows per inch = 119 rows.\n4. Divide rows by decrease rounds: 119 ÷ 10 = approximately every 12 rows.\n\nSo you would decrease 1 stitch on each side every 12th row, 10 times, over the 17-inch sleeve length. If the division does not come out even, alternate between two intervals. For example, if you need 10 decrease rounds over 115 rows: 115 ÷ 10 = 11.5. Alternate decreasing every 11th and 12th row.\n\nThe Sleeve Calculator on fibertools.app handles this math automatically, including the alternating intervals for uneven divisions."
+        content: "The Sleeve Calculator models paired decreases from rounded upper-arm and cuff stitch counts. A difference of 60 minus 40 stitches requires 10 events removing two stitches each. Odd differences and schedules requiring more than one event per shaping row are declined.\n\nIts shaping span subtracts the entered cuff length and two fixed one-inch exclusions from the entered sleeve length, then multiplies by row gauge and rounds to whole rows. For an 18-inch sleeve, 2-inch cuff, and 6 rows per inch, the modeled span is 84 rows. Ten events can occupy six 8-row intervals and four 9-row intervals: 6 × 8 + 4 × 9 = 84.\n\nThe calculator reports how many intervals have each length; it does not prescribe their order. Use the selected pattern to determine placement, first event, row counting, construction, and whether the fixed exclusions are appropriate. The result is not a sleeve-cap or fit plan."
       },
       {
         heading: "Standard Sleeve Lengths by Size",
@@ -455,11 +476,11 @@ export const guides: Guide[] = [
       },
       {
         heading: "Sleeve Cap Shaping for Set-In Sleeves",
-        content: "Sleeve cap shaping is required only for set-in sleeves, where the sleeve fits into a curved armhole cut into the body of the garment. Raglan, yoke, and drop-shoulder constructions skip cap shaping entirely.\n\nA basic sleeve cap starts by binding off the same number of stitches as the body's underarm bind-off (usually 3-5 stitches on each side). Then you decrease on both sides every other row, starting with larger decreases (2 stitches at a time) and tapering to single decreases. The cap height should equal the armhole depth minus about 1 inch. The remaining stitches at the top of the cap are bound off flat.\n\nThe cap must match the armhole curve exactly in circumference. If the cap is too small, the seam pulls and restricts movement. If it is too large, the fabric bunches at the shoulder. This matching is why sleeve caps are considered advanced, getting the curve right requires either following a well-graded pattern exactly or doing careful measurements.\n\nFor beginners, raglan or top-down set-in constructions avoid cap-shaping math entirely. The Sleeve Calculator provides cap shaping instructions for those who want a tailored set-in sleeve."
+        content: "Sleeve cap shaping is required only for set-in sleeves, where the sleeve fits into a curved armhole cut into the body of the garment. Raglan, yoke, and drop-shoulder constructions skip cap shaping entirely.\n\nA basic sleeve cap starts by binding off the same number of stitches as the body's underarm bind-off (usually 3-5 stitches on each side). Then you decrease on both sides every other row, starting with larger decreases (2 stitches at a time) and tapering to single decreases. The cap height should equal the armhole depth minus about 1 inch. The remaining stitches at the top of the cap are bound off flat.\n\nThe cap must match the armhole curve exactly in circumference. If the cap is too small, the seam pulls and restricts movement. If it is too large, the fabric bunches at the shoulder. This matching is why sleeve caps are considered advanced, getting the curve right requires either following a well-graded pattern exactly or doing careful measurements.\n\nFor beginners, raglan or top-down set-in constructions avoid cap-shaping math entirely. The Sleeve Calculator provides only a paired-decrease interval model; it does not provide sleeve-cap shaping instructions. Follow a tested pattern for the cap and armhole."
       },
       {
         heading: "Frequently Asked Questions",
-        content: "How do I calculate even decreases for a sleeve?\nSubtract your target cuff stitches from your upper arm stitches, divide by 2 (decreases happen on both sides), then divide the total sleeve rows by that number to get your decrease interval. The Sleeve Calculator automates this and handles uneven remainders.\n\nHow long should a full-length sleeve be?\nA full-length adult sleeve is typically 16.5-18.5 inches from underarm to cuff, depending on the size. Measure your own arm from underarm to wrist bone for a custom fit, arm lengths vary more than most people expect.\n\nWhat is the difference between a set-in sleeve and a drop shoulder?\nA set-in sleeve has a shaped cap that fits into a curved armhole for a tailored look. A drop shoulder has no cap shaping, the sleeve attaches straight across the body at a point below the natural shoulder, creating a relaxed, boxy silhouette.\n\nShould I work sleeves flat or in the round?\nIn the round is more common for modern patterns and avoids seaming. Flat sleeves are seamed and produce a slightly more structured sleeve. Either method works, the stitch counts and decreases are the same regardless."
+        content: "How do I calculate even decreases for a sleeve?\nFor the supported paired-decrease model, divide the even rounded stitch difference by two to obtain the event count. Use the modeled shaping rows after the cuff and fixed exclusions, not total sleeve rows. The calculator reports interval counts for uneven remainders without prescribing their order.\n\nHow long should a full-length sleeve be?\nA full-length adult sleeve is typically 16.5-18.5 inches from underarm to cuff, depending on the size. Measure your own arm from underarm to wrist bone for a custom fit, arm lengths vary more than most people expect.\n\nWhat is the difference between a set-in sleeve and a drop shoulder?\nA set-in sleeve has a shaped cap that fits into a curved armhole for a tailored look. A drop shoulder has no cap shaping, the sleeve attaches straight across the body at a point below the natural shoulder, creating a relaxed, boxy silhouette.\n\nShould I work sleeves flat or in the round?\nIn the round is more common for modern patterns and avoids seaming. Flat sleeves are seamed and produce a slightly more structured sleeve. Either method works, the stitch counts and decreases are the same regardless."
       }
     ]
   },
@@ -526,30 +547,53 @@ export const guides: Guide[] = [
   {
     slug: "yarn-stash-management-guide",
     title: "Yarn Stash Management: Estimating & Organizing",
-    description: "Learn how to estimate remaining yardage in partial skeins, organize your yarn stash, plan scrap yarn projects, and manage dye lots.",
+    description: "Estimate a partial skein from its own label and measured weight, and keep practical records for future projects.",
     toolSlug: "stash-estimator",
     date: "2026-03-11",
-    keywords: ["yarn stash organization", "estimate yarn yardage", "partial skein yardage", "yarn storage tips", "leftover yarn projects", "dye lot yarn", "stash busting"],
+    keywords: [
+      "yarn stash organization",
+      "estimate yarn yardage",
+      "partial skein yardage",
+      "yarn storage tips",
+      "leftover yarn projects",
+      "dye lot yarn",
+      "stash busting"
+    ],
     sections: [
       {
-        heading: "Why Stash Estimation Matters",
-        content: "Running out of yarn mid-project is one of the most frustrating experiences in knitting and crochet. Estimating how much yarn you have, before starting a new project, prevents this problem. Accurate stash estimation also helps you plan purchases: if you already have 200 yards of worsted weight, you know exactly how much more to buy.\n\nDye lot matching is another reason to estimate early. Yarn from different dye lots can show a visible color difference when worked side by side, even if the color name is identical. If you realize mid-project that you need more yarn and your local shop only has a different dye lot, you may end up with a visible stripe where the dye lots change. Estimating total yardage needed before starting lets you buy everything from the same dye lot.\n\nStash estimation is especially important for gifting yarn or planning charitable donations. Knowing the exact yardage of each partial skein lets you combine leftovers into project-ready bundles rather than guessing whether there is enough for a hat or scarf."
+        heading: "Start with the exact yarn",
+        content: "Retain the yarn name, product line, color, dye lot when supplied, fiber content, care instructions, and label weight and length. A photograph of the original label is more useful than a guessed category-to-yardage conversion."
       },
       {
-        heading: "How to Estimate Yardage from a Partial Skein",
-        content: "The weight method is the most accurate way to estimate remaining yardage. You need two numbers from the original yarn label: total weight (in grams) and total yardage. Then weigh the remaining yarn on a kitchen scale.\n\nThe formula: (remaining weight ÷ original weight) × original yardage = estimated remaining yardage.\n\nExample: A skein was originally 100g / 220 yards. The remaining ball weighs 38g. Calculation: (38 ÷ 100) × 220 = 83.6 yards remaining.\n\nIf you have lost the yarn label, you can estimate the original yarn specs by measuring the wraps per inch (WPI). Wrap the yarn snugly around a ruler for one inch, count the wraps, and match to standard WPI ranges:\n\nSmall project minimum yardage reference:\nDishcloth/washcloth: 75-100 yards, any weight\nBaby hat: 50-80 yards, worsted weight\nAdult hat: 100-200 yards, worsted weight\nScarf: 200-400 yards, worsted weight\nPair of mittens: 150-250 yards, worsted weight\nAmigurumi (small): 25-50 yards per color, worsted weight\n\nThe Stash Estimator on fibertools.app automates this calculation, enter the original skein specs and current weight, and it gives you remaining yardage instantly."
+        heading: "Weigh the remaining yarn",
+        content: "Use a scale with suitable resolution and weigh the yarn alone. Exclude cones, labels, needles, buttons, and packaging. Measure in a comparable dry condition and note that scale and label tolerances affect the result."
       },
       {
-        heading: "Organizing Your Stash",
-        content: "A well-organized stash makes project planning faster and prevents forgotten yarn from going to waste. There are three common organization systems, and the best one depends on your stash size and crafting style.\n\nOrganize by yarn weight if you frequently design your own projects or substitute yarn. Group all fingering weight together, all worsted together, and so on. This makes it easy to grab the right weight when starting a new project and quickly compare your options.\n\nOrganize by fiber content if you work with a variety of fibers and care about washing requirements. Keeping all superwash wool together, all cotton together, and all acrylic together ensures you can quickly find machine-washable yarn for a baby gift or hand-wash-only yarn for a luxury shawl.\n\nOrganize by color if you do a lot of colorwork, stripes, or scrappy projects. A color-sorted stash lets you pull coordinating colors at a glance.\n\nRegardless of system, storage matters. Keep yarn in sealed plastic bins or zip-lock bags to prevent moth damage, dust, and pet hair. Cedar blocks or lavender sachets repel moths naturally without chemicals. Avoid storing yarn in direct sunlight, UV exposure fades colors over time, especially natural dyes."
+        heading: "Calculate a proportional estimate",
+        content: "Remaining length = remaining weight / full label weight × full label length. Use the same mass unit for both weights. The method assumes approximately consistent length per gram within this yarn; uneven construction or a mix of yarns can break that assumption."
       },
       {
-        heading: "Using Leftovers: Scrap Yarn Project Ideas",
-        content: "Leftovers are most useful when you record what you actually have instead of relying on generic project-yardage ranges. Keep the label with each remnant when possible, weigh it on a suitable scale, and estimate remaining length from the label's length-per-weight ratio. Treat that conversion as approximate because moisture, scale resolution, and an incomplete label can affect it.\n\nFor repeated motifs, make and finish one representative sample, then measure its yarn use before multiplying. The Granny Square Planner can calculate a ceiling-based square grid and, when you supply measured yarn per square, scale that amount across the planned squares. Its seam-distance output is geometry only and is not joining-yarn yardage. Shaped amigurumi, garments, and mixed-stitch accessories need their own measured sample or a proven pattern.\n\nThe Yarn Calculator is limited to scaling a representative knit or crochet swatch to a flat rectangle. The Project Cost Calculator can combine costs you enter, but it does not determine a scrap project's market value."
+        heading: "Worked example",
+        content: "A label states 220 yards per 100 grams. With 42 grams remaining, the estimate is 42 / 100 × 220 = 92.4 yards, or about 84.5 meters. This is an arithmetic example, not a claim that 92.4 yards is enough for a hat, cowl, or socks."
       },
       {
-        heading: "Frequently Asked Questions",
-        content: "How do I estimate how much yarn is left on a skein?\nWeigh the remaining yarn on a kitchen scale, then divide by the original skein weight and multiply by the original yardage. For example: (45g remaining ÷ 100g original) × 220 yards = 99 yards left. The Stash Estimator tool does this calculation for you.\n\nHow do I store yarn to prevent moths?\nStore yarn in sealed plastic bins or zip-lock bags. Cedar blocks, lavender sachets, or cedar balls repel moths naturally. Avoid storing in open baskets long-term, especially wool and other animal fibers (cotton and acrylic are moth-proof). Check stored yarn seasonally for signs of damage.\n\nCan I use leftover sock yarn for anything?\nYes. Leftover fingering weight yarn works for small amigurumi, striped baby items, colorwork accessories, and scrappy blankets. Most small amigurumi use under 50 yards per color. Sock yarn scraps also make excellent bookmarks, mug cozies, and ornaments.\n\nWhat is a dye lot and why does it matter?\nA dye lot is a production batch number printed on yarn labels. Yarn from different dye lots can vary subtly in color, sometimes visibly, sometimes only noticeable when worked side by side. Always buy enough from the same dye lot for your entire project to avoid mismatched color patches."
+        heading: "When the label is missing",
+        content: "Look up the exact product or establish a ratio by measuring a known length and weight. Yarn weight categories and WPI do not establish universal yards per gram. Do not turn a thickness estimate into a precise remaining-yardage claim."
+      },
+      {
+        heading: "Plan the next project",
+        content: "Compare the estimate with a representative swatch or the actual pattern requirement. Account separately for joins, tails, borders, finishing, and waste. Record which yarn and measurements produced the estimate so it can be checked later."
+      }
+    ],
+    modifiedDate: "2026-09-05",
+    sources: [
+      {
+        title: "Craft Yarn Council: Standard Yarn Weight System",
+        url: "https://www.craftyarncouncil.com/standards/yarn-weight-system"
+      },
+      {
+        title: "Craft Yarn Council: How to Measure Wraps Per Inch",
+        url: "https://www.craftyarncouncil.com/standards/how-measure-wraps-inch-wpi"
       }
     ]
   },
@@ -615,6 +659,7 @@ export const guides: Guide[] = [
     description: "Compare the most common knitting cast-on methods, long-tail, cable, tubular, and more, with stretch levels, difficulty, and best use cases for each.",
     toolSlug: "cast-on-calculator",
     date: "2026-03-11",
+    modifiedDate: "2026-09-05",
     keywords: ["knitting cast on methods", "long tail cast on", "cable cast on", "tubular cast on", "cast on comparison", "stretchy cast on knitting", "cast on for ribbing"],
     sections: [
       {
@@ -623,7 +668,7 @@ export const guides: Guide[] = [
       },
       {
         heading: "Long-Tail Cast-On",
-        content: "Long-tail cast-on is one common setup method, with several variations and project-specific results. Follow the selected pattern and test the real edge because yarn, needles, technique, and tension affect both appearance and stretch.\n\nTail-length rules of thumb are not reliable for every yarn or cast-on technique. Use the method specified by the pattern or a separate measured approach rather than expecting a stitch-count calculator to predict tail length.\n\nUse the Cast On Calculator to produce a rounded arithmetic stitch-count checkpoint from entered width, measured gauge, pattern multiple, and edge allowance. It does not choose a cast-on method, model stretch, or estimate tail length."
+        content: "Long-tail cast-on is one common setup method, with several variations and project-specific results. Follow the selected pattern and test the real edge because yarn, needles, technique, and tension affect both appearance and stretch.\n\nTail-length rules of thumb are not reliable for every yarn or cast-on technique. Use the method specified by the pattern or a separate measured approach rather than expecting a stitch-count calculator to predict tail length.\n\nUse the Cast On Calculator to produce a rounded arithmetic stitch-count checkpoint from entered width, measured gauge, and an optional whole stitch multiple. Add any pattern offsets and edge stitches separately. It does not choose a cast-on method, model stretch, or estimate tail length."
       },
       {
         heading: "Cable Cast-On",
@@ -631,7 +676,7 @@ export const guides: Guide[] = [
       },
       {
         heading: "Tubular Cast-On",
-        content: "Tubular or Italian cast-ons are families of setup methods for ribbed edges. Their execution and resulting elasticity depend on the chosen variation, yarn, needles, tension, ribbing, and finishing, so follow the selected pattern and test the actual edge.\n\nThe FiberTools Cast On Calculator converts entered width and measured stitch gauge into a rounded stitch count. It can reconcile a count with an entered pattern multiple and edge allowance, but it does not model or compare cast-on-method stretch."
+        content: "Tubular or Italian cast-ons are families of setup methods for ribbed edges. Their execution and resulting elasticity depend on the chosen variation, yarn, needles, tension, ribbing, and finishing, so follow the selected pattern and test the actual edge.\n\nThe FiberTools Cast On Calculator converts entered width and measured stitch gauge into a rounded stitch count. It can round a count to an entered whole stitch multiple. Add any pattern offsets and edge stitches separately; it does not model or compare cast-on-method stretch."
       },
       {
         heading: "Frequently Asked Questions",
@@ -645,11 +690,12 @@ export const guides: Guide[] = [
     description: "A complete reference to basic crochet stitches, chain, slip stitch, single crochet through treble, with heights, abbreviations, and when to use each stitch.",
     toolSlug: "stitch-quick-reference",
     date: "2026-03-11",
+    modifiedDate: "2026-09-05",
     keywords: ["crochet stitches for beginners", "basic crochet stitches", "crochet stitch chart", "single crochet", "double crochet", "crochet stitch height", "crochet abbreviations"],
     sections: [
       {
         heading: "Basic Crochet Stitches Overview",
-        content: "Crochet uses a small set of fundamental stitches that combine to create every fabric texture and pattern. Each stitch is built by wrapping yarn around the hook (yarn overs) and pulling loops through other loops. The number of yarn overs before inserting the hook determines the stitch height.\n\nThe chain (ch) is the foundation, a series of interlocking loops that forms the base row or creates spaces within a pattern. The slip stitch (sl st) is the shortest stitch, used mainly for joining rounds and moving across stitches without adding height. Single crochet (sc) is the first true fabric-forming stitch, short, dense, and the most commonly used stitch in amigurumi and structured projects.\n\nHalf double crochet (hdc) is a step taller, producing a slightly looser fabric. Double crochet (dc) is the workhorse of blankets, garments, and granny squares, tall enough to work up quickly but dense enough for warmth. Treble crochet (tr) is taller still, creating an open, airy fabric used in lace and decorative edgings.\n\nHere is a reference chart for US crochet stitches:\n\nChain (ch): 0 chains height, abbreviation ch, beginner level, foundation/spacing\nSlip stitch (sl st): 0 chains height, abbreviation sl st, beginner level, joining/moving\nSingle crochet (sc): 1 chain height, abbreviation sc, beginner level, dense fabric/amigurumi\nHalf double crochet (hdc): 2 chains height, abbreviation hdc, beginner level, medium density\nDouble crochet (dc): 3 chains height, abbreviation dc, beginner level, blankets/garments\nTreble crochet (tr): 4 chains height, abbreviation tr, intermediate level, lace/openwork"
+        content: "Crochet uses a small set of fundamental stitches that combine to create every fabric texture and pattern. Each stitch is built by wrapping yarn around the hook (yarn overs) and pulling loops through other loops. The number of yarn overs before inserting the hook determines the stitch height.\n\nThe chain (ch) is the foundation, a series of interlocking loops that forms the base row or creates spaces within a pattern. The slip stitch (sl st) is the shortest stitch, used mainly for joining rounds and moving across stitches without adding height. Single crochet (sc) is a common fabric-forming stitch, short, dense, and the most commonly used stitch in amigurumi and structured projects.\n\nHalf double crochet (hdc) is a step taller, producing a slightly looser fabric. Double crochet (dc) is the workhorse of blankets, garments, and granny squares, tall enough to work up quickly but dense enough for warmth. Treble crochet (tr) is taller still, creating an open, airy fabric used in lace and decorative edgings.\n\nHere is a reference chart for US crochet stitches:\n\nChain (ch): 0 chains height, abbreviation ch, beginner level, foundation/spacing\nSlip stitch (sl st): 0 chains height, abbreviation sl st, beginner level, joining/moving\nSingle crochet (sc): 1 chain height, abbreviation sc, beginner level, dense fabric/amigurumi\nHalf double crochet (hdc): 2 chains height, abbreviation hdc, beginner level, medium density\nDouble crochet (dc): 3 chains height, abbreviation dc, beginner level, blankets/garments\nTreble crochet (tr): 4 chains height, abbreviation tr, intermediate level, lace/openwork"
       },
       {
         heading: "How Stitch Height Affects Your Fabric",
@@ -661,7 +707,7 @@ export const guides: Guide[] = [
       },
       {
         heading: "Common Stitch Combinations",
-        content: "Once you master the basic stitches, combining them creates textured patterns with unique visual effects.\n\nMoss stitch (also called linen stitch or granite stitch) alternates single crochet and chain-1 spaces across the row, offsetting the placement each row. This creates a woven-looking fabric with excellent drape, popular for scarves, blankets, and market bags.\n\nShell stitch groups multiple tall stitches (usually 5 double crochet) into a single stitch, creating a fan or shell shape. Shells are used for blanket borders, baby blankets, and shawls. The V-stitch is a simpler version: 2 double crochet with a chain-1 space between them, worked into a single stitch.\n\nSpike stitch (also called long stitch) inserts the hook into a row below the current row instead of the current row's stitches. This pulls the yarn down to create elongated stitches that span multiple rows, used for color effects and textured stripes.\n\nBobble stitch works 4-5 incomplete double crochets into the same stitch and joins them at the top, creating a raised bump on the fabric surface. Bobbles add three-dimensional texture to blankets, pillows, and decorative items.\n\nThe Stitch Quick Reference tool on fibertools.app provides step-by-step instructions for these and many more stitch combinations, filterable by skill level."
+        content: "Once you master the basic stitches, combining them creates textured patterns with unique visual effects.\n\nMoss stitch (also called linen stitch or granite stitch) alternates single crochet and chain-1 spaces across the row, offsetting the placement each row. This creates a woven-looking fabric with excellent drape, popular for scarves, blankets, and market bags.\n\nShell stitch groups multiple tall stitches (usually 5 double crochet) into a single stitch, creating a fan or shell shape. Shells are used for blanket borders, baby blankets, and shawls. The V-stitch is a simpler version: 2 double crochet with a chain-1 space between them, worked into a single stitch.\n\nSpike stitch (also called long stitch) inserts the hook into a row below the current row instead of the current row's stitches. This pulls the yarn down to create elongated stitches that span multiple rows, used for color effects and textured stripes.\n\nBobble stitch works 4-5 incomplete double crochets into the same stitch and joins them at the top, creating a raised bump on the fabric surface. Bobbles add three-dimensional texture to blankets, pillows, and decorative items.\n\nThe Stitch Quick Reference tool on fibertools.app provides step-by-step notes for its included stitches, with text search and a craft filter. It does not provide instructions for every combination described here or filter by skill level."
       },
       {
         heading: "Frequently Asked Questions",
@@ -705,6 +751,7 @@ export const guides: Guide[] = [
     description: "Learn how to interpret vintage knitting patterns from the 1920s through 1970s. Covers outdated terminology, obsolete needle sizes, imperial measurements, and how to adapt vintage instructions to modern yarn weights and tools.",
     toolSlug: "uk-to-us-converter",
     date: "2026-03-14",
+    modifiedDate: "2026-09-05",
     keywords: ["vintage knitting patterns", "old knitting patterns", "retro knitting", "vintage pattern decoder", "antique knitting instructions", "1950s knitting patterns"],
     sections: [
       {
@@ -721,7 +768,7 @@ export const guides: Guide[] = [
       },
       {
         heading: "Vintage Yarn Weight Terminology",
-        content: "Before the CYC standardized yarn weights as categories 0 through 7, yarn was described by ply count and trade names. \"2-ply\" meant lace weight. \"3-ply\" was roughly equivalent to modern fingering or sport weight. \"4-ply\" was what we now call DK or light worsted. \"Double knitting\" was its own category, roughly matching modern DK (CYC 3). \"Aran\" and \"worsted\" were used interchangeably for medium weight yarn.\n\nThese ply designations were not standardized across manufacturers. A \"4-ply\" from one brand might be thicker than a \"4-ply\" from another. The only reliable way to match a vintage yarn specification is to check the pattern gauge and swatch until you hit the target stitches per inch, then use the WPI Calculator to confirm your yarn's weight category.\n\nVintage patterns also referenced specific brand names that may be discontinued. If a 1960s pattern calls for \"Patons Purple Heather 4-ply,\" you need to identify the weight category (fingering to sport), find a modern equivalent in the same weight range, and swatch to gauge."
+        content: "Historical ply labels and trade names are not universal conversions to modern yarn-weight categories. Their meaning depends on the exact manufacturer, product, country, and publication. Look for the original yarn specification and pattern gauge; if the yarn is discontinued, compare a candidate using a representative swatch and actual construction requirements. WPI can suggest overlapping categories but cannot confirm a substitution."
       },
       {
         heading: "Converting Imperial Measurements",

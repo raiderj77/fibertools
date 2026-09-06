@@ -37,7 +37,7 @@ export default function ProjectCostCalculatorPage() {
         what="A calculator that adds entered yarn and notion amounts, estimates time from an entered stitch count and stitch rate, and compares an entered selling price with materials and estimated hours."
         who="Fiber artists who want to check a material subtotal or explore a time and selling-price scenario from their own inputs."
         bottomLine="The total is entered materials only. Optional time and selling-price outputs do not add labor cost, calculate net profit, or recommend a price."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-09-05"
       />
       <div className="sr-only">
         <h2>Project Cost Calculator Tool</h2>

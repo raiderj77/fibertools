@@ -23,11 +23,11 @@ const YARN_WEIGHTS: YarnWeight[] = [
     name: "Lace",
     wpiMin: 30,
     wpiMax: Infinity,
-    needles: "US 000\u20131",
-    hooks: "B/1\u2013E/4",
-    gaugeRange: "33\u201340 sts/4\u2033",
-    yardagePer100g: "~800 yds",
-    typicalYardage: "700\u20131,200+",
+    needles: "US 000–1",
+    hooks: "Steel 6–8; regular B/1",
+    gaugeRange: "33–40 sts/4″",
+    yardagePer100g: "Use the yarn label",
+    typicalYardage: "Cannot be determined from WPI",
     projects: "Shawls, doilies, lightweight wraps",
   },
   {
@@ -35,11 +35,11 @@ const YARN_WEIGHTS: YarnWeight[] = [
     name: "Super Fine",
     wpiMin: 14,
     wpiMax: 30,
-    needles: "US 1\u20133",
-    hooks: "B/1\u2013E/4",
-    gaugeRange: "27\u201332 sts/4\u2033",
-    yardagePer100g: "~400 yds",
-    typicalYardage: "350\u2013500",
+    needles: "US 1–3",
+    hooks: "B/1–E/4",
+    gaugeRange: "27–32 sts/4″",
+    yardagePer100g: "Use the yarn label",
+    typicalYardage: "Cannot be determined from WPI",
     projects: "Socks, baby clothes, lightweight shawls",
   },
   {
@@ -47,11 +47,11 @@ const YARN_WEIGHTS: YarnWeight[] = [
     name: "Fine / Sport",
     wpiMin: 12,
     wpiMax: 18,
-    needles: "US 3\u20135",
-    hooks: "E/4\u20137",
-    gaugeRange: "23\u201326 sts/4\u2033",
-    yardagePer100g: "~300 yds",
-    typicalYardage: "270\u2013350",
+    needles: "US 3–5",
+    hooks: "E/4–7",
+    gaugeRange: "23–26 sts/4″",
+    yardagePer100g: "Use the yarn label",
+    typicalYardage: "Cannot be determined from WPI",
     projects: "Baby items, lightweight garments, accessories",
   },
   {
@@ -59,11 +59,11 @@ const YARN_WEIGHTS: YarnWeight[] = [
     name: "Light / DK",
     wpiMin: 11,
     wpiMax: 15,
-    needles: "US 5\u20137",
-    hooks: "7\u2013I/9",
-    gaugeRange: "21\u201324 sts/4\u2033",
-    yardagePer100g: "~250 yds",
-    typicalYardage: "225\u2013280",
+    needles: "US 5–7",
+    hooks: "7–I/9",
+    gaugeRange: "21–24 sts/4″",
+    yardagePer100g: "Use the yarn label",
+    typicalYardage: "Cannot be determined from WPI",
     projects: "Garments, baby blankets, accessories",
   },
   {
@@ -71,11 +71,11 @@ const YARN_WEIGHTS: YarnWeight[] = [
     name: "Medium / Worsted",
     wpiMin: 9,
     wpiMax: 12,
-    needles: "US 7\u20139",
-    hooks: "I/9\u2013K/10.5",
-    gaugeRange: "16\u201320 sts/4\u2033",
-    yardagePer100g: "~200 yds",
-    typicalYardage: "180\u2013240",
+    needles: "US 7–9",
+    hooks: "I/9–K/10.5",
+    gaugeRange: "16–20 sts/4″",
+    yardagePer100g: "Use the yarn label",
+    typicalYardage: "Cannot be determined from WPI",
     projects: "Sweaters, blankets, hats, scarves",
   },
   {
@@ -83,11 +83,11 @@ const YARN_WEIGHTS: YarnWeight[] = [
     name: "Bulky",
     wpiMin: 6,
     wpiMax: 9,
-    needles: "US 9\u201311",
-    hooks: "K/10.5\u2013M/13",
-    gaugeRange: "12\u201315 sts/4\u2033",
-    yardagePer100g: "~130 yds",
-    typicalYardage: "120\u2013160",
+    needles: "US 9–11",
+    hooks: "K/10.5–M/13",
+    gaugeRange: "12–15 sts/4″",
+    yardagePer100g: "Use the yarn label",
+    typicalYardage: "Cannot be determined from WPI",
     projects: "Hats, scarves, chunky blankets, quick garments",
   },
   {
@@ -95,11 +95,11 @@ const YARN_WEIGHTS: YarnWeight[] = [
     name: "Super Bulky",
     wpiMin: 5,
     wpiMax: 6,
-    needles: "US 11\u201317",
-    hooks: "M/13\u2013Q",
-    gaugeRange: "7\u201311 sts/4\u2033",
-    yardagePer100g: "~80 yds",
-    typicalYardage: "60\u2013120",
+    needles: "US 11–17",
+    hooks: "M/13–Q",
+    gaugeRange: "7–11 sts/4″",
+    yardagePer100g: "Use the yarn label",
+    typicalYardage: "Cannot be determined from WPI",
     projects: "Chunky hats, arm knitting, quick accessories",
   },
   {
@@ -109,9 +109,9 @@ const YARN_WEIGHTS: YarnWeight[] = [
     wpiMax: 4,
     needles: "US 17+",
     hooks: "Q+",
-    gaugeRange: "6 and fewer sts/4\u2033",
-    yardagePer100g: "~40 yds",
-    typicalYardage: "under 60",
+    gaugeRange: "6 and fewer sts/4″",
+    yardagePer100g: "Use the yarn label",
+    typicalYardage: "Cannot be determined from WPI",
     projects: "Arm knitting, rugs, extreme knitting",
   },
 ];
@@ -122,8 +122,8 @@ export default function WpiCalculatorTool() {
   const [wpi, setWpi] = useState("");
 
   const results = useMemo(() => {
-    const val = parseInt(wpi);
-    if (!val || val <= 0) return null;
+    const val = Number(wpi);
+    if (!Number.isFinite(val) || val <= 0 || val > 60) return null;
 
     const matches = YARN_WEIGHTS.filter(
       (w) => val >= w.wpiMin && val <= w.wpiMax
@@ -135,6 +135,16 @@ export default function WpiCalculatorTool() {
       isOverlap: matches.length > 1,
     };
   }, [wpi]);
+
+  const hasMeasurement = wpi.trim() !== "";
+  const invalidMeasurement = hasMeasurement && (!Number.isFinite(Number(wpi)) || Number(wpi) <= 0 || Number(wpi) > 60);
+  const measurementStatus = !hasMeasurement
+    ? "No measurement entered. No category result is shown."
+    : invalidMeasurement
+      ? "Enter a finite measurement above 0 and at most 60. No category result is shown."
+      : results
+        ? `Possible categories for ${wpi} WPI: ${results.matches.map((match) => match.name).join(", ")}. Confirm with a swatch.`
+        : "No category matches this measurement in the reference ranges. Gaps remain unresolved; check the yarn label and a swatch.";
 
   const stickySummary = results
     ? results.matches.map((m) => m.name).join(" / ")
@@ -149,27 +159,34 @@ export default function WpiCalculatorTool() {
       </p>
 
       <div className="max-w-xs">
-        <label className="label">Wraps Per Inch (WPI)</label>
+        <label className="label" htmlFor="wpi-reference-input">Wraps Per Inch (WPI)</label>
         <input
+          id="wpi-reference-input"
+          aria-describedby="wpi-reference-status"
+          aria-invalid={invalidMeasurement}
           type="number"
           value={wpi}
           onChange={(e) => setWpi(e.target.value)}
           placeholder="e.g. 12"
           className="input"
-          min="1"
-          max="50"
-          inputMode="numeric"
+          min="0"
+          max="60"
+          inputMode="decimal"
+              step="any"
         />
       </div>
 
+      <p id="wpi-reference-status" role="status" aria-live="polite" aria-atomic="true" className="text-sm text-bark-600 dark:text-cream-300">{measurementStatus}</p>
+
+      <p className="text-sm text-bark-500">Enter a finite measurement above 0 and at most 60; decimals are preserved. Blank or out-of-range measurements show no result. WPI is approximate, and gaps in the reference ranges are not assigned a category. Gauge ranges are for knitting in stockinette, not crochet. Always check a swatch. Sources: <a className="underline" href="https://www.craftyarncouncil.com/standards/how-measure-wraps-inch-wpi">CYC WPI</a> and <a className="underline" href="https://www.craftyarncouncil.com/standards/yarn-weight-system">CYC yarn weights</a>.</p>
       {/* Results */}
       {results && (
-        <div aria-live="polite" aria-atomic="true">
+        <div>
           <div className="result-card space-y-4">
             <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
               {results.isOverlap
                 ? "Possible Yarn Weights"
-                : "Your Yarn Weight"}
+                : "Possible Yarn Weight"}
             </h3>
 
             {results.isOverlap && (
@@ -312,7 +329,7 @@ export default function WpiCalculatorTool() {
                   <td className="py-2 px-3 text-bark-500 dark:text-bark-400">
                     {w.wpiMax === Infinity
                       ? `${w.wpiMin}+`
-                      : `${w.wpiMin}\u2013${w.wpiMax}`}
+                      : `${w.wpiMin}–${w.wpiMax}`}
                   </td>
                   <td className="py-2 px-3 text-bark-500 dark:text-bark-400">
                     {w.needles}
@@ -353,11 +370,11 @@ export default function WpiCalculatorTool() {
           </li>
           <li>
             <strong>Measure in multiple spots.</strong> Yarn thickness can vary
-            along the skein, average 2\u20133 readings for accuracy.
+            along the skein, average 2–3 readings for accuracy.
           </li>
           <li>
             <strong>Plied yarn can be tricky.</strong> Highly textured or
-            boucl\u00E9 yarns may not wrap evenly, swatch for the best results.
+            bouclé yarns may not wrap evenly, swatch for the best results.
           </li>
         </ul>
       </div>

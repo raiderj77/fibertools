@@ -4,6 +4,11 @@ import test from "node:test";
 
 import { calculateBlockingDimensions } from "../src/lib/blocking-dimensions.mjs";
 
+test("declines finite measurements whose percentage overflows", () => {
+  assert.equal(calculateBlockingDimensions({ currentWidth: 1e-300, targetWidth: 1e300,
+    currentLength: null, targetLength: null }).status, "invalid");
+});
+
 test("calculates signed width and length changes independently", () => {
   const result = calculateBlockingDimensions({
     currentWidth: 48,

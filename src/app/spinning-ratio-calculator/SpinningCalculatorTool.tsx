@@ -69,7 +69,7 @@ export default function SpinningCalculatorTool() {
       {ratio !== null && (
         <div className="result-card" aria-live="polite">
           <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
-            {Number(ratio.toFixed(2))}:1
+            {ratio.toLocaleString("en-US", { maximumSignificantDigits: 6 })}:1
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 mt-1">
             Estimated driven-component rotations per full drive-wheel revolution.

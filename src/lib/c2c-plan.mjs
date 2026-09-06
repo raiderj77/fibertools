@@ -8,6 +8,7 @@ export const C2C_LIMITS = Object.freeze({
 });
 
 function number(value) {
+  if (typeof value !== "number" && typeof value !== "string") return null;
   if (typeof value === "string" && value.trim() === "") return null;
   const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : null;
@@ -74,9 +75,9 @@ export function buildC2cPlan({
 
   const totalBlocks = blocksWide * blocksTall;
   const totalDiagonalRows = blocksWide + blocksTall - 1;
-  const optionalYarn = typeof yarnPerBlock === "string" && yarnPerBlock.trim() === ""
-    ? null
-    : number(yarnPerBlock);
+  const yarnOmitted = typeof yarnPerBlock === "string" && yarnPerBlock.trim() === "";
+  const optionalYarn = yarnOmitted ? null : number(yarnPerBlock);
+  if (!yarnOmitted && optionalYarn === null) return invalid("Enter a finite measured yarn length per block or leave it blank.");
   const allowance = number(allowancePercent);
   if (
     allowance === null

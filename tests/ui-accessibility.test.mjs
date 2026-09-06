@@ -128,7 +128,8 @@ test("names filters and makes horizontally scrolling reference tables keyboard a
   }
 
   for (const id of [
-    "weaving-yarn-weight",
+    "weaving-warp-epi",
+    "weaving-loom-waste",
     "weaving-structure",
     "weaving-custom-wpi",
     "weaving-project-width",

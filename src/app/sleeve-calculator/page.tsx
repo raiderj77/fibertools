@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/sleeve-calculator" },
-  other: { dateModified: "2026-08-29" },
+  other: { dateModified: "2026-09-05" },
 };
 
 export default function SleeveCalculatorPage() {
@@ -40,7 +40,7 @@ export default function SleeveCalculatorPage() {
         what="A limited arithmetic reference that converts two entered circumferences to nominal whole-stitch counts and checks one paired-decrease interval model."
         who="Knitters and crocheters comparing this explicit straight-taper model with a selected sleeve pattern."
         bottomLine="The model uses two fixed one-inch exclusions and declines odd stitch gaps or schedules that need more decrease events than available shaping rows. It does not design a sleeve or validate fit."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-09-05"
       />
 
       <SleeveCalculatorTool />

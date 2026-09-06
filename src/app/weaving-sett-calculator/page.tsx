@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/weaving-sett-calculator" },
-  other: { dateModified: "2026-08-29" },
+  other: { dateModified: "2026-09-05" },
 };
 
 export default function WeavingSettCalculatorPage() {
@@ -40,7 +40,7 @@ export default function WeavingSettCalculatorPage() {
         what="A bounded planning calculator for a WPI-based starting sett, provisional warp quantities, and exact whole-number reed-sleying arithmetic."
         who="Weavers comparing a measured yarn and structure or checking whether a supported reed can produce a target whole-number EPI."
         bottomLine="Use every output as a starting estimate and weave a wet-finished sample. Exact sleying arithmetic does not prove that the yarn fits the reed or that reed marks will disappear."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-09-05"
       />
 
       <WeavingSettCalculatorTool />
@@ -92,8 +92,7 @@ export default function WeavingSettCalculatorPage() {
           </p>
         </div>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          WPI gives a starting point, not a final answer. Selecting a yarn-weight range in this calculator
-          uses that range&apos;s midpoint; enter a measured WPI when available. Yarn elasticity and finishing affect actual
+          WPI gives a starting point, not a final answer. Enter measured WPI for the actual yarn. Yarn elasticity and finishing affect actual
           fabric sett after the cloth comes off the loom. A springy wool at 12 WPI may relax to an effective
           10 EPI after wet-finishing, while a linen at the same WPI might barely move. Published sett charts
           from loom and weaving publishers can provide comparison points, but they do not replace sampling

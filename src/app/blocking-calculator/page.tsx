@@ -38,7 +38,7 @@ export default function BlockingCalculatorPage() {
         what="A calculator for the signed percentage difference between current and requested width or length."
         who="Fiber artists comparing measurements before testing a care-instruction-compatible finishing method."
         bottomLine="The result describes the requested size change only. It cannot determine a safe method or predict what the fabric will do."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-09-05"
       />
       <BlockingCalculatorTool />
 

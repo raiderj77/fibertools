@@ -3,6 +3,14 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { checkPattern, MAX_FREE_ROUNDS } from "../src/lib/amigurumi-pattern-checker.mjs";
 
+test("an invalid explicit starting count cannot become an omitted count", () => {
+  for (const startingCount of [-1, 1.5, NaN, Infinity]) {
+    const result = checkPattern("Round 1: 6 sc in magic ring (6)", startingCount);
+    assert.match(result.error ?? "", /starting count/i);
+    assert.equal(result.results.length, 0);
+  }
+});
+
 test("checks standard amigurumi increase rounds", () => {
   const checked = checkPattern("Round 7: (4 sc, inc) x 6 [36]\nRound 8: (5 sc, inc) x 6 [42]", 30);
   assert.equal(checked.error, null);

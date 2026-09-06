@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { parseCounterState, nextCounterValue } from "@/lib/stitch-counter-state.mjs";
 
 // ── TYPES ─────────────────────────────────────────────────────────
 
@@ -44,6 +45,8 @@ export default function StitchCounterTool() {
   const [newReminderRow, setNewReminderRow] = useState("");
   const [newReminderNote, setNewReminderNote] = useState("");
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [storageReady, setStorageReady] = useState(false);
+  const [stateMessage, setStateMessage] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
   const reminderDialogRef = useRef<HTMLDivElement>(null);
   const reminderCloseRef = useRef<HTMLButtonElement>(null);
@@ -101,21 +104,27 @@ export default function StitchCounterTool() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        const data = JSON.parse(saved);
-        if (data.counters?.length) setCounters(data.counters);
-        if (data.reminders) setReminders(data.reminders);
+        const data = parseCounterState(JSON.parse(saved));
+        if (!data) {
+          setStateMessage("Saved counter data could not be used. It has been left in storage. Changing a count will start a new saved session.");
+          return;
+        }
+        setCounters(data.counters);
+        setReminders(data.reminders);
         if (
           Number.isInteger(data.milestoneEvery)
           && data.milestoneEvery >= 0
         ) setMilestoneEvery(data.milestoneEvery);
       }
+      setStorageReady(true);
     } catch {
-      // ignore bad data
+      setStateMessage("Saved counter data could not be read. Keep a separate note of important counts.");
     }
   }, []);
 
   // Save on change
   useEffect(() => {
+    if (!storageReady) return;
     try {
       localStorage.setItem(
         STORAGE_KEY,
@@ -124,7 +133,7 @@ export default function StitchCounterTool() {
     } catch {
       // storage full, ignore
     }
-  }, [counters, reminders, milestoneEvery]);
+  }, [counters, reminders, milestoneEvery, storageReady]);
 
   // ── FEEDBACK ────────────────────────────────────────────────────
   const doFeedback = useCallback((milestone: boolean) => {
@@ -139,7 +148,14 @@ export default function StitchCounterTool() {
       setCounters((prev) => {
         const counter = prev.find((c) => c.id === id);
         if (!counter) return prev;
-        const newValue = Math.max(0, counter.count + delta);
+        const newValue = nextCounterValue(counter.count, delta);
+        if (newValue === null) {
+          setStateMessage("This change exceeds the supported whole-number count.");
+          return prev;
+        }
+        if (newValue === counter.count) return prev;
+        setStorageReady(true);
+        setStateMessage("");
 
         // History
         setHistory((h) => [...h.slice(-49), { counterId: id, prevValue: counter.count, newValue }]);
@@ -207,8 +223,11 @@ export default function StitchCounterTool() {
 
   // ── REMINDERS ───────────────────────────────────────────────────
   const addReminder = () => {
-    const row = parseInt(newReminderRow);
-    if (!row || !newReminderNote.trim()) return;
+    const row = Number(newReminderRow);
+    if (!Number.isSafeInteger(row) || row <= 0 || !newReminderNote.trim() || newReminderNote.length > 1000 || reminders.length >= 100) {
+      setStateMessage("Reminders need a positive whole count and a note of at most 1,000 characters; at most 100 reminders are supported.");
+      return;
+    }
     setReminders((prev) => [...prev, { id: generateId(), row, note: newReminderNote.trim() }]);
     setNewReminderRow("");
     setNewReminderNote("");
@@ -259,6 +278,7 @@ export default function StitchCounterTool() {
       ref={containerRef}
       className={`space-y-6 ${isFullscreen ? "bg-cream-50 dark:bg-bark-900 p-6 min-h-screen" : ""}`}
     >
+      {stateMessage && <p role="status" className="text-bark-600 dark:text-cream-300">{stateMessage}</p>}
       {/* Reminder popup */}
       {activeReminder && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4" onClick={closeReminder}>
@@ -321,7 +341,7 @@ export default function StitchCounterTool() {
             <input
               id="stitch-counter-milestone"
               type="number" value={milestoneEvery}
-              onChange={(e) => setMilestoneEvery(Math.max(0, parseInt(e.target.value) || 0))}
+              onChange={(e) => { const value = Number(e.target.value); if (Number.isSafeInteger(value) && value >= 0) setMilestoneEvery(value); else setStateMessage("Milestone interval must be a non-negative safe whole number."); }}
               className="input w-20 text-sm" min="0" inputMode="numeric"
             />
             <span className="text-xs text-bark-400 dark:text-bark-500">rows (0 = off). Requests vibration on milestone rows when supported.</span>

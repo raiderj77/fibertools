@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description,
     images: ["/og-image.png"],
   },
-  other: { dateModified: "2026-08-29" },
+  other: { dateModified: "2026-09-05" },
 };
 
 export default function C2cCalculatorPage() {
@@ -40,7 +40,7 @@ export default function C2cCalculatorPage() {
         what="A bounded worksheet that derives separate C2C block width and height from a measured swatch, rounds each target axis to at least one whole block, and reports the corresponding diagonal-row count."
         who="Crocheters planning a rectangular C2C panel from a representative swatch made with the intended yarn, hook, stitch construction, tension, and finishing."
         bottomLine="The result is a nominal block grid. Nearest-block rounding can finish above or below the target, and the tool does not guarantee finished dimensions or yarn quantity."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-09-05"
       />
       <C2cCalculatorTool />
 

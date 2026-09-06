@@ -6,7 +6,7 @@ import WpiCalculatorTool from "./WpiCalculatorTool";
 export const metadata: Metadata = {
   title: "WPI to Yarn Weight Converter",
   description:
-    "Enter wraps per inch to identify yarn weight, recommended needles, hooks, gauge range, and project ideas. Free WPI tool.",
+    "Enter wraps per inch to estimate possible yarn weight categories, recommended needles, hooks, gauge range, and project ideas. Free WPI tool.",
   keywords: [
     "wraps per inch calculator",
     "WPI yarn weight",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "WPI to Yarn Weight Converter",
     description:
-      "Enter wraps per inch to identify yarn weight, recommended needles, hooks, gauge range, and project ideas.",
+      "Enter wraps per inch to estimate possible yarn weight categories, recommended needles, hooks, gauge range, and project ideas.",
     url: "https://fibertools.app/wpi-calculator",
     type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "WPI to Yarn Weight Converter" }],
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "WPI to Yarn Weight Converter",
     description:
-      "Enter wraps per inch to identify yarn weight, recommended needles, hooks, gauge range, and project ideas.",
+      "Enter wraps per inch to estimate possible yarn weight categories, recommended needles, hooks, gauge range, and project ideas.",
     images: ["/og-image.png"],
   },
 };
@@ -37,10 +37,10 @@ export default function WpiCalculatorPage() {
   return (
     <ToolLayout slug="wpi-calculator">
       <AnswerBlock
-        what="A converter that identifies yarn weight from your wraps-per-inch measurement, with recommended needles, hooks, gauge range, and project ideas."
+        what="A reference that estimates possible yarn weight categories from your wraps-per-inch measurement, with recommended needles, hooks, gauge range, and project ideas."
         who="Fiber artists with unlabeled yarn who need to determine the weight category before starting a project."
-        bottomLine="Wrap your yarn around a ruler, count the wraps per inch, and enter the number to identify the yarn weight instantly."
-        lastUpdated="2026-03-16"
+        bottomLine="Wrap your yarn around a ruler, count the wraps per inch, and enter the number to compare possible categories. Always check a swatch."
+        lastUpdated="2026-09-05"
       />
       <div className="sr-only">
         <h2>WPI to Yarn Weight Converter</h2>
@@ -49,42 +49,12 @@ export default function WpiCalculatorPage() {
       </div>
       <WpiCalculatorTool />
 
-      {/* Content sections */}
-
-      <section className="mt-12">
-        <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100 mb-3">
-          How does wraps per inch help you choose the right needle size?
-        </h2>
-        <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
-          <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
-            Once you know your yarn weight from the WPI measurement, you can match it to needle recommendations that designers use for that weight class. A fingering yarn (14+ wraps per inch) typically knits on US 1-3 needles, while a bulky yarn (5-8 wraps per inch) uses US 9-11. This prevents the most common knitting mistakes: needles too large that create loose fabric, or needles too small that make the work exhausting.
-          </p>
-        </div>
-        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          The WPI chart shows these ranges because yarn weight and needle compatibility go hand in hand. A needle that is too big swallows the yarn and creates floppy stitches that distort your stitch definition. A needle that is too small forces you to work harder and can split thinner yarns. By determining your unlabeled yarn is, say, worsted weight (9-11 wraps per inch), you know to reach for US 7-9 needles instead of guessing.
-        </p>
-        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          Different projects also benefit from different needle sizes within the same yarn weight. A sock knitter might use US 0-1 needles for a tighter fabric, while a lightweight sweater designer might use US 5-6 for the same yarn to create drape. Knowing your yarn weight gives you the anchor point to make those adjustments confidently instead of starting over when the first attempt does not feel right.
-        </p>
-      </section>
-
-      <section className="mt-10">
-        <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100 mb-3">
-          Why should you measure yarn weight before diving into a new project?
-        </h2>
-        <div className="border-l-4 border-sage-500 bg-sage-50/50 dark:bg-sage-950/20 pl-4 rounded-r-lg py-3 mb-5">
-          <p className="text-bark-700 dark:text-cream-300 text-[15px] leading-relaxed">
-            Starting a project with unlabeled or mystery yarn without knowing its weight invites frustration, wasted hours, and yarn used. Knowing the weight upfront lets you choose an appropriate pattern, estimate yardage needs accurately, and set realistic gauge expectations from the beginning.
-          </p>
-        </div>
-        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mb-4">
-          Many fiber artists inherit stash yarn, buy unmarked yarn from local spinners, or unravel old projects for reuse. The only way to turn mystery yarn into a workable project is to identify what you have. The WPI measurement takes about one minute and then you know whether that yarn can make a delicate lace scarf or a sturdy blanket. You avoid the scenario where you cast on based on a guess, work for three hours, and discover the fabric is completely wrong for your pattern.
-        </p>
-        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
-          A quick WPI check helps compare thickness categories, but thickness does not establish fiber content,
-          care, a blocking method, or washing instructions. Use the yarn label and selected pattern for those
-          decisions, and confirm the resulting fabric with a gauge swatch before committing to the project.
-        </p>
+      <section className="mt-12 space-y-4">
+        <h2 className="text-xl font-semibold">How to interpret WPI</h2>
+        <p>WPI is subjective: wrap without stretching or leaving large gaps, measure several places, and compare the result with a swatch. CYC ranges overlap: Super Fine is 14–30, Fine is 12–18, Light is 11–15, Medium is 9–12, and Bulky is 6–9 WPI. An overlap returns every matching category; a gap returns none.</p>
+        <p>Needle and hook ranges are starting points. The listed gauge is knitting stockinette stitches per 4 inches, not crochet gauge. Use the actual pattern gauge and fabric you want to decide whether a yarn works.</p>
+        <h2 className="text-xl font-semibold">Can WPI tell me how much yarn I have?</h2>
+        <p>No. WPI does not establish yards per gram, fiber content, or care instructions. Use a yarn label or measure a known length and its mass. Confirm suitability with the actual yarn and pattern before starting.</p>
       </section>
     </ToolLayout>
   );

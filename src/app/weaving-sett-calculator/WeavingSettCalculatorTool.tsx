@@ -22,22 +22,6 @@ import {
 
 // ── DATA ──────────────────────────────────────────────────────────
 
-interface YarnWeight {
-  key: string;
-  label: string;
-  wpi: [number, number]; // wraps per inch range
-}
-
-const YARN_WEIGHTS: YarnWeight[] = [
-  { key: "lace", label: "Lace / Cobweb", wpi: [18, 30] },
-  { key: "fingering", label: "Fingering / Sock", wpi: [14, 18] },
-  { key: "sport", label: "Sport", wpi: [12, 14] },
-  { key: "dk", label: "DK", wpi: [10, 12] },
-  { key: "worsted", label: "Worsted", wpi: [8, 10] },
-  { key: "bulky", label: "Bulky", wpi: [5, 8] },
-  { key: "superbulky", label: "Super Bulky", wpi: [3, 5] },
-];
-
 interface WeaveStructure {
   key: string;
   label: string;
@@ -105,10 +89,10 @@ export default function WeavingSettCalculatorTool() {
   const [tab, setTab] = useState<Tab>("sett");
 
   // Sett tab
-  const [yarnWeight, setYarnWeight] = useState("worsted");
+
   const [structure, setStructure] = useState("plain");
   const [customWpi, setCustomWpi] = useState("");
-  const [useCustomWpi, setUseCustomWpi] = useState(false);
+
 
   // Warp tab
   const [projectLength, setProjectLength] = useState("");
@@ -129,19 +113,19 @@ export default function WeavingSettCalculatorTool() {
 
   // Sett result
   const settOutcome = useMemo<SettEstimateOutcome>(() => {
-    const yw = YARN_WEIGHTS.find((w) => w.key === yarnWeight);
+
     const st = STRUCTURES.find((s) => s.key === structure);
-    if (!yw || !st) {
-      return { ok: false, reason: "unsupported-selection", error: "Choose a supported yarn weight and weave structure." };
+    if (!st) {
+      return { ok: false, reason: "unsupported-selection", error: "Choose a supported weave structure." };
     }
 
-    const wpi = useCustomWpi ? Number(customWpi) : (yw.wpi[0] + yw.wpi[1]) / 2;
+    const wpi = Number(customWpi);
     return estimateSettFromWpi({
       wpi,
       warpThreads: st.warpThreads,
       interlacements: st.interlacements,
     }) as SettEstimateOutcome;
-  }, [yarnWeight, structure, customWpi, useCustomWpi]);
+  }, [structure, customWpi]);
   const settResult = settOutcome.ok
     ? {
         ...settOutcome,
@@ -236,14 +220,7 @@ export default function WeavingSettCalculatorTool() {
       {tab === "sett" && (
         <div className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg">
-            <div>
-              <label htmlFor="weaving-yarn-weight" className="label">Yarn Weight</label>
-              <select id="weaving-yarn-weight" value={yarnWeight} onChange={(e) => setYarnWeight(e.target.value)} className="select">
-                {YARN_WEIGHTS.map((w) => (
-                  <option key={w.key} value={w.key}>{w.label} ({w.wpi[0]}&ndash;{w.wpi[1]} WPI)</option>
-                ))}
-              </select>
-            </div>
+
             <div>
               <label htmlFor="weaving-structure" className="label">Weave Structure</label>
               <select id="weaving-structure" value={structure} onChange={(e) => setStructure(e.target.value)} className="select">
@@ -254,11 +231,8 @@ export default function WeavingSettCalculatorTool() {
             </div>
           </div>
 
-          <label className="flex items-center gap-2 text-sm text-bark-500 dark:text-bark-400 cursor-pointer">
-            <input type="checkbox" checked={useCustomWpi} onChange={(e) => setUseCustomWpi(e.target.checked)} className="rounded border-bark-300" />
-            I know my exact WPI
-          </label>
-          {useCustomWpi && (
+
+          {(
             <div className="max-w-[180px]">
               <label htmlFor="weaving-custom-wpi" className="label">Measured WPI</label>
               <input id="weaving-custom-wpi" type="number" value={customWpi} onChange={(e) => setCustomWpi(e.target.value)}
@@ -266,7 +240,7 @@ export default function WeavingSettCalculatorTool() {
             </div>
           )}
 
-          {settError && useCustomWpi && (
+          {settError && customWpi.trim() !== "" && (
             <p role="alert" className="text-sm text-rose-700 dark:text-rose-300">{settError}</p>
           )}
 

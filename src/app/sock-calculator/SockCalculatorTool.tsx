@@ -30,7 +30,7 @@ export default function SockCalculatorTool() {
 
   const outcome = useMemo<SockPlanOutcome>(() => buildSockCircumferencePlan({
     footCircumference: Number(footCircumference),
-    easePercent: Number(easePercent),
+    easePercent: easePercent.trim() === "" ? Number.NaN : Number(easePercent),
     gaugeStitches: Number(gaugeStitches),
     gaugeSpan: Number(gaugeSpan),
     stitchMultiple: Number(stitchMultiple),

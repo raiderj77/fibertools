@@ -392,6 +392,9 @@ export function evaluatePatternRound(line, startingCount, fallbackRound = 1) {
  * @param {number | null} [initialStartingCount]
  */
 export function checkPattern(patternText, initialStartingCount = null) {
+  if (initialStartingCount !== null && (!Number.isSafeInteger(initialStartingCount) || initialStartingCount < 0)) {
+    return { results: [], error: "The starting count must be a non-negative safe whole number, or left blank." };
+  }
   const lines = patternText
     .split(/\r?\n/)
     .map((line) => line.trim())

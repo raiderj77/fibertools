@@ -56,7 +56,7 @@ function arrangementForRound(preset, round) {
 }
 
 export function buildCircleRoundPlan({ presetKey, rounds }) {
-  const preset = CIRCLE_ROUND_PRESETS[presetKey];
+  const preset = Object.hasOwn(CIRCLE_ROUND_PRESETS, presetKey) ? CIRCLE_ROUND_PRESETS[presetKey] : null;
   if (!preset) return invalid("Choose one of the included starting-count presets.");
   if (!Number.isSafeInteger(rounds)
     || rounds < CIRCLE_ROUND_LIMITS.minimumRounds

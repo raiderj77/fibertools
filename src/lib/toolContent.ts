@@ -121,60 +121,46 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "needle-converter": {
-    chartGuide: "This converter maps knitting needle sizes across four major systems: US numbered sizes, UK old-system numbered sizes (which run in reverse of US), metric millimeter measurements, and Japanese numbered sizes. Each row shows how one size appears across all four systems, for example, US 8 equals 5.0mm, UK 6, and Japanese size 8. Metric millimeters are the universal standard, so use those as your reference point when systems conflict. US sizes run from 0 to 50; UK sizes run in the opposite direction (larger numbers = smaller needles); metric sizes go from 2.0mm to 25mm; Japanese sizes use a distinct numbering system that doesn't directly correlate with US numbers despite overlapping values. For crochet hooks, separate tables cover US letter designations (B through S), metric, and UK sizes.",
-    industryStandards: "Knitting needle sizing standards evolved from multiple regional systems that developed independently. ISO 4035 serves as the international standard, measuring in millimeters. The US system runs from 0 (smallest) to 50 (largest). The UK old-system, officially obsolete since metric adoption in the 1970s, runs in reverse, UK 14 is 2.0mm while US 14 is 10.0mm, the exact opposite ends of the spectrum. Japanese needles use their own numbered system that originated from US sizing but diverges enough to require conversion. ISO standardization in the 1970s–80s moved most manufacturers toward metric labeling, though US, UK, and Japanese systems persist in vintage needles and region-specific patterns.",
-    manufacturerNote: "In practice, needle tolerance varies between manufacturers, a needle labeled 5.0mm may measure 4.9mm or 5.1mm depending on quality control. European manufacturers typically maintain tighter tolerances than budget-brand Asian manufacturers. Vintage UK needles can be troublesome because old UK system numbers don't map perfectly to modern metric standards. Some needle materials (bamboo, wood) vary fractionally in diameter with humidity and temperature. Japanese needles are often labeled with both Japanese and metric sizes but occasionally contain errors in the metric conversion. Always verify sizing with a physical needle gauge tool before starting any critical project.",
-    answerCapsule: "Crochet hook sizes vary by country. US sizes use letters and numbers, while metric sizes use millimeters. Use this converter to find the equivalent hook size for any international standard. It also covers all knitting needle sizes across US, UK, metric, and Japanese systems.",
-    internalLinks: [
-      { label: "Yarn Weight Chart", href: "/yarn-weight-chart", description: "See recommended needle and hook sizes for each yarn weight" },
-      { label: "Gauge Calculator", href: "/gauge-calculator", description: "Check your gauge after selecting your needle or hook size" },
-    ],
+    answerCapsule: "Search the included knitting-needle and crochet-hook size entries by their displayed system or metric diameter.",
     introduction: {
-      title: "Why You Need a Knitting Needle Size Converter",
+      title: "Using the needle and hook reference",
       paragraphs: [
-        "You find a gorgeous Japanese pattern that calls for 8号 needles, or a vintage British pattern listing No. 6, what needle do you actually grab from your case? Needle sizing systems vary dramatically by country, and using the wrong size can throw off your entire gauge and finished dimensions.",
-        "With patterns now shared globally through Ravelry, YouTube, and social media, crafters regularly encounter unfamiliar sizing systems. A reliable converter eliminates confusion and ensures you start every project with exactly the right tool in hand, no matter where the pattern originated.",
-      ],
+        "Search the included knitting-needle and crochet-hook size entries by their displayed system or metric diameter."
+      ]
     },
     whatIs: {
-      title: "What Are Knitting Needle Sizing Systems?",
+      title: "Scope of this tool",
       paragraphs: [
-        "Knitting needle sizes refer to the diameter of the needle shaft, which directly controls stitch size and fabric gauge. The metric system measures this diameter in millimeters and serves as the universal reference point. All other systems are country-specific naming conventions mapped to these millimeter values.",
-        "The US system uses numbers that generally increase with size, the Japanese system uses a similar ascending numbered scale, and the old UK system uses numbers that run in reverse, a UK 14 is a tiny 2.0mm needle, while a US 14 is a hefty 10.0mm needle. This reversal catches many knitters off guard.",
-        "Modern patterns increasingly list metric sizes alongside regional numbers, but older and vintage patterns often use only the local system. Understanding these mappings is essential for anyone working from international or historical pattern sources.",
-      ],
+        "A matching size label does not establish suitable gauge, fabric, or fit. An empty table cell means no corresponding entry is supplied. A Japanese size is not interchangeable with the same US number."
+      ]
     },
     howCalculated: {
-      title: "How Needle Size Conversion Works",
+      title: "Method and reference",
       paragraphs: [
-        "Needle conversion uses standardized lookup tables maintained by needle manufacturers and craft organizations. Each system maps its numbered or named sizes to specific millimeter diameters. For example, US 8 equals 5.0mm, which equals UK 6, which equals Japanese 棒針 8号.",
-        "The critical detail to understand is that UK sizing runs backward compared to US and metric. UK 14 is 2.0mm while US 14 is 10.0mm, the exact opposite ends of the size spectrum. This reversal has caused countless gauge disasters for knitters working from British patterns with American needles.",
-        "Some sizes do not have exact equivalents across all systems. For instance, US 11 is 8.0mm, but the nearest UK size jumps from 7.5mm to 8.0mm without a standard number. The converter flags these gaps so you can choose the closest available option.",
-      ],
+        "This is a table lookup, not a numerical conversion formula. Japanese knitting-needle rows follow the cited Clover chart; metric diameter is the basis for comparison. Label conventions can differ by manufacturer."
+      ]
     },
     howToUse: {
-      title: "How to Use the Needle & Hook Size Converter",
+      title: "How to use it",
       paragraphs: [
-        "Enter a needle or hook size in any system, US numbered, UK old-system numbered, or metric millimeters, and the converter returns the equivalent in all three systems instantly. US sizes run from 0 to 50 for knitting needles. UK sizes run in the opposite direction, with smaller numbers for larger needles. Metric sizes are measured in millimeters and range from 2.0mm through 25mm for standard needles.",
-        "The converter also handles crochet hook sizes, including lettered US hooks (B through S) and their metric equivalents. Select the tool type, knitting needle or crochet hook, to see the correct conversion table for your needs."
-      ],
+        "Select knitting needles or crochet hooks and search a size such as 5mm.",
+        "Read the actual metric diameter on the product and check it against the pattern."
+      ]
     },
     understandingResults: {
-      title: "Understanding Your Results",
+      title: "Read the result",
       paragraphs: [
-        "Metric millimeter sizes are the universal standard across manufacturers worldwide. When a US size and metric size appear to conflict, trust the millimeter measurement. Some manufacturers round differently, a US 8 needle is technically 5.0mm, but you may encounter needles labeled US 8 that measure 5.1mm or 4.9mm with calipers.",
-        "Vintage UK needles follow an older sizing system that was officially replaced by metric in the 1970s. Patterns from before that era may reference sizes that do not map cleanly to modern equivalents. If you are working from a vintage pattern and your gauge is off, check the actual millimeter diameter of your needle against the converter output."
-      ],
+        "A matching size label does not establish suitable gauge, fabric, or fit. An empty table cell means no corresponding entry is supplied. A Japanese size is not interchangeable with the same US number."
+      ]
     },
     proTips: {
-      title: "Pro Tips",
+      title: "Check before using the result",
       tips: [
-        "Always verify your needle size with a physical needle gauge tool. Manufacturer tolerances vary, and the printed size on a needle is not always accurate to the nearest 0.25mm.",
-        "Japanese needle and hook sizes use their own numbering system that differs from US sizes even when the numbers look similar. A Japanese size 8 is not the same as a US size 8.",
-        "Crochet hook letter designations are not standardized across all brands. A Boye H hook and a Clover H hook may differ slightly in diameter. Check the millimeter size printed on the hook itself.",
-        "Interchangeable needle sets often skip half-sizes. If a pattern calls for a 4.5mm and your set jumps from 4.0mm to 5.0mm, you will need to buy that size separately."
-      ],
+        "Follow the exact pattern and product instructions.",
+        "Make a representative swatch or sample when fit, dimensions, or material behavior matters."
+      ]
     },
+    projectExample: "US 8 knitting needles are 5.0 mm in the included table. Clover Japanese knitting-needle size 8 is 4.5 mm. These are different diameters despite sharing the number 8."
   },
 
   "gauge-calculator": {
@@ -331,7 +317,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       title: "How Stitch Counting Works",
       paragraphs: [
         "The stitch counter is a manual tracking and reminder tool, not a pattern verifier. Its display reflects the taps you record; it cannot establish that the fabric and pattern are at that same position.",
-        "For example, suppose your pattern says work 12 rows even in stockinette, then decrease one stitch each side every other row for 8 rows. Set the counter to zero at the start of the section and note that row 12 triggers the first decrease. Rows 12, 14, 16, 18, 20, 22, 24, and 26 are all decrease rows.",
+        "For an explicit example, work 12 plain rows, then decrease one stitch at each edge on row 13 and every other row for eight decrease events total: rows 13, 15, 17, 19, 21, 23, 25, and 27. Eight paired events remove 16 stitches. If you increment after completing each row, a reminder at count 12 can say to decrease on the next row; count 13 records the first decrease row as completed. Enter each reminder separately and keep the same counting convention throughout.",
         "Recording selected milestones before you begin can turn part of a written instruction into a numerical checkpoint. Only an explicitly configured reminder can display its note at an exact count; ordinary counter taps do not interpret the pattern.",
       ],
     },
@@ -362,62 +348,61 @@ export const toolContent: Record<string, ToolEducationalContent> = {
 
   "blanket-calculator": {
     commonMistakes: [
-      "Forgetting to account for overhang on bed blankets. A queen mattress is 60 inches wide, but a blanket without drape looks skimpy. Standard drape is 10–15 inches on each side; leaving it out produces a blanket 20–30 inches too narrow for proper coverage.",
-      "Using row gauge instead of stitch gauge to calculate blanket width. Width is determined by the number of stitches cast on (stitch gauge × width), not by row gauge. Using row gauge here produces a completely wrong starting stitch count.",
-      "Calculating yardage for a single stitch pattern when the blanket uses multiple sections or a border. A granny square blanket or sampler with different stitch patterns in different sections cannot use a single consumption rate.",
+      "Treating a finished-blanket preset as a mattress measurement. The Queen preset begins at 90 by 100 inches; its 60 by 80-inch mattress description is context, not the calculation base.",
+      "Adding drape twice. The overhang field adds to the selected preset or custom dimensions. Leave it at zero when those dimensions already include the intended drop.",
+      "Using unmeasured skein or swatch values. Replace the example label values with the actual yarn label before using the yarn estimate."
     ],
-    projectExample: "A crocheter plans an 84 × 100-inch blanket and makes a 4 × 4-inch swatch in the actual stitch pattern. The calculator uses the swatch's measured gram weight and the yarn label's yards per skein to scale yarn use to the finished area, then adds the displayed 10% planning buffer.",
+    projectExample: "Select Queen at 90 by 100 inches and enter 10 inches of additional overhang. The target becomes 110 by 110 inches: add 20 to width and 10 to length. Enabling pillow tuck adds another 20 inches to length, making 110 by 130 inches. At a measured 4 stitches and 5 rows per inch, that target gives 440 stitches and 650 rows before any stitch-repeat adjustment.",
     useCases: [
-      "Planning a bed blanket that actually fits with proper drape, the calculator handles mattress dimensions, custom overhang, and stitch counts together.",
-      "Estimating total yarn cost before purchasing. If you know yardage and price per skein, you can calculate budget before committing.",
-      "Determining stitch counts that work with your chosen stitch pattern, verify that your width divides evenly into your pattern repeat before casting on.",
+      "Compare a finished-blanket preset with measured custom dimensions.",
+      "Calculate whole stitch and row counts from the actual gauge.",
+      "Scale representative swatch consumption to the target rectangle, then compare the planning estimate with the pattern."
     ],
     introduction: {
-      title: "Why You Need a Blanket Size Calculator",
+      title: "Plan dimensions, gauge, and measured yarn use",
       paragraphs: [
-        "Blanket sizing involves much more than simply measuring width and height. A proper bed blanket needs mattress overhang on three sides, optional pillow tuck allowance, and a stitch count that works with your pattern repeat. Getting any of these wrong means a blanket that looks skimpy or hangs unevenly.",
-        "Whether you are making a baby blanket, a lap throw, or a king-size bedspread, precise dimensions from the start save you from running out of yarn three-quarters through or finishing a blanket that does not actually cover the bed. This calculator handles all the math in one step.",
-      ],
+        "Choose a finished-blanket preset or enter custom dimensions. Additional overhang and pillow tuck increase that chosen base; the calculator does not automatically start from mattress dimensions.",
+        "Gauge supplies the stitch and row arithmetic. A separate measured swatch and actual yarn label supply the yarn estimate. Neither result guarantees finished size or sufficient yarn."
+      ]
     },
     whatIs: {
-      title: "What Is Blanket Size Calculation?",
+      title: "What the blanket calculator covers",
       paragraphs: [
-        "Blanket size calculation determines the finished fabric dimensions, stitch count, row count, and total yarn requirements for any blanket project. It accounts for mattress dimensions, desired overhang on each side, pillow tuck depth, and your personal gauge to produce exact numbers for casting on.",
-        "Standard mattress sizes vary by country, and the ideal overhang depends on whether the blanket is decorative or functional. A bedspread typically needs 12 to 15 inches of drop on each side, while a coverlet needs only 8 to 10 inches. The calculator lets you customize these values precisely.",
-        "Beyond dimensions, the calculator converts your target size into stitch and row counts using your gauge, then estimates total yardage so you can purchase all your yarn from the same dye lot. This end-to-end planning prevents the mid-project panic of discovering you need ten more skeins.",
-      ],
+        "This is a planning model for a flat rectangular blanket. Presets are starting dimensions, not universal sizing requirements. Measure the intended coverage and follow the chosen pattern.",
+        "To plan directly from mattress measurements, choose custom dimensions, enter those measurements, and add the desired drop. To use an already finished blanket size, enter it with zero extra overhang unless more width and length are intended."
+      ]
     },
     howCalculated: {
-      title: "How Blanket Dimensions Are Calculated",
+      title: "How the dimensions and counts are calculated",
       paragraphs: [
-        "The calculation starts with mattress dimensions and adds overhang and tuck allowances. For a queen bed measuring 60 by 80 inches with 10 inches of overhang on each side, the finished blanket needs to be 80 inches wide and 90 inches long, 60 plus 10 on each side for width, 80 plus 10 for the foot.",
-        "Next, multiply by your gauge to get stitch and row counts. At a gauge of 4 stitches per inch, an 80-inch width requires 320 stitches to cast on. At 5 rows per inch, 90 inches of length means 450 rows of knitting. These numbers let you verify that your pattern repeat divides evenly into the stitch count.",
-        "Finally, divide the finished area by the measured swatch area and multiply by the grams used in that swatch. The calculator adds a visible 10% planning buffer, then converts grams to yarn length and whole skeins using the length and weight printed on the yarn label.",
-      ],
+        "Target width = selected preset or custom width + twice the entered overhang. Target length = selected preset or custom length + entered overhang + 20 inches when pillow tuck is enabled. The 20-inch tuck equals 50.8 centimeters; metric dimensions are converted to inches internally.",
+        "Stitches = target width times measured stitches per inch, rounded to a whole stitch. Rows = target length times measured rows per inch, rounded to a whole row. With a stitch multiple and extra, the count is adjusted to the nearest supported multiple-times-repeat-count plus extra, with at least one complete repeat. Turning chains are not added.",
+        "Planned grams = swatch grams times target rectangle area divided by swatch area, times 1.10 for the displayed 10% allowance. Planned length uses the actual label length per gram. The whole-skein result rounds upward. Yarn scaling uses the target rectangle, not a new area inferred from rounded stitch counts."
+      ]
     },
     howToUse: {
-      title: "How to Use the Blanket Size Calculator",
+      title: "Use the blanket calculator",
       paragraphs: [
-        "Select a blanket size preset or enter custom dimensions. Enter stitch and row gauge for cast-on and row counts. For yarn and skeins, enter the swatch dimensions, grams used, and the length and weight printed on the yarn label.",
-        "The stitch count and row count are derived from your gauge multiplied by the blanket dimensions. If your gauge is 4 stitches per inch and the blanket is 50 inches wide, the calculator returns a 200-stitch cast-on. Yarn use is calculated separately from your measured swatch consumption."
-      ],
+        "Select a preset or custom dimensions and confirm the units. Review the resulting dimensions after any extra overhang or tuck. Enter both stitch and row gauge over the stated measurement span when counts are needed.",
+        "For yarn estimates, enter all three swatch measurements: width, height, and grams used. Replace the prefilled skein length and mass with the actual label values. The swatch should represent the intended stitch pattern, yarn, tension, and finishing."
+      ]
     },
     understandingResults: {
-      title: "Understanding Your Results",
+      title: "Read the result as a planning estimate",
       paragraphs: [
-        "The stitch and row counts are only as accurate as your gauge input. If your actual working gauge differs from what you entered, even by a quarter stitch per inch, the finished blanket dimensions will be off. For a 60-inch-wide blanket, a 0.25 st/in error produces a blanket that is 3-4 inches wider or narrower than intended. Swatch accurately.",
-        "The yarn estimate includes a visible 10% planning buffer. If you are adding fringe, a border in a different stitch, seams, or embellishments, measure or budget those components separately. The estimate assumes the measured swatch represents the main blanket fabric."
-      ],
+        "Whole-stitch, whole-row, and repeat rounding can change the modeled fabric dimensions. Divide the final counts by the corresponding gauge to inspect that effect and check the actual fabric while working.",
+        "The yarn estimate includes a 10% planning allowance, not a guarantee. A different border stitch, fringe, seams, joins, or embellishments need separate measurements and allowances. A category name alone cannot establish yardage, skein count, working time, or fit."
+      ]
     },
     proTips: {
-      title: "Pro Tips",
+      title: "Check the assumptions",
       tips: [
-        "Add 10-20% extra yarn beyond the estimate if you plan to add seams, fringe, tassels, or a crocheted border around a knit blanket.",
-        "Baby blankets knit fastest in bulky or super-bulky yarn. A worsted-weight baby blanket is a 20+ hour project. A super-bulky version finishes in 6-8 hours.",
-        "Queen and king size blankets in worsted weight require 2,000 to 4,000+ yards. Plan your budget and storage before committing, that is 15 to 30 skeins of yarn.",
-        "For afghans made of joined squares, calculate yardage per square, then multiply by the number of squares plus 10% for joining."
-      ],
-    },
+        "Keep base dimensions separate from additional overhang to avoid counting the same drop twice.",
+        "Check the final stitch count against the pattern's repeat, edge, and turning-chain instructions.",
+        "Measure separate sections when a sampler or border uses a different stitch pattern.",
+        "For joined squares, measure yarn per representative square and joining use separately rather than assuming the rectangle model covers both."
+      ]
+    }
   },
 
   "increase-decrease-calculator": {
@@ -548,54 +533,46 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "abbreviation-glossary": {
-    chartGuide: "This glossary contains searchable entries for over 100 standard knitting and crochet abbreviations paired with their full stitch names and execution instructions. Each entry shows the abbreviation (such as 'dc' for double crochet), the full stitch name, the complete sequence of movements to execute the stitch, the chart symbol, and any special technique variations. The US/UK toggle switches all entries between American and British terminology, selecting 'UK' remaps every crochet abbreviation, because 'dc' means double crochet in US but single crochet in UK. Categories organize by stitch family (basic stitches, increases, decreases, cables, colorwork, lace) for browsing by type. Each entry shows yarn overs before insertion, loops on hook at each stage, and turning chain counts for crochet stitches.",
-    industryStandards: "The Craft Yarn Council (CYC) publishes the official standard abbreviations for North American knitting and crochet patterns, establishing the baseline set used by nearly all commercial US and Canadian patterns. In the UK, similar standards follow British fiber publications. The most significant divergence is UK crochet terminology, which systematically offsets stitch names by one step from the US system, UK 'double crochet' equals US 'single crochet,' UK 'treble' equals US 'double crochet.' This offset dates to early 20th-century pattern-writing traditions where the two countries counted hooks and loops differently. Individual designer shorthand for complex stitch sequences is common in indie patterns and vintage sources, which is why every pattern should include an abbreviation key.",
-    manufacturerNote: "Although CYC publishes standard abbreviations, individual designers and publishers sometimes deviate, particularly for complex stitches or specialty techniques. Vintage patterns from the mid-20th century often use abbreviations since redefined, 'yo' (yarn over) once appeared as '* yo' with an asterisk in some older sources. Regional knitting styles also create variations, continental European patterns sometimes use completely different shorthand than UK or US sources. Some abbreviations appear in one craft but not the other, or mean different things in each, 'sl st' (slip stitch) is executed completely differently in knitting versus crochet. Published pattern abbreviation keys should always be your primary reference.",
+    answerCapsule: "Search the included knitting and crochet abbreviation entries and read their definitions.",
     introduction: {
-      title: "Why You Need an Abbreviation & Stitch Glossary",
+      title: "Using the abbreviation glossary",
       paragraphs: [
-        "Halfway through a vintage pattern, you hit \u201csl1-k2tog-psso\u201d and freeze, what does that mean? Knitting and crochet patterns rely on over a hundred standard abbreviations, and designers sometimes invent their own. Without a reliable reference, one misread abbreviation can derail an entire project.",
-        "The confusion doubles when you cross the Atlantic. UK and US crochet terminology uses the same words for completely different stitches, so a British pattern calling for double crochet produces a fundamentally different fabric than the American stitch of the same name. A searchable glossary with a US/UK toggle eliminates this guesswork entirely.",
-      ],
+        "Search the included knitting and crochet abbreviation entries and read their definitions."
+      ]
     },
     whatIs: {
-      title: "What Is an Abbreviation & Stitch Glossary?",
+      title: "Scope of this tool",
       paragraphs: [
-        "An abbreviation glossary is a searchable database of knitting and crochet abbreviations paired with their full names, definitions, and step-by-step execution instructions. It covers standard abbreviations published by the Craft Yarn Council as well as widely used designer shorthand for cables, colorwork, and lace.",
-        "The US/UK toggle switches the entire glossary between American and British terminology. Each entry shows the equivalent abbreviation in the other system when one exists, making it possible to work confidently from patterns published in either country.",
-        "The pattern translator feature goes further, paste a full instruction line and the glossary expands every abbreviation into plain language. This is especially useful for complex stitch sequences where multiple abbreviations stack together in a single instruction.",
-      ],
+        "A familiar abbreviation can have a different meaning in another pattern or region. The glossary does not establish the source convention from the text."
+      ]
     },
     howCalculated: {
-      title: "How UK/US Term Conversion Works",
+      title: "Method and reference",
       paragraphs: [
-        "The UK/US conversion is not random, it follows a systematic offset. Every UK crochet term is one step higher than its US equivalent. UK double crochet equals US single crochet. UK treble equals US double crochet. UK double treble equals US treble. The entire naming ladder shifts by one rung.",
-        "This offset exists because UK terminology counts the loops on the hook, while US terminology counts the yarn overs before insertion. A US single crochet has zero yarn overs before inserting; the UK calls it double crochet because there are two loops on the hook after pulling up. Understanding this logic makes the entire conversion table predictable rather than something to memorize.",
-      ],
+        "The glossary is a finite reference, not a parser for every pattern convention. Pattern-specific abbreviation keys take precedence."
+      ]
     },
     howToUse: {
-      title: "How to Use the Abbreviation & Stitch Glossary",
+      title: "How to use it",
       paragraphs: [
-        "Type any abbreviation into the search field to find its full name, description, and step-by-step execution. The glossary covers both knitting and crochet abbreviations. Use the US/UK toggle to switch between American and British terminology, the glossary shows the equivalent abbreviation in the other system when one exists.",
-        "Each entry includes a written description of how to work the stitch, the stitch symbol used in charts, and for common stitches, a step-by-step diagram. Browse by category (increases, decreases, basic stitches, cables, colorwork) or search directly."
-      ],
+        "Search the term and use the available craft or category filters.",
+        "Check whether the source pattern uses US or UK crochet terminology before applying a definition."
+      ]
     },
     understandingResults: {
-      title: "Understanding Your Results",
+      title: "Read the result",
       paragraphs: [
-        "The US/UK toggle shows the equivalent term in the other system. \"dc\" in US crochet means double crochet (yarn over, insert hook, pull up loop, yarn over, pull through two, yarn over, pull through two). \"dc\" in UK crochet means what Americans call single crochet, a completely different stitch. The toggle makes this distinction explicit so you can work from any pattern regardless of its country of origin.",
-        "Some abbreviations have no direct equivalent in the other system and are flagged as such. Proprietary stitch abbreviations invented by individual designers are not included, those are defined within the pattern itself."
-      ],
+        "A familiar abbreviation can have a different meaning in another pattern or region. The glossary does not establish the source convention from the text."
+      ]
     },
     proTips: {
-      title: "Pro Tips",
+      title: "Check before using the result",
       tips: [
-        "Always check the abbreviation key printed in your specific pattern before relying on the glossary. Some designers define custom abbreviations or use standard abbreviations in non-standard ways.",
-        "UK and US crochet terms are completely different for the same stitch. UK double crochet = US single crochet. UK treble = US double crochet. This single fact causes more pattern confusion than any other.",
-        "When an abbreviation is ambiguous and you cannot find a pattern key, look at the stitch count for the row. The stitch count tells you what the abbreviation must mean in context.",
-        "Save or bookmark the specific entries you need for your current project so you can reference them quickly without searching each time."
-      ],
+        "Follow the exact pattern and product instructions.",
+        "Make a representative swatch or sample when fit, dimensions, or material behavior matters."
+      ]
     },
+    projectExample: "SK2P is slip one, knit two together, pass the slipped stitch over: a double decrease with left lean. It is not the same maneuver as a centered double decrease."
   },
 
   "spinning-ratio-calculator": {
@@ -729,54 +706,46 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "stitch-quick-reference": {
-    chartGuide: "This visual reference breaks down every foundational knitting and crochet stitch into step-by-step mechanical movements. Each stitch card shows the action sequence: where to insert the needle or hook, when to wrap yarn, how many loops remain at each stage, and the final stitch appearance. For crochet stitches, each card marks the starting chain height, each yarn over point, loops on hook at every stage, and the turning chain requirement. For knitting stitches, the cards show whether the stitch is worked through the front or back loop, whether new loops are created or existing ones manipulated, and the resulting column appearance in stockinette. Cards are organized by stitch family, single crochet progresses logically to half-double crochet and double crochet, showing how each additional yarn over adds height.",
-    industryStandards: "Stitch construction standards are maintained by craft organizations including the Craft Yarn Council and long-standing knitting and crochet publishers. The fundamental stitch definitions have remained virtually unchanged for over a century, single crochet, double crochet, and treble crochet are worked identically today as they were in 1920s instructions. These definitions are grounded in yarn mechanics: each yarn over added before hook insertion increases stitch height by a predictable amount based on how loops interact. Lace and specialty stitches (puff, popcorn, bobble) are less standardized and often have multiple accepted variations; established stitch dictionaries like Barbara Walker's provide authoritative definitions for knitting.",
-    manufacturerNote: "In practice, individual knitting and crochet execution varies subtly between crafters even when following the same mechanical instruction, leading to minor gauge differences. A 'tight' crochet tension produces denser, stiffer fabric than 'loose' tension with identical stitches. Yarn texture affects how clearly stitch structure shows, fuzzy novelty yarns obscure stitch definition that would be obvious in smooth worsted. Some crocheters work tighter in the foundation chain than subsequent rows, creating visible width changes the stitch definition doesn't account for. Left-handed crafters work mirror-image movements that sometimes create subtle differences in how stitches sit. The reference shows standard execution, but your personal gauge and yarn choices will produce slightly different results.",
+    answerCapsule: "Review the included common stitches with step-by-step yarn movements and loop counts.",
     introduction: {
-      title: "Why You Need a Stitch Quick Reference",
+      title: "Using the stitch quick reference",
       paragraphs: [
-        "Mid-row you forget: does a half double crochet yarn over before or after inserting the hook? Do you pull through two loops or three? A moment of doubt leads to frogging if you guess wrong. A quick visual reference that shows the exact loop sequence saves time, yarn, and frustration every session.",
-        "Even experienced crafters with decades of muscle memory occasionally switch between techniques and need a refresher. Moving from knitting to crochet, or from basic stitches to specialty ones like the puff stitch or cable cross, means recalling precise movements that differ by a single yarn over or loop count.",
-      ],
+        "Review the included common stitches with step-by-step yarn movements and loop counts."
+      ]
     },
     whatIs: {
-      title: "What Is a Stitch Quick Reference?",
+      title: "Scope of this tool",
       paragraphs: [
-        "A stitch quick reference is a visual step-by-step breakdown of every basic knitting and crochet stitch. Each entry shows the yarn over count, loop count on the hook or needle at each stage, turning chain height for crochet stitches, and the completed stitch anatomy.",
-        "The reference covers foundation stitches, basic stitches from chain through treble, increases, decreases, and common specialty stitches. Each card is designed as a memory aid, compact enough to glance at mid-row without losing your place in the pattern.",
-        "Stitch anatomy diagrams show where each part of the stitch sits: the post, the top loops, the back bump, and the turning chain. Understanding these components helps you identify where to insert your hook or needle for variations like back loop only, front post, or linked stitches.",
-      ],
+        "This is a limited technique reference, not a complete pattern or a guarantee of gauge. Stitch height, tension, and yarn consumption depend on the actual work."
+      ]
     },
     howCalculated: {
-      title: "How Stitch Anatomy Is Determined",
+      title: "Method and reference",
       paragraphs: [
-        "Stitch construction is not calculated mathematically, it is determined by the sequence of yarn overs and pull-throughs that define each stitch. Consider the double crochet: yarn over, insert hook, yarn over and pull up a loop (3 loops on hook), yarn over and pull through 2 (2 loops remain), yarn over and pull through 2 (stitch complete). That is 4 total yarn overs from start to finish.",
-        "Each additional yarn over before insertion adds height to the stitch. Single crochet has zero yarn overs before inserting. Half double crochet has one. Double crochet has one. Treble crochet has two. This progression creates the predictable height ladder that determines turning chain counts and stitch gauge.",
-      ],
+        "The reference counts yarn-over and pull-through operations across the displayed stitch steps, including the initial pull-up. The crochet terminology is US unless a UK equivalent is explicitly shown."
+      ]
     },
     howToUse: {
-      title: "How to Use the Stitch Quick Reference",
+      title: "How to use it",
       paragraphs: [
-        "Browse stitch cards by category, basic stitches, increases, decreases, textured stitches, and specialty stitches. Each card shows a step-by-step visual breakdown of the stitch movement: where to insert, how to wrap, which loops to pull through, and the resulting loop count on your hook or needle after each step.",
-        "The yarn over and loop count indicators on each card show exactly what should be on your needle or hook at each stage. This is especially helpful for complex stitches like the puff stitch, bobble, or cable cross, where keeping track of loops mid-stitch is critical."
-      ],
+        "Select a stitch, then follow the ordered steps and check the loops on the hook.",
+        "Follow the actual pattern for turning chains and whether they count as stitches."
+      ]
     },
     understandingResults: {
-      title: "Understanding Your Results",
+      title: "Read the result",
       paragraphs: [
-        "Each stitch card shows the mechanical movement sequence for one stitch execution. The cards are designed as a quick memory aid, enough to reconstruct a stitch you have done before but temporarily forgotten. They are not a substitute for learning the stitch from a video or instructor for the first time.",
-        "The turning chain information on crochet stitch cards tells you how many chain stitches to work at the beginning of a row for that stitch height. Turning chain counts vary slightly between patterns, the reference shows the standard count, but your pattern may specify differently."
-      ],
+        "This is a limited technique reference, not a complete pattern or a guarantee of gauge. Stitch height, tension, and yarn consumption depend on the actual work."
+      ]
     },
     proTips: {
-      title: "Pro Tips",
+      title: "Check before using the result",
       tips: [
-        "Bookmark the specific stitch card you are working with before starting a session. Mid-row is not the time to be scrolling through a full reference.",
-        "Slip stitch in crochet is not the same movement as slip stitch in knitting. The reference distinguishes between them, make sure you are looking at the correct craft.",
-        "For Tunisian crochet stitches, the forward pass and return pass are shown as separate steps. Work through the forward pass completely before starting the return.",
-        "If a stitch card shows a movement you cannot replicate, check your hook or needle orientation. Left-handed and right-handed versions of the same stitch mirror each other."
-      ],
+        "Follow the exact pattern and product instructions.",
+        "Make a representative swatch or sample when fit, dimensions, or material behavior matters."
+      ]
     },
+    projectExample: "In the displayed US treble crochet steps, two initial yarn overs, one pull-up yarn over, and three pull-through yarn overs total six yarn-over operations."
   },
 
   "uk-to-us-converter": {
@@ -899,54 +868,46 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "needle-guide": {
-    chartGuide: "This guide categorizes finishing and sewing needles by three defining characteristics: tip profile (blunt for passing between fibers, sharp for piercing fabric, or ball-point for knit fabrics), eye size and shape (large round for thick yarns, tiny for beads, elongated for multiple floss strands), and intended materials. Each needle type includes its purpose, available sizes, recommended materials, and tasks it handles poorly. The guide covers tapestry needles (blunt, large eye for yarn ends), chenille needles (sharp, large eye for embellishing), embroidery crewel needles (elongated eye for multiple floss strands), sharps (traditional sewing for woven fabrics), betweens (short for fine close stitching), and beading needles (extremely thin for tiny bead holes). Size numbering is counterintuitive, larger numbers mean smaller needles.",
-    industryStandards: "Needle classifications are maintained by sewing and craft supply manufacturers and standards organizations. The blunt/sharp tip distinction originated in the textile industry centuries ago, a blunt tip cannot split yarn plies, while a sharp tip must pierce woven fabric. Eye sizes are standardized by ASTM and ISO standards that define measurements across sizes. The Craft Yarn Council references standard needle types in pattern guidelines, specifying characteristics for specific materials. Tapestry needle standardization comes from historical embroidery and tapestry-making traditions where blunt needles were essential to protect fine decorative yarns.",
-    manufacturerNote: "In practice, needle sizing numbers vary between manufacturers, a size 18 tapestry needle from Boye may measure fractionally different from a budget-brand size 18. Needle material affects functionality: bamboo grips yarn better than metal, reducing slippage; wooden needles are gentler on delicate threads but wear faster; metal needles are durable but can damage some fragile fibers. Needle eye filing quality varies enormously, a poorly finished eye can snag and shred delicate thread, while a premium manufacturer's eye glides smoothly. Some 'embroidery needles' and 'crewel needles' are used interchangeably in practice though technically intended for slightly different materials.",
+    answerCapsule: "Compare the included hand-sewing and craft needle types by their described tip, eye, and intended task.",
     introduction: {
-      title: "Why You Need a Sewing & Craft Needle Guide",
+      title: "Using the sewing and craft needle guide",
       paragraphs: [
-        "You need to weave in ends on a chunky blanket, sew seed beads onto a doily, and finish a cross stitch piece, three projects sitting in your craft basket right now, and each one requires a completely different needle. Grabbing the wrong one means split yarn, broken beads, or damaged fabric.",
-        "Needle selection is one of those skills that experienced crafters take for granted but beginners find bewildering. This guide organizes every common needle type by its purpose, tip profile, eye shape, and recommended materials so you can match the right needle to every finishing task.",
-      ],
+        "Compare the included hand-sewing and craft needle types by their described tip, eye, and intended task."
+      ]
     },
     whatIs: {
-      title: "What Is a Craft Needle Guide?",
+      title: "Scope of this tool",
       paragraphs: [
-        "A craft needle guide is a visual reference that categorizes sewing and finishing needles by their design characteristics and intended use. It covers tapestry needles, chenille needles, embroidery crewel needles, sharps, betweens, beading needles, darning needles, and specialty types.",
-        "Each needle type is defined by three characteristics: tip profile (blunt, sharp, or ball-point), eye shape and size (round, elongated, or tiny), and intended material (yarn, embroidery floss, sewing thread, or beading thread). These three factors determine which tasks the needle handles well and which it handles poorly.",
-      ],
+        "The guide does not prove a needle is safe or suitable for every fabric. Even a blunt needle can catch or separate yarn plies. Follow the exact product instructions and test on a sample."
+      ]
     },
     howCalculated: {
-      title: "How to Select the Right Needle",
+      title: "Method and reference",
       paragraphs: [
-        "Needle selection is not math-based, it follows a decision tree based on your task and materials. The first question is whether you need to pierce the fabric or pass between existing stitches. Piercing requires a sharp tip. Passing between stitches requires a blunt tip to avoid splitting yarn.",
-        "For example, weaving in yarn ends on a knitted or crocheted project calls for a tapestry needle, blunt tip, large eye. Piercing through woven fabric to attach an applique calls for a chenille needle, sharp tip, large eye. Stringing seed beads requires a beading needle, thin, flexible shaft with a tiny eye that fits through bead holes.",
-        "Needle sizing runs counterintuitively: larger numbers mean smaller needles. A size 18 tapestry needle has a wider shaft and larger eye than a size 24. Match your needle size to your thread or yarn thickness, the eye should be large enough to thread easily but small enough that the needle does not leave visible holes in the fabric.",
-      ],
+        "This reference describes needle construction and use. Numeric size conventions vary between needle families and manufacturers; a size number is not a universal diameter conversion."
+      ]
     },
     howToUse: {
-      title: "How to Use the Sewing & Craft Needle Guide",
+      title: "How to use it",
       paragraphs: [
-        "Browse needles by type, tapestry, chenille, embroidery (crewel), sharps, betweens, beading, darning, and specialty needles. Each needle card shows the tip profile (blunt, sharp, or ball-point), eye shape and size, recommended materials, and the tasks it is best suited for.",
-        "Use the guide to find the right needle for your finishing task. The difference between a tapestry needle and a chenille needle is the tip, tapestry is blunt, chenille is sharp. Both have large eyes for thick thread or yarn, but you reach for one or the other depending on whether you are weaving through existing stitches or piercing fabric."
-      ],
+        "Select the intended task and inspect the needle-type description.",
+        "Check that the needle fits the thread and fabric or bead opening without forcing it."
+      ]
     },
     understandingResults: {
-      title: "Understanding Your Results",
+      title: "Read the result",
       paragraphs: [
-        "The guide organizes needles by what they are designed to do, not by brand or arbitrary numbering. Needle size numbers run in the opposite direction from what you might expect, larger numbers mean smaller needles, just like knitting needle UK sizing. A size 18 tapestry needle is larger than a size 24.",
-        "Material recommendations indicate which needle types work best with specific fibers and fabrics. Wool yarn and knitted fabric call for blunt tapestry needles. Woven fabric and cotton thread call for sharps. Beadwork requires specialty beading needles thin enough to pass through seed bead holes."
-      ],
+        "The guide does not prove a needle is safe or suitable for every fabric. Even a blunt needle can catch or separate yarn plies. Follow the exact product instructions and test on a sample."
+      ]
     },
     proTips: {
-      title: "Pro Tips",
+      title: "Check before using the result",
       tips: [
-        "Use tapestry needles (blunt tip) for weaving in ends on knitted and crocheted fabric. Sharp needles split the yarn and create a weak, messy join.",
-        "Embroidery needles, also called crewel needles, have elongated eyes designed to hold multiple strands of floss. Use them for surface embroidery, not for weaving in yarn ends.",
-        "Size up your needle eye before threading. Forcing thick thread through a too-small eye damages the thread fibers and weakens your stitching.",
-        "Bent-tip tapestry needles are not a gimmick. They make weaving in ends on stockinette noticeably faster by following the curve of the stitch."
-      ],
+        "Follow the exact pattern and product instructions.",
+        "Make a representative swatch or sample when fit, dimensions, or material behavior matters."
+      ]
     },
+    projectExample: "A tapestry needle has a blunt tip for working through existing openings. A sharp-pointed needle serves a different task; the choice depends on the material and intended construction."
   },
 
   "amigurumi-shapes": {
@@ -1085,7 +1046,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       "Compute starting EPI as WPI multiplied by warp threads in one repeat, divided by interlacements plus warp threads.",
       "Weave and wet-finish a sample, then adjust sett, beat, and allowances from the measured result."
     ],
-    fiberNotes: "Fiber, yarn construction, twist, elasticity, abrasion, finishing, desired hand, and loom setup can all change a workable sett. A yarn-category midpoint or measured WPI is only an input to the displayed starting formula, not proof that the resulting cloth or reed choice is suitable.",
+    fiberNotes: "Fiber, yarn construction, twist, elasticity, abrasion, finishing, desired hand, and loom setup can all change a workable sett. Measured WPI is only an input to the displayed starting formula, not proof that the resulting cloth or reed choice is suitable.",
     practiceProject: "Measure one yarn's WPI, compare the supported plain-weave and 2/2-twill starting values, then weave and wet-finish small samples. Record the actual EPI, PPI, dimensions, hand, and shrinkage instead of treating either calculated value as final.",
     introduction: {
       title: "Why This Is a Starting-Point Calculator",
@@ -1113,7 +1074,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     howToUse: {
       title: "How to Use the Calculator",
       paragraphs: [
-        "Enter measured WPI when possible and select only a structure that matches the modeled repeat. Treat a yarn-weight midpoint as a fallback starting assumption.",
+        "Enter measured WPI for the actual yarn and select only a structure that matches the modeled repeat. No category midpoint is substituted for a measurement.",
         "For warp planning, enter the actual project dimensions and allowances you intend to use. For reed arithmetic, choose one of the listed reeds and a whole-number target from 1 through 120 EPI.",
         "Sample the yarn, draft, beat, sleying, and finishing before winding a full warp or buying from the displayed quantity."
       ],
@@ -1260,114 +1221,89 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "thread-converter": {
-    chartGuide: "This tool searches a bounded table containing DMC, Anchor, and Cosmo fields. It returns the values stored together on an included row for exact-code lookups and literal table-text searches. It does not include Sulky, calculate color distance, infer a nearest color, or prove that threads on one row are physical matches.",
-    industryStandards: "Thread manufacturers maintain independent numbering systems. This site's table is an internal reference dataset and is not presented as an official, complete, current, or manufacturer-certified conversion standard. Verify codes, product lines, availability, and substitutions against the actual pattern and manufacturer or retailer information.",
-    manufacturerNote: "Screen colors are orientation only and vary with display, lighting, dye lot, finish, and material. Compare physical threads before using a cross-brand row for color-critical work. Unknown and ambiguous codes remain unresolved instead of being guessed.",
+    answerCapsule: "Look up 20 source-backed DMC and Anchor pairings from an archived Anchor Stranded Cotton chart.",
     introduction: {
-      title: "What This Included-Table Lookup Can Do",
+      title: "Using the thread chart lookup",
       paragraphs: [
-        "Use the tool to find exact codes or literal labels already present in its DMC, Anchor, and Cosmo table, save included rows to a temporary reference palette, or run a bounded batch of exact source-brand codes.",
-        "The result is a table lookup, not a measured color match or shopping recommendation. Missing brands and missing rows are outside its coverage."
-      ],
+        "Look up 20 source-backed DMC and Anchor pairings from an archived Anchor Stranded Cotton chart."
+      ]
     },
     whatIs: {
-      title: "A Bounded Cross-Reference Table",
+      title: "Scope of this tool",
       paragraphs: [
-        "Each row stores one DMC field, one Anchor field, one Cosmo field, a table label, and an orientation-only screen swatch. A lookup exposes those stored fields without generating new equivalences.",
-        "The same source code can appear on more than one row. In that case the tool marks the result ambiguous so the user can inspect the included rows rather than receiving an invented single answer."
-      ],
+        "An archived chart pairing is not an exact physical color guarantee or proof of current availability. Multiple matches remain ambiguous and unlisted codes are not guessed."
+      ]
     },
     howCalculated: {
-      title: "How Lookup Results Are Determined",
+      title: "Method and reference",
       paragraphs: [
-        "Single search filters the included fields by literal normalized text. Exact batch mode normalizes each input code for the chosen source brand and compares it with the corresponding stored field.",
-        "A unique included row is marked found, multiple rows are marked ambiguous, a valid but absent code is marked unknown, and malformed input is marked invalid. No hue, saturation, spectral, or nearest-neighbor calculation is performed.",
-        "Batch size and text length are capped before processing so pasted input cannot create an unbounded result."
-      ],
+        "The lookup returns the transcribed row or rows for an exact shade code. It performs no nearest-color calculation and includes no Cosmo mapping."
+      ]
     },
     howToUse: {
-      title: "How to Use the Lookup",
+      title: "How to use it",
       paragraphs: [
-        "For exploration, search the included table and optionally restrict the field. For a project list, choose DMC, Anchor, or Cosmo as the source and paste exact codes separated by spaces, commas, semicolons, or new lines.",
-        "Review every unknown or ambiguous result. The saved palette and copy action retain only included-row references in the current browser session; they do not verify or purchase thread."
-      ],
+        "Choose DMC or Anchor and enter one exact shade code.",
+        "Open the cited source chart and compare physical thread or current shade cards before substituting."
+      ]
     },
     understandingResults: {
-      title: "How to Read a Cross-Reference Row",
+      title: "Read the result",
       paragraphs: [
-        "Values shown across a row mean only that the dataset stores them together. They are not claims of identical dye formula, appearance, product construction, current availability, or manufacturer approval.",
-        "A screen swatch cannot establish real-world color. Compare physical samples under relevant lighting and confirm the exact product line before substituting."
-      ],
+        "An archived chart pairing is not an exact physical color guarantee or proof of current availability. Multiple matches remain ambiguous and unlisted codes are not guessed."
+      ]
     },
     proTips: {
-      title: "Checks Before Substituting Thread",
+      title: "Check before using the result",
       tips: [
-        "Confirm that the pattern and the physical skein use the same brand and product line as the selected field.",
-        "Treat ambiguous and unknown results as unresolved, not as permission to choose a nearby-looking code.",
-        "Compare physical samples for large color areas, gradients, skin tones, repairs, or other color-critical work.",
-        "Keep a record of the actual skein labels and dye lots used in the project."
-      ],
+        "Follow the exact pattern and product instructions.",
+        "Make a representative swatch or sample when fit, dimensions, or material behavior matters."
+      ]
     },
+    projectExample: "The source chart pairs DMC 321 with Anchor 47. Anchor 400 appears with both DMC 317 and DMC 413 in the included subset, so the reverse lookup must preserve both possibilities."
   },
 
   "wpi-calculator": {
-    skillLevel: "Beginner",
-    techniqueEffect: "Measuring wraps per inch reveals yarn thickness without requiring expensive tools or experience. The technique creates a standardized measurement that translates directly to the Craft Yarn Council's weight categories, giving mystery yarn a definitive identity. WPI measurement has limits, it measures apparent thickness, not construction or fiber character, but it eliminates the guesswork of needle and hook selection. Once you know a yarn's WPI category, you can reference standard gauge recommendations and select appropriate projects. The technique is non-destructive (you never remove yarn from the ball), quick (under one minute), and requires only a ruler and steady hands.",
-    techniqueSteps: [
-      "Place a ruler on a flat surface with inches clearly marked.",
-      "Starting at the 1-inch mark, wrap the target yarn around the ruler for exactly one inch, keeping wraps side by side without overlapping or gaps.",
-      "Count the number of complete wraps within the one-inch space.",
-      "Cross-reference the wrap count against the Craft Yarn Council's WPI ranges (Lace 30+, Super Fine 14-30, Sport 12-18, DK 11-15, Worsted 9-12, Bulky 6-9, Super Bulky 5-6, Jumbo 1-4)."
-    ],
-    fiberNotes: "Wraps per inch measures physical thickness, which varies by fiber, construction, and processing. A tightly twisted wool yarn may have the same WPI as a loosely plied acrylic of different fiber content, the WPI alone does not tell you the full story. Wool tends to compress slightly when wrapped (reducing apparent thickness), while fluffier fibers like mohair appear thicker than their measured WPI. Superwash processing can slightly increase WPI compared to untreated wool. Single-ply yarn of the same WPI as a tightly twisted two-ply will have very different performance and drape once worked into fabric.",
-    practiceProject: "Gather 5-10 mystery yarns or leftover skeins without labels. Measure the WPI of each using a ruler, record the results, then look up each in the CYC standard ranges. Create a small swatch with each yarn on a recommended needle size for its category. Compare how similarly (or differently) they knit despite having similar WPI, this reveals the limits of WPI as a sole identifier.",
+    answerCapsule: "Compare measured wraps per inch with overlapping Craft Yarn Council yarn-category guidance.",
     introduction: {
-      title: "Why You Need a WPI Calculator",
+      title: "Using the WPI reference",
       paragraphs: [
-        "You have found a gorgeous skein at a yard sale, inherited a bag of unlabeled yarn from a fellow crafter, or peeled off a ball band only to lose it before starting your project. Now you are holding mystery yarn with no idea what weight it is. Wraps per inch (WPI) is the fastest and most reliable way to identify it.",
-        "WPI measurement is a technique every fiber artist should have in their toolkit. It requires nothing more than a ruler and a few seconds of your time, yet it gives you the information you need to select the right needles, hooks, and patterns for any yarn in your stash. This calculator takes your WPI reading and instantly maps it to the Craft Yarn Council weight system with all the details you need to start crafting.",
-      ],
+        "Compare measured wraps per inch with overlapping Craft Yarn Council yarn-category guidance."
+      ]
     },
     whatIs: {
-      title: "What Is Wraps Per Inch?",
+      title: "Scope of this tool",
       paragraphs: [
-        "Wraps per inch is a standardized measurement of yarn thickness. You wrap the yarn around a ruler, dowel, or dedicated WPI tool for exactly one inch, keeping wraps snug and side by side without overlapping or stretching. The number of wraps that fit in that inch tells you the yarn's relative thickness.",
-        "Thinner yarns produce more wraps per inch, lace weight yarn wraps 30 or more times in an inch, while jumbo yarn may only wrap 1 to 4 times. The Craft Yarn Council has established WPI ranges for each of the eight standard yarn weight categories (0 through 7), giving crafters a universal reference for identifying unlabeled yarn.",
-        "It is important to understand that WPI ranges overlap between adjacent weight categories. A yarn that measures 12 WPI could be a tightly plied sport weight or a loosely spun worsted. This overlap is normal and reflects the natural variation in yarn construction. When your measurement falls in an overlap zone, the only definitive way to confirm the weight is to swatch and compare your stitch count against the standard gauge ranges.",
-      ],
+        "WPI is an approximate thickness measurement. It does not identify fiber content, establish yardage per gram, or guarantee yarn substitution. Knitting gauge guidance uses stockinette; it is not a crochet gauge table."
+      ]
     },
     howCalculated: {
-      title: "How the WPI Converter Works",
+      title: "Method and reference",
       paragraphs: [
-        "The converter uses the Craft Yarn Council's official WPI ranges to map your measurement to one or more yarn weight categories. Each category has a defined WPI range: Lace is 30 and above, Super Fine is 14 to 30, Fine or Sport is 12 to 18, Light or DK is 11 to 15, Medium or Worsted is 9 to 12, Bulky is 6 to 9, Super Bulky is 5 to 6, and Jumbo is 1 to 4.",
-        "When your WPI falls within a single category, the converter displays that weight with its corresponding needle sizes, hook sizes, gauge range, typical yardage per 100 grams, and suggested project types. When your WPI falls in an overlap zone, for example, 12 WPI matches both Fine/Sport and Medium/Worsted, the converter shows all matching categories and recommends swatching to confirm which weight best describes your yarn's behavior.",
-        "The recommended needle and hook sizes come directly from the Craft Yarn Council's published standards. The yardage estimates are typical values across common fiber types, though actual yardage varies by fiber content, cotton is heavier per yard than wool, and silk is heavier than alpaca.",
-      ],
+        "WPI means the number of adjacent yarn wraps in one inch, without overlapping or stretching. The tool compares the entered value against the included guidance ranges and preserves multiple possible categories where ranges overlap."
+      ]
     },
     howToUse: {
-      title: "How to Use the WPI Calculator",
+      title: "How to use it",
       paragraphs: [
-        "Start by measuring your yarn. Hold a ruler horizontally and wrap the yarn around it without stretching, pulling, or overlapping. Each wrap should sit snugly against the last, touching but not compressed. Count the wraps in exactly one inch. For the most accurate reading, measure in the middle of the ruler where edge effects are minimal.",
-        "For handspun or textured yarn, measure in two or three different spots along the skein and average the results. Handspun thickness can vary, and averaging gives a more representative WPI. For plied yarns, wrap the plied yarn as it comes, do not separate the plies.",
-        "Enter your WPI count into the calculator. The tool displays your matching yarn weight category (or categories if you are in an overlap zone) along with recommended needle sizes in US and metric, hook sizes in US letter and metric, the standard gauge range in stitches per 4 inches, typical yardage per 100 grams, and project suggestions suited to that weight.",
-      ],
+        "Measure the actual yarn without stretching it and enter the full measured value.",
+        "Review every matching category and verify the yarn with a representative swatch."
+      ]
     },
     understandingResults: {
-      title: "Understanding Your Results",
+      title: "Read the result",
       paragraphs: [
-        "If your WPI matches a single weight category, the results are straightforward, use the recommended needle or hook size as a starting point and swatch to confirm your gauge. If you see multiple categories, your yarn sits in an overlap zone and could work as either weight. Swatch with needles for both categories and decide which fabric you prefer.",
-        "The yardage per 100 grams is an average across common fibers. Wool and acrylic yarns tend to fall near the typical value, while cotton and linen yarns yield fewer yards per 100 grams due to their higher density. Silk falls in between. Use the yardage estimate as a planning guide, not an exact figure.",
-      ],
+        "WPI is an approximate thickness measurement. It does not identify fiber content, establish yardage per gram, or guarantee yarn substitution. Knitting gauge guidance uses stockinette; it is not a crochet gauge table."
+      ]
     },
     proTips: {
-      title: "Pro Tips",
+      title: "Check before using the result",
       tips: [
-        "Wrap on a smooth surface like a pencil, dowel, or knitting needle rather than a flat ruler, the wraps sit more naturally and give a more accurate count.",
-        "Do not push wraps together or spread them apart. The natural resting position of the yarn is what you want to measure.",
-        "If your WPI falls right on a boundary (like exactly 9 WPI between worsted and bulky), swatch with both the lighter and heavier weight needle suggestions. The fabric you prefer determines which category to treat the yarn as.",
-        "Keep a WPI cheat card in your yarn stash for quick reference at fiber festivals and thrift stores. Knowing your WPI ranges lets you evaluate mystery yarn on the spot.",
-      ],
+        "Follow the exact pattern and product instructions.",
+        "Make a representative swatch or sample when fit, dimensions, or material behavior matters."
+      ]
     },
+    projectExample: "A reading of 12 WPI falls in the included Fine, Light, and Medium guidance ranges. The overlap is a reason to check the label and swatch, not force a single category."
   },
 
   "c2c-calculator": {
@@ -1438,64 +1374,47 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "cast-on-calculator": {
-    commonMistakes: [
-      "Entering gauge as stitches per inch instead of stitches over 4 inches. The most common gauge is listed as '20 stitches over 4 inches' (5 stitches per inch), but crafters sometimes enter 20 directly, producing a cast-on five times too large.",
-      "Forgetting to account for stitch pattern multiples. A sweater body looks correct until waist shaping reveals the stitch count doesn't accommodate the cable repeat, forcing a restart.",
-      "Adding selvedge stitches on top of the calculator output when the multiple already includes edge adjustments. A '6 stitch repeat + 2 edge stitches' pattern means enter 6 as the multiple, adding extra edge stitches produces too many stitches.",
-    ],
-    projectExample: "A knitter wants a 40-inch-wide sweater body at a gauge of 5 stitches per inch. Base count: 200 stitches. Their cable pattern uses a 6-stitch repeat, so they enter 6 as the multiple. The calculator rounds up to 204 (the next multiple of 6), producing an actual width of 40.8 inches, close to the target with all cables fitting evenly.",
-    useCases: [
-      "Starting any fitted or patterned project confidently. The cast-on count is the most foundational number in knitting and crochet; getting it wrong wastes hours.",
-      "Comparing cast-on counts across gauge options. Needle size 5 might give 200 stitches while size 6 gives 195, one may fit the stitch pattern multiple better.",
-      "Planning exact finished width before casting on. Enter gauge and the calculator shows the actual width after stitch multiple rounding, preventing surprises.",
-    ],
+    commonMistakes: ["Pattern offsets, selvedges, ease, and turning chains are not included. Follow the pattern for these adjustments.", "A complete multiple may increase modeled width substantially. Check that width before casting on.", "Use measured gauge from the intended stitch pattern and finishing treatment; this arithmetic does not guarantee fit."],
+    answerCapsule: "Calculate a cast-on count from desired width and measured gauge, with an optional whole stitch multiple.",
     introduction: {
-      title: "Why You Need a Cast On Calculator",
+      title: "Using the cast-on calculator",
       paragraphs: [
-        "Every knitting and crochet project begins with a simple question: how many stitches do I start with? Cast on too few and your piece will be too narrow. Cast on too many and it will be too wide. The math itself is straightforward, multiply desired width by stitches per inch, but stitch pattern multiples, edge stitches, and gauge variation add complexity that catches even experienced knitters off guard.",
-        "This calculator handles all of it. Enter your gauge, desired width, and optional stitch pattern multiple, and you get an exact cast-on count that works for your pattern. No more ripping back row one because you forgot to account for a cable repeat.",
-      ],
+        "Calculate a cast-on count from desired width and measured gauge, with an optional whole stitch multiple."
+      ]
     },
     whatIs: {
-      title: "What Is a Cast On Count?",
+      title: "Scope of this tool",
       paragraphs: [
-        "The cast-on count is the number of stitches you place on your needle (in knitting) or the number of foundation chains you create (in crochet) at the very start of a project. It determines the width of your finished piece. Getting this number right at the beginning saves hours of frogging and frustration later.",
-        "For simple stockinette or single crochet, the math is a direct multiplication: desired width in inches times stitches per inch. But most projects use patterned stitches that repeat over a fixed number of stitches, a stitch multiple. A 2x2 rib repeats every 4 stitches. A honeycomb cable might repeat every 12. Your cast-on count must accommodate these multiples, or the pattern will not work out evenly across the row.",
-        "Edge stitches add another consideration. Many knitters add one or two selvedge stitches on each side for cleaner seaming. These extra stitches sit outside the pattern repeat and need to be factored into the total. This calculator accounts for all of these variables in one step.",
-      ],
+        "No pattern offsets, selvedges, ease, or turning chains are added automatically. Follow the pattern for those details. Gauge and rounded counts are planning arithmetic, not a fit guarantee."
+      ]
     },
     howCalculated: {
-      title: "How the Cast On Count Is Calculated",
+      title: "Method and reference",
       paragraphs: [
-        "The core formula divides your gauge stitches by the gauge measurement to find stitches per inch, then multiplies by your desired width. For example, if your gauge is 20 stitches over 4 inches, that is 5 stitches per inch. For a 10-inch-wide scarf, the base count is 50 stitches.",
-        "When you enter a stitch pattern multiple, the calculator rounds the base count up to the nearest multiple of that number. If your base count is 50 and your pattern repeats every 6 stitches, the calculator rounds up to 54 (the next multiple of 6). This ensures your pattern fits evenly across the row.",
-        "The calculator also shows you the actual finished width after rounding, so you can see exactly how the rounding affects your dimensions. If the width difference is unacceptable, you can adjust your gauge by changing needle or hook size, or choose a pattern with a more accommodating multiple.",
-      ],
+        "Raw count = desired width in inches × gauge stitches / gauge span in inches. With no multiple, the count rounds to the nearest whole stitch. With a multiple, it rounds the raw count upward to a complete multiple. The modeled width uses the rounded count."
+      ]
     },
     howToUse: {
-      title: "How to Use the Cast On Calculator",
+      title: "How to use it",
       paragraphs: [
-        "First, knit or crochet a gauge swatch and measure it. Enter the number of stitches and the width of your swatch, the default is stitches over 4 inches, the most common gauge format. Next, enter the desired width of your project in inches.",
-        "If your pattern uses a stitch repeat, enter the multiple in the optional field. For example, if your pattern says 'multiple of 8 plus 2,' enter 8 as the multiple. The calculator rounds up to the nearest multiple and displays the adjusted count.",
-        "Review the results. The calculator shows your cast-on count, the actual width that count produces, and a note about edge stitches. Many knitters add 2 selvedge stitches (one on each side) for seaming, adjust the total as needed for your project construction.",
-      ],
+        "Measure gauge in the intended stitch pattern and construction, after the intended finishing treatment.",
+        "Enter width and gauge in inches. Enter only the repeat size in the optional multiple field."
+      ]
     },
     understandingResults: {
-      title: "Understanding Your Results",
+      title: "Read the result",
       paragraphs: [
-        "The primary output is your cast-on stitch count. If you entered a stitch multiple, this count has been rounded up to accommodate the pattern repeat. The actual width is recalculated from this rounded count so you can see exactly how wide your piece will be.",
-        "The reference table below the calculator shows common project widths, scarves, cowls, blankets, dishcloths, so you can quickly sanity-check your number. If your count seems very different from what you expected, double-check your gauge swatch measurement. Even a small error in gauge has a big impact on the final count.",
-      ],
+        "No pattern offsets, selvedges, ease, or turning chains are added automatically. Follow the pattern for those details. Gauge and rounded counts are planning arithmetic, not a fit guarantee."
+      ]
     },
     proTips: {
-      title: "Pro Tips",
+      title: "Check before using the result",
       tips: [
-        "Always swatch in the stitch pattern you plan to use, not just stockinette. Cable patterns pull in the width, so your stitches-per-inch in cables will be higher than in plain knitting.",
-        "For pieces knit in the round, your gauge may differ from flat knitting. Many knitters purl more loosely than they knit, which changes the stitch width. Swatch in the round if that is how you will work the project.",
-        "When a pattern says 'multiple of 6 plus 2,' the plus 2 are usually edge or balance stitches. Enter only the base multiple (6) into the calculator, the extra 2 are already part of the pattern instructions.",
-        "Foundation chains in crochet tend to be tighter than the body of the fabric. Size up your hook for the chain row only, or use a foundation single crochet or chainless foundation for a more flexible edge.",
-      ],
+        "Follow the exact pattern and product instructions.",
+        "Make a representative swatch or sample when fit, dimensions, or material behavior matters."
+      ]
     },
+    projectExample: "A width of 12.2 inches at 4 stitches per 4 inches gives a raw count of 12.2. With a multiple of 6, the next complete multiple is 18 stitches; at that gauge its modeled width is 18 inches."
   },
 
   "hat-calculator": {
@@ -1866,64 +1785,52 @@ export const toolContent: Record<string, ToolEducationalContent> = {
   },
 
   "stash-estimator": {
+    answerCapsule: "Estimate remaining length from remaining yarn weight and the same yarn label. A thickness category does not establish yards per gram.",
     commonMistakes: [
-      "Weighing a damp or 'air-fluffed' partial skein instead of a consistently dry one. Yarn weight varies with humidity, throwing off the yardage estimate by 5–10%.",
-      "Using reference yardage ranges (Mode 2) when the original ball band is available. Mode 1 using original skein weight and yardage is significantly more accurate than category averages.",
-      "Forgetting to subtract the weight of the ball band or yarn label before weighing. A printed label adds 2–5 grams, inflating the estimate by 5–20 yards.",
+      "Including a cone, label, needles, or other materials in the yarn weight.",
+      "Using label values for a different yarn.",
+      "Treating estimated remaining yardage as a guarantee that a project can be completed."
     ],
-    projectExample: "A crafter finds a partial skein of worsted weight yarn with its original band: 100g = 220 yards. Scale shows 42g remaining. Calculation: (42 ÷ 100) × 220 = 92.4 yards. That's enough for a small hat or cowl, but not a pair of socks. Paired with another partial of similar color, 92 yards becomes part of a coordinated set.",
-    useCases: [
-      "Organizing a yarn stash by weighing partial skeins so you always know what yardage is available for small projects.",
-      "Determining whether leftover yarn from one project is enough for another without buying more.",
-      "Evaluating mystery yarn at sales or from donations. Use WPI to determine weight, then Mode 2 to estimate yardage.",
-    ],
+    projectExample: "With 42 g remaining from a label stating 100 g and 220 yards, the estimate is 42 / 100 × 220 = 92.4 yards. This is arithmetic for the entered label, not a universal yarn-category ratio.",
     introduction: {
-      title: "Why You Need a Yarn Stash Estimator",
+      title: "Plan with the actual yarn label",
       paragraphs: [
-        "Every crafter accumulates partial skeins. They sit in bins, bags, and baskets, leftovers from finished projects, impulse purchases that lost their ball band, and skeins inherited from fellow crafters. The question is always the same: is there enough here for another project? Without a way to estimate the remaining yardage, those partial skeins stay in limbo, too much to throw away, too uncertain to use.",
-        "This estimator solves the mystery. Weigh your partial skein on a kitchen scale, enter the original skein specs, and get an immediate yardage estimate. For completely unlabeled yarn, the reference table maps yarn weight categories to typical yardage per 100 grams so you can estimate what you have even without a ball band.",
-      ],
+        "Use a measured remaining weight and the original weight and length for the same yarn. Length is estimated in proportion to weight."
+      ]
     },
     whatIs: {
-      title: "What Is Yarn Stash Estimation?",
+      title: "What the estimate represents",
       paragraphs: [
-        "Yarn stash estimation is the process of determining how much usable yardage remains in your leftover yarn. The most reliable method is weight-based: if you know the original skein's full weight and yardage, you can calculate the remaining yardage by weighing what you have and applying a simple proportion.",
-        "The formula is straightforward. If a full skein weighs 100 grams and contains 220 yards, and your partial skein weighs 40 grams, then you have approximately 88 yards remaining. This works because yarn density is consistent within a single skein, every gram contains the same amount of yardage.",
-        "For yarn with no label information at all, you can estimate yardage using the Craft Yarn Council's typical yardage ranges by weight category. A 100-gram ball of worsted weight yarn typically contains about 200 yards, while the same weight of lace yarn might contain 800 yards or more. These are averages, actual yardage varies by fiber content and spin, but they give you a useful ballpark for planning.",
-      ],
+        "The method assumes consistent length per gram within the yarn. Uneven construction, moisture, scale resolution, and label tolerances can affect the result."
+      ]
     },
     howCalculated: {
-      title: "How the Stash Estimator Works",
+      title: "Calculation",
       paragraphs: [
-        "Mode 1 uses a direct proportion. Divide the partial skein weight by the full skein weight, then multiply by the full skein yardage. This gives you the estimated remaining yardage. The calculation assumes uniform density throughout the skein, which is true for commercially spun yarn.",
-        "Mode 2 uses reference values from the Craft Yarn Council's weight categories. Each category has a typical yardage per 100 grams, for example, worsted weight averages about 200 yards per 100 grams. Multiply the partial skein weight (in grams) by the yardage per gram for that category to get an estimate.",
-        "Both modes produce estimates, not exact measurements. Fiber content significantly affects the weight-to-yardage ratio. Cotton is denser than wool, so a 100-gram ball of cotton worsted contains fewer yards than a 100-gram ball of wool worsted. Silk and bamboo fall somewhere in between. The estimates are most accurate when the fiber content is consistent with typical values for the weight category.",
-      ],
+        "Remaining yards = remaining grams / full label grams × full label yards. Meters = yards × 0.9144. A remnant heavier than its full labeled skein is declined."
+      ]
     },
     howToUse: {
-      title: "How to Use the Stash Estimator",
+      title: "Use the estimator",
       paragraphs: [
-        "For Mode 1, you need three pieces of information from the original ball band: the full skein weight in grams, the full skein yardage, and the partial skein weight from your kitchen scale. Enter all three values and the calculator shows your estimated remaining yardage instantly.",
-        "For Mode 2, identify your yarn weight category. If you are unsure, use the WPI (wraps per inch) method, wrap the yarn around a ruler for one inch and count the wraps. Enter the weight category and your partial skein weight in grams. The calculator multiplies by the typical yardage per 100 grams for that category.",
-        "If you have no idea what the yarn weight or fiber is, start by measuring WPI to identify the weight, then use Mode 2 with that weight category. The reference table also shows the full range of typical yardages for each category, so you can see the possible spread and plan conservatively.",
-      ],
+        "Weigh only the yarn. Enter both weights in grams and the label length in yards. Use positive finite values within the form limits.",
+        "If the label is missing, find the exact yarn specification or measure a known length and mass. Do not substitute a category average."
+      ]
     },
     understandingResults: {
-      title: "Understanding Your Results",
+      title: "Read the result",
       paragraphs: [
-        "The estimated yardage is just that, an estimate. For Mode 1 with known skein specs, the estimate is quite accurate for commercial yarn. For Mode 2 with reference values, the actual yardage could be anywhere within the range shown for that weight category. Plan conservatively, if the typical value says 200 yards per 100 grams but the range is 180 to 240, assume the lower end if you cannot afford to run short.",
-        "Fiber content is the biggest variable. Cotton is about 50 percent denser than wool, so a 50-gram ball of cotton DK weight might have 100 yards while a 50-gram ball of wool DK has 125 yards. Acrylic is similar in density to wool, while silk and bamboo are closer to cotton. If you know the fiber content, factor this into your planning.",
-      ],
+        "The result is an estimate, not a direct length measurement or a project recommendation. Compare it with a measured swatch or pattern requirement and account for project-specific waste."
+      ]
     },
     proTips: {
-      title: "Pro Tips",
+      title: "Measurement checks",
       tips: [
-        "Invest in an inexpensive kitchen scale that reads in grams. It pays for itself the first time it saves you from buying yarn you do not need.",
-        "Weigh your project periodically as you work. Subtract the project weight from the starting skein weight to track how much yarn you have left without winding it off.",
-        "When buying yarn for a project, weigh one skein to verify the label weight. Manufacturing tolerances mean some skeins may be slightly over or under the stated weight.",
-        "For stash organization, weigh each partial skein and write the weight and original yardage on a tag attached to the yarn. This makes future project planning much faster.",
-      ],
-    },
+        "Retain a photo of the original yarn label.",
+        "Exclude packaging and compare consistent dry weights.",
+        "Keep a separate record of yarn type and label values."
+      ]
+    }
   },
   "vintage-pattern-decoder": {
     answerCapsule: "Paste a pattern excerpt, choose Unknown, US, or UK source terms, and review a finite set of terminology mappings and possible source clues. Unknown and US modes preserve the text.",

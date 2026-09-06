@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     description: "Verify crochet round math and written stitch totals, locally in your browser.",
     images: ["https://fibertools.app/og-image.png"],
   },
-  other: { dateModified: "2026-08-26" },
+  other: { dateModified: "2026-09-05" },
 };
 
 export default function AmigurumiPatternCheckerPage() {
@@ -40,7 +40,7 @@ export default function AmigurumiPatternCheckerPage() {
         what="A deterministic checker that calculates how many stitches each amigurumi round consumes and creates, then compares the result with the pattern's written total."
         who="Crocheters, amigurumi designers, testers, and anyone reviewing a human- or AI-written US crochet pattern."
         bottomLine="A matching total confirms the arithmetic for supported notation, not that the entire pattern will produce the intended shape."
-        lastUpdated="2026-08-26"
+        lastUpdated="2026-09-05"
       />
 
       <AmigurumiPatternCheckerTool />

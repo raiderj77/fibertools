@@ -101,11 +101,19 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
   const yw = YARN_WEIGHTS.find((w) => w.key === yarnWeight) || YARN_WEIGHTS[4];
 
   const result = useMemo(() => {
+    const entered = [overhang, gaugeStitches, gaugeRows, gaugeOver, swatchWidth, swatchHeight,
+      swatchGrams, skeinYards, skeinGrams, stitchMultiple, multipleExtra, ...(useCustom ? [customW, customL] : [])];
+    if (entered.some((value) => value.trim() !== "" && (!Number.isFinite(Number(value))
+      || Number(value) < 0 || Number(value) > 1_000_000))) return null;
+    const gaugeGroup = [gaugeStitches, gaugeRows];
+    if (gaugeGroup.some((value) => value.trim() !== "") && !gaugeGroup.every((value) => Number(value) > 0)) return null;
+    const swatchGroup = [swatchWidth, swatchHeight, swatchGrams];
+    if (swatchGroup.some((value) => value.trim() !== "") && ![...swatchGroup, skeinYards, skeinGrams].every((value) => Number(value) > 0)) return null;
     // Get dimensions in inches
     let widthIn: number, lengthIn: number;
     if (useCustom) {
-      const w = parseFloat(customW) || 0;
-      const l = parseFloat(customL) || 0;
+      const w = Number(customW);
+      const l = Number(customL);
       widthIn = units === "metric" ? w / 2.54 : w;
       lengthIn = units === "metric" ? l / 2.54 : l;
     } else {
@@ -118,12 +126,12 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
     if (pillowTuck) lengthIn += 20;
 
     // Add overhang (both sides for width, one side for length at foot)
-    const oh = parseFloat(overhang) || 0;
+    const oh = Number(overhang);
     const ohIn = units === "metric" ? oh / 2.54 : oh;
     widthIn += ohIn * 2;
     lengthIn += ohIn;
 
-    if (widthIn <= 0 || lengthIn <= 0) return null;
+    if (![widthIn, lengthIn].every((value) => Number.isFinite(value) && value > 0 && value <= 10_000)) return null;
 
     // Gauge
     const gOver = parseFloat(gaugeOver);
@@ -140,6 +148,7 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
       units,
     }) : null;
     const hasGauge = gaugeCounts !== null;
+    if (hasGaugeInput && !hasGauge) return null;
 
     const stitchesNeeded = gaugeCounts?.stitches ?? 0;
     const rowsNeeded = gaugeCounts?.rows ?? 0;
@@ -162,16 +171,19 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
       const areaRatio = (widthIn * lengthIn) / (swatchWIn * swatchHIn);
       totalGrams = swatchWeight * areaRatio * 1.1;
       ydsNeeded = totalGrams * (skeinYds / skeinWeight);
+      if (![totalGrams, ydsNeeded].every((value) => Number.isFinite(value) && value > 0 && value <= 10_000_000)) return null;
     }
 
     // Stitch multiple rounding
-    const mult = parseInt(stitchMultiple) || 0;
-    const extra = parseInt(multipleExtra) || 0;
+    const mult = Number(stitchMultiple);
+    const extra = Number(multipleExtra);
     const roundedStitches = roundBlanketStitchesToMultiple(stitchesNeeded, mult, extra);
+    if (roundedStitches === null) return null;
 
     const skeinsByLength = ydsNeeded === null ? 0 : Math.ceil(ydsNeeded / skeinYds);
     const skeinsByWeight = totalGrams === null ? 0 : Math.ceil(totalGrams / skeinWeight);
     const skeins = hasSwatchUsage ? Math.max(skeinsByLength, skeinsByWeight) : null;
+    if (skeins !== null && (!Number.isSafeInteger(skeins) || skeins < 1 || skeins > 1_000_000)) return null;
 
     return {
       widthIn,
@@ -199,6 +211,7 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
   return (
     <div className="space-y-8">
       <UnitToggle value={units} onChange={handleUnitsChange} persist={!embedded} />
+      {!result && <p role="alert" className="text-rose-700 dark:text-rose-300">Check the dimensions and complete each started gauge or swatch group with positive values. Use whole stitch multiples and extras; extras require a multiple. Values and results must stay within the supported planning range.</p>}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left: inputs */}
@@ -255,7 +268,7 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
           <div className="flex flex-wrap gap-4">
             <label className="flex items-center gap-2 text-sm text-bark-600 dark:text-cream-300 cursor-pointer">
               <input type="checkbox" checked={pillowTuck} onChange={(e) => setPillowTuck(e.target.checked)} className="rounded border-bark-300" />
-              Pillow tuck (+20″/50cm)
+              Pillow tuck (+20″/50.8cm)
               <Tooltip text="Adds extra length at the top to fold over pillows." />
             </label>
             <div className="flex items-center gap-2">

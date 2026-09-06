@@ -37,7 +37,7 @@ export default function SpinningCalculatorPage() {
         what="A pulley-ratio calculator that divides the effective drive-wheel band-path diameter by the connected pulley's effective band-path diameter."
         who="Handspinners documenting or comparing compatible pulley settings on a specific wheel."
         bottomLine="Prefer maker-documented ratios or effective diameters. The output is an approximation, not a prediction of twists per inch or finished yarn."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-09-05"
       />
       <SpinningCalculatorTool />
 
