@@ -35,8 +35,8 @@ test("adds one canonical designer workspace without replacing the free checker",
   assert.match(freeChecker, /\/amigurumi-pattern-checker\/designer#compare/);
   assert.match(freeChecker, /href="\/amigurumi-pattern-checker\/designer"/);
   assert.match(freePage, /Check the math\. Compare the revision\. Keep the report\./);
-  assert.match(freePage, /dateModified: "2026-08-26"/);
-  assert.match(freePage, /lastUpdated="2026-08-26"/);
+  assert.match(freePage, /dateModified: "2026-09-05"/);
+  assert.match(freePage, /lastUpdated="2026-09-05"/);
 });
 
 test("designer workspace exposes metadata, 200-round analysis, corrections, compare, and report views", () => {
