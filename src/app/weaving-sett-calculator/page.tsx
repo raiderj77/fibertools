@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/weaving-sett-calculator" },
-  other: { dateModified: "2026-08-29" },
+  other: { dateModified: "2026-09-05" },
 };
 
 export default function WeavingSettCalculatorPage() {
@@ -40,7 +40,7 @@ export default function WeavingSettCalculatorPage() {
         what="A bounded planning calculator for a WPI-based starting sett, provisional warp quantities, and exact whole-number reed-sleying arithmetic."
         who="Weavers comparing a measured yarn and structure or checking whether a supported reed can produce a target whole-number EPI."
         bottomLine="Use every output as a starting estimate and weave a wet-finished sample. Exact sleying arithmetic does not prove that the yarn fits the reed or that reed marks will disappear."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-09-05"
       />
 
       <WeavingSettCalculatorTool />

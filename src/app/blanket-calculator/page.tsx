@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/blanket-calculator" },
-  other: { dateModified: "2026-08-05" },
+  other: { dateModified: "2026-09-05" },
 };
 
 export default function BlanketCalculatorPage() {
@@ -52,7 +52,7 @@ export default function BlanketCalculatorPage() {
         what="A blanket yarn calculator that scales the yarn used by your own swatch to a selected blanket size, then calculates stitch counts, rows, total yards, and whole skeins."
         who="Knitters and crocheters planning a blanket project who want to buy the right amount of yarn before starting."
         bottomLine="Choose a throw, queen, or custom size, then enter a measured swatch and the yarn-label length and weight to calculate yards and whole skeins."
-        lastUpdated="2026-08-05"
+        lastUpdated="2026-09-05"
       />
 
       <BlanketCalculatorTool />

@@ -281,7 +281,7 @@ export default function NeedleConverterTool() {
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     US Letter
-                    <Tooltip text="Letter-based US crochet hook sizing (B through S)." />
+                    <Tooltip text="Letter labels vary by manufacturer. This reference includes labels such as B and T/U/X; compare the marked metric diameter." />
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     US Number

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
       "Calculate measured gauge and bounded proportional stitch or row checkpoints from the values you enter.",
     images: ["/og-image.png"],
   },
-  other: { dateModified: "2026-08-29" },
+  other: { dateModified: "2026-09-05" },
 };
 
 export default function GaugeCalculatorPage() {
@@ -51,7 +51,7 @@ export default function GaugeCalculatorPage() {
         what="A bounded worksheet that calculates gauge from entered swatch measurements and proportionally scales only the stitch or row counts you enter."
         who="Knitters and crocheters checking measured fabric or one arithmetic checkpoint against a tested pattern."
         bottomLine="Use a representative treated swatch. The results do not regrade shaping, verify fit, choose an edge treatment, or replace project-specific pattern instructions."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-09-05"
       />
 
       <GaugeCalculatorTool />

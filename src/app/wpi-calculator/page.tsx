@@ -40,7 +40,7 @@ export default function WpiCalculatorPage() {
         what="A reference that estimates possible yarn weight categories from your wraps-per-inch measurement, with recommended needles, hooks, gauge range, and project ideas."
         who="Fiber artists with unlabeled yarn who need to determine the weight category before starting a project."
         bottomLine="Wrap your yarn around a ruler, count the wraps per inch, and enter the number to compare possible categories. Always check a swatch."
-        lastUpdated="2026-03-16"
+        lastUpdated="2026-09-05"
       />
       <div className="sr-only">
         <h2>WPI to Yarn Weight Converter</h2>

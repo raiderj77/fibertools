@@ -106,7 +106,7 @@ export default function YarnWeightCalculatorPage() {
             Yarn Weight Calculator
           </h1>
         </div>
-        <p className="text-xs text-bark-400">Last updated: May 1, 2026</p>
+        <p className="text-xs text-bark-400">Last updated: September 5, 2026</p>
         <p className="text-bark-600 text-[15px] leading-relaxed mt-2">
           Estimate possible CYC yarn weight categories from wraps per inch (WPI)
           or knitting stockinette gauge. Covers all eight standard weights from Lace (0) through
@@ -147,8 +147,8 @@ export default function YarnWeightCalculatorPage() {
             </p>
           </div>
         </div>
-        <time dateTime="2026-05-01" className="block text-right text-xs text-bark-400">
-          Last updated: May 1, 2026
+        <time dateTime="2026-09-05" className="block text-right text-xs text-bark-400">
+          Last updated: September 5, 2026
         </time>
       </section>
 

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/cast-on-calculator" },
-  other: { dateModified: "2026-08-05" },
+  other: { dateModified: "2026-09-05" },
 };
 
 export default function CastOnCalculatorPage() {
@@ -51,7 +51,7 @@ export default function CastOnCalculatorPage() {
         what="A planning calculator that converts target width and measured gauge to a whole stitch count, with optional rounding up to a repeat multiple."
         who="Knitters comparing cast-on counts for a custom width or a different measured gauge."
         bottomLine="Enter your measured gauge and desired width to calculate how many stitches to cast on, rounded to your pattern repeat."
-        lastUpdated="2026-08-05"
+        lastUpdated="2026-09-05"
       />
 
       <CastOnCalculatorTool />

@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     description: "Calculate a rounded sock circumference stitch checkpoint from measurements you enter.",
     images: ["/og-image.png"],
   },
-  other: { dateModified: "2026-08-29" },
+  other: { dateModified: "2026-09-05" },
 };
 
 export default function SockCalculatorPage() {
@@ -43,7 +43,7 @@ export default function SockCalculatorPage() {
         what="A bounded worksheet that converts entered foot circumference, ease, and measured stitch gauge into a circular stitch-count checkpoint rounded to a multiple you choose."
         who="Sock knitters checking one circumference count against a tested pattern and a representative circular swatch."
         bottomLine="The result is not a complete sock blueprint and does not infer cuff, heel, gusset, toe, foot length, or pull-on fit."
-        lastUpdated="2026-08-29"
+        lastUpdated="2026-09-05"
       />
       <SockCalculatorTool />
       <section className="mt-10">

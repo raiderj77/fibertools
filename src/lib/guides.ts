@@ -62,6 +62,7 @@ export const guides: Guide[] = [
     description: "Learn what knitting gauge measures, how to prepare a representative swatch, and how to review stitch and row differences without treating one count as a full pattern regrade.",
     toolSlug: "gauge-calculator",
     date: "2026-03-06",
+    modifiedDate: "2026-09-05",
     keywords: ["knitting gauge", "gauge swatch", "stitch gauge", "row gauge", "knitting tension", "gauge calculator"],
     sections: [
       {
@@ -96,6 +97,7 @@ export const guides: Guide[] = [
     description: "Plan blanket yarn from representative measurements and understand how size, yarn, stitch pattern, and allowance affect an estimate; no calculator can guarantee a purchase quantity.",
     toolSlug: "blanket-calculator",
     date: "2026-03-06",
+    modifiedDate: "2026-09-05",
     keywords: ["blanket yarn yardage", "how much yarn for a blanket", "blanket size chart", "yarn for baby blanket", "throw blanket yarn", "blanket calculator"],
     sections: [
       {
@@ -268,6 +270,7 @@ export const guides: Guide[] = [
     description: "Learn how to price handmade knit and crochet items fairly. Covers materials cost, valuing your time, pricing for different markets, and common mistakes that lose money.",
     toolSlug: "project-cost-calculator",
     date: "2026-03-06",
+    modifiedDate: "2026-09-05",
     keywords: ["pricing handmade crochet", "how to price knitting", "handmade pricing formula", "crochet business pricing", "knitting commission price", "craft pricing guide"],
     sections: [
       {
@@ -456,6 +459,7 @@ export const guides: Guide[] = [
     description: "Learn how to calculate sleeve tapers, space decreases evenly, and understand sleeve cap shaping for set-in sleeves. Includes standard sleeve lengths by size.",
     toolSlug: "sleeve-calculator",
     date: "2026-03-11",
+    modifiedDate: "2026-09-05",
     keywords: ["sleeve shaping knitting", "sleeve taper calculator", "knitting sleeve decreases", "sleeve cap shaping", "set-in sleeve knitting", "sleeve length chart"],
     sections: [
       {
@@ -655,6 +659,7 @@ export const guides: Guide[] = [
     description: "Compare the most common knitting cast-on methods, long-tail, cable, tubular, and more, with stretch levels, difficulty, and best use cases for each.",
     toolSlug: "cast-on-calculator",
     date: "2026-03-11",
+    modifiedDate: "2026-09-05",
     keywords: ["knitting cast on methods", "long tail cast on", "cable cast on", "tubular cast on", "cast on comparison", "stretchy cast on knitting", "cast on for ribbing"],
     sections: [
       {
@@ -685,6 +690,7 @@ export const guides: Guide[] = [
     description: "A complete reference to basic crochet stitches, chain, slip stitch, single crochet through treble, with heights, abbreviations, and when to use each stitch.",
     toolSlug: "stitch-quick-reference",
     date: "2026-03-11",
+    modifiedDate: "2026-09-05",
     keywords: ["crochet stitches for beginners", "basic crochet stitches", "crochet stitch chart", "single crochet", "double crochet", "crochet stitch height", "crochet abbreviations"],
     sections: [
       {
@@ -745,6 +751,7 @@ export const guides: Guide[] = [
     description: "Learn how to interpret vintage knitting patterns from the 1920s through 1970s. Covers outdated terminology, obsolete needle sizes, imperial measurements, and how to adapt vintage instructions to modern yarn weights and tools.",
     toolSlug: "uk-to-us-converter",
     date: "2026-03-14",
+    modifiedDate: "2026-09-05",
     keywords: ["vintage knitting patterns", "old knitting patterns", "retro knitting", "vintage pattern decoder", "antique knitting instructions", "1950s knitting patterns"],
     sections: [
       {

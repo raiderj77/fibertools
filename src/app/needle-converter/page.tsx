@@ -48,7 +48,7 @@ export default function NeedleConverterPage() {
         what="A size converter for knitting needles and crochet hooks that translates between US, metric (mm), UK, and Japanese sizing systems instantly."
         who="Knitters and crocheters working from international patterns, or anyone whose pattern calls for a needle or hook size in an unfamiliar system."
         bottomLine="Select or type any needle or hook size and see the equivalent in every major sizing system, no more guessing whether a 4.0 mm hook is a US G/6."
-        lastUpdated="2026-03-16"
+        lastUpdated="2026-09-05"
       />
       <div className="sr-only">
         <h2>Needle and Hook Size Converter</h2>

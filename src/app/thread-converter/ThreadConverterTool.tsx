@@ -17,7 +17,7 @@ export default function ThreadConverterTool() {
       {result?.status === "unknown" && <p>Not included in this limited chart lookup. No substitute is inferred.</p>}
       {result?.status === "invalid" && <p role="alert">{result.message}</p>}
       {result?.status === "ambiguous" && <p>Multiple DMC shades share this Anchor code in the source. Do not choose one automatically.</p>}
-      {matches.map(row=><p key={row.dmc} className="result-card">DMC {row.dmc} → Anchor {row.anchor} — archived chart pairing; compare physical thread before substituting.</p>)}
+      {matches.map(row=><p key={row.dmc} className="result-card">DMC {row.dmc} / Anchor {row.anchor} — archived chart pairing; compare physical thread before substituting.</p>)}
     </div>
     <details><summary className="cursor-pointer">Show all included pairings</summary><div className="overflow-x-auto"><table className="w-full"><caption>Archived Anchor chart subset</caption><thead><tr><th>DMC</th><th>Anchor</th></tr></thead><tbody>{THREAD_CONVERSION_TABLE.map(row=><tr key={row.dmc}><td>{row.dmc}</td><td>{row.anchor}</td></tr>)}</tbody></table></div></details>
     <p><a className="underline" href={THREAD_REFERENCE_METADATA.sourceUrl}>Source: archived Anchor conversion chart, page 2 (Quilters Store mirror)</a>. Publication date is not stated in the document. This is a historical reference, not a current manufacturer certification. Verify the product line and compare current physical shade cards before buying.</p>

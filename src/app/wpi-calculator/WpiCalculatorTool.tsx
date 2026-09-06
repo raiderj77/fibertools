@@ -136,6 +136,16 @@ export default function WpiCalculatorTool() {
     };
   }, [wpi]);
 
+  const hasMeasurement = wpi.trim() !== "";
+  const invalidMeasurement = hasMeasurement && (!Number.isFinite(Number(wpi)) || Number(wpi) <= 0 || Number(wpi) > 60);
+  const measurementStatus = !hasMeasurement
+    ? "No measurement entered. No category result is shown."
+    : invalidMeasurement
+      ? "Enter a finite measurement above 0 and at most 60. No category result is shown."
+      : results
+        ? `Possible categories for ${wpi} WPI: ${results.matches.map((match) => match.name).join(", ")}. Confirm with a swatch.`
+        : "No category matches this measurement in the reference ranges. Gaps remain unresolved; check the yarn label and a swatch.";
+
   const stickySummary = results
     ? results.matches.map((m) => m.name).join(" / ")
     : "";
@@ -152,22 +162,26 @@ export default function WpiCalculatorTool() {
         <label className="label" htmlFor="wpi-reference-input">Wraps Per Inch (WPI)</label>
         <input
           id="wpi-reference-input"
+          aria-describedby="wpi-reference-status"
+          aria-invalid={invalidMeasurement}
           type="number"
           value={wpi}
           onChange={(e) => setWpi(e.target.value)}
           placeholder="e.g. 12"
           className="input"
-          min="1"
+          min="0"
           max="60"
           inputMode="decimal"
               step="any"
         />
       </div>
 
+      <p id="wpi-reference-status" role="status" aria-live="polite" aria-atomic="true" className="text-sm text-bark-600 dark:text-cream-300">{measurementStatus}</p>
+
       <p className="text-sm text-bark-500">Enter a finite measurement above 0 and at most 60; decimals are preserved. Blank or out-of-range measurements show no result. WPI is approximate, and gaps in the reference ranges are not assigned a category. Gauge ranges are for knitting in stockinette, not crochet. Always check a swatch. Sources: <a className="underline" href="https://www.craftyarncouncil.com/standards/how-measure-wraps-inch-wpi">CYC WPI</a> and <a className="underline" href="https://www.craftyarncouncil.com/standards/yarn-weight-system">CYC yarn weights</a>.</p>
       {/* Results */}
       {results && (
-        <div aria-live="polite" aria-atomic="true">
+        <div>
           <div className="result-card space-y-4">
             <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
               {results.isOverlap
