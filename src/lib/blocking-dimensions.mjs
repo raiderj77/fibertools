@@ -53,6 +53,9 @@ export function calculateBlockingDimensions(inputs) {
     }
 
     const percentChange = ((target - current) / current) * 100;
+    if (!Number.isFinite(percentChange)) {
+      return { status: "invalid", message: "These measurements produce an unsupported percentage. Check the values and units." };
+    }
     changes.push({
       axis,
       label,

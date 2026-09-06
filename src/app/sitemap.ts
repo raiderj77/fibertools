@@ -18,7 +18,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const guidePages = getAllGuides().map((g) => ({
     url: `${BASE_URL}/guides/${g.slug}`,
-    lastModified: new Date(g.date),
+    lastModified: new Date(g.modifiedDate ?? g.date),
     changeFrequency: "monthly" as const,
     priority: 0.65,
   }));

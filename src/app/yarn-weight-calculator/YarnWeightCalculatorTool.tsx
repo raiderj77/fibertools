@@ -25,11 +25,11 @@ const YARN_WEIGHTS: YarnWeight[] = [
     name: "Lace",
     altName: "Lace / Cobweb",
     wpiMin: 30,
-    wpiMax: 999,
+    wpiMax: Infinity,
     gaugeMin: 33,
-    gaugeMax: 99,
+    gaugeMax: 40,
     needles: "US 000–1 (1.5–2.25 mm)",
-    hooks: "B/1–E/4 (2.25–3.5 mm)",
+    hooks: "Steel 6–8 (1.4–1.6 mm); regular B/1 (2.25 mm)",
     projects: "Shawls, doilies, lightweight wraps",
   },
   {
@@ -127,15 +127,15 @@ export default function YarnWeightCalculatorTool() {
 
   const results = useMemo(() => {
     if (mode === "wpi") {
-      const val = parseInt(wpiValue);
-      if (!val || val <= 0) return null;
+      const val = Number(wpiValue);
+      if (!Number.isFinite(val) || val <= 0 || val > 60) return null;
       const matches = YARN_WEIGHTS.filter(
         (w) => val >= w.wpiMin && val <= w.wpiMax
       );
       return matches.length ? { matches, isOverlap: matches.length > 1 } : null;
     } else {
-      const val = parseInt(gaugeValue);
-      if (!val || val <= 0) return null;
+      const val = Number(gaugeValue);
+      if (!Number.isFinite(val) || val <= 0 || val > 60) return null;
       const matches = YARN_WEIGHTS.filter(
         (w) => val >= w.gaugeMin && val <= w.gaugeMax
       );
@@ -185,7 +185,8 @@ export default function YarnWeightCalculatorTool() {
               className="input"
               min="1"
               max="60"
-              inputMode="numeric"
+              inputMode="decimal"
+              step="any"
             />
           </div>
         </div>
@@ -195,12 +196,12 @@ export default function YarnWeightCalculatorTool() {
       {mode === "gauge" && (
         <div className="space-y-3">
           <p className="text-sm text-bark-500 dark:text-bark-400">
-            Knit or crochet a 4-inch swatch with your yarn. Count the number of
+            Knit a stockinette swatch with your yarn. Count the number of
             stitches across 4 inches and enter the total below.
           </p>
           <div className="max-w-xs">
             <label className="label" htmlFor="gauge-input">
-              Stitches per 4 inches
+              Stockinette stitches per 4 inches
             </label>
             <input
               id="gauge-input"
@@ -211,24 +212,26 @@ export default function YarnWeightCalculatorTool() {
               className="input"
               min="1"
               max="60"
-              inputMode="numeric"
+              inputMode="decimal"
+              step="any"
             />
           </div>
         </div>
       )}
 
+      <p className="text-sm text-bark-500">Enter a finite measurement above 0 and at most 60; decimals are preserved. Blank or out-of-range measurements show no result. WPI is approximate, and gaps in the reference ranges are not assigned a category. Gauge ranges are for knitting in stockinette, not crochet. Always check a swatch. Sources: <a className="underline" href="https://www.craftyarncouncil.com/standards/how-measure-wraps-inch-wpi">CYC WPI</a> and <a className="underline" href="https://www.craftyarncouncil.com/standards/yarn-weight-system">CYC yarn weights</a>.</p>
       {/* Results */}
       {results && (
         <div aria-live="polite" aria-atomic="true">
           <div className="result-card space-y-4">
             <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
-              {results.isOverlap ? "Possible Yarn Weights" : "Your Yarn Weight"}
+              {results.isOverlap ? "Possible Yarn Weights" : "Possible Yarn Weight"}
             </h3>
 
             {results.isOverlap && (
               <div className="p-3 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl">
                 <p className="text-sm text-amber-700 dark:text-amber-300">
-                  Your measurement falls in an overlap zone between two
+                  Your measurement falls in an overlap zone between multiple
                   categories. Swatch with needles for both to confirm.
                 </p>
               </div>

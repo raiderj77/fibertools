@@ -15,6 +15,11 @@ export const COMMON_GRANNY_BLANKET_TARGETS = [
   { label: "King", widthInches: 104, heightInches: 100 },
 ];
 
+function ceilingWholeSquares(ratio) {
+  const epsilon = Number.EPSILON * Math.max(1, Math.abs(ratio)) * 8;
+  return Math.ceil(ratio - epsilon);
+}
+
 /**
  * Plan a rectangular grid from target dimensions and a nominal blocked square
  * size. This is arithmetic only: joining method and tension can change the
@@ -79,8 +84,8 @@ export function calculateGrannySquarePlan({
     };
   }
 
-  const squaresWide = Math.max(1, Math.ceil(targetWidthInches / squareSizeInches));
-  const squaresTall = Math.max(1, Math.ceil(targetHeightInches / squareSizeInches));
+  const squaresWide = Math.max(1, ceilingWholeSquares(targetWidthInches / squareSizeInches));
+  const squaresTall = Math.max(1, ceilingWholeSquares(targetHeightInches / squareSizeInches));
 
   if (
     !Number.isSafeInteger(squaresWide)

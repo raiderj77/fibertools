@@ -69,10 +69,7 @@ export default function AmigurumiPatternCheckerTool() {
     event.preventDefault();
     trackStitchProofEvent("free_check_started");
     const parsedStart = startingCount.trim() === "" ? null : Number(startingCount);
-    const validStart = typeof parsedStart === "number" && Number.isSafeInteger(parsedStart) && parsedStart >= 0
-      ? parsedStart
-      : null;
-    const result = checkPattern(pattern, validStart) as CheckResult;
+    const result = checkPattern(pattern, parsedStart) as CheckResult;
     setChecked(result);
     if (!result.error) {
       trackFixedEvent("pattern_check_run", { slug: "amigurumi-pattern-checker" });

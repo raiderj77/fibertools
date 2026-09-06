@@ -80,11 +80,11 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### WPI to Yarn Weight Converter
 - URL: https://fibertools.app/wpi-calculator
-- Enter wraps per inch (WPI) to identify yarn weight category, recommended needle/hook sizes, typical gauge range, and suitable project ideas. Essential for unlabeled or handspun yarn.
+- Compare measured WPI with overlapping yarn-weight guidance. WPI does not establish fiber, yardage per gram, or substitution compatibility.
 
 ### Cast On Calculator
 - URL: https://fibertools.app/cast-on-calculator
-- Calculate a rounded cast-on count from entered width and gauge, with optional pattern-multiple and edge-stitch adjustments.
+- Calculate a rounded cast-on count from entered width and gauge, with an optional whole stitch multiple; pattern offsets and edges are separate.
 
 ### Hat Size Calculator
 - URL: https://fibertools.app/hat-calculator
@@ -108,7 +108,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Yarn Stash Estimator
 - URL: https://fibertools.app/stash-estimator
-- Estimate remaining yardage in partial skeins by weighing them. Includes a yardage reference table for identifying unlabeled yarn by weight category.
+- Estimate remaining yarn length from measured weight and the same yarn label. Category alone cannot determine yardage.
 
 ## Tools, Crochet-Specific (2 tools)
 
@@ -142,7 +142,7 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 
 ### Thread Converter
 - URL: https://fibertools.app/thread-converter
-- Look up exact entries in the included DMC, Anchor, and Cosmo embroidery-thread table. The tool does not include Sulky or infer nearest colors.
+- Look up 20 archived Anchor-chart pairings for DMC and Anchor codes; compare physical thread and preserve ambiguous results. The tool does not include Sulky or infer nearest colors.
 
 ---
 

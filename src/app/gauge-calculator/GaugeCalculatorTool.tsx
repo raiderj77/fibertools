@@ -22,7 +22,7 @@ type Tab = "swatch" | "resize" | "dimensions";
 const numberOrNull = (value: string) => {
   if (!value.trim()) return null;
   const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : null;
+  return parsed;
 };
 
 const anyEntered = (...values: string[]) => values.some((value) => value.trim() !== "");

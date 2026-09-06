@@ -30,21 +30,25 @@ export function calculateBlanketGaugeCounts({
     ? gaugeOver / CENTIMETERS_PER_INCH
     : gaugeOver;
 
-  return {
+  const result = {
     stitches: Math.round(widthIn * (gaugeStitches / gaugeOverIn)),
     rows: Math.round(lengthIn * (gaugeRows / gaugeOverIn)),
   };
+  return Object.values(result).every((count) => Number.isSafeInteger(count) && count > 0 && count <= 1_000_000)
+    ? result : null;
 }
 
 /** Preserve the calculator's nearest-repeat behavior for stitch patterns. */
 export function roundBlanketStitchesToMultiple(stitches, multiple, extra) {
+  if (![stitches, multiple, extra].every((value) => Number.isSafeInteger(value) && value >= 0 && value <= 1_000_000)
+    || (multiple === 0 && extra > 0)) return null;
   let roundedStitches = stitches;
 
   if (multiple > 0 && stitches > 0) {
     const base = stitches - extra;
-    roundedStitches = Math.round(base / multiple) * multiple + extra;
+    roundedStitches = Math.max(1, Math.round(base / multiple)) * multiple + extra;
     if (roundedStitches <= 0) roundedStitches = multiple + extra;
   }
 
-  return roundedStitches;
+  return roundedStitches <= 1_000_000 ? roundedStitches : null;
 }

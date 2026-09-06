@@ -96,7 +96,7 @@ export default function ProjectCostCalculatorTool() {
     ),
     [yarns, notions, totalStitches, stitchesPerMin, sellingPrice],
   );
-  const hasResult = result.totalCost > 0 || result.minutes > 0;
+  const hasResult = result.valid && (result.totalCost > 0 || result.minutes > 0);
   const estimatedTime = result.minutes > 0 ? formatEstimatedTime(result.minutes) : "";
 
   const stickySummary = hasResult
@@ -105,6 +105,7 @@ export default function ProjectCostCalculatorTool() {
 
   return (
     <div className="space-y-8">
+      {!result.valid && <p role="alert" className="text-rose-700 dark:text-rose-300">{result.error}</p>}
       {/* Currency */}
       <div className="flex items-center gap-3">
         <label htmlFor="project-cost-currency" className="label mb-0">Currency</label>

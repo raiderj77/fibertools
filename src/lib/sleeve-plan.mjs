@@ -88,10 +88,10 @@ export function planSleeveTaper({
   const cuffSts = Math.round(wristCircumference * stitchesPerInch);
   const stsToDecrease = upperArmSts - cuffSts;
 
-  if (!Number.isSafeInteger(upperArmSts) || !Number.isSafeInteger(cuffSts)) {
+  if (!Number.isSafeInteger(upperArmSts) || !Number.isSafeInteger(cuffSts) || cuffSts < 1) {
     return {
       status: "invalid",
-      message: "The derived stitch counts are outside the calculator's supported whole-number range.",
+      message: "The derived stitch counts are outside the calculator's supported positive whole-number range.",
     };
   }
 

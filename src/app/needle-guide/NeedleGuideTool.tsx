@@ -22,14 +22,14 @@ const CATEGORY_LABELS: Record<string, string> = {
 const NEEDLES: NeedleType[] = [
   {
     name: "Tapestry Needle",
-    aka: ["Yarn needle", "Darning needle"],
+    aka: ["Yarn needle"],
     eye: "Very large, elongated",
     point: "Blunt / rounded",
     sizes: "13–28 (lower = larger)",
     bestFor:
       "Weaving in ends, sewing crochet/knit pieces together, cross stitch on aida cloth",
     howToRemember:
-      "Blunt tip + big eye = yarn-friendly. Won't split your stitches.",
+      "Blunt tip + big eye = yarn-friendly. Helps avoid splitting stitches.",
     category: "yarn",
   },
   {
@@ -37,7 +37,7 @@ const NEEDLES: NeedleType[] = [
     aka: [],
     eye: "Large, elongated",
     point: "Sharp",
-    sizes: "13–28",
+    sizes: "13–26 (brand ranges vary)",
     bestFor:
       "Ribbon embroidery, crewel work, embroidery with thick threads, sewing through tightly woven fabric with heavy thread",
     howToRemember:
@@ -159,6 +159,7 @@ export default function NeedleGuideTool() {
 
   return (
     <div className="space-y-6">
+      <p className="text-sm text-bark-500">Sizes are common examples, not a complete range for every brand. Darning needles may be sharp or blunt; choose the point for the fabric. Source: <a href="https://jjneedles.com/wp-content/uploads/2026/05/Needle-Guide.pdf" className="underline">John James needle guide</a>.</p>
       {/* Search */}
       <input
         type="text"

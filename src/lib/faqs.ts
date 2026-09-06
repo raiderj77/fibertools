@@ -13,15 +13,22 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "How does the leftover-yarn calculator work?", a: "It scales the labeled full-skein length by partial weight divided by labeled full-skein weight. The yarn remnant must weigh more than zero and no more than the full skein, with the label, cone, or core excluded." },
   ],
   "needle-converter": [
-    { q: "What size knitting needles should I use?", a: "Check your yarn label for the recommended needle size. Our converter shows the equivalent size across US, metric (mm), UK, and Japanese systems so you can match any pattern regardless of origin." },
-    { q: "How do I convert US needle sizes to mm?", a: "US sizes don\u2019t follow a linear scale. For example, US 6 = 4.0mm, US 7 = 4.5mm, US 8 = 5.0mm. Our converter handles all 23 sizes from US 0 (2.0mm) to US 50 (25.0mm)." },
-    { q: "What size crochet hook do I need?", a: "It depends on your yarn weight. Lace yarn uses 1.5\u20132.25mm hooks, worsted uses 5.0\u20136.0mm hooks, and bulky uses 6.5\u20139.0mm hooks. Our chart shows recommendations for every weight." },
-    { q: "Are UK and US needle sizes the same?", a: "No. UK sizes run backwards, a UK 14 is 2.0mm (tiny) while a US 14 is 10.0mm (large). Our converter prevents this common confusion by showing all systems side by side." },
-    { q: "What\u2019s the difference between US and metric crochet hooks?", a: "US crochet hooks use letter sizes (B through S) while metric uses millimeters. For example, US H/8 = 5.0mm. Our converter maps all 24 common hook sizes across both systems." },
-    { q: "Can I substitute a different needle size?", a: "Yes, but it will change your gauge. Going up a size creates a looser, drapier fabric. Going down creates a tighter, firmer fabric. Always swatch first when substituting." },
-    { q: "What size knitting needle do I need for worsted weight?", a: "Worsted weight yarn (CYC category 4) typically uses US 7\u20139 needles (4.5\u20135.5mm). The exact size depends on the pattern and your personal tension. Check your pattern for the recommended size, then swatch to confirm your gauge matches." },
-    { q: "How do I convert US needle sizes to metric?", a: "US needle sizes don\u2019t follow a linear scale. Common conversions: US 4 = 3.5mm, US 6 = 4.0mm, US 7 = 4.5mm, US 8 = 5.0mm, US 10 = 6.0mm, US 15 = 10.0mm. Use our converter for the complete chart of all 23 sizes." },
-    { q: "What needle size is best for beginners?", a: "US 8 (5.0mm) needles with worsted weight yarn are the most beginner-friendly combination. The stitches are large enough to see clearly and count easily, and worsted is the most widely available yarn weight with the most pattern options." },
+    {
+      q: "Are US, UK, and Japanese size numbers interchangeable?",
+      a: "No. They are different numbering systems. Compare the metric diameter and check the exact product labeling."
+    },
+    {
+      q: "How does the converter find a size?",
+      a: "It searches the included table entries. It does not extrapolate an unknown size or identify every historical or manufacturer-specific convention."
+    },
+    {
+      q: "Can I use the suggested diameter without swatching?",
+      a: "Use the pattern and product guidance as a starting point, then make a representative swatch. Matching the diameter alone does not guarantee gauge or fit."
+    },
+    {
+      q: "What does a blank conversion mean?",
+      a: "No equivalent is supplied in that row. It does not mean a size is zero or universally unavailable."
+    }
   ],
   "gauge-calculator": [
     { q: "What does the swatch mode calculate?", a: "It divides the stitch and row counts you enter by the measured width and height, then displays the equivalent count per 4 inches or 10 centimeters." },
@@ -51,7 +58,7 @@ export const toolFaqs: Record<string, FAQ[]> = {
   ],
   "blanket-calculator": [
     { q: "How big should a throw blanket be?", a: "The calculator uses 50\u00D760 inches (127\u00D7152cm) as a common throw planning preset. Measure the intended recipient or space, or follow the pattern dimensions, before buying yarn." },
-    { q: "How many chains do I need for a throw blanket?", a: "It depends on your yarn weight and gauge. With worsted yarn at 4 stitches per inch, a 50-inch throw needs about 200 chains. Enter your exact gauge into our calculator for a precise number with stitch multiple rounding." },
+    { q: "How many chains do I need for a throw blanket?", a: "It depends on your yarn weight and gauge. At a measured 4 stitches per inch, 50 inches gives 200 stitches before repeat adjustments. The required starting chain also depends on the stitch pattern and whether turning chains count; this tool does not add those chains." },
     { q: "How much yarn do I need for a baby blanket?", a: "There is no single reliable amount for every baby blanket. Enter the intended dimensions and weigh a swatch made with the actual yarn and stitch pattern to calculate yards and skeins." },
     { q: "What is pillow tuck?", a: "Pillow tuck adds extra length (about 20 inches) to the top of a bed blanket so it can fold over the pillows for a finished look. Toggle it on in our calculator for bed-sized blankets." },
     { q: "How do I calculate overhang for a bed blanket?", a: "Measure from the mattress edge to the point where you want the blanket to end. Enter that chosen drop; the calculator adds it to both sides of the width and to the foot of the length." },
@@ -74,12 +81,18 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "Can I save the row plan?", a: "Use the copy control to copy the generated text. The page does not promise durable cloud storage or a print service." },
   ],
   "abbreviation-glossary": [
-    { q: "What does SSK mean in knitting?", a: "SSK stands for Slip, Slip, Knit. It\u2019s a left-leaning decrease where you slip two stitches knitwise one at a time, then knit them together through the back loops." },
-    { q: "What does SC mean in crochet?", a: "SC stands for Single Crochet (US term). In UK patterns, the same stitch is called DC (Double Crochet). This is one of the most common sources of confusion between US and UK patterns." },
-    { q: "What\u2019s the difference between US and UK crochet terms?", a: "US and UK crochet terms are offset by one. A US Single Crochet = UK Double Crochet. A US Double Crochet = UK Treble. Our glossary shows both with a UK/US toggle." },
-    { q: "What does FLO mean?", a: "FLO stands for Front Loop Only. Instead of working through both loops of a stitch, you insert your hook or needle through only the front loop. This creates a ridged texture." },
-    { q: "How do I read a knitting pattern?", a: "Use our Pattern Translator. Paste a line from your pattern and every abbreviation gets highlighted with its full meaning. It\u2019s like a real-time dictionary for pattern instructions." },
-    { q: "What does YO mean?", a: "YO stands for Yarn Over. You wrap the yarn around your needle to create a new stitch and a decorative hole. It\u2019s the foundation of lace knitting." },
+    {
+      q: "What if my pattern defines an abbreviation differently?",
+      a: "Follow the pattern-specific key and construction instructions. This glossary covers selected common terms only."
+    },
+    {
+      q: "Are UK and US crochet terms the same?",
+      a: "No. For example, UK double crochet corresponds to US single crochet. Confirm the source convention before translating."
+    },
+    {
+      q: "Does the glossary convert an entire pattern?",
+      a: "No. It searches definitions. Use the separate bounded UK/US converter for supported terms after confirming the source convention."
+    }
   ],
   "spinning-ratio-calculator": [
     { q: "How do I calculate my spinning wheel\u2019s drive ratio?", a: "Prefer the maker's published ratio or effective diameters. Otherwise measure the drive-band contact path on both wheels in the same unit and divide the drive-wheel value by the connected-pulley value. Do not substitute an outside flange diameter." },
@@ -121,12 +134,22 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "Does the trial row width include foundation or turning chains?", a: "No. It is a worked-stitch count only. Add and verify setup or turning chains from the instructions for the stitch you actually use." },
   ],
   "thread-converter": [
-    { q: "What does the thread converter look up?", a: "It searches only the rows included in this site\u2019s DMC, Anchor, and Cosmo reference table. An exact code lookup returns the corresponding values stored on that same row; it does not calculate a nearest color." },
-    { q: "Are cross-brand rows guaranteed physical color matches?", a: "No. A shared table row is a reference entry, not proof that the actual threads are visually or spectrally identical. Compare real skeins under the lighting that matters before substituting a critical color." },
-    { q: "Does the converter support Sulky or specialty threads?", a: "No. The included lookup covers only the listed DMC, Anchor, and Cosmo fields and does not claim support for Sulky, metallic, variegated, perle-cotton, or machine-embroidery systems." },
-    { q: "Can I look up a project list?", a: "Yes. Choose one source-brand field and enter a bounded list of exact codes separated by spaces, commas, semicolons, or new lines. Unknown and ambiguous entries remain visibly unresolved rather than being guessed." },
-    { q: "What does exact batch lookup do?", a: "It checks each bounded source-brand code against the included table and preserves found, unknown, invalid, or ambiguous status. It does not choose a substitute or create a verified shopping list." },
-    { q: "What is the saved reference palette?", a: "Choose Add on an included row to keep that row in a temporary browser-session reference list. Copying or printing the list does not verify the cross-brand colors, availability, or purchase requirements." },
+    {
+      q: "What does this lookup cover?",
+      a: "Twenty DMC-to-Anchor pairings transcribed from an archived Anchor Stranded Cotton chart. It does not provide a complete or current manufacturer catalog."
+    },
+    {
+      q: "Are these guaranteed physical color matches?",
+      a: "No. They are the source chart pairings. Compare the actual thread and current shade cards before substituting."
+    },
+    {
+      q: "What happens when several DMC shades share an Anchor code?",
+      a: "The lookup shows the ambiguity and the listed matches rather than choosing one automatically."
+    },
+    {
+      q: "Does it support Cosmo, batch lists, or screen-color matching?",
+      a: "No. Those functions are not available in the current sourced lookup. Unlisted codes remain unresolved."
+    }
   ],
   "stitch-pattern-calculator": [
     { q: "What is a stitch multiple?", a: "It is the number of pattern stitches in one repeat. Enter the multiple exactly as stated by the source instruction and verify any separate plus value." },
@@ -161,18 +184,36 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "Does it choose a magic ring, join, or turning-chain convention?", a: "No. Use the center start and round convention required by the selected pattern, including whether chains count as stitches." },
   ],
   "needle-guide": [
-    { q: "What needle should I use to weave in crochet ends?", a: "A tapestry needle (also called a yarn needle). The blunt tip slides between stitches without splitting your yarn." },
-    { q: "What is the difference between a tapestry needle and a chenille needle?", a: "Both have large eyes, but a tapestry needle has a blunt tip while a chenille needle is sharp. Use tapestry for yarn work, chenille for piercing tightly woven fabric." },
-    { q: "Can I use a regular sewing needle for crochet?", a: "You can in a pinch, but the small eye makes threading yarn difficult and the sharp tip will split your stitches. A tapestry needle is much easier." },
-    { q: "What needle do I need to add beads to my crochet?", a: "A beading needle. They are thin enough to fit through seed bead holes. Pre-string your beads onto the yarn before you start crocheting." },
-    { q: "What size tapestry needle should I use for different yarn weights?", a: "Match needle eye size to your yarn thickness. For lace and fingering weight, use a size 18–20 tapestry needle. For DK and worsted, a size 14–16 works well. For bulky and super bulky yarn, use a size 13 or larger. The needle should thread easily without bending the yarn." },
+    {
+      q: "How do I choose a needle size?",
+      a: "Use the exact product guidance and choose an eye and shaft that fit the thread and material without forcing them. Numbers are not interchangeable across needle families."
+    },
+    {
+      q: "Does a blunt tapestry needle prevent every split?",
+      a: "No. It is designed for existing openings, but it can still catch or separate yarn plies. Check placement and use a suitable size."
+    },
+    {
+      q: "What should I check for beads?",
+      a: "Check the bead opening, needle shaft, and thread together. A generic beading-needle label does not guarantee that the complete combination will pass through."
+    }
   ],
   "cast-on-calculator": [
-    { q: "How many stitches do I cast on for a specific width?", a: "Divide your gauge stitches by the gauge measurement to get stitches per inch, then multiply by your desired width. For example, 18 stitches over 4 inches = 4.5 stitches per inch. For a 50-inch blanket, that\u2019s 225 stitches." },
-    { q: "What is a stitch pattern multiple?", a: "Many stitch patterns repeat over a fixed number of stitches. If your pattern repeats every 6 stitches, your cast-on count must be a multiple of 6. Our calculator rounds UP to the nearest multiple so your pattern fits evenly." },
-    { q: "Do I need to add edge stitches?", a: "If you\u2019re knitting flat pieces that will be seamed, most knitters add 1\u20132 selvedge stitches per side. These stitches get absorbed into the seam and don\u2019t affect the finished width of your project." },
-    { q: "How do I figure out my gauge?", a: "Knit a swatch at least 6 inches wide. Lay it flat, measure 4 inches across the center (avoiding edges), and count the stitches. That\u2019s your gauge over 4 inches." },
-    { q: "Why does my finished width not match?", a: "Gauge can shift between a small swatch and a large project, especially on circular needles vs flat. Blocking also changes dimensions. Always measure as you go and adjust if needed." },
+    {
+      q: "How is the cast-on count calculated?",
+      a: "Desired width × measured gauge stitches / measured gauge span, with all dimensions in inches."
+    },
+    {
+      q: "How does rounding work?",
+      a: "With no multiple, the tool rounds to the nearest whole stitch. With a multiple, it rounds the raw count upward to a complete multiple and displays the resulting modeled width."
+    },
+    {
+      q: "Does it add edge stitches or a pattern offset?",
+      a: "No. The multiple field does not add an offset such as the +2 in a 6n+2 pattern. Follow the pattern and account for its edges and offsets separately."
+    },
+    {
+      q: "Does the count guarantee fit?",
+      a: "No. Use a representative swatch and the intended stitch pattern, construction, and finishing. Recheck gauge while working."
+    }
   ],
   "hat-calculator": [
     { q: "How do I choose a head measurement for this reference?", a: "Measure the intended wearer when possible. The preset ranges are broad orientation only and do not establish a custom fit." },
@@ -199,12 +240,22 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "Does a correct stitch total prove the whole pattern works?", a: "No. Correct means only that the supported arithmetic is internally consistent. The intended shape, size, gauge, clarity, assembly, and safety still need human review and a physical test." },
   ],
   "wpi-calculator": [
-    { q: "What is WPI (wraps per inch)?", a: "WPI stands for Wraps Per Inch. You wrap yarn around a ruler for exactly one inch and count the number of wraps. It\u2019s the most reliable way to identify the weight of unlabeled yarn." },
-    { q: "How do I measure WPI accurately?", a: "Wrap your yarn snugly around a ruler or dowel for one inch. Don\u2019t stretch the yarn or leave gaps, and don\u2019t overlap strands. Count the number of wraps. Repeat in 2\u20133 spots and average the results." },
-    { q: "Why does my WPI fall between two yarn weights?", a: "WPI ranges overlap between adjacent weights. A yarn at 12 WPI could be Fine/Sport or Medium/Worsted. The best way to confirm is to knit or crochet a gauge swatch and compare your stitch count to the standard ranges." },
-    { q: "Can I use WPI for textured or novelty yarn?", a: "Textured yarns like boucl\u00E9, chenille, or eyelash yarn don\u2019t wrap evenly, so WPI measurements are less reliable. For these yarns, swatching is the best way to determine the effective weight." },
-    { q: "What tools do I need to measure WPI?", a: "A standard ruler works fine. You can also use a dedicated WPI tool (a notched card or gauge), a pencil, or a dowel. Any straight, smooth surface about \u00BC inch in diameter works." },
-    { q: "How does WPI relate to the CYC yarn weight system?", a: "The Craft Yarn Council\u2019s 0\u20137 weight categories correspond to WPI ranges. For example, worsted (CYC 4) is typically 9\u201312 WPI. Our converter maps your WPI to the matching CYC category with needle, hook, and gauge recommendations." },
+    {
+      q: "Why can WPI match several categories?",
+      a: "The guidance ranges overlap, and wrapping tension and yarn construction affect the measurement. Keep all matches and verify the actual yarn."
+    },
+    {
+      q: "Does WPI tell me how many yards are in my yarn?",
+      a: "No. Length per gram depends on the actual yarn. Use its label or a measured length and weight."
+    },
+    {
+      q: "Can I compare crochet gauge to the displayed knitting gauge?",
+      a: "No. Stockinette knitting and single crochet have different gauge ranges. Use the appropriate craft-specific guidance and the actual pattern."
+    },
+    {
+      q: "Does matching WPI confirm a substitution?",
+      a: "No. Check stitch and row gauge, fabric, construction, and product care requirements with a representative swatch."
+    }
   ],
   "c2c-calculator": [
     { q: "What is C2C crochet?", a: "C2C (corner-to-corner) is a crochet technique where you build a blanket diagonally. You start with one block in a corner, increase one block per row until you reach the widest diagonal, then decrease back down to the opposite corner." },
@@ -252,12 +303,22 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "Can I use steam or another heat treatment?", a: "Only when the product and appliance instructions permit it. Heat can irreversibly alter some fibers, finishes, dyes, and constructions, so a generic fiber name is not enough to establish a safe treatment." },
   ],
   "stash-estimator": [
-    { q: "How do I weigh a partial skein?", a: "Use a kitchen scale that measures in grams. Place the partial skein on the scale. If the yarn is on a project, weigh the project and subtract the estimated weight of your work, or wind off the remaining yarn and weigh it separately." },
-    { q: "How accurate is the partial skein estimate?", a: "It is quite accurate for commercial machine-spun yarn with consistent thickness. Handspun or art yarns with thick-and-thin sections may vary. The estimate is based on the proportion of weight remaining compared to a full skein." },
-    { q: "What if I do not have the original ball band?", a: "Use the yardage reference table. Identify the yarn weight by WPI or visual comparison, then use the typical yardage per 100g value for that weight category. Our WPI Calculator can help identify the weight." },
-    { q: "Why does fiber content affect the estimate?", a: "Different fibers have different densities. Cotton is heavier per yard than wool, so a 50g ball of cotton has fewer yards than a 50g ball of wool at the same thickness. The weight-based formula assumes the same fiber as the original skein." },
-    { q: "Can I use this for cakes and hanks?", a: "Yes. The formula works for any yarn put-up, skeins, balls, cakes, or hanks. You need the full weight and yardage from the label, plus the current weight of your partial amount." },
-    { q: "How do I identify unlabeled yarn weight?", a: "Measure wraps per inch by wrapping yarn snugly around a ruler. 14+ WPI is fingering, 11–12 is DK, 9–10 is worsted, 6–8 is bulky. Our WPI Calculator gives a detailed breakdown with needle and hook recommendations." },
+    {
+      q: "How is remaining yarn estimated?",
+      a: "Divide remaining weight by full skein label weight and multiply by that same label length. Use grams for both weights and yards for length in this form."
+    },
+    {
+      q: "What if the ball band is missing?",
+      a: "Find the exact yarn specification or establish a length-to-weight ratio from a measured sample. A yarn weight category or WPI value does not establish yardage per gram."
+    },
+    {
+      q: "What should I exclude when weighing?",
+      a: "Exclude labels, cones, needles, packaging, and anything other than the yarn being estimated."
+    },
+    {
+      q: "Does the result guarantee enough yarn?",
+      a: "No. It assumes consistent length per gram and depends on label and scale accuracy. Compare with your actual project requirements and allow for finishing, joins, and waste."
+    }
   ],
   "vintage-pattern-decoder": [
     { q: "Does every vintage crochet pattern use UK terms?", a: "No. A pattern's age or appearance does not establish its terminology convention. Check the pattern key, publisher information, or another reliable source. Leave the tool on Unknown when the convention is not established." },

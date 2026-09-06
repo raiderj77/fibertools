@@ -21,57 +21,72 @@ interface HookSize {
   yarnWeight: string;
 }
 
+// Exact Japanese diameters: https://www.clover.co.jp/recipe/takumikikakus.pdf
 const needleSizes: NeedleSize[] = [
-  { mm: 2.0, us: "0", ukOld: "14", japanese: "0", yarnWeight: "Lace" },
-  { mm: 2.25, us: "1", ukOld: "13", japanese: "–", yarnWeight: "Lace / Fingering" },
-  { mm: 2.5, us: "1.5", ukOld: "–", japanese: "1", yarnWeight: "Fingering" },
-  { mm: 2.75, us: "2", ukOld: "12", japanese: "2", yarnWeight: "Fingering" },
-  { mm: 3.0, us: "2.5", ukOld: "11", japanese: "3", yarnWeight: "Fingering / Sport" },
-  { mm: 3.25, us: "3", ukOld: "10", japanese: "4", yarnWeight: "Sport / DK" },
-  { mm: 3.5, us: "4", ukOld: "–", japanese: "5", yarnWeight: "DK" },
-  { mm: 3.75, us: "5", ukOld: "9", japanese: "–", yarnWeight: "DK" },
-  { mm: 4.0, us: "6", ukOld: "8", japanese: "6", yarnWeight: "DK / Worsted" },
-  { mm: 4.5, us: "7", ukOld: "7", japanese: "7", yarnWeight: "Worsted" },
-  { mm: 5.0, us: "8", ukOld: "6", japanese: "8", yarnWeight: "Worsted / Aran" },
-  { mm: 5.5, us: "9", ukOld: "5", japanese: "9", yarnWeight: "Aran" },
-  { mm: 6.0, us: "10", ukOld: "4", japanese: "10", yarnWeight: "Aran / Bulky" },
-  { mm: 6.5, us: "10.5", ukOld: "3", japanese: "11", yarnWeight: "Bulky" },
-  { mm: 7.0, us: "–", ukOld: "2", japanese: "12", yarnWeight: "Bulky" },
-  { mm: 7.5, us: "–", ukOld: "1", japanese: "13", yarnWeight: "Bulky" },
-  { mm: 8.0, us: "11", ukOld: "0", japanese: "14", yarnWeight: "Bulky / Super Bulky" },
-  { mm: 9.0, us: "13", ukOld: "00", japanese: "15", yarnWeight: "Super Bulky" },
-  { mm: 10.0, us: "15", ukOld: "000", japanese: "–", yarnWeight: "Super Bulky" },
-  { mm: 12.0, us: "17", ukOld: "–", japanese: "–", yarnWeight: "Jumbo" },
-  { mm: 15.0, us: "19", ukOld: "–", japanese: "–", yarnWeight: "Jumbo" },
-  { mm: 19.0, us: "35", ukOld: "–", japanese: "–", yarnWeight: "Jumbo" },
-  { mm: 25.0, us: "50", ukOld: "–", japanese: "–", yarnWeight: "Jumbo" },
+  {"mm": 2, "us": "0", "ukOld": "14", "japanese": "–", "yarnWeight": "Lace"},
+  {"mm": 2.1, "us": "–", "ukOld": "–", "japanese": "0", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 2.25, "us": "1", "ukOld": "13", "japanese": "–", "yarnWeight": "Lace / Fingering"},
+  {"mm": 2.4, "us": "–", "ukOld": "–", "japanese": "1", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 2.5, "us": "1.5", "ukOld": "–", "japanese": "–", "yarnWeight": "Fingering"},
+  {"mm": 2.7, "us": "–", "ukOld": "–", "japanese": "2", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 2.75, "us": "2", "ukOld": "12", "japanese": "–", "yarnWeight": "Fingering"},
+  {"mm": 3, "us": "2.5", "ukOld": "11", "japanese": "3", "yarnWeight": "Fingering / Sport"},
+  {"mm": 3.25, "us": "3", "ukOld": "10", "japanese": "–", "yarnWeight": "Sport / DK"},
+  {"mm": 3.3, "us": "–", "ukOld": "–", "japanese": "4", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 3.5, "us": "4", "ukOld": "–", "japanese": "–", "yarnWeight": "DK"},
+  {"mm": 3.6, "us": "–", "ukOld": "–", "japanese": "5", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 3.75, "us": "5", "ukOld": "9", "japanese": "–", "yarnWeight": "DK"},
+  {"mm": 3.9, "us": "–", "ukOld": "–", "japanese": "6", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 4, "us": "6", "ukOld": "8", "japanese": "–", "yarnWeight": "DK / Worsted"},
+  {"mm": 4.2, "us": "–", "ukOld": "–", "japanese": "7", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 4.5, "us": "7", "ukOld": "7", "japanese": "8", "yarnWeight": "Worsted"},
+  {"mm": 4.8, "us": "–", "ukOld": "–", "japanese": "9", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 5, "us": "8", "ukOld": "6", "japanese": "–", "yarnWeight": "Worsted / Aran"},
+  {"mm": 5.1, "us": "–", "ukOld": "–", "japanese": "10", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 5.4, "us": "–", "ukOld": "–", "japanese": "11", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 5.5, "us": "9", "ukOld": "5", "japanese": "–", "yarnWeight": "Aran"},
+  {"mm": 5.7, "us": "–", "ukOld": "–", "japanese": "12", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 6, "us": "10", "ukOld": "4", "japanese": "13", "yarnWeight": "Aran / Bulky"},
+  {"mm": 6.3, "us": "–", "ukOld": "–", "japanese": "14", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 6.5, "us": "10.5", "ukOld": "3", "japanese": "–", "yarnWeight": "Bulky"},
+  {"mm": 6.6, "us": "–", "ukOld": "–", "japanese": "15", "yarnWeight": "Check yarn label and swatch"},
+  {"mm": 7, "us": "–", "ukOld": "2", "japanese": "–", "yarnWeight": "Bulky"},
+  {"mm": 7.5, "us": "–", "ukOld": "1", "japanese": "–", "yarnWeight": "Bulky"},
+  {"mm": 8, "us": "11", "ukOld": "0", "japanese": "–", "yarnWeight": "Bulky / Super Bulky"},
+  {"mm": 9, "us": "13", "ukOld": "–", "japanese": "–", "yarnWeight": "Super Bulky"},
+  {"mm": 10, "us": "15", "ukOld": "–", "japanese": "–", "yarnWeight": "Super Bulky"},
+  {"mm": 12.75, "us": "17", "ukOld": "–", "japanese": "–", "yarnWeight": "Jumbo"},
+  {"mm": 15, "us": "19", "ukOld": "–", "japanese": "–", "yarnWeight": "Jumbo"},
+  {"mm": 19, "us": "35", "ukOld": "–", "japanese": "–", "yarnWeight": "Jumbo"},
+  {"mm": 25, "us": "50", "ukOld": "–", "japanese": "–", "yarnWeight": "Jumbo"},
 ];
 
+// US hook labels: https://media.craftyarncouncil.com/standards/hooks-and-needles
 const hookSizes: HookSize[] = [
-  { mm: 2.0, usLetter: "–", usNumber: "–", ukCanadian: "14", yarnWeight: "Lace / Thread" },
-  { mm: 2.25, usLetter: "B", usNumber: "1", ukCanadian: "13", yarnWeight: "Lace / Fingering" },
-  { mm: 2.5, usLetter: "–", usNumber: "1.5", ukCanadian: "12", yarnWeight: "Fingering" },
-  { mm: 2.75, usLetter: "C", usNumber: "2", ukCanadian: "11", yarnWeight: "Fingering" },
-  { mm: 3.0, usLetter: "–", usNumber: "2.5", ukCanadian: "10", yarnWeight: "Fingering / Sport" },
-  { mm: 3.25, usLetter: "D", usNumber: "3", ukCanadian: "10", yarnWeight: "Sport" },
-  { mm: 3.5, usLetter: "E", usNumber: "4", ukCanadian: "9", yarnWeight: "Sport / DK" },
-  { mm: 3.75, usLetter: "F", usNumber: "5", ukCanadian: "–", yarnWeight: "DK" },
-  { mm: 4.0, usLetter: "G", usNumber: "6", ukCanadian: "8", yarnWeight: "DK / Worsted" },
-  { mm: 4.5, usLetter: "–", usNumber: "7", ukCanadian: "7", yarnWeight: "Worsted" },
-  { mm: 5.0, usLetter: "H", usNumber: "8", ukCanadian: "6", yarnWeight: "Worsted / Aran" },
-  { mm: 5.5, usLetter: "I", usNumber: "9", ukCanadian: "5", yarnWeight: "Aran" },
-  { mm: 6.0, usLetter: "J", usNumber: "10", ukCanadian: "4", yarnWeight: "Aran / Bulky" },
-  { mm: 6.5, usLetter: "K", usNumber: "10.5", ukCanadian: "3", yarnWeight: "Bulky" },
-  { mm: 7.0, usLetter: "–", usNumber: "–", ukCanadian: "2", yarnWeight: "Bulky" },
-  { mm: 8.0, usLetter: "L", usNumber: "11", ukCanadian: "0", yarnWeight: "Super Bulky" },
-  { mm: 9.0, usLetter: "M/N", usNumber: "13", ukCanadian: "00", yarnWeight: "Super Bulky" },
-  { mm: 10.0, usLetter: "N/P", usNumber: "15", ukCanadian: "000", yarnWeight: "Super Bulky" },
-  { mm: 11.5, usLetter: "P/Q", usNumber: "16", ukCanadian: "–", yarnWeight: "Jumbo" },
-  { mm: 12.0, usLetter: "Q", usNumber: "17", ukCanadian: "–", yarnWeight: "Jumbo" },
-  { mm: 15.0, usLetter: "–", usNumber: "19", ukCanadian: "–", yarnWeight: "Jumbo" },
-  { mm: 16.0, usLetter: "Q", usNumber: "19", ukCanadian: "–", yarnWeight: "Jumbo" },
-  { mm: 19.0, usLetter: "S", usNumber: "35", ukCanadian: "–", yarnWeight: "Jumbo" },
-  { mm: 25.0, usLetter: "–", usNumber: "50", ukCanadian: "–", yarnWeight: "Jumbo" },
+  {"mm": 2, "usLetter": "–", "usNumber": "–", "ukCanadian": "–", "yarnWeight": "Lace / Thread"},
+  {"mm": 2.25, "usLetter": "B", "usNumber": "1", "ukCanadian": "–", "yarnWeight": "Lace / Fingering"},
+  {"mm": 2.5, "usLetter": "–", "usNumber": "–", "ukCanadian": "–", "yarnWeight": "Fingering"},
+  {"mm": 2.75, "usLetter": "C", "usNumber": "2", "ukCanadian": "–", "yarnWeight": "Fingering"},
+  {"mm": 3, "usLetter": "–", "usNumber": "–", "ukCanadian": "–", "yarnWeight": "Fingering / Sport"},
+  {"mm": 3.25, "usLetter": "D", "usNumber": "3", "ukCanadian": "–", "yarnWeight": "Sport"},
+  {"mm": 3.5, "usLetter": "E", "usNumber": "4", "ukCanadian": "–", "yarnWeight": "Sport / DK"},
+  {"mm": 3.75, "usLetter": "F", "usNumber": "5", "ukCanadian": "–", "yarnWeight": "DK"},
+  {"mm": 4, "usLetter": "G", "usNumber": "6", "ukCanadian": "–", "yarnWeight": "DK / Worsted"},
+  {"mm": 4.5, "usLetter": "–", "usNumber": "7", "ukCanadian": "–", "yarnWeight": "Worsted"},
+  {"mm": 5, "usLetter": "H", "usNumber": "8", "ukCanadian": "–", "yarnWeight": "Worsted / Aran"},
+  {"mm": 5.5, "usLetter": "I", "usNumber": "9", "ukCanadian": "–", "yarnWeight": "Aran"},
+  {"mm": 6, "usLetter": "J", "usNumber": "10", "ukCanadian": "–", "yarnWeight": "Aran / Bulky"},
+  {"mm": 6.5, "usLetter": "K", "usNumber": "10.5", "ukCanadian": "–", "yarnWeight": "Bulky"},
+  {"mm": 7, "usLetter": "–", "usNumber": "–", "ukCanadian": "–", "yarnWeight": "Bulky"},
+  {"mm": 8, "usLetter": "L", "usNumber": "11", "ukCanadian": "–", "yarnWeight": "Super Bulky"},
+  {"mm": 9, "usLetter": "M/N", "usNumber": "13", "ukCanadian": "–", "yarnWeight": "Super Bulky"},
+  {"mm": 10, "usLetter": "N/P", "usNumber": "15", "ukCanadian": "–", "yarnWeight": "Super Bulky"},
+  {"mm": 11.5, "usLetter": "P", "usNumber": "16", "ukCanadian": "–", "yarnWeight": "Jumbo"},
+  {"mm": 12, "usLetter": "–", "usNumber": "–", "ukCanadian": "–", "yarnWeight": "Jumbo"},
+  {"mm": 15, "usLetter": "P/Q", "usNumber": "–", "ukCanadian": "–", "yarnWeight": "Jumbo"},
+  {"mm": 16, "usLetter": "Q", "usNumber": "–", "ukCanadian": "–", "yarnWeight": "Jumbo"},
+  {"mm": 19, "usLetter": "S", "usNumber": "–", "ukCanadian": "–", "yarnWeight": "Jumbo"},
+  {"mm": 25, "usLetter": "T/U/X", "usNumber": "–", "ukCanadian": "–", "yarnWeight": "Jumbo"},
 ];
 
 // ── COMPONENT ─────────────────────────────────────────────────────
@@ -85,6 +100,10 @@ export default function NeedleConverterTool() {
   const filteredNeedles = useMemo(() => {
     if (!search.trim()) return needleSizes;
     const q = search.trim().toLowerCase();
+    const metric = q.match(/^(\d+(?:\.\d+)?)\s*mm$/);
+    if (metric) return needleSizes.filter((n) => n.mm === Number(metric[1]));
+    const jp = q.match(/^(?:jp|japanese)\s*(\d+)$/);
+    if (jp) return needleSizes.filter((n) => n.japanese === jp[1]);
     return needleSizes.filter(
       (n) =>
         n.mm.toString().includes(q) ||
@@ -100,6 +119,8 @@ export default function NeedleConverterTool() {
   const filteredHooks = useMemo(() => {
     if (!search.trim()) return hookSizes;
     const q = search.trim().toLowerCase();
+    const metric = q.match(/^(\d+(?:\.\d+)?)\s*mm$/);
+    if (metric) return hookSizes.filter((h) => h.mm === Number(metric[1]));
     return hookSizes.filter(
       (h) =>
         h.mm.toString().includes(q) ||
@@ -202,7 +223,7 @@ export default function NeedleConverterTool() {
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     Japanese
-                    <Tooltip text="Japanese needle sizes used in Japanese knitting patterns (JIS standard)." />
+                    <Tooltip text="Japanese sizes with exact metric diameters from Clover. A dash means no exact listed equivalent." />
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     Yarn Weight
@@ -267,8 +288,8 @@ export default function NeedleConverterTool() {
                     <Tooltip text="Number-based US sizing. Some hooks use letters, some numbers, some both." />
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
-                    UK / Canadian
-                    <Tooltip text="UK and Canadian hook sizes. Runs opposite, smaller number = bigger hook." />
+                    UK / Canadian (not supplied)
+                    <Tooltip text="UK and Canadian hook labels are not supplied because this chart has no verified source for those mappings." />
                   </th>
                   <th className="text-left py-3 px-3 font-semibold text-bark-700 dark:text-cream-200">
                     Yarn Weight
@@ -335,6 +356,7 @@ export default function NeedleConverterTool() {
         </div>
       </div>
 
+      <p className="text-sm text-bark-500">US sizes: <a className="underline" href="https://media.craftyarncouncil.com/standards/hooks-and-needles">Craft Yarn Council</a>. Old UK needles through 8mm: <a className="underline" href="https://www.knitpro.eu/en/blog/knitting-needle-sizes">KnitPro</a>. Japanese diameters: <a href="https://www.clover.co.jp/recipe/takumikikakus.pdf" className="underline">Clover needle chart</a>. Size labels vary by manufacturer; use the marked millimetres. A dash means no verified exact equivalent in this table. UK/Canadian hook mappings and conflicting large old-UK needle labels are not supplied.</p>
       {/* Quick reference note */}
       <div className="result-card">
         <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-2">
@@ -345,10 +367,10 @@ export default function NeedleConverterTool() {
             <strong>Metric (mm)</strong> is the universal standard, when in doubt, go by mm.
           </li>
           <li>
-            <strong>UK old sizes</strong> run backwards, UK 14 is tiny (2mm), UK 000 is huge (10mm).
+            <strong>UK old sizes</strong> run backwards, UK 14 is 2mm. Conflicting legacy entries are not supplied.
           </li>
           <li>
-            <strong>Japanese sizes</strong> start at 0 (2mm) and go up. Common in Japanese knitting books.
+            <strong>Japanese sizes</strong> start at 0 (2.1mm); size 15 is 6.6mm. Common in Japanese knitting books.
           </li>
           <li>
             Crochet hooks use <strong>both letters and numbers</strong> in the US, patterns may use either.

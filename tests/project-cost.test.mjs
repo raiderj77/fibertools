@@ -4,6 +4,20 @@ import test from "node:test";
 
 import { calculateProjectCostSummary } from "../src/lib/project-cost.mjs";
 
+test("does not display a plausible subtotal after an invalid material input", () => {
+  const result = calculateProjectCostSummary([
+    { skeins: "2", pricePerSkein: "8" }, { skeins: "-1", pricePerSkein: "10" },
+  ], [], "", "", "");
+  assert.equal(result.valid, false);
+  assert.equal(result.totalCost, 0);
+});
+
+test("declines overflow and rounds positive half cents consistently", () => {
+  assert.equal(calculateProjectCostSummary([{ skeins: "1e300", pricePerSkein: "1e300" }], [], "", "", "").valid, false);
+  assert.equal(calculateProjectCostSummary([{ skeins: "0.5", pricePerSkein: "2.01" }], [], "", "", "").totalCost, 1.01);
+  assert.equal(calculateProjectCostSummary([{ skeins: "1.5", pricePerSkein: "6.85" }], [], "", "", "").totalCost, 10.28);
+});
+
 test("uses rounded currency inputs and unrounded time for dependent arithmetic", () => {
   const result = calculateProjectCostSummary(
     [{ skeins: "0.333", pricePerSkein: "10" }],
@@ -43,7 +57,7 @@ test("does not silently calculate time without a positive entered rate", () => {
   assert.match(source, /\[stitchesPerMin, setStitchesPerMin\] = useState\(""\)/);
 });
 
-test("ignores negative and non-finite material inputs", () => {
+test("declines negative and non-finite material inputs", () => {
   const result = calculateProjectCostSummary(
     [
       { skeins: "-2", pricePerSkein: "8" },
@@ -55,7 +69,10 @@ test("ignores negative and non-finite material inputs", () => {
     "-1",
   );
 
-  assert.deepEqual(result, {
+  assert.equal(result.valid, false);
+  const { valid, error, ...amounts } = result;
+  assert.match(error, /Invalid entries/);
+  assert.deepEqual(amounts, {
     yarnCost: 0,
     notionCost: 0,
     totalCost: 0,

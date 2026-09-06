@@ -10,6 +10,19 @@ import {
 
 const throwDimensions = { widthIn: 50, lengthIn: 60 };
 
+test("declines unsafe and zero-output blanket counts", () => {
+  for (const gaugeOver of [1e-300, 1e300]) {
+    assert.equal(calculateBlanketGaugeCounts({ ...throwDimensions, gaugeStitches: 18,
+      gaugeRows: 24, gaugeOver, units: "imperial" }), null);
+  }
+});
+
+test("repeat count must include at least one complete repeat and supported whole extras", () => {
+  assert.equal(roundBlanketStitchesToMultiple(2, 6, 5), 11);
+  assert.equal(roundBlanketStitchesToMultiple(225, 2.5, 0), null);
+  assert.equal(roundBlanketStitchesToMultiple(225, 0, 2), null);
+});
+
 test("calculates imperial blanket counts from a gauge measured over inches", () => {
   assert.deepEqual(
     calculateBlanketGaugeCounts({
