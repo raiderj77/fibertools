@@ -47,7 +47,7 @@
     "@supabase/supabase-js": "2.50.0",
     "googleapis": "^171.4.0",
     "gray-matter": "^4.0.3",
-    "next": "15.5.22",
+    "next": "15.5.24",
     "react": "19.2.7",
     "react-dom": "19.2.7",
     "remark": "^15.0.1",
@@ -61,7 +61,7 @@
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
     "eslint": "^8",
-    "eslint-config-next": "15.5.22",
+    "eslint-config-next": "15.5.24",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
@@ -70,6 +70,6 @@
     "next": {
       "postcss": "8.5.26"
     },
-    "sharp": "0.35.3"
+    "sharp": "0.35.4"
   }
 }

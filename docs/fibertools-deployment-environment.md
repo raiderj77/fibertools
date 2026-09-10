@@ -1,6 +1,6 @@
 # FiberTools deployment and environment contract
 
-Environment contract reviewed: 2026-08-27 (America/Los_Angeles). Provider and release snapshots below retain their individual verification dates.
+Environment contract reviewed: 2026-09-09 (America/Los_Angeles). Provider and release snapshots below retain their individual verification dates.
 
 This document records the source/deployment identity, safe configuration defaults, offer gates, and release evidence required to operate FiberTools without exposing credentials or accidentally enabling a commercial flow.
 
@@ -26,6 +26,16 @@ The following is a dated record, not a promise about future state:
 - Main's checks were green after #42. The prior direct-main article commit had failed the duplicate-slug content gate; a green live revenue monitor during that failure described the older live deployment, not source deployability.
 
 Production readiness remains narrower than offer readiness. This snapshot does not verify live purchase success, delivery, webhook behavior, provider credentials, database migration state, retention execution, rate limiting, customer activity, or revenue.
+
+### Read-only Vercel snapshot on 2026-09-09
+
+An authenticated, read-only API check resolved the daily-brief billing uncertainty for the exact team and project without changing provider state:
+
+- Team `jasons-projects-534f08bb` returned `billing.plan=pro` and `billing.status=active`. The response supplied no subscription-status value, so invoice, renewal and payment-method specifics remain unknown; no purchase or billing-setting change was made.
+- The latest production deployment, `dpl_G24gA8Es65oEhatHoicsuhfFb5Ra`, was `READY` from Git commit `9462937c1115371db677adb71021ec914c12536c`.
+- A direct `GET https://fibertools.app/api/stitchproof/checkout` returned HTTP 200 with `{"available":false}`, `Cache-Control: no-store, max-age=0` and `Referrer-Policy: no-referrer`.
+
+The team billing status resolves only the observed account-status ambiguity. It does not approve future Vercel spend, establish Stripe readiness, prove delivery or authorize checkout.
 
 ## Environment inventory
 
@@ -87,8 +97,8 @@ Production readiness remains narrower than offer readiness. This snapshot does n
 | `STITCHPROOF_MANAGED_PAYMENTS_CONFIRMED` | Server-only readiness evidence | Default `false`. Record only after the owner accepts the applicable terms and the exact FiberTools account's Managed Payments eligibility/enrollment is verified. No code path enrolls an account. |
 | `STITCHPROOF_MANAGED_TAX_CODE` | Server-only owner classification | Fake `txcd_replace_me`. Exact owner-confirmed, provider-eligible Product tax code; the application checks it against the retrieved Product and binds it to new managed attempts. A syntactically valid code is not legal classification evidence. |
 | `STITCHPROOF_MANAGED_COUNTRY_POLICY` | Server-only sales scope | Default `not_configured`; managed mode requires `STITCHPROOF-MARKETS-2026-08-27`, the approved 24-country list. This is not proof of billing location or tax coverage. |
-| `STITCHPROOF_MANAGED_COUNTRY_ENFORCEMENT_CONFIRMED` | Server-only live release gate | Default `false`. Confirm only after scoped pre-charge Radar rules, missing-country handling, Allow-rule bypass review and out-of-scope negative tests pass on every enabled method. No customer address is collected by the site. |
-| `STITCHPROOF_MANAGED_PAYMENT_METHODS_CONFIRMED` | Server-only live release gate | Default `false`. Verify Stripe Support's no-local-method configuration and country-rule coverage, including Link funding sources. The server checks returned methods are limited to card/Link before exposing a checkout URL; it does not configure them. |
+| `STITCHPROOF_MANAGED_COUNTRY_ENFORCEMENT_CONFIRMED` | Server-only live release gate | Default `false`. Confirm only after a scoped pre-charge Radar rule, missing-country handling and out-of-scope negatives pass on every retained method. Audit every existing Allow rule because Stripe evaluates Allow before Block. The 2026-09-07 Support reply did not install the rule, prove the account's custom-rule entitlement or settle its cost. No customer address is collected by the site. |
+| `STITCHPROOF_MANAGED_PAYMENT_METHODS_CONFIRMED` | Server-only live release gate | Default `false`. Read back Stripe Support's no-local-method configuration in the exact account and test country-rule coverage, including wallet paths and Link funding sources. The requested setting is scoped to Managed Payments and leaves cards, Apple Pay, Google Pay and Link active; it does not change ordinary payment configurations. The server checks returned method types are limited to card/Link before exposing a checkout URL; it does not configure or fully validate the retained methods. |
 | `STITCHPROOF_MANAGED_DELIVERY_TEST_CONFIRMED` | Server-only live release gate | Default `false`. Requires protected non-customer tax, localized payment, webhook, recovery/export, refund/dispute and failure-path evidence. Local synthetic tests do not satisfy this gate. |
 | `VERCEL_ENV` | Runtime deployment context | Vercel supplies `production`, `preview`, or `development`; the fake local template uses `development`. Never override the deployed value to bypass live/test isolation. |
 
