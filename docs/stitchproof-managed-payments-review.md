@@ -36,7 +36,7 @@ For the documented pre-tax subtotal model, exclusive pricing requires subtotal 9
 
 ## Country enforcement is a provider release gate
 
-Stripe documents custom Radar blocking using the declared billing country for Managed Payments. It requires Radar for Fraud Teams; do not upgrade or accept charges under this review approval. The billing country is customer-declared, not independently verified. [Country-block guidance](https://support.stripe.com/questions/block-payments-from-tax-unsupported-countries-using-radar?locale=en-GB).
+Stripe documents custom Radar blocking using the declared billing country for Managed Payments. The billing country is customer-declared, not independently verified. Stripe's public pricing currently places custom rules in Radar Plus and Radar Pro, while the account-specific Support reply dated 2026-09-07 said this rule would not require Radar Plus. That discrepancy leaves the exact account entitlement and cost **unverified**: read them back in the correct account before any rule is installed, and do not upgrade or accept charges under this approval. [Country-block guidance](https://support.stripe.com/questions/block-payments-from-tax-unsupported-countries-using-radar?locale=en-GB), [Radar pricing](https://stripe.com/radar/pricing).
 
 **Draft only, not installed or provider-validated:** a rule must be scoped to this managed offer so other FiberTools payment flows are not changed. The following candidate uses payment metadata, not customer/pattern data:
 
@@ -47,11 +47,17 @@ Block if ::service:: = 'stitchproof_designer_project'
     or :billing_address_country: not in ('US','CA','GB','AU','NZ','AT','BE','DK','FI','FR','DE','IS','IE','IT','LU','NL','NO','PT','ES','SE','CH','JP','SG','KR'))
 ```
 
-Before using it, validate syntax, payment-metadata availability and actual blocking in the correct account. Review every existing Allow rule: an Allow can bypass subsequent Block rules. A Review rule is not a payment block. Missing-country handling is explicit. Do not change account-wide rules or remove unrelated controls without separate authority. [Radar evaluation and metadata syntax](https://docs.stripe.com/radar/rules/reference).
+Before using it, validate syntax, payment-metadata availability and actual blocking in the correct account. Review every existing Allow rule: Stripe evaluates Allow rules before Block rules, so an Allow can bypass the proposed control. A Review rule is not a payment block. Missing-country handling is explicit. Do not change account-wide rules or remove unrelated controls without separate authority. [Radar evaluation and metadata syntax](https://docs.stripe.com/radar/rules/reference).
 
-Custom-rule support varies by payment method. Stripe Support can request a configuration without local methods; cards, card-backed wallets and Link remain. This application will not expose a managed Checkout URL if its returned methods extend beyond card/Link, but that check does **not** prove Radar coverage. Obtain provider confirmation and test every remaining method, including Link funding sources, before live sales. [Method configuration](https://support.stripe.com/questions/payment-method-configurations-for-managed-payments?locale=en-GB), [Custom-rule method coverage](https://docs.stripe.com/radar/supported-payment-methods).
+Custom-rule support varies by payment method. Stripe Support's 2026-09-07 reply said the requested **No local payment methods** configuration is limited to Managed Payments Checkout and Payment Links and does not alter ordinary payment-method configurations. Stripe's public guidance says cards, Apple Pay, Google Pay and Link remain active. This application will not expose a managed Checkout URL if its returned `payment_method_types` extend beyond card/Link, but that check does **not** prove wallet funding or Radar coverage. Obtain provider readback and test every remaining method, including Link funding sources and wallet paths, before live sales. [Method configuration](https://support.stripe.com/questions/payment-method-configurations-for-managed-payments?locale=en-GB), [Custom-rule method coverage](https://docs.stripe.com/radar/supported-payment-methods).
 
 Do not replace pre-charge controls with post-payment country rejection and withheld delivery. The first-party selection alone does not enforce billing location. Do not broaden the 24-country scope to make a test pass. If full pre-charge coverage cannot be established, leave managed live checkout off and ask the owner to choose a different supported approach.
+
+### Dated Support response, not provider configuration
+
+The redacted Stripe Support response received 2026-09-07 resolved the scope of the requested method configuration and confirmed that test-mode rules and objects are separate from live mode. Support also treated Product tax code `txcd_10103000` as compatible with the described one-time SaaS setup. That is provider-configuration guidance only: it does not establish the correct legal or tax classification, tax treatment, registration duties or owner acceptance for this product.
+
+No method configuration, Radar rule, Product category, terms acceptance, environment setting or payment was applied. The response does not satisfy any live confirmation flag. Protected test-mode negatives must still prove missing and out-of-list countries are blocked, every retained method is covered, existing Allow rules cannot bypass the control, and ordinary FiberTools offers are unchanged. A fresh live-account readback must separately verify the installed configuration, entitlement and price before release approval.
 
 ## Additive database and recovery
 
