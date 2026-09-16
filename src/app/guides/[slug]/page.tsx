@@ -150,7 +150,7 @@ export default async function GuidePage({ params }: { params: Params }) {
                 <Image src={section.image.src} alt={section.image.alt} width={section.image.width} height={section.image.height} unoptimized className="w-full h-auto rounded-lg" />
                 <figcaption className="mt-2 text-sm text-bark-600 dark:text-cream-300">{section.image.caption}</figcaption>
               </figure>}
-              {section.html ? <div className="overflow-x-auto text-bark-600 dark:text-cream-300 leading-relaxed text-[15px] [&_p]:mb-4 [&_a]:underline [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:mb-3 [&_table]:w-full [&_table]:mb-4 [&_th]:text-left [&_th]:p-2 [&_td]:p-2 [&_td]:border [&_th]:border" dangerouslySetInnerHTML={{ __html: section.html }} /> : section.content.split("\n\n").map((paragraph, j) => (
+              {section.html ? <div tabIndex={section.html.includes("<table>") ? 0 : undefined} role={section.html.includes("<table>") ? "region" : undefined} aria-labelledby={section.html.includes("<table>") ? id : undefined} className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-600 overflow-x-auto text-bark-600 dark:text-cream-300 leading-relaxed text-[15px] [&_p]:mb-4 [&_a]:underline [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:mb-3 [&_table]:w-full [&_table]:mb-4 [&_th]:text-left [&_th]:p-2 [&_td]:p-2 [&_td]:border [&_th]:border" dangerouslySetInnerHTML={{ __html: section.html }} /> : section.content.split("\n\n").map((paragraph, j) => (
                 <p key={j} className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
                   {paragraph}
                 </p>

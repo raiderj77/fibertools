@@ -52,3 +52,9 @@ The articles link these sources near the claims. Arithmetic examples are express
 
 Rollback: revert the article-only commit if a release regression appears. No database or provider migration is involved. Search eligibility is supported; indexing, rankings and citations are not guaranteed. Merge/deployment/live verification remain separate evidence stages recorded by the parent after they occur.
 `npm run build`: final production build, TypeScript, prebuild and postbuild checks passed after the last content correction.
+
+## PR review corrections
+
+The automatic PR review identified two release blockers: the blanket guide retained a primary CTA for a different input model, and horizontally overflowing Markdown tables lacked a focusable named container. The blanket CTA now targets yarn-calculator, matching the documented example. Table-bearing sections now have tabIndex 0, a region name tied to their heading, and visible focus styling.
+
+New regression assertions failed before the corrections and passed after them. The page tests now use the actual tool registry, exposing both primary CTAs. Independent reviewer and verifier cleared the delta. Rechecks: 13/13 editorial/render, 20/20 render/publication by verifier, 53/53 search, 12/12 accessibility, full production build with pre/postbuild checks, and all four browser routes including keyboard focus/scroll and the blanket CTA. No calculator implementation entered this PR.

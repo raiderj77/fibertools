@@ -128,7 +128,7 @@ export const guides: Guide[] = [
   slug: "blanket-yarn-guide",
   title: "How Much Yarn Do You Need for a Blanket?",
   description: "Estimate blanket yarn from a measured swatch, separate extra allowance, and convert yards to whole skeins with a clear worked example.",
-  toolSlug: "blanket-calculator",
+  toolSlug: "yarn-calculator",
   date: "2026-03-06",
   modifiedDate: "2026-09-16",
   keywords: [
