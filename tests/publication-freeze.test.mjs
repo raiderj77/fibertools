@@ -22,7 +22,7 @@ import {
 
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const NOW = new Date("2026-08-26T12:00:00Z");
+const NOW = new Date("2026-09-16T12:00:00Z");
 
 
 function snapshot(value) {
@@ -49,7 +49,7 @@ test("current publication state passes with its owner-approved exception", () =>
 
 test("publication approval is narrow and time-bound", () => {
   const manifest = readPublicationManifest(ROOT);
-  assert.deepEqual(manifest.approvals, [{
+  assert.deepEqual(manifest.approvals.filter(approval => approval.contentType === "PAID_OFFER"), [{
     route: "/amigurumi-pattern-checker/designer",
     contentType: "PAID_OFFER",
     title: "StitchProof Designer Report and Version Compare",
@@ -185,7 +185,7 @@ test("a publisher cannot bypass the freeze by returning a quarantined duplicate 
     assert.equal(articles.length, 1);
     const state = snapshot(collectPublicationState(ROOT));
     state.articles.push(...articles);
-    const violations = analyzePublicationState(readPublicationManifest(ROOT), state, new Date("2026-08-27T12:00:00Z"));
+    const violations = analyzePublicationState(readPublicationManifest(ROOT), state, NOW);
     assert(violations.some((message) => message.startsWith("Quarantined article inventory changed")));
     assert(violations.some((message) => message.includes(`Article ${file} is dated inside the freeze`)));
     assert(violations.some((message) => message.includes('Duplicate article slug "best-crochet-hooks"')));
@@ -272,7 +272,7 @@ test("approvals cannot be future-dated, expired, or indexable without approval",
   };
 
   const future = snapshot(baseManifest);
-  future.approvals.push({ ...approval, ownerApprovalDate: "2026-08-27" });
+  future.approvals.push({ ...approval, ownerApprovalDate: "2026-09-17" });
   assert(
     analyzePublicationState(future, state, NOW)
       .some((message) => message.includes("ownerApprovalDate cannot be in the future")),

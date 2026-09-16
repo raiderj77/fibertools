@@ -44,24 +44,26 @@ test('thread metadata promotes only the available sourced brands', () => {
 
 test('gauge guide multiplies width by stitch density to obtain stitch count', () => {
   const guide = loadTs('src/lib/guides.ts').guides.find(g => g.slug === 'knitting-gauge-guide');
-  const section = guide.sections.find(s => s.heading === 'How to Resize a Pattern for Your Gauge').content;
-  assert.match(section, /Multiply the desired finished width by your measured stitches per inch/);
+  const section = guide.sections.find(s => s.heading === 'What would preserving the width require mathematically?').content;
+  assert.match(section, /40 × 6\.25 = 250 stitches/);
   assert.doesNotMatch(section, /Divide the desired finished width by your measured stitches per inch/);
-  assert.match(section, /20 inches.*5 stitches per inch.*100 stitches/);
+  assert.match(section, /20-inch height at 7 rows per inch would require 140 rows/);
 });
 
 
 test('blanket stitch-pattern guide derives yarn use from measured area instead of fixed stitch percentages', () => {
  const guide=loadTs('src/lib/guides.ts').guides.find(g=>g.slug==='blanket-yarn-guide');
- const section=guide.sections.find(s=>s.heading==='Stitch Pattern Affects Yarn Usage').content;
+ const section=guide.sections.map(s=>s.content).join('\n');
  assert.doesNotMatch(section,/10–15% less|25–30% more|compresses vertically|fewer rows per inch/);
- assert.match(section,/grams per square inch/);
+ assert.match(section,/same consumption per area/);
+ assert.match(section,/3,000 ÷ 16.*187\.5/);
+ assert.match(section,/187\.5 × 20 yards.*3,750 yards/);
  assert.match(section,/representative swatch/);
 });
 
 test('blanket purchase advice uses an explicit allowance and actual seller policy', () => {
  const guide=loadTs('src/lib/guides.ts').guides.find(g=>g.slug==='blanket-yarn-guide');
- const text=guide.sections.filter(s=>['Why You Should Always Buy Extra','Choose an Explicit Yarn Allowance','How to Calculate Yardage from a Pattern'].includes(s.heading)).map(s=>s.content).join('\n');
+ const text=guide.sections.map(s=>s.content).join('\n');
  assert.ok(text.length>0);
  assert.doesNotMatch(text,/10–15%|Most yarn shops accept returns|buy 14/);
  assert.match(text,/return policy/);
@@ -84,7 +86,8 @@ test('linked guides describe current cast-on, sleeve, and stitch-reference capab
  const guides=loadTs('src/lib/guides.ts').guides;
  const content=slug=>guides.find(g=>g.slug===slug).sections.map(s=>s.content).join(' ');
  assert.doesNotMatch(content('cast-on-methods-guide'),/pattern multiple,? and edge allowance/);
- assert.match(content('cast-on-methods-guide'),/edge stitches separately/);
+ assert.match(content('cast-on-methods-guide'),/does not automatically add that offset or any edge stitches/);
+ assert.match(content('cast-on-methods-guide'),/Do not add a second pair of edge stitches/);
  const sleeve=content('knitting-sleeve-shaping-guide');
  assert.doesNotMatch(sleeve,/provides cap shaping instructions|including the alternating intervals|every 12th row, 10 times|divide the total sleeve rows/);
  assert.match(sleeve,/two fixed one-inch exclusions/);

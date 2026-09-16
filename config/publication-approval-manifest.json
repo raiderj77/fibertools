@@ -51,6 +51,46 @@
       "approvalReference": "Owner-approved Codex build prompt and explicit per-project purchase-scope confirmation dated 2026-08-26; production activation requires separate verified release evidence",
       "reviewOrExpirationDate": "2026-09-25",
       "indexingApproved": true
+    },
+    {
+      "route": "/guides/blanket-yarn-guide",
+      "contentType": "ARTICLE",
+      "title": "Verified illustrated update: Blanket yarn from measured swatch consumption",
+      "ownerApprovalDate": "2026-09-16",
+      "reason": "Owner authorized publishing the four completed articles after double-checking accuracy and including matching images. This is a substantive update at an existing guide route, not a new guide or blog route.",
+      "approvalReference": "Owner instruction in FiberTools task dated 2026-09-16: \"go ahead and publish the articles as long as they are correct do double check your work also are the images added? Add images if they are not present\". The subsequent no-deploy instruction applies to the separate Blanket Calculator change.",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true
+    },
+    {
+      "route": "/guides/cast-on-methods-guide",
+      "contentType": "ARTICLE",
+      "title": "Verified illustrated update: Cast-on counts, repeat rounding and modeled width",
+      "ownerApprovalDate": "2026-09-16",
+      "reason": "Owner authorized publishing the four completed articles after double-checking accuracy and including matching images. This is a substantive update at an existing guide route, not a new guide or blog route.",
+      "approvalReference": "Owner instruction in FiberTools task dated 2026-09-16: \"go ahead and publish the articles as long as they are correct do double check your work also are the images added? Add images if they are not present\". The subsequent no-deploy instruction applies to the separate Blanket Calculator change.",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true
+    },
+    {
+      "route": "/guides/yarn-stash-management-guide",
+      "contentType": "ARTICLE",
+      "title": "Verified illustrated update: Remaining yarn from same-yarn label ratio",
+      "ownerApprovalDate": "2026-09-16",
+      "reason": "Owner authorized publishing the four completed articles after double-checking accuracy and including matching images. This is a substantive update at an existing guide route, not a new guide or blog route.",
+      "approvalReference": "Owner instruction in FiberTools task dated 2026-09-16: \"go ahead and publish the articles as long as they are correct do double check your work also are the images added? Add images if they are not present\". The subsequent no-deploy instruction applies to the separate Blanket Calculator change.",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true
+    },
+    {
+      "route": "/guides/knitting-gauge-guide",
+      "contentType": "ARTICLE",
+      "title": "Verified illustrated update: Gauge changes at unchanged stitch and row counts",
+      "ownerApprovalDate": "2026-09-16",
+      "reason": "Owner authorized publishing the four completed articles after double-checking accuracy and including matching images. This is a substantive update at an existing guide route, not a new guide or blog route.",
+      "approvalReference": "Owner instruction in FiberTools task dated 2026-09-16: \"go ahead and publish the articles as long as they are correct do double check your work also are the images added? Add images if they are not present\". The subsequent no-deploy instruction applies to the separate Blanket Calculator change.",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true
     }
   ]
 }
