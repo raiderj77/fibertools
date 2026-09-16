@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+<title id="title">Estimate blanket yarn from a representative swatch</title>
+<desc id="desc">Hypothetical example: a 4 by 4 inch swatch uses 20 yards. A 50 by 60 inch rectangle has 187.5 times its area and needs an estimated 3750 base yards. Ten percent extra gives 4125 yards, rounded up to 19 skeins of 220 yards. Drawings are not at a shared scale.</desc>
+<rect width="1200" height="800" fill="#faf7ef"/>
+<g font-family="Arial, sans-serif" fill="#253d32">
+<text x="60" y="65" font-size="18" letter-spacing="2">FIBERTOOLS · WORKED EXAMPLE</text>
+<text x="60" y="120" font-size="38" font-weight="700">From measured swatch to yarn plan</text>
+<text x="60" y="159" font-size="21">Hypothetical inputs. Replace them with your own measurements.</text>
+<rect x="60" y="198" width="505" height="310" rx="16" fill="#e5eddf"/>
+<rect x="595" y="198" width="545" height="310" rx="16" fill="#e5eddf"/>
+<text x="88" y="238" font-size="23" font-weight="700">1 / Representative swatch</text>
+<rect x="104" y="290" width="130" height="130" fill="#9bbfa5" stroke="#365b45" stroke-width="2"/>
+<text x="169" y="277" text-anchor="middle" font-size="20">4 in</text>
+<text x="169" y="449" text-anchor="middle" font-size="20">4 in wide</text>
+<text x="270" y="320" font-size="25" font-weight="700">4 × 4 = 16 in²</text>
+<text x="270" y="363" font-size="23">Uses 20 yd</text>
+<text x="270" y="398" font-size="18">Same area and yarn</text>
+<text x="270" y="425" font-size="18">consumption boundary</text>
+<text x="623" y="238" font-size="23" font-weight="700">2 / Main blanket rectangle</text>
+<rect x="640" y="277" width="150" height="180" fill="#9bbfa5" stroke="#365b45" stroke-width="2"/>
+<text x="715" y="487" text-anchor="middle" font-size="20">50 in wide</text>
+<text x="815" y="316" font-size="24" font-weight="700">50 × 60 = 3,000 in²</text>
+<text x="815" y="359" font-size="22">60 in long</text>
+<text x="815" y="401" font-size="22">3,000 ÷ 16 = 187.5</text>
+<text x="815" y="435" font-size="18">times the swatch area</text>
+<rect x="60" y="535" width="1080" height="165" rx="16" fill="#253d32"/>
+<g fill="#ffffff">
+<text x="88" y="575" font-size="23">187.5 × 20 yd = <tspan font-weight="700">3,750 yd base</tspan></text>
+<text x="88" y="617" font-size="23">Chosen 10% extra: 375 yd → <tspan font-weight="700">4,125 yd planned</tspan></text>
+<text x="88" y="661" font-size="23">4,125 ÷ 220 yd per skein = 18.75 → <tspan font-weight="700">19 whole skeins</tspan></text>
+</g>
+<text x="60" y="743" font-size="19">Diagram only; drawings are not at a shared scale. No stitches or tested product are depicted.</text>
+<text x="60" y="774" font-size="19">The allowance is a planning choice. Borders, joins and fringe need separate estimates.</text>
+</g></svg>

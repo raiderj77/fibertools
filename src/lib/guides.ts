@@ -7,7 +7,8 @@ export interface Guide {
   modifiedDate?: string;
   sources?: { title: string; url: string }[];
   keywords: string[];
-  sections: { heading: string; content: string }[];
+  editorialNote?: string;
+  sections: { heading: string; content: string; markdown?: boolean; image?: { src: string; preview: string; alt: string; caption: string; width: number; height: number } }[];
 }
 
 export const guides: Guide[] = [
@@ -57,75 +58,148 @@ export const guides: Guide[] = [
     ]
   },
   {
-    slug: "knitting-gauge-guide",
-    title: "Knitting Gauge: Why It Matters and How to Get It Right",
-    description: "Learn what knitting gauge measures, how to prepare a representative swatch, and how to review stitch and row differences without treating one count as a full pattern regrade.",
-    toolSlug: "gauge-calculator",
-    date: "2026-03-06",
-    modifiedDate: "2026-09-05",
-    keywords: ["knitting gauge", "gauge swatch", "stitch gauge", "row gauge", "knitting tension", "gauge calculator"],
-    sections: [
-      {
-        heading: "What Gauge Is and What It Measures",
-        content: "Gauge, sometimes called tension, records how many stitches and rows fit inside a stated area of the selected fabric. A pattern might state separate stitch and row counts over 4 inches or 10 centimeters in a named stitch pattern. Those counts are inputs to the pattern's sizing and shaping, but their effect depends on the construction and instructions.\n\nSwatches made with the same yarn and tool size can still differ. Technique, tool material, the exact stitch pattern, working flat or in the round, and finishing can all contribute, so compare a representative swatch with the pattern's stated method.\n\nThe useful question is not whether a gauge is universally right or wrong. It is whether the measured fabric matches the pattern specification closely enough for each affected count, dimension, repeat, and shaping step."
-      },
-      {
-        heading: "How to Make a Proper Gauge Swatch",
-        content: "A gauge swatch needs to be large enough to measure accurately. Cast on enough stitches for at least 6 inches of width using the yarn, needles, and stitch pattern specified in the pattern. Work in that stitch pattern until the piece measures at least 6 inches tall. The extra fabric beyond the 4-inch measurement zone matters because edge stitches distort gauge, you always measure from the interior of the swatch.\n\nIf the pattern is worked in the round, flat swatches can lie. Stockinette worked flat alternates knit and purl rows, and many knitters tension those rows differently. For an accurate gauge on a circular project, either knit your swatch in the round on double-pointed needles or use the float method: knit every row from the right side, cutting the yarn at the end of each row and sliding the stitches back to the starting needle tip.\n\nBind off loosely when the swatch is tall enough. Don't rip it out immediately, you'll need it intact for blocking and measuring."
-      },
-      {
-        heading: "How to Block Your Swatch Before Measuring",
-        content: "Treat the swatch the same way the pattern and yarn care instructions say the finished item will be treated. Include the complete washing, drying, or cooling cycle before measuring; do not substitute a generic wet, spray, or steam method based only on the fiber name.\n\nRecord the swatch before and after treatment. That measured change is project-specific evidence, while a broad fiber category or universal growth percentage is not. A larger, heavier, seamed, or differently constructed item can still behave differently.\n\nAfter treatment, place the swatch as directed on a flat surface. Measure away from the edges and count stitches and rows across the pattern's stated measurement span. Record both numbers and the exact treatment used."
-      },
-      {
-        heading: "What to Do When Your Gauge Doesn't Match",
-        content: "If the measured stitch or row count differs, first confirm that the swatch used the stated yarn, stitch pattern, construction direction, measurement span, and treatment. Then follow any adjustment guidance supplied by the pattern or yarn maker and make another representative swatch. A different tool size often changes density, but the direction and fabric effect must be verified rather than assumed.\n\nWhen stitch and row gauge do not both match, inspect how the selected pattern uses each one. Some instructions rely on dimensions, others on exact row counts, charts, shaping intervals, or repeat geometry. There is no universal rule that one gauge can always be ignored.\n\nRecord the tool, method, and treated measurements for each trial. A calculator can compare counts, but only the selected pattern and a checked swatch establish whether a change is workable."
-      },
-      {
-        heading: "Stitch Gauge vs Row Gauge",
-        content: "Stitch gauge records horizontal stitch density, while row gauge records vertical row density. Finished width and height can also be affected by shaping, repeats, edge treatments, seams, construction direction, and finishing, so neither count acts alone in every project.\n\nRow gauge is especially visible when instructions use charts, short rows, fixed shaping intervals, or an exact number of rounds. Stitch gauge is especially visible in circumferences and widths built from fixed stitch counts. These are examples, not a universal priority rule.\n\nIf a pattern provides both gauges, check both and trace where each enters the instructions. When they conflict, use the designer's adjustment guidance or rework the plan explicitly rather than silently substituting a length instruction for a row-based one."
-      },
-      {
-        heading: "How to Resize a Pattern for Your Gauge",
-        content: "Sometimes you love a yarn that simply won't match the pattern gauge at any needle size. In that case, you can resize limited pattern math. Multiply the desired finished width by your measured stitches per inch to get an initial stitch count, then reconcile that count with the pattern repeat. For example, 20 inches at 5 stitches per inch gives 100 stitches before repeat adjustments. Shaping, necklines, sleeves, and construction may require a full pattern regrade rather than a single proportional adjustment.\n\nThe Gauge Calculator compares measured and target gauge and can scale a stated stitch or row count proportionally. The Needle Converter provides size references, and the Inc/Dec Calculator can distribute a supported one-stitch-at-a-time change across a fixed row or round count. None of these tools verifies fit, pattern-repeat compatibility, or a garment's yarn requirement. Use the designer's grading guidance or a comparable proven pattern for those decisions.\n\nThe practical safeguard is a representative, washed swatch and a check of every affected measurement before you commit to the project."
+  slug: "knitting-gauge-guide",
+  title: "Knitting Gauge: Why It Matters and How to Get It Right",
+  description: "See how stitch and row gauge change modeled dimensions when counts stay fixed, with checked examples and clear limits on resizing a knitting pattern.",
+  toolSlug: "gauge-calculator",
+  date: "2026-03-06",
+  modifiedDate: "2026-09-16",
+  keywords: [
+    "knitting gauge",
+    "gauge swatch",
+    "stitch gauge",
+    "row gauge",
+    "knitting tension",
+    "gauge calculator"
+  ],
+  sections: [
+    {
+      heading: "Why Does Tighter Knitting Gauge Make the Same Stitch Count Smaller?",
+      content: "When more stitches fit into the same measured width, each stitch occupies less width on average. If you keep the total stitch count unchanged, the modeled piece is narrower. Calculate that width by dividing the total stitches by the measured stitches per inch.\n\nThis explains a size difference; it does not prove that changing one count will correctly resize a whole knitting pattern.",
+      markdown: true
+    },
+    {
+      heading: "Compare equal measurement spans first",
+      content: "A pattern gauge of 20 stitches over 4 inches means 5 stitches per inch. A swatch measuring 25 stitches over 4 inches means 6.25 stitches per inch. Comparing 20 with 25 is meaningful because both counts cover the same distance.\n\nUse a sample representative of the intended fabric. The [Craft Yarn Council's gauge instructions](https://media.craftyarncouncil.com/read_instructions.html) recommend swatching with the specified yarn, tools and pattern stitch. Follow the selected pattern and yarn care instructions for the swatch's treatment, and measure the stated area. Do not compare a pattern's stitch gauge with your row count.\n\nThe [FiberTools gauge calculator](https://fibertools.app/gauge-calculator) can convert the measured width, height, stitch count and row count into gauge. Enter the actual measurement span instead of assuming every sample is exactly four inches.",
+      markdown: true
+    },
+    {
+      heading: "Keep 200 stitches and compare the modeled widths",
+      content: "Suppose a hypothetical flat panel uses 200 stitches. At 20 stitches per 4 inches:\n\n**200 ÷ (20 ÷ 4) = 40 inches.**\n\nIf your representative swatch instead measures 25 stitches per 4 inches, the same count gives:\n\n**200 ÷ (25 ÷ 4) = 32 inches.**\n\nThat is an 8-inch difference. These figures are illustrative arithmetic, not measurements of a knitted panel we made.\n\nNotice that a 25 percent increase in stitches per inch does not mean a 25 percent decrease in width. Gauge rises from 5 to 6.25 stitches per inch, but width falls from 40 to 32 inches: a 20 percent decrease. Width is divided by gauge, so the relationship is reciprocal.\n\n| Hypothetical measurement | Pattern reference | Your swatch |\n| --- | --- | --- |\n| Stitches over 4 inches | 20 | 25 |\n| Stitches per inch | 5 | 6.25 |\n| Width at 200 stitches | 40 inches | 32 inches |\n\nThis comparison assumes the swatch density applies across the planned fabric. Edges, shaping and other sections need their own consideration.",
+      markdown: true,
+      image: {
+        src: "/images/guides/gauge-width-comparison.svg",
+        preview: "/images/guides/gauge-width-comparison.png",
+        alt: "At a fixed 200 stitches, 20 stitches per 4 inches models a 40-inch width, while 25 stitches per 4 inches models 32 inches; bars use the same scale.",
+        caption: "Original comparison diagram. Bars represent modeled widths at the same scale; they do not depict stitch structure, fabric stretch or a tested garment.",
+        width: 1200,
+        height: 760
       }
-    ]
-  },
+    },
+    {
+      heading: "Row gauge changes a different dimension",
+      content: "Now suppose the pattern reference is 24 rows per 4 inches and your swatch measures 28 rows per 4 inches. That means 6 rows per inch versus 7.\n\nFor a fixed 120-row section, the modeled heights are 120 ÷ 6 = **20 inches** and 120 ÷ 7 ≈ **17.14 inches**. The row-gauge difference is separate from the stitch-gauge difference above; one cannot be inferred from the other.\n\nRead whether the pattern tells you to work a fixed number of rows or to continue to a stated measurement. Do not automatically replace a row count when the instructions also schedule shaping or depend on a repeat. The calculator's arithmetic does not resolve those design requirements.",
+      markdown: true
+    },
+    {
+      heading: "What would preserving the width require mathematically?",
+      content: "At 6.25 stitches per inch, a 40-inch width corresponds to **40 × 6.25 = 250 stitches**. The same result comes from scaling the original count: 200 × 25 ÷ 20 = 250.\n\nThat 250 is one arithmetic checkpoint. It is not an approved replacement cast-on for a sweater, and it does not update increases, decreases, edges, stitch repeats, seams, armholes or yarn requirements. The [gauge calculator's count-scaling explanation](https://fibertools.app/gauge-calculator) explicitly limits its result to the counts supplied.\n\nFor the row example, preserving a 20-inch height at 7 rows per inch would require 140 rows mathematically. Whether those rows belong in the pattern requires reviewing its actual instructions.",
+      markdown: true
+    },
+    {
+      heading: "Choose a next step with the pattern in front of you",
+      content: "If you are following a tested pattern, first check that your swatch uses the specified stitch pattern and construction and that you measured it correctly. Compare both stitch and row gauge. Where appropriate, make another swatch with a different needle size and measure again; the Craft Yarn Council describes changing needle size when a swatch's dimensions differ from the target. No specific needle-size change guarantees a particular correction.\n\nIf you deliberately choose a different gauge, review every affected instruction before proceeding. Save the pattern gauge, your measured gauge, counts, resulting modeled dimensions and any unresolved design questions. This makes a useful planning record without presenting a partial calculation as a complete redesign.\n\n### Can matching stitch gauge alone guarantee fit?\n\nNo. This calculation only models dimensions from density and count. Row gauge, the pattern's construction and sizing instructions, and the finished fabric still matter. Neither the diagram nor a calculator result verifies a garment's fit.\n\n### Can I use measurements in centimeters?\n\nYes, provided you use matching units throughout the calculation. Divide stitches by measured centimeters to obtain stitches per centimeter, then divide the total stitch count by that density for a width in centimeters. Select the corresponding unit mode when using the calculator; do not mix a centimeter span with an inch-based density.",
+      markdown: true
+    }
+  ],
+  editorialNote: "AI-assisted explanation prepared with Codex. Numerical examples are hypothetical and checked mathematically; no physical project or yarn product was tested. Published by FiberTools.",
+  sources: [
+    {
+      title: "Craft Yarn Council: Reading instructions and gauge",
+      url: "https://media.craftyarncouncil.com/read_instructions.html"
+    },
+    {
+      title: "FiberTools: Calculator inputs and model",
+      url: "https://fibertools.app/gauge-calculator"
+    }
+  ]
+},
   {
-    slug: "blanket-yarn-guide",
-    title: "How Much Yarn Do You Need for a Blanket?",
-    description: "Plan blanket yarn from representative measurements and understand how size, yarn, stitch pattern, and allowance affect an estimate; no calculator can guarantee a purchase quantity.",
-    toolSlug: "blanket-calculator",
-    date: "2026-03-06",
-    modifiedDate: "2026-09-05",
-    keywords: ["blanket yarn yardage", "how much yarn for a blanket", "blanket size chart", "yarn for baby blanket", "throw blanket yarn", "blanket calculator"],
-    sections: [
-      {
-        heading: "Blanket Size Chart: Baby to King",
-        content: "Blanket sizes vary, but common dimensions can provide a planning starting point. A baby or receiving blanket may be around 30 × 36 inches, a stroller blanket around 30 × 40, a lap blanket around 36 × 48, and a throw around 50 × 60. Bed-blanket dimensions depend on mattress size, desired coverage, and whether the plan includes overhang or tuck.\n\nTreat those as target dimensions, not guaranteed finished sizes. Stitch pattern, gauge, borders, joining, and the pattern- and care-instruction-approved finishing process can change the result. Measure a representative treated swatch instead of applying a generic fiber-growth rule.\n\nChoose and document the target before estimating. Larger dimensions increase fabric area quickly, so use a measured swatch-consumption method when purchase accuracy matters."
-      },
-      {
-        heading: "How Yarn Weight Changes Yardage Dramatically",
-        content: "Yarn weight is the single biggest factor in total yardage. A throw blanket in fingering-weight yarn might require 3,500–4,000 yards. The same throw in worsted weight drops to roughly 2,000–2,500 yards. In super bulky yarn, you might need only 800–1,200 yards. The fabric gets thicker and the stitches get larger, so fewer yards cover the same area.\n\nThis also affects cost and project time. Fingering-weight blankets take dramatically longer to knit or crochet, but they produce a lightweight, drapey fabric perfect for warm climates. Bulky blankets work up fast and feel cozy but can be heavy, a king-size super bulky blanket can weigh over 10 pounds.\n\nDon't assume heavier yarn is always cheaper per blanket. Super bulky yarn costs more per skein, and while you need fewer yards, the price per yard is higher. Mid-range weights like worsted and aran often hit the sweet spot of reasonable yardage, moderate cost, and manageable knitting time."
-      },
-      {
-        heading: "Stitch Pattern Affects Yarn Usage",
-        content: "Yarn use depends on the actual yarn, stitch pattern, gauge, construction, and finishing. A stitch name alone does not establish a fixed percentage increase or decrease in yarn consumption. Compare representative swatches rather than applying a universal garter, stockinette, cable, or crochet ratio.\n\nFor a flat rectangular blanket, weigh the yarn used by a representative swatch made in the intended stitch pattern and treated according to the care instructions. Divide that weight by the measured swatch area to get grams per square inch, then multiply by the planned blanket area in square inches. This gives a measured-input base estimate. Account separately for borders, joins, tails, sampling, and other project-specific allowance before converting to whole skeins from the same yarn label."
-      },
-      {
-        heading: "Choose an Explicit Yarn Allowance",
-        content: "Choose an allowance for the actual project and record what it covers: representative sampling, joins, tails, borders, gauge variation, or other expected waste. Check whether the pattern or calculator already includes an allowance so that it is not counted twice. There is no percentage that guarantees enough yarn for every blanket.\n\nIf color continuity matters, compare the available yarn and dye-lot information before buying. Check the actual seller's return policy, deadlines, and condition requirements rather than assuming unused skeins can be returned."
-      },
-      {
-        heading: "How to Calculate Yardage from a Pattern",
-        content: "Start with the pattern requirement for the selected size and the yarn used in that pattern. Review its gauge, construction, modifications, and any included allowance. Divide the planned length, including only the additional allowance you intend, by the actual substitute label length and round upward to whole skeins. A matching category alone does not prove that the substitute will use the same length.\n\nWhen a pattern specifies grams, use the original yarn label to estimate its length first. Convert that planned length to skeins using the substitute label, then verify the candidate yarn with a representative swatch. The length-per-gram ratio alone does not determine skein count without the substitute skein size.\n\nWithout a pattern requirement, make a representative swatch in the intended construction and permitted finishing treatment. Measure its finished area and yarn use, then scale that measurement to the planned flat rectangle. Budget borders and other distinct sections separately."
-      },
-      {
-        heading: "Using a Calculator vs Estimating",
-        content: "A generic chart cannot know your stitch pattern, tension, border, or finishing losses. For a flat rectangular blanket, a defensible estimate starts with a representative swatch: measure its finished area and the yarn it used, then scale that measured use to the target area.\n\nThe Yarn Calculator performs measured length scaling and converts the result to whole skeins from label length. The Blanket Calculator calculates stitch and row checkpoints from entered gauge. When you also enter a representative swatch's dimensions and grams plus label length and weight, it scales that measured use to the planned area with its displayed 10 percent buffer. The Stripe Generator can arrange a sequence, but it does not prove per-color yardage.\n\nTreat every result as a planning estimate. Borders, joins, pattern changes, and a nonrepresentative swatch can materially change the final quantity."
+  slug: "blanket-yarn-guide",
+  title: "How Much Yarn Do You Need for a Blanket?",
+  description: "Estimate blanket yarn from a measured swatch, separate extra allowance, and convert yards to whole skeins with a clear worked example.",
+  toolSlug: "yarn-calculator",
+  date: "2026-03-06",
+  modifiedDate: "2026-09-16",
+  keywords: [
+    "blanket yarn yardage",
+    "how much yarn for a blanket",
+    "blanket size chart",
+    "yarn for baby blanket",
+    "throw blanket yarn",
+    "blanket calculator"
+  ],
+  sections: [
+    {
+      heading: "How Much Yarn Do You Need for a Blanket? A Swatch-Based Estimate",
+      content: "For a flat rectangular blanket, estimate yarn by dividing the planned blanket area by the area of a representative swatch, then multiplying by the yarn used in that swatch. Add a separate planning allowance and divide by the length on your yarn label to estimate whole skeins. The answer depends on your measurements; a blanket size alone cannot determine a reliable shopping quantity.",
+      markdown: true
+    },
+    {
+      heading: "Measure the fabric you actually plan to make",
+      content: "Make a sample using your intended yarn, stitch pattern, hook or needles, and working tension. Follow the pattern and yarn care instructions for any finishing before recording its dimensions. The [Craft Yarn Council's gauge guidance](https://media.craftyarncouncil.com/read_instructions.html) recommends swatching with the specified materials and stitch pattern before starting a project.\n\nFor a consumption estimate, record both the sample's area and the yarn length used to make that same area. Do not measure the center of a larger sample and pair that smaller area with the yarn used by the entire sample: that would inflate the estimate. Keep a note of whether tails are included. If substantial tails or sample-only edges are included, the area calculation would multiply those extras as though they occurred throughout the blanket.\n\nYou need five measurements: blanket width and length, swatch width and length, and swatch yarn consumption. Use one unit for all four dimensions. Use yards for both yarn consumption and label length, or meters for both. If a swatch is not representative of the planned fabric, improve the measurement before relying on the result.",
+      markdown: true
+    },
+    {
+      heading: "Work through a hypothetical 50 by 60 inch example",
+      content: "Suppose the blanket's main rectangle will measure 50 by 60 inches. Suppose a representative 4 by 4 inch sample uses 20 yards. These are illustrative inputs, not measurements from a blanket we made or a universal estimate for a throw.\n\n| Step | Calculation | Result |\n| --- | --- | --- |\n| Main blanket area | 50 × 60 | 3,000 square inches |\n| Sample area | 4 × 4 | 16 square inches |\n| Area ratio | 3,000 ÷ 16 | 187.5 |\n| Base yarn estimate | 187.5 × 20 yards | 3,750 yards |\n| Chosen extra allowance | 3,750 × 0.10 | 375 yards |\n| Planned yarn total | 3,750 + 375 | 4,125 yards |\n\nThe 10 percent allowance is a choice for this example, not a tested waste rate or a promise that it covers your project. In the [FiberTools yarn calculator](https://fibertools.app/yarn-calculator), enter these dimensions, 20 yards of sample consumption, and an allowance of 10 to reproduce the planned total. The calculator shows the allowance separately from its measured-input base.",
+      markdown: true,
+      image: {
+        src: "/images/guides/blanket-yarn-example.svg",
+        preview: "/images/guides/blanket-yarn-example.png",
+        alt: "Hypothetical blanket estimate: a 4 by 4 inch swatch using 20 yards scales to 3,750 yards for 50 by 60 inches, or 4,125 yards with 10 percent extra.",
+        caption: "Original calculation diagram. Hypothetical inputs; drawings are not at a shared scale and do not depict stitches or a finished project.",
+        width: 1200,
+        height: 800
       }
-    ]
-  },
+    },
+    {
+      heading: "Convert the total into skeins without rounding down",
+      content: "If your chosen yarn label lists 220 yards per skein, divide 4,125 by 220. That is 18.75 skeins, so the whole-skein plan is **19 skeins**.\n\nCheck the rounding against the actual lengths: 18 skeins contain 3,960 labeled yards, which is 165 yards short of this plan. Nineteen contain 4,180 labeled yards, which is 55 yards above it. That final 55 yards comes from buying whole skeins; it is separate from the earlier 375-yard allowance.\n\nBefore buying, check the seller's current return policy; do not assume unused skeins can be returned. Use your own label values. The 220-yard value is hypothetical and does not identify a product. To use the calculator's “Yarn length + skeins” option, also enter the actual weight per skein: that field supports the displayed purchase weight, rather than changing the area-based yarn requirement.",
+      markdown: true
+    },
+    {
+      heading: "Keep borders and other construction separate",
+      content: "The main-rectangle estimate does not calculate a border, fringe, joining method, or a shaped design. Adding border width to the rectangle while using a swatch of a different body stitch would assume both fabrics consume yarn at the same rate. That assumption may not fit your plan.\n\nUse construction-specific pattern quantities or a separate representative sample for those parts. Record their requirements explicitly. If you add them separately, make clear what your percentage allowance still covers so you do not accidentally count the same extra twice. Decide whether swatch yarn will be reused or needs its own allocation.\n\nFor multiple colors, plan each color's requirement separately before rounding to skeins. A combined total cannot tell you how many skeins of each color to buy.",
+      markdown: true
+    },
+    {
+      heading: "Check how sensitive the estimate is",
+      content: "Holding this example's dimensions constant, a sample measurement of 19 yards instead of 20 gives 3,562.5 base yards. At the same 10 percent allowance, that becomes 3,918.75 yards: 18 whole skeins at 220 yards each. A measurement of 21 yards gives 4,331.25 planned yards: 20 skeins.\n\nThose are arithmetic comparisons, not an observed error range. They show why a small change in the sample's measured consumption can change the shopping list. Record your measurements rather than treating the example's 19 skeins as a recommendation for every blanket.",
+      markdown: true
+    },
+    {
+      heading: "Common questions",
+      content: "### Can I use yarn weight alone to choose a quantity?\n\nA category such as Medium (4) is not a measurement of your blanket's yarn consumption. The [Craft Yarn Council yarn-weight system](https://www.craftyarncouncil.com/standards/yarn-weight-system) provides categories and guideline gauge ranges. For this calculation, use a representative sample and the actual yarn label rather than turning a category into a fixed yards-per-blanket number.\n\n### Can I use this method for knitting and crochet?\n\nThe arithmetic can scale a representative flat sample of either craft. It assumes the planned fabric has the same consumption per area as that sample. It does not supply a universal conversion between knitted and crocheted fabrics.\n\n### Is the result a guarantee that I will have enough yarn?\n\nNo. It is a planning result based on the measurements and allowances you entered. Changes in fabric, dimensions or construction need their own assessment. Save those assumptions with your project notes, then use the [yarn calculator](https://fibertools.app/yarn-calculator) to recalculate when the plan changes.",
+      markdown: true
+    }
+  ],
+  editorialNote: "AI-assisted explanation prepared with Codex. Numerical examples are hypothetical and checked mathematically; no physical project or yarn product was tested. Published by FiberTools.",
+  sources: [
+    {
+      title: "Craft Yarn Council: Reading instructions and gauge",
+      url: "https://media.craftyarncouncil.com/read_instructions.html"
+    },
+    {
+      title: "Craft Yarn Council: Standard Yarn Weight System",
+      url: "https://www.craftyarncouncil.com/standards/yarn-weight-system"
+    },
+    {
+      title: "FiberTools: Calculator inputs and model",
+      url: "https://fibertools.app/yarn-calculator"
+    }
+  ]
+},
   {
     slug: "needle-sizes-guide",
     title: "Knitting Needle Sizes: US, UK, and Metric Explained",
@@ -545,58 +619,82 @@ export const guides: Guide[] = [
     ]
   },
   {
-    slug: "yarn-stash-management-guide",
-    title: "Yarn Stash Management: Estimating & Organizing",
-    description: "Estimate a partial skein from its own label and measured weight, and keep practical records for future projects.",
-    toolSlug: "stash-estimator",
-    date: "2026-03-11",
-    keywords: [
-      "yarn stash organization",
-      "estimate yarn yardage",
-      "partial skein yardage",
-      "yarn storage tips",
-      "leftover yarn projects",
-      "dye lot yarn",
-      "stash busting"
-    ],
-    sections: [
-      {
-        heading: "Start with the exact yarn",
-        content: "Retain the yarn name, product line, color, dye lot when supplied, fiber content, care instructions, and label weight and length. A photograph of the original label is more useful than a guessed category-to-yardage conversion."
-      },
-      {
-        heading: "Weigh the remaining yarn",
-        content: "Use a scale with suitable resolution and weigh the yarn alone. Exclude cones, labels, needles, buttons, and packaging. Measure in a comparable dry condition and note that scale and label tolerances affect the result."
-      },
-      {
-        heading: "Calculate a proportional estimate",
-        content: "Remaining length = remaining weight / full label weight × full label length. Use the same mass unit for both weights. The method assumes approximately consistent length per gram within this yarn; uneven construction or a mix of yarns can break that assumption."
-      },
-      {
-        heading: "Worked example",
-        content: "A label states 220 yards per 100 grams. With 42 grams remaining, the estimate is 42 / 100 × 220 = 92.4 yards, or about 84.5 meters. This is an arithmetic example, not a claim that 92.4 yards is enough for a hat, cowl, or socks."
-      },
-      {
-        heading: "When the label is missing",
-        content: "Look up the exact product or establish a ratio by measuring a known length and weight. Yarn weight categories and WPI do not establish universal yards per gram. Do not turn a thickness estimate into a precise remaining-yardage claim."
-      },
-      {
-        heading: "Plan the next project",
-        content: "Compare the estimate with a representative swatch or the actual pattern requirement. Account separately for joins, tails, borders, finishing, and waste. Record which yarn and measurements produced the estimate so it can be checked later."
+  slug: "yarn-stash-management-guide",
+  title: "Yarn Stash Management: Estimating & Organizing",
+  description: "Estimate leftover yarn using its measured weight and original label. Follow a checked example, avoid category shortcuts, and record the estimate's limits.",
+  toolSlug: "stash-estimator",
+  date: "2026-03-11",
+  keywords: [
+    "yarn stash organization",
+    "estimate yarn yardage",
+    "partial skein yardage",
+    "yarn storage tips",
+    "leftover yarn projects",
+    "dye lot yarn",
+    "stash busting"
+  ],
+  sections: [
+    {
+      heading: "How Much Yarn Is Left? Estimate Partial-Skein Yardage by Weight",
+      content: "Divide the weight of your remaining yarn by the full-skein weight on its original label, then multiply by that label's yardage. For example, **42 grams ÷ 100 grams × 220 yards = 92.4 yards**. This estimates length from a weight ratio; it does not directly measure how many yards are on the ball.\n\nUse information for the **same yarn**. A different yarn's label or a yarn-weight category is not a substitute for its actual length-to-weight ratio.",
+      markdown: true
+    },
+    {
+      heading: "Gather three numbers that belong together",
+      content: "You need the remaining yarn weight, the original full-skein label weight, and the original full-skein label length. In the [FiberTools stash estimator](https://fibertools.app/stash-estimator), both weight fields are grams and the label-length field is yards.\n\nWeigh the yarn alone. Exclude its paper band, storage bag, cone, needles and other objects. If you need a container, zero the scale with the empty container in place before adding the yarn, following the scale's instructions. Otherwise its weight would be treated as yarn in the calculation.\n\nRead the labels on the scale and the yarn band rather than assuming their units. The two weights must use the same unit for their ratio to make sense; the current estimator expects grams. Do not put a meter value into a field labeled yards.",
+      markdown: true
+    },
+    {
+      heading: "A worked example: 42 grams from a 100-gram skein",
+      content: "Suppose the original label says 100 grams and 220 yards, and the yarn you have left weighs 42 grams. These are hypothetical values, not a tested product or an actual scale reading from our work.\n\n| Step | Calculation | Meaning |\n| --- | --- | --- |\n| Find the remaining fraction | 42 ÷ 100 = 0.42 | 42 percent of the labeled mass |\n| Apply that fraction to length | 0.42 × 220 = 92.4 | Estimated yards remaining |\n| Check by a second route | 220 ÷ 100 = 2.2; 42 × 2.2 = 92.4 | Same result using yards per gram |\n\nThe calculator displays **92.4 yards / 84.5 meters** for these inputs. The meter value is rounded for display. Save the original measurements with the result so you can tell later which yarn and label produced it.",
+      markdown: true,
+      image: {
+        src: "/images/guides/remaining-yarn-ratio.svg",
+        preview: "/images/guides/remaining-yarn-ratio.png",
+        alt: "Hypothetical same-yarn ratio: 42 grams remaining from a 100-gram, 220-yard skein gives an estimated 92.4 yards, or 42 percent of the labeled length.",
+        caption: "Original arithmetic diagram. The filled bar shows a 42 percent proportion, not yarn thickness, a photographed skein or a measured length of real yarn.",
+        width: 1200,
+        height: 760
       }
-    ],
-    modifiedDate: "2026-09-05",
-    sources: [
-      {
-        title: "Craft Yarn Council: Standard Yarn Weight System",
-        url: "https://www.craftyarncouncil.com/standards/yarn-weight-system"
-      },
-      {
-        title: "Craft Yarn Council: How to Measure Wraps Per Inch",
-        url: "https://www.craftyarncouncil.com/standards/how-measure-wraps-inch-wpi"
-      }
-    ]
-  },
+    },
+    {
+      heading: "Why a small weight difference can matter",
+      content: "At this hypothetical label ratio, each gram corresponds to 2.2 yards. A reading of 41 grams gives 90.2 yards; 43 grams gives 94.6 yards. Those are arithmetic comparisons, not a tested accuracy range for a scale.\n\nSimilarly, if a non-yarn object added a hypothetical 3 grams to the measurement, it would add 6.6 estimated yards. That does not mean a paper band weighs 3 grams. It shows why you should remove unrelated objects rather than assume their weight is negligible.\n\nThe method assumes that the remaining yarn has the same length per gram as the reference on the label. Measurement precision, label tolerances, moisture and uneven construction can affect that assumption or the inputs. The [estimator's model and limitations](https://fibertools.app/stash-estimator) describe the result as an estimate. More decimal places in the arithmetic do not make the original measurements more certain.",
+      markdown: true
+    },
+    {
+      heading: "What if the original label is missing?",
+      content: "First try to identify the exact yarn and obtain its weight and length specifications from the manufacturer. Do not choose another yarn merely because it looks similar or has the same category name.\n\nThe [Craft Yarn Council's yarn-weight system](https://www.craftyarncouncil.com/standards/yarn-weight-system) gives categories and guideline gauge ranges. It does not supply the specific length per gram of your leftover yarn. A label such as Medium (4), by itself, is not enough to calculate its remaining yardage.\n\nIf you establish a ratio by measuring a known length and weighing that same sample, record it as your own sample measurement rather than a manufacturer's label specification. Its usefulness depends on whether the sample represents the rest of the yarn and whether its weight is measurable reliably. Do not enter sample values as full-skein label values in this estimator: the tool checks that the remaining weight does not exceed the full labeled skein weight.\n\nIf you cannot establish a trustworthy ratio, record the measured grams and leave yardage unknown. An honest unknown is more useful than a confident number borrowed from an unrelated yarn.",
+      markdown: true
+    },
+    {
+      heading: "Does that mean I have enough for a project?",
+      content: "Compare the estimate with a requirement established for your actual pattern, size, yarn and gauge, including the extra you plan to allow. A remaining length cannot establish a project's requirements on its own.\n\nFor a hypothetical requirement of 80 yards with a separately chosen 10 percent allowance, the planning total is 88 yards. The example's 92.4-yard estimate is 4.4 yards above that plan. This comparison does not prove the project will finish successfully: both the requirement and the remaining-length estimate have assumptions.\n\nFor a flat rectangular project, the [measured-swatch yarn calculator](https://fibertools.app/yarn-calculator) can help estimate a requirement from representative consumption. Its area model does not calculate borders, joins, shaping or every kind of project. Keep requirements for different colors separate; a combined total does not show whether each color is sufficient.",
+      markdown: true
+    },
+    {
+      heading: "Keep a useful stash record",
+      content: "Record the exact yarn identity if known, a label photo or specification source, the original weight and length, the remaining grams, the weighing date, the calculated yardage, and any uncertainty. Update the record after using more yarn. Keep estimates clearly separate from directly measured lengths.\n\n### What if the remaining weight is higher than the label weight?\n\nCheck units, attached objects, and whether you have combined several skeins. The estimator rejects that input for a single partial-skein calculation. Do not change the label value merely to force a result; investigate the mismatch or calculate separate partial skeins using their own references.\n\n### Can I claim 92.4 yards is enough for a hat or socks?\n\nNot from that number alone. You still need the specific project's yarn requirement and assumptions. This example deliberately makes no claim about which finished object 92.4 yards will produce.",
+      markdown: true
+    },
+    {
+      heading: "Keep an identifiable stash record",
+      content: "Keep the exact yarn name, product line, color, dye lot when supplied, fiber content, care instructions, and original label weight and length with each remaining ball. A label photograph can preserve those details. Record the date and mass of each new measurement, and mark the calculated length as estimated.\n\nKeep balls with different product identities separate in the record even when their colors or categories look similar. Compare the available estimate with the actual pattern or representative sample requirement before reserving the yarn for another project."
+    }
+  ],
+  modifiedDate: "2026-09-16",
+  sources: [
+    {
+      title: "FiberTools: Calculator inputs and model",
+      url: "https://fibertools.app/stash-estimator"
+    },
+    {
+      title: "Craft Yarn Council: Standard Yarn Weight System",
+      url: "https://www.craftyarncouncil.com/standards/yarn-weight-system"
+    }
+  ],
+  editorialNote: "AI-assisted explanation prepared with Codex. Numerical examples are hypothetical and checked mathematically; no physical project or yarn product was tested. Published by FiberTools."
+},
   {
     slug: "c2c-crochet-guide",
     title: "Corner-to-Corner Crochet (C2C): Beginner Guide",
@@ -654,36 +752,77 @@ export const guides: Guide[] = [
     ]
   },
   {
-    slug: "cast-on-methods-guide",
-    title: "Knitting Cast-On Methods: Which One to Use",
-    description: "Compare the most common knitting cast-on methods, long-tail, cable, tubular, and more, with stretch levels, difficulty, and best use cases for each.",
-    toolSlug: "cast-on-calculator",
-    date: "2026-03-11",
-    modifiedDate: "2026-09-05",
-    keywords: ["knitting cast on methods", "long tail cast on", "cable cast on", "tubular cast on", "cast on comparison", "stretchy cast on knitting", "cast on for ribbing"],
-    sections: [
-      {
-        heading: "Why Cast-On Method Matters",
-        content: "The cast-on creates the foundation row of your knitting and determines three critical properties of the bottom edge: stretchiness, neatness, and durability. Choosing the wrong cast-on can mean a sweater hem that is too tight to pull over your head, a sock cuff that cuts into your ankle, or a blanket edge that looks sloppy.\n\nDifferent cast-on methods produce edges with dramatically different stretch. A long-tail cast-on is moderately stretchy, perfect for most garments. A cable cast-on is firmer, good for structured edges and buttonhole bands. A tubular cast-on is very stretchy, ideal for ribbed edges that need to expand significantly.\n\nThe visual appearance also varies. Some cast-ons produce a clean, finished edge that looks good as-is. Others create a simple functional edge that will be hidden by a hem or seam. Matching the cast-on to your project's requirements is a small decision that makes a big difference in the finished piece."
-      },
-      {
-        heading: "Long-Tail Cast-On",
-        content: "Long-tail cast-on is one common setup method, with several variations and project-specific results. Follow the selected pattern and test the real edge because yarn, needles, technique, and tension affect both appearance and stretch.\n\nTail-length rules of thumb are not reliable for every yarn or cast-on technique. Use the method specified by the pattern or a separate measured approach rather than expecting a stitch-count calculator to predict tail length.\n\nUse the Cast On Calculator to produce a rounded arithmetic stitch-count checkpoint from entered width, measured gauge, and an optional whole stitch multiple. Add any pattern offsets and edge stitches separately. It does not choose a cast-on method, model stretch, or estimate tail length."
-      },
-      {
-        heading: "Cable Cast-On",
-        content: "The cable cast-on uses two needles to create each new stitch by knitting between the last two stitches on the needle and placing the new stitch back on the left needle. This produces a firm, rope-like edge with less stretch than the long-tail.\n\nThe cable cast-on has two major advantages. First, it does not require estimating a tail length, you work directly from the ball. Second, it can be used mid-row to add stitches during a project. This makes it essential for techniques like buttonholes (cast on stitches to bridge a gap), thumb gussets in mittens, and steek reinforcement.\n\nThe firmness of the cable cast-on is ideal for edges that need structure: bottom edges of cardigans that will carry button weight, the top of a pocket, or the beginning of a scarf that should not stretch out. It is not ideal for sock cuffs, hat brims, or any edge that needs to stretch significantly over a body part.\n\nTo work a cable cast-on, make a slip knot, knit one stitch and place it on the left needle. Then insert the right needle between the two stitches on the left needle, wrap the yarn, pull through a new stitch, and place it on the left needle. Repeat for each stitch."
-      },
-      {
-        heading: "Tubular Cast-On",
-        content: "Tubular or Italian cast-ons are families of setup methods for ribbed edges. Their execution and resulting elasticity depend on the chosen variation, yarn, needles, tension, ribbing, and finishing, so follow the selected pattern and test the actual edge.\n\nThe FiberTools Cast On Calculator converts entered width and measured stitch gauge into a rounded stitch count. It can round a count to an entered whole stitch multiple. Add any pattern offsets and edge stitches separately; it does not model or compare cast-on-method stretch."
-      },
-      {
-        heading: "Frequently Asked Questions",
-        content: "What is the most common cast-on method?\nThe long-tail cast-on is the most widely used method, it is fast, creates a neat and moderately stretchy edge, and works for almost every project type. It is the default cast-on taught in most beginner knitting classes.\n\nWhich cast-on is best for ribbing?\nThe tubular cast-on creates the most professional, stretchy edge for 1×1 or 2×2 ribbing. For a simpler option, the long-tail cast-on worked onto a needle one size smaller than the ribbing needles also produces a clean, stretchy ribbed edge.\n\nHow do I cast on stitches in the middle of a project?\nUse the cable cast-on or backward loop cast-on for adding stitches mid-row. The cable cast-on is firmer and neater; the backward loop is faster but produces a looser edge. Both are used for buttonholes, thumb gussets, and sleeve cap shaping.\n\nDoes cast-on method affect my stitch count?\nNo, the cast-on produces the same number of stitches regardless of method. However, different methods produce different edge stretch, which can affect whether a finished piece fits as expected. A tight cable cast-on on a hat brim may prevent the hat from fitting, while a stretchy long-tail cast-on works fine."
+  slug: "cast-on-methods-guide",
+  title: "Knitting Cast-On Methods: Which One to Use",
+  description: "Calculate a knitting cast-on count from measured gauge, check repeat rounding, and understand why edge stitches and pattern offsets need separate attention.",
+  toolSlug: "cast-on-calculator",
+  date: "2026-03-11",
+  modifiedDate: "2026-09-16",
+  keywords: [
+    "knitting cast on methods",
+    "long tail cast on",
+    "cable cast on",
+    "tubular cast on",
+    "cast on comparison",
+    "stretchy cast on knitting",
+    "cast on for ribbing"
+  ],
+  sections: [
+    {
+      heading: "How Many Stitches Should I Cast On? Gauge, Repeats and Width",
+      content: "Multiply your desired width by your measured stitches per inch to get a starting count. Then check the stitch pattern's repeat requirements and calculate the width of the adjusted count. A whole number that fits the repeat may produce a wider piece than you intended, so the count and the resulting width belong together.",
+      markdown: true
+    },
+    {
+      heading: "Start with measured stitch gauge",
+      content: "Gauge describes stitches and rows over a measured distance. For a width calculation, use the stitch count across the swatch, not its row count. The [Craft Yarn Council recommends making a gauge swatch](https://media.craftyarncouncil.com/read_instructions.html) with the yarn, tools and stitch pattern specified for the project.\n\nRecord both parts of your measurement. “18 stitches over 4 inches” means 18 ÷ 4 = **4.5 stitches per inch**. It does not mean 18 stitches per inch. Use a representative swatch and follow the pattern and yarn care instructions for its finishing before relying on the measurement.\n\nFor a hypothetical target width of 10 inches at that gauge:\n\n**10 inches × 4.5 stitches per inch = 45 stitches.**\n\nThis is a mathematical planning result, not a measurement from a finished project. It assumes the gauge represented by the swatch also represents the fabric being planned.",
+      markdown: true
+    },
+    {
+      heading: "Decide how the pattern constrains the count",
+      content: "The [FiberTools cast-on calculator](https://fibertools.app/cast-on-calculator) accepts desired width in inches, gauge stitches, gauge span in inches, and an optional whole-number stitch multiple. With the multiple blank, it rounds to the nearest whole stitch. With a multiple entered, it rounds the raw count upward to a complete multiple.\n\nFor the 10-inch example, entering a multiple of 6 changes 45 stitches to 48. Eight groups of six fit; seven groups total only 42. Dividing the adjusted 48 by 4.5 gives a modeled width of about **10.67 inches**, roughly two-thirds of an inch wider than the target.\n\nThis upward rule is a calculator planning choice. It does not mean that every knitting pattern should be rounded up. Check the actual pattern and the width you can accept before using the count.",
+      markdown: true
+    },
+    {
+      heading: "Why you should not round twice",
+      content: "Consider a deliberately simplified example: a target width of 12.2 inches and a measured gauge of 4 stitches over 4 inches. That is one stitch per inch, so the unrounded requirement is 12.2 stitches.\n\nIf the repeat is six stitches, 12 falls below 12.2. The next complete multiple is **18**. Rounding 12.2 to 12 first would discard the fraction that determines which repeat meets the upward rule.\n\nAt this example's one-stitch-per-inch gauge, 18 stitches model an 18-inch width. That is 5.8 inches wider than the target. The correct arithmetic therefore exposes a design decision: a repeat may be too large for the width you want. Do not hide that difference by reporting the count alone.\n\n| Hypothetical inputs | Raw count | Multiple | Planned count | Modeled width |\n| --- | --- | --- | --- | --- |\n| 10 in; 18 stitches over 4 in | 45 | None | 45 | 10 in |\n| 10 in; 18 stitches over 4 in | 45 | 6 | 48 | About 10.67 in |\n| 12.2 in; 4 stitches over 4 in | 12.2 | None | 12 | 12 in |\n| 12.2 in; 4 stitches over 4 in | 12.2 | 6 | 18 | 18 in |",
+      markdown: true,
+      image: {
+        src: "/images/guides/cast-on-repeat-count.svg",
+        preview: "/images/guides/cast-on-repeat-count.png",
+        alt: "Three groups of six numbered stitch symbols make 18 stitches; two groups make only 12, below the hypothetical raw requirement of 12.2.",
+        caption: "Original count diagram with hypothetical inputs. Each circle represents one stitch for counting only; it does not depict a knitted loop, a cast-on technique or physical fabric.",
+        width: 1200,
+        height: 760
       }
-    ]
-  },
+    },
+    {
+      heading: "A multiple is not the same as “multiple plus”",
+      content: "A hypothetical instruction such as “multiple of 6 plus 2” describes totals of the form 6n + 2, where n is the number of repeats. Its extra two stitches are not part of a pure multiple of six.\n\nThe cast-on calculator's multiple field does not automatically add that offset or any edge stitches. For example, a pattern-defined total of three six-stitch repeats plus two is **20 stitches**, not 18. This only explains the notation; it is not a recommendation to use three repeats for a particular garment.\n\nRead the full pattern to determine whether its offset already includes the edges. Do not add a second pair of edge stitches simply because another example uses them. If different parts of the edge and body behave differently, dividing the entire count by body gauge remains only an approximation.",
+      markdown: true
+    },
+    {
+      heading: "Check the plan before casting on",
+      content: "Write down the target width, measured stitch gauge, repeat, any pattern-defined extras, and the resulting count. Keep the desired width separate from the modeled width so a rounding change stays visible.\n\nFor a fitted item, follow the pattern's sizing and ease instructions rather than assuming a body measurement is the finished width. This count calculation does not choose ease, a cast-on technique or an edge's stretch. Use it alongside the pattern, then recheck your working gauge.\n\n### Does a cast-on count tell me which method to use?\n\nNo. The number of stitches and the way you create them are separate decisions. Use the pattern's method instructions alongside this calculation; the arithmetic does not replace technique instructions.\n\n### Can I enter centimeters in the inch fields?\n\nUse the units printed on the form. This calculator labels its dimensions in inches. Convert your dimensions consistently before entering them rather than mixing centimeters and inches.\n\n### Does the result guarantee the finished width?\n\nNo. The displayed width is count divided by measured stitches per inch. It assumes the planned fabric matches that gauge; it does not verify a finished object. Keep the assumptions with your project notes and revisit the count when the pattern or measurements change.",
+      markdown: true
+    },
+    {
+      heading: "Choose the method specified by your pattern",
+      content: "Stitch count does not determine the cast-on method. Check whether your pattern specifies long-tail, cable, tubular, or another setup, and follow instructions for that exact variation. Make a sample edge using the planned yarn and tools before deciding whether its appearance and stretch suit the project. Do not infer those properties from a stitch-count calculation.\n\nA method comparison should answer a separate question from the count: what setup does this pattern require, and how does your sample edge behave? Keep the method, needle size and any pattern-specific setup rows in the same notes as the count. This guide does not provide step-by-step technique instructions."
+    }
+  ],
+  editorialNote: "AI-assisted explanation prepared with Codex. Numerical examples are hypothetical and checked mathematically; no physical project or yarn product was tested. Published by FiberTools.",
+  sources: [
+    {
+      title: "Craft Yarn Council: Reading instructions and gauge",
+      url: "https://media.craftyarncouncil.com/read_instructions.html"
+    },
+    {
+      title: "FiberTools: Calculator inputs and model",
+      url: "https://fibertools.app/cast-on-calculator"
+    }
+  ]
+},
   {
     slug: "crochet-stitch-reference-guide",
     title: "Crochet Stitch Reference: Visual Guide for Beginners",
