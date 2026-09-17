@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import * as blanket from "../src/lib/blanket-gauge.mjs";
 
 import {
   calculateBlanketGaugeCounts,
@@ -9,6 +10,27 @@ import {
 } from "../src/lib/blanket-gauge.mjs";
 
 const throwDimensions = { widthIn: 50, lengthIn: 60 };
+
+test("repeat alternatives preserve staged baseline and use unrounded target", () => {
+  for (const [raw,nearest,above] of [[160,158,164],[164,164,164],[162,164,164],[163,164,164],[164.2,164,170],[161,164,164],[160.8,164,164],[2,8,8]]) {
+    const result=blanket.planBlanketStitchWidths({raw,stitchesPerInch:4,nearest:roundBlanketStitchesToMultiple(Math.round(raw),6,2),multiple:6,extra:2});
+    assert.equal(result.nearest,nearest);assert.equal(result.atOrAbove,above);
+    assert.equal(result.nearestWidthIn,nearest/4);assert.equal(result.aboveWidthIn,above/4);
+    assert.equal(result.belowTarget,nearest<raw);
+  }
+});
+
+test("alternative bounds, precision, offsets and omitted constraint", () => {
+  const plan=(raw,multiple=6,extra=2)=>blanket.planBlanketStitchWidths({raw,stitchesPerInch:4,nearest:roundBlanketStitchesToMultiple(Math.round(raw),multiple,extra),multiple,extra});
+  assert.equal(plan(164+Number.EPSILON*164).atOrAbove,164);
+  assert.equal(plan(164.00000001).atOrAbove,170);
+  assert.equal(plan(163.99999999).atOrAbove,164);
+  assert.equal(plan(160,6,0).atOrAbove,162);
+  assert.equal(plan(160,6,8).atOrAbove,164);
+  assert.equal(plan(999999,6,2).atOrAbove,null);
+  assert.equal(plan(160,0,0).atOrAbove,null);
+  for(const raw of [0,-1,NaN,Infinity])assert.equal(plan(raw),null);
+});
 
 test("declines unsafe and zero-output blanket counts", () => {
   for (const gaugeOver of [1e-300, 1e300]) {

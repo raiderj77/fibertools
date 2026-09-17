@@ -1,5 +1,28 @@
 const CENTIMETERS_PER_INCH = 2.54;
 
+/** Additional explanations only: never recompute or replace the baseline count. */
+export function planBlanketStitchWidths({ raw, stitchesPerInch, nearest, multiple, extra }) {
+  if (![raw, stitchesPerInch].every((v) => Number.isFinite(v) && v > 0)
+    || !Number.isSafeInteger(nearest) || nearest < 1 || nearest > 1_000_000
+    || ![multiple, extra].every((v) => Number.isSafeInteger(v) && v >= 0 && v <= 1_000_000)
+    || (multiple === 0 && extra !== 0)) return null;
+  // Only absorb machine roundoff, not display rounding or a user-sized epsilon.
+  const tolerance = Number.EPSILON * Math.max(1, Math.abs(raw)) * 8;
+  let atOrAbove = null;
+  if (multiple > 0) {
+    const repeats = Math.max(1, Math.ceil((raw - extra - tolerance) / multiple));
+    const candidate = repeats * multiple + extra;
+    if (Number.isSafeInteger(candidate) && candidate <= 1_000_000 && candidate >= raw - tolerance) atOrAbove = candidate;
+  }
+  return { nearest, atOrAbove, nearestWidthIn: nearest / stitchesPerInch,
+    aboveWidthIn: atOrAbove === null ? null : atOrAbove / stitchesPerInch,
+    belowTarget: nearest < raw - tolerance, raw };
+}
+
+export function formatBlanketDimension(inches, units) {
+  return String(Number((inches * (units === "metric" ? 2.54 : 1)).toFixed(4)));
+}
+
 /** Convert a populated form value while preserving blank or invalid input. */
 export function convertBlanketMeasurementInput(value, factor) {
   if (!value.trim()) return value;

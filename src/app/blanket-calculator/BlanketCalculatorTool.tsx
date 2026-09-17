@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState, useMemo } from "react";
+import { useCallback, useState, useMemo, useEffect } from "react";
 import Tooltip from "@/components/Tooltip";
 import UnitToggle, { type UnitSystem, useSavedUnits } from "@/components/UnitToggle";
 import StickyResult from "@/components/StickyResult";
@@ -10,6 +10,8 @@ import {
   calculateBlanketGaugeCounts,
   convertBlanketMeasurementInput,
   roundBlanketStitchesToMultiple,
+  planBlanketStitchWidths,
+  formatBlanketDimension,
 } from "@/lib/blanket-gauge.mjs";
 import useToolCompletion from "@/lib/useToolCompletion";
 
@@ -79,6 +81,8 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
   // Skein info
   const [skeinYards, setSkeinYards] = useState("220");
   const [skeinGrams, setSkeinGrams] = useState("100");
+  const [outputChoice, setOutputChoice] = useState<{ key: string; above: boolean } | null>(null);
+  const [copyFeedback, setCopyFeedback] = useState("");
 
   const handleUnitsChange = useCallback((nextUnits: UnitSystem) => {
     if (nextUnits === units) return;
@@ -114,6 +118,7 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
     if (useCustom) {
       const w = Number(customW);
       const l = Number(customL);
+      if (!(w > 0 && l > 0)) return null;
       widthIn = units === "metric" ? w / 2.54 : w;
       lengthIn = units === "metric" ? l / 2.54 : l;
     } else {
@@ -177,8 +182,14 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
     // Stitch multiple rounding
     const mult = Number(stitchMultiple);
     const extra = Number(multipleExtra);
+    if ((stitchMultiple.trim() !== "" && (!Number.isSafeInteger(mult) || mult <= 0))
+      || (multipleExtra.trim() !== "" && (stitchMultiple.trim() === "" || mult <= 0))
+      || !Number.isSafeInteger(extra)) return null;
     const roundedStitches = roundBlanketStitchesToMultiple(stitchesNeeded, mult, extra);
     if (roundedStitches === null) return null;
+    const stitchesPerInch = gSt / (units === "metric" ? gOver / 2.54 : gOver);
+    const widthPlan = hasGauge ? planBlanketStitchWidths({ raw: widthIn * stitchesPerInch,
+      stitchesPerInch, nearest: roundedStitches, multiple: mult, extra }) : null;
 
     const skeinsByLength = ydsNeeded === null ? 0 : Math.ceil(ydsNeeded / skeinYds);
     const skeinsByWeight = totalGrams === null ? 0 : Math.ceil(totalGrams / skeinWeight);
@@ -188,6 +199,11 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
     return {
       widthIn,
       lengthIn,
+      baseWidthIn: widthIn - ohIn * 2,
+      baseLengthIn: lengthIn - ohIn - (pillowTuck ? 20 : 0),
+      widthPlan,
+      modeledLengthIn: hasGauge ? rowsNeeded / (gRow / (units === "metric" ? gOver / 2.54 : gOver)) : null,
+      repeatApplied: mult > 0,
       stitches: hasGauge ? roundedStitches : 0,
       stitchesRaw: stitchesNeeded,
       rows: rowsNeeded,
@@ -203,6 +219,32 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
   }, [units, sizeIdx, useCustom, customW, customL, pillowTuck, overhang, gaugeStitches, gaugeRows, gaugeOver, swatchWidth, swatchHeight, swatchGrams, stitchMultiple, multipleExtra, skeinYards, skeinGrams, yw.label]);
 
   useToolCompletion("blanket-calculator", result, !embedded && Boolean(result?.hasSwatchUsage));
+
+  // A choice belongs to this exact input set; edits restore the original default.
+  const choiceKey = JSON.stringify([units,sizeIdx,useCustom,customW,customL,yarnWeight,pillowTuck,overhang,
+    gaugeStitches,gaugeRows,gaugeOver,stitchMultiple,multipleExtra,swatchWidth,swatchHeight,swatchGrams,skeinYards,skeinGrams]);
+  useEffect(() => { setOutputChoice(null); setCopyFeedback(""); }, [choiceKey]);
+  const plan = result?.widthPlan;
+  const hasAlternative = !!plan && plan.belowTarget && plan.atOrAbove !== null && plan.atOrAbove !== plan.nearest;
+  const selectAbove = hasAlternative && outputChoice?.key === choiceKey && outputChoice.above;
+  const selectedCount = selectAbove ? plan?.atOrAbove : result?.stitches;
+  const selectedWidth = selectAbove ? plan?.aboveWidthIn : plan?.nearestWidthIn;
+  const selectedRule = selectAbove ? "Meets or exceeds target" : result?.repeatApplied ? "Nearest compatible" : "Nearest whole stitch";
+  const sizeText = (width: number, length: number) => `${formatBlanketDimension(width,units)} × ${formatBlanketDimension(length,units)} ${dim}`;
+  const projectText = result ? [
+    `${useCustom ? "Custom" : BLANKET_SIZES[sizeIdx].label} blanket`,
+    `Base size: ${sizeText(result.baseWidthIn,result.baseLengthIn)}`,
+    `Calculated target: ${sizeText(result.widthIn,result.lengthIn)}`,
+    ...(plan && selectedWidth != null ? [
+      `Selected rounding rule: ${selectedRule}; ${selectedCount} stitches; ${result.rows} rows.`,
+      `Modeled size: approximately ${sizeText(selectedWidth,result.modeledLengthIn!)}`,
+      ...(!selectAbove && plan.belowTarget ? ["Warning: selected modeled width is narrower than requested."] : []),
+      ...(result.repeatApplied ? ["Default rule: nearest whole stitch, then nearest compatible repeat; ties upward."] : []),
+    ] : ["Stitch and row counts not calculated: enter complete valid gauge."]),
+    `Yarn-estimate size basis: ${sizeText(result.widthIn,result.lengthIn)} target rectangle; not rebased to the selected modeled size.`,
+    result.hasSwatchUsage ? `Yarn: ${units === "metric" ? result.meters + " m" : result.yards + " yd"}; ${result.grams} g; ${result.skeins} whole skeins; includes 10% planning allowance.` : "Yarn estimate not calculated: supply measured swatch consumption and yarn-label inputs.",
+    "Pattern offsets include only your entered extra. No inferred edges, borders or ease; modeled size is not guaranteed."
+  ].join("\n") : "";
 
   const stickySummary = result?.hasSwatchUsage && result.yards !== null && result.meters !== null && result.skeins !== null
     ? `${units === "metric" ? result.meters.toLocaleString() + " m" : result.yards.toLocaleString() + " yds"} • ${result.skeins} skein${result.skeins !== 1 ? "s" : ""}`
@@ -372,28 +414,30 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
                 </h3>
 
                 <p className="text-sm text-bark-500 dark:text-bark-400">
-                  Final size: {units === "metric"
-                    ? `${inToCm(result.widthIn)} × ${inToCm(result.lengthIn)} cm`
-                    : `${Math.round(result.widthIn)} × ${Math.round(result.lengthIn)}″`}
+                  Calculated target size: {sizeText(result.widthIn,result.lengthIn)}
                   {pillowTuck && " (incl. pillow tuck)"}
                 </p>
                 <p className="text-sm text-bark-500 dark:text-bark-400">Yarn weight: {result.yarnLabel}</p>
 
-                {result.hasGauge && (
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.stitches}</p>
-                      <p className="text-sm text-bark-500 dark:text-bark-400">
-                        stitches wide
-                        {result.hasMultiple && <span className="text-xs ml-1">(rounded from {result.stitchesRaw})</span>}
-                      </p>
-                    </div>
-                    <div>
-                      <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">{result.rows}</p>
-                      <p className="text-sm text-bark-500 dark:text-bark-400">rows long</p>
-                    </div>
-                  </div>
-                )}
+                {plan && <div className="space-y-3 print:hidden">
+                  <p><strong>{result.repeatApplied ? "Nearest compatible" : "Nearest whole stitch"}:</strong> {plan.nearest} stitches; modeled width approximately {formatBlanketDimension(plan.nearestWidthIn,units)} {dim}.</p>
+                  {plan.belowTarget && <p className="text-amber-800 dark:text-amber-200">Nearest result is narrower than requested by approximately {formatBlanketDimension(result.widthIn-plan.nearestWidthIn,units)} {dim}.</p>}
+                  {hasAlternative && <>
+                    <p><strong>Meets or exceeds target:</strong> {plan.atOrAbove} stitches; modeled width approximately {formatBlanketDimension(plan.aboveWidthIn!,units)} {dim}.</p>
+                    <fieldset className="space-y-2">
+                      <legend className="font-semibold">Use in copy/print project output</legend>
+                      <label className="flex items-center gap-2"><input type="radio" name="blanket-output-rule" checked={!selectAbove} onChange={()=>setOutputChoice({key:choiceKey,above:false})} />Nearest compatible (default)</label>
+                      <label className="flex items-center gap-2"><input type="radio" name="blanket-output-rule" checked={!!selectAbove} onChange={()=>setOutputChoice({key:choiceKey,above:true})} />Meets or exceeds target</label>
+                    </fieldset>
+                    <p className="text-sm">Selection changes copy/print only. Yarn remains based on the calculated target rectangle. Editing inputs restores the nearest default.</p>
+                  </>}
+                  {result.repeatApplied && plan.atOrAbove === null && <p>No compatible count meets the target within the supported limit of 1,000,000 stitches.</p>}
+                  <p>{result.rows} rows; modeled length approximately {formatBlanketDimension(result.modeledLengthIn!,units)} {dim}.</p>
+                </div>}
+                <div className="rounded-lg border border-cream-300 p-3" data-testid="blanket-project-output">
+                  <h4 className="font-semibold">Selected project output</h4>
+                  <p className="whitespace-pre-line text-sm">{projectText}</p>
+                </div>
 
                 {result.hasSwatchUsage && result.yards !== null && result.meters !== null && result.skeins !== null && result.grams !== null ? <div className="grid grid-cols-2 gap-4">
                   <div>
@@ -420,21 +464,21 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
 
                 {!result.hasGauge && (
                   <p className="text-xs text-amber-700 dark:text-amber-300">
-                    💡 Enter your gauge above to get exact stitch and row counts.
+                    Enter complete measured stitch and row gauge for planning counts.
                   </p>
                 )}
 
-                <div className="flex flex-wrap gap-2">
-                  <button type="button" onClick={() => {
-                    const yarnText = result.hasSwatchUsage ? `${result.yards} yds (${result.meters} m), ${result.skeins} skeins` : "add swatch usage for yarn estimate";
-                    const text = `${useCustom ? "Custom" : BLANKET_SIZES[sizeIdx].label} blanket: ${result.hasGauge ? `${result.stitches} sts × ${result.rows} rows, ` : ""}${yarnText}`;
-                    navigator.clipboard.writeText(text);
+                <div className="flex flex-wrap gap-2 no-print">
+                  <button type="button" onClick={async () => {
+                    try { await navigator.clipboard.writeText(projectText); setCopyFeedback("Project output copied."); }
+                    catch { setCopyFeedback("Copy failed. Select and copy the project output above."); }
                   }} className="btn-secondary text-sm">📋 Copy</button>
                   <button type="button" onClick={() => window.print()} className="btn-secondary text-sm">🖨️ Print</button>
                   {!embedded ? (
                     <ResultShareButton toolName="Blanket Calculator" toolSlug="blanket-calculator" />
                   ) : null}
                 </div>
+                <p role="status" className="text-sm no-print">{copyFeedback}</p>
                 {!embedded && result.hasSwatchUsage ? <PlanningPackResultCta /> : null}
               </div>
             )}
