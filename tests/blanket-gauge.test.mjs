@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
+import * as blanket from "../src/lib/blanket-gauge.mjs";
 
 import {
   calculateBlanketGaugeCounts,
@@ -9,6 +10,27 @@ import {
 } from "../src/lib/blanket-gauge.mjs";
 
 const throwDimensions = { widthIn: 50, lengthIn: 60 };
+
+test("repeat alternatives preserve staged baseline and use unrounded target", () => {
+  for (const [raw,nearest,above] of [[160,158,164],[164,164,164],[162,164,164],[163,164,164],[164.2,164,170],[161,164,164],[160.8,164,164],[2,8,8]]) {
+    const result=blanket.planBlanketStitchWidths({raw,stitchesPerInch:4,nearest:roundBlanketStitchesToMultiple(Math.round(raw),6,2),multiple:6,extra:2});
+    assert.equal(result.nearest,nearest);assert.equal(result.atOrAbove,above);
+    assert.equal(result.nearestWidthIn,nearest/4);assert.equal(result.aboveWidthIn,above/4);
+    assert.equal(result.belowTarget,nearest<raw);
+  }
+});
+
+test("alternative bounds, precision, offsets and omitted constraint", () => {
+  const plan=(raw,multiple=6,extra=2)=>blanket.planBlanketStitchWidths({raw,stitchesPerInch:4,nearest:roundBlanketStitchesToMultiple(Math.round(raw),multiple,extra),multiple,extra});
+  assert.equal(plan(164+Number.EPSILON*164).atOrAbove,164);
+  assert.equal(plan(164.00000001).atOrAbove,170);
+  assert.equal(plan(163.99999999).atOrAbove,164);
+  assert.equal(plan(160,6,0).atOrAbove,162);
+  assert.equal(plan(160,6,8).atOrAbove,164);
+  assert.equal(plan(999999,6,2).atOrAbove,null);
+  assert.equal(plan(160,0,0).atOrAbove,null);
+  for(const raw of [0,-1,NaN,Infinity])assert.equal(plan(raw),null);
+});
 
 test("declines unsafe and zero-output blanket counts", () => {
   for (const gaugeOver of [1e-300, 1e300]) {
@@ -122,4 +144,15 @@ test("wires the tested gauge calculation into the blanket calculator", () => {
     /<UnitToggle value=\{units\} onChange=\{handleUnitsChange\} persist=\{!embedded\} \/>/,
   );
   assert.match(component, /roundBlanketStitchesToMultiple\(stitchesNeeded, mult, extra\)/);
+});
+
+test("sub-display deficits remain explained without changing raw ceiling", () => {
+  const target=41.0000000001;
+  const plan=blanket.planBlanketStitchWidths({raw:target*4,stitchesPerInch:4,nearest:164,multiple:6,extra:2});
+  assert.equal(plan.belowTarget,true);assert.equal(plan.atOrAbove,170);
+  assert.equal(blanket.formatBlanketDimension(target,'imperial'),'41');
+  assert.equal(blanket.formatBlanketShortfall(target-plan.nearestWidthIn,'imperial'),'less than 0.0001');
+  assert.equal(blanket.formatBlanketShortfall(target-plan.nearestWidthIn,'metric'),'less than 0.0001');
+  assert.equal(blanket.formatBlanketShortfall(0.5,'imperial'),'approximately 0.5');
+  assert.equal(blanket.formatBlanketShortfall(0.5,'metric'),'approximately 1.27');
 });
