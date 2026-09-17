@@ -23,6 +23,14 @@ export function formatBlanketDimension(inches, units) {
   return String(Number((inches * (units === "metric" ? 2.54 : 1)).toFixed(4)));
 }
 
+/** Explain a real deficit even when normal dimension formatting rounds to zero. */
+export function formatBlanketShortfall(inches, units) {
+  const displayed = formatBlanketDimension(inches, units);
+  return inches > 0 && displayed === "0"
+    ? "less than 0.0001"
+    : `approximately ${displayed}`;
+}
+
 /** Convert a populated form value while preserving blank or invalid input. */
 export function convertBlanketMeasurementInput(value, factor) {
   if (!value.trim()) return value;

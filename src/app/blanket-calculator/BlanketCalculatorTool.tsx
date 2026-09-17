@@ -12,6 +12,7 @@ import {
   roundBlanketStitchesToMultiple,
   planBlanketStitchWidths,
   formatBlanketDimension,
+  formatBlanketShortfall,
 } from "@/lib/blanket-gauge.mjs";
 import useToolCompletion from "@/lib/useToolCompletion";
 
@@ -238,7 +239,7 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
     ...(plan && selectedWidth != null ? [
       `Selected rounding rule: ${selectedRule}; ${selectedCount} stitches; ${result.rows} rows.`,
       `Modeled size: approximately ${sizeText(selectedWidth,result.modeledLengthIn!)}`,
-      ...(!selectAbove && plan.belowTarget ? ["Warning: selected modeled width is narrower than requested."] : []),
+      ...(!selectAbove && plan.belowTarget ? [`Warning: selected modeled width is narrower than requested by ${formatBlanketShortfall(result.widthIn-plan.nearestWidthIn,units)} ${dim}. Displayed dimensions are rounded.`] : []),
       ...(result.repeatApplied ? ["Default rule: nearest whole stitch, then nearest compatible repeat; ties upward."] : []),
     ] : ["Stitch and row counts not calculated: enter complete valid gauge."]),
     `Yarn-estimate size basis: ${sizeText(result.widthIn,result.lengthIn)} target rectangle; not rebased to the selected modeled size.`,
@@ -421,7 +422,7 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
 
                 {plan && <div className="space-y-3 print:hidden">
                   <p><strong>{result.repeatApplied ? "Nearest compatible" : "Nearest whole stitch"}:</strong> {plan.nearest} stitches; modeled width approximately {formatBlanketDimension(plan.nearestWidthIn,units)} {dim}.</p>
-                  {plan.belowTarget && <p className="text-amber-800 dark:text-amber-200">Nearest result is narrower than requested by approximately {formatBlanketDimension(result.widthIn-plan.nearestWidthIn,units)} {dim}.</p>}
+                  {plan.belowTarget && <p className="text-amber-800 dark:text-amber-200">Nearest result is narrower than requested by {formatBlanketShortfall(result.widthIn-plan.nearestWidthIn,units)} {dim}. Displayed dimensions are rounded.</p>}
                   {hasAlternative && <>
                     <p><strong>Meets or exceeds target:</strong> {plan.atOrAbove} stitches; modeled width approximately {formatBlanketDimension(plan.aboveWidthIn!,units)} {dim}.</p>
                     <fieldset className="space-y-2">

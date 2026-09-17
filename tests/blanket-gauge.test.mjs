@@ -145,3 +145,14 @@ test("wires the tested gauge calculation into the blanket calculator", () => {
   );
   assert.match(component, /roundBlanketStitchesToMultiple\(stitchesNeeded, mult, extra\)/);
 });
+
+test("sub-display deficits remain explained without changing raw ceiling", () => {
+  const target=41.0000000001;
+  const plan=blanket.planBlanketStitchWidths({raw:target*4,stitchesPerInch:4,nearest:164,multiple:6,extra:2});
+  assert.equal(plan.belowTarget,true);assert.equal(plan.atOrAbove,170);
+  assert.equal(blanket.formatBlanketDimension(target,'imperial'),'41');
+  assert.equal(blanket.formatBlanketShortfall(target-plan.nearestWidthIn,'imperial'),'less than 0.0001');
+  assert.equal(blanket.formatBlanketShortfall(target-plan.nearestWidthIn,'metric'),'less than 0.0001');
+  assert.equal(blanket.formatBlanketShortfall(0.5,'imperial'),'approximately 0.5');
+  assert.equal(blanket.formatBlanketShortfall(0.5,'metric'),'approximately 1.27');
+});

@@ -48,3 +48,9 @@ On base 51a8a3b: focused blanket tests 43/43; quality suite 469/469; accessibili
 The first release build was stopped after the date edit so it could not be mistaken for a final build. The subsequent `npm run build` completed successfully with TypeScript, prebuild and postbuild checks (release-build-final.log). Local production browser acceptance passed again, including matching visible/metadata dates, selected copy/print, keyboard choices, unit equivalence, input validation, unchanged synthetic yarn/skeins, no horizontal overflow and no observed input-triggered POST or project-storage additions. Independent verifier cleared the date/report follow-up.
 
 Additional release files: src/app/blanket-calculator/page.tsx and tests/correction-dates.test.mjs align the actual modification date; no other page date was refreshed. No application dependencies or provider settings changed. All evidence above is pre-release; merge and production remain separately verified stages.
+
+## PR precision review correction
+
+Automatic review identified a display contradiction for a high-precision target (41.0000000001 inches at 4 stitches/inch, multiple 6 plus 2): the real shortfall rounded to zero at four displayed decimals. The raw ceiling is intentionally unchanged. A dedicated formatter now explains tiny positive shortfalls as "less than 0.0001" in the selected units; screen and project output state that displayed dimensions are rounded. Ordinary shortfalls retain their existing precision.
+
+The browser regression failed against the previous build before the warning correction. New imperial/metric helper coverage and all focused blanket tests pass 44/44. Both independent agents cleared the delta. The final production build passed with TypeScript and pre/postbuild gates, and fresh-build browser verification passed including the tiny-deficit warning in screen, clipboard and print media. All earlier acceptance cases remain covered.
