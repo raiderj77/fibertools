@@ -1,0 +1,35 @@
+[
+  {
+    "path": "images/social/gauge-planning-1-4737e58df782.png",
+    "sha256": "4737e58df7820579bd56e3d2a66b437d73f0be5e73afca718a22cbdb0559fbcd",
+    "width": 1080,
+    "height": 1350,
+    "source_svg_sha256": "6afaeaa08673c1c9ac72f8ce9b9e7e40c41fcc113616e5c8426d86f381718355",
+    "alt_text": "Measure before calculating gauge. Width and height Stitches and rows Use the same measured area. Planning aid only; follow the selected pattern. Examples are illustrative, not measured project results.",
+    "provenance": "Original deterministic typography and labeled illustrative arithmetic",
+    "reviewed_on": "2026-09-21",
+    "landing": "https://fibertools.app/gauge-calculator"
+  },
+  {
+    "path": "images/social/gauge-planning-2-909131e09281.png",
+    "sha256": "909131e0928187da4a3d7554b4082e0641fdb5fa41c9efd1d51d0041a639a751",
+    "width": 1080,
+    "height": 1350,
+    "source_svg_sha256": "e03475ac1276cb2661e505d4ae31a07ebe7dccafb27d41467e8cbc47eaaac4b6",
+    "alt_text": "A gauge example, with units. SYNTHETIC EXAMPLE 20 stitches / 4 inches = 5 stitches per inch 28 rows / 4 inches = 7 rows per inch. Planning aid only; follow the selected pattern. Examples are illustrative, not measured project results.",
+    "provenance": "Original deterministic typography and labeled illustrative arithmetic",
+    "reviewed_on": "2026-09-21",
+    "landing": "https://fibertools.app/gauge-calculator"
+  },
+  {
+    "path": "images/social/gauge-planning-3-3906e9dd15cf.png",
+    "sha256": "3906e9dd15cf8bfc0fbfaea3180b4afc4067c714adbfa7c949561112083669c0",
+    "width": 1080,
+    "height": 1350,
+    "source_svg_sha256": "15c150741c509d961c10fe7ea310d40f7aad47c7ef622cb6922fd154cdc78d0b",
+    "alt_text": "Gauge is only part of a fit check. Check the selected pattern Follow yarn care instructions Gauge alone does not verify fit. Planning aid only; follow the selected pattern. Examples are illustrative, not measured project results.",
+    "provenance": "Original deterministic typography and labeled illustrative arithmetic",
+    "reviewed_on": "2026-09-21",
+    "landing": "https://fibertools.app/gauge-calculator"
+  }
+]
