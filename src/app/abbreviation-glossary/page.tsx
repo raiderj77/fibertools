@@ -3,7 +3,7 @@ import ToolLayout from "@/components/ToolLayout";
 import AbbreviationGlossaryTool from "./AbbreviationGlossaryTool";
 
 export const metadata: Metadata = {
-  title: "Crochet & Knitting Abbreviations, Free",
+  title: { absolute: "Crochet & Knitting Abbreviations: 70+ Terms" },
   description:
     "Search 70+ knitting and crochet abbreviations with US/UK toggle. Includes a pattern translator. Free, instant lookup, no signup required.",
   keywords: [

@@ -3,7 +3,7 @@ import ToolLayout from "@/components/ToolLayout";
 import NeedleGuideTool from "./NeedleGuideTool";
 
 export const metadata: Metadata = {
-  title: "Sewing Needle Types & Sizes, Free Guide",
+  title: { absolute: "Sewing Needle Types Finder: Sizes & Uses" },
   description:
     "Visual guide to sewing needle types: tapestry, chenille, embroidery, sharps, beading, and more. Find the right needle instantly. Free.",
   keywords: [

@@ -6,7 +6,7 @@ import YarnWeightCalculatorTool from "./YarnWeightCalculatorTool";
 // ── Metadata ──────────────────────────────────────────────────────
 
 export const metadata: Metadata = {
-  title: "Yarn Weight Calculator, Identify CYC Category Free",
+  title: { absolute: "Yarn Weight Calculator: WPI & Gauge to CYC Category" },
   description:
     "Estimate possible CYC categories from WPI or knitting stockinette gauge. Covers all 8 weights: Lace through Jumbo. Free, instant, no signup.",
   keywords: [

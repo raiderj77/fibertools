@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import IncDecCalculatorTool from "./IncDecCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Evenly Spaced Increase & Decrease Calculator",
+  title: { absolute: "Increase & Decrease Calculator: Space Stitches Evenly" },
   description:
     "Plan one bounded knitting or crochet row or round that consumes the starting stitch count and produces the selected target count.",
   keywords: [

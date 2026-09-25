@@ -14,8 +14,8 @@ export interface Guide {
 export const guides: Guide[] = [
   {
     slug: "reading-yarn-labels",
-    title: "The Complete Guide to Reading Yarn Labels (What Every Number Means)",
-    description: "Read the yarn identity, category, mass, length, gauge, and care information on a label, and recognize what it cannot establish about a project.",
+    title: "How to Read a Yarn Label: Weight, Gauge & Care",
+    description: "Read yarn weight, length, gauge, fiber and care details without confusing category, mass and yardage. Includes a measured-skein example.",
     toolSlug: "yarn-calculator",
     date: "2026-02-23",
     modifiedDate: "2026-09-05",
@@ -59,8 +59,8 @@ export const guides: Guide[] = [
   },
   {
   slug: "knitting-gauge-guide",
-  title: "Knitting Gauge: Why It Matters and How to Get It Right",
-  description: "See how stitch and row gauge change modeled dimensions when counts stay fixed, with checked examples and clear limits on resizing a knitting pattern.",
+  title: "Knitting Gauge Guide: Swatches, Stitches & Rows",
+  description: "See how stitch and row gauge change dimensions when counts stay fixed, with checked 200-stitch and 120-row examples and clear limits.",
   toolSlug: "gauge-calculator",
   date: "2026-03-06",
   modifiedDate: "2026-09-16",
@@ -126,8 +126,8 @@ export const guides: Guide[] = [
 },
   {
   slug: "blanket-yarn-guide",
-  title: "How Much Yarn Do You Need for a Blanket?",
-  description: "Estimate blanket yarn from a measured swatch, separate extra allowance, and convert yards to whole skeins with a clear worked example.",
+  title: "How Much Yarn for a Blanket? Swatch-Based Guide",
+  description: "Estimate blanket yarn from a measured swatch, keep allowance separate, and convert yards to whole skeins with a checked 50×60-inch example.",
   toolSlug: "yarn-calculator",
   date: "2026-03-06",
   modifiedDate: "2026-09-16",
@@ -202,8 +202,8 @@ export const guides: Guide[] = [
 },
   {
     slug: "needle-sizes-guide",
-    title: "Knitting Needle Sizes: US, UK, and Metric Explained",
-    description: "Compare metric diameter with US, UK, and Japanese needle labels, and verify the exact product before matching gauge.",
+    title: "Knitting Needle Sizes: US, UK & Metric Chart",
+    description: "Compare metric diameter with US, UK and Japanese needle labels, then verify the exact product and make a gauge swatch.",
     toolSlug: "needle-converter",
     date: "2026-03-06",
     keywords: [
@@ -254,8 +254,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "uk-us-crochet-terms-guide",
-    title: "UK vs US Crochet Terms: Key Conversion Guide",
-    description: "Understand why UK and US crochet terminology differs, learn the key conversions like double crochet and treble, and discover how to identify which system a pattern uses.",
+    title: "UK vs US Crochet Terms: Conversion Guide",
+    description: "Compare common UK and US crochet terms, including double crochet and treble, and learn how to identify a pattern's terminology system.",
     toolSlug: "uk-to-us-converter",
     date: "2026-03-06",
     keywords: ["UK US crochet terms", "crochet conversion", "double crochet UK US", "treble crochet", "crochet abbreviations", "crochet terminology"],
@@ -288,8 +288,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "wpi-guide",
-    title: "What is WPI (Wraps Per Inch) and How to Measure It",
-    description: "Measure wraps per inch, interpret overlapping CYC guidance, and verify the actual yarn with a swatch.",
+    title: "WPI Guide: How to Measure Wraps Per Inch",
+    description: "Measure wraps per inch, interpret overlapping CYC yarn-weight ranges, and verify the actual yarn with its label and a swatch.",
     toolSlug: "yarn-weight-chart",
     date: "2026-03-06",
     keywords: [
@@ -340,8 +340,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "pricing-handmade-guide",
-    title: "How to Price Your Handmade Knitting and Crochet",
-    description: "Learn how to price handmade knit and crochet items fairly. Covers materials cost, valuing your time, pricing for different markets, and common mistakes that lose money.",
+    title: "How to Price Handmade Knitting & Crochet",
+    description: "Work through materials, time and overhead when pricing handmade knitting or crochet, with clear limits on what the cost calculator includes.",
     toolSlug: "project-cost-calculator",
     date: "2026-03-06",
     modifiedDate: "2026-09-05",
@@ -375,8 +375,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "amigurumi-beginners-guide",
-    title: "Beginner's Guide to Amigurumi: Shapes, Sizes, and Math",
-    description: "Review common amigurumi construction choices, count schedules, joining considerations, and the limits of a basic arithmetic reference.",
+    title: "Amigurumi for Beginners: Shapes, Counts & Math",
+    description: "Review amigurumi starts, shape count schedules, increases, decreases and joining, plus the limits of a basic arithmetic reference.",
     toolSlug: "amigurumi-shapes",
     date: "2026-03-06",
     keywords: ["amigurumi for beginners", "amigurumi crochet", "magic ring crochet", "amigurumi shapes", "crochet sphere", "amigurumi increase decrease"],
@@ -409,8 +409,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "flat-circle-crochet-guide",
-    title: "How to Crochet a Flat Circle: Increases Explained",
-    description: "Review common flat-circle increase heuristics, ways to respond to cupping or ruffling, and the calculator's bounded selected-preset round schedule.",
+    title: "Crochet Flat Circle Guide: Increases & Shape Fixes",
+    description: "Review flat-circle increase presets, what to check when fabric cups or ruffles, and the limits of the round-count calculator.",
     toolSlug: "circle-calculator",
     date: "2026-03-11",
     keywords: ["crochet flat circle", "crochet circle increases", "magic ring crochet", "crochet circle cupping", "crochet circle ruffling", "flat circle stitch count"],
@@ -439,8 +439,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "sewing-craft-needle-guide",
-    title: "Sewing & Craft Needle Types: Complete Guide",
-    description: "Learn the differences between tapestry, chenille, sharps, betweens, and other hand sewing needles, what each type is designed for and how to choose the right one.",
+    title: "Sewing Needle Types & Sizes: Craft Guide",
+    description: "Compare tapestry, chenille, sharps, betweens and other hand-sewing needles by point, eye, size and intended use.",
     toolSlug: "needle-guide",
     date: "2026-03-11",
     keywords: ["sewing needle types", "tapestry needle", "chenille needle", "hand sewing needles", "yarn needle", "embroidery needle", "craft needle guide"],
@@ -469,8 +469,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "knit-crochet-hat-sizing-guide",
-    title: "Hat Sizing Guide: Head Measurements & Crown Shaping",
-    description: "Find the right hat size for any age group, head circumference charts, negative ease calculations, crown shaping methods, and how to use the hat calculator.",
+    title: "Knit Hat Sizing Guide: Gauge, Ease & Crown Shaping",
+    description: "Measure head circumference, review ease and crown choices, and use the eight-section hat calculator alongside a tested pattern.",
     toolSlug: "hat-calculator",
     date: "2026-03-11",
     keywords: ["hat size chart", "knit hat sizing", "crochet hat sizing", "head circumference chart", "crown shaping", "hat negative ease", "beanie size guide"],
@@ -499,8 +499,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "knitting-socks-sizing-guide",
-    title: "Knitting Socks: Sizing, Fit & Construction Basics",
-    description: "Review sock anatomy, measurements, construction options, and how to use the circumference checkpoint with a tested pattern.",
+    title: "Knitting Socks: Sizing, Fit & Construction",
+    description: "Review sock anatomy, measurements, heel and construction options, and use the circumference checkpoint with a tested pattern.",
     toolSlug: "sock-calculator",
     date: "2026-03-11",
     keywords: ["sock knitting guide", "sock sizing chart", "heel flap knitting", "toe-up socks", "top-down socks", "sock yarn weight", "sock knitting for beginners"],
@@ -530,7 +530,7 @@ export const guides: Guide[] = [
   {
     slug: "knitting-sleeve-shaping-guide",
     title: "Knitting Sleeve Shaping: Tapers & Decreases",
-    description: "Learn how to calculate sleeve tapers, space decreases evenly, and understand sleeve cap shaping for set-in sleeves. Includes standard sleeve lengths by size.",
+    description: "Calculate one supported sleeve taper, review decrease spacing and understand why sleeve caps and fit still need a tested pattern.",
     toolSlug: "sleeve-calculator",
     date: "2026-03-11",
     modifiedDate: "2026-09-05",
@@ -560,8 +560,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "raglan-sweater-guide",
-    title: "Top-Down Raglan Sweaters: Construction Guide",
-    description: "Review common raglan construction decisions and use the calculator only as a finished-body stitch-count checkpoint alongside a tested pattern.",
+    title: "Top-Down Raglan Sweater Construction Guide",
+    description: "Review neckline, yoke, increase and fit decisions, then use the calculator as one finished-body stitch-count checkpoint.",
     toolSlug: "raglan-calculator",
     date: "2026-03-11",
     keywords: ["raglan sweater construction", "top-down raglan", "raglan increase math", "raglan calculator", "knit raglan sweater", "crochet raglan", "raglan stitch distribution"],
@@ -590,8 +590,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "blocking-fiber-guide",
-    title: "How to Plan Blocking: Care Instructions and Swatch Tests",
-    description: "Use product care instructions, a representative swatch, and measured dimension changes to plan finishing without assuming a method from fiber name alone.",
+    title: "Blocking Knitting & Crochet: Swatch Test Guide",
+    description: "Use care instructions, a representative swatch and measured dimension changes to plan finishing without guessing from fiber name alone.",
     toolSlug: "blocking-calculator",
     date: "2026-03-11",
     keywords: ["blocking knitting", "blocking crochet", "blocking swatch", "fiber care instructions", "blocking dimensions"],
@@ -620,8 +620,8 @@ export const guides: Guide[] = [
   },
   {
   slug: "yarn-stash-management-guide",
-  title: "Yarn Stash Management: Estimating & Organizing",
-  description: "Estimate leftover yarn using its measured weight and original label. Follow a checked example, avoid category shortcuts, and record the estimate's limits.",
+  title: "Yarn Stash Guide: Estimate Partial-Skein Yardage",
+  description: "Estimate leftover yarn from measured weight and the original label, with a checked 42-gram example and clear limits.",
   toolSlug: "stash-estimator",
   date: "2026-03-11",
   keywords: [
@@ -697,8 +697,8 @@ export const guides: Guide[] = [
 },
   {
     slug: "c2c-crochet-guide",
-    title: "Corner-to-Corner Crochet (C2C): Beginner Guide",
-    description: "Learn how a common C2C tile construction works and how to turn a measured two-axis block swatch into a bounded nominal grid; the calculator does not generate graph art or row-by-row instructions.",
+    title: "Corner-to-Corner Crochet Guide: C2C Blocks & Gauge",
+    description: "Learn C2C block construction and turn a measured two-axis swatch into a nominal grid. The calculator does not create graph art or row instructions.",
     toolSlug: "c2c-calculator",
     date: "2026-03-11",
     keywords: ["C2C crochet", "corner to corner crochet", "C2C blanket", "C2C graphghan", "C2C increase rows", "C2C decrease rows", "C2C crochet tutorial"],
@@ -727,34 +727,54 @@ export const guides: Guide[] = [
   },
   {
     slug: "granny-square-blanket-guide",
-    title: "Granny Square Blankets: Measured Grid & Joining Plan",
-    description: "Use a measured square, ceiling-based grid counts, unique internal seam length, and project-specific yarn measurements to plan a rectangular granny-square blanket.",
+    title: "Granny Square Blanket Guide: Squares, Yarn & Joining",
+    description: "How many squares and how much yarn for a granny square blanket? Sizes, joining methods and yardage math — with a free planner.",
     toolSlug: "granny-square-planner",
     date: "2026-08-29",
+    modifiedDate: "2026-09-25",
     keywords: ["granny square blanket", "joining granny squares", "granny square layout", "how many granny squares", "granny square seam length", "crochet blanket planning"],
     sections: [
       {
-        heading: "Start With a Representative Square",
-        content: "Make a square with the intended pattern, yarn, hook, tension, and care process, then measure its blocked edge. Do not infer size from round count alone. Different square patterns can have different edge structures even when their nominal dimensions match.\n\nIf the blanket mixes motifs, compare the measured edge of each motif and test the intended join on a small group. The assembled size can change with seam structure, joining tension, borders, and later treatment, so a grid calculation is a plan rather than a finished-size promise."
+        heading: "Start With One Square You Can Trust",
+        content: "A blanket plan is only as good as the square you measure. Make one square with the yarn, hook, pattern, tension, and color changes you actually intend to use. Finish the ends the same way you plan to finish the project, follow the yarn and pattern care instructions, block the sample, let it dry completely, and then measure one edge without stretching it.\n\nDo not assume that every five-round granny square is six inches. Round count alone does not set size. Stitch height, center construction, chain spaces, border rounds, yarn, hook, tension, and finishing all change the measurement. If the project uses more than one motif, make and measure each motif. They need compatible finished edge counts and dimensions before you commit to a layout.\n\nMy rule for this planner is simple: measure first, then let the math be boring. Boring math is useful math. Enter that blocked edge measurement in the [free granny square planner](https://fibertools.app/granny-square-planner), along with your target width and length. The planner rounds each axis up to a whole square so the nominal grid meets or exceeds the target. It does not predict what seams, borders, or another wash will do to the finished blanket.",
+        markdown: true
       },
       {
-        heading: "Use a Meet-or-Exceed Grid",
-        content: "For each axis, divide the target by the measured square size and round up. Multiplying the two whole-number axis counts gives total squares. This ceiling rule avoids a nominal grid smaller than the entered target.\n\nExamples with measured 6-inch squares: a 30 by 36 inch target is 5 by 6, or 30 squares; a 50 by 60 inch target is 9 by 10, or 90 squares with a nominal 54 by 60 inch span; and a 66 by 90 inch target is 11 by 15, or 165 squares. Joining and borders are not included in those nominal spans.\n\nLay out the planned pieces before final assembly. If the meet-or-exceed span is too large, compare another measured square size or revise the target; do not round down without accepting a smaller nominal grid."
+        heading: "How Many Granny Squares Make a Blanket?",
+        content: "For each direction, divide the target blanket dimension by the blocked square size and round up. Multiply squares across by squares down to get the total. For example, a 50 by 60 inch throw made from blocked 6-inch squares needs 9 across and 10 down: **90 squares**. The nominal motif span is 54 by 60 inches before joining or a border.\n\nThe table below uses common planning dimensions, not universal blanket standards. Baby is modeled at 30 by 36 inches, throw at 50 by 60, twin at 66 by 90, queen at 90 by 100, and king at 108 by 100. Each cell shows **across × down = total squares** after rounding up.\n\n| Planning size | 4-inch squares | 6-inch squares | 8-inch squares |\n| --- | ---: | ---: | ---: |\n| Baby, 30 × 36 in | 8 × 9 = 72 | 5 × 6 = 30 | 4 × 5 = 20 |\n| Throw, 50 × 60 in | 13 × 15 = 195 | 9 × 10 = 90 | 7 × 8 = 56 |\n| Twin, 66 × 90 in | 17 × 23 = 391 | 11 × 15 = 165 | 9 × 12 = 108 |\n| Queen, 90 × 100 in | 23 × 25 = 575 | 15 × 17 = 255 | 12 × 13 = 156 |\n| King, 108 × 100 in | 27 × 25 = 675 | 18 × 17 = 306 | 14 × 13 = 182 |\n\nThese are grid counts, not promises of finished dimensions. An 8-inch-square throw in this table has a nominal motif span of 56 by 64 inches because seven and eight whole squares are needed. If that is too large, do not quietly round down. Decide whether to change the target, change the square, add a planned border to a smaller grid, or accept the larger blanket. Lay the squares out before joining so you can catch color-placement and orientation mistakes while they are still easy to fix.",
+        markdown: true
       },
       {
-        heading: "Separate Seam Distance From Yarn Use",
-        content: "Count every shared square edge once. For a grid that is W squares wide and H squares tall, unique internal seam segments equal ((W − 1) × H) + ((H − 1) × W). Multiply the segment count by measured square size to get seam distance.\n\nSeam distance is not joining-yarn yardage. Whip stitch, mattress stitch, slip stitch, single crochet, decorative joins, and join-as-you-go can consume different amounts of yarn per inch. Make a sample join, measure its yarn use, and scale that observation to the reported seam distance. Measure borders separately."
+        heading: "Compare Three Joining Methods Honestly",
+        content: "The best join is the one that gives the look, flexibility, strength, and workload your blanket needs. The planner can calculate shared-edge distance, but it cannot pick a join for you. Test two or four sample squares before making a decision. That tiny test is much cheaper than discovering 150 squares later that the seam is stiff, bulky, or facing the wrong way.\n\n**Whipstitch** is sewn with a yarn needle. It can be discreet when worked in a matching color and through consistent loops. It is useful when you want to arrange every square before assembly or when you prefer sewing to crocheting seams. Its appearance changes with loop choice, stitch spacing, and tension. Pulling too tightly can shorten the seam and make the blanket pucker; working too loosely can leave gaps.\n\n**Slip-stitch join** is crocheted. It makes a visible ridge when worked on the right side and a less prominent line when worked from the back, depending on the loops used. It is quick, sturdy, and easy to undo, but it can be less flexible than the squares if the hook is too small or the tension is tight. Use the tested hook and loop placement consistently.\n\n**Join-as-you-go** connects a new square during its final round. It reduces the separate assembly stage and can create an open, integrated look. The tradeoff is sequencing: color layout and orientation must be decided before the final round, and correcting a misplaced square can mean undoing neighboring joins. It also depends on a motif pattern designed or adapted for that join.\n\nNo method is automatically invisible, flat, fastest, or lowest in yarn use. Make the same length of sample seam with each method you are considering. Compare the front, back, stretch, drape, and washed result, then choose from evidence instead of a cheerful internet promise.",
+        markdown: true
       },
       {
-        heading: "Plan Square and Color Yarn From Measurements",
-        content: "Unravel or otherwise measure the yarn used by one representative square, then multiply by total square count. Add an allowance only after considering variation, rejected pieces, tails, borders, and the selected construction.\n\nAn equal division across colors is only a planning average. A layout with unequal rounds, motifs, or color placement requires layout-specific proportions. Record the measured yarn used by each representative color arrangement when purchasing accuracy matters.\n\nFrequently asked: the planner reports a nominal grid and unique internal seam distance. It does not guarantee finished dimensions, choose a joining method, or infer joining-yarn quantity. Test the full material and construction system before scaling up."
+        heading: "Estimate Square, Joining, and Border Yarn Separately",
+        content: "Start with yarn used by one representative square. You can measure length by carefully unraveling a sample, or weigh the finished sample and use the same yarn's verified label length-to-weight ratio. Multiply that measured amount by the total square count. If one blocked 6-inch square uses a measured 18 yards and the throw plan needs 90 squares, the square total is **1,620 yards before any allowance**. That is example arithmetic, not a universal granny-square yardage rate.\n\nPlan colors separately. If each square has unequal color rounds, do not divide the total evenly by the number of colors. Measure a representative square's use of each color or record the yarn used across a complete motif repeat. Tails, rejected squares, repairs, and measurement variation can justify a separate allowance, but choose and label that allowance instead of hiding it in the base figure.\n\nJoining yarn needs its own sample. For a grid W squares wide by H squares tall, unique internal seam segments are **((W − 1) × H) + ((H − 1) × W)**. Multiply that count by the blocked square edge to get seam distance. The [granny square planner](https://fibertools.app/granny-square-planner) calculates this distance once per shared edge. It does not turn seam inches into yarn yards because whipstitch, slip stitch, single crochet, and join-as-you-go consume yarn differently.\n\nMake a sample seam with the chosen method. Measure a known seam length and the yarn it uses, then scale that rate to the planner's seam distance. If 12 inches of sample seam uses 24 inches of yarn, the measured rate is 2 inches of yarn per inch of seam. Multiply by the project seam distance, convert units, and add only the allowance you intend.\n\nTreat the border separately too. Join a test group, work the planned border along a measured edge, and record that yarn. Scale from the measured border edge to the assembled perimeter. A border with corners, multiple rounds, texture, or changing stitch counts needs a sample that represents those features. For a single-piece blanket rather than motifs, use the [blanket yarn calculator](https://fibertools.app/blanket-calculator) with a representative swatch; do not substitute its flat-area result for granny-square joins and borders.",
+        markdown: true
+      },
+      {
+        heading: "Block Squares Before Final Assembly",
+        content: "Blocking helps bring squares to consistent dimensions, opens the stitch pattern, and makes layout and joining easier. It does not rescue every gauge mismatch or force different motifs to become identical. Check the yarn label and pattern care instructions before choosing water, steam, heat, pins, mats, or another method. Heat can permanently change some fibers and finishes.\n\nA practical workflow is to test the entire process on the representative square first. Measure before treatment, follow the allowed care process, shape it to the intended dimensions without overstretching, let it dry or cool completely, and measure again. Record that blocked size for the grid calculation. If the sample will not hold the planned size or the fabric changes in an unwanted way, fix the plan before producing a stack of squares.\n\nFor the full batch, use a consistent measuring template or marked mat. Pin or place squares to the same dimensions and keep edge stitch counts aligned. Stack only fully dry squares. If several motifs still differ materially after the approved treatment, sort them and test how the chosen join behaves rather than forcing the seams.\n\nI would rather spend a little time on this checkpoint than argue with a wavy seam later. Yarn has never been impressed by confidence alone.",
+        markdown: true
+      },
+      {
+        heading: "Plan the Layout and Assembly Order",
+        content: "Before joining, place every square in its intended position or build a labeled layout chart. Check color balance, motif orientation, right and wrong sides, and any intentional repeats. Photograph the layout and number rows or stacks so the plan survives being moved.\n\nFor whipstitch or slip-stitch assembly, many makers join squares into rows and then join the rows. Others make long vertical seams first and cross them with horizontal seams. Either can work if shared edges are counted once and corners align. Keep the same loop choice, yarn, hook or needle, and tension through the project. Stop after the first few joins and compare the assembled measurement with the nominal grid.\n\nWith join-as-you-go, plan the sequence before the final rounds. A diagram matters because each new square may connect to one or more existing sides. Keep the unjoined final-round yarn and square orientation organized. If the layout includes an irregular edge or partial motif, use pattern-specific instructions; the rectangular planner assumes whole equal squares in a complete grid.\n\nMeasure the assembled panel before starting the border. The real perimeter, not the target perimeter from the original idea, controls the next step. A border can add size and structure, but it should not be treated as a mystery correction for a grid that was never checked.",
+        markdown: true
+      },
+      {
+        heading: "Granny Square Blanket Questions",
+        content: "### How many granny squares do I need for a throw blanket?\n\nFor a 50 by 60 inch planning target, the table above gives 195 four-inch squares, 90 six-inch squares, or 56 eight-inch squares. Those totals round each axis up. Use your own blocked square measurement in the planner because a nominal six-inch square may not actually finish at six inches.\n\n### How much yarn do I need for a granny square blanket?\n\nMeasure the yarn used by one representative square and multiply by the planned square count. Estimate each color separately when color use is uneven. Then measure and add joining yarn and border yarn as separate components. Blanket size or yarn weight alone cannot supply a reliable total.\n\n### What is the best yarn for granny squares?\n\nThere is no single best fiber or weight for every blanket. Follow the motif pattern, compare the exact yarn's label, care instructions, availability, and color needs, and make a sample. The best choice is one that produces the fabric and care routine needed for the intended blanket.\n\n### How do I join granny squares so the seams lie flat?\n\nMatch edge stitch counts, use a consistent loop placement, and keep the joining tension compatible with the squares. Test and wash a small joined group. Slip-stitch seams can become stiff when worked tightly; sewn seams can pucker when pulled too hard. No method stays flat without consistent execution and compatible pieces.\n\n### Should I block granny squares before or after joining?\n\nBlocking the representative square before planning gives a useful measurement, and blocking individual squares can make assembly more consistent. The complete blanket may still need the finishing treatment allowed by its yarn and pattern. Test the process first and follow item-specific care instructions.\n\n### Does the planner include the border?\n\nNo. It reports a whole-square grid, nominal motif span, total squares, and unique internal seam distance. Measure the joined panel and sample the intended border separately before estimating border yarn.",
+        markdown: true
       }
     ]
   },
   {
   slug: "cast-on-methods-guide",
-  title: "Knitting Cast-On Methods: Which One to Use",
-  description: "Calculate a knitting cast-on count from measured gauge, check repeat rounding, and understand why edge stitches and pattern offsets need separate attention.",
+  title: "Knitting Cast-On Guide: Gauge, Width & Repeats",
+  description: "Calculate a cast-on count from measured gauge, check repeat rounding, and keep edge stitches and pattern offsets separate.",
   toolSlug: "cast-on-calculator",
   date: "2026-03-11",
   modifiedDate: "2026-09-16",
@@ -825,8 +845,8 @@ export const guides: Guide[] = [
 },
   {
     slug: "crochet-stitch-reference-guide",
-    title: "Crochet Stitch Reference: Visual Guide for Beginners",
-    description: "A complete reference to basic crochet stitches, chain, slip stitch, single crochet through treble, with heights, abbreviations, and when to use each stitch.",
+    title: "Crochet Stitch Reference: Basic Stitches & Terms",
+    description: "Review chain, slip stitch, single crochet through treble, common chart symbols and selected stitch combinations in US terms.",
     toolSlug: "stitch-quick-reference",
     date: "2026-03-11",
     modifiedDate: "2026-09-05",
@@ -856,8 +876,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "yarn-stripe-patterns-guide",
-    title: "Yarn Stripe Patterns: Color Planning & Yarn Tips",
-    description: "Plan stripe patterns for knitting and crochet, color sequences, carrying yarn vs cutting, weaving in ends, yardage planning, and using the stripe generator.",
+    title: "Yarn Stripe Pattern Guide: Rows, Color & Yardage",
+    description: "Plan knitting and crochet stripe sequences, compare carrying versus cutting, manage ends and measure per-color yarn use.",
     toolSlug: "stripe-generator",
     date: "2026-03-11",
     keywords: ["yarn stripe patterns", "knitting stripes", "crochet stripes", "stripe color planning", "carrying yarn stripes", "stripe yardage calculation", "jogless stripes"],
@@ -886,8 +906,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "vintage-knitting-patterns",
-    title: "How to Read and Decode Vintage Knitting Patterns",
-    description: "Learn how to interpret vintage knitting patterns from the 1920s through 1970s. Covers outdated terminology, obsolete needle sizes, imperial measurements, and how to adapt vintage instructions to modern yarn weights and tools.",
+    title: "Vintage Knitting Patterns: Terms, Gauge & Sizing",
+    description: "Review vintage terms, needle systems, yarn labels, measurements and gauge without assuming a modern one-to-one conversion.",
     toolSlug: "uk-to-us-converter",
     date: "2026-03-14",
     modifiedDate: "2026-09-05",
@@ -929,8 +949,8 @@ export const guides: Guide[] = [
   },
   {
     slug: "fiber-content-guide",
-    title: "Understanding Fiber Content: A Complete Guide to Yarn Fibers",
-    description: "Learn how fiber content affects your knitting and crochet projects. Covers wool, cotton, acrylic, silk, alpaca, linen, and blends, with care instructions, substitution tips, and project recommendations for each fiber type.",
+    title: "Yarn Fiber Types: Wool, Cotton, Acrylic & Blends",
+    description: "Compare wool, cotton, acrylic, silk, alpaca, linen and blends, then verify the exact yarn label, care instructions and swatch.",
     toolSlug: "yarn-weight-chart",
     date: "2026-03-14",
     keywords: ["fiber content guide", "yarn fiber types", "wool vs acrylic", "cotton yarn properties", "alpaca yarn", "silk yarn", "yarn fiber comparison"],

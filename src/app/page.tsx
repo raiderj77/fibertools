@@ -354,6 +354,13 @@ export default function HomePage() {
             );
           })}
         </div>
+        <p className="mt-6 text-sm text-bark-600 dark:text-bark-300">
+          Planning a motif blanket? Start with the{" "}
+          <Link href="/guides/granny-square-blanket-guide" className="font-semibold text-plum-600 underline underline-offset-2 hover:text-plum-700 dark:text-plum-300">
+            granny square blanket guide
+          </Link>{" "}
+          for square counts, joining choices, and measured yarn math, then use the free planner.
+        </p>
       </section>
 
       {/* Secondary resources */}

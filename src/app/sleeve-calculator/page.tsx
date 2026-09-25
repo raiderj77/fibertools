@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import SleeveCalculatorTool from "./SleeveCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Sleeve Taper Arithmetic Reference",
+  title: { absolute: "Sleeve Taper Calculator: Decrease Spacing" },
   description:
     "Compare one paired-decrease interval model for a straight sleeve taper using explicit measurements, gauge, length, and cuff assumptions.",
   keywords: [

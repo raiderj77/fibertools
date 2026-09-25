@@ -5,7 +5,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import CastOnCalculatorTool from "./CastOnCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Cast On Calculator: Stitches for Any Width",
+  title: { absolute: "Cast On Calculator: Stitches for Any Width" },
   description:
     "Calculate how many stitches to cast on from your measured gauge and target width, with pattern-repeat rounding and edge-stitch guidance.",
   keywords: [

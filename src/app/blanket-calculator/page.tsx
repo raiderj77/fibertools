@@ -5,9 +5,9 @@ import AnswerBlock from "@/components/AnswerBlock";
 import BlanketCalculatorTool from "./BlanketCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Blanket Yarn Calculator: Yards & Skeins by Size",
+  title: { absolute: "How Much Yarn for a Blanket? Calculator (Yards & Skeins)" },
   description:
-    "Calculate how many yards and skeins of yarn you need for a throw, queen, or custom blanket from your measured swatch, with a transparent 10% buffer.",
+    "Enter your swatch to estimate yards and whole skeins for a throw, queen, king or custom blanket. Free blanket yarn calculator, no signup.",
   keywords: [
     "blanket size chart", "crochet blanket sizes", "blanket size calculator",
     "how big should a blanket be", "baby blanket size crochet", "throw blanket dimensions",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
   openGraph: {
-    title: "Blanket Yarn Calculator: Yards & Skeins by Size",
+    title: "How Much Yarn for a Blanket? Calculator (Yards & Skeins)",
     description:
       "Calculate blanket yarn in yards and whole skeins for a throw, queen, or custom size from your measured swatch.",
     url: "https://fibertools.app/blanket-calculator",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blanket Yarn Calculator: Yards & Skeins by Size",
+    title: "How Much Yarn for a Blanket? Calculator (Yards & Skeins)",
     description:
       "Calculate blanket yarn in yards and whole skeins for a throw, queen, or custom size from your measured swatch.",
     images: ["https://fibertools.app/og-image.png"],

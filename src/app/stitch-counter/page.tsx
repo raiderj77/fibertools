@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import StitchCounterTool from "./StitchCounterTool";
 
 export const metadata: Metadata = {
-  title: "Free Stitch & Row Counter for Knitting Online",
+  title: { absolute: "Stitch & Row Counter: Free, No Login" },
   description:
     "Track up to six named stitch, row, or repeat counts with undo/redo and exact-count reminders. Browser-local saving is attempted; no login required.",
   keywords: [

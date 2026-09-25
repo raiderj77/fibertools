@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import StitchPatternCalculatorTool from "./StitchPatternCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Stitch Pattern Calculator, Free Online",
+  title: { absolute: "Stitch Multiple Calculator: Repeats, Plus & Edges" },
   description:
     "Check bounded whole-stitch counts against entered multiple-of M plus P constraints, optional per-side edges, and a gauge range. Arithmetic reference only.",
   keywords: [

@@ -19,6 +19,11 @@ const replacements = new Map([
   ["/blog/granny-square-guide", "/guides/granny-square-blanket-guide"],
   ["/blog/sweater-yarn-estimation-guide", "/yarn-calculator"],
   ["/blog/cast-on-guide", "/cast-on-calculator"],
+  ["/blog/yarn-fiber-types-guide", "/guides/fiber-content-guide"],
+  ["/blog/crochet-circle-guide", "/guides/flat-circle-crochet-guide"],
+  ["/blog/scrap-yarn-stash-busting-guide", "/guides/yarn-stash-management-guide"],
+  ["/blog/needle-guide-types", "/guides/needle-sizes-guide"],
+  ["/blog/cross-stitch-fabric-count", "/cross-stitch-calculator"],
 ]);
 
 test("maps Search Console legacy URLs to their closest live replacements", () => {

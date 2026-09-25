@@ -5,10 +5,10 @@ import AnswerBlock from "@/components/AnswerBlock";
 import ColorPoolingCalculatorTool from "./ColorPoolingCalculatorTool";
 
 const description =
-  "Build a bounded, idealized color-placement grid from stitch counts measured across one variegated-yarn repeat. Compare turned rows with same-direction rows before swatching.";
+  "Preview a bounded, idealized color-placement grid from stitch counts measured across one variegated-yarn repeat. Compare row directions, then swatch.";
 
 export const metadata: Metadata = {
-  title: "Planned Color Pooling Sequence Preview",
+  title: { absolute: "Planned Color Pooling Calculator: Stitch Preview" },
   description,
   keywords: [
     "color pooling preview",

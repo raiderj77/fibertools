@@ -5,9 +5,9 @@ import AnswerBlock from "@/components/AnswerBlock";
 import GaugeCalculatorTool from "./GaugeCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Knitting and Crochet Gauge Calculator",
+  title: { absolute: "Knitting Gauge Calculator: Swatch to Stitch Counts" },
   description:
-    "Calculate gauge from a measured swatch, proportionally scale entered stitch or row counts, and review an at-or-above width checkpoint.",
+    "Enter your swatch measurements to calculate gauge, scale one entered stitch or row count, or check stitches for a target width. Free.",
   keywords: [
     "gauge calculator",
     "crochet gauge calculator",
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: "/gauge-calculator" },
   openGraph: {
-    title: "Knitting and Crochet Gauge Calculator",
+    title: "Knitting Gauge Calculator: Swatch to Stitch Counts",
     description:
       "Calculate measured gauge and bounded proportional stitch or row checkpoints from the values you enter.",
     url: "https://fibertools.app/gauge-calculator",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Knitting and Crochet Gauge Calculator",
+    title: "Knitting Gauge Calculator: Swatch to Stitch Counts",
     description:
       "Calculate measured gauge and bounded proportional stitch or row checkpoints from the values you enter.",
     images: ["/og-image.png"],

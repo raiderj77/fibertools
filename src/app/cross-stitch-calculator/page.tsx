@@ -4,10 +4,10 @@ import AnswerBlock from "@/components/AnswerBlock";
 import CrossStitchCalculatorTool from "./CrossStitchCalculatorTool";
 
 const description =
-  "Calculate cross-stitch design and fabric-cut dimensions with consistent over-one or over-two semantics, plus a floss planning model with visible user-entered assumptions.";
+  "Calculate cross-stitch design and fabric-cut sizes for over-one or over-two stitching, with a visible-assumption floss planning model.";
 
 export const metadata: Metadata = {
-  title: "Cross Stitch Size, Fabric & Floss Planning Calculator",
+  title: { absolute: "Cross Stitch Calculator: Fabric Size & Floss" },
   description,
   keywords: [
     "cross stitch size calculator",

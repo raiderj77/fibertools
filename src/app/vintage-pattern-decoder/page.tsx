@@ -5,9 +5,9 @@ import ToolLayout from "@/components/ToolLayout";
 import VintagePatternDecoderTool from "./VintagePatternDecoderTool";
 
 export const metadata: Metadata = {
-  title: "Vintage Pattern Term Review, UK to US Reference",
+  title: { absolute: "Vintage Pattern Decoder: UK to US Term Review" },
   description:
-    "Review pasted knitting or crochet pattern text. Preserve unknown and US wording, or map a supported set of UK terms to US wording after confirming the source convention.",
+    "Review pasted knitting or crochet text and map a supported set of UK terms to US wording after confirming the source convention.",
   keywords: [
     "vintage pattern terms",
     "UK to US crochet terms",

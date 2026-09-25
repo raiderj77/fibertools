@@ -4,7 +4,7 @@ import { amazonProductUrl, amazonSearchUrl } from "@/lib/affiliate";
 import { REVIEW_DATES } from "@/lib/review-dates.mjs";
 
 export const metadata: Metadata = {
-  title: "Best Yarn for Beginners (2026): Practical Picks",
+  title: { absolute: "Best Yarn for Beginners (2026): Practical Picks" },
   description:
     "Practical beginner-yarn options for knitting and crochet in 2026, with smooth, affordable choices selected for visible stitches and manageable handling.",
   keywords: [

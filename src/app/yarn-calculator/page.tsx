@@ -5,10 +5,10 @@ import AnswerBlock from "@/components/AnswerBlock";
 import YarnCalculatorTool from "./YarnCalculatorTool";
 
 const description =
-  "Scale measured yarn use from a representative swatch to a flat rectangular project, then convert the estimate to whole skeins from your yarn label.";
+  "Measure a swatch and enter a flat project size to estimate yardage and whole-skein counts from your yarn label. Free yarn calculator.";
 
 export const metadata: Metadata = {
-  title: "Measured Swatch Yarn Calculator for Flat Fabric",
+  title: { absolute: "Yarn Calculator: How Many Skeins Do I Need?" },
   description,
   keywords: [
     "measured swatch yarn calculator",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
   openGraph: {
-    title: "Measured Swatch Yarn Calculator for Flat Fabric",
+    title: "Yarn Calculator: How Many Skeins Do I Need?",
     description,
     url: "https://fibertools.app/yarn-calculator",
     images: [{
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Measured Swatch Yarn Calculator for Flat Fabric",
+    title: "Yarn Calculator: How Many Skeins Do I Need?",
     description,
     images: ["https://fibertools.app/og-image.png"],
   },
