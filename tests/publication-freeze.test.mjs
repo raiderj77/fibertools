@@ -23,7 +23,7 @@ import {
 
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const NOW = new Date("2026-09-16T12:00:00Z");
+const NOW = new Date("2026-09-25T12:00:00Z");
 
 
 function snapshot(value) {
@@ -54,9 +54,9 @@ test("publication approval is narrow and time-bound", () => {
     route: "/amigurumi-pattern-checker/designer",
     contentType: "PAID_OFFER",
     title: "StitchProof Designer Report and Version Compare",
-    ownerApprovalDate: "2026-08-26",
-    reason: "Owner-approved private browser-local Designer Report: $9 per pattern project, including revisions and report exports, with no subscription or pattern uploads. Checkout remains disabled until payment, recovery, and non-customer delivery verification pass.",
-    approvalReference: "Owner-approved Codex build prompt and explicit per-project purchase-scope confirmation dated 2026-08-26; production activation requires separate verified release evidence",
+    ownerApprovalDate: "2026-09-25",
+    reason: "Owner renewed the existing private browser-local Designer Report publication scope through the freeze decision date: $9 per pattern project, including revisions and report exports, with no subscription or pattern uploads. Checkout remains disabled until payment, recovery, and non-customer delivery verification pass.",
+    approvalReference: "Owner renewal in the FiberTools task dated 2026-09-25: yes to extending the unchanged $9 scope through 2026-11-20, with checkout still disabled and fail-closed and no experiment or offer changes",
     reviewOrExpirationDate: "2026-11-20",
     indexingApproved: true,
   }]);
@@ -280,7 +280,7 @@ test("approvals cannot be future-dated, expired, or indexable without approval",
   };
 
   const future = snapshot(baseManifest);
-  future.approvals.push({ ...approval, ownerApprovalDate: "2026-09-17" });
+  future.approvals.push({ ...approval, ownerApprovalDate: "2026-09-26" });
   assert(
     analyzePublicationState(future, state, NOW)
       .some((message) => message.includes("ownerApprovalDate cannot be in the future")),
