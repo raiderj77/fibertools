@@ -17,6 +17,7 @@ import {
   isPagesRouterPublicPath,
   isPriceBearingSource,
   pagesRouteFromPagePath,
+  publicationDate,
   readPublicationManifest,
 } from "../scripts/publication-freeze.mjs";
 
@@ -56,9 +57,16 @@ test("publication approval is narrow and time-bound", () => {
     ownerApprovalDate: "2026-08-26",
     reason: "Owner-approved private browser-local Designer Report: $9 per pattern project, including revisions and report exports, with no subscription or pattern uploads. Checkout remains disabled until payment, recovery, and non-customer delivery verification pass.",
     approvalReference: "Owner-approved Codex build prompt and explicit per-project purchase-scope confirmation dated 2026-08-26; production activation requires separate verified release evidence",
-    reviewOrExpirationDate: "2026-09-25",
+    reviewOrExpirationDate: "2026-11-20",
     indexingApproved: true,
   }]);
+});
+
+
+test("publication dates use FiberTools Pacific time instead of the build server clock", () => {
+  assert.equal(publicationDate(new Date("2026-09-26T01:16:30Z")), "2026-09-25");
+  assert.equal(publicationDate(new Date("2026-09-26T07:00:00Z")), "2026-09-26");
+  assert.throws(() => publicationDate(new Date("invalid")), /valid Date/);
 });
 
 
