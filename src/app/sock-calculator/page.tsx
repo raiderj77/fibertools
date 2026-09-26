@@ -5,7 +5,7 @@ import ToolLayout from "@/components/ToolLayout";
 import SockCalculatorTool from "./SockCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Sock Circumference Stitch Calculator",
+  title: { absolute: "Sock Stitch Calculator: Circumference & Gauge" },
   description:
     "Calculate a bounded circular sock stitch-count checkpoint from foot circumference, entered ease, measured gauge, and a required stitch multiple.",
   keywords: ["sock circumference calculator", "sock stitch count", "sock gauge calculator"],

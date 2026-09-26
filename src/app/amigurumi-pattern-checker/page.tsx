@@ -6,7 +6,7 @@ import AmigurumiPatternCheckerTool from "./AmigurumiPatternCheckerTool";
 import StitchProofInterestCard from "./StitchProofInterestCard";
 
 export const metadata: Metadata = {
-  title: "Free Amigurumi Pattern Checker, Verify Round Math",
+  title: { absolute: "Amigurumi Pattern Checker: Verify Round Math" },
   description:
     "Check crochet and amigurumi stitch counts round by round. See stitches consumed, stitches created, written totals, and possible errors. Private and free.",
   keywords: [

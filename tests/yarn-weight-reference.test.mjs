@@ -138,6 +138,7 @@ test("education, FAQs, metadata, and next step agree with the corrected checker"
     assert.doesNotMatch(source, /will produce similar gauge|nearly the same gauge|most reliable way to compare|excellent substitute|map directly to specific CYC|go up one needle size|dark dyes especially|fabric will be loose and sloppy/);
   }
   assert.doesNotMatch(page, /Check substitution compatibility|crochet-color-trends/);
+  assert.match(page, /href="\/yarn-weight-calculator"/);
   assert.match(page, /href="\/gauge-calculator"/);
-  assert.equal((page.match(/verify substitutions with a swatch/g) || []).length, 3);
+  assert.equal((page.match(/Compare substitutes, then swatch/g) || []).length, 3);
 });

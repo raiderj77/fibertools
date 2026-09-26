@@ -34,11 +34,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://fibertools.app"),
   title: {
-    default: "FiberTools, Free Fiber Arts Calculators",
+    default: "30+ Free Knitting & Crochet Calculators | FiberTools",
     template: "%s | FiberTools",
   },
   description:
-    "Free online calculators for knitting, crochet, weaving, spinning & embroidery. Yarn calculator, gauge tools & more. No login. Works offline.",
+    "30+ free calculators for knitting, crochet, weaving, spinning & embroidery: yarn yardage, gauge, blanket sizes, needle conversions. No signup.",
   icons: {
     icon: "/favicon.svg",
   },
@@ -75,9 +75,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "FiberTools",
-    title: "FiberTools, Free Fiber Arts Calculators",
+    title: "30+ Free Knitting & Crochet Calculators | FiberTools",
     description:
-      "Free online calculators for knitting, crochet, weaving, spinning & embroidery. No login. Works offline.",
+      "30+ free calculators for knitting, crochet, weaving, spinning & embroidery: yarn yardage, gauge, blanket sizes, needle conversions. No signup.",
     url: "https://fibertools.app",
     images: [
       {
@@ -90,8 +90,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FiberTools, Free Calculators for Fiber Crafters",
-    description: "Free yarn calculators, gauge tools, needle converters & more. No login. Works offline.",
+    title: "30+ Free Knitting & Crochet Calculators | FiberTools",
+    description: "Free yarn, gauge, blanket, and needle conversion calculators for fiber artists. No signup.",
     images: ["https://fibertools.app/og-image.png"],
   },
   robots: {

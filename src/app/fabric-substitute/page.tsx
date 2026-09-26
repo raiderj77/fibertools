@@ -5,7 +5,7 @@ import ToolLayout from "@/components/ToolLayout";
 import FabricSubstituteTool from "./FabricSubstituteTool";
 
 export const metadata: Metadata = {
-  title: "Fabric Substitute Finder: Compare 30 Fabrics",
+  title: { absolute: "Fabric Substitute Finder: Compare 30 Fabrics" },
   description: "Find fabric substitutes or project ideas by comparing construction, stretch, weight, drape, structure, opacity, and recovery across 30 garment fabrics.",
   keywords: [
     "fabric substitute",

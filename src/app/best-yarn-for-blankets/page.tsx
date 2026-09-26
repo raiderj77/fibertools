@@ -4,7 +4,7 @@ import { amazonSearchUrl } from "@/lib/affiliate";
 import { REVIEW_DATES } from "@/lib/review-dates.mjs";
 
 export const metadata: Metadata = {
-  title: "Best Yarn for Blankets (2026): Cozy & Durable",
+  title: { absolute: "Best Yarn for Blankets (2026): Cozy & Durable" },
   description:
     "Practical yarn options for knitting and crochet blankets in 2026, including soft, washable, and budget-minded choices for throw, baby, and chunky blankets.",
   keywords: [

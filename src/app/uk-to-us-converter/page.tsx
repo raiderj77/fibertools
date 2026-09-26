@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import UKToUSConverterTool from "./UKToUSConverterTool";
 
 export const metadata: Metadata = {
-  title: "UK to US Crochet Terms Converter",
+  title: { absolute: "UK to US Crochet Terms Converter" },
   description:
     "Replace listed UK and US crochet terms in one pass while preserving text that is not in the converter map.",
   keywords: [

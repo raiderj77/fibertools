@@ -6,7 +6,7 @@ import BlockingCalculatorTool from "./BlockingCalculatorTool";
 const description = "Calculate the signed percentage change between current and requested project dimensions before testing a finishing method on a representative swatch.";
 
 export const metadata: Metadata = {
-  title: "Blocking Dimension Change Calculator",
+  title: { absolute: "Blocking Calculator: Compare Dimension Changes" },
   description,
   keywords: [
     "blocking calculator",

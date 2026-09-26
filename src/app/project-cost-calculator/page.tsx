@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import ProjectCostCalculatorTool from "./ProjectCostCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Yarn & Material Cost Calculator, Free",
+  title: { absolute: "Yarn & Material Cost Calculator: Project Totals" },
   description:
     "Total entered yarn and notion amounts, estimate time from stitches and speed, and compare an entered selling price with materials and estimated hours.",
   keywords: [

@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import HatCalculatorTool from "./HatCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Eight-Section Knitted Hat Crown Calculator",
+  title: { absolute: "Knitted Hat Calculator: Cast-On & Crown Decreases" },
   description:
     "Build a bounded bottom-up knitted hat reference from your gauge, including a candidate cast-on and an eight-section K2tog crown schedule.",
   keywords: [

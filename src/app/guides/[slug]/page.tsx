@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   if (!guide) return {};
 
   return {
-    title: guide.title,
+    title: { absolute: guide.title },
     description: guide.description,
     keywords: guide.keywords,
     alternates: { canonical: `/guides/${guide.slug}` },

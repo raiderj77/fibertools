@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import ThreadConverterTool from "./ThreadConverterTool";
 
 export const metadata: Metadata = {
-  title: "DMC and Anchor Archived Thread Chart Lookup",
+  title: { absolute: "DMC to Anchor Thread Converter: Archived Chart" },
   description:
     "Look up a limited sourced subset of an archived Anchor stranded-cotton conversion chart. Physical color and current availability require verification.",
   keywords: [

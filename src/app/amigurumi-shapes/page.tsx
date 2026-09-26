@@ -8,7 +8,7 @@ const description =
   "Generate bounded, count-consistent single-crochet references for basic sphere, stepped-cone, circular-base cylinder, and foundation-chain oval starts.";
 
 export const metadata: Metadata = {
-  title: "Basic Amigurumi Shape Stitch-Count References",
+  title: { absolute: "Amigurumi Shape Counts: Sphere, Cone & Oval" },
   description,
   keywords: [
     "amigurumi stitch count reference",

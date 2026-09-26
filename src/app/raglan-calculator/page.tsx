@@ -5,7 +5,7 @@ import ToolLayout from "@/components/ToolLayout";
 import RaglanCalculatorTool from "./RaglanCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Raglan Finished-Body Stitch Checkpoint",
+  title: { absolute: "Raglan Calculator: Finished-Body Stitch Count" },
   description:
     "Calculate a bounded finished-body stitch checkpoint from circumference, measured gauge, and a required stitch multiple.",
   keywords: ["raglan body stitch count", "sweater gauge calculator", "raglan checkpoint"],

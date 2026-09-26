@@ -217,6 +217,31 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/blog/yarn-fiber-types-guide',
+        destination: '/guides/fiber-content-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/crochet-circle-guide',
+        destination: '/guides/flat-circle-crochet-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/scrap-yarn-stash-busting-guide',
+        destination: '/guides/yarn-stash-management-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/needle-guide-types',
+        destination: '/guides/needle-sizes-guide',
+        permanent: true,
+      },
+      {
+        source: '/blog/cross-stitch-fabric-count',
+        destination: '/cross-stitch-calculator',
+        permanent: true,
+      },
+      {
         source: '/blog/:path*',
         destination: '/guides',
         permanent: true,

@@ -5,7 +5,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import CircleCalculatorTool from "./CircleCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Crochet Circle Round Planner - Preset Schedule",
+  title: { absolute: "Crochet Circle Calculator: Round Stitch Counts" },
   description:
     "Generate a bounded 3-to-30-round arithmetic schedule from a selected 6, 8, 12, or 16 starting-count preset, then check the actual fabric.",
   keywords: [

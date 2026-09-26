@@ -3,9 +3,9 @@ import Link from "next/link";
 import { amazonSearchUrl } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
-  title: "Best Knitting Needles (2026): All Types Reviewed",
+  title: { absolute: "Best Knitting Needles (2026): Beginner to Pro Picks | FiberTools" },
   description:
-    "The best knitting needles for beginners and experienced knitters in 2026. Straight, circular, and DPN recommendations for every budget.",
+    "Bamboo straights for learning, ChiaoGoo circulars for everything else — the best knitting needles for every budget, with size guidance.",
   keywords: [
     "best knitting needles",
     "knitting needles for beginners",
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "article",
-    title: "Best Knitting Needles (2026): All Types Reviewed",
+    title: "Best Knitting Needles (2026): Beginner to Pro Picks | FiberTools",
     description:
-      "The best knitting needles for beginners and experienced knitters in 2026. Straight, circular, and DPN recommendations for every budget.",
+      "Bamboo straights for learning, ChiaoGoo circulars for everything else — the best knitting needles for every budget, with size guidance.",
     url: "https://fibertools.app/best-knitting-needles",
     images: [
       {
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Best Knitting Needles (2026): All Types Reviewed",
+    title: "Best Knitting Needles (2026): Beginner to Pro Picks | FiberTools",
     description:
-      "The best knitting needles for beginners and experienced knitters in 2026. Straight, circular, and DPN recommendations for every budget.",
+      "Bamboo straights for learning, ChiaoGoo circulars for everything else — the best knitting needles for every budget, with size guidance.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/best-knitting-needles" },
@@ -43,9 +43,9 @@ export default function BestKnittingNeedlesPage() {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Best Knitting Needles (2026): All Types Reviewed",
+    headline: "Best Knitting Needles (2026): Beginner to Pro Picks",
     description:
-      "The best knitting needles for beginners and experienced knitters in 2026. Straight, circular, and DPN recommendations for every budget.",
+      "Bamboo straights for learning, ChiaoGoo circulars for everything else — researched knitting needle picks for every budget, with size guidance.",
     datePublished: "2026-03-11",
     dateModified: "2026-04-16",
     url: "https://fibertools.app/best-knitting-needles",
@@ -139,7 +139,7 @@ export default function BestKnittingNeedlesPage() {
       </p>
 
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
-        Best Knitting Needles (2026): All Types Reviewed
+        Best Knitting Needles (2026): Beginner to Pro Picks
       </h1>
 
       {/* Answer capsule */}

@@ -5,7 +5,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import WeavingSettCalculatorTool from "./WeavingSettCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "Weaving Sett & EPI Calculator, Free",
+  title: { absolute: "Weaving Sett Calculator: EPI, Warp & Reed Sleying" },
   description:
     "Estimate a starting sett and warp allowance, or generate exact bounded reed-sleying arithmetic. Sample before committing yarn. Free, no signup.",
   keywords: [

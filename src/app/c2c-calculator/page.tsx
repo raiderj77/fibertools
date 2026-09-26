@@ -7,7 +7,7 @@ const description =
   "Round target dimensions to a bounded C2C block grid from a measured two-axis swatch, with an optional measured yarn-per-block planning total.";
 
 export const metadata: Metadata = {
-  title: "C2C Blanket Calculator",
+  title: { absolute: "C2C Blanket Calculator: Blocks, Rows & Yarn" },
   description,
   keywords: [
     "C2C calculator",

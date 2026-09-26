@@ -3,10 +3,10 @@ import ToolLayout from "@/components/ToolLayout";
 import AnswerBlock from "@/components/AnswerBlock";
 import SpinningCalculatorTool from "./SpinningCalculatorTool";
 
-const description = "Calculate the ideal geometric ratio between a spinning wheel's drive wheel and the pulley connected by its drive band.";
+const description = "Calculate a simplified geometric ratio from a spinning wheel's effective drive-wheel and connected-pulley band-path diameters.";
 
 export const metadata: Metadata = {
-  title: "Spinning Wheel Drive Ratio Calculator",
+  title: { absolute: "Spinning Wheel Ratio Calculator: Drive & Pulley" },
   description,
   keywords: [
     "spinning wheel ratio",

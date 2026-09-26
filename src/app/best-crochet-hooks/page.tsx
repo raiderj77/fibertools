@@ -3,9 +3,9 @@ import Link from "next/link";
 import { amazonSearchUrl } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
-  title: "Best Crochet Hooks (2026): Every Budget",
+  title: { absolute: "Best Crochet Hooks (2026): Beginner to Pro Picks | FiberTools" },
   description:
-    "The best crochet hooks for beginners and experienced crocheters in 2026. Ergonomic, aluminum, and steel hook recommendations.",
+    "Ergonomic, aluminum & steel — the best crochet hooks for every budget in 2026, with help picking your size.",
   keywords: [
     "best crochet hooks",
     "ergonomic crochet hooks",
@@ -16,9 +16,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "article",
-    title: "Best Crochet Hooks (2026): Every Budget",
+    title: "Best Crochet Hooks (2026): Beginner to Pro Picks | FiberTools",
     description:
-      "The best crochet hooks for beginners and experienced crocheters in 2026. Ergonomic, aluminum, and steel hook recommendations.",
+      "Ergonomic, aluminum & steel — the best crochet hooks for every budget in 2026, with help picking your size.",
     url: "https://fibertools.app/best-crochet-hooks",
     images: [
       {
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Best Crochet Hooks (2026): Every Budget",
+    title: "Best Crochet Hooks (2026): Beginner to Pro Picks | FiberTools",
     description:
-      "The best crochet hooks for beginners and experienced crocheters in 2026. Ergonomic, aluminum, and steel hook recommendations.",
+      "Ergonomic, aluminum & steel — the best crochet hooks for every budget in 2026, with help picking your size.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/best-crochet-hooks" },
@@ -43,9 +43,9 @@ export default function BestCrochetHooksPage() {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Best Crochet Hooks (2026): Every Budget",
+    headline: "Best Crochet Hooks (2026): Beginner to Pro Picks",
     description:
-      "The best crochet hooks for beginners and experienced crocheters in 2026. Ergonomic, aluminum, and steel hook recommendations.",
+      "Ergonomic, aluminum, and steel crochet hook picks for every budget in 2026, with help choosing a size.",
     datePublished: "2026-03-11",
     dateModified: "2026-04-16",
     url: "https://fibertools.app/best-crochet-hooks",
@@ -139,7 +139,7 @@ export default function BestCrochetHooksPage() {
       </p>
 
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
-        Best Crochet Hooks (2026): Every Budget
+        Best Crochet Hooks (2026): Beginner to Pro Picks
       </h1>
 
       {/* Answer capsule */}

@@ -3,9 +3,9 @@ import ToolLayout from "@/components/ToolLayout";
 import StitchQuickReferenceTool from "./StitchQuickReferenceTool";
 
 export const metadata: Metadata = {
-  title: "Stitch Quick Reference, Crochet & Knitting",
+  title: { absolute: "Crochet & Knitting Stitch Quick Reference" },
   description:
-    "Visual step-by-step guide for every basic crochet and knitting stitch. Yarn overs, pull-throughs, turning chains, and loop counts at a glance. Free.",
+    "Look up the included common crochet and knitting stitches with yarn overs, pull-throughs, loop counts and turning-chain notes. Free.",
   keywords: [
     "crochet stitch diagram",
     "how to double crochet",

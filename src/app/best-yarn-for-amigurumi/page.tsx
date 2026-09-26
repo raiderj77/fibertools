@@ -3,7 +3,7 @@ import Link from "next/link";
 import { amazonSearchUrl } from "@/lib/affiliate";
 
 export const metadata: Metadata = {
-  title: "Best Yarn for Amigurumi (2026): Tight & Neat",
+  title: { absolute: "Best Yarn for Amigurumi (2026): Cotton & Acrylic Picks" },
   description:
     "The best yarn for amigurumi in 2026. Cotton and acrylic picks for tight gauge, clean stitch definition, and vibrant colors.",
   keywords: [

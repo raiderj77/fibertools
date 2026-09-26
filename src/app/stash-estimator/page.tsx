@@ -5,7 +5,7 @@ import StashEstimatorTool from "./StashEstimatorTool";
 
 const description = "Estimate yarn remaining in a partial skein from its measured weight and the same yarn's label weight and length. Category alone cannot determine yardage.";
 export const metadata: Metadata = {
-  title: "Yarn Stash Estimator", description,
+  title: { absolute: "Yarn Stash Estimator: Partial Skein Yardage" }, description,
   alternates: { canonical: "/stash-estimator" },
   openGraph: { title: "Yarn Stash Estimator", description, url: "https://fibertools.app/stash-estimator", type: "website",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Yarn Stash Estimator" }] },

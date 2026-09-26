@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import WpiCalculatorTool from "./WpiCalculatorTool";
 
 export const metadata: Metadata = {
-  title: "WPI to Yarn Weight Converter",
+  title: { absolute: "WPI Calculator: Identify Possible Yarn Weights" },
   description:
     "Enter wraps per inch to estimate possible yarn weight categories, recommended needles, hooks, gauge range, and project ideas. Free WPI tool.",
   keywords: [

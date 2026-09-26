@@ -4,7 +4,7 @@ import AnswerBlock from "@/components/AnswerBlock";
 import StripeGeneratorTool from "./StripeGeneratorTool";
 
 export const metadata: Metadata = {
-  title: "Stripe Row Pattern Generator",
+  title: { absolute: "Stripe Pattern Generator: Rows & Color Sequence" },
   description:
     "Create a bounded stripe row sequence with fixed, ranged, or palette-order modes and a live color preview. Row shares do not estimate yarn use.",
   keywords: [

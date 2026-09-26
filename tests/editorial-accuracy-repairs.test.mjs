@@ -15,7 +15,7 @@ function loadTs(path, imports = {}) {
 test('existing yarn-label guide preserves identity and declines unsupported safety claims', () => {
   const guide = loadTs('src/lib/guides.ts').guides.find(g => g.slug === 'reading-yarn-labels');
   assert.equal(guide.date, '2026-02-23');
-  assert.equal(guide.title, 'The Complete Guide to Reading Yarn Labels (What Every Number Means)');
+  assert.equal(guide.title, 'How to Read a Yarn Label: Weight, Gauge & Care');
   assert.equal(guide.modifiedDate, '2026-09-05');
   const text = guide.sections.map(s => s.content).join('\n');
   assert.doesNotMatch(text, /burn testing|flame-retardant treatment|moth-resistant treatment|certified free from harmful|exactly how many skeins|making it machine washable/i);

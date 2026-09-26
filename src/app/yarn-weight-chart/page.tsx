@@ -4,9 +4,9 @@ import ToolLayout from "@/components/ToolLayout";
 import YarnWeightChartTool from "./YarnWeightChartTool";
 
 export const metadata: Metadata = {
-  title: "Yarn Weight Chart & Substitution, Free",
+  title: { absolute: "Yarn Weight Chart: Sizes 0–7, Gauge & Substitutions" },
   description:
-    "Compare CYC yarn weight categories, knitting gauge guidelines, and common regional names. Compare yarn labels, then verify substitutions with a swatch. Free.",
+    "Free yarn weight chart — all 8 CYC categories with gauge, needle and hook sizes, and US/UK/AU ply names. Compare substitutes, then swatch.",
   keywords: [
     "yarn weight chart",
     "yarn weight conversion",
@@ -25,17 +25,17 @@ export const metadata: Metadata = {
     "yarn weight comparison",
   ],
   openGraph: {
-    title: "Yarn Weight Chart & Substitution, Free",
+    title: "Yarn Weight Chart: Sizes 0–7, Gauge & Substitutions",
     description:
-      "Compare CYC yarn weight categories, knitting gauge guidelines, and common regional names. Compare yarn labels, then verify substitutions with a swatch. Free.",
+      "All 8 CYC categories with gauge, needle and hook sizes, and US/UK/AU ply names. Compare substitutes, then swatch.",
     url: "https://fibertools.app/yarn-weight-chart",
     images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Yarn Weight Chart & Substitution, Free" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yarn Weight Chart & Substitution, Free",
+    title: "Yarn Weight Chart: Sizes 0–7, Gauge & Substitutions",
     description:
-      "Compare CYC yarn weight categories, knitting gauge guidelines, and common regional names. Compare yarn labels, then verify substitutions with a swatch. Free.",
+      "All 8 CYC categories with gauge, needle and hook sizes, and US/UK/AU ply names. Compare substitutes, then swatch.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/yarn-weight-chart" },
@@ -51,7 +51,12 @@ export default function YarnWeightChartPage() {
       </div>
       <YarnWeightChartTool />
       <p style={{ marginTop: "1.5rem", fontSize: "0.95rem" }}>
-        Ready to evaluate your substitute yarn? Make a swatch, then use the{" "}
+        Working with yarn that has lost its label? Use the{" "}
+        <Link href="/yarn-weight-calculator">
+          Yarn Weight Calculator
+        </Link>{" "}
+        to estimate possible categories from WPI or knitting stockinette gauge. Ready to
+        evaluate a substitute yarn? Make a swatch, then use the{" "}
         <Link href="/gauge-calculator">
           Gauge Calculator
         </Link>{" "}
