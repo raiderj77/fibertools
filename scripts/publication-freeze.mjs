@@ -13,6 +13,7 @@ const FREEZE_STATUSES = new Set(["ACTIVE", "LIFTED"]);
 const PINNED_BASELINE_COMMIT = "e67c27714f5353b14e6ae13f6b1291f677fdbaf3";
 const PINNED_BASELINE_SHA256 = "ca20511506aefd76fd3d27d117bdc785bfe4354e2c3c776c6726a68494a8cc30";
 const NEXT_PAGE_EXTENSIONS = [".tsx", ".ts", ".jsx", ".js"];
+const PUBLICATION_TIME_ZONE = "America/Los_Angeles";
 
 
 function normalizedPath(value) {
@@ -231,6 +232,22 @@ function isIsoDate(value) {
 }
 
 
+export function publicationDate(now = new Date()) {
+  if (!(now instanceof Date) || Number.isNaN(now.getTime())) {
+    throw new TypeError("Publication date requires a valid Date.");
+  }
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-US", {
+      timeZone: PUBLICATION_TIME_ZONE,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).formatToParts(now).map(({ type, value }) => [type, value]),
+  );
+  return `${parts.year}-${parts.month}-${parts.day}`;
+}
+
+
 function validApproval(approval, freeze, today, violations, index) {
   const prefix = `Approval ${index + 1}`;
   if (typeof approval.route !== "string" || !approval.route.startsWith("/")) violations.push(`${prefix}: route must start with /.`);
@@ -314,7 +331,7 @@ export function analyzePublicationState(manifest, state, now = new Date()) {
   if (!freeze || !baseline || !Array.isArray(manifest.approvals)) return ["Publication manifest schema is incomplete."];
   if (!isIsoDate(freeze.startsOn) || !isIsoDate(freeze.decisionDate)) violations.push("Freeze dates must be YYYY-MM-DD.");
 
-  const today = now.toISOString().slice(0, 10);
+  const today = publicationDate(now);
   validateFreezeDecision(freeze, today, violations);
   if (baseline.capturedFromCommit !== PINNED_BASELINE_COMMIT) {
     violations.push(`Publication baseline must remain pinned to ${PINNED_BASELINE_COMMIT}.`);
