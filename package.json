@@ -36,7 +36,7 @@
     "test:stitchproof-distribution": "node --test tests/stitchproof-distribution.test.mjs",
     "test:ui-accessibility": "node --test tests/ui-accessibility.test.mjs",
     "check:revenue-path": "node scripts/revenue-path-check.js",
-    "test:security": "node scripts/security-check.js && node --check public/sw.js",
+    "test:security": "node scripts/security-check.js && node --check public/sw.js && node --test tests/dependency-depth-guard.test.mjs",
     "test:quality": "node scripts/quality-gate.js && npm run test:tool-accuracy",
     "lint:predeploy": "node scripts/predeploy-check.js",
     "prebuild": "npm run test:runtime && npm run lint:predeploy && npm run lint:content && npm run test:environment-docs",
@@ -70,6 +70,9 @@
     "next": {
       "postcss": "8.5.26"
     },
-    "sharp": "0.35.4"
+    "sharp": "0.35.4",
+    "minimatch@3.1.4": { "brace-expansion": "1.1.21" },
+    "minimatch@9.0.7": { "brace-expansion": "5.0.12" },
+    "braces": "npm:@dieub/braces-depth-guard@3.0.3-pn.3"
   }
 }
