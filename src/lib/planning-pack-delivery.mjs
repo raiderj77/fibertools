@@ -181,13 +181,18 @@ function sessionMatchesPurchase(session, sessionId, configuration) {
 }
 
 function unavailableResponse(status = 404) {
-  return new Response("Download unavailable.", {
-    status,
-    headers: {
-      ...RESPONSE_HEADERS,
-      "Content-Type": "text/plain; charset=utf-8",
-    },
-  });
+  return new Response(
+    "Download unavailable.\n\n" +
+      "If you have already paid, do not purchase again. To retry the download, refresh this page.\n\n" +
+      "If the download still fails, contact hello@fibertools.app for help. Do not share your download link.",
+    {
+      status,
+      headers: {
+        ...RESPONSE_HEADERS,
+        "Content-Type": "text/plain; charset=utf-8",
+      },
+    }
+  );
 }
 
 function checkoutUnavailableResponse(status = 404) {

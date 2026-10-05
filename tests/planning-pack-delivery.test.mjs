@@ -606,7 +606,7 @@ test("wrong-size or wrong-checksum private bytes never reach the customer", asyn
     });
     assert.equal(response.status, 502);
     assert.equal(response.headers.get("content-type"), "text/plain; charset=utf-8");
-    assert.equal(await response.text(), "Download unavailable.");
+    assert.match(await response.text(), /^Download unavailable\./);
   }
 });
 
@@ -647,9 +647,47 @@ test("provider failures return generic responses without reflected private data"
   const body = await response.text();
 
   assert.equal(response.status, 503);
-  assert.equal(body, "Download unavailable.");
-  assert.doesNotMatch(body, /cs_test_|@|secret/i);
+  assert.match(body, /^Download unavailable\./);
+  assert.doesNotMatch(body, /cs_test_|owner@example\.invalid|secret/i);
   assert.equal(response.headers.get("location"), null);
+});
+
+test("failed downloads offer safe recovery without another purchase or private data", async (t) => {
+  const manifest = await fulfillmentManifest();
+  const privateFixture = `${SESSION_ID} buyer@example.invalid private-provider-detail`;
+  const cases = [
+    ["invalid link", 400, { sessionId: "" }, {}, []],
+    ["unavailable configuration", 404, { env: {} }, {}, []],
+    ["unverified purchase", 403, {}, { session: paidSession({ payment_status: "unpaid" }) }, ["account", "session"]],
+    ["invalid artifact", 502, {}, { bytes: new Uint8Array(1) }, ["account", "session", "private-object"]],
+    ["provider failure", 503, {}, { sessionError: new Error(privateFixture) }, ["account", "session"]],
+    ["storage failure after verified payment", 503, {}, { storageError: new Error(privateFixture) }, ["account", "session", "private-object"]],
+  ];
+  for (const [name, status, overrides, mockOptions, calls] of cases) {
+    await t.test(name, async () => {
+      const mocks = mockedDependencies(mockOptions);
+      const response = await invokeDownload({
+        manifest, env: fulfillmentEnvironment(manifest),
+        dependencies: mocks.implementation, ...overrides,
+      });
+      const body = await response.text();
+      assert.equal(response.status, status);
+      assert.deepEqual(mocks.calls, calls);
+      assert.match(body, /refresh this page/i);
+      assert.match(body, /already paid, do not purchase again/i);
+      assert.match(body, /hello@fibertools\.app/);
+      assert.match(body, /do not share your download link/i);
+      for (const privateValue of [SESSION_ID, "buyer@example.invalid", "private-provider-detail"]) {
+        assert.equal(body.includes(privateValue), false);
+      }
+      assert.equal(response.headers.get("content-type"), "text/plain; charset=utf-8");
+      assert.equal(response.headers.get("cache-control"), "no-store, max-age=0");
+      assert.equal(response.headers.get("referrer-policy"), "no-referrer");
+      assert.equal(response.headers.get("x-robots-tag"), "noindex, nofollow, noarchive");
+      assert.equal(response.headers.get("location"), null);
+      assert.equal(response.headers.get("content-disposition"), null);
+    });
+  }
 });
 
 test("public product, privacy, and terms copy describe first-party private delivery", async () => {
