@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
+import { parseFrontMatter as matter } from "./front-matter.mjs";
 import { remark } from "remark";
 import remarkGfm from "remark-gfm";
 import html from "remark-html";
