@@ -153,3 +153,36 @@ for (const { route, marker } of ROUTES) {
     }
   });
 }
+
+
+test("built crochet hook guide keeps factual limits and FAQ answers aligned with schemas", () => {
+  const html = readFileSync(resolve(ROOT, ".next/server/app/best-crochet-hooks.html"), "utf8");
+  const text = visibleText(html);
+  const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gu)]
+    .map((match) => JSON.parse(match[1]));
+  const article = schemas.find((schema) => schema["@type"] === "Article");
+  const faq = schemas.find((schema) => schema["@type"] === "FAQPage");
+  assert.ok(article && faq, "Article and FAQ schemas must exist");
+  assert.ok(text.includes(article.headline));
+  assert.equal(article.dateModified, "2026-10-10");
+  assert.ok(text.includes("Last updated: October 10, 2026"));
+  assert.match(html, /<title>Crochet Hook Selection Guide: Size, Grip &amp; Gauge \| FiberTools<\/title>/);
+  assert.match(html, /rel="canonical" href="https:\/\/fibertools.app\/best-crochet-hooks"/);
+  assert.ok(text.includes("not a hands-on product test"));
+  assert.ok(text.includes("not evidence of pain relief or fatigue reduction"));
+  assert.doesNotMatch(text + JSON.stringify(schemas), /best overall|top all-around|reduce[s]? (?:wrist and hand|hand) fatigue|arthritis|carpal tunnel|comfortable for hours/i);
+  assert.equal(faq.mainEntity.length, 4);
+  for (const item of faq.mainEntity) {
+    assert.ok(text.includes(item.name), `Missing visible FAQ: ${item.name}`);
+    assert.ok(text.includes(item.acceptedAnswer.text), `Schema differs from visible answer: ${item.name}`);
+  }
+  const paidLinks = [...visibleMarkup(html).matchAll(/<a\b[^>]*href="([^"]*amazon.com[^"]*)"[^>]*>[\s\S]*?<\/a>/g)];
+  assert.equal(paidLinks.length, 2);
+  for (const [link] of paidLinks) {
+    assert.match(link, /rel="sponsored nofollow noopener"/);
+    assert.match(link, /paid link/);
+    assert.ok(text.indexOf("FiberTools may earn a commission") < text.indexOf("Search Clover Amour on Amazon"));
+  }
+  const sitemap = readFileSync(resolve(ROOT, ".next/server/app/sitemap.xml.body"), "utf8");
+  assert.match(sitemap, /<loc>https:\/\/fibertools.app\/best-crochet-hooks<\/loc>\s*<lastmod>2026-10-10(?:T[^<]*)?<\/lastmod>/);
+});
