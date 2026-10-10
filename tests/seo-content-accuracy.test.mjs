@@ -24,6 +24,37 @@ const yarnPage = read("src/app/yarn-calculator/page.tsx");
 const yarnTool = read("src/app/yarn-calculator/YarnCalculatorTool.tsx");
 const yarnWeightChartPage = read("src/app/yarn-weight-chart/page.tsx");
 
+test("homepage explains measured-swatch methods without universal validation claims", () => {
+  assert.doesNotMatch(homepage, /instant, accurate results|validated against industry references|formulas account for[^.]*fiber-specific variables/);
+  assert.match(homepage, /measured swatch/);
+  assert.match(homepage, /flat rectangular/);
+  assert.match(homepage, /same yarn, stitch pattern, tension, and finishing/);
+  assert.match(homepage, /does not predict[^.]*fiber behavior/);
+  assert.match(homepage, /Treat every calculator result as a planning aid/);
+  assert.match(homepage, /craftyarncouncil\.com\/standards\/yarn-weight-system/);
+});
+
+test("About preserves owner background without invented validation or editorial history", () => {
+  const about = read("src/app/about/page.tsx");
+  assert.match(about, /owner and developer/i);
+  assert.match(about, /Jason Ramirez/);
+  assert.match(about, /I am a developer and a counselor/);
+  assert.match(about, /I am also in recovery/);
+  assert.match(about, /All self-service calculators stay free/);
+  assert.doesNotMatch(about, /Every calculator uses Craft Yarn Council|checked every formula by hand|tested each one|free, accurate|Editorial Team/i);
+  assert.match(about, /planning aids/);
+});
+
+test("Contact consistently identifies the owner and describes the actual yarn method", () => {
+  const contact = read("src/app/contact/page.tsx");
+  assert.match(contact, /Jason Ramirez, founder, owner and developer/);
+  assert.doesNotMatch(contact, /FiberTools team|small, dedicated team|Every calculator[^.]*tested against established references|Every tool[^.]*uses these tools every day|Many of the tools[^.]*user suggestions|Many of the tools[^.]*requests from crafters/i);
+  assert.match(contact, /representative swatch/);
+  assert.match(contact, /flat rectangular/);
+  assert.match(contact, /mailto:hello@fibertools\.app/);
+  assert.match(contact, /All self-service calculators stay free/);
+});
+
 test("describes yarn quantities as estimates in the shared tool registry", () => {
   assert.equal(
     getToolBySlug("yarn-calculator")?.description,
