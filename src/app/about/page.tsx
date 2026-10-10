@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "About Jason Ramirez, the maker behind FiberTools",
   description:
-    "FiberTools is made by Jason Ramirez. He is a developer and a counselor in recovery who took up crochet as a calming hobby. He builds free, accurate fiber arts tools. Here is the real story.",
+    "FiberTools is made by Jason Ramirez, owner and developer, and a counselor in recovery who crochets. Explore the free fiber arts planning tools and the story behind them.",
   keywords: [
     "about FiberTools",
     "Jason Ramirez",
@@ -50,9 +50,9 @@ const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Jason Ramirez",
-  jobTitle: "Founder and Developer, FiberTools",
+  jobTitle: "Owner and Developer, FiberTools",
   description:
-    "Developer and counselor in recovery who took up crochet as a calming hobby and builds free, accurate fiber arts tools.",
+    "Owner and developer of FiberTools, and a counselor in recovery who took up crochet as a calming hobby and builds free fiber arts planning tools.",
   knowsAbout: ["Crochet", "Knitting", "Fiber arts", "Web development"],
   sameAs: ["https://bsky.app/profile/friendlydeveloper.bsky.social"],
   worksFor: { "@type": "Organization", name: "Your Friendly Developer LLC" },
@@ -80,8 +80,8 @@ export default function AboutPage() {
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
         <p>
-          Hi. I am Jason Ramirez. I make FiberTools. It is just me, not a big team and
-          not a robot. I build these tools, and I use them too.
+          Hi. I am Jason Ramirez, the owner and developer of FiberTools.
+          I build free tools to help makers plan fiber arts projects.
         </p>
 
         <section>
@@ -134,15 +134,15 @@ export default function AboutPage() {
             stuck on the side. I use it every day. When I find something missing, I add it.
           </p>
           <p>
-            Every calculator uses Craft Yarn Council (CYC) standards. That is the same
-            system yarn makers use all over the world. It covers yarn weights (0 to 7, from
-            Lace to Jumbo), hook and needle sizes, and gauge. The size charts match real
-            maker standards, not guesses.
+            The yarn weight references use Craft Yarn Council (CYC) categories, from
+            Lace (0) to Jumbo (7). Calculator methods have their own scope: the Gauge
+            Calculator uses measured stitch and row counts, while the Yarn Calculator
+            scales measured swatch consumption to flat rectangular fabric.
           </p>
           <p>
-            I checked every formula by hand before I put it online. I also tested each one
-            with tricky numbers. Big blankets. Odd swatch sizes. Stitch counts that do not
-            divide evenly.
+            These results are planning aids, not guarantees of yarn use or finished fit.
+            Read the method and limitations for the tool you choose. Use a representative
+            swatch and check the pattern and yarn label before committing to a project.
           </p>
           <p>
             Now I crochet too. So I test the tools on my own projects. My first granny
