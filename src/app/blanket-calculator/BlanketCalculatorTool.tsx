@@ -235,6 +235,8 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
   const projectText = result ? [
     `${useCustom ? "Custom" : BLANKET_SIZES[sizeIdx].label} blanket`,
     `Base size: ${sizeText(result.baseWidthIn,result.baseLengthIn)}`,
+    ...(useCustom ? [`Entered custom size: ${customW} x ${customL} ${dim}.`] : []),
+    `Added overhang: ${overhang || "0"} ${dim}; pillow tuck: ${pillowTuck ? (units === "metric" ? "50.8 cm" : "20 in") : "none"}.`,
     `Calculated target: ${sizeText(result.widthIn,result.lengthIn)}`,
     ...(plan && selectedWidth != null ? [
       `Selected rounding rule: ${selectedRule}; ${selectedCount} stitches; ${result.rows} rows.`,
@@ -243,6 +245,10 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
       ...(result.repeatApplied ? ["Default rule: nearest whole stitch, then nearest compatible repeat; ties upward."] : []),
     ] : ["Stitch and row counts not calculated: enter complete valid gauge."]),
     `Yarn-estimate size basis: ${sizeText(result.widthIn,result.lengthIn)} target rectangle; not rebased to the selected modeled size.`,
+    ...(result.hasSwatchUsage ? [
+      `Swatch: ${swatchWidth} x ${swatchHeight} ${dim}; ${swatchGrams} g used.`,
+      `Yarn label: ${skeinYards} ${units === "metric" ? "m" : "yd"}; ${skeinGrams} g per skein.`,
+    ] : []),
     result.hasSwatchUsage ? `Yarn: ${units === "metric" ? result.meters + " m" : result.yards + " yd"}; ${result.grams} g; ${result.skeins} whole skeins; includes 10% planning allowance.` : "Yarn estimate not calculated: supply measured swatch consumption and yarn-label inputs.",
     "Pattern offsets include only your entered extra. No inferred edges, borders or ease; modeled size is not guaranteed."
   ].join("\n") : "";
@@ -403,6 +409,22 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
           <p className="text-xs leading-relaxed text-bark-400 dark:text-bark-500">
             Enter both values exactly as printed on your yarn label. The result includes a 10% planning buffer and rounds skeins up.
           </p>
+          <aside aria-labelledby="blanket-yarn-example-title" className="rounded-xl border border-sage-200 dark:border-sage-800 p-4 text-sm text-bark-700 dark:text-cream-200 space-y-2">
+            <h3 id="blanket-yarn-example-title" className="font-semibold">Hypothetical yarn example</h3>
+            <p>
+              In Yards / Inches mode, suppose a swatch measuring 6 by 6 inches weighs 12 grams,
+              and the yarn label lists 220 yards per 100 grams. Select Throw (50 by 60 inches),
+              leave overhang at zero and pillow tuck off.
+            </p>
+            <p>
+              The area calculation is 50 × 60 ÷ (6 × 6) × 12 = 1,000 g before allowance.
+              With the calculator&apos;s 10% planning allowance, the result is 1,100 g, 2,420 yards and 11 whole skeins.
+            </p>
+            <p>
+              These are illustrative inputs, not a measured project or a guarantee that the allowance covers your project.
+              Use your own swatch and label; plan borders and other construction separately.
+            </p>
+          </aside>
         </div>
 
         {/* Right: results */}
