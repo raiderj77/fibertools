@@ -197,3 +197,13 @@ test("keeps contextual journeys connected without sending shaped garments to the
   assert.doesNotMatch(raglanPage, /href="\/yarn-calculator"/);
   assert.match(raglanPage, /href="\/sleeve-calculator"/);
 });
+
+
+test("machine-readable hook guide listing matches its evidence-based selection scope", () => {
+  const listing = read("public/llms.txt").split("\n").find((line) => line.includes("https://fibertools.app/best-crochet-hooks"));
+  assert.ok(listing, "Keep the existing canonical hook-guide listing");
+  assert.match(listing, /Crochet Hook Selection Guide/);
+  assert.match(listing, /size, grip, and gauge/i);
+  assert.match(listing, /manufacturer specifications/);
+  assert.doesNotMatch(listing, /Best Crochet Hooks|recommendations|2026/i);
+});
