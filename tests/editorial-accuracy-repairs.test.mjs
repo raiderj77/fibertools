@@ -29,7 +29,7 @@ test('guide sitemap reports an actual modification date with original-date fallb
   const guides = [{ slug: 'updated', date: '2026-02-23', modifiedDate: '2026-09-05' }, { slug: 'original', date: '2026-03-06' }];
   const sitemap = loadTs('src/app/sitemap.ts', {
     '@/lib/tools': { tools: [] }, '@/lib/guides': { getAllGuides: () => guides },
-    '@/lib/review-dates.mjs': { REVIEW_DATES: { homepage: { iso: '2026-03-01' } } },
+    '@/lib/review-dates.mjs': { REVIEW_DATES: { homepage: { iso: '2026-03-01' }, bestCrochetHooks: { iso: '2026-10-10' } } },
   }).default();
   assert.equal(sitemap.find(p => p.url.endsWith('/updated')).lastModified.toISOString().slice(0, 10), '2026-09-05');
   assert.equal(sitemap.find(p => p.url.endsWith('/original')).lastModified.toISOString().slice(0, 10), '2026-03-06');

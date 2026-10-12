@@ -1,4 +1,8 @@
 export const REVIEW_DATES = Object.freeze({
+  bestCrochetHooks: Object.freeze({
+    iso: "2026-10-10",
+    label: "October 10, 2026",
+  }),
   homepage: Object.freeze({
     iso: "2026-08-22",
     label: "August 22, 2026",

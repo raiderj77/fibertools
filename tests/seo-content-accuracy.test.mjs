@@ -138,8 +138,18 @@ test("keeps priority search snippets specific to what each existing page deliver
   assert.match(yarnPage, /estimate yardage and whole-skein counts/);
   assert.doesNotMatch(yarnPage, /get exact yardage/);
 
-  assert.match(bestCrochetHooksPage, /Best Crochet Hooks \(2026\): Beginner to Pro Picks \| FiberTools/);
-  assert.match(bestCrochetHooksPage, /Ergonomic, aluminum & steel/);
+  assert.match(bestCrochetHooksPage, /Crochet Hook Selection Guide: Size, Grip & Gauge \| FiberTools/);
+  assert.match(bestCrochetHooksPage, /Compare hook sizes, handle styles and manufacturer specifications/);
+});
+
+test("crochet hook guidance does not invent rankings, testing or health outcomes", () => {
+  assert.doesNotMatch(bestCrochetHooksPage, /best overall|top all-around|best crochet hook for most|reduce[s]? (?:wrist and hand|hand) fatigue|arthritis|carpal tunnel|comfortable for hours|tried and true|favored by experienced|30 minutes/i);
+  assert.match(bestCrochetHooksPage, /not a hands-on product test/);
+  assert.match(bestCrochetHooksPage, /not evidence of pain relief or fatigue reduction/);
+  for (const url of ["https://www.craftyarncouncil.com/standards/yarn-weight-system", "https://clover-usa.com/products/amour-crochet-hook-i", "https://en.tulip-japan.co.jp/knitting_needle/"]) {
+    assert.ok(bestCrochetHooksPage.includes(url), `Missing primary source: ${url}`);
+  }
+  assert.match(bestCrochetHooksPage, /alternates: \{ canonical: "\/best-crochet-hooks" \}/);
 });
 
 test("expands the existing granny-square guide without adding a competing route", () => {
