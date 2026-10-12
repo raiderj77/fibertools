@@ -2,7 +2,7 @@ import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
-import matter from "gray-matter";
+import { parseFrontMatter as matter } from "../src/lib/front-matter.mjs";
 
 
 const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));

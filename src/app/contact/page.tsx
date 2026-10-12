@@ -4,12 +4,12 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with the FiberTools team. Report bugs, suggest features, or ask questions about our free fiber arts calculators.",
+    "Contact the owner and developer of FiberTools. Report bugs, suggest features, or ask questions about the free fiber arts calculators.",
   keywords: ["contact", "feedback", "bug report", "FiberTools contact"],
   openGraph: {
     title: "Contact",
     description:
-      "Get in touch with the FiberTools team. Report bugs, suggest features, or ask questions about our free fiber arts calculators.",
+      "Contact the owner and developer of FiberTools. Report bugs, suggest features, or ask questions about the free fiber arts calculators.",
     url: "https://fibertools.app/contact",
     images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "Contact" }],
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact",
     description:
-      "Get in touch with the FiberTools team. Report bugs, suggest features, or ask questions about our free fiber arts calculators.",
+      "Contact the owner and developer of FiberTools. Report bugs, suggest features, or ask questions about the free fiber arts calculators.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/contact" },
@@ -27,7 +27,7 @@ export default function ContactPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-12">
       <h1 className="text-3xl font-bold text-bark-800 dark:text-cream-100 mb-2">
-        Contact Us
+        Contact FiberTools
       </h1>
       <p className="text-sm text-gray-600 mt-1 mb-4 text-center">Last updated: March 16, 2026</p>
 
@@ -36,10 +36,9 @@ export default function ContactPage() {
           <p>
             FiberTools is a collection of free self-service calculators and utilities
             built specifically for knitters, crocheters, weavers, spinners, and
-            fiber artists of every skill level. Every tool on the site is
-            designed by someone who uses these tools every day, so we understand the real-world problems crafters face
-            when planning projects, converting measurements, or adjusting
-            patterns.
+            fiber artists of every skill level. Jason, the owner and developer,
+            maintains the site to help with planning projects, converting measurements,
+            and working through pattern calculations.
           </p>
           <p>
             Whether you are a beginner figuring out how much yarn you need for
@@ -95,8 +94,7 @@ export default function ContactPage() {
             <li>
               <strong>Pattern suggestions</strong>, If you would like to see a
               calculator or reference chart for a specific technique, stitch
-              pattern, or craft discipline, let us know. Many of the tools on
-              FiberTools started as user suggestions.
+              pattern, or craft discipline, let us know what you need to calculate.
             </li>
             <li>
               <strong>Bug reports</strong>, Something broken, displaying
@@ -121,14 +119,12 @@ export default function ContactPage() {
 
         <section>
           <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100">
-            Our Response Time and Process
+            Response Time and Process
           </h2>
           <p>
-            FiberTools is maintained by a small, dedicated team, so we
-            typically respond within 2&ndash;3 business days. If your message is
-            about a critical bug that prevents a tool from working, we will do
-            our best to prioritize it. We read every email we receive, even if
-            it takes a little time to reply.
+            Jason maintains FiberTools and handles messages. Response times can vary.
+            If a tool is not working, include the tool name and a description of the
+            problem so he can investigate.
           </p>
         </section>
 
@@ -148,8 +144,8 @@ export default function ContactPage() {
                 className="text-sage-600 dark:text-sage-400 underline"
               >
                 Yarn Calculator
-              </Link>{" "}, Estimate how much yarn you need for any project based on gauge,
-              dimensions, and stitch pattern.
+              </Link>{" "}, Scale yarn consumed by a representative swatch to a flat rectangular
+              project, with a chosen planning allowance.
             </li>
             <li>
               <Link
@@ -157,8 +153,8 @@ export default function ContactPage() {
                 className="text-sage-600 dark:text-sage-400 underline"
               >
                 Gauge Calculator
-              </Link>{" "}, Convert your swatch measurements into accurate stitch and row
-              counts for pattern sizing.
+              </Link>{" "}, Calculate stitch and row gauge from measured swatch counts
+              and dimensions.
             </li>
             <li>
               <Link
@@ -197,18 +193,16 @@ export default function ContactPage() {
             Who creates these tools?
           </h3>
           <p>
-            FiberTools is built and maintained by Jason Ramirez, founder, who got tired of switching between fragmented fiber arts tools.
-            Every calculator is built with real-world crafting scenarios in mind,
-            tested against established references, and refined based on
-            community feedback.
+            FiberTools is built and maintained by Jason Ramirez, founder, owner and developer.
+            Read the <Link href="/about" className="text-sage-600 dark:text-sage-400 underline">About page</Link>{" "}
+            for his background and how to approach the tools as planning aids.
           </p>
 
           <h3 className="text-lg font-medium text-bark-800 dark:text-cream-100 mt-4">
             Can I suggest a new calculator?
           </h3>
           <p>
-            Absolutely. Many of the tools on FiberTools were inspired by
-            requests from crafters just like you. If there is a calculation you
+            Yes. If there is a calculation you
             find yourself doing by hand over and over, send us an email at{" "}
             <a
               href="mailto:hello@fibertools.app"

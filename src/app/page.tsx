@@ -417,13 +417,13 @@ export default function HomePage() {
             How do fiber arts calculators work?
           </h2>
           <p className="text-base font-medium text-bark-700 dark:text-cream-200 mb-3">
-            Enter your gauge swatch measurements, yarn weight, or pattern details, the calculator applies standard fiber arts formulas to give you instant, accurate results.
+            Enter the measurements or pattern details requested by the tool to calculate a planning estimate. The result depends on those inputs and the method each tool describes.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
-            FiberTools calculators use CYC yarn weight standards, gauge mathematics, and pattern conversion formulas validated against industry references. Each tool processes your inputs entirely in the browser, so results are instant and your data never leaves your device.
+            The Gauge Calculator divides measured stitch and row counts by the swatch dimensions. The Yarn Calculator scales yarn consumed by a measured swatch to a flat rectangular target and adds the allowance you choose. These self-service calculations run in your browser.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed mb-2">
-            Whether you are scaling a pattern to a different size, converting between US and metric needle sizes, or estimating yardage for a substitution, the underlying formulas account for stitch ratio, row gauge, and fiber-specific variables.
+            Swatch scaling assumes the same yarn, stitch pattern, tension, and finishing in the swatch and project. It does not predict changes in fiber behavior or account for shaping, seams, or borders. Use the stated scope and assumptions to decide whether a tool fits your project.
           </p>
           <p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">
             Treat every calculator result as a planning aid: follow the pattern and yarn label, make a representative swatch, and verify fit or dimensions before committing the full project.
@@ -525,7 +525,7 @@ export default function HomePage() {
           FiberTools is a collection of free self-service calculators and references for practical planning problems such as yarn quantities, gauge, size conversion, and row tracking.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
-          The tools are grounded in industry standards. Yarn weight classifications follow the Craft Yarn Council CYC system, needle and hook sizing follows US, metric, and UK conventions, and calculation methods remain visible so you can check the assumptions.
+          Yarn weight references use the Craft Yarn Council CYC categories. Calculation tools use their stated measurements and assumptions; a yarn category alone does not determine project gauge, yarn consumption, or finished fit.
         </p>
         <p className="text-[15px] text-bark-600 dark:text-cream-300 leading-relaxed mb-4">
           All self-service calculators stay free. Optional professional reviews and project downloads are paid.

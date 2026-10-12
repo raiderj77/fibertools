@@ -34,6 +34,19 @@ test("gauge-only blanket planning works with default skein label fields", () => 
   const result=calculate({gaugeStitches:"18",gaugeRows:"24"});
   assert.equal(result.stitches,225);assert.equal(result.rows,360);assert.equal(result.skeins,null);
 });
+
+test("hypothetical weighed-swatch example uses the actual calculator callback", () => {
+  const result = calculate({ swatchWidth: "6", swatchHeight: "6", swatchGrams: "12" });
+  assert.equal(result.widthIn, 50);
+  assert.equal(result.lengthIn, 60);
+  assert.equal(result.grams, 1100);
+  assert.equal(result.yards, 2420);
+  assert.equal(result.skeins, 11);
+  const edited = calculate({ swatchWidth: "12", swatchHeight: "8", swatchGrams: "24", skeinYards: "300", skeinGrams: "150" });
+  assert.equal(edited.grams, 825);
+  assert.equal(edited.yards, 1650);
+  assert.equal(edited.skeins, 6);
+});
 test("started swatch group must be complete, finite, and bounded", () => {
   assert.equal(calculate({swatchWidth:"4"}),null);
   assert.equal(calculate({customW:"1e300",customL:"10",useCustom:true}),null);
