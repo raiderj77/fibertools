@@ -10,6 +10,14 @@ import {
 } from "../src/lib/planning-pack-delivery.mjs";
 
 const read = (relativePath) => readFile(new URL(relativePath, import.meta.url), "utf8");
+
+test("pack and terms publish the exact owner-approved refund policy", async () => {
+  const policy = "You may request a full refund within 14 days of purchasing the Fiber Project Planning Pack. We also refund duplicate charges and unresolved file or delivery problems. Contact hello@fibertools.app with your order number for help or to request a refund. These terms do not limit your statutory rights.";
+  for (const path of ["../src/app/fiber-project-planning-pack/page.tsx", "../src/app/terms/page.tsx"]) {
+    const source = await read(path);
+    assert.ok(source.replace(/\s+/g, " ").includes(policy), path);
+  }
+});
 const NOW = new Date("2026-08-27T12:00:00.000Z");
 const SESSION_ID = "cs_test_unitfixture123";
 const PAYMENT_LINK_URL = "https://buy.stripe.com/test_unitfixture123";
@@ -711,7 +719,7 @@ test("public product, privacy, and terms copy describe first-party private deliv
     privacy,
     /Planning Pack[\s\S]*object is read server-side only after payment verification/
   );
-  assert.match(terms, /Last updated: August 27, 2026/);
+  assert.match(terms, /Last updated: October 13, 2026/);
   assert.match(terms, /Stripe processes[\s\S]*checkout/);
   assert.match(terms, /FiberTools verifies the paid Checkout Session/);
   assert.match(terms, /refund must be confirmed through Stripe/);
