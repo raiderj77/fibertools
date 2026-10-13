@@ -10,7 +10,7 @@ The three existing families are self-hosted from pinned WOFF2 files under `publi
 - Nunito: 400, 500, 600, 700; Cyrillic extended, Cyrillic, Vietnamese, Latin extended and Latin.
 - JetBrains Mono: 400, 500; Cyrillic extended, Cyrillic, Greek, Vietnamese, Latin extended and Latin.
 
-The non-Latin files are retained because the previous loader downloaded and emitted them even though only Latin was selected for preload. License sha256 values retain the original upstream bytes; textSha256 values normalize CRLF to LF for cross-platform checkout verification. Font binary checksums are exact bytes. The CSS SHA-256 pins the complete declarations, including Unicode ranges and fallback metric overrides. Source URLs are provenance only: no build or browser request uses them.
+The non-Latin files are retained because the previous loader downloaded and emitted them even though only Latin was selected for preload. License sha256 values retain the original upstream bytes; textSha256 values cover the bundled notice text with CRLF normalized to LF for cross-platform checkout verification. One trailing space in the upstream Nunito notice is removed; its wording is unchanged. Font binary checksums are exact bytes. The CSS SHA-256 pins the complete declarations, including Unicode ranges and fallback metric overrides. Source URLs are provenance only: no build or browser request uses them.
 
 ## Reason and maintenance
 
