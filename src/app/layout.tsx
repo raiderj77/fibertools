@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { DM_Serif_Display, Nunito, JetBrains_Mono } from "next/font/google";
+import localFonts from "@/data/local-fonts.json";
+import "./fonts.css";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,27 +10,6 @@ import CookieConsent from "@/components/CookieConsent";
 import AffiliateClickTracker from "@/components/AffiliateClickTracker";
 import SiteOnly from "@/components/SiteOnly";
 import { OrganizationSchema } from "@/components/StructuredData";
-
-const dmSerifDisplay = DM_Serif_Display({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const nunito = Nunito({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-mono",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://fibertools.app"),
@@ -124,8 +104,11 @@ export default function RootLayout({
   const adsenseEnabled = process.env.NEXT_PUBLIC_ADSENSE_ENABLED === "true";
 
   return (
-    <html lang="en" className={`${dmSerifDisplay.variable} ${nunito.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en">
       <head>
+        {localFonts.assets.filter((font) => font.preload).map((font) => (
+          <link key={font.file} rel="preload" href={`/fonts/${font.file}`} as="font" type="font/woff2" crossOrigin="anonymous" />
+        ))}
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#6b8e6d" />
         <script

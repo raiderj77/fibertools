@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
 import test from "node:test";
 import { dirname, resolve } from "node:path";
@@ -208,4 +209,40 @@ test("built crochet hook guide keeps factual limits and FAQ answers aligned with
   }
   const sitemap = readFileSync(resolve(ROOT, ".next/server/app/sitemap.xml.body"), "utf8");
   assert.match(sitemap, /<loc>https:\/\/fibertools.app\/best-crochet-hooks<\/loc>\s*<lastmod>2026-10-10(?:T[^<]*)?<\/lastmod>/);
+});
+
+test("bundled fonts preserve verified bytes, licenses, CSS coverage, and Latin preloads", () => {
+  const manifest = JSON.parse(readFileSync(resolve(ROOT, "src/data/local-fonts.json"), "utf8"));
+  const css = readFileSync(resolve(ROOT, "src/app/fonts.css"), "utf8");
+  const layout = readFileSync(resolve(ROOT, "src/app/layout.tsx"), "utf8");
+  const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
+  assert.equal(manifest.assets.length, 13);
+  assert.equal(manifest.licenses.length, 3);
+  for (const asset of manifest.assets) {
+    const bytes = readFileSync(resolve(ROOT, "public/fonts", asset.file));
+    assert.equal(digest(bytes), asset.sha256, asset.file);
+    assert.equal(bytes.length, asset.bytes);
+    assert.equal(bytes.toString("ascii", 0, 4), "wOF2");
+    assert.match(asset.sourceUrl, /^https:\/\/fonts\.gstatic\.com\//);
+    assert.ok(css.includes(`/fonts/${asset.file}`));
+  }
+  for (const license of manifest.licenses) {
+    const bytes = readFileSync(resolve(ROOT, "public/fonts", license.file));
+    assert.equal(digest(bytes.toString().replace(/\r\n/g, "\n")), license.textSha256);
+    assert.match(bytes.toString(), /SIL OPEN FONT LICENSE Version 1\.1/);
+    assert.ok(license.sourceUrl.includes(`/${manifest.licenseRepositoryCommit}/`));
+  }
+  assert.equal(digest(css.replace(/\r\n/g, "\n")), manifest.cssSha256);
+  assert.doesNotMatch(layout, /next\/font\/google/);
+  assert.match(layout, /import "\.\/fonts\.css"/);
+  const html = readFileSync(resolve(ROOT, ".next/server/app/index.html"), "utf8");
+  const preloads = html.match(/<link\b[^>]*rel="preload"[^>]*>/g) || [];
+  const fontPreloads = preloads.filter((link) => /as="font"/.test(link));
+  assert.equal(fontPreloads.length, 3);
+  for (const asset of manifest.assets.filter((font) => font.preload)) {
+    const link = fontPreloads.find((link) => link.includes(`/fonts/${asset.file}`));
+    assert.ok(link, `${asset.family}: Latin preload`);
+    assert.match(link, /type="font\/woff2"/);
+    assert.match(link, /crossorigin="anonymous"/);
+  }
 });

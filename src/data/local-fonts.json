@@ -1,0 +1,147 @@
+{
+  "baselineCommit": "3f458fbba54fa6bc70f73cac19823f600df2901b",
+  "licenseRepositoryCommit": "66928797f271fed5ee428544e7229685e2d90127",
+  "assets": [
+    {
+      "family": "DM Serif Display",
+      "file": "dmserifdisplay-dfea1d6549e78df6.woff2",
+      "sha256": "dfea1d6549e78df6e55d942c1d1eba5e2f809496205bc0b3a9d684f268b60011",
+      "bytes": 6800,
+      "sourceUrl": "https://fonts.gstatic.com/s/dmserifdisplay/v17/-nFnOHM81r4j6k0gjAW3mujVU2B2G_5x0vrx52jJ3Q.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400&display=swap",
+      "preload": false
+    },
+    {
+      "family": "DM Serif Display",
+      "file": "dmserifdisplay-f273cf2c9ce9bc7d.woff2",
+      "sha256": "f273cf2c9ce9bc7d6b0f4fcb8aee72f8cf5a249991308b6a144217e0760c5d3f",
+      "bytes": 17844,
+      "sourceUrl": "https://fonts.gstatic.com/s/dmserifdisplay/v17/-nFnOHM81r4j6k0gjAW3mujVU2B2G_Bx0vrx52g.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400&display=swap",
+      "preload": true
+    },
+    {
+      "family": "Nunito",
+      "file": "nunito-2d06f2c340ecb52c.woff2",
+      "sha256": "2d06f2c340ecb52c55153ec56093dc70b167699d7206246570f8ad4800190825",
+      "bytes": 28908,
+      "sourceUrl": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIOOaBTMnFcQIG.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap",
+      "preload": false
+    },
+    {
+      "family": "Nunito",
+      "file": "nunito-b63651df977d0865.woff2",
+      "sha256": "b63651df977d08650ff2e598a3979a490f114b59353605e091dd3fdb530f530e",
+      "bytes": 20780,
+      "sourceUrl": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIMeaBTMnFcQIG.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap",
+      "preload": false
+    },
+    {
+      "family": "Nunito",
+      "file": "nunito-d107f72673f443b4.woff2",
+      "sha256": "d107f72673f443b440185eea74262d7aecbe8fb70150e397334e2ab202c5d301",
+      "bytes": 13040,
+      "sourceUrl": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIOuaBTMnFcQIG.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap",
+      "preload": false
+    },
+    {
+      "family": "Nunito",
+      "file": "nunito-511ce967375fd2d9.woff2",
+      "sha256": "511ce967375fd2d924483d798f1086a533259fc675181f62944ec1176fe8786d",
+      "bytes": 35464,
+      "sourceUrl": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofIO-aBTMnFcQIG.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap",
+      "preload": false
+    },
+    {
+      "family": "Nunito",
+      "file": "nunito-20fc9b6fc618e7c3.woff2",
+      "sha256": "20fc9b6fc618e7c3c68d3ac750a2a5dfbceb8521675458d2cea580b5693e4798",
+      "bytes": 39152,
+      "sourceUrl": "https://fonts.gstatic.com/s/nunito/v32/XRXV3I6Li01BKofINeaBTMnFcQ.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap",
+      "preload": true
+    },
+    {
+      "family": "JetBrains Mono",
+      "file": "jetbrainsmono-9343de2ca5d9549f.woff2",
+      "sha256": "9343de2ca5d9549f792e7962375af8efb0f320c7643bfd36c884b5a30e5c396f",
+      "bytes": 1664,
+      "sourceUrl": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx3cwgknk-6nFg.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap",
+      "preload": false
+    },
+    {
+      "family": "JetBrains Mono",
+      "file": "jetbrainsmono-4995a9a43ac659ec.woff2",
+      "sha256": "4995a9a43ac659ec32fcd8b463755cd6a07b31a6e6b3894a6a153b661cf490e2",
+      "bytes": 8892,
+      "sourceUrl": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxTcwgknk-6nFg.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap",
+      "preload": false
+    },
+    {
+      "family": "JetBrains Mono",
+      "file": "jetbrainsmono-49c3da6c9a2b279b.woff2",
+      "sha256": "49c3da6c9a2b279b0f1f860f5cfb1f5dc38d88a5c7be9c9b1837bbc4e3db6111",
+      "bytes": 6800,
+      "sourceUrl": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxPcwgknk-6nFg.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap",
+      "preload": false
+    },
+    {
+      "family": "JetBrains Mono",
+      "file": "jetbrainsmono-d44eb1936043a560.woff2",
+      "sha256": "d44eb1936043a56038eb02dd70b243f379bef65783f94ec12f277550720411f1",
+      "bytes": 5872,
+      "sourceUrl": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx_cwgknk-6nFg.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap",
+      "preload": false
+    },
+    {
+      "family": "JetBrains Mono",
+      "file": "jetbrainsmono-9c38cb2d0d2d93c1.woff2",
+      "sha256": "9c38cb2d0d2d93c1ee6e21fa78db76f13ea7e15e15cc64214c7ca89b6aaa35c4",
+      "bytes": 11596,
+      "sourceUrl": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx7cwgknk-6nFg.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap",
+      "preload": false
+    },
+    {
+      "family": "JetBrains Mono",
+      "file": "jetbrainsmono-2c32b9b3ee358c11.woff2",
+      "sha256": "2c32b9b3ee358c119e210f6f5195f9bd34894d78a785ff2e95d60e718e400af4",
+      "bytes": 31340,
+      "sourceUrl": "https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2",
+      "cssUrl": "https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap",
+      "preload": true
+    }
+  ],
+  "licenses": [
+    {
+      "family": "DM Serif Display",
+      "file": "dmserifdisplay-OFL.txt",
+      "sourceUrl": "https://raw.githubusercontent.com/google/fonts/66928797f271fed5ee428544e7229685e2d90127/ofl/dmserifdisplay/OFL.txt",
+      "sha256": "a3e5cdd67d4571dd0a24fcc968de0efde7ae97ef752daf0906e4767619dd7231",
+      "textSha256": "aa49c876a28d8c0b0a3027d6c25b9c607eee8c0fb96165011d42a6ace1408fe1"
+    },
+    {
+      "family": "Nunito",
+      "file": "nunito-OFL.txt",
+      "sourceUrl": "https://raw.githubusercontent.com/google/fonts/66928797f271fed5ee428544e7229685e2d90127/ofl/nunito/OFL.txt",
+      "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+      "textSha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65"
+    },
+    {
+      "family": "JetBrains Mono",
+      "file": "jetbrainsmono-OFL.txt",
+      "sourceUrl": "https://raw.githubusercontent.com/google/fonts/66928797f271fed5ee428544e7229685e2d90127/ofl/jetbrainsmono/OFL.txt",
+      "sha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d",
+      "textSha256": "b2fe5e8987594e9ffd1d2ca52a2f5d73eb8335243893c5d6254b5ad69269591d"
+    }
+  ],
+  "cssSha256": "f2de0d8febebbfced0442d70573b20d453597c0406d742cdfb60c84fff580faa"
+}
