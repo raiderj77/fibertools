@@ -125,7 +125,21 @@ function validateRevenuePage({
     }
   });
 
-  assert.ok(affiliateLinks.length >= 3, `${path}: expected at least 3 rendered Amazon recommendations`);
+  // The evidence-based hook guide intentionally offers only these two searches.
+  // Keep the existing minimum for every other monitored route.
+  if (path === "/best-crochet-hooks") {
+    assert.equal(affiliateLinks.length, 2, `${path}: expected exactly 2 rendered Amazon recommendations`);
+    const destinations = affiliateLinks.map((link) => {
+      const url = new URL(attribute(link, "href"));
+      return `${url.pathname}?k=${url.searchParams.get("k")}`;
+    }).sort();
+    assert.deepEqual(destinations, [
+      "/s?k=clover amour crochet hook",
+      "/s?k=tulip etimo crochet hook",
+    ], `${path}: expected hook shopping destinations`);
+  } else {
+    assert.ok(affiliateLinks.length >= 3, `${path}: expected at least 3 rendered Amazon recommendations`);
+  }
 
   const disclosurePosition = html.indexOf(REQUIRED_DISCLOSURE);
   const linkDisclosurePosition = html.indexOf(REQUIRED_LINK_DISCLOSURE);

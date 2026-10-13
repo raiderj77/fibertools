@@ -72,7 +72,7 @@ const formulas = [
     id: "skeins",
     title: "Whole skeins to buy",
     formula: "skeins by length = ceiling(total yards ÷ yards per skein)",
-    second: "For swatch-based estimates, FiberTools also checks weight and uses the larger whole-skein result.",
+    second: "Use the same unit for total length and length per skein. In the Yarn Calculator, purchase weight = whole skeins × label weight per skein; weight does not set a separate skein count.",
     example: "1,050 yards with 220 yards per skein gives ceiling(1,050 ÷ 220) = 5 skeins.",
     link: "/yarn-calculator",
     label: "Calculate whole skeins",

@@ -93,3 +93,12 @@ test("newsletter success measurement requires current consent and honors GPC", (
     ["event", "newsletter_signup_success", { signup_source: "newsletter_page" }],
   ]);
 });
+
+test("whole-skein explanation matches length-based purchasing and derived weight", () => {
+  const page = read("src/app/formula-library/page.tsx");
+  assert.match(page, /ceiling\(total yards/);
+  assert.match(page, /purchase weight = whole skeins/);
+  assert.match(page, /label weight per skein/);
+  assert.match(page, /same unit/);
+  assert.doesNotMatch(page, /uses the larger whole-skein result/);
+});

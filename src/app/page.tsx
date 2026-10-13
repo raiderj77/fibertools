@@ -126,10 +126,10 @@ export default function HomePage() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "What is a yarn weight calculator?",
+        name: "How does the yarn calculator estimate yarn quantities?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "A yarn weight calculator helps knitters and crocheters determine the correct yarn weight for a pattern or substitute yarn. Enter your gauge swatch measurements and the tool identifies whether your yarn is lace, fingering, sport, DK, worsted, bulky, super bulky, or jumbo weight using CYC standard classifications.",
+          text: "The Yarn Calculator multiplies the measured yarn length used by a representative swatch by project area divided by swatch area, then adds your chosen allowance. This estimates yarn for flat rectangular fabric made with the same yarn, stitch pattern, tools, and tension. Gauge alone does not measure yarn consumption or identify a yarn weight category.",
         },
       },
       {
@@ -543,8 +543,8 @@ export default function HomePage() {
         <div className="bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700 px-6 divide-y divide-cream-200 dark:divide-bark-700">
           {[
             {
-              q: "What is a yarn weight calculator?",
-              a: "A yarn weight calculator helps knitters and crocheters determine the correct yarn weight for a pattern or substitute yarn. Enter your gauge swatch measurements and the tool identifies whether your yarn is lace, fingering, sport, DK, worsted, bulky, super bulky, or jumbo weight using CYC standard classifications.",
+              q: "How does the yarn calculator estimate yarn quantities?",
+              a: "The Yarn Calculator multiplies the measured yarn length used by a representative swatch by project area divided by swatch area, then adds your chosen allowance. This estimates yarn for flat rectangular fabric made with the same yarn, stitch pattern, tools, and tension. Gauge alone does not measure yarn consumption or identify a yarn weight category.",
             },
             {
               q: "How do I calculate gauge for a knitting or crochet pattern?",
