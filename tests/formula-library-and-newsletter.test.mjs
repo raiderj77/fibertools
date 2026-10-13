@@ -5,6 +5,15 @@ import { recordNewsletterSignupSuccess } from "../src/lib/newsletter-analytics.m
 
 const read = (path) => fs.readFileSync(path, "utf8");
 
+test("newsletter previews the actual gift and explains the on-page download", () => {
+  const page = read("src/app/newsletter/page.tsx");
+  assert.match(page, /survival-kit-page-5\.png/);
+  assert.match(page, /survival-kit-page-7\.png/);
+  assert.match(page, /href="\/survival-kit\.pdf#page=5"/);
+  assert.match(page, /After signup succeeds, a download button appears here/);
+  assert.match(page, /gift preview, not a newsletter issue/);
+});
+
 test("formula library is a canonical, source-linked, internally discoverable page", () => {
   const page = read("src/app/formula-library/page.tsx");
   const sitemap = read("src/app/sitemap.ts");

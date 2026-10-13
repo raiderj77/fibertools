@@ -42,6 +42,27 @@ function visibleText(html) {
     .trim();
 }
 
+test("built purchase help and gift previews describe existing downloads", () => {
+  const pack = readFileSync(resolve(ROOT, ".next/server/app/fiber-project-planning-pack.html"), "utf8");
+  const newsletter = readFileSync(resolve(ROOT, ".next/server/app/newsletter.html"), "utf8");
+  assert.match(visibleText(pack), /do not buy the pack again/);
+  assert.match(pack, /href="mailto:hello@fibertools\.app"/);
+  const schemas = [...pack.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(m => JSON.parse(m[1]));
+  const answer = schemas.find(s => s["@type"] === "FAQPage").mainEntity.find(q => q.name === "How is it delivered?").acceptedAnswer.text;
+  assert.ok(visibleText(pack).includes(answer));
+  assert.match(answer, /checks your payment and starts the PDF download/);
+  assert.match(visibleText(newsletter), /gift preview, not a newsletter issue/);
+  for (const page of [5, 7]) {
+    assert.ok(newsletter.includes(`href="/survival-kit.pdf#page=${page}"`));
+    assert.ok(newsletter.includes(`survival-kit-page-${page}.png`));
+    const png = readFileSync(resolve(ROOT, `public/images/newsletter/survival-kit-page-${page}.png`));
+    assert.equal(png.subarray(1, 4).toString(), "PNG");
+    assert.equal(png.readUInt32BE(16), 928);
+    assert.equal(png.readUInt32BE(20), 1200);
+  }
+  assert.equal(createHash("sha256").update(readFileSync(resolve(ROOT, "public/survival-kit.pdf"))).digest("hex"), "e0f3db048c2f188009db6cc395230ace250ac73d4c1957ba6b2785d250af534f");
+});
+
 test("built measured-swatch FAQ agrees with its structured answer and skein explanation", () => {
   const html = readFileSync(resolve(ROOT, ".next/server/app/index.html"), "utf8");
   const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]

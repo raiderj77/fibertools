@@ -697,8 +697,13 @@ test("public product, privacy, and terms copy describe first-party private deliv
     read("../src/app/terms/page.tsx"),
   ]);
 
-  assert.match(productPage, /FiberTools verifies the paid Checkout Session/);
-  assert.match(productPage, /not stored in this page or a public bucket/);
+  assert.match(productPage, /FiberTools checks your payment and starts the PDF download/);
+  assert.doesNotMatch(productPage, /checksum-matched|public bucket|Checkout Session/);
+  assert.match(productPage, /do not buy the pack again/);
+  assert.match(productPage, /refresh that same page to retry/);
+  assert.match(productPage, /Do not share your download link/);
+  assert.match(productPage, /href="mailto:hello@fibertools\.app"/);
+  assert.match(productPage, /href="\/terms#fiber-project-planning-pack"/);
   assert.match(privacy, /Last updated: August 29, 2026/);
   assert.match(privacy, /uses it only to provide the private PDF download/);
   assert.match(privacy, /does not put[\s\S]*Checkout Session ID[\s\S]*into analytics events/);
