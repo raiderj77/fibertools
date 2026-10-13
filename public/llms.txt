@@ -83,10 +83,10 @@ Core calculator arithmetic runs in the browser. Optional network features, inclu
 ## Buying Guides
 
 - [Best Yarn for Beginners (2026)](https://fibertools.app/best-yarn-for-beginners): Practical beginner-yarn considerations and disclosed product destinations for knitting and crochet.
-- [Best Knitting Needles (2026)](https://fibertools.app/best-knitting-needles): Straight, circular, and interchangeable needle recommendations for every budget and skill level.
+- [Knitting Needle Selection Guide](https://fibertools.app/best-knitting-needles): Compare construction, millimeter sizes, manufacturer references, and a representative swatch.
 - [Crochet Hook Selection Guide](https://fibertools.app/best-crochet-hooks): Compare size, grip, and gauge using manufacturer specifications and a project swatch; includes the limits of the comparison.
 - [Best Yarn for Blankets (2026)](https://fibertools.app/best-yarn-for-blankets): Soft, washable, budget-friendly yarn picks for throw, baby, and chunky blankets.
-- [Best Yarn for Amigurumi (2026)](https://fibertools.app/best-yarn-for-amigurumi): Cotton and acrylic yarn picks for tight gauge, clean stitch definition, and vibrant amigurumi colors.
+- [Amigurumi Yarn Selection Guide](https://fibertools.app/best-yarn-for-amigurumi): Compare exact product labels, pattern gauge, sample fabric, quantity, and care requirements.
 
 ## About
 - [About FiberTools](https://fibertools.app/about): Meet the identified maker behind FiberTools and read how the calculators are built and checked.

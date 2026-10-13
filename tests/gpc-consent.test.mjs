@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
+import vm from "node:vm";
+import { normalizeAnalyticsConsent } from "../src/lib/analytics-consent.mjs";
 import {
   detectGPCClient,
   hasGPCConsentCookie,
@@ -21,6 +23,85 @@ const stitchProofAnalytics = fs.readFileSync("src/lib/stitchproof-analytics.ts",
 const affiliateTracker = fs.readFileSync("src/components/AffiliateClickTracker.tsx", "utf8");
 const affiliateLink = fs.readFileSync("src/components/AffiliateLink.tsx", "utf8");
 const toolCompletion = fs.readFileSync("src/lib/useToolCompletion.ts", "utf8");
+
+test("the analytics-only action never grants advertising consent", () => {
+  const accept = cookieConsent.split("function handleAccept()")[1].split("function handleDecline()")[0];
+  assert.doesNotMatch(accept, /ads:\s*"granted"/);
+  assert.match(accept, /ads:\s*"denied"/);
+  assert.match(accept, /updateGoogleConsent\("granted", "denied"\)/);
+});
+
+test("migrates historical choices without creating an advertising grant", () => {
+  for (const version of [undefined, 2]) {
+    for (const analytics of ["granted", "denied"]) {
+      for (const ads of ["granted", "denied"]) {
+        const stored = { version, analytics, ads, timestamp: "2026-01-01T00:00:00Z" };
+        const normalized = normalizeAnalyticsConsent(stored);
+        assert.deepEqual(normalized, { version: 2, analytics, ads: "denied", timestamp: stored.timestamp });
+        assert.deepEqual(normalizeAnalyticsConsent(normalized), normalized, "migration must be idempotent");
+        assert.equal(stored.ads, ads, "do not mutate the caller's record");
+      }
+    }
+  }
+});
+
+test("malformed or unknown-version consent cannot authorize Google services", () => {
+  for (const value of [null, [], true, "granted", {}, { analytics: "yes", ads: "granted" },
+    { analytics: "granted" }, { analytics: "granted", ads: "yes" },
+    { version: 99, analytics: "granted", ads: "granted" }]) {
+    assert.equal(normalizeAnalyticsConsent(value), null);
+  }
+});
+
+test("initialization, cross-tab updates and inline scripts reject ambiguous ad permission", () => {
+  assert.match(cookieConsent, /normalizeAnalyticsConsent\(JSON\.parse\(stored\)\)/);
+  assert.match(cookieConsent, /normalizeAnalyticsConsent\(JSON\.parse\(event\.newValue\)\)/);
+  assert.match(cookieConsent, /event\.key !== CONSENT_STORAGE_KEY && event\.key !== null/);
+  assert.match(cookieConsent, /var adsAllowed = false/);
+  assert.doesNotMatch(cookieConsent, /storedConsent\.ads === 'granted'/);
+});
+
+test("the inline event boundary honors current denial despite stale granted storage", () => {
+  // Execute both actual emitted gtag wrappers, not a second implementation of the guard.
+  const wrappers = [...cookieConsent.matchAll(/window\.gtag = (?:window\.gtag \|\| )?function\(\)\{([\s\S]*?)\n            \};/g)];
+  assert.equal(wrappers.length, 2);
+  for (const [, body] of wrappers) {
+    const window = { dataLayer: [], fibertoolsAnalyticsAllowed: true,
+      navigator: { globalPrivacyControl: false }, location: { origin: "https://example.test", pathname: "/test" } };
+    const document = { cookie: "" };
+    vm.runInNewContext(`window.gtag = function(){${body}\n};`, { window, document });
+    window.gtag("event", "test_event", {});
+    assert.equal(window.dataLayer.length, 1);
+    window.fibertoolsAnalyticsAllowed = false;
+    window.gtag("event", "test_after_denial", {});
+    assert.equal(window.dataLayer.length, 1, "in-memory denial blocks events even if persistence failed");
+    window.gtag("consent", "update", { analytics_storage: "denied" });
+    assert.equal(window.dataLayer.length, 2, "the denial command itself must still reach Google");
+    window.fibertoolsAnalyticsAllowed = true;
+    window.navigator.globalPrivacyControl = true;
+    window.gtag("event", "test_gpc", {});
+    assert.equal(window.dataLayer.length, 2);
+    window.navigator.globalPrivacyControl = false;
+    document.cookie = "empire_gpc=1";
+    window.gtag("event", "test_gpc_cookie", {});
+    assert.equal(window.dataLayer.length, 2);
+  }
+  assert.match(cookieConsent, /window\.fibertoolsAnalyticsAllowed = analytics === "granted"/);
+});
+
+test("delayed Google initialization cannot undo an in-memory withdrawal", () => {
+  const source = cookieConsent.match(/const currentConsentCheck = `([\s\S]*?)`;/)[1]
+    .replaceAll("${CONSENT_STORAGE_KEY}", "cookie_consent");
+  for (const allowed of [false, undefined, true]) {
+    const context = { window: { fibertoolsAnalyticsAllowed: allowed,
+      navigator: { globalPrivacyControl: false }, localStorage: {
+        getItem: () => JSON.stringify({ analytics: "granted", ads: "granted" }),
+      } }, document: { cookie: "" } };
+    vm.runInNewContext(source, context);
+    assert.equal(context.analyticsAllowed, allowed === true);
+    assert.equal(context.adsAllowed, false);
+  }
+});
 
 test("recognizes only the explicit FiberTools GPC cookie", () => {
   assert.equal(hasGPCConsentCookie("empire_gpc=1"), true);

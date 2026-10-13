@@ -1,4 +1,12 @@
 export const REVIEW_DATES = Object.freeze({
+  bestKnittingNeedles: Object.freeze({
+    iso: "2026-10-13",
+    label: "October 13, 2026",
+  }),
+  bestYarnForAmigurumi: Object.freeze({
+    iso: "2026-10-13",
+    label: "October 13, 2026",
+  }),
   bestCrochetHooks: Object.freeze({
     iso: "2026-10-10",
     label: "October 10, 2026",

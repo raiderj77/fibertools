@@ -9,6 +9,42 @@ const blanketTool = read("src/app/blanket-calculator/BlanketCalculatorTool.tsx")
 const blanketPage = read("src/app/blanket-calculator/page.tsx");
 const bestCrochetHooksPage = read("src/app/best-crochet-hooks/page.tsx");
 const bestKnittingNeedlesPage = read("src/app/best-knitting-needles/page.tsx");
+const amigurumiBuyingPage = read("src/app/best-yarn-for-amigurumi/page.tsx");
+
+test("needle buying advice makes no unsupported rankings, medical or lifespan promises", () => {
+  assert.doesNotMatch(bestKnittingNeedlesPage, /gold standard|most recommended|best overall|last indefinitely|reducing wrist strain|pay for themselves|mandatory for large|most durable/i);
+  assert.match(bestKnittingNeedlesPage, /not a hands-on product test/);
+  assert.match(bestKnittingNeedlesPage, /https:\/\/www\.chiaogoo\.com\/circular\//);
+});
+
+test("amigurumi buying advice uses exact product identities and project-specific swatching", () => {
+  assert.doesNotMatch(amigurumiBuyingPage, /Simply DK Cotton|top choice|100\+ solid colors|1-2 sizes smaller|Go down 1-2|colorfast or superwash|under 50 yards|perfect amigurumi/i);
+  assert.match(amigurumiBuyingPage, /not a hands-on product test/);
+  assert.match(amigurumiBuyingPage, /flat rectangular fabric/);
+  assert.match(amigurumiBuyingPage, /100% mercerized cotton/);
+  assert.match(amigurumiBuyingPage, /sport\/5-ply/);
+});
+
+test("corrected buying guides share visible and structured answers and preserve search routes", () => {
+  for (const [source, slug, key] of [
+    [bestKnittingNeedlesPage, "best-knitting-needles", "bestKnittingNeedles"],
+    [amigurumiBuyingPage, "best-yarn-for-amigurumi", "bestYarnForAmigurumi"],
+  ]) {
+    assert.match(source, /mainEntity: faqs\.map/);
+    assert.match(source, /\{faqs\.map/);
+    assert.ok(source.includes(`dateModified: REVIEW_DATES.${key}.iso`));
+    assert.ok(source.includes(`Last updated: {REVIEW_DATES.${key}.label}`));
+    assert.ok(source.includes(`alternates: { canonical: "/${slug}" }`));
+    assert.match(source, /rel="sponsored nofollow noopener"/);
+    assert.ok(source.indexOf("As an Amazon Associate") < source.indexOf("href={amazonSearchUrl"));
+  }
+  const listing = read("public/llms.txt");
+  for (const slug of ["best-knitting-needles", "best-yarn-for-amigurumi"]) {
+    const line = listing.split("\n").find((value) => value.includes(`https://fibertools.app/${slug}`));
+    assert.match(line, /Selection Guide/);
+    assert.doesNotMatch(line, /every budget|best yarn|Best Knitting|picks/i);
+  }
+});
 const castOnPage = read("src/app/cast-on-calculator/page.tsx");
 const gaugePage = read("src/app/gauge-calculator/page.tsx");
 const grannyPlannerPage = read("src/app/granny-square-planner/page.tsx");
@@ -123,8 +159,8 @@ test("keeps priority search snippets specific to what each existing page deliver
   assert.match(yarnWeightChartPage, /all 8 CYC categories/);
   assert.match(yarnWeightChartPage, /Compare substitutes, then swatch/);
 
-  assert.match(bestKnittingNeedlesPage, /Best Knitting Needles \(2026\): Beginner to Pro Picks \| FiberTools/);
-  assert.match(bestKnittingNeedlesPage, /Bamboo straights for learning, ChiaoGoo circulars for everything else/);
+  assert.match(bestKnittingNeedlesPage, /Choosing Knitting Needles: Size, Construction and Gauge \| FiberTools/);
+  assert.match(bestKnittingNeedlesPage, /representative swatch/);
   assert.doesNotMatch(bestKnittingNeedlesPage, /Lab[- ]tested|Hands[- ]on tested/i);
 
   assert.match(blanketPage, /Enter your swatch to estimate yards and whole skeins/);
