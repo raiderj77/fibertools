@@ -72,7 +72,7 @@ test("monitors all ten calculators and five live buying guides", () => {
 });
 
 test("accepts complete guide links handled by the global delegated tracker", () => {
-  const guidePath = BUYING_GUIDE_PATHS[0];
+  const guidePath = BUYING_GUIDE_PATHS[1];
   const page = validPage({ path: guidePath });
   page.html = page.html
     .replaceAll(path, guidePath)
@@ -88,7 +88,7 @@ test("accepts complete guide links handled by the global delegated tracker", () 
 });
 
 test("rejects partially marked guide tracking metadata", () => {
-  const guidePath = BUYING_GUIDE_PATHS[0];
+  const guidePath = BUYING_GUIDE_PATHS[1];
   const page = validPage({ path: guidePath });
   page.html = page.html
     .replaceAll(path, guidePath)
@@ -184,4 +184,56 @@ test("rejects affiliate links without noopener", () => {
   const page = validPage();
   page.html = page.html.replace(/ noopener/g, "");
   assert.throws(() => validateRevenuePage(page), /affiliate link is missing rel=noopener/);
+});
+
+function hookPage() {
+  const guidePath = "/best-crochet-hooks";
+  const page = validPage({ path: guidePath });
+  const links = ["clover+amour+crochet+hook", "tulip+etimo+crochet+hook"].map((query) =>
+    `<a href="https://www.amazon.com/s?k=${query}&amp;tag=ytearnings-20" rel="sponsored nofollow noopener">Search hooks (paid link)</a>`,
+  );
+  page.html = page.html.replaceAll(path, guidePath).replace(affiliateLink().repeat(3), links.join(""));
+  return page;
+}
+
+test("accepts the hook guide's two specific editorial shopping links", () => {
+  assert.deepEqual(validateRevenuePage(hookPage()), {
+    path: "/best-crochet-hooks", affiliateLinks: 2, tracking: "delegated",
+  });
+});
+
+test("hook guide rejects missing, extra, duplicated, and unrelated recommendations", () => {
+  const page = hookPage();
+  const links = page.html.match(/<a\b[^>]*>[^<]*<\/a>/g);
+  for (const html of [
+    page.html.replace(links[0], ""),
+    page.html.replace(links[0], "").replace(links[1], ""),
+    page.html.replace("</body>", `${links[0]}</body>`),
+    page.html.replace("tulip+etimo+crochet+hook", "clover+amour+crochet+hook"),
+    page.html.replace("tulip+etimo+crochet+hook", "unrelated+product"),
+  ]) assert.throws(() => validateRevenuePage({ ...page, html }), /expected exactly 2|expected hook shopping destinations/);
+});
+
+test("two links still fail every other monitored page's minimum", () => {
+  for (const otherPath of MONETIZED_PATHS.filter((value) => value !== "/best-crochet-hooks")) {
+    const page = validPage({ path: otherPath });
+    page.html = page.html.replaceAll(path, otherPath).replace(affiliateLink(), "");
+    assert.throws(() => validateRevenuePage(page), /expected at least 3/);
+  }
+});
+
+test("two-link hook contract retains disclosure and link safety requirements", () => {
+  const page = hookPage();
+  for (const [from, to, expected] of [
+    ["As an Amazon Associate I earn from qualifying purchases.", "", /Amazon disclosure is missing/],
+    ["FiberTools may earn a commission if you buy through these links.", "", /paid-link disclosure is missing/],
+    ["https://www.amazon.com", "http://www.amazon.com", /must use HTTPS/],
+    ["ytearnings-20", "wrong-tag", /affiliate tag is missing or incorrect/],
+    ["sponsored ", "", /missing rel=sponsored/],
+    ["nofollow ", "", /missing rel=nofollow/],
+    [" noopener", "", /missing rel=noopener/],
+    ['rel="sponsored', 'data-affiliate-tracked="true" rel="sponsored', /placement label is missing/],
+  ]) assert.throws(() => validateRevenuePage({ ...page, html: page.html.replace(from, to) }), expected);
+  const disclosure = page.html.match(/<p>.*?<\/p>/)[0];
+  assert.throws(() => validateRevenuePage({ ...page, html: page.html.replace(disclosure, "").replace("</body>", `${disclosure}</body>`) }), /disclosure must precede/);
 });

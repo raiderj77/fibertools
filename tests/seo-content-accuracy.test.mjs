@@ -207,3 +207,16 @@ test("machine-readable hook guide listing matches its evidence-based selection s
   assert.match(listing, /manufacturer specifications/);
   assert.doesNotMatch(listing, /Best Crochet Hooks|recommendations|2026/i);
 });
+
+test("homepage visible and structured FAQ explain measured yarn consumption", () => {
+  const question = "How does the yarn calculator estimate yarn quantities?";
+  const answers = [...homepage.matchAll(/(?:text|a): "([^"]*project area[^"]*)"/g)].map((match) => match[1]);
+  assert.equal(homepage.split(question).length - 1, 2);
+  assert.equal(answers.length, 2);
+  assert.equal(answers[0], answers[1]);
+  assert.match(answers[0], /measured yarn length/);
+  assert.match(answers[0], /swatch area/);
+  assert.match(answers[0], /allowance/);
+  assert.match(answers[0], /flat rectangular/);
+  assert.doesNotMatch(homepage, /tool identifies whether your yarn/);
+});

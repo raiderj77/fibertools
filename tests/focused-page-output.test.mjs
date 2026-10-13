@@ -4,6 +4,7 @@ import test from "node:test";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { getToolBySlug } from "../src/lib/tools.ts";
+import revenuePathCheck from "../scripts/revenue-path-check.js";
 
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -39,6 +40,28 @@ function visibleText(html) {
     .replace(/\s+/g, " ")
     .trim();
 }
+
+test("built measured-swatch FAQ agrees with its structured answer and skein explanation", () => {
+  const html = readFileSync(resolve(ROOT, ".next/server/app/index.html"), "utf8");
+  const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+    .map((match) => JSON.parse(match[1]));
+  const faq = schemas.find((schema) => schema["@type"] === "FAQPage");
+  const answer = faq.mainEntity.find((item) => item.name === "How does the yarn calculator estimate yarn quantities?");
+  assert.ok(answer);
+  assert.ok(visibleText(html).includes(answer.acceptedAnswer.text));
+  assert.match(answer.acceptedAnswer.text, /measured yarn length.*project area divided by swatch area/);
+  assert.doesNotMatch(html, /tool identifies whether your yarn/);
+  const formula = visibleText(readFileSync(resolve(ROOT, ".next/server/app/formula-library.html"), "utf8"));
+  assert.match(formula, /purchase weight = whole skeins × label weight per skein/);
+  assert.doesNotMatch(formula, /uses the larger whole-skein result/);
+});
+
+test("built hook guide satisfies the route-specific revenue contract", () => {
+  const html = readFileSync(resolve(ROOT, ".next/server/app/best-crochet-hooks.html"), "utf8");
+  assert.deepEqual(revenuePathCheck.validateRevenuePage({
+    path: "/best-crochet-hooks", status: 200, headers: { "content-type": "text/html" }, html,
+  }), { path: "/best-crochet-hooks", affiliateLinks: 2, tracking: "delegated" });
+});
 
 test("built homepage uses qualified tool descriptions and neutral featured labels", () => {
   const html = readFileSync(resolve(ROOT, ".next/server/app/index.html"), "utf8");
