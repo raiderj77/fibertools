@@ -45,7 +45,7 @@ const faqs = [
   ["Is this a pattern?", "No. It is a general planning workbook and does not contain instructions for making a specific project."],
   ["Can I reuse it?", "Yes, for your own personal project planning. Keep a clean copy and save or print a new working copy for each project."],
   ["Will it calculate yarn or gauge for me?", "No. The workbook helps you organize inputs and decisions. FiberTools calculators can help with estimates, but you remain responsible for checking project requirements."],
-  ["How is it delivered?", "After a successful payment, Stripe returns you to FiberTools. FiberTools verifies the paid Checkout Session and sends the checksum-matched PDF as a private download. The product file is not stored in this page or a public bucket."],
+  ["How is it delivered?", "After a successful payment, Stripe returns you to FiberTools. FiberTools checks your payment and starts the PDF download in your browser. Save the file on your device and keep a clean copy for future projects."],
 ];
 
 export default function FiberProjectPlanningPackPage() {
@@ -143,6 +143,24 @@ export default function FiberProjectPlanningPackPage() {
             The pack is an organizational aid, not a pattern, calculator, professional instruction, or guarantee of project results. It does not verify measurements, yarn needs, gauge, fit, safety, costs, or pattern accuracy. Check all project inputs and follow the yarn, pattern, and tool-maker guidance that applies to your project.
           </p>
         </div>
+      </section>
+
+      <section className="mt-14 rounded-2xl border border-cream-300 bg-white p-6 dark:border-bark-700 dark:bg-bark-900" aria-labelledby="download-help-heading">
+        <h2 id="download-help-heading" className="section-heading">Downloading your workbook</h2>
+        <p className="mt-4 text-bark-600 dark:text-bark-400">
+          After payment, look in your browser&apos;s downloads for FiberTools-Fiber-Project-Planning-Pack.pdf.
+          Open the saved file in a PDF reader that supports fillable forms, or print the pages you need.
+        </p>
+        <p className="mt-4 text-bark-600 dark:text-bark-400">
+          If you have already paid, do not buy the pack again. If the return page says the download is unavailable,
+          refresh that same page to retry. If it still fails, email{" "}
+          <a href="mailto:hello@fibertools.app" className="underline text-sage-600 dark:text-sage-400">hello@fibertools.app</a>
+          {" "}for download help. Do not share your download link.
+        </p>
+        <p className="mt-4 text-sm text-bark-600 dark:text-bark-400">
+          For purchase and refund questions, contact the same support address. Read the{" "}
+          <Link href="/terms#fiber-project-planning-pack" className="underline text-sage-600 dark:text-sage-400">Planning Pack purchase terms</Link>.
+        </p>
       </section>
 
       <section className="mt-14">

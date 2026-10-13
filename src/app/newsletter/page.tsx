@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import BeehiivSignup from "@/components/BeehiivSignup";
 
 export const metadata: Metadata = {
@@ -63,8 +64,40 @@ export default function NewsletterPage() {
             The seven-page fillable and printable kit includes sourced yarn weights, tool conversions,
             swatch-to-finish math, yarn planning, and a project-rescue record.
           </p>
+          <p className="mb-6 text-center text-sm leading-6 text-bark-600 dark:text-cream-300">
+            After signup succeeds, a download button appears here. Save the PDF to your device;
+            you do not need to wait for an email to download the kit.
+          </p>
           <BeehiivSignup source="newsletter_page" />
         </div>
+
+        <section className="mt-16" aria-labelledby="gift-preview-heading">
+          <h2 id="gift-preview-heading" className="text-center font-display text-3xl font-bold text-bark-800 dark:text-cream-100">Look inside the free Survival Kit</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-center text-bark-600 dark:text-cream-300">
+            These are pages 5 and 7 from the actual seven-page PDF: a gift preview, not a newsletter issue.
+          </p>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+            <figure className="rounded-2xl border border-cream-300 bg-white p-4 dark:border-bark-700 dark:bg-bark-900">
+              <a href="/survival-kit.pdf#page=5" className="block rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-plum-500">
+                <Image src="/images/newsletter/survival-kit-page-5.png" width={928} height={1200} sizes="(max-width: 640px) 90vw, 450px" alt="Page 5: Swatch-to-finish calculation. Open the PDF to read the full page." className="h-auto w-full" />
+              </a>
+              <figcaption className="mt-4 text-sm leading-6 text-bark-600 dark:text-cream-300">
+                <strong>Swatch-to-finish calculation.</strong> The worked example compares 4.25 inches after treatment with 4 inches before treatment: about 6.25% growth. The page explains how to use the ratio and why it is an estimate.
+              </figcaption>
+            </figure>
+            <figure className="rounded-2xl border border-cream-300 bg-white p-4 dark:border-bark-700 dark:bg-bark-900">
+              <a href="/survival-kit.pdf#page=7" className="block rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-plum-500">
+                <Image src="/images/newsletter/survival-kit-page-7.png" width={928} height={1200} sizes="(max-width: 640px) 90vw, 450px" alt="Page 7: Fillable project-rescue record. Open the PDF to read the full page." className="h-auto w-full" />
+              </a>
+              <figcaption className="mt-4 text-sm leading-6 text-bark-600 dark:text-cream-300">
+                <strong>Project-rescue record.</strong> Keep yarn and dye-lot details, before-and-after swatch measurements, target size, and your next decision together. Save a fresh copy for each project or print the page.
+              </figcaption>
+            </figure>
+          </div>
+          <p className="mt-5 text-center text-sm text-bark-600 dark:text-cream-300">
+            <a href="/survival-kit.pdf" className="font-semibold text-plum-500 underline">Open the complete free kit (7-page PDF)</a>. No signup is needed to view these pages.
+          </p>
+        </section>
 
         <section className="mt-20" aria-labelledby="issue-format-heading">
           <div className="mx-auto max-w-2xl text-center">
