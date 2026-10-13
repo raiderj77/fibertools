@@ -31,7 +31,7 @@ test("cookie copy separates explicit project storage from consent storage and ex
 });
 
 test("terms define the approved project purchase, fail-closed sales, and deterministic-report limitations", () => {
-  assert.match(terms, /Last updated: August 27, 2026/);
+  assert.match(terms, /Last updated: October 13, 2026/);
   assert.match(terms, /Designer Report has a \$9 base price once for one pattern[\s\S]*project, including its revisions and report exports/);
   assert.match(terms, /not a[\s\S]*subscription/);
   assert.match(terms, /checkout is unavailable,[\s\S]*cannot start a new checkout/);

@@ -29,7 +29,7 @@ export default function TermsPage() {
         Terms of Use
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: August 27, 2026
+        Last updated: October 13, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -85,6 +85,10 @@ export default function TermsPage() {
             hello@fibertools.app. Any refund must be confirmed through Stripe; a download
             or website message is not confirmation of a refund. When checkout is unavailable,
             the website shows a contact action and does not accept payment.
+          </p>
+          <h3 className="text-lg font-semibold text-bark-800 dark:text-cream-100">Planning Pack refunds</h3>
+          <p>
+            You may request a full refund within 14 days of purchasing the Fiber Project Planning Pack. We also refund duplicate charges and unresolved file or delivery problems. Contact hello@fibertools.app with your order number for help or to request a refund. These terms do not limit your statutory rights.
           </p>
         </section>
 

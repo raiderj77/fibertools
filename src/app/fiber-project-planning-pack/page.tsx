@@ -157,8 +157,12 @@ export default function FiberProjectPlanningPackPage() {
           <a href="mailto:hello@fibertools.app" className="underline text-sage-600 dark:text-sage-400">hello@fibertools.app</a>
           {" "}for download help. Do not share your download link.
         </p>
+        <h3 className="mt-6 text-lg font-semibold text-bark-800 dark:text-cream-100">Refunds</h3>
+        <p className="mt-3 text-sm text-bark-600 dark:text-bark-400">
+          You may request a full refund within 14 days of purchasing the Fiber Project Planning Pack. We also refund duplicate charges and unresolved file or delivery problems. Contact hello@fibertools.app with your order number for help or to request a refund. These terms do not limit your statutory rights.
+        </p>
         <p className="mt-4 text-sm text-bark-600 dark:text-bark-400">
-          For purchase and refund questions, contact the same support address. Read the{" "}
+          Read the{" "}
           <Link href="/terms#fiber-project-planning-pack" className="underline text-sage-600 dark:text-sage-400">Planning Pack purchase terms</Link>.
         </p>
       </section>
