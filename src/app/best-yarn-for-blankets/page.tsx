@@ -4,9 +4,9 @@ import { amazonSearchUrl } from "@/lib/affiliate";
 import { REVIEW_DATES } from "@/lib/review-dates.mjs";
 
 export const metadata: Metadata = {
-  title: { absolute: "Best Yarn for Blankets (2026): Cozy & Durable" },
+  title: { absolute: "Yarn for Blankets: A Selection Guide" },
   description:
-    "Practical yarn options for knitting and crochet blankets in 2026, including soft, washable, and budget-minded choices for throw, baby, and chunky blankets.",
+    "Compare blanket yarn using source-checked weight and fiber details, separate swatches, care requirements, and a hypothetical whole-skein example.",
   keywords: [
     "best yarn for blankets",
     "blanket yarn",
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "article",
-    title: "Best Yarn for Blankets (2026): Cozy & Durable",
+    title: "Yarn for Blankets: A Selection Guide",
     description:
-      "Practical yarn options for knitting and crochet blankets in 2026, including soft, washable, and budget-minded choices for throw, baby, and chunky blankets.",
+      "Compare blanket yarn using source-checked weight and fiber details, separate swatches, care requirements, and a hypothetical whole-skein example.",
     url: "https://fibertools.app/best-yarn-for-blankets",
     images: [
       {
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Best Yarn for Blankets (2026): Cozy & Durable",
+    title: "Yarn for Blankets: A Selection Guide",
     description:
-      "Practical yarn options for knitting and crochet blankets in 2026, including soft, washable, and budget-minded choices for throw, baby, and chunky blankets.",
+      "Compare blanket yarn using source-checked weight and fiber details, separate swatches, care requirements, and a hypothetical whole-skein example.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/best-yarn-for-blankets" },
@@ -45,9 +45,9 @@ export default function BestYarnForBlanketsPage() {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Best Yarn for Blankets (2026): Cozy & Durable",
+    headline: "Yarn for Blankets: A Selection Guide",
     description:
-      "Practical yarn options for knitting and crochet blankets in 2026, including soft, washable, and budget-minded choices for throw, baby, and chunky blankets.",
+      "Compare blanket yarn using source-checked weight and fiber details, separate swatches, care requirements, and a hypothetical whole-skein example.",
     datePublished: "2026-03-11",
     dateModified: REVIEW_DATES.bestYarnForBlankets.iso,
     url: "https://fibertools.app/best-yarn-for-blankets",
@@ -141,21 +141,26 @@ export default function BestYarnForBlanketsPage() {
       </p>
 
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
-        Best Yarn for Blankets (2026)
+        Yarn for Blankets: A Selection Guide
       </h1>
 
       {/* Answer capsule */}
       <p className="text-lg text-bark-600 dark:text-cream-300 leading-relaxed mb-2">
-        A practical blanket yarn balances softness, care requirements, weight, and yardage per skein. Bernat Blanket is a Super Bulky option for a faster workup, while Lion Brand Pound of Love is a worsted-weight option with 1,020 yards listed per skein. Compare current price, color availability, care instructions, and your swatch before choosing.
+        A practical blanket yarn balances softness, care requirements, weight, and yardage per skein. Bernat Blanket is a Super Bulky (6) option, while Lion Brand Pound of Love is a worsted-weight option with 1,020 yards listed per skein. Compare current price, color availability, care instructions, and your swatch before choosing.
       </p>
 
-      <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
+      <div className="flex flex-wrap items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
         <span>Last updated: {REVIEW_DATES.bestYarnForBlankets.label}</span>
         <span>&middot;</span>
         <span>Written by Jason Ramirez, founder of FiberTools</span>
       </div>
 
       <article className="prose-fiber">
+        <section className="mb-10">
+          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">How to use this guide</h2>
+          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">This is selection guidance based on linked manufacturer specifications (and LoveCrafts for its own Paintbox brand), not hands-on testing or a ranked comparison. Product names in the tables link to specification sources checked October 14, 2026; paid shopping links are separate. Match the exact product, color, package size, care label, and pattern gauge before buying. A product page does not guarantee stock at a seller.</p>
+        </section>
+
         {/* What to Look for in Blanket Yarn */}
         <section className="mb-10">
           <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
@@ -175,13 +180,13 @@ export default function BestYarnForBlanketsPage() {
           </p>
         </section>
 
-        {/* Best Worsted Weight Blanket Yarns */}
+        {/* Medium and Super Bulky Blanket Options */}
         <section className="mb-10">
           <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-            Best Worsted Weight Blanket Yarns
+            Medium and Super Bulky Blanket Options
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Worsted weight (CYC 4) is one option used by many blanket patterns. The resulting drape, warmth, and stitch definition depend on the exact yarn, stitch, gauge, and laundering. Check our{" "}
+            This table compares Medium (CYC 4) yarns with Super Bulky (CYC 6) Bernat Blanket; they are not interchangeable at the same gauge. The resulting drape, warmth, and stitch definition depend on the exact yarn, stitch, gauge, and laundering. Check our{" "}
             <Link href="/yarn-weight-chart" className="text-sage-600 dark:text-sage-400 hover:underline">
               Yarn Weight Chart
             </Link>{" "}
@@ -200,7 +205,7 @@ export default function BestYarnForBlanketsPage() {
               </thead>
               <tbody className="text-bark-600 dark:text-cream-300">
                 <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Bernat Blanket</td>
+                  <td className="px-4 py-3 font-medium"><a href="https://www.yarnspirations.com/products/bernat-blanket-yarn-300g-10-5oz" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">Bernat Blanket</a></td>
                   <td className="px-4 py-3">Super Bulky (6)</td>
                   <td className="px-4 py-3">100% polyester</td>
                   <td className="px-4 py-3">220 yds (10.5 oz)</td>
@@ -209,7 +214,7 @@ export default function BestYarnForBlanketsPage() {
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
-                  <td className="px-4 py-3 font-medium">Lion Brand Pound of Love</td>
+                  <td className="px-4 py-3 font-medium"><a href="https://www.lionbrand.com/products/pound-of-love-yarn" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">Lion Brand Pound of Love</a></td>
                   <td className="px-4 py-3">Medium (4)</td>
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">1,020 yds (16 oz)</td>
@@ -218,7 +223,7 @@ export default function BestYarnForBlanketsPage() {
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Caron One Pound</td>
+                  <td className="px-4 py-3 font-medium"><a href="https://www.yarnspirations.com/products/caron-one-pound-yarn" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">Caron One Pound</a></td>
                   <td className="px-4 py-3">Medium (4)</td>
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">812 yds (16 oz)</td>
@@ -231,13 +236,13 @@ export default function BestYarnForBlanketsPage() {
           </div>
         </section>
 
-        {/* Best Chunky Blanket Yarns */}
+        {/* Super Bulky and Jumbo Blanket Options */}
         <section className="mb-10">
           <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-            Best Chunky Blanket Yarns
+            Super Bulky and Jumbo Blanket Options
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Chunky and super bulky yarns make larger stitches, but they do not guarantee a completion time. Compare the pattern&apos;s gauge and yardage with current price, package weight, finished-fabric weight, and the yarn&apos;s care label.
+            Super Bulky (6) and Jumbo (7) yarns make larger stitches, but they do not guarantee a completion time. Compare the pattern&apos;s gauge and yardage with current price, package weight, finished-fabric weight, and the yarn&apos;s care label.
           </p>
           <div className="overflow-x-auto mb-4">
             <table className="w-full text-sm text-left border border-cream-300 dark:border-bark-700 rounded-xl overflow-hidden">
@@ -252,41 +257,33 @@ export default function BestYarnForBlanketsPage() {
               </thead>
               <tbody className="text-bark-600 dark:text-cream-300">
                 <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Bernat Blanket Extra</td>
-                  <td className="px-4 py-3">Super Bulky (6)</td>
+                  <td className="px-4 py-3 font-medium"><a href="https://www.yarnspirations.com/products/bernat-blanket-extra-yarn-300g-10-5oz" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">Bernat Blanket Extra</a></td>
+                  <td className="px-4 py-3">Jumbo (7)</td>
                   <td className="px-4 py-3">100% polyester</td>
-                  <td className="px-4 py-3">Super Bulky (6); verify current label gauge and care</td>
+                  <td className="px-4 py-3">Jumbo (7); verify current label gauge and care</td>
                   <td className="px-4 py-3">
                     <a href={amazonSearchUrl("bernat blanket extra yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
-                  <td className="px-4 py-3 font-medium">Lion Brand Thick & Quick</td>
-                  <td className="px-4 py-3">Bulky (5)</td>
-                  <td className="px-4 py-3">80% acrylic / 20% wool</td>
-                  <td className="px-4 py-3">Bulky (5) wool blend; verify sensitivities and care</td>
+                  <td className="px-4 py-3 font-medium"><a href="https://www.lionbrand.com/products/wool-ease-thick-and-quick-yarn" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">Lion Brand Wool-Ease Thick &amp; Quick</a></td>
+                  <td className="px-4 py-3">Super Bulky (6)</td>
+                  <td className="px-4 py-3">80% acrylic / 20% wool in most colors</td>
+                  <td className="px-4 py-3">Fiber mix and yardage vary by color; check the exact label and wool sensitivities</td>
                   <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("lion brand thick quick")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
+                    <a href="https://www.lionbrand.com/products/wool-ease-thick-and-quick-yarn" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">View at Lion Brand</a>
                   </td>
                 </tr>
-                <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Premier Yarns Anti-Pilling Everyday Chunky</td>
-                  <td className="px-4 py-3">Bulky (5)</td>
-                  <td className="px-4 py-3">100% acrylic</td>
-                  <td className="px-4 py-3">Marketed as anti-pilling; verify current label and care</td>
-                  <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("premier yarns everyday chunky")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
-                  </td>
-                </tr>
+
               </tbody>
             </table>
           </div>
         </section>
 
-        {/* Best Baby Blanket Yarns */}
+        {/* Choosing Yarn for a Baby Blanket */}
         <section className="mb-10">
           <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-            Best Baby Blanket Yarns
+            Choosing Yarn for a Baby Blanket
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             For a baby blanket, confirm the caregiver&apos;s laundering preference and check the exact manufacturer label for fiber content, care, shedding, sensitivities, and intended use. A retailer category or product name is not a safety certification; construction and finishing also require project-specific judgment.
@@ -303,17 +300,9 @@ export default function BestYarnForBlanketsPage() {
                 </tr>
               </thead>
               <tbody className="text-bark-600 dark:text-cream-300">
-                <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Lion Brand Baby Soft</td>
-                  <td className="px-4 py-3">Light (3)</td>
-                  <td className="px-4 py-3">60% acrylic / 40% nylon</td>
-                  <td className="px-4 py-3">Light (3) blend; verify current label, feel, and care</td>
-                  <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("lion brand baby soft yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
-                  </td>
-                </tr>
+
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
-                  <td className="px-4 py-3 font-medium">Paintbox Simply DK</td>
+                  <td className="px-4 py-3 font-medium"><a href="https://www.lovecrafts.com/en-us/products/paintbox-yarns-simply-dk" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">Paintbox Simply DK</a></td>
                   <td className="px-4 py-3">Light (3)</td>
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Light (3) acrylic; compare current colors, price, and care</td>
@@ -345,6 +334,12 @@ export default function BestYarnForBlanketsPage() {
             </Link>{" "}
             for planning estimates across its supported project types.
           </p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">From required yards to whole skeins</h2>
+          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">Hypothetical example: suppose your blanket swatch estimate, border, and chosen allowance total 1,250 yards. If the exact skein label says 220 yards, 1,250 ÷ 220 ≈ 5.68, so round up to 6 whole skeins. You buy 6 × 220 = 1,320 yards; planned unused yardage is 1,320 − 1,250 = 70 yards. These are invented planning inputs, not a tested blanket recipe or a guaranteed leftover amount. For multiple colors, calculate and round each color separately.</p>
+          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">Make a separate swatch for each different yarn using the intended stitch and tools, then wash and measure it as the project requires. Do not carry the same yardage estimate across different yarns: gauge, fabric, and consumption can change even within one weight category. Recalculate before comparing total purchase cost or unused yardage.</p>
         </section>
 
         {/* Common Buying Mistakes */}
