@@ -50,24 +50,35 @@ class GoogleAnalytics:
         self,
         days: int = 30,
         limit: int = 20,
-        path_filter: Optional[str] = "/blog/"
+        path_filter: Optional[str] = None,
+        *,
+        end_days_ago: int = 1
     ) -> List[Dict[str, Any]]:
         """
         Get top performing pages by pageviews
 
         Args:
-            days: Number of days to look back
+            days: Number of completed days to include
             limit: Number of results to return
-            path_filter: Filter pages by path (e.g., "/blog/")
+            path_filter: Optional path substring (None = all pages)
+            end_days_ago: Inclusive end offset in the property's reporting timezone;
+                1 ends yesterday. Used for adjacent, nonoverlapping comparisons.
 
         Returns:
             List of dicts with page data
         """
+        if type(days) is not int or days < 1:
+            raise ValueError("days must be a positive integer")
+        if type(end_days_ago) is not int or end_days_ago < 1:
+            raise ValueError("end_days_ago must be a positive integer")
+
+        # GA4 endpoints are inclusive; relative dates use the property's timezone.
+        # https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/DateRange
         request = RunReportRequest(
             property=f"properties/{self.property_id}",
             date_ranges=[DateRange(
-                start_date=f"{days}daysAgo",
-                end_date="today"
+                start_date=f"{end_days_ago + days - 1}daysAgo",
+                end_date=f"{end_days_ago}daysAgo"
             )],
             dimensions=[
                 Dimension(name="pagePath"),
@@ -198,14 +209,14 @@ class GoogleAnalytics:
     def get_conversions(
         self,
         days: int = 30,
-        path_filter: Optional[str] = "/blog/"
+        path_filter: Optional[str] = None
     ) -> List[Dict[str, Any]]:
         """
         Get conversion data by page
 
         Args:
             days: Number of days to look back
-            path_filter: Filter pages by path
+            path_filter: Optional path substring (None = all pages)
 
         Returns:
             List of pages with conversion data
@@ -323,15 +334,19 @@ class GoogleAnalytics:
         self,
         comparison_days: int = 30,
         threshold_percent: float = -20.0,
-        path_filter: str = "/blog/"
+        path_filter: Optional[str] = None
     ) -> List[Dict[str, Any]]:
         """
-        Identify pages with declining traffic
+        Identify declining traffic among the recent period's top 100 pages.
+
+        This is a sampled comparison, not a complete disappeared-page report.
+        Pages absent from the recent top 100 are not included.
 
         Args:
-            comparison_days: Compare this many recent days vs previous period
+            comparison_days: Compare this many completed days with the immediately
+                preceding equal period, using the property's reporting timezone
             threshold_percent: Consider declining if drop exceeds this %
-            path_filter: Filter pages by path
+            path_filter: Optional path substring (None = all pages)
 
         Returns:
             List of declining pages with metrics
@@ -343,11 +358,12 @@ class GoogleAnalytics:
             path_filter=path_filter
         )
 
-        # Get previous period data
+        # Previous equal period ends the day before the recent period starts.
         previous_pages = self.get_top_pages(
-            days=comparison_days * 2,
+            days=comparison_days,
             limit=100,
-            path_filter=path_filter
+            path_filter=path_filter,
+            end_days_ago=comparison_days + 1
         )
 
         # Create lookup for previous data
@@ -384,7 +400,7 @@ if __name__ == "__main__":
     ga = GoogleAnalytics()
 
     print("Top 10 blog articles:")
-    top_pages = ga.get_top_pages(days=30, limit=10)
+    top_pages = ga.get_top_pages(days=30, limit=10, path_filter="/blog/")
     for i, page in enumerate(top_pages, 1):
         print(f"{i}. {page['title']}")
         print(f"   {page['path']}")
@@ -392,7 +408,7 @@ if __name__ == "__main__":
         print()
 
     print("\nDeclining articles:")
-    declining = ga.get_declining_pages(comparison_days=30)
+    declining = ga.get_declining_pages(comparison_days=30, path_filter="/blog/")
     for page in declining[:5]:
         print(f"- {page['title']}")
         print(f"  {page['path']}")
