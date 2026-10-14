@@ -29,9 +29,9 @@ test("visible homepage review label and sitemap use the same reviewed-date regis
   assert.doesNotMatch(sitemapSource, /new Date\(\)/);
 });
 
-test("materially updated buyer guides use the substantiated August 25 review date", () => {
-  assert.deepEqual(REVIEW_DATES.bestYarnForBeginners, { iso: "2026-08-25", label: "August 25, 2026" });
-  assert.deepEqual(REVIEW_DATES.bestYarnForBlankets, { iso: "2026-08-25", label: "August 25, 2026" });
+test("materially updated buyer guides use the source-checked October 14 review date", () => {
+  assert.deepEqual(REVIEW_DATES.bestYarnForBeginners, { iso: "2026-10-14", label: "October 14, 2026" });
+  assert.deepEqual(REVIEW_DATES.bestYarnForBlankets, { iso: "2026-10-14", label: "October 14, 2026" });
   assert.match(beginnerYarnSource, /dateModified: REVIEW_DATES\.bestYarnForBeginners\.iso/);
   assert.match(beginnerYarnSource, /Last updated: \{REVIEW_DATES\.bestYarnForBeginners\.label\}/);
   assert.match(blanketYarnSource, /dateModified: REVIEW_DATES\.bestYarnForBlankets\.iso/);
