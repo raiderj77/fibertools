@@ -341,6 +341,9 @@ class GoogleAnalytics:
 
         This is a sampled comparison, not a complete disappeared-page report.
         Pages absent from the recent top 100 are not included.
+        Both periods are read in one request so property midnight cannot shift
+        their relative dates independently. A truncated response (over 10,000
+        combined rows) raises ValueError rather than comparing partial periods.
 
         Args:
             comparison_days: Compare this many completed days with the immediately
@@ -351,20 +354,59 @@ class GoogleAnalytics:
         Returns:
             List of declining pages with metrics
         """
-        # Get recent period data
-        recent_pages = self.get_top_pages(
-            days=comparison_days,
-            limit=100,
-            path_filter=path_filter
-        )
+        if type(comparison_days) is not int or comparison_days < 1:
+            raise ValueError("comparison_days must be a positive integer")
 
-        # Previous equal period ends the day before the recent period starts.
-        previous_pages = self.get_top_pages(
-            days=comparison_days,
-            limit=100,
-            path_filter=path_filter,
-            end_days_ago=comparison_days + 1
+        # One report resolves both inclusive ranges in the property's timezone.
+        # Named ranges appear in the response's dateRange dimension:
+        # https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/DateRange
+        request = RunReportRequest(
+            property=f"properties/{self.property_id}",
+            date_ranges=[
+                DateRange(start_date=f"{comparison_days}daysAgo", end_date="1daysAgo", name="recent"),
+                DateRange(start_date=f"{2 * comparison_days}daysAgo",
+                          end_date=f"{comparison_days + 1}daysAgo", name="previous"),
+            ],
+            dimensions=[Dimension(name="pagePath"), Dimension(name="pageTitle")],
+            metrics=[Metric(name=name) for name in [
+                "screenPageViews", "sessions", "averageSessionDuration", "bounceRate", "engagementRate"
+            ]],
+            limit=10000,
         )
+        if path_filter:
+            request.dimension_filter = FilterExpression(filter=Filter(
+                field_name="pagePath",
+                string_filter=Filter.StringFilter(
+                    match_type=Filter.StringFilter.MatchType.CONTAINS, value=path_filter
+                )
+            ))
+
+        response = self.client.run_report(request)
+        # The API's limit is shared across ranges. Partition only a complete
+        # bounded response, then select each period's top 100 independently.
+        # Do not paginate: another request could cross property midnight.
+        if response.row_count > len(response.rows):
+            raise ValueError("Comparison report is truncated; narrow path_filter or the date window")
+        headers = [header.name for header in response.dimension_headers]
+        if any(headers.count(name) != 1 for name in ("dateRange", "pagePath", "pageTitle")):
+            raise ValueError("Comparison report is missing unique dateRange/page dimensions")
+        range_index, path_index, title_index = (headers.index(name) for name in ("dateRange", "pagePath", "pageTitle"))
+        periods = {"recent": [], "previous": []}
+        for row in response.rows:
+            period = row.dimension_values[range_index].value
+            if period not in periods:
+                raise ValueError("Comparison report contains an unknown date range")
+            periods[period].append({
+                'path': row.dimension_values[path_index].value,
+                'title': row.dimension_values[title_index].value,
+                'pageviews': int(row.metric_values[0].value),
+                'sessions': int(row.metric_values[1].value),
+                'avg_session_duration': float(row.metric_values[2].value),
+                'bounce_rate': float(row.metric_values[3].value),
+                'engagement_rate': float(row.metric_values[4].value),
+            })
+        recent_pages = sorted(periods['recent'], key=lambda page: page['pageviews'], reverse=True)[:100]
+        previous_pages = sorted(periods['previous'], key=lambda page: page['pageviews'], reverse=True)[:100]
 
         # Create lookup for previous data
         previous_lookup = {p['path']: p['pageviews'] for p in previous_pages}
