@@ -8,6 +8,7 @@ import { readFileSync, existsSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 import { getPublicationFreezeViolations } from "./publication-freeze.mjs";
+import { getCrawlerRuleViolations } from "./crawler-rules.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
@@ -55,43 +56,9 @@ check("robots.txt", () => {
   if (!existsSync(p)) return fail("public/robots.txt missing");
   const content = readFileSync(p, "utf-8");
 
-  const requiredCrawlers = [
-    "OAI-SearchBot",
-    "ChatGPT-User",
-    "Claude-SearchBot",
-    "PerplexityBot",
-    "Applebot-Extended",
-    "DuckAssistBot",
-    "Amazonbot",
-  ];
-  for (const crawler of requiredCrawlers) {
-    if (content.includes(crawler)) {
-      pass(`${crawler} rule present`);
-    } else {
-      fail(`${crawler} rule missing from robots.txt`);
-    }
-  }
-
-  const blockedCrawlers = ["Bytespider", "Meta-ExternalAgent"];
-  for (const crawler of blockedCrawlers) {
-    if (content.includes(crawler)) {
-      pass(`${crawler} blocked`);
-    } else {
-      fail(`${crawler} not blocked in robots.txt`);
-    }
-  }
-
-  if (/Bingbot[\s\S]*?Crawl-delay:\s*10/i.test(content)) {
-    pass("Bingbot Crawl-delay: 10");
-  } else {
-    fail("Bingbot Crawl-delay: 10 missing");
-  }
-
-  if (content.includes("sitemap.xml")) {
-    pass("Sitemap reference present");
-  } else {
-    fail("Sitemap reference missing from robots.txt");
-  }
+  const violations = getCrawlerRuleViolations(content);
+  for (const violation of violations) fail(violation);
+  if (!violations.length) pass("Explicit crawler directives, Bing delay, default exclusions and canonical sitemap agree");
 });
 
 // ---------------------------------------------------------------------------

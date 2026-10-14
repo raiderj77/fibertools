@@ -1,0 +1,48 @@
+{
+  "edition": "FT-PP-V2-2026-08-25",
+  "sourceSha256": "e5407e856ce539b1e751f8e36388c3d66d3151a649e6e61a97036ce9cbdd89a6",
+  "sourceBytes": 134356,
+  "sourcePages": 12,
+  "fillableFields": 141,
+  "previews": [
+    {
+      "file": "planning-pack-preview-project-brief.png",
+      "sourcePage": 2,
+      "cropPdfPoints": [
+        36,
+        500,
+        576,
+        752
+      ],
+      "sha256": "52241e50cff0e6f1ca629259a31846a1f37ef46d219e5801cba5a79f243b217d",
+      "width": 1176,
+      "height": 720
+    },
+    {
+      "file": "planning-pack-preview-swatch-record.png",
+      "sourcePage": 3,
+      "cropPdfPoints": [
+        36,
+        500,
+        576,
+        752
+      ],
+      "sha256": "744b8150e56453dcebcd5252f12c3f5d0dffea0ac04fc12bfd25b44f8938f6df",
+      "width": 1176,
+      "height": 720
+    },
+    {
+      "file": "planning-pack-preview-project-cost.png",
+      "sourcePage": 7,
+      "cropPdfPoints": [
+        36,
+        455,
+        576,
+        752
+      ],
+      "sha256": "d641b56c8c820dcf8ebcf2f6ff95225696bf1bc5c283e5121dd43f4ce6c95b4c",
+      "width": 1176,
+      "height": 810
+    }
+  ]
+}
