@@ -20,11 +20,11 @@ export const REVIEW_DATES = Object.freeze({
     label: "April 16, 2026",
   }),
   bestYarnForBeginners: Object.freeze({
-    iso: "2026-08-25",
-    label: "August 25, 2026",
+    iso: "2026-10-14",
+    label: "October 14, 2026",
   }),
   bestYarnForBlankets: Object.freeze({
-    iso: "2026-08-25",
-    label: "August 25, 2026",
+    iso: "2026-10-14",
+    label: "October 14, 2026",
   }),
 });
