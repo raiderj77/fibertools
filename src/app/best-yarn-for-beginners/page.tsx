@@ -4,9 +4,9 @@ import { amazonProductUrl, amazonSearchUrl } from "@/lib/affiliate";
 import { REVIEW_DATES } from "@/lib/review-dates.mjs";
 
 export const metadata: Metadata = {
-  title: { absolute: "Best Yarn for Beginners (2026): Practical Picks" },
+  title: { absolute: "Yarn for Beginners: A Selection Guide" },
   description:
-    "Practical beginner-yarn options for knitting and crochet in 2026, with smooth, affordable choices selected for visible stitches and manageable handling.",
+    "Choose beginner yarn using source-checked weight and fiber details, stitch visibility, pattern requirements, and a hypothetical whole-skein example.",
   keywords: [
     "best yarn for beginners",
     "beginner knitting yarn",
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     type: "article",
-    title: "Best Yarn for Beginners (2026): Practical Picks",
+    title: "Yarn for Beginners: A Selection Guide",
     description:
-      "Practical beginner-yarn options for knitting and crochet in 2026, with smooth, affordable choices selected for visible stitches and manageable handling.",
+      "Choose beginner yarn using source-checked weight and fiber details, stitch visibility, pattern requirements, and a hypothetical whole-skein example.",
     url: "https://fibertools.app/best-yarn-for-beginners",
     images: [
       {
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Best Yarn for Beginners (2026): Practical Picks",
+    title: "Yarn for Beginners: A Selection Guide",
     description:
-      "Practical beginner-yarn options for knitting and crochet in 2026, with smooth, affordable choices selected for visible stitches and manageable handling.",
+      "Choose beginner yarn using source-checked weight and fiber details, stitch visibility, pattern requirements, and a hypothetical whole-skein example.",
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/best-yarn-for-beginners" },
@@ -45,9 +45,9 @@ export default function BestYarnForBeginnersPage() {
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
-    headline: "Best Yarn for Beginners (2026): Practical Picks",
+    headline: "Yarn for Beginners: A Selection Guide",
     description:
-      "Practical beginner-yarn options for knitting and crochet in 2026, with smooth, affordable choices selected for visible stitches and manageable handling.",
+      "Choose beginner yarn using source-checked weight and fiber details, stitch visibility, pattern requirements, and a hypothetical whole-skein example.",
     datePublished: "2026-03-11",
     dateModified: REVIEW_DATES.bestYarnForBeginners.iso,
     url: "https://fibertools.app/best-yarn-for-beginners",
@@ -141,21 +141,26 @@ export default function BestYarnForBeginnersPage() {
       </p>
 
       <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
-        Best Yarn for Beginners (2026)
+        Yarn for Beginners: A Selection Guide
       </h1>
 
       {/* Answer capsule */}
       <p className="text-lg text-bark-600 dark:text-cream-300 leading-relaxed mb-2">
-        A practical beginner yarn is a smooth, medium weight (worsted/CYC 4) acrylic in a light color. It is affordable, machine washable, and makes stitches easier to see. Check local or online availability before choosing a color, and start with one skein of 200+ yards for a small first project such as a dishcloth or short scarf.
+        Start with your pattern, then choose a yarn whose stitches you can see and handle comfortably. A smooth, light-colored Medium (4) yarn can be a useful learning option when the pattern permits it. Check the exact care label and required yardage before buying; one skein is not a universal first-project quantity.
       </p>
 
-      <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
+      <div className="flex flex-wrap items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
         <span>Last updated: {REVIEW_DATES.bestYarnForBeginners.label}</span>
         <span>&middot;</span>
         <span>Written by Jason Ramirez, founder of FiberTools</span>
       </div>
 
       <article className="prose-fiber">
+        <section className="mb-10">
+          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">How to use this guide</h2>
+          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">This is selection guidance based on linked manufacturer specifications (and LoveCrafts for its own Paintbox brand), not hands-on testing or a ranked comparison. Product names in the tables link to specification sources checked October 14, 2026; paid shopping links are separate. Match the exact product, color, package size, care label, and pattern gauge before buying. A product page does not guarantee stock at a seller.</p>
+        </section>
+
         {/* What Makes a Good Beginner Yarn? */}
         <section className="mb-10">
           <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
@@ -172,13 +177,13 @@ export default function BestYarnForBeginnersPage() {
           </p>
         </section>
 
-        {/* Best Beginner Yarn Picks */}
+        {/* Beginner Yarn Options to Compare */}
         <section className="mb-10">
           <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-            Best Beginner Yarn Picks
+            Beginner Yarn Options to Compare
           </h2>
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            These picks emphasize smooth texture, manageable weight, practical care, and enough yardage for common first projects. Availability and price vary by seller and color.
+            These examples offer different package sizes and yarn weights to compare with your pattern. The linked product specifications support the weight and fiber details; they do not establish a best yarn for every learner. Availability and price vary by seller and color.
           </p>
           <div className="overflow-x-auto mb-4">
             <table className="w-full text-sm text-left border border-cream-300 dark:border-bark-700 rounded-xl overflow-hidden">
@@ -193,7 +198,7 @@ export default function BestYarnForBeginnersPage() {
               </thead>
               <tbody className="text-bark-600 dark:text-cream-300">
                 <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Lion Brand Pound of Love</td>
+                  <td className="px-4 py-3 font-medium"><a href="https://www.lionbrand.com/products/pound-of-love-yarn" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">Lion Brand Pound of Love</a></td>
                   <td className="px-4 py-3">Medium (4)</td>
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Large put-up, 1,020 yards listed per skein</td>
@@ -202,7 +207,7 @@ export default function BestYarnForBeginnersPage() {
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
-                  <td className="px-4 py-3 font-medium">Caron Simply Soft</td>
+                  <td className="px-4 py-3 font-medium"><a href="https://www.yarnspirations.com/products/caron-simply-soft-yarn" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">Caron Simply Soft</a></td>
                   <td className="px-4 py-3">Medium (4)</td>
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Smooth-finish option; compare current colors and care label</td>
@@ -211,7 +216,7 @@ export default function BestYarnForBeginnersPage() {
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Red Heart Super Saver</td>
+                  <td className="px-4 py-3 font-medium"><a href="https://www.yarnspirations.com/products/red-heart-super-saver-yarn" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">Red Heart Super Saver (solids)</a></td>
                   <td className="px-4 py-3">Medium (4)</td>
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Compare current price, yardage, colors, and care label</td>
@@ -220,7 +225,7 @@ export default function BestYarnForBeginnersPage() {
                   </td>
                 </tr>
                 <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
-                  <td className="px-4 py-3 font-medium">Paintbox Simply DK</td>
+                  <td className="px-4 py-3 font-medium"><a href="https://www.lovecrafts.com/en-us/products/paintbox-yarns-simply-dk" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">Paintbox Simply DK</a></td>
                   <td className="px-4 py-3">Light (3)</td>
                   <td className="px-4 py-3">100% acrylic</td>
                   <td className="px-4 py-3">Light (3) option; compare label gauge, care, and current colors</td>
@@ -228,19 +233,13 @@ export default function BestYarnForBeginnersPage() {
                     <a href={amazonSearchUrl("paintbox simply dk")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
                   </td>
                 </tr>
-                <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Lion Brand Comfy Cotton Blend</td>
-                  <td className="px-4 py-3">Medium (4)</td>
-                  <td className="px-4 py-3">Cotton/acrylic</td>
-                  <td className="px-4 py-3">Warm climates, dishcloths</td>
-                  <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("lion brand comfy cotton blend")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
-                  </td>
-                </tr>
+
               </tbody>
             </table>
           </div>
         </section>
+
+        <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]"><strong>Historical reference:</strong> Lion Brand Comfy Cotton Blend is discontinued. Its <a href="https://www.lionbrand.com/products/comfy-cotton-blend-yarn" target="_blank" rel="noopener noreferrer" className="text-sage-600 dark:text-sage-400 hover:underline">official product page</a> lists Light (3), 50% cotton / 50% polyester. It is included here only to identify existing stash, not as a current buying recommendation. No remaining stock is assumed.</p>
 
         {/* What Yarn Weight Should Beginners Start With? */}
         <section className="mb-10">
@@ -290,6 +289,12 @@ export default function BestYarnForBeginnersPage() {
           <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
             Natural fibers are not inherently unsuitable for beginners. Wool, cotton, alpaca, and blends behave differently, and price, stretch, texture, allergies, and washing instructions vary by product. Swatch the actual yarn and follow its care label before committing to a larger project.
           </p>
+        </section>
+
+        <section className="mb-10">
+          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">From required yards to whole skeins</h2>
+          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">Hypothetical example: suppose your pattern and swatch indicate 350 yards in total, including your chosen allowance for practice and finishing. At 200 yards per skein, 350 ÷ 200 = 1.75, so round up to 2 whole skeins. You buy 2 × 200 = 400 yards; planned unused yardage is 400 − 350 = 50 yards. This is arithmetic for invented inputs, not a project recommendation or a guarantee of leftovers.</p>
+          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">Make a separate swatch for each different yarn using the intended stitch and tools, then wash and measure it as the project requires. Do not carry the same yardage estimate across different yarns: gauge, fabric, and consumption can change even within one weight category. Recalculate before comparing total purchase cost or unused yardage.</p>
         </section>
 
         {/* Common Buying Mistakes */}
