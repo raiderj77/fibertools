@@ -9,10 +9,12 @@ import {
   GOOGLE_MEASUREMENT_ID,
 } from "@/lib/analytics-page-context.mjs";
 import SanitizedPageViewTracker from "@/components/SanitizedPageViewTracker";
+import { ANALYTICS_CONSENT_VERSION, normalizeAnalyticsConsent } from "@/lib/analytics-consent.mjs";
 
 type ConsentStatus = "granted" | "denied";
 
 interface ConsentState {
+  version: typeof ANALYTICS_CONSENT_VERSION;
   analytics: ConsentStatus;
   ads: ConsentStatus;
   timestamp: string;
@@ -26,6 +28,9 @@ const PRIVACY_CHOICES_EVENT = "fibertools:privacy-choices";
 const ADSENSE_CLIENT_ID = "ca-pub-7171402107622932";
 
 function updateGoogleConsent(analytics: ConsentStatus, ads: ConsentStatus) {
+  if (typeof window !== "undefined") {
+    window.fibertoolsAnalyticsAllowed = analytics === "granted";
+  }
   if (typeof window !== "undefined" && typeof window.gtag === "function") {
     window.gtag("consent", "update", {
       ad_storage: ads,
@@ -90,8 +95,11 @@ function GoogleServices({ adsenseEnabled }: { adsenseEnabled: boolean }) {
       document.cookie.split(';').some(function(part) {
         return part.trim() === 'empire_gpc=1';
       });
-    var analyticsAllowed = !gpcActive && storedConsent && storedConsent.analytics === 'granted';
-    var adsAllowed = !gpcActive && storedConsent && storedConsent.ads === 'granted';
+    var analyticsAllowed = window.fibertoolsAnalyticsAllowed === true &&
+      !gpcActive && storedConsent && storedConsent.analytics === 'granted';
+    // The analytics banner is not an advertising consent mechanism.
+    // Never reuse a legacy or cross-tab advertising grant at this script boundary.
+    var adsAllowed = false;
   `;
 
   return (
@@ -103,6 +111,9 @@ function GoogleServices({ adsenseEnabled }: { adsenseEnabled: boolean }) {
             window.dataLayer = window.dataLayer || [];
             window.gtag = function(){
               if (arguments[0] === 'event') {
+                if (window.fibertoolsAnalyticsAllowed !== true ||
+                    window.navigator.globalPrivacyControl === true ||
+                    document.cookie.split(';').some(function(part) { return part.trim() === 'empire_gpc=1'; })) return;
                 var eventParameters = arguments[2] && typeof arguments[2] === 'object'
                   ? arguments[2]
                   : {};
@@ -136,6 +147,9 @@ function GoogleServices({ adsenseEnabled }: { adsenseEnabled: boolean }) {
             window.dataLayer = window.dataLayer || [];
             window.gtag = window.gtag || function(){
               if (arguments[0] === 'event') {
+                if (window.fibertoolsAnalyticsAllowed !== true ||
+                    window.navigator.globalPrivacyControl === true ||
+                    document.cookie.split(';').some(function(part) { return part.trim() === 'empire_gpc=1'; })) return;
                 var eventParameters = arguments[2] && typeof arguments[2] === 'object'
                   ? arguments[2]
                   : {};
@@ -195,6 +209,7 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
 
   function enforceGPC(closeChoices = true) {
     const nextConsent: ConsentState = {
+      version: ANALYTICS_CONSENT_VERSION,
       analytics: "denied",
       ads: "denied",
       timestamp: new Date().toISOString(),
@@ -229,17 +244,19 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
 
     // Returning visitor, apply stored consent
     try {
-      const parsed = JSON.parse(stored) as Partial<ConsentState>;
-      if (
-        (parsed.analytics !== "granted" && parsed.analytics !== "denied") ||
-        (parsed.ads !== "granted" && parsed.ads !== "denied")
-      ) {
+      const parsed = normalizeAnalyticsConsent(JSON.parse(stored));
+      if (!parsed) {
         throw new Error("Invalid consent state");
       }
-      setConsent(parsed as ConsentState);
+      updateGoogleConsent(parsed.analytics, parsed.ads);
+      if (parsed.analytics === "denied") clearGoogleAnalyticsCookies();
+      // Preserve the analytics choice and original timestamp; revoke ambiguous ads grants.
+      saveConsent(parsed);
     } catch {
       // Corrupted data, show banner again
-      localStorage.removeItem(CONSENT_STORAGE_KEY);
+      try { localStorage.removeItem(CONSENT_STORAGE_KEY); } catch { /* Storage may be blocked. */ }
+      updateGoogleConsent("denied", "denied");
+      clearGoogleAnalyticsCookies();
       setConsent(null);
       setVisible(true);
     }
@@ -249,7 +266,7 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
 
   useEffect(() => {
     const syncConsentFromAnotherTab = (event: StorageEvent) => {
-      if (event.key !== CONSENT_STORAGE_KEY) return;
+      if (event.key !== CONSENT_STORAGE_KEY && event.key !== null) return;
 
       if (detectGPCClient()) {
         enforceGPC(false);
@@ -258,20 +275,18 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
 
       try {
         const parsed = event.newValue
-          ? (JSON.parse(event.newValue) as Partial<ConsentState>)
+          ? normalizeAnalyticsConsent(JSON.parse(event.newValue))
           : null;
-        if (
-          !parsed ||
-          (parsed.analytics !== "granted" && parsed.analytics !== "denied") ||
-          (parsed.ads !== "granted" && parsed.ads !== "denied")
-        ) {
+        if (!parsed) {
           throw new Error("Invalid consent state");
         }
 
         setGpcActive(false);
         updateGoogleConsent(parsed.analytics, parsed.ads);
         if (parsed.analytics === "denied") clearGoogleAnalyticsCookies();
-        setConsent(parsed as ConsentState);
+        // Persist migrations only when needed, avoiding a cross-tab write loop.
+        if (event.newValue !== JSON.stringify(parsed)) saveConsent(parsed, false);
+        else setConsent(parsed);
       } catch {
         updateGoogleConsent("denied", "denied");
         clearGoogleAnalyticsCookies();
@@ -309,17 +324,19 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
 
     setGpcActive(false);
     const nextConsent: ConsentState = {
+      version: ANALYTICS_CONSENT_VERSION,
       analytics: "granted",
-      ads: "granted",
+      ads: "denied",
       timestamp: new Date().toISOString(),
     };
-    updateGoogleConsent("granted", "granted");
+    updateGoogleConsent("granted", "denied");
     saveConsent(nextConsent);
   }
 
   function handleDecline() {
     setGpcActive(detectGPCClient());
     const nextConsent: ConsentState = {
+      version: ANALYTICS_CONSENT_VERSION,
       analytics: "denied",
       ads: "denied",
       timestamp: new Date().toISOString(),
@@ -348,7 +365,7 @@ export default function CookieConsent({ adsenseEnabled }: { adsenseEnabled: bool
               ) : (
                 <>With your permission, Google Analytics helps us understand which tools and product
                   recommendations are useful. Calculator inputs and email addresses are never included in
-                  analytics events. </>
+                  analytics events. Allowing analytics does not allow advertising; ads remain off. </>
               )}
               <Link href="/cookies" className="text-sage-600 dark:text-sage-400 underline">
                 Cookie Policy

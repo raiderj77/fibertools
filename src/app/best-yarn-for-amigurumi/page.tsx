@@ -1,407 +1,135 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { amazonSearchUrl } from "@/lib/affiliate";
+import { REVIEW_DATES } from "@/lib/review-dates.mjs";
+
+const title = "Choosing Yarn for Amigurumi: Labels, Gauge and Fabric | FiberTools";
+const headline = "Choosing Yarn for Amigurumi: Labels, Gauge and Fabric";
+const description = "Compare exact yarn labels, test the hook and fabric against your pattern, and plan quantity and care without universal product rankings.";
+const faqs = [
+  {"question": "What weight yarn is best for amigurumi?", "answer": "Use the weight, gauge and fabric requirements in the pattern. A change in yarn or hook can alter the finished dimensions. Category names alone do not establish an interchangeable yarn or a predictable toy size."},
+  {"question": "Can I use acrylic yarn for amigurumi?", "answer": "Acrylic can be an option when the pattern and intended use permit it. Check the exact label and test the resulting fabric; acrylic content alone does not guarantee washability, colorfastness or the behavior of a finished stuffed item."},
+  {"question": "Why does stuffing show through my amigurumi?", "answer": "Check stitch spacing, joins, decreases and how firmly the sample is stuffed. Follow the pattern gauge and test a representative sample with the intended stuffing. Adjust the hook or tension and reswatch when needed; do not automatically subtract a fixed number of hook sizes."},
+  {"question": "Is cotton or acrylic better for amigurumi?", "answer": "Neither fiber is a universal winner. Compare the exact yarn, stitch visibility, sample firmness, color requirements and care instructions against the pattern. This guide has no comparative product testing to rank their performance."},
+  {"question": "How can I check for color bleeding?", "answer": "Follow the exact yarn care instructions and test the intended colors together on a sample before assembling the project. Superwash describes a treatment associated with wool care, not a colorfastness guarantee. Ask the manufacturer if the label leaves an important care question unanswered."},
+];
+const products = [
+  {"name": "Paintbox Yarns Cotton DK", "query": "paintbox cotton dk", "check": "Check Cotton DK on the label; Simply DK is a different acrylic yarn."},
+  {"name": "Lion Brand 24/7 Cotton", "query": "lion brand 24 7 cotton yarn", "check": "Check the exact 24/7 product variant and its weight and care label."},
+  {"name": "DROPS Safran", "query": "drops safran yarn", "check": "Manufacturer describes sport/5-ply, not DK; compare the pattern gauge."},
+  {"name": "Paintbox Yarns Simply DK", "query": "paintbox simply dk", "check": "Check the exact color and acrylic composition on the current label."},
+  {"name": "Scheepjes Catona", "query": "scheepjes catona", "check": "The referenced Catona 50g is fingering, 100% mercerized cotton; verify ball size."},
+  {"name": "Lion Brand Vanna’s Choice", "query": "lion brand vannas choice", "check": "Verify the exact shade, current composition, care and availability with the maker."},
+];
 
 export const metadata: Metadata = {
-  title: { absolute: "Best Yarn for Amigurumi (2026): Cotton & Acrylic Picks" },
-  description:
-    "The best yarn for amigurumi in 2026. Cotton and acrylic picks for tight gauge, clean stitch definition, and vibrant colors.",
-  keywords: [
-    "best yarn for amigurumi",
-    "amigurumi yarn",
-    "cotton yarn for amigurumi",
-    "acrylic yarn for amigurumi",
-    "crochet toy yarn",
-  ],
-  openGraph: {
-    type: "article",
-    title: "Best Yarn for Amigurumi (2026): Tight & Neat",
-    description:
-      "The best yarn for amigurumi in 2026. Cotton and acrylic picks for tight gauge, clean stitch definition, and vibrant colors.",
-    url: "https://fibertools.app/best-yarn-for-amigurumi",
-    images: [
-      {
-        url: "https://fibertools.app/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Best Yarn for Amigurumi, FiberTools",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Best Yarn for Amigurumi (2026): Tight & Neat",
-    description:
-      "The best yarn for amigurumi in 2026. Cotton and acrylic picks for tight gauge, clean stitch definition, and vibrant colors.",
-    images: ["https://fibertools.app/og-image.png"],
-  },
+  title: { absolute: title }, description,
+  openGraph: { type: "article", title, description, url: "https://fibertools.app/best-yarn-for-amigurumi",
+    images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: headline }] },
+  twitter: { card: "summary_large_image", title, description, images: ["https://fibertools.app/og-image.png"] },
   alternates: { canonical: "/best-yarn-for-amigurumi" },
 };
 
 export default function BestYarnForAmigurumiPage() {
   const articleSchema = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "Best Yarn for Amigurumi (2026): Tight & Neat",
-    description:
-      "The best yarn for amigurumi in 2026. Cotton and acrylic picks for tight gauge, clean stitch definition, and vibrant colors.",
-    datePublished: "2026-03-11",
-    dateModified: "2026-04-16",
-    url: "https://fibertools.app/best-yarn-for-amigurumi",
-    mainEntityOfPage: "https://fibertools.app/best-yarn-for-amigurumi",
+    "@context": "https://schema.org", "@type": "Article", headline, description,
+    datePublished: "2026-03-11", dateModified: REVIEW_DATES.bestYarnForAmigurumi.iso,
+    url: "https://fibertools.app/best-yarn-for-amigurumi", mainEntityOfPage: "https://fibertools.app/best-yarn-for-amigurumi",
     author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
     publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
-    keywords: "best yarn for amigurumi, amigurumi yarn, cotton yarn for amigurumi, acrylic yarn for amigurumi, crochet toy yarn",
   };
-
   const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
+    "@context": "https://schema.org", "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://fibertools.app" },
-      { "@type": "ListItem", position: 2, name: "Best Yarn for Amigurumi" },
+      { "@type": "ListItem", position: 2, name: headline },
     ],
   };
-
   const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What weight yarn is best for amigurumi?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Light (DK, CYC 3) and Medium (worsted, CYC 4) are both popular. DK produces smaller, more detailed figures. Worsted creates larger pieces faster. Check your pattern for the recommended weight.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I use acrylic yarn for amigurumi?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Smooth acrylic yarn is colorfast, machine washable, and available in hundreds of solid colors, ideal for character designs.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Why does stuffing show through my amigurumi?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Your gauge is too loose. Go down 1–2 hook sizes from the yarn label recommendation. The fabric should be firm enough that you cannot see through it when held up to a light.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is cotton or acrylic better for amigurumi?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Both work well. Cotton has better stitch definition and is less stretchy, which helps maintain shape. Acrylic is more affordable with a wider color range. Many makers use both depending on the project.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "How do I prevent color bleeding in amigurumi yarn?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Choose yarns labeled colorfast or superwash. Hand-wash and dry completed pieces before assembling to test for any bleeding.",
-        },
-      },
-    ],
+    "@context": "https://schema.org", "@type": "FAQPage",
+    mainEntity: faqs.map(({ question, answer }) => ({
+      "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
   };
-
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
-      {/* Breadcrumbs */}
-      <nav className="flex items-center gap-2 text-sm text-bark-400 dark:text-bark-500 mb-6" aria-label="Breadcrumb">
-        <Link href="/" className="hover:text-sage-600 dark:hover:text-sage-400 transition-colors">Home</Link>
-        <span aria-hidden="true">/</span>
-        <span className="text-bark-600 dark:text-cream-400">Best Yarn for Amigurumi</span>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <nav className="flex flex-wrap gap-2 text-sm text-bark-500 mb-6" aria-label="Breadcrumb">
+        <Link href="/" className="hover:underline">Home</Link><span aria-hidden="true">/</span><span>{headline}</span>
       </nav>
-
-      {/* Affiliate disclosure */}
       <p className="mb-6 rounded-lg border border-cream-300 bg-cream-100 px-4 py-3 text-sm leading-relaxed text-bark-600 dark:border-bark-700 dark:bg-bark-800 dark:text-cream-300">
         <strong>Paid links:</strong> FiberTools may earn a commission if you buy through these links. As an Amazon Associate I earn from qualifying purchases.
       </p>
-
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">
-        Best Yarn for Amigurumi (2026)
-      </h1>
-
-      {/* Answer capsule */}
-      <p className="text-lg text-bark-600 dark:text-cream-300 leading-relaxed mb-2">
-        The best amigurumi yarn has a tight twist, smooth texture, and clean stitch definition. Paintbox Simply DK is the top choice for its 100+ solid colors and consistent tight spin. Cotton yarns like Lion Brand 24/7 Cotton offer excellent stitch definition for detailed work. Always use a hook 1–2 sizes smaller than the yarn label recommends to prevent stuffing from showing through.
-      </p>
-
-      <div className="flex items-center gap-4 mb-8 text-sm text-bark-400 dark:text-bark-500">
-        <span>Last updated: April 16, 2026</span>
-        <span>&middot;</span>
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-display font-bold text-bark-800 dark:text-cream-100 leading-tight mb-4">{headline}</h1>
+      <p className="text-lg text-bark-600 dark:text-cream-300 leading-relaxed mb-4">{description}</p>
+      <div className="flex flex-wrap gap-x-4 gap-y-2 mb-8 text-sm text-bark-500 dark:text-cream-400">
+        <span>Last updated: {REVIEW_DATES.bestYarnForAmigurumi.label}</span>
         <span>Written by Jason Ramirez, founder of FiberTools</span>
       </div>
-
-      <article className="prose-fiber">
-        {/* What Makes Good Amigurumi Yarn? */}
-        <section className="mb-10">
-          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-            What Makes Good Amigurumi Yarn?
-          </h2>
-          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Amigurumi demands yarn that creates a tight, dense fabric. Stuffing should never peek through the stitches, so the yarn must have a firm twist that holds its shape under tension. Clean stitch definition is essential, each single crochet should be clearly visible so you can count stitches and place increases accurately.
-          </p>
-          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            <strong>Look for:</strong> tight twist, smooth texture, excellent stitch definition, colorfast dyes, solid colors (for crisp details), DK (CYC 3) or worsted (CYC 4) weight, non-splitty plied construction.
-          </p>
-          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            <strong>Avoid:</strong> fuzzy or eyelash yarn (hides stitch definition), loosely spun singles (splits on the hook), novelty yarn of any kind, and highly textured yarns that make counting stitches difficult.
-          </p>
+      <article className="prose-fiber text-bark-600 dark:text-cream-300">
+        <section className="mb-10" aria-labelledby="comparison-basis">
+          <h2 id="comparison-basis">What this guide is based on</h2>
+          <p>This is a specification-based selection guide, not a hands-on product test. Sources were checked on {REVIEW_DATES.bestYarnForAmigurumi.label}. Product examples illustrate label differences; they are not ranked for softness, durability, popularity or value.</p>
+          <p>Start with the pattern&apos;s yarn, gauge, construction and intended use. Compare a sample before buying every color. A smooth sample may help you see stitches while learning, but textured yarn is not universally unsuitable; use a pattern designed for it and check whether you can identify the stitches reliably.</p>
         </section>
-
-        {/* Best Cotton Amigurumi Yarns */}
-        <section className="mb-10">
-          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-            Best Cotton Amigurumi Yarns
-          </h2>
-          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Cotton yarn produces exceptionally clean stitch definition and holds its shape without stretching. It is a popular choice for amigurumi that need to maintain crisp details over time.
-          </p>
-          <div className="overflow-x-auto mb-4">
-            <table className="w-full text-sm text-left border border-cream-300 dark:border-bark-700 rounded-xl overflow-hidden">
-              <thead className="bg-cream-100 dark:bg-bark-800 text-bark-600 dark:text-cream-300">
-                <tr>
-                  <th className="px-4 py-3 font-semibold">Yarn Name</th>
-                  <th className="px-4 py-3 font-semibold">Weight</th>
-                  <th className="px-4 py-3 font-semibold">Fiber</th>
-                  <th className="px-4 py-3 font-semibold">Notes</th>
-                  <th className="px-4 py-3 font-semibold">Link</th>
-                </tr>
-              </thead>
-              <tbody className="text-bark-600 dark:text-cream-300">
-                <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Paintbox Simply DK Cotton</td>
-                  <td className="px-4 py-3">Light (3)</td>
-                  <td className="px-4 py-3">100% cotton</td>
-                  <td className="px-4 py-3">Excellent stitch definition, wide color range</td>
-                  <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("paintbox simply dk cotton")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
-                  </td>
-                </tr>
-                <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
-                  <td className="px-4 py-3 font-medium">Lion Brand 24/7 Cotton</td>
-                  <td className="px-4 py-3">Medium (4)</td>
-                  <td className="px-4 py-3">100% cotton</td>
-                  <td className="px-4 py-3">Very smooth, machine washable</td>
-                  <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("lion brand 24 7 cotton yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
-                  </td>
-                </tr>
-                <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Drops Safran</td>
-                  <td className="px-4 py-3">Light (3)</td>
-                  <td className="px-4 py-3">100% cotton</td>
-                  <td className="px-4 py-3">Affordable, great for detailed work</td>
-                  <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("drops safran yarn")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* Best Acrylic Amigurumi Yarns */}
-        <section className="mb-10">
-          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-            Best Acrylic Amigurumi Yarns
-          </h2>
-          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Acrylic yarn is the most popular choice for amigurumi worldwide. It is affordable, machine washable, available in hundreds of solid colors, and holds its shape well after stuffing.
-          </p>
-          <div className="overflow-x-auto mb-4">
-            <table className="w-full text-sm text-left border border-cream-300 dark:border-bark-700 rounded-xl overflow-hidden">
-              <thead className="bg-cream-100 dark:bg-bark-800 text-bark-600 dark:text-cream-300">
-                <tr>
-                  <th className="px-4 py-3 font-semibold">Yarn Name</th>
-                  <th className="px-4 py-3 font-semibold">Weight</th>
-                  <th className="px-4 py-3 font-semibold">Notes</th>
-                  <th className="px-4 py-3 font-semibold">Link</th>
-                </tr>
-              </thead>
-              <tbody className="text-bark-600 dark:text-cream-300">
-                <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Paintbox Simply DK</td>
-                  <td className="px-4 py-3">Light (3)</td>
-                  <td className="px-4 py-3">Tight twist, 100+ solid colors, top choice for amigurumi</td>
-                  <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("paintbox simply dk")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
-                  </td>
-                </tr>
-                <tr className="border-t border-cream-200 dark:border-bark-700 bg-cream-50 dark:bg-bark-800/50">
-                  <td className="px-4 py-3 font-medium">Scheepjes Catona</td>
-                  <td className="px-4 py-3">Light (3)</td>
-                  <td className="px-4 py-3">Tight spin, huge color range, popular in EU patterns</td>
-                  <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("scheepjes catona")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
-                  </td>
-                </tr>
-                <tr className="border-t border-cream-200 dark:border-bark-700">
-                  <td className="px-4 py-3 font-medium">Lion Brand Vanna&#39;s Choice</td>
-                  <td className="px-4 py-3">Medium (4)</td>
-                  <td className="px-4 py-3">Smooth, affordable, widely available</td>
-                  <td className="px-4 py-3">
-                    <a href={amazonSearchUrl("lion brand vannas choice")} target="_blank" rel="sponsored nofollow noopener" className="text-sage-600 dark:text-sage-400 hover:underline">View on Amazon (paid link)</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        {/* What Hook Size for Amigurumi? */}
-        <section className="mb-10">
-          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-            What Hook Size for Amigurumi?
-          </h2>
-          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            The key to amigurumi is using a hook 1–2 sizes smaller than the yarn label recommends. This creates a tighter fabric that prevents stuffing from showing through. For DK yarn that recommends a US G-6 (4mm) hook, use a US D-3 to E-4 (3–3.5mm) hook instead. For worsted yarn recommending a US H-8 (5mm), drop to a US F-5 to G-6 (3.75–4mm).
-          </p>
-          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Test your gauge by crocheting a small circle in single crochet. Hold the swatch up to a light, if you can see through it, go down another hook size. The finished fabric should feel firm but not so tight that your hook struggles to enter the stitches.
-          </p>
-          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Generate a custom amigurumi shape with our{" "}
-            <Link href="/amigurumi-shapes" className="text-sage-600 dark:text-sage-400 hover:underline">
-              Amigurumi Shape Generator
-            </Link>
-            , or convert between hook sizes with the{" "}
-            <Link href="/needle-converter" className="text-sage-600 dark:text-sage-400 hover:underline">
-              Needle &amp; Hook Converter
-            </Link>
-            . If you already have a written pattern, check its supported round math with the{" "}
-            <Link href="/amigurumi-pattern-checker" className="text-sage-600 dark:text-sage-400 hover:underline">
-              free StitchProof pattern checker
-            </Link>
-            .
-          </p>
-        </section>
-
-        {/* How Much Yarn Do You Need for Amigurumi? */}
-        <section className="mb-10">
-          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-            How Much Yarn Do You Need for Amigurumi?
-          </h2>
-          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            Most small amigurumi figures use under 50 yards per color. The main body color uses the most yardage, while accent colors for features, clothing, or accessories need much less, often 5–15 yards each. A standard DK skein of 125–150 yards is enough for several small figures in the same color.
-          </p>
-          <p className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-            For larger amigurumi (12 inches or more), plan for 100–200 yards of the main color. Use our{" "}
-            <Link href="/yarn-calculator" className="text-sage-600 dark:text-sage-400 hover:underline">
-              Yarn Calculator
-            </Link>{" "}
-            for project-specific estimates, or check how much yardage is left on a partial skein with the{" "}
-            <Link href="/stash-estimator" className="text-sage-600 dark:text-sage-400 hover:underline">
-              Stash Estimator
-            </Link>
-            .
-          </p>
-        </section>
-
-        {/* Common Buying Mistakes */}
-        <section className="mb-10">
-          <h2 className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-4">
-            Common Buying Mistakes
-          </h2>
-          <ul className="space-y-4">
-            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
-              <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
-              <span><strong>Buying soft, fuzzy yarn because it looks cute.</strong> Chenille, mohair, or any yarn with a halo obscures stitch definition completely, you cannot see where to insert your hook, count stitches, or fix mistakes. Amigurumi requires smooth, tightly plied yarn so stitch structure is clearly visible at all times.</span>
-            </li>
-            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
-              <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
-              <span><strong>Choosing a yarn that splits easily.</strong> Loosely plied yarns split at the hook tip, creating split stitches that distort the fabric. Pull a length of yarn and try to separate the plies with your fingers, if they separate easily, the yarn will split on tight amigurumi stitches. Opt for yarns with a tight, resistant twist.</span>
-            </li>
-            <li className="flex items-start gap-3 text-bark-600 dark:text-cream-300 text-[15px] leading-relaxed">
-              <span className="text-amber-500 mt-1 flex-shrink-0 font-bold">!</span>
-              <span><strong>Buying large yardage skeins in multiple colors.</strong> Amigurumi pieces are small, a typical 4-inch bear uses only 30–50 yards of main color. A 200-yard skein contains enough for 4–6 small pieces in the same color. Buy small skeins (50–100 yards) in a variety of colors rather than large skeins of a single color unless you are making multiples of the same piece.</span>
-            </li>
+        <section className="mb-10" aria-labelledby="label-examples">
+          <h2 id="label-examples">Read the exact product name and fiber label</h2>
+          <ul>
+            <li><a href="https://www.lovecrafts.com/en-us/products/paintbox-yarns-cotton-dk">Paintbox Cotton DK</a> is 100% cotton. <a href="https://www.lovecrafts.com/en-us/products/paintbox-yarns-simply-dk">Paintbox Simply DK</a> is a separate 100% acrylic product. Similar names do not make them the same yarn.</li>
+            <li><a href="https://www.scheepjes.com/en/catona-50g-322/">Scheepjes Catona 50g</a> is described as fingering weight and 100% mercerized cotton. It does not belong in an acrylic-yarn comparison.</li>
+            <li><a href="https://www.garnstudio.com/yarn.php?show=drops-safran&amp;cid=19">DROPS Safran</a> is 100% cotton, described by the maker as sport/5-ply. Keep the maker&apos;s category rather than relabeling it DK.</li>
+            <li><a href="https://www.lionbrand.com/products/24-7-cotton">Lion Brand 24/7 Cotton</a> is 100% mercerized cotton, labeled Medium (4). Check the exact variant rather than assuming every product with a similar name has the same weight.</li>
           </ul>
+          <p>These facts do not establish that one yarn substitutes directly for another. Compare the pattern, actual gauge, fabric and care requirements. For <a href="https://www.lionbrand.com/products/vannas-choice-yarn">Vanna&apos;s Choice</a> and any other yarn, consult the current maker&apos;s label for the exact shade and product.</p>
+        </section>
+        <section className="mb-10" aria-labelledby="hook-swatch">
+          <h2 id="hook-swatch">Choose the hook by testing the fabric</h2>
+          <p>The <a href="https://www.craftyarncouncil.com/standards/yarn-weight-system">Craft Yarn Council size ranges</a> are guidelines and direct makers to pattern gauge. An amigurumi pattern may specify a different hook from the ball band. There is no universal rule to reduce every label recommendation by a fixed number of sizes.</p>
+          <ol>
+            <li>Begin with the pattern&apos;s yarn and hook specification. Record the hook&apos;s millimeters, not just a letter or number.</li>
+            <li>Make a representative sample in the same stitch and construction, including a join or decrease if that is where gaps occur.</li>
+            <li>Test with the intended stuffing and pattern instructions. Look for visible filling, distorted stitches and gaps at joins; also check that you can insert the hook without forcing it.</li>
+            <li>Change one thing, such as hook size or tension, and reswatch. Compare finished dimensions and fabric instead of assuming a smaller hook always solves the problem.</li>
+          </ol>
+          <p><strong>Hypothetical comparison:</strong> make two small samples in the same yarn with different hooks, record each diameter and compare them with the same amount of stuffing. The more suitable sample is the one that meets the pattern&apos;s dimensions and fabric requirements, not automatically the tighter one.</p>
+          <p>Use the <Link href="/needle-converter">Needle &amp; Hook Converter</Link> for size references. The <Link href="/amigurumi-shapes">Amigurumi Shape Generator</Link> supplies supported shape plans; the <Link href="/amigurumi-pattern-checker">free StitchProof pattern checker</Link> checks supported written round math, not yarn suitability or finished-toy safety.</p>
+        </section>
+        <section className="mb-10" aria-labelledby="quantity-care">
+          <h2 id="quantity-care">Plan quantity and care from evidence</h2>
+          <p>Use the pattern&apos;s yarn quantities by color. If substituting, allow for differences in gauge, construction, finishing and waste. A toy&apos;s height alone cannot determine yardage, and one skein does not guarantee a fixed number of figures.</p>
+          <p>The <Link href="/yarn-calculator">Measured Swatch Yarn Calculator</Link> models flat rectangular fabric, not three-dimensional stuffed toys. For yarn already in your stash, the <Link href="/stash-estimator">Stash Estimator</Link> can estimate remaining length from net yarn mass and the same yarn&apos;s label ratio.</p>
+          <p>For example, a hypothetical 100 g ball labeled 200 m with 25 g of yarn remaining represents about 50 m if its length-to-mass ratio is consistent. That estimates what you have, not whether it will finish a particular toy.</p>
+          <p>Read the <a href="https://www.craftyarncouncil.com/standards/care-symbols">complete care instructions</a> for yarn and all other components. Test intended colors together under the permitted treatment before assembly. A fiber name or superwash label does not guarantee colorfastness. When making an item for a child, use an appropriate pattern and component guidance; this yarn comparison does not establish toy safety.</p>
+        </section>
+        <section className="mb-10" aria-labelledby="shopping-options">
+          <h2 id="shopping-options">Product searches and checks before buying</h2>
+          <p>These existing shopping options are not ranked winners. Search results may include different variants, bundles or sellers. Match the exact product, size and label before buying; availability and prices can change.</p>
+          <div className="overflow-x-auto" tabIndex={0} aria-label="Product options and purchase checks">
+            <table className="w-full text-sm text-left">
+              <thead><tr><th scope="col">Product search</th><th scope="col">What to verify</th><th scope="col">Paid link</th></tr></thead>
+              <tbody>{products.map((product) => (
+                <tr key={product.query}>
+                  <th scope="row">{product.name}</th><td>{product.check}</td>
+                  <td><a href={amazonSearchUrl(product.query)} target="_blank" rel="sponsored nofollow noopener">View on Amazon (paid link)</a></td>
+                </tr>
+              ))}</tbody>
+            </table>
+          </div>
         </section>
       </article>
-
-      {/* FAQ */}
-      <section className="mt-12">
-        <h2 className="text-xl font-display font-bold text-bark-800 dark:text-cream-100 mb-4">
-          Frequently Asked Questions
-        </h2>
+      <section className="mt-12" aria-labelledby="buying-faq">
+        <h2 id="buying-faq" className="text-xl font-display font-bold mb-4">Frequently Asked Questions</h2>
         <div className="bg-white dark:bg-bark-800 rounded-2xl border border-cream-300 dark:border-bark-700 px-6 divide-y divide-cream-200 dark:divide-bark-700">
-          <details className="group py-1">
-            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
-              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">What weight yarn is best for amigurumi?</span>
-              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
-            </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Light (DK, CYC 3) and Medium (worsted, CYC 4) are both popular. DK produces smaller, more detailed figures. Worsted creates larger pieces faster. Check your pattern for the recommended weight.</p></div>
-          </details>
-          <details className="group py-1">
-            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
-              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Can I use acrylic yarn for amigurumi?</span>
-              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
-            </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Yes. Smooth acrylic yarn is colorfast, machine washable, and available in hundreds of solid colors, ideal for character designs.</p></div>
-          </details>
-          <details className="group py-1">
-            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
-              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Why does stuffing show through my amigurumi?</span>
-              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
-            </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Your gauge is too loose. Go down 1–2 hook sizes from the yarn label recommendation. The fabric should be firm enough that you cannot see through it when held up to a light.</p></div>
-          </details>
-          <details className="group py-1">
-            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
-              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">Is cotton or acrylic better for amigurumi?</span>
-              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
-            </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Both work well. Cotton has better stitch definition and is less stretchy, which helps maintain shape. Acrylic is more affordable with a wider color range. Many makers use both depending on the project.</p></div>
-          </details>
-          <details className="group py-1">
-            <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
-              <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">How do I prevent color bleeding in amigurumi yarn?</span>
-              <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
-            </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Choose yarns labeled colorfast or superwash. Hand-wash and dry completed pieces before assembling to test for any bleeding.</p></div>
-          </details>
+          {faqs.map(({ question, answer }) => (
+            <details key={question} className="py-3">
+              <summary className="cursor-pointer font-semibold">{question}</summary>
+              <p className="pt-3 text-sm leading-relaxed text-bark-600 dark:text-cream-300">{answer}</p>
+            </details>
+          ))}
         </div>
       </section>
-
-      {/* CTA */}
-      <div className="mt-12 p-6 bg-sage-50 dark:bg-sage-900/20 rounded-2xl border border-sage-200 dark:border-sage-800 text-center">
-        <p className="text-lg font-semibold text-bark-700 dark:text-cream-200 mb-2">
-          Generate the perfect amigurumi shape pattern with our free Amigurumi Shape Generator
-        </p>
-        <p className="text-sm text-bark-500 dark:text-bark-400 mb-4">
-          Spheres, cones, cylinders, and more, customized to your gauge.
-        </p>
-        <Link href="/amigurumi-shapes" className="btn-primary">
-          Open Amigurumi Shape Generator &rarr;
-        </Link>
-        <p className="text-sm text-bark-500 dark:text-bark-400 mt-4">
-          Not sure how much yarn you have left?{" "}
-          <Link href="/stash-estimator" className="text-sage-600 dark:text-sage-400 hover:underline">
-            Estimate yardage with our Stash Estimator &rarr;
-          </Link>
-        </p>
-      </div>
     </div>
   );
 }

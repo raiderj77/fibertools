@@ -153,7 +153,7 @@ test("names filters and makes horizontally scrolling reference tables keyboard a
   assert.match(sock, /aria-label="Foot circumference in inches"/);
   assert.match(sleeve, /aria-label="Upper arm circumference in inches"/);
   assert.match(patternChecker, /tabIndex=\{0\} aria-label="Pattern instruction reference table"/);
-  assert.match(knittingNeedles, /tabIndex=\{0\} aria-label="Beginner knitting needle comparison table"/);
+  assert.match(knittingNeedles, /tabIndex=\{0\} aria-label="Product options and purchase checks"/);
 });
 
 test("associates every audited Yarn and Gauge field with its visible label", () => {

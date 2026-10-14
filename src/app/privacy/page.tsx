@@ -30,6 +30,7 @@ export default function PrivacyPolicyPage() {
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
         Last updated: August 29, 2026
+        <br />Analytics consent clarification: October 13, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -186,9 +187,10 @@ export default function PrivacyPolicyPage() {
           </h2>
           <p>
             Google Analytics is optional. FiberTools does not download the Google
-            Analytics or advertising scripts until you choose to allow them. If
-            advertising is enabled after AdSense approval, it uses the same consent
-            choice. For full details, see
+              Analytics script until you choose to allow analytics. This choice does
+              not authorize advertising. Ads remain off, and previously saved advertising
+              grants from this banner are reset to denied while preserving your analytics
+              choice. Any future advertising requires a separate consent process. For full details, see
             our{" "}
             <a
               href="/cookies"

@@ -30,6 +30,7 @@ export default function CookiePolicyPage() {
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
         Last updated: August 26, 2026
+        <br />Analytics consent clarification: October 13, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -145,8 +146,10 @@ export default function CookiePolicyPage() {
           <p>
             <strong>Non-essential (analytics &amp; advertising):</strong> Google
             Analytics and, if enabled after approval, AdSense cookies are non-essential.
-            We request your consent before downloading their scripts or allowing their
-            storage. You can withdraw consent at any time through the Privacy choices link
+            The analytics choice does not authorize advertising. Ads remain off. Older
+            advertising grants from this banner are reset to denied without changing a valid
+            analytics choice; any future advertising requires a separate consent process.
+            You can withdraw analytics consent at any time through the Privacy choices link
             in the footer.
           </p>
         </section>
@@ -164,8 +167,8 @@ export default function CookiePolicyPage() {
               advertising scripts
             </li>
             <li>
-              After you consent, full analytics and ad personalization cookies
-              are enabled
+              After you allow analytics, analytics can run, but advertising storage,
+              ad user data and ad personalization remain denied
             </li>
             <li>
               If you decline, the scripts are not loaded and no Google tracking
@@ -183,7 +186,7 @@ export default function CookiePolicyPage() {
             <li>
               <strong>Privacy choices:</strong> Use the consent banner when you first
               visit, or the Privacy choices link in the footer later, to allow or
-              decline non-essential cookies
+              decline analytics
             </li>
             <li>
               <strong>Browser settings:</strong> Most browsers let you block or
