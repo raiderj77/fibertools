@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PlanningPackActions from "./PlanningPackActions";
 import planningPackReleaseManifest from "../../../config/planning-pack-release-manifest.json";
+import previewProvenance from "../../../config/planning-pack-preview-provenance.json";
 import { getPlanningPackCheckoutUrl } from "@/lib/planning-pack-availability.mjs";
 
 export const metadata: Metadata = {
@@ -47,6 +48,13 @@ const faqs = [
   ["Will it calculate yarn or gauge for me?", "No. The workbook helps you organize inputs and decisions. FiberTools calculators can help with estimates, but you remain responsible for checking project requirements."],
   ["How is it delivered?", "After a successful payment, Stripe returns you to FiberTools. FiberTools checks your payment and starts the PDF download in your browser. Save the file on your device and keep a clean copy for future projects."],
 ];
+
+const previewDescriptions = [
+  { title: "Project brief", description: "Blank project-identity fields for project name, recipient or use, pattern or source, and pattern version/date." },
+  { title: "Swatch record", description: "Blank materials-and-setup fields for yarn and color, hook or needle, stitch or pattern, and construction, tension, and edge notes." },
+  { title: "Project-cost sheet", description: "Blank yarn, notions, and tools rows with planned-cost and actual-cost columns." },
+];
+const previews = previewProvenance.previews.map((preview, index) => ({ ...preview, ...previewDescriptions[index] }));
 
 export default function FiberProjectPlanningPackPage() {
   // The first-party checkout gate is exposed only when the release manifest,
@@ -123,6 +131,36 @@ export default function FiberProjectPlanningPackPage() {
               <h3 className="font-bold text-bark-800 dark:text-cream-100">{title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-bark-600 dark:text-bark-400">{description}</p>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-14" aria-labelledby="pack-preview-heading">
+        <h2 id="pack-preview-heading" className="section-heading">Preview actual workbook pages</h2>
+        <p className="mt-4 max-w-3xl text-bark-600 dark:text-cream-300">
+          These partial-page excerpts come from the 12-page paid Planning Pack. They are static images of blank fields,
+          not the complete workbook or interactive forms. Open a full-size preview to read the details.
+        </p>
+        <div className="mt-6 grid gap-6 lg:grid-cols-3">
+          {previews.map((preview) => (
+            <figure key={preview.file} className="overflow-hidden rounded-2xl border border-cream-300 bg-white dark:border-bark-700 dark:bg-bark-900">
+              <img
+                src={`/images/planning-pack/${preview.file}`}
+                width={preview.width}
+                height={preview.height}
+                alt={preview.description}
+                loading="lazy"
+                decoding="async"
+                className="h-auto w-full"
+              />
+              <figcaption className="p-5">
+                <h3 className="font-bold text-bark-800 dark:text-cream-100">{preview.title}</h3>
+                <p className="mt-2 text-sm text-bark-600 dark:text-cream-300">Page {preview.sourcePage} of 12, excerpt. {preview.description}</p>
+                <a href={`/images/planning-pack/${preview.file}`} className="mt-3 inline-block rounded py-2 text-sm font-semibold text-sage-700 underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sage-600 dark:text-sage-300">
+                  View full-size {preview.title} preview
+                </a>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </section>
