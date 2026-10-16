@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const REVIEW_DATE = {
+  iso: "2026-10-15",
+  label: "October 15, 2026",
+} as const;
+
+const ROW_COUNTER_ANSWER =
+  "Digital clicker counters worn on a finger or wrist are reliable: press once per row and the count stays visible. Kacha-Kacha ring counters are the classic choice. Voice-activated counters can advance after a spoken command, but browser support, network requirements, and audio processing vary by device.";
+
 export const metadata: Metadata = {
   title: "How to Count Stitches and Rows in Knitting & Crochet | FiberTools",
   description:
@@ -49,7 +57,7 @@ export default function StitchCounterGuidePage() {
     description:
       "Learn how to count stitches and rows accurately in knitting and crochet. Covers stitch markers, row counters, colorwork tracking, and the most common counting mistakes.",
     datePublished: "2026-04-16",
-    dateModified: "2026-10-15",
+    dateModified: REVIEW_DATE.iso,
     url: "https://fibertools.app/blog/stitch-counter-guide",
     mainEntityOfPage: "https://fibertools.app/blog/stitch-counter-guide",
     author: { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
@@ -101,7 +109,7 @@ export default function StitchCounterGuidePage() {
         name: "What is the best row counter for knitting and crochet?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Digital clicker counters worn on a finger or wrist are reliable: press once per row and the count stays visible. Kacha-Kacha ring counters are the classic choice. Voice-activated counters can advance when you say a command such as 'next,' but browser support, network requirements, and audio processing vary by device.",
+          text: ROW_COUNTER_ANSWER,
         },
       },
       {
@@ -162,7 +170,7 @@ export default function StitchCounterGuidePage() {
         <span>&middot;</span>
         <span>Built by a working maker, not a content team</span>
         <span>&middot;</span>
-        <span>Last reviewed: April 2026</span>
+        <span>Last reviewed: {REVIEW_DATE.label}</span>
         <span>&middot;</span>
         <Link href="/about" className="text-sage-600 dark:text-sage-400 hover:underline">About us</Link>
       </div>
@@ -479,7 +487,7 @@ export default function StitchCounterGuidePage() {
               <span className="text-sm font-semibold text-bark-700 dark:text-cream-200 group-hover:text-sage-600 dark:group-hover:text-sage-400 transition-colors">What is the best row counter for knitting and crochet?</span>
               <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-bark-400 dark:text-bark-500 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" /></svg>
             </summary>
-            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">Digital clicker counters worn on a finger or wrist are reliable: press once per row and the count stays visible. Kacha-Kacha ring counters are the classic choice. Voice-activated counters can advance after a spoken command, but browser support, network requirements, and audio processing vary by device.</p></div>
+            <div className="pb-4 pr-8"><p className="text-sm text-bark-500 dark:text-bark-400 leading-relaxed">{ROW_COUNTER_ANSWER}</p></div>
           </details>
           <details className="group py-1">
             <summary className="flex items-start justify-between gap-4 py-3 cursor-pointer list-none text-left">
