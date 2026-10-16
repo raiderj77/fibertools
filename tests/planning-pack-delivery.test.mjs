@@ -719,7 +719,7 @@ test("public product, privacy, and terms copy describe first-party private deliv
     privacy,
     /Planning Pack[\s\S]*object is read server-side only after payment verification/
   );
-  assert.match(terms, /Last updated: October 13, 2026/);
+  assert.match(terms, /Last updated: October 15, 2026/);
   assert.match(terms, /Stripe processes[\s\S]*checkout/);
   assert.match(terms, /FiberTools verifies the paid Checkout Session/);
   assert.match(terms, /refund must be confirmed through Stripe/);
