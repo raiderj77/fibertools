@@ -8,7 +8,7 @@ const guideSource = readFileSync(
 );
 const termsSource = readFileSync("src/app/terms/page.tsx", "utf8");
 
-test("the retired MyCrochetKit service is not presented as a current FiberTools resource", () => {
+test("the stitch-counter guide and shared terms do not duplicate the separate MyCrochetKit planner", () => {
   assert.doesNotMatch(guideSource, /MyCrochetKit|mycrochetkit\.com/i);
   assert.doesNotMatch(termsSource, /MyCrochetKit|mycrochetkit\.com/i);
 });
