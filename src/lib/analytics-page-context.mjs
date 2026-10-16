@@ -14,12 +14,35 @@ const SHAREABLE_TOOL_SLUGS = new Set([
   "yarn-weight-calculator",
 ]);
 
+const MYCROCHETKIT_CAMPAIGN = Object.freeze({
+  campaign_source: "mycrochetkit",
+  campaign_medium: "referral",
+  campaign_name: "planner_to_calculator",
+});
+
+const MYCROCHETKIT_PLACEMENTS = new Set([
+  "about_body",
+  "about_footer",
+  "about_nav",
+  "companion_card",
+  "footer",
+  "hero",
+  "materials_gauge",
+  "materials_hook",
+  "materials_yarn",
+  "primary_nav",
+  "privacy_footer",
+  "privacy_nav",
+  "progress_blanket",
+  "progress_counter",
+]);
+
 function readSingleParameter(searchParams, name) {
   const values = searchParams.getAll(name);
   return values.length === 1 ? values[0] : null;
 }
 
-export function buildSafeToolShareCampaign(search) {
+export function buildSafeCampaignAttribution(search) {
   if (typeof search !== "string" || search.length === 0) return {};
 
   let searchParams;
@@ -34,19 +57,30 @@ export function buildSafeToolShareCampaign(search) {
   const campaign = readSingleParameter(searchParams, "utm_campaign");
   const content = readSingleParameter(searchParams, "utm_content");
 
-  if (
-    source !== TOOL_SHARE_CAMPAIGN.campaign_source ||
-    medium !== TOOL_SHARE_CAMPAIGN.campaign_medium ||
-    campaign !== TOOL_SHARE_CAMPAIGN.campaign_name ||
-    !SHAREABLE_TOOL_SLUGS.has(content)
-  ) {
-    return {};
+  const contracts = [
+    [TOOL_SHARE_CAMPAIGN, SHAREABLE_TOOL_SLUGS],
+    [MYCROCHETKIT_CAMPAIGN, MYCROCHETKIT_PLACEMENTS],
+  ];
+
+  for (const [contract, allowedContent] of contracts) {
+    if (
+      source === contract.campaign_source &&
+      medium === contract.campaign_medium &&
+      campaign === contract.campaign_name &&
+      allowedContent.has(content)
+    ) {
+      return {
+        ...contract,
+        campaign_content: content,
+      };
+    }
   }
 
-  return {
-    ...TOOL_SHARE_CAMPAIGN,
-    campaign_content: content,
-  };
+  return {};
+}
+
+export function buildSafeToolShareCampaign(search) {
+  return buildSafeCampaignAttribution(search);
 }
 
 export function buildAnalyticsPageContext(location) {
@@ -83,7 +117,7 @@ export function buildInitialAnalyticsConfig(location) {
 
   return {
     ...pageContext,
-    ...buildSafeToolShareCampaign(location?.search),
+    ...buildSafeCampaignAttribution(location?.search),
   };
 }
 

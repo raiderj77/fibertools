@@ -10,6 +10,7 @@ import {
 import {
   buildAnalyticsPageContext,
   buildInitialAnalyticsConfig,
+  buildSafeCampaignAttribution,
   buildSafeToolShareCampaign,
   GOOGLE_MEASUREMENT_ID,
   recordSanitizedPageView,
@@ -231,6 +232,65 @@ test("preserves only the fixed calculator-share campaign contract", () => {
   ]) {
     assert.deepEqual(buildSafeToolShareCampaign(search), {});
   }
+});
+
+test("preserves only the fixed MyCrochetKit referral campaign contract", () => {
+  const placements = [
+    "about_body",
+    "about_footer",
+    "about_nav",
+    "companion_card",
+    "footer",
+    "hero",
+    "materials_gauge",
+    "materials_hook",
+    "materials_yarn",
+    "primary_nav",
+    "privacy_footer",
+    "privacy_nav",
+    "progress_blanket",
+    "progress_counter",
+  ];
+
+  for (const placement of placements) {
+    const search = `?utm_source=mycrochetkit&utm_medium=referral&utm_campaign=planner_to_calculator&utm_content=${placement}`;
+    assert.deepEqual(buildSafeCampaignAttribution(search), {
+      campaign_source: "mycrochetkit",
+      campaign_medium: "referral",
+      campaign_name: "planner_to_calculator",
+      campaign_content: placement,
+    });
+  }
+
+  for (const search of [
+    "?utm_source=MyCrochetKit&utm_medium=referral&utm_campaign=planner_to_calculator&utm_content=hero",
+    "?utm_source=mycrochetkit&utm_medium=email&utm_campaign=planner_to_calculator&utm_content=hero",
+    "?utm_source=mycrochetkit&utm_medium=referral&utm_campaign=unknown&utm_content=hero",
+    "?utm_source=mycrochetkit&utm_medium=referral&utm_campaign=planner_to_calculator&utm_content=project_name",
+    "?utm_source=mycrochetkit&utm_source=mycrochetkit&utm_medium=referral&utm_campaign=planner_to_calculator&utm_content=hero",
+  ]) {
+    assert.deepEqual(buildSafeCampaignAttribution(search), {});
+  }
+});
+
+test("drops arbitrary values while retaining safe MyCrochetKit attribution", () => {
+  const config = buildInitialAnalyticsConfig({
+    origin: "https://fibertools.app",
+    pathname: "/yarn-calculator",
+    search: "?project=private-name&yards=1200&utm_source=mycrochetkit&utm_medium=referral&utm_campaign=planner_to_calculator&utm_content=materials_yarn",
+    hash: "#planner",
+  });
+
+  assert.deepEqual(config, {
+    page_path: "/yarn-calculator",
+    page_location: "https://fibertools.app/yarn-calculator",
+    page_referrer: "",
+    campaign_source: "mycrochetkit",
+    campaign_medium: "referral",
+    campaign_name: "planner_to_calculator",
+    campaign_content: "materials_yarn",
+  });
+  assert.doesNotMatch(JSON.stringify(config), /private-name|project|yards|1200|\?|#planner/);
 });
 
 test("ignores sensitive and arbitrary query values while retaining safe share attribution", () => {
