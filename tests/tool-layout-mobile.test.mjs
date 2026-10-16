@@ -16,5 +16,5 @@ test("uses the maintained internal stitch counter instead of an external service
   assert.match(source, /href="\/stitch-counter"/);
   assert.match(source, /Open stitch counter/);
   assert.match(source, /local project notes/);
-  assert.doesNotMatch(source, /MyCrochetKit|Try It Free|never lose count again/i);
+  assert.doesNotMatch(source, /Try It Free|never lose count again/i);
 });

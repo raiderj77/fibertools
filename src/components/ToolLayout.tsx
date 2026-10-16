@@ -8,6 +8,7 @@ import FAQSection from "./FAQSection";
 import PrintShareButtons from "./PrintShareButtons";
 import { ToolSchema } from "./StructuredData";
 import ToolAffiliateRecommendations from "./ToolAffiliateRecommendations";
+import MyCrochetKitCallout from "./MyCrochetKitCallout";
 
 interface ToolLayoutProps {
   slug: string;
@@ -147,6 +148,8 @@ export default function ToolLayout({
 
       {/* === TOOL UI === */}
       {focusedCore}
+
+      <MyCrochetKitCallout slug={slug} />
 
       {!focused && (
         <>

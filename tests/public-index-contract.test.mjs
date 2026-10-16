@@ -23,10 +23,14 @@ test("public LLM indexes do not advertise generic-fallback blog URLs", async () 
   }
 });
 
-test("tool pages use the maintained FiberTools counter instead of the unavailable external CTA", async () => {
-  const layout = await read("src/components/ToolLayout.tsx");
+test("tool pages keep the internal counter and use the maintained companion-planner callout", async () => {
+  const [layout, callout] = await Promise.all([
+    read("src/components/ToolLayout.tsx"),
+    read("src/components/MyCrochetKitCallout.tsx"),
+  ]);
 
-  assert.doesNotMatch(layout, /mycrochetkit/i);
+  assert.match(layout, /<MyCrochetKitCallout slug=\{slug\} \/>/);
+  assert.match(callout, /https:\/\/mycrochetkit\.com\//);
   assert.match(layout, /href="\/stitch-counter"/);
   assert.match(layout, /Open stitch counter/);
 });
