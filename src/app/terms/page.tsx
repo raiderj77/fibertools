@@ -29,7 +29,7 @@ export default function TermsPage() {
         Terms of Use
       </h1>
       <p className="text-sm text-bark-500 dark:text-cream-400 mb-8">
-        Last updated: October 13, 2026
+        Last updated: October 15, 2026
       </p>
 
       <div className="prose prose-bark dark:prose-invert max-w-none space-y-6 text-bark-700 dark:text-cream-300">
@@ -266,9 +266,9 @@ export default function TermsPage() {
             Third-Party Links and Resources
           </h2>
           <p>
-            FiberTools may contain links to third-party websites (such as yarn
-            retailers, pattern sites, or MyCrochetKit). We are not responsible
-            for the content or privacy practices of those sites.
+            FiberTools may contain links to third-party websites, such as yarn
+            retailers, pattern sites, or other independent services. We are not
+            responsible for the content or privacy practices of those sites.
           </p>
         </section>
 
