@@ -204,6 +204,11 @@ for (const { route, marker } of ROUTES) {
     ]) {
       assert.equal(count(text, absent), 0, `${route}: old generic section rendered: ${absent}`);
     }
+
+    if (route === "blanket-calculator") {
+      assert.match(markup, /href="\/guides\/blanket-yarn-guide"/);
+      assert.match(text, /blanket yarn guide/);
+    }
   });
 }
 

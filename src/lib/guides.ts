@@ -128,10 +128,10 @@ export const guides: Guide[] = [
   {
   slug: "blanket-yarn-guide",
   title: "How Much Yarn for a Blanket? Swatch-Based Guide",
-  description: "Estimate blanket yarn from a measured swatch, keep allowance separate, and convert yards to whole skeins with a checked 50×60-inch example.",
+  description: "Estimate throw-blanket yarn from a measured swatch, keep allowance separate, and convert yards to whole skeins with a checked 50×60-inch example.",
   toolSlug: "yarn-calculator",
   date: "2026-03-06",
-  modifiedDate: "2026-09-16",
+  modifiedDate: "2026-10-17",
   keywords: [
     "blanket yarn yardage",
     "how much yarn for a blanket",
@@ -143,7 +143,7 @@ export const guides: Guide[] = [
   sections: [
     {
       heading: "How Much Yarn Do You Need for a Blanket? A Swatch-Based Estimate",
-      content: "For a flat rectangular blanket, estimate yarn by dividing the planned blanket area by the area of a representative swatch, then multiplying by the yarn used in that swatch. Add a separate planning allowance and divide by the length on your yarn label to estimate whole skeins. The answer depends on your measurements; a blanket size alone cannot determine a reliable shopping quantity.",
+      content: "For a flat rectangular blanket, estimate yarn by dividing the planned blanket area by the area of a representative swatch, then multiplying by the yarn used in that swatch. Add a separate planning allowance and divide by the length on your yarn label to estimate whole skeins. The answer depends on your measurements; a blanket size alone cannot determine a reliable shopping quantity. Use the [blanket calculator](/blanket-calculator) for an editable size-and-swatch worksheet.",
       markdown: true
     },
     {
@@ -181,7 +181,7 @@ export const guides: Guide[] = [
     },
     {
       heading: "Common questions",
-      content: "### Can I use yarn weight alone to choose a quantity?\n\nA category such as Medium (4) is not a measurement of your blanket's yarn consumption. The [Craft Yarn Council yarn-weight system](https://www.craftyarncouncil.com/standards/yarn-weight-system) provides categories and guideline gauge ranges. The [category chart](/yarn-weight-chart) places those knitting, crochet, WPI, and tool-size guidelines together for comparison. For this calculation, use a representative sample and the actual yarn label rather than turning a category into a fixed yards-per-blanket number.\n\n### Can I use this method for knitting and crochet?\n\nThe arithmetic can scale a representative flat sample of either craft. It assumes the planned fabric has the same consumption per area as that sample. It does not supply a universal conversion between knitted and crocheted fabrics.\n\n### Is the result a guarantee that I will have enough yarn?\n\nNo. It is a planning result based on the measurements and allowances you entered. Changes in fabric, dimensions or construction need their own assessment. Save those assumptions with your project notes, then use the [yarn calculator](https://fibertools.app/yarn-calculator) to recalculate when the plan changes.",
+      content: "### How many yards of yarn do I need for a throw blanket?\n\nThere is no fixed amount. In this hypothetical example, a 50×60-inch throw and 4×4-inch, 20-yard swatch scale to 3,750 base yards, 4,125 planned yards with a chosen 10% allowance, or 19 illustrative 220-yard skeins. Enter your own measurements in the [yarn calculator](/yarn-calculator).\n\n### How many yards is a throw blanket?\n\nThis usually asks how much yarn a throw needs. In this hypothetical example, a 50×60-inch throw and 4×4-inch, 20-yard swatch produce 3,750 base yards, 4,125 planned yards after a chosen 10% allowance, or 19 illustrative 220-yard skeins. Replace every input with yours in the [yarn calculator](/yarn-calculator).\n\n### How many yards for a throw blanket?\n\nUse the throw's area and measured swatch, not a fixed yardage. In this hypothetical example, 50×60 inches and a 4×4-inch, 20-yard swatch produce 3,750 base yards, 4,125 planned yards after a chosen 10% allowance, or 19 illustrative 220-yard skeins. Recalculate from your own swatch in the [yarn calculator](/yarn-calculator).\n\n### Can I use yarn weight alone to choose a quantity?\n\nA category such as Medium (4) is not a measurement of your blanket's yarn consumption. The [Craft Yarn Council yarn-weight system](https://www.craftyarncouncil.com/standards/yarn-weight-system) provides categories and guideline gauge ranges. The [category chart](/yarn-weight-chart) places those knitting, crochet, WPI, and tool-size guidelines together for comparison. For this calculation, use a representative sample and the actual yarn label rather than turning a category into a fixed yards-per-blanket number.\n\n### Can I use this method for knitting and crochet?\n\nThe arithmetic can scale a representative flat sample of either craft. It assumes the planned fabric has the same consumption per area as that sample. It does not supply a universal conversion between knitted and crocheted fabrics.\n\n### Is the result a guarantee that I will have enough yarn?\n\nNo. It is a planning result based on the measurements and allowances you entered. Changes in fabric, dimensions or construction need their own assessment. Save those assumptions with your project notes, then use the [yarn calculator](https://fibertools.app/yarn-calculator) to recalculate when the plan changes.",
       markdown: true
     }
   ],

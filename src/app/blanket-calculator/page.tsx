@@ -60,7 +60,11 @@ export default function BlanketCalculatorPage() {
           <Link href="/yarn-weight-chart" className="text-sage-600 underline dark:text-sage-400 hover:opacity-80">
             yarn weight reference
           </Link>{" "}
-          before making the measured swatch used by this calculator.
+          before making the measured swatch used by this calculator. The{" "}
+          <Link href="/guides/blanket-yarn-guide" className="text-sage-600 underline dark:text-sage-400 hover:opacity-80">
+            blanket yarn guide
+          </Link>{" "}
+          shows the complete method with a checked hypothetical 50×60-inch example.
         </p>
       </>
 
