@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ToolLayout from "@/components/ToolLayout";
 import AnswerBlock from "@/components/AnswerBlock";
 import NeedleConverterTool from "./NeedleConverterTool";
@@ -73,6 +74,11 @@ export default function NeedleConverterPage() {
         </p>
         <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
           The good news is the actual needle thickness is the same no matter where it was made. A 5.0 mm needle knits the same whether you call it a US 8, a UK 6, or buy it from Japan. So if you look up the metric size, you can find the US equivalent in your hand. Keeping a conversion chart handy or bookmarking one online saves time every time you work with a new pattern.
+        </p>
+        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed mt-4">
+          Tool-size labels identify diameter, not yarn thickness or guaranteed gauge. If a pattern names a yarn category,
+          compare the <Link href="/yarn-weight-chart" className="text-sage-600 underline dark:text-sage-400 hover:opacity-80">yarn weight categories</Link>,
+          then follow the pattern and measure a swatch with the actual yarn and tool.
         </p>
       </section>
 

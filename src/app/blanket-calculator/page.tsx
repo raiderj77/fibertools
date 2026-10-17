@@ -48,12 +48,21 @@ export default function BlanketCalculatorPage() {
         description: "Use the whole-skein count as the yarn quantity, enter its price per skein, and add any notion or extra amounts you want included in the material subtotal.",
       }}
     >
-      <AnswerBlock
-        what="A blanket yarn calculator that scales the yarn used by your own swatch to a selected blanket size, then calculates stitch counts, rows, total yards, and whole skeins."
-        who="Knitters and crocheters planning a blanket project who want to buy the right amount of yarn before starting."
-        bottomLine="Choose a throw, queen, or custom size, then enter a measured swatch and the yarn-label length and weight to calculate yards and whole skeins."
-        lastUpdated="2026-09-16"
-      />
+      <>
+        <AnswerBlock
+          what="A blanket yarn calculator that scales the yarn used by your own swatch to a selected blanket size, then calculates stitch counts, rows, total yards, and whole skeins."
+          who="Knitters and crocheters planning a blanket project who want to buy the right amount of yarn before starting."
+          bottomLine="Choose a throw, queen, or custom size, then enter a measured swatch and the yarn-label length and weight to calculate yards and whole skeins."
+          lastUpdated="2026-09-16"
+        />
+        <p className="text-bark-600 dark:text-bark-400 text-[15px] leading-relaxed">
+          Compare the yarn label with the{" "}
+          <Link href="/yarn-weight-chart" className="text-sage-600 underline dark:text-sage-400 hover:opacity-80">
+            yarn weight reference
+          </Link>{" "}
+          before making the measured swatch used by this calculator.
+        </p>
+      </>
 
       <BlanketCalculatorTool />
 

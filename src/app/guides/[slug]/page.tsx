@@ -43,6 +43,9 @@ export default async function GuidePage({ params }: { params: Params }) {
   if (!guide) notFound();
 
   const tool = getToolBySlug(guide.toolSlug);
+  const hasInlineToolLink = Boolean(tool && guide.sections.some((section) =>
+    section.content.includes(`](/${tool.slug})`)
+  ));
 
   const renderedSections = await Promise.all(guide.sections.map(async section => ({
     ...section,
@@ -167,7 +170,7 @@ export default async function GuidePage({ params }: { params: Params }) {
       </section>}
 
       {/* CTA to tool */}
-      {tool && (
+      {tool && !hasInlineToolLink && (
         <div className="mt-12 p-6 bg-sage-50 dark:bg-sage-900/20 rounded-2xl border border-sage-200 dark:border-sage-800 text-center">
           <p className="text-lg font-semibold text-bark-700 dark:text-cream-200 mb-2">
             Ready to put this into practice?

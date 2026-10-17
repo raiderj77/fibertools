@@ -100,7 +100,7 @@ export default function YarnWeightChartTool() {
             <div className="inline-block min-w-full align-middle px-4 sm:px-0">
               <table className="min-w-full text-sm">
                 <caption className="text-left text-sm text-bark-600 dark:text-cream-300 pb-3">
-                  CYC knitting gauge guidelines: stockinette stitches per 4 inches. These are not crochet gauge ranges. Follow your pattern, especially for lace and openwork.
+                  CYC knitting and crochet gauge guidelines show stitches per 4 inches. Knitting uses stockinette; crochet uses single crochet except Lace uses double crochet. WPI is subjective, ranges overlap, and wrapping tension affects the result. Follow your pattern, especially for lace and openwork.
                 </caption>
                 <thead>
                   <tr className="border-b-2 border-cream-300 dark:border-bark-600">
@@ -117,7 +117,15 @@ export default function YarnWeightChartTool() {
                     </th>
                     <th className="text-left py-3 px-2 font-semibold text-bark-700 dark:text-cream-200">
                       Knitting gauge
-                      <Tooltip text="Stockinette stitches per 4 inches. Crochet gauges differ; use the CYC reference and your pattern." />
+                      <Tooltip text="Stockinette stitches per 4 inches." />
+                    </th>
+                    <th className="text-left py-3 px-2 font-semibold text-bark-700 dark:text-cream-200">
+                      Crochet gauge
+                      <Tooltip text="Stitches per 4 inches in single crochet, except the Lace row, which CYC gives in double crochet." />
+                    </th>
+                    <th className="text-left py-3 px-2 font-semibold text-bark-700 dark:text-cream-200">
+                      WPI
+                      <Tooltip text="CYC wraps-per-inch guidelines. Ranges overlap and the result changes with wrapping tension." />
                     </th>
                   </tr>
                 </thead>
@@ -156,6 +164,12 @@ export default function YarnWeightChartTool() {
                       <td className="py-3 px-2 text-bark-500 dark:text-bark-400">
                         {w.knitGaugeStPer4in} st
                       </td>
+                      <td className="py-3 px-2 text-bark-500 dark:text-bark-400">
+                        {w.crochetGaugeStPer4in}
+                      </td>
+                      <td className="py-3 px-2 text-bark-500 dark:text-bark-400">
+                        {w.wpi}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -182,6 +196,7 @@ export default function YarnWeightChartTool() {
 
           <p className="text-sm text-bark-500 dark:text-bark-400">
             Source: <a href="https://www.craftyarncouncil.com/standards/yarn-weight-system" className="underline">Craft Yarn Council yarn weight guidelines</a>.
+            {" "}WPI ranges: <a href="https://media.craftyarncouncil.com/sites/default/files/images/standards/CYC_YarnStandards-2018-11-06.pdf" className="underline">CYC Standards &amp; Guidelines, page 11</a>.
             {" "}Steel and regular lace hooks use different sizing systems. US hook labels vary by manufacturer; check the metric diameter.
           </p>
 

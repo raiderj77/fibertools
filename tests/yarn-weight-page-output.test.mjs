@@ -13,18 +13,27 @@ test("built yarn chart renders the corrected lace and open-ended jumbo guideline
     .slice(1).map((match) => match[1].replace(/<!--.*?-->/g, "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " "));
   assert.equal(rows.length, 8);
   assert.match(rows[0], /33–40 st/);
+  assert.match(rows[0], /32–42 double crochet/);
+  assert.match(rows[0], /30–40\+/);
   assert.match(rows[0], /Steel 1.4–1.6 mm; regular 2.25 mm/);
   assert.match(rows[6], /8–12.75 mm/);
   assert.match(rows[6], /9–15 mm/);
   assert.match(rows[7], /12.75 mm and larger/);
   assert.match(rows[7], /15 mm and larger/);
   assert.match(rows[7], /6 or fewer st/);
+  assert.match(rows[7], /6 or fewer single crochet/);
+  assert.match(rows[7], /1–4/);
   assert.doesNotMatch(rows[7], /12–25|15–25|17–50/);
 });
 
 test("built copy and FAQ schema avoid the retired substitution guarantees", () => {
-  assert.match(text, /CYC knitting gauge guidelines: stockinette stitches per 4 inches/);
-  assert.match(text, /These are not crochet gauge ranges/);
+  assert.match(text, /CYC knitting and crochet gauge guidelines/);
+  assert.match(text, /Lace uses double crochet/);
+  assert.match(text, /WPI is subjective/);
+  assert.match(text, /Reading the skein symbol/);
+  assert.match(text, /number from 0 through 7/);
+  assert.match(text, /updated system includes Size 8/);
+  assert.match(text, /does not invent a Size 8 row/);
   assert.match(text, /Every result requires a swatch/);
   assert.match(visible, /href="https:\/\/www.craftyarncouncil.com\/standards\/faqs"/);
   assert.match(visible, /href="\/gauge-calculator"/);

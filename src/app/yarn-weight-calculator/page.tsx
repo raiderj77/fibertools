@@ -8,7 +8,7 @@ import YarnWeightCalculatorTool from "./YarnWeightCalculatorTool";
 export const metadata: Metadata = {
   title: { absolute: "Yarn Weight Calculator: WPI & Gauge to CYC Category" },
   description:
-    "Estimate possible CYC categories from WPI or knitting stockinette gauge. Covers all 8 weights: Lace through Jumbo. Free, instant, no signup.",
+    "Estimate possible CYC categories from WPI or knitting stockinette gauge using the eight published numeric rows 0–7. Free, instant, no signup.",
   keywords: [
     "yarn weight calculator",
     "identify yarn weight",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Yarn Weight Calculator, Identify CYC Category Free",
     description:
-      "Estimate possible CYC categories from WPI or knitting stockinette gauge. All 8 weights covered. Free and instant.",
+      "Estimate possible CYC categories from WPI or knitting stockinette gauge using the eight published numeric rows 0–7. Free and instant.",
     url: "https://fibertools.app/yarn-weight-calculator",
     images: [
       {
@@ -45,6 +45,7 @@ export const metadata: Metadata = {
       "Estimate possible CYC categories from WPI or knitting stockinette gauge. Free, instant, no signup.",
     images: ["https://fibertools.app/og-image.png"],
   },
+  other: { dateModified: "2026-10-17" },
 };
 
 // ── FAQ data (drives both FAQPage schema and visible Q&A sections) ──
@@ -80,7 +81,7 @@ export default function YarnWeightCalculatorPage() {
       {/* ── Structured Data ── */}
       <SoftwareAppSchema
         name="Yarn Weight Calculator"
-        description="Estimate possible CYC categories from WPI or knitting stockinette gauge. Covers all 8 standard weights from Lace to Jumbo."
+        description="Estimate possible CYC categories from WPI or knitting stockinette gauge using the eight published numeric rows 0–7."
         url="https://fibertools.app/yarn-weight-calculator"
       />
       <FaqSchema items={FAQS} toolName="Yarn Weight Calculator" />
@@ -106,11 +107,11 @@ export default function YarnWeightCalculatorPage() {
             Yarn Weight Calculator
           </h1>
         </div>
-        <p className="text-xs text-bark-400">Last updated: September 5, 2026</p>
+        <p className="text-xs text-bark-400">Last updated: October 17, 2026</p>
         <p className="text-bark-600 text-[15px] leading-relaxed mt-2">
           Estimate possible CYC yarn weight categories from wraps per inch (WPI)
-          or knitting stockinette gauge. Covers all eight standard weights from Lace (0) through
-          Jumbo (7).
+          or knitting stockinette gauge. It covers the eight detailed rows currently published from Lace (0)
+          through Jumbo (7); CYC has announced Size 8 but has not yet added its numeric ranges to the public table.
         </p>
       </div>
 
@@ -147,8 +148,8 @@ export default function YarnWeightCalculatorPage() {
             </p>
           </div>
         </div>
-        <time dateTime="2026-09-05" className="block text-right text-xs text-bark-400">
-          Last updated: September 5, 2026
+        <time dateTime="2026-10-17" className="block text-right text-xs text-bark-400">
+          Last updated: October 17, 2026
         </time>
       </section>
 
@@ -317,7 +318,7 @@ export default function YarnWeightCalculatorPage() {
               href: "/yarn-weight-chart",
               icon: "⚖️",
               name: "Yarn Weight & Substitution Guide",
-              desc: "Interactive chart of all 8 CYC weights with US, UK, and Australian names",
+              desc: "Interactive chart of the published CYC rows 0–7 with US, UK, and Australian names",
             },
             {
               href: "/gauge-calculator",
