@@ -117,6 +117,10 @@ export default function FormulaLibraryPage() {
       <aside className="rounded-2xl border border-amber-300 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/20 p-6 mb-10">
         <h2 className="text-xl font-semibold text-bark-800 dark:text-cream-100 mb-2">A swatch is the strongest input</h2>
         <p className="text-sm leading-relaxed text-bark-700 dark:text-cream-300">These formulas are transparent planning estimates, not promises. Yarn construction, fiber, stitch pattern, personal tension, blocking and finishing all affect the finished project. Make and treat a swatch the same way you will treat the project.</p>
+        <p className="mt-3 text-sm leading-relaxed text-bark-700 dark:text-cream-300">
+          Teaching or publishing these calculations? See the{' '}
+          <Link href="/embeds" className="font-semibold text-plum-500 hover:underline">free branded calculator embeds for HTTPS websites</Link>.
+        </p>
       </aside>
 
       <section aria-labelledby="formula-index" className="mb-12">
