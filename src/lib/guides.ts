@@ -27,7 +27,8 @@ export const guides: Guide[] = [
       },
       {
         heading: "Distinguish category, mass, and length",
-        content: "The Craft Yarn Council system runs from Lace (0) through Jumbo (7). The category is thickness guidance, not the mass of a ball or a universal length per gram. Labels may separately state grams or ounces and yards or meters. Needle diameters shown beside a category are tool recommendations, not the diameter of the yarn.\n\nFor unit conversion, one yard equals 0.9144 meters. A label stating 200 yards therefore represents 182.88 meters before label rounding. Two products with the same mass or category can contain different lengths."
+        content: "The Craft Yarn Council system runs from Lace (0) through Jumbo (7). Use the [yarn weight chart](/yarn-weight-chart) to compare the category ranges and regional names. The category is thickness guidance, not the mass of a ball or a universal length per gram. Labels may separately state grams or ounces and yards or meters. Needle diameters shown beside a category are tool recommendations, not the diameter of the yarn.\n\nFor unit conversion, one yard equals 0.9144 meters. A label stating 200 yards therefore represents 182.88 meters before label rounding. Two products with the same mass or category can contain different lengths.",
+        markdown: true
       },
       {
         heading: "Compare with the pattern gauge",
@@ -180,7 +181,7 @@ export const guides: Guide[] = [
     },
     {
       heading: "Common questions",
-      content: "### Can I use yarn weight alone to choose a quantity?\n\nA category such as Medium (4) is not a measurement of your blanket's yarn consumption. The [Craft Yarn Council yarn-weight system](https://www.craftyarncouncil.com/standards/yarn-weight-system) provides categories and guideline gauge ranges. For this calculation, use a representative sample and the actual yarn label rather than turning a category into a fixed yards-per-blanket number.\n\n### Can I use this method for knitting and crochet?\n\nThe arithmetic can scale a representative flat sample of either craft. It assumes the planned fabric has the same consumption per area as that sample. It does not supply a universal conversion between knitted and crocheted fabrics.\n\n### Is the result a guarantee that I will have enough yarn?\n\nNo. It is a planning result based on the measurements and allowances you entered. Changes in fabric, dimensions or construction need their own assessment. Save those assumptions with your project notes, then use the [yarn calculator](https://fibertools.app/yarn-calculator) to recalculate when the plan changes.",
+      content: "### Can I use yarn weight alone to choose a quantity?\n\nA category such as Medium (4) is not a measurement of your blanket's yarn consumption. The [Craft Yarn Council yarn-weight system](https://www.craftyarncouncil.com/standards/yarn-weight-system) provides categories and guideline gauge ranges. The [category chart](/yarn-weight-chart) places those knitting, crochet, WPI, and tool-size guidelines together for comparison. For this calculation, use a representative sample and the actual yarn label rather than turning a category into a fixed yards-per-blanket number.\n\n### Can I use this method for knitting and crochet?\n\nThe arithmetic can scale a representative flat sample of either craft. It assumes the planned fabric has the same consumption per area as that sample. It does not supply a universal conversion between knitted and crocheted fabrics.\n\n### Is the result a guarantee that I will have enough yarn?\n\nNo. It is a planning result based on the measurements and allowances you entered. Changes in fabric, dimensions or construction need their own assessment. Save those assumptions with your project notes, then use the [yarn calculator](https://fibertools.app/yarn-calculator) to recalculate when the plan changes.",
       markdown: true
     }
   ],
@@ -292,6 +293,7 @@ export const guides: Guide[] = [
     description: "Measure wraps per inch, interpret overlapping CYC yarn-weight ranges, and verify the actual yarn with its label and a swatch.",
     toolSlug: "yarn-weight-chart",
     date: "2026-03-06",
+    modifiedDate: "2026-09-05",
     keywords: [
       "wraps per inch",
       "WPI yarn",
@@ -311,7 +313,8 @@ export const guides: Guide[] = [
       },
       {
         heading: "Read overlapping ranges",
-        content: "The cited CYC guide gives Lace 30–40+, Super Fine 14–30, Fine 12–18, Light 11–15, Medium 9–12, Bulky 6–9, Super Bulky 5–6, and Jumbo 1–4 WPI. These are subjective guidance ranges, not mutually exclusive bins. A fractional value in a gap should remain unresolved rather than being forced into a category."
+        content: "The cited CYC guide gives Lace 30–40+, Super Fine 14–30, Fine 12–18, Light 11–15, Medium 9–12, Bulky 6–9, Super Bulky 5–6, and Jumbo 1–4 WPI. Compare them in the [yarn weight chart](/yarn-weight-chart), but treat them as subjective guidance ranges, not mutually exclusive bins. A fractional value in a gap should remain unresolved rather than being forced into a category.",
+        markdown: true
       },
       {
         heading: "Worked comparison: 12 WPI",
@@ -326,7 +329,6 @@ export const guides: Guide[] = [
         content: "Use the WPI calculator to compare ranges, then swatch the actual yarn. If you need remaining yardage, use its label or measured length-to-weight ratio; WPI alone cannot supply that ratio."
       }
     ],
-    modifiedDate: "2026-09-05",
     sources: [
       {
         title: "Craft Yarn Council: How to Measure Wraps Per Inch",
@@ -664,7 +666,7 @@ export const guides: Guide[] = [
     },
     {
       heading: "What if the original label is missing?",
-      content: "First try to identify the exact yarn and obtain its weight and length specifications from the manufacturer. Do not choose another yarn merely because it looks similar or has the same category name.\n\nThe [Craft Yarn Council's yarn-weight system](https://www.craftyarncouncil.com/standards/yarn-weight-system) gives categories and guideline gauge ranges. It does not supply the specific length per gram of your leftover yarn. A label such as Medium (4), by itself, is not enough to calculate its remaining yardage.\n\nIf you establish a ratio by measuring a known length and weighing that same sample, record it as your own sample measurement rather than a manufacturer's label specification. Its usefulness depends on whether the sample represents the rest of the yarn and whether its weight is measurable reliably. Do not enter sample values as full-skein label values in this estimator: the tool checks that the remaining weight does not exceed the full labeled skein weight.\n\nIf you cannot establish a trustworthy ratio, record the measured grams and leave yardage unknown. An honest unknown is more useful than a confident number borrowed from an unrelated yarn.",
+      content: "First try to identify the exact yarn and obtain its weight and length specifications from the manufacturer. Do not choose another yarn merely because it looks similar or has the same category name.\n\nThe [Craft Yarn Council's yarn-weight system](https://www.craftyarncouncil.com/standards/yarn-weight-system) gives categories and guideline gauge ranges. The [category reference](/yarn-weight-chart) can help compare those ranges, but it does not supply the specific length per gram of your leftover yarn. A label such as Medium (4), by itself, is not enough to calculate its remaining yardage.\n\nIf you establish a ratio by measuring a known length and weighing that same sample, record it as your own sample measurement rather than a manufacturer's label specification. Its usefulness depends on whether the sample represents the rest of the yarn and whether its weight is measurable reliably. Do not enter sample values as full-skein label values in this estimator: the tool checks that the remaining weight does not exceed the full labeled skein weight.\n\nIf you cannot establish a trustworthy ratio, record the measured grams and leave yardage unknown. An honest unknown is more useful than a confident number borrowed from an unrelated yarn.",
       markdown: true
     },
     {
@@ -927,7 +929,8 @@ export const guides: Guide[] = [
       },
       {
         heading: "Vintage Yarn Weight Terminology",
-        content: "Historical ply labels and trade names are not universal conversions to modern yarn-weight categories. Their meaning depends on the exact manufacturer, product, country, and publication. Look for the original yarn specification and pattern gauge; if the yarn is discontinued, compare a candidate using a representative swatch and actual construction requirements. WPI can suggest overlapping categories but cannot confirm a substitution."
+        content: "Historical ply labels and trade names are not universal conversions to modern yarn-weight categories. Use the [current yarn weight categories](/yarn-weight-chart) as a reference, not as proof that an old name maps cleanly to a modern yarn. Their meaning depends on the exact manufacturer, product, country, and publication. Look for the original yarn specification and pattern gauge; if the yarn is discontinued, compare a candidate using a representative swatch and actual construction requirements. WPI can suggest overlapping categories but cannot confirm a substitution.",
+        markdown: true
       },
       {
         heading: "Converting Imperial Measurements",
@@ -981,7 +984,8 @@ export const guides: Guide[] = [
       },
       {
         heading: "How to Choose the Right Fiber for Your Project",
-        content: "Match fiber to the project's requirements rather than treating a fiber name as a guarantee. Consider warmth, elasticity, abrasion, moisture behavior, care instructions, allergies or sensitivities, and the fabric produced by the intended stitch pattern. Confirm those properties from the exact yarn label and a washed swatch.\n\nFor gifts, ask about fiber sensitivities and realistic care preferences when you can. Baby items require special attention to the exact product's care, construction, and safety guidance; a broad fiber category is not enough evidence.\n\nBudget from the exact label price and the quantity supported by your pattern or measurements. The Yarn Weight Chart is a category reference, not a fiber-performance specification. The Yarn Calculator can scale measured swatch use for a flat rectangle and report whole skeins from label data; it does not calculate cost or shaped-garment quantity."
+        content: "Match fiber to the project's requirements rather than treating a fiber name as a guarantee. Consider warmth, elasticity, abrasion, moisture behavior, care instructions, allergies or sensitivities, and the fabric produced by the intended stitch pattern. Confirm those properties from the exact yarn label and a washed swatch.\n\nFor gifts, ask about fiber sensitivities and realistic care preferences when you can. Baby items require special attention to the exact product's care, construction, and safety guidance; a broad fiber category is not enough evidence.\n\nBudget from the exact label price and the quantity supported by your pattern or measurements. The [Yarn Weight Chart](/yarn-weight-chart) is a category reference, not a fiber-performance specification. The Yarn Calculator can scale measured swatch use for a flat rectangle and report whole skeins from label data; it does not calculate cost or shaped-garment quantity.",
+        markdown: true
       },
       {
         heading: "Frequently Asked Questions About Fiber Content",

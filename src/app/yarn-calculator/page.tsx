@@ -71,6 +71,8 @@ export default function YarnCalculatorPage() {
           >
             Craft Yarn Council Standard Yarn Weight System
           </Link>.
+          {" "}Use the <Link href="/yarn-weight-chart" className="text-sage-600 underline dark:text-sage-400">yarn weight chart</Link> to compare the category, knitting and crochet gauge ranges, WPI, and suggested tool sizes before swatching.
+          {" "}
           The proportional swatch-scaling model and its limits are stated above.
         </p>
       </section>

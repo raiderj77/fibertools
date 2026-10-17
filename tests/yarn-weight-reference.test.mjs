@@ -9,20 +9,21 @@ const page = read("src/app/yarn-weight-chart/page.tsx");
 const content = read("src/lib/toolContent.ts").split('  "yarn-weight-chart": {')[1].split('  "stitch-counter": {')[0];
 const faqs = read("src/lib/faqs.ts").split('  "yarn-weight-chart": [')[1].split('  "stitch-counter": [')[0];
 
-test("all eight rows retain exact CYC knitting, needle, and hook guidelines", () => {
-  // Independent fixture from the CYC yarn-weight-system reference, 2026-08-26.
+test("all eight rows retain exact CYC knitting, crochet, WPI, needle, and hook guidelines", () => {
+  // Independent fixture from the CYC live chart and 2018 standards PDF, checked 2026-10-17.
   const expected = [
-    ["0", "33–40", "1.5–2.25 mm", "000–1", "Steel 1.4–1.6 mm; regular 2.25 mm", "Steel 6, 7, 8; regular B/1"],
-    ["1", "27–32", "2.25–3.25 mm", "1–3", "2.25–3.5 mm", "B/1–E/4"],
-    ["2", "23–26", "3.25–3.75 mm", "3–5", "3.5–4.5 mm", "E/4–7"],
-    ["3", "21–24", "3.75–4.5 mm", "5–7", "4.5–5.5 mm", "7–I/9"],
-    ["4", "16–20", "4.5–5.5 mm", "7–9", "5.5–6.5 mm", "I/9–K/10½"],
-    ["5", "12–15", "5.5–8 mm", "9–11", "6.5–9 mm", "K/10½–M/13"],
-    ["6", "7–11", "8–12.75 mm", "11–17", "9–15 mm", "M/13–Q"],
-    ["7", "6 or fewer", "12.75 mm and larger", "17 and larger", "15 mm and larger", "Q and larger"],
+    ["0", "33–40", "32–42 double crochet", "30–40+", "1.5–2.25 mm", "000–1", "Steel 1.4–1.6 mm; regular 2.25 mm", "Steel 6, 7, 8; regular B/1"],
+    ["1", "27–32", "21–32 single crochet", "14–30", "2.25–3.25 mm", "1–3", "2.25–3.5 mm", "B/1–E/4"],
+    ["2", "23–26", "16–20 single crochet", "12–18", "3.25–3.75 mm", "3–5", "3.5–4.5 mm", "E/4–7"],
+    ["3", "21–24", "12–17 single crochet", "11–15", "3.75–4.5 mm", "5–7", "4.5–5.5 mm", "7–I/9"],
+    ["4", "16–20", "11–14 single crochet", "9–12", "4.5–5.5 mm", "7–9", "5.5–6.5 mm", "I/9–K/10½"],
+    ["5", "12–15", "8–11 single crochet", "6–9", "5.5–8 mm", "9–11", "6.5–9 mm", "K/10½–M/13"],
+    ["6", "7–11", "7–9 single crochet", "5–6", "8–12.75 mm", "11–17", "9–15 mm", "M/13–Q"],
+    ["7", "6 or fewer", "6 or fewer single crochet", "1–4", "12.75 mm and larger", "17 and larger", "15 mm and larger", "Q and larger"],
   ];
   assert.deepEqual(YARN_WEIGHTS.map((weight) => [
-    weight.number, weight.knitGaugeStPer4in, weight.needleMm, weight.needleUS,
+    weight.number, weight.knitGaugeStPer4in, weight.crochetGaugeStPer4in, weight.wpi,
+    weight.needleMm, weight.needleUS,
     weight.hookMm, weight.hookUS,
   ]), expected);
 });
@@ -105,11 +106,16 @@ test("the rendered component uses the tested reference and swatch-first comparis
   assert.match(component, /compareYarnLabels\(yarn1Weight, yarn2Weight, yarn1Ypg, yarn2Ypg\)/);
   assert.match(component, /filterYarnWeights\(search\)/);
   assert.match(component, /\{w\.knitGaugeStPer4in\} st/);
+  assert.match(component, /\{w\.crochetGaugeStPer4in\}/);
+  assert.match(component, /\{w\.wpi\}/);
   assert.match(component, /\{w\.needleMm\}/);
   assert.match(component, /\{w\.hookMm\}/);
   assert.match(component, /Knitting gauge/);
-  assert.match(component, /stockinette stitches per 4 inches/);
-  assert.match(component, /These are not crochet gauge ranges/);
+  assert.match(component, /Crochet gauge/);
+  assert.match(component, />\s*WPI\s*</);
+  assert.match(component, /[Ss]tockinette stitches per 4 inches/);
+  assert.match(component, /Lace uses double crochet/);
+  assert.match(component, /WPI is subjective/);
   assert.match(component, /standards\/yarn-weight-system/);
   assert.match(component, /standards\/faqs/);
   assert.doesNotMatch(component, /Compatibility:|subResult\.score|Excellent match|excellent substitute|ydsPerGram|stockinette or single crochet/);
@@ -130,7 +136,7 @@ test("comparison controls expose labels, selected state, and validation feedback
 
 test("education, FAQs, metadata, and next step agree with the corrected checker", () => {
   assert.match(content, /Every result requires a swatch/);
-  assert.match(content, /gauge column is knitting only/);
+  assert.match(content, /knitting and crochet gauge columns/);
   assert.match(content, /Regional ply names are approximate/);
   assert.match(faqs, /21–24 stockinette stitches per 4 inches/);
   assert.match(faqs, /ranges overlap/);
@@ -140,5 +146,7 @@ test("education, FAQs, metadata, and next step agree with the corrected checker"
   assert.doesNotMatch(page, /Check substitution compatibility|crochet-color-trends/);
   assert.match(page, /href="\/yarn-weight-calculator"/);
   assert.match(page, /href="\/gauge-calculator"/);
-  assert.equal((page.match(/Compare substitutes, then swatch/g) || []).length, 3);
+  assert.equal((page.match(/Compare substitutes, then swatch/g) || []).length, 2);
+  assert.match(page, /knitting and crochet gauge, WPI/);
+  assert.match(page, /lastUpdated="2026-10-17"/);
 });

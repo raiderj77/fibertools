@@ -156,7 +156,8 @@ test("keeps priority search snippets specific to what each existing page deliver
   assert.match(layout, /30\+ free calculators for knitting, crochet, weaving, spinning & embroidery/);
 
   assert.match(yarnWeightChartPage, /Yarn Weight Chart: Sizes 0–7, Gauge & Substitutions/);
-  assert.match(yarnWeightChartPage, /all 8 CYC categories/);
+  assert.match(yarnWeightChartPage, /CYC sizes 0–7/);
+  assert.match(yarnWeightChartPage, /Size 8 status/);
   assert.match(yarnWeightChartPage, /Compare substitutes, then swatch/);
 
   assert.match(bestKnittingNeedlesPage, /Choosing Knitting Needles: Size, Construction and Gauge \| FiberTools/);

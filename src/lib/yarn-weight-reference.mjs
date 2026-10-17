@@ -1,6 +1,7 @@
-// Numeric guidelines checked against CYC on 2026-08-26. Common regional names
+// Numeric guidelines checked against CYC on 2026-10-17. Common regional names
 // are approximate references, not a separate CYC equivalence standard.
 // https://www.craftyarncouncil.com/standards/yarn-weight-system
+// https://media.craftyarncouncil.com/sites/default/files/images/standards/CYC_YarnStandards-2018-11-06.pdf
 // https://www.craftyarncouncil.com/standards/faqs
 export const YARN_WEIGHTS = [
   {
@@ -14,6 +15,8 @@ export const YARN_WEIGHTS = [
     hookMm: "Steel 1.4–1.6 mm; regular 2.25 mm",
     hookUS: "Steel 6, 7, 8; regular B/1",
     knitGaugeStPer4in: "33–40",
+    crochetGaugeStPer4in: "32–42 double crochet",
+    wpi: "30–40+",
   },
   {
     number: "1",
@@ -26,6 +29,8 @@ export const YARN_WEIGHTS = [
     hookMm: "2.25–3.5 mm",
     hookUS: "B/1–E/4",
     knitGaugeStPer4in: "27–32",
+    crochetGaugeStPer4in: "21–32 single crochet",
+    wpi: "14–30",
   },
   {
     number: "2",
@@ -38,6 +43,8 @@ export const YARN_WEIGHTS = [
     hookMm: "3.5–4.5 mm",
     hookUS: "E/4–7",
     knitGaugeStPer4in: "23–26",
+    crochetGaugeStPer4in: "16–20 single crochet",
+    wpi: "12–18",
   },
   {
     number: "3",
@@ -50,6 +57,8 @@ export const YARN_WEIGHTS = [
     hookMm: "4.5–5.5 mm",
     hookUS: "7–I/9",
     knitGaugeStPer4in: "21–24",
+    crochetGaugeStPer4in: "12–17 single crochet",
+    wpi: "11–15",
   },
   {
     number: "4",
@@ -62,6 +71,8 @@ export const YARN_WEIGHTS = [
     hookMm: "5.5–6.5 mm",
     hookUS: "I/9–K/10½",
     knitGaugeStPer4in: "16–20",
+    crochetGaugeStPer4in: "11–14 single crochet",
+    wpi: "9–12",
   },
   {
     number: "5",
@@ -74,6 +85,8 @@ export const YARN_WEIGHTS = [
     hookMm: "6.5–9 mm",
     hookUS: "K/10½–M/13",
     knitGaugeStPer4in: "12–15",
+    crochetGaugeStPer4in: "8–11 single crochet",
+    wpi: "6–9",
   },
   {
     number: "6",
@@ -86,6 +99,8 @@ export const YARN_WEIGHTS = [
     hookMm: "9–15 mm",
     hookUS: "M/13–Q",
     knitGaugeStPer4in: "7–11",
+    crochetGaugeStPer4in: "7–9 single crochet",
+    wpi: "5–6",
   },
   {
     number: "7",
@@ -98,6 +113,8 @@ export const YARN_WEIGHTS = [
     hookMm: "15 mm and larger",
     hookUS: "Q and larger",
     knitGaugeStPer4in: "6 or fewer",
+    crochetGaugeStPer4in: "6 or fewer single crochet",
+    wpi: "1–4",
   },
 ];
 

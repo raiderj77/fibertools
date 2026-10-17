@@ -231,9 +231,9 @@ export const toolContent: Record<string, ToolEducationalContent> = {
 
   "yarn-weight-chart": {
     disclaimer: "This is a reference and label comparison, not a guarantee of yarn compatibility. Categories, regional names, and yardage per gram cannot predict your gauge. Swatch with the actual yarn, follow your pattern, and check the finished fabric before substituting.",
-    answerCapsule: "Compare the eight Craft Yarn Council yarn weight categories, knitting gauge guidelines, and suggested needle and hook sizes. Common US, UK, and Australian names are approximate references. Use the substitution checker to compare labels, then verify your choice with a swatch.",
-    chartGuide: "Each row shows a CYC category, common regional names, and needle and hook guidelines. The gauge column is knitting only: stockinette stitches per 4 inches. Crochet gauge ranges differ and are listed separately in the linked CYC source. Jumbo sizes have no fixed upper limit, and lace hooks distinguish steel from regular hooks. Regional ply names are approximate, not exact conversions or counts of the yarn's strands.",
-    industryStandards: "The Craft Yarn Council publishes categories 0 through 7 as yarn weight guidelines. The recommended gauges and tool sizes are reference ranges, not requirements for every project. Lace and openwork may use larger tools than the chart suggests. CYC also states that the categories do not establish whether two yarns are interchangeable; follow the pattern's gauge and evaluate a swatch.",
+    answerCapsule: "Compare the eight detailed Craft Yarn Council rows 0–7, knitting and crochet gauge guidelines, WPI, and suggested needle and hook sizes. CYC has announced Size 8, but its current public detailed table does not yet provide a numeric row for it. Common US, UK, and Australian names are approximate references. Use the substitution checker to compare labels, then verify your choice with a swatch.",
+    chartGuide: "Each row shows a CYC category, common regional names, needle and hook guidelines, WPI, and separate knitting and crochet gauge columns. Knitting gauge uses stockinette stitches per 4 inches. Crochet gauge uses single crochet except the Lace row, which CYC gives in double crochet. WPI ranges overlap and vary with wrapping tension. Jumbo sizes have no fixed upper tool-size limit, and lace hooks distinguish steel from regular hooks. Regional ply names are approximate, not exact conversions or counts of the yarn's strands.",
+    industryStandards: "The Craft Yarn Council's current public detailed table supplies yarn-weight gauge and tool guidelines for categories 0 through 7. CYC now announces that its updated system includes Size 8, Blocking, and Plus symbols, but the public table has not yet added a detailed numeric Size 8 row. The published gauges and tool sizes are reference ranges, not requirements for every project. Lace and openwork may use larger tools than the chart suggests. CYC also states that the categories do not establish whether two yarns are interchangeable; follow the pattern's gauge and evaluate a swatch.",
     manufacturerNote: "Two yarns with the same category or yardage per gram can differ in fiber content, construction, elasticity, and drape. Even a matching stitch gauge does not guarantee matching row gauge or fabric. Check both labels, swatch in the intended stitch pattern, and assess the fabric after the care process recommended for the yarn. Use the metric tool diameter when a manufacturer's US size designation differs.",
     internalLinks: [
       { label: "Gauge Calculator", href: "/gauge-calculator", description: "Verify your gauge after substituting yarn" },
@@ -250,7 +250,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     whatIs: {
       title: "What Are Yarn Weight Categories?",
       paragraphs: [
-        "The CYC system groups yarns into eight categories, from 0 (Lace) through 7 (Jumbo). Its chart gives separate knitting and crochet gauge guidelines plus suggested needle and hook sizes.",
+        "The detailed CYC chart currently supplies eight numeric rows, from 0 (Lace) through 7 (Jumbo), with separate knitting and crochet gauge guidelines plus suggested needle and hook sizes. CYC has announced Size 8, but has not yet added its numeric row to that public table.",
         "For example, category 3 includes DK and light worsted. CYC's knitting guideline is 21–24 stockinette stitches per 4 inches on 3.75–4.5 mm needles. This is a reference range, not a prediction for a particular yarn or knitter.",
         "A category is a starting point for selection. Yarn construction, the stitch pattern, the tools, and your tension all affect the fabric. A swatch is needed to assess whether a substitution meets the pattern's requirements.",
       ],
@@ -266,7 +266,7 @@ export const toolContent: Record<string, ToolEducationalContent> = {
     howToUse: {
       title: "How to Use the Yarn Weight & Substitution Guide",
       paragraphs: [
-        "Search by a category number or common name, then select a category number for additional naming notes. Read the knitting gauge and needle or hook guidance alongside the actual yarn label and pattern.",
+        "Search by a category number or common name, then select a category number for additional naming notes. Read the knitting gauge, crochet gauge, WPI, and needle or hook guidance alongside the actual yarn label and pattern.",
         "In the substitution checker, select the pattern yarn's category and the proposed substitute's category. You may also enter yards per gram from both labels. Divide total yards by grams and use the same unit for both yarns; do not mix meters per gram with yards per gram."
       ],
     },
