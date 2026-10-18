@@ -9,7 +9,7 @@ export const THREAD_BATCH_LIMITS = Object.freeze({
 export const THREAD_REFERENCE_METADATA = Object.freeze({
   version: "anchor-archived-chart-reviewed-2026-09-05",
   provenance: "Anchor Stranded Cotton Art. 4635000 conversion chart, archived manufacturer publication mirrored by Quilters Store; current shade availability is not verified",
-  sourceUrl: "https://www.quiltersstore.com.au/userfiles/files/ConversionChart_Stranded_Cotton_finalversion.pdf",
+  sourceUrl: "https://web.archive.org/web/20240308070740id_/https://www.quiltersstore.com.au/userfiles/files/ConversionChart_Stranded_Cotton_finalversion.pdf",
   sourceVerified: true,
   manufacturerVerified: false,
 });

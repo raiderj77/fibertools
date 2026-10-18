@@ -93,7 +93,7 @@ OpenAI distinguishes OAI-SearchBot search discovery from GPTBot training. IndexN
 - [Clover Takumi specifications](https://www.clover.co.jp/recipe/takumikikakus.pdf): Japanese diameters.
 - [CYC crochet abbreviations](https://craftyarncouncil.com/standards/crochet-abbreviations) and [knitting abbreviations](https://www.craftyarncouncil.com/standards/knitting-abbreviations): terminology.
 - [John James needle guide](https://jjneedles.com/wp-content/uploads/2026/05/Needle-Guide.pdf): manufacturer needle families/sizes.
-- [Archived Anchor chart, distributor copy](https://www.quiltersstore.com.au/userfiles/files/ConversionChart_Stranded_Cotton_finalversion.pdf):20 checked pairs; archive date unstated, not current stock/color verification.
+- [Archived Anchor chart, distributor copy](https://web.archive.org/web/20240308070740id_/https://www.quiltersstore.com.au/userfiles/files/ConversionChart_Stranded_Cotton_finalversion.pdf):20 checked pairs; document publication date unstated, not current stock/color verification. Internet Archive capture verified 2026-10-18.
 - [CYC care symbols](https://www.craftyarncouncil.com/standards/care-symbols), [Woolmark drying guidance](https://www.woolmark.com/care/tumble-drying-wool/), [OEKO-TEX STANDARD100](https://www.oeko-tex.com/en/our-standards/oeko-tex-standard-100): limited label/care claims.
 
 ## Release boundary and rollback

@@ -239,6 +239,9 @@ export const toolContent: Record<string, ToolEducationalContent> = {
       { label: "Gauge Calculator", href: "/gauge-calculator", description: "Verify your gauge after substituting yarn" },
       { label: "Yarn Yardage Calculator", href: "/yarn-calculator", description: "Calculate how much substitute yarn you need" },
       { label: "Needle & Hook Converter", href: "/needle-converter", description: "Find the right needle or hook size for your yarn weight" },
+      { label: "Beginner Yarn Guide", href: "/best-yarn-for-beginners", description: "Compare documented yarn options, labels, care, and project fit" },
+      { label: "Knitting Needle Guide", href: "/best-knitting-needles", description: "Compare needle materials, formats, and project uses" },
+      { label: "Crochet Hook Guide", href: "/best-crochet-hooks", description: "Compare two documented cushioned-handle hook examples" },
     ],
     introduction: {
       title: "Why You Need a Yarn Weight Reference Chart",

@@ -2,11 +2,13 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import test from "node:test";
 import { THREAD_BATCH_LIMITS,THREAD_CONVERSION_TABLE,THREAD_REFERENCE_METADATA,convertThreadBatch,lookupThreadCode,searchThreadTable } from "../src/lib/thread-conversion.mjs";
+const ARCHIVED_SOURCE_URL="https://web.archive.org/web/20240308070740id_/https://www.quiltersstore.com.au/userfiles/files/ConversionChart_Stranded_Cotton_finalversion.pdf";
 test("archived Anchor chart replaces unsupported legacy claims with traceable pairs",()=>{
  assert.equal(THREAD_CONVERSION_TABLE.length,20);
  assert.equal(THREAD_REFERENCE_METADATA.sourceVerified,true);
  assert.equal(THREAD_REFERENCE_METADATA.manufacturerVerified,false);
- assert.match(THREAD_REFERENCE_METADATA.sourceUrl,/quiltersstore/);
+ assert.equal(THREAD_REFERENCE_METADATA.sourceUrl,ARCHIVED_SOURCE_URL);
+ assert.doesNotMatch(THREAD_REFERENCE_METADATA.sourceUrl,/^https:\/\/www\.quiltersstore\.com\.au\//);
  for(const [dmc,anchor] of [["310","403"],["321","47"],["333","110"],["414","235"]])assert.equal(lookupThreadCode("dmc",dmc).entry.anchor,anchor);
  assert.deepEqual(lookupThreadCode("anchor","400").matches.map(r=>r.dmc),["317","413"]);
  assert.ok(THREAD_CONVERSION_TABLE.every(r=>r.cosmo==="" && r.hex===""));
