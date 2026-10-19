@@ -139,3 +139,8 @@ test("keeps newsletter and buying guidance visually secondary", () => {
   assert.match(homepage, /Optional newsletter/u);
   assert.match(homepage, /href="\/newsletter"/u);
 });
+
+test("further reading excludes the retired Ravelry gauge-help destination", () => {
+  assert.doesNotMatch(homepage, /https:\/\/www\.ravelry\.com\/help\/yarn\/gauge/u);
+  assert.match(homepage, /https:\/\/www\.craftyarncouncil\.com\/standards\/yarn-weight-system/u);
+});

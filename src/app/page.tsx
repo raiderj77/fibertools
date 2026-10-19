@@ -493,16 +493,6 @@ export default function HomePage() {
             </li>
             <li>
               <a
-                href="https://www.ravelry.com/help/yarn/gauge"
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                className="text-plum-500 underline hover:text-plum-600"
-              >
-                Ravelry gauge and needle size guide
-              </a>{" "}, Community reference for gauge, needle sizing, and yarn substitution.
-            </li>
-            <li>
-              <a
                 href="https://www.craftyarncouncil.com/top10qa.html"
                 target="_blank"
                 rel="nofollow noopener noreferrer"
