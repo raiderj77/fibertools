@@ -28,7 +28,7 @@ export default async function Image() {
             justifyContent: 'center',
           }}
         >
-          <div style={{ position: 'relative', width: 300, height: 300 }}>
+          <div style={{ position: 'relative', width: 300, height: 300, display: 'flex' }}>
             {/* Plum base */}
             <div
               style={{

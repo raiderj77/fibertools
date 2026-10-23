@@ -40,6 +40,15 @@ test("social cards use large-image previews without changing canonical URLs", ()
   }
 });
 
+test("the generated Open Graph image gives its multi-child canvas an explicit layout", () => {
+  const source = readFileSync(join(process.cwd(), "src", "app", "opengraph-image.tsx"), "utf8");
+
+  assert.match(
+    source,
+    /<div style=\{\{ position: 'relative', width: 300, height: 300, display: 'flex' \}\}>/u,
+  );
+});
+
 test("navigation keeps formulas discoverable and tool help points to the canonical guide hub", () => {
   const header = readFileSync(join(process.cwd(), "src", "components", "Header.tsx"), "utf8");
   const footer = readFileSync(join(process.cwd(), "src", "components", "Footer.tsx"), "utf8");
