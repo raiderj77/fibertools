@@ -78,7 +78,7 @@ npm run dev
 
 Open <http://localhost:3000>. Pages live under `src/app`; shared components and deterministic logic live under `src/components` and `src/lib`.
 
-Use Node 24 LTS. `.nvmrc` supplies the shared major for local version managers and all Node-running workflows; the application and lockfile require `24.x`, matching the verified Vercel production major. `npm run test:runtime` and the normal build reject runtime drift. Dependency versions are unchanged by this alignment.
+Use Node 24 LTS at version 24.22.1 or newer. `.nvmrc` supplies the shared major for local version managers and all Node-running workflows; the application and lockfile require `24.x`, matching the verified Vercel production major. `npm run test:runtime` and the normal build reject both runtime-major drift and Node releases older than the reviewed October 2026 security patch. Next.js remains exact-pinned to the reviewed security patch in the dependency security gate.
 
 Copy `.env.example` to an ignored local environment file only when a flow needs configuration. Every committed value is a fake placeholder or fail-closed default. Never commit or paste provider values into documentation, tests, issues, pull requests, or reports. The complete variable inventory and safe defaults are in [`docs/fibertools-deployment-environment.md`](docs/fibertools-deployment-environment.md).
 

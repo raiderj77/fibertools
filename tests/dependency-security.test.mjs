@@ -5,7 +5,7 @@ import test from 'node:test';
 
 test('locked security versions remove the vulnerable parser and CLI chain', () => {
   const { packages } = JSON.parse(fs.readFileSync('package-lock.json', 'utf8'));
-  const exact = { next: '15.5.27', 'eslint-config-next': '15.5.27', sharp: '0.35.5', 'source-map-js': '1.2.2', 'postcss-selector-parser': '7.1.6' };
+  const exact = { next: '15.5.28', 'eslint-config-next': '15.5.28', sharp: '0.35.5', 'source-map-js': '1.2.2', 'postcss-selector-parser': '7.1.6' };
   for (const [name, version] of Object.entries(exact)) {
     const entries = Object.entries(packages).filter(([path]) => path.endsWith('/node_modules/' + name) || path === 'node_modules/' + name);
     assert.ok(entries.length > 0, name);
