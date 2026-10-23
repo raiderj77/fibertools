@@ -7,8 +7,9 @@ import { fileURLToPath } from "node:url";
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
 const packageManifest = JSON.parse(read("package.json"));
 const packageLock = JSON.parse(read("package-lock.json"));
-const nodeMajor = read(".nvmrc").trim();
-const minimumPatchedNode = [24, 22, 1];
+const nodeVersion = read(".nvmrc").trim();
+const nodeMajor = nodeVersion.split(".")[0];
+const minimumPatchedNode = nodeVersion.split(".").map(Number);
 
 const compareVersion = (actual, minimum) => {
   for (let index = 0; index < minimum.length; index += 1) {
@@ -18,7 +19,7 @@ const compareVersion = (actual, minimum) => {
 };
 
 test("the release runs on the declared Node 24 LTS major", () => {
-  assert.equal(nodeMajor, "24");
+  assert.equal(nodeVersion, "24.22.1");
   assert.equal(process.versions.node.split(".")[0], nodeMajor,
     "Use the Node major in .nvmrc before validating or building FiberTools.");
 });
