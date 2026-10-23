@@ -13,11 +13,11 @@ const nextConfig = read("next.config.mjs");
 const serviceWorker = read("public/sw.js");
 const indexNowRoute = path.join(root, "src/app/api/indexnow/route.ts");
 
-assert(packageJson.dependencies.next === "15.5.27", "Next.js must stay pinned to the reviewed security patch");
+assert(packageJson.dependencies.next === "15.5.28", "Next.js must stay pinned to the reviewed security patch");
 assert(packageJson.dependencies.react === "19.2.7", "React must stay pinned to the reviewed security patch");
 assert(packageJson.dependencies["react-dom"] === "19.2.7", "React DOM must match React");
 assert(packageJson.engines.node === "24.x", "Node engine must match the reviewed Node 24 LTS runtime");
-assert(read(".nvmrc").trim() === "24", "The shared Node version must match the reviewed Node 24 LTS runtime");
+assert(read(".nvmrc").trim() === "24.22.1", "The shared Node version must match the reviewed patched Node 24 LTS runtime");
 assert(!packageJson.dependencies["next-pwa"], "The abandoned next-pwa package must not be restored");
 assert(!lockfile.includes('"node_modules/next-pwa"'), "next-pwa must not remain in the lockfile");
 assert(!lockfile.includes('"node_modules/workbox-build"'), "The vulnerable Workbox build chain must not remain");
