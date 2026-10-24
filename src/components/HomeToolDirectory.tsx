@@ -22,6 +22,8 @@ const TOOL_FILTERS: Record<Exclude<DirectoryFilter, "all">, Set<string>> = {
   materials: new Set([
     "fabric-substitute",
     "project-cost-calculator",
+    "quilting/backing-calculator",
+    "quilting/batting-calculator",
     "spinning-ratio-calculator",
     "stash-estimator",
     "thread-converter",
@@ -46,6 +48,8 @@ const TOOL_FILTERS: Record<Exclude<DirectoryFilter, "all">, Set<string>> = {
     "cross-stitch-calculator",
     "granny-square-planner",
     "hat-calculator",
+    "quilting/binding-calculator",
+    "quilting/border-calculator",
     "stripe-generator",
   ]),
   reference: new Set([
