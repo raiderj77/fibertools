@@ -52,6 +52,7 @@ The team billing status resolves only the observed account-status ambiguity. It 
 | `NEXT_PUBLIC_ADSENSE_ENABLED` | Public | Keep `false` unless the owner separately approves ads and consent readiness. |
 | `NEXT_PUBLIC_ADSENSE_ID` | Public | Public publisher identifier used only when ads are enabled. The example value is fake. |
 | `INDEXNOW_API_KEY` | Server-only optional placeholder | Retained in the release contract for operator parity. Current application code does not read it; do not infer that a provider credential is configured. |
+| `NEXT_PUBLIC_POOLING_PACK_URL` | Public | Payment link for the $12 Planned Pooling Project Pack. Keep unset until separately authorized ship; unset hides buy buttons and shows the coming-soon state. Never place credentials here. |
 | `PLANNING_PACK_PRIVATE_DELIVERY_CONFIRMED` | Server-only owner gate | Keep `false` or unset until a paid non-customer session has successfully returned the exact expected bytes and checksum through the protected delivery route. |
 | `PLANNING_PACK_PRIVATE_UPLOAD_CONFIRMED` | Server-only upload gate | Set `true` only after the exact object name, MIME type, expected size, and non-public bucket have been verified in the approved storage provider. This records upload placement, not successful delivery or checksum retrieval. |
 | `PLANNING_PACK_OWNER_APPROVAL_CONFIRMED` | Server-only owner gate | Keep `false` or unset until the owner records explicit activation approval after every delivery and customer-operations prerequisite. |
