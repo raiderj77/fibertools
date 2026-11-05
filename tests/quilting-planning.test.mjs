@@ -57,3 +57,16 @@ test("routes retain static accessibility, copy, and retailer contracts", () => {
   assert.match(calculator, /aria-invalid=\{invalid\}/);
   assert.match(shared, /Related Fiber Arts Tools/);
 });
+
+test("packs whole border strips per lengthwise cut", () => {
+  const border = calculateBorder({ width: 60, length: 72, borderWidth: 22, fabricWidth: 44 });
+  assert.equal(border.status, "ready");
+  assert.deepEqual([border.lengthwise.cuts, border.lengthwise.yardage], [4, 13]);
+  assert.equal(calculateBorder({ width: 60, length: 72, borderWidth: 43, fabricWidth: 44 }).status, "invalid");
+});
+
+test("shows the fabric width field only for binding and border", () => {
+  const calculator = fs.readFileSync("src/app/quilting/PlanningCalculator.tsx", "utf8");
+  assert.match(calculator, /\(type === "binding" \|\| type === "border"\) &&/);
+  assert.doesNotMatch(calculator, /type !== "batting" &&/);
+});

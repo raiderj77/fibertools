@@ -57,7 +57,9 @@ export function calculateBorder({ width, length, borderWidth, fabricWidth }) {
   const usableWidth = fabricWidth - 2;
   const perimeter = 2 * (finishedWidth + finishedLength);
   const longestStrip = Math.max(finishedWidth, finishedLength);
-  const lengthwiseCuts = Math.ceil((4 * borderWidth) / usableWidth);
+  const stripsPerCut = Math.floor(usableWidth / borderWidth);
+  if (stripsPerCut < 1) return invalid("Border width is wider than the usable fabric width; choose a wider fabric.");
+  const lengthwiseCuts = Math.ceil(4 / stripsPerCut);
   const crosswiseStrips = Math.ceil(perimeter / usableWidth);
   return {
     status: "ready", finishedWidth, finishedLength, perimeter,
