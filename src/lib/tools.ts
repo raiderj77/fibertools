@@ -39,6 +39,10 @@ export const CATEGORY_COLORS: Record<ToolCategory, string> = {
   sewing: "bg-plum-100 text-plum-700 dark:bg-plum-900/30 dark:text-plum-300",
 };
 export const tools: Tool[] = [
+  { slug: "quilting/backing-calculator", name: "Quilt Backing Calculator", shortName: "Backing Calculator", description: "Compare backing panels and quarter-yard-rounded yardage across standard and wide fabric widths.", category: "sewing", icon: "✂️", tier: 2, ready: true, keywords: ["quilt backing calculator", "wideback yardage"] },
+  { slug: "quilting/binding-calculator", name: "Quilt Binding Calculator", shortName: "Binding Calculator", description: "Calculate binding strips and quarter-yard-rounded fabric yardage.", category: "sewing", icon: "✂️", tier: 2, ready: true, keywords: ["quilt binding calculator", "binding yardage"] },
+  { slug: "quilting/border-calculator", name: "Quilt Border Calculator", shortName: "Border Calculator", description: "Compare lengthwise and crosswise mitered-border fabric plans.", category: "sewing", icon: "✂️", tier: 2, ready: true, keywords: ["quilt border calculator", "border yardage"] },
+  { slug: "quilting/batting-calculator", name: "Quilt Batting Calculator", shortName: "Batting Calculator", description: "Calculate batting dimensions and common packaged-size fit.", category: "sewing", icon: "✂️", tier: 2, ready: true, keywords: ["quilt batting calculator", "batting size"] },
   {
     slug: "yarn-calculator",
     name: "Yarn Yardage Calculator",
@@ -417,6 +421,10 @@ export const tools: Tool[] = [
 
 /** Hand-curated related tool mappings for targeted internal linking. */
 const relatedToolMap: Record<string, string[]> = {
+  "quilting/backing-calculator": ["quilting/batting-calculator", "quilting/binding-calculator", "quilting/border-calculator"],
+  "quilting/binding-calculator": ["quilting/backing-calculator", "quilting/border-calculator", "quilting/batting-calculator"],
+  "quilting/border-calculator": ["quilting/backing-calculator", "quilting/binding-calculator", "quilting/batting-calculator"],
+  "quilting/batting-calculator": ["quilting/backing-calculator", "quilting/binding-calculator", "quilting/border-calculator"],
   "yarn-calculator": ["yarn-weight-chart", "blanket-calculator", "project-cost-calculator", "gauge-calculator"],
   "needle-converter": ["needle-guide", "uk-to-us-converter", "gauge-calculator"],
   "gauge-calculator": ["yarn-calculator", "stitch-pattern-calculator", "blanket-calculator"],

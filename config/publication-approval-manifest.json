@@ -91,6 +91,56 @@
       "approvalReference": "Owner instruction in FiberTools task dated 2026-09-16: \"go ahead and publish the articles as long as they are correct do double check your work also are the images added? Add images if they are not present\". The subsequent no-deploy instruction applies to the separate Blanket Calculator change.",
       "reviewOrExpirationDate": "2026-11-20",
       "indexingApproved": true
+    },
+    {
+      "route": "/quilting",
+      "contentType": "TOOL",
+      "title": "Quilting Calculators",
+      "ownerApprovalDate": "2026-10-23",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true,
+      "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
+    },
+    {
+      "route": "/quilting/backing-calculator",
+      "contentType": "CALCULATOR",
+      "title": "Quilt Backing Calculator",
+      "ownerApprovalDate": "2026-10-23",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true,
+      "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
+    },
+    {
+      "route": "/quilting/binding-calculator",
+      "contentType": "CALCULATOR",
+      "title": "Quilt Binding Calculator",
+      "ownerApprovalDate": "2026-10-23",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true,
+      "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
+    },
+    {
+      "route": "/quilting/border-calculator",
+      "contentType": "CALCULATOR",
+      "title": "Quilt Border Calculator",
+      "ownerApprovalDate": "2026-10-23",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true,
+      "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
+    },
+    {
+      "route": "/quilting/batting-calculator",
+      "contentType": "CALCULATOR",
+      "title": "Quilt Batting Calculator",
+      "ownerApprovalDate": "2026-10-23",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true,
+      "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
     }
   ]
 }
