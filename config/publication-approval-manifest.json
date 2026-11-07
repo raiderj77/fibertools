@@ -141,6 +141,16 @@
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
       "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
+    },
+    {
+      "route": "/color-combination-generator",
+      "contentType": "TOOL",
+      "title": "Color Combination Generator",
+      "ownerApprovalDate": "2026-11-07",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true,
+      "reason": "Owner granted an explicit exception to the publication freeze for one new free browser-local tool: the Color Combination Generator at /color-combination-generator, including its registry entry and sitemap inclusion, homepage directory planning entry, crochet and knitting category lists, related-tool links, FAQs, affiliate recommendations, and focused tests. No existing calculator math, checkout, account, or paid offer is included.",
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-11-07: \"Can we create a color matching scheme for people that don't know what type of colors to put together standard, mixed, wild and so forth.\", followed at 09:10 PT on 2026-11-07 by: \"Build it\"."
     }
   ]
 }

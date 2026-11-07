@@ -16,6 +16,7 @@ const CROCHET_SLUGS = [
   "c2c-calculator",
   "uk-to-us-converter",
   "color-pooling-calculator",
+  "color-combination-generator",
   "stitch-counter",
   "abbreviation-glossary",
   "stash-estimator",
@@ -121,7 +122,7 @@ export default function CrochetToolsPage() {
     ["amigurumi-pattern-checker", "amigurumi-shapes", "circle-calculator", "increase-decrease-calculator", "granny-square-planner", "c2c-calculator"].includes(t.slug)
   );
   const blanketTools = crochetTools.filter((t) =>
-    ["blanket-calculator", "stripe-generator", "color-pooling-calculator", "stash-estimator", "project-cost-calculator"].includes(t.slug)
+    ["blanket-calculator", "stripe-generator", "color-pooling-calculator", "color-combination-generator", "stash-estimator", "project-cost-calculator"].includes(t.slug)
   );
   const referenceTools = crochetTools.filter((t) =>
     ["yarn-calculator", "gauge-calculator", "needle-converter", "yarn-weight-chart", "stitch-counter", "abbreviation-glossary", "uk-to-us-converter"].includes(t.slug)

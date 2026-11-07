@@ -23,7 +23,7 @@ import {
 
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const NOW = new Date("2026-10-24T12:00:00Z");
+const NOW = new Date("2026-11-07T12:00:00Z");
 
 
 function snapshot(value) {
@@ -280,7 +280,7 @@ test("approvals cannot be future-dated, expired, or indexable without approval",
   };
 
   const future = snapshot(baseManifest);
-  future.approvals.push({ ...approval, ownerApprovalDate: "2026-10-25" });
+  future.approvals.push({ ...approval, ownerApprovalDate: "2026-11-08" });
   assert(
     analyzePublicationState(future, state, NOW)
       .some((message) => message.includes("ownerApprovalDate cannot be in the future")),
