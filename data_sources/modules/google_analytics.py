@@ -50,24 +50,35 @@ class GoogleAnalytics:
         self,
         days: int = 30,
         limit: int = 20,
-        path_filter: Optional[str] = "/blog/"
+        path_filter: Optional[str] = None,
+        *,
+        end_days_ago: int = 1
     ) -> List[Dict[str, Any]]:
         """
         Get top performing pages by pageviews
 
         Args:
-            days: Number of days to look back
+            days: Number of completed days to include
             limit: Number of results to return
-            path_filter: Filter pages by path (e.g., "/blog/")
+            path_filter: Optional path substring (None = all pages)
+            end_days_ago: Inclusive end offset in the property's reporting timezone;
+                1 ends yesterday. Used for adjacent, nonoverlapping comparisons.
 
         Returns:
             List of dicts with page data
         """
+        if type(days) is not int or days < 1:
+            raise ValueError("days must be a positive integer")
+        if type(end_days_ago) is not int or end_days_ago < 1:
+            raise ValueError("end_days_ago must be a positive integer")
+
+        # GA4 endpoints are inclusive; relative dates use the property's timezone.
+        # https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/DateRange
         request = RunReportRequest(
             property=f"properties/{self.property_id}",
             date_ranges=[DateRange(
-                start_date=f"{days}daysAgo",
-                end_date="today"
+                start_date=f"{end_days_ago + days - 1}daysAgo",
+                end_date=f"{end_days_ago}daysAgo"
             )],
             dimensions=[
                 Dimension(name="pagePath"),
@@ -198,14 +209,14 @@ class GoogleAnalytics:
     def get_conversions(
         self,
         days: int = 30,
-        path_filter: Optional[str] = "/blog/"
+        path_filter: Optional[str] = None
     ) -> List[Dict[str, Any]]:
         """
         Get conversion data by page
 
         Args:
             days: Number of days to look back
-            path_filter: Filter pages by path
+            path_filter: Optional path substring (None = all pages)
 
         Returns:
             List of pages with conversion data
@@ -323,32 +334,79 @@ class GoogleAnalytics:
         self,
         comparison_days: int = 30,
         threshold_percent: float = -20.0,
-        path_filter: str = "/blog/"
+        path_filter: Optional[str] = None
     ) -> List[Dict[str, Any]]:
         """
-        Identify pages with declining traffic
+        Identify declining traffic among the recent period's top 100 pages.
+
+        This is a sampled comparison, not a complete disappeared-page report.
+        Pages absent from the recent top 100 are not included.
+        Both periods are read in one request so property midnight cannot shift
+        their relative dates independently. A truncated response (over 10,000
+        combined rows) raises ValueError rather than comparing partial periods.
 
         Args:
-            comparison_days: Compare this many recent days vs previous period
+            comparison_days: Compare this many completed days with the immediately
+                preceding equal period, using the property's reporting timezone
             threshold_percent: Consider declining if drop exceeds this %
-            path_filter: Filter pages by path
+            path_filter: Optional path substring (None = all pages)
 
         Returns:
             List of declining pages with metrics
         """
-        # Get recent period data
-        recent_pages = self.get_top_pages(
-            days=comparison_days,
-            limit=100,
-            path_filter=path_filter
-        )
+        if type(comparison_days) is not int or comparison_days < 1:
+            raise ValueError("comparison_days must be a positive integer")
 
-        # Get previous period data
-        previous_pages = self.get_top_pages(
-            days=comparison_days * 2,
-            limit=100,
-            path_filter=path_filter
+        # One report resolves both inclusive ranges in the property's timezone.
+        # Named ranges appear in the response's dateRange dimension:
+        # https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/DateRange
+        request = RunReportRequest(
+            property=f"properties/{self.property_id}",
+            date_ranges=[
+                DateRange(start_date=f"{comparison_days}daysAgo", end_date="1daysAgo", name="recent"),
+                DateRange(start_date=f"{2 * comparison_days}daysAgo",
+                          end_date=f"{comparison_days + 1}daysAgo", name="previous"),
+            ],
+            dimensions=[Dimension(name="pagePath"), Dimension(name="pageTitle")],
+            metrics=[Metric(name=name) for name in [
+                "screenPageViews", "sessions", "averageSessionDuration", "bounceRate", "engagementRate"
+            ]],
+            limit=10000,
         )
+        if path_filter:
+            request.dimension_filter = FilterExpression(filter=Filter(
+                field_name="pagePath",
+                string_filter=Filter.StringFilter(
+                    match_type=Filter.StringFilter.MatchType.CONTAINS, value=path_filter
+                )
+            ))
+
+        response = self.client.run_report(request)
+        # The API's limit is shared across ranges. Partition only a complete
+        # bounded response, then select each period's top 100 independently.
+        # Do not paginate: another request could cross property midnight.
+        if response.row_count > len(response.rows):
+            raise ValueError("Comparison report is truncated; narrow path_filter or the date window")
+        headers = [header.name for header in response.dimension_headers]
+        if any(headers.count(name) != 1 for name in ("dateRange", "pagePath", "pageTitle")):
+            raise ValueError("Comparison report is missing unique dateRange/page dimensions")
+        range_index, path_index, title_index = (headers.index(name) for name in ("dateRange", "pagePath", "pageTitle"))
+        periods = {"recent": [], "previous": []}
+        for row in response.rows:
+            period = row.dimension_values[range_index].value
+            if period not in periods:
+                raise ValueError("Comparison report contains an unknown date range")
+            periods[period].append({
+                'path': row.dimension_values[path_index].value,
+                'title': row.dimension_values[title_index].value,
+                'pageviews': int(row.metric_values[0].value),
+                'sessions': int(row.metric_values[1].value),
+                'avg_session_duration': float(row.metric_values[2].value),
+                'bounce_rate': float(row.metric_values[3].value),
+                'engagement_rate': float(row.metric_values[4].value),
+            })
+        recent_pages = sorted(periods['recent'], key=lambda page: page['pageviews'], reverse=True)[:100]
+        previous_pages = sorted(periods['previous'], key=lambda page: page['pageviews'], reverse=True)[:100]
 
         # Create lookup for previous data
         previous_lookup = {p['path']: p['pageviews'] for p in previous_pages}
@@ -384,7 +442,7 @@ if __name__ == "__main__":
     ga = GoogleAnalytics()
 
     print("Top 10 blog articles:")
-    top_pages = ga.get_top_pages(days=30, limit=10)
+    top_pages = ga.get_top_pages(days=30, limit=10, path_filter="/blog/")
     for i, page in enumerate(top_pages, 1):
         print(f"{i}. {page['title']}")
         print(f"   {page['path']}")
@@ -392,7 +450,7 @@ if __name__ == "__main__":
         print()
 
     print("\nDeclining articles:")
-    declining = ga.get_declining_pages(comparison_days=30)
+    declining = ga.get_declining_pages(comparison_days=30, path_filter="/blog/")
     for page in declining[:5]:
         print(f"- {page['title']}")
         print(f"  {page['path']}")
