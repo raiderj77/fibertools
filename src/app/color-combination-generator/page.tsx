@@ -214,6 +214,16 @@ export default function ColorCombinationGeneratorPage() {
           or estimate the yarn for a flat project with the{" "}
           <Link href="/yarn-calculator" className="font-medium text-sage-700 underline hover:opacity-80 dark:text-sage-300">yarn calculator</Link>.
         </p>
+        <p className="mb-4 text-[15px] leading-relaxed text-bark-600 dark:text-bark-300">
+          You can also start from a photo of yarn you already own: the generator reads the main colors on
+          your device, and you tap one to build the palette around it. Copy the palette or a link to it to
+          keep the exact combination with your project notes.
+        </p>
+        <p className="text-[15px] leading-relaxed text-bark-600 dark:text-bark-300">
+          Teachers, guilds, designers, and yarn shops can put this generator on their own site for free
+          with the{" "}
+          <Link href="/embeds" className="font-medium text-sage-700 underline hover:opacity-80 dark:text-sage-300">FiberTools embed program</Link>.
+        </p>
       </section>
     </ToolLayout>
   );

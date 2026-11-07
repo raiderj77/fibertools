@@ -4,11 +4,14 @@ import test from "node:test";
 
 import {
   buildColorCombination,
+  buildPaletteShareQuery,
+  parsePaletteShareQuery,
   COLOR_COMBINATION_LIMITS,
   contrastRatio,
   describeColor,
   relativeLuminance,
 } from "../src/lib/color-combinations.mjs";
+import { extractPhotoPalette } from "../src/lib/photo-palette.mjs";
 
 const tool = readFileSync(
   new URL("../src/app/color-combination-generator/ColorCombinationTool.tsx", import.meta.url),
@@ -132,6 +135,61 @@ test("luminance, contrast, and color names use the documented color math", () =>
   assert.equal(describeColor("#000000"), "Black");
 });
 
+test("photo extraction returns dominant colors with shares and skips transparent pixels", () => {
+  const pixels = [];
+  const push = (r, g, b, a, times) => {
+    for (let index = 0; index < times; index += 1) pixels.push(r, g, b, a);
+  };
+  push(200, 30, 30, 255, 100);
+  push(30, 30, 200, 255, 50);
+  push(255, 255, 255, 0, 40);
+  const extracted = extractPhotoPalette(new Uint8ClampedArray(pixels));
+  assert.equal(extracted.ok, true);
+  assert.deepEqual(extracted.colors, [
+    { hex: "#C81E1E", sharePercent: 67 },
+    { hex: "#1E1EC8", sharePercent: 33 },
+  ]);
+});
+
+test("photo extraction merges nearby shades into one family with the family share", () => {
+  const pixels = [];
+  const push = (r, g, b, times) => {
+    for (let index = 0; index < times; index += 1) pixels.push(r, g, b, 255);
+  };
+  push(205, 32, 32, 60);
+  push(198, 28, 28, 55);
+  push(40, 140, 70, 30);
+  const extracted = extractPhotoPalette(new Uint8ClampedArray(pixels));
+  assert.equal(extracted.ok, true);
+  assert.deepEqual(extracted.colors, [
+    { hex: "#CA1E1E", sharePercent: 79 },
+    { hex: "#288C46", sharePercent: 21 },
+  ]);
+  assert.equal(extractPhotoPalette(new Uint8ClampedArray([])).ok, false);
+  assert.equal(extractPhotoPalette(new Uint8ClampedArray([1, 2, 3])).ok, false);
+  assert.equal(extractPhotoPalette(new Uint8ClampedArray([9, 9, 9, 0])).ok, false);
+});
+
+test("palette share links round-trip supported values and drop unsupported ones", () => {
+  const query = buildPaletteShareQuery({
+    baseColor: "#3B6EA5",
+    mode: "standard",
+    project: "blanket",
+    colorCount: 4,
+    yarnForm: "solids",
+  });
+  assert.equal(query, "c=3B6EA5&m=standard&p=blanket&n=4&y=solids");
+  assert.deepEqual(parsePaletteShareQuery("?c=3B6EA5&m=wild&p=quilt&n=5&y=one-variegated"), {
+    baseColor: "#3B6EA5",
+    mode: "wild",
+    project: "quilt",
+    colorCount: 5,
+    yarnForm: "one-variegated",
+  });
+  assert.deepEqual(parsePaletteShareQuery("?c=ZZZZZZ&m=nope&n=9&y=plaid"), {});
+  assert.equal(buildPaletteShareQuery({ baseColor: "blue" }), "");
+});
+
 test("the grayscale preview re-encodes luminance to sRGB so neutral grays stay unchanged", () => {
   const gray = buildColorCombination({ baseColor: "#808080", mode: "standard", colorCount: 3 });
   assert.equal(gray.ok, true);
@@ -181,8 +239,21 @@ test("the UI wires every control into the deterministic palette builder", () => 
   assert.match(tool, /id="combo-yarn-form"/);
   assert.match(tool, /Grayscale value check/);
   assert.match(tool, /Text version of the stripe cycle/);
-  assert.match(tool, /useToolCompletion\("color-combination-generator", result\)/);
-  assert.doesNotMatch(tool, /Math\.random|guaranteed to match|perfect palette/i);
+  assert.match(tool, /useToolCompletion\("color-combination-generator", result, !embedded && Boolean\(result\)\)/);
+  assert.doesNotMatch(tool, /guaranteed to match|perfect palette/i);
+});
+
+test("the UI supports embed mode, photo starts, surprise picks, and palette sharing", () => {
+  assert.match(tool, /\{ embedded = false \}: \{ embedded\?: boolean \}/);
+  assert.match(tool, /id="combo-photo"/);
+  assert.match(tool, /extractPhotoPalette/);
+  assert.match(tool, /The photo stayed on your device/);
+  assert.match(tool, /Surprise me with a different main color/);
+  assert.match(tool, /Copy palette link/);
+  assert.match(tool, /parsePaletteShareQuery\(window\.location\.search\)/);
+  assert.match(tool, /\{!embedded \? \([\s\S]*?Copy palette/);
+  const engine = readFileSync(new URL("../src/lib/color-combinations.mjs", import.meta.url), "utf8");
+  assert.doesNotMatch(engine, /Math\.random/);
 });
 
 test("the page states the method and limits without promising an exact fabric result", () => {

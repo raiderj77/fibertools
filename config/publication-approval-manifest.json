@@ -151,6 +151,16 @@
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for one new free browser-local tool: the Color Combination Generator at /color-combination-generator, including its registry entry and sitemap inclusion, homepage directory planning entry, crochet and knitting category lists, related-tool links, FAQs, affiliate recommendations, and focused tests. No existing calculator math, checkout, account, or paid offer is included.",
       "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-11-07: \"Can we create a color matching scheme for people that don't know what type of colors to put together standard, mixed, wild and so forth.\", followed at 09:10 PT on 2026-11-07 by: \"Build it\"."
+    },
+    {
+      "route": "/embed/color-combination-generator",
+      "contentType": "TOOL",
+      "title": "Color Combination Generator Embed",
+      "ownerApprovalDate": "2026-11-07",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true,
+      "reason": "Owner granted an explicit exception to the publication freeze for the embed variant of the already-approved Color Combination Generator, following the existing branded embed pattern used by the blanket, yarn, and gauge calculators. The embed route itself is served noindex by design (metadata robots and X-Robots-Tag), like every FiberTools embed; indexingApproved records the parent tool's approved indexing. The same instruction also approved competitor-driven improvements to the tool itself: start-from-a-photo color extraction, a surprise main-color pick, and copy palette plus copy palette link sharing.",
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-11-07: \"double check this work and find competition and make ours better and have the ability to embed, I think we want embedded calculators and those types of things now correct?\""
     }
   ]
 }

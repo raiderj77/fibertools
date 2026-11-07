@@ -442,3 +442,69 @@ export function buildColorCombination({
     avoid,
   };
 }
+
+/**
+ * @param {{ baseColor: string, mode?: string, project?: string, colorCount?: number, yarnForm?: string }} state
+ * @returns {string} query string without a leading question mark, or "" when any value is unsupported
+ */
+export function buildPaletteShareQuery({
+  baseColor,
+  mode = "standard",
+  project = "blanket",
+  colorCount = 4,
+  yarnForm = "solids",
+} = {}) {
+  if (!hexToRgb(baseColor)) return "";
+  if (!Object.hasOwn(COLOR_COMBINATION_MODES, mode)) return "";
+  if (!Object.hasOwn(COLOR_COMBINATION_PROJECTS, project)) return "";
+  if (!Object.hasOwn(COLOR_COMBINATION_YARN_FORMS, yarnForm)) return "";
+  if (
+    !Number.isSafeInteger(colorCount) ||
+    colorCount < COLOR_COMBINATION_LIMITS.minColors ||
+    colorCount > COLOR_COMBINATION_LIMITS.maxColors
+  ) {
+    return "";
+  }
+  return new URLSearchParams({
+    c: baseColor.slice(1).toUpperCase(),
+    m: mode,
+    p: project,
+    n: String(colorCount),
+    y: yarnForm,
+  }).toString();
+}
+
+/**
+ * @param {string} search a query string, with or without the leading "?"
+ * @returns {{ baseColor?: string, mode?: string, project?: string, colorCount?: number, yarnForm?: string }} only the fields that hold supported values
+ */
+export function parsePaletteShareQuery(search) {
+  const state = {};
+  if (typeof search !== "string" || search.length === 0) return state;
+  let params;
+  try {
+    params = new URLSearchParams(search.startsWith("?") ? search.slice(1) : search);
+  } catch {
+    return state;
+  }
+  const color = params.get("c");
+  if (color) {
+    const candidate = (color.startsWith("#") ? color : `#${color}`).toUpperCase();
+    if (hexToRgb(candidate)) state.baseColor = candidate;
+  }
+  const mode = params.get("m");
+  if (mode && Object.hasOwn(COLOR_COMBINATION_MODES, mode)) state.mode = mode;
+  const project = params.get("p");
+  if (project && Object.hasOwn(COLOR_COMBINATION_PROJECTS, project)) state.project = project;
+  const yarnForm = params.get("y");
+  if (yarnForm && Object.hasOwn(COLOR_COMBINATION_YARN_FORMS, yarnForm)) state.yarnForm = yarnForm;
+  const count = Number(params.get("n"));
+  if (
+    Number.isSafeInteger(count) &&
+    count >= COLOR_COMBINATION_LIMITS.minColors &&
+    count <= COLOR_COMBINATION_LIMITS.maxColors
+  ) {
+    state.colorCount = count;
+  }
+  return state;
+}

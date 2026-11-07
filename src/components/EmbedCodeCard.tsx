@@ -8,13 +8,14 @@ import {
 
 type EmbedToolSlug = Extract<
   FixedAnalyticsSlug,
-  "blanket-calculator" | "yarn-calculator" | "gauge-calculator"
+  "blanket-calculator" | "yarn-calculator" | "gauge-calculator" | "color-combination-generator"
 >;
 
 const EMBED_HEIGHTS: Readonly<Record<EmbedToolSlug, number>> = {
   "blanket-calculator": 1180,
   "yarn-calculator": 1180,
   "gauge-calculator": 1180,
+  "color-combination-generator": 1560,
 };
 
 export default function EmbedCodeCard({ name, slug }: { name: string; slug: EmbedToolSlug }) {

@@ -1,12 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   buildColorCombination,
+  buildPaletteShareQuery,
+  parsePaletteShareQuery,
   COLOR_COMBINATION_MODES,
   COLOR_COMBINATION_PROJECTS,
   COLOR_COMBINATION_YARN_FORMS,
 } from "@/lib/color-combinations.mjs";
+import { extractPhotoPalette } from "@/lib/photo-palette.mjs";
 import useToolCompletion from "@/lib/useToolCompletion";
 
 const PRESET_COLORS = [
@@ -28,12 +31,22 @@ const MODE_KEYS = Object.keys(COLOR_COMBINATION_MODES);
 const PROJECT_KEYS = Object.keys(COLOR_COMBINATION_PROJECTS);
 const YARN_FORM_KEYS = Object.keys(COLOR_COMBINATION_YARN_FORMS);
 
-export default function ColorCombinationTool() {
+const SURPRISE_COLORS = [
+  "#B03A2E", "#1F618D", "#117A65", "#7D3C98",
+  "#B7950B", "#CA6F1E", "#5D6D7E", "#884EA0",
+  "#148F77", "#A93226", "#2E86AB", "#C27BA0",
+  "#6C3483", "#7B7D3A", "#9A7B4F", "#345995",
+] as const;
+
+export default function ColorCombinationTool({ embedded = false }: { embedded?: boolean }) {
   const [baseColor, setBaseColor] = useState<string>("#3B6EA5");
   const [mode, setMode] = useState("standard");
   const [project, setProject] = useState("blanket");
   const [colorCount, setColorCount] = useState(4);
   const [yarnForm, setYarnForm] = useState("solids");
+  const [photoColors, setPhotoColors] = useState<Array<{ hex: string; sharePercent: number }> | null>(null);
+  const [photoMessage, setPhotoMessage] = useState("");
+  const [actionStatus, setActionStatus] = useState("");
 
   const preview = useMemo(
     () => buildColorCombination({ baseColor, mode, project, colorCount, yarnForm }),
@@ -41,7 +54,86 @@ export default function ColorCombinationTool() {
   );
   const result = "palette" in preview ? preview : null;
 
-  useToolCompletion("color-combination-generator", result);
+  useToolCompletion("color-combination-generator", result, !embedded && Boolean(result));
+
+  const appliedShareRef = useRef(false);
+  useEffect(() => {
+    if (embedded || appliedShareRef.current) return;
+    appliedShareRef.current = true;
+    const shared = parsePaletteShareQuery(window.location.search);
+    if (shared.baseColor) setBaseColor(shared.baseColor);
+    if (shared.mode) setMode(shared.mode);
+    if (shared.project) setProject(shared.project);
+    if (shared.colorCount) setColorCount(shared.colorCount);
+    if (shared.yarnForm) setYarnForm(shared.yarnForm);
+  }, [embedded]);
+
+  function surprise() {
+    const choices = SURPRISE_COLORS.filter((hex) => hex !== baseColor);
+    setBaseColor(choices[Math.floor(Math.random() * choices.length)]);
+  }
+
+  async function copyText(text: string, doneMessage: string) {
+    try {
+      await navigator.clipboard.writeText(text);
+      setActionStatus(doneMessage);
+    } catch {
+      setActionStatus("Copy is unavailable in this browser.");
+    }
+  }
+
+  function shareUrl() {
+    const query = buildPaletteShareQuery({ baseColor, mode, project, colorCount, yarnForm });
+    return `https://fibertools.app/color-combination-generator${query ? `?${query}` : ""}`;
+  }
+
+  function copyPalette() {
+    if (!result) return;
+    const lines = [
+      `${result.modeLabel} palette for a ${result.projectLabel.toLowerCase()} (FiberTools Color Combination Generator)`,
+      ...result.palette.map(
+        (color) => `${color.role}: ${color.name} ${color.hex}, about ${color.sharePercent}%`,
+      ),
+      result.lowContrastPairs.length > 0
+        ? `Value check: ${result.lowContrastPairs.map((pair) => pair.message).join(" ")}`
+        : "Value check: no pair falls below the 1.30:1 low-contrast warning line.",
+      shareUrl(),
+    ];
+    void copyText(lines.join("\n"), "Palette copied.");
+  }
+
+  async function handlePhotoChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    event.target.value = "";
+    if (!file) return;
+    setPhotoMessage("Reading the colors in your photo...");
+    try {
+      const bitmap = await createImageBitmap(file);
+      const scale = Math.min(1, 200 / Math.max(bitmap.width, bitmap.height));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+      canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+      const context = canvas.getContext("2d", { willReadFrequently: true });
+      if (!context) throw new Error("Canvas is unavailable.");
+      context.drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      const extracted = extractPhotoPalette(
+        context.getImageData(0, 0, canvas.width, canvas.height).data,
+        { maxColors: 5 },
+      );
+      if (!extracted.ok) {
+        setPhotoColors(null);
+        setPhotoMessage(extracted.error);
+        return;
+      }
+      setPhotoColors(extracted.colors);
+      setPhotoMessage(
+        "Colors found in your photo. Tap one to build a palette around it. The photo stayed on your device.",
+      );
+    } catch {
+      setPhotoColors(null);
+      setPhotoMessage("That photo could not be read. Try a JPG or PNG photo.");
+    }
+  }
 
   return (
     <div className="space-y-7">
@@ -95,6 +187,54 @@ export default function ColorCombinationTool() {
             Current main color: <strong>{baseColor}</strong>
           </p>
         </div>
+        <div className="mt-3">
+          <button type="button" onClick={surprise} className="btn-secondary min-h-11 text-sm">
+            Surprise me with a different main color
+          </button>
+        </div>
+      </section>
+
+      <section aria-labelledby="combo-photo-heading" className="rounded-xl border border-cream-300 p-4 dark:border-bark-600">
+        <h3 id="combo-photo-heading" className="label mb-0">Start from a photo</h3>
+        <p className="mt-1 text-xs text-bark-500 dark:text-bark-400">
+          Use a photo of yarn you own, a finished blanket, or a picture you love. The main colors are read
+          on your device. Nothing is uploaded.
+        </p>
+        <div className="mt-3">
+          <label htmlFor="combo-photo" className="label">Photo of your yarn or inspiration</label>
+          <input
+            id="combo-photo"
+            type="file"
+            accept="image/*"
+            onChange={handlePhotoChange}
+            className="block w-full text-sm text-bark-600 file:mr-3 file:min-h-11 file:cursor-pointer file:rounded-lg file:border file:border-cream-300 file:bg-white file:px-4 file:text-sm file:font-medium dark:text-bark-300 dark:file:border-bark-600 dark:file:bg-bark-800"
+          />
+        </div>
+        {photoMessage ? (
+          <p className="mt-2 text-sm text-bark-600 dark:text-bark-300" role="status">{photoMessage}</p>
+        ) : null}
+        {photoColors ? (
+          <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-5">
+            {photoColors.map((color) => (
+              <button
+                key={color.hex}
+                type="button"
+                onClick={() => setBaseColor(color.hex)}
+                aria-pressed={baseColor === color.hex}
+                aria-label={`Use photo color ${color.hex} as the main color`}
+                className="rounded-lg border border-cream-300 p-2 text-left hover:border-sage-400 dark:border-bark-600"
+              >
+                <span
+                  aria-hidden="true"
+                  className="block h-9 rounded-md border border-black/10"
+                  style={{ backgroundColor: color.hex }}
+                />
+                <span className="mt-2 block text-xs font-medium text-bark-700 dark:text-cream-200">{color.hex}</span>
+                <span className="block text-[11px] text-bark-400">About {color.sharePercent}% of the photo</span>
+              </button>
+            ))}
+          </div>
+        ) : null}
       </section>
 
       <fieldset>
@@ -201,6 +341,22 @@ export default function ColorCombinationTool() {
             <p className="mt-2 text-sm text-bark-600 dark:text-bark-300">
               <strong>Best for:</strong> {result.bestFor}. <strong>Not for:</strong> {result.notFor}.
             </p>
+
+            {!embedded ? (
+              <div className="mt-4 flex flex-wrap items-center gap-2">
+                <button type="button" onClick={copyPalette} className="btn-secondary min-h-11 text-sm">
+                  Copy palette
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void copyText(shareUrl(), "Palette link copied.")}
+                  className="btn-secondary min-h-11 text-sm"
+                >
+                  Copy palette link
+                </button>
+                <span aria-live="polite" className="text-sm text-bark-500 dark:text-bark-400">{actionStatus}</span>
+              </div>
+            ) : null}
 
             <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {result.palette.map((color) => (
