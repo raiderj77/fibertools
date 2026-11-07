@@ -151,7 +151,7 @@ test("photo extraction returns dominant colors with shares and skips transparent
   ]);
 });
 
-test("photo extraction merges near-identical colors and rejects unreadable input", () => {
+test("photo extraction merges nearby shades into one family with the family share", () => {
   const pixels = [];
   const push = (r, g, b, times) => {
     for (let index = 0; index < times; index += 1) pixels.push(r, g, b, 255);
@@ -161,7 +161,10 @@ test("photo extraction merges near-identical colors and rejects unreadable input
   push(40, 140, 70, 30);
   const extracted = extractPhotoPalette(new Uint8ClampedArray(pixels));
   assert.equal(extracted.ok, true);
-  assert.equal(extracted.colors.length, 2);
+  assert.deepEqual(extracted.colors, [
+    { hex: "#CA1E1E", sharePercent: 79 },
+    { hex: "#288C46", sharePercent: 21 },
+  ]);
   assert.equal(extractPhotoPalette(new Uint8ClampedArray([])).ok, false);
   assert.equal(extractPhotoPalette(new Uint8ClampedArray([1, 2, 3])).ok, false);
   assert.equal(extractPhotoPalette(new Uint8ClampedArray([9, 9, 9, 0])).ok, false);

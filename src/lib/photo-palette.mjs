@@ -66,19 +66,32 @@ export function extractPhotoPalette(pixels, { maxColors = 5, minDistance = 48 } 
     }))
     .sort((first, second) => second.count - first.count);
 
+  // Walk the buckets from most to least common. A bucket that is close to an
+  // already-picked color merges into it: its pixels join the representative's
+  // count (and pull its shade toward the family average), so the share shown
+  // for that color covers the whole color family in the photo.
   const picked = [];
+  const unassigned = [];
   for (const candidate of ranked) {
-    if (picked.length >= maxColors) break;
-    if (picked.every((chosen) => rgbDistance(chosen, candidate) >= minDistance)) {
-      picked.push(candidate);
+    const nearIndex = picked.findIndex((chosen) => rgbDistance(chosen, candidate) < minDistance);
+    if (nearIndex >= 0) {
+      const chosen = picked[nearIndex];
+      const total = chosen.count + candidate.count;
+      chosen.r = Math.round((chosen.r * chosen.count + candidate.r * candidate.count) / total);
+      chosen.g = Math.round((chosen.g * chosen.count + candidate.g * candidate.count) / total);
+      chosen.b = Math.round((chosen.b * chosen.count + candidate.b * candidate.count) / total);
+      chosen.count = total;
+    } else if (picked.length < maxColors) {
+      picked.push({ ...candidate });
+    } else {
+      unassigned.push(candidate);
     }
   }
-  // A photo with almost no distinct colors should still return what it has,
-  // but near-duplicates removed by the distance rule stay removed.
-  if (picked.length < Math.min(2, ranked.length)) {
-    for (const candidate of ranked) {
-      if (picked.length >= Math.min(maxColors, ranked.length)) break;
-      if (!picked.includes(candidate)) picked.push(candidate);
+  // A photo with almost no distinct colors should still return what it has.
+  if (picked.length < Math.min(2, ranked.length, maxColors)) {
+    for (const candidate of unassigned) {
+      if (picked.length >= Math.min(2, ranked.length, maxColors)) break;
+      picked.push(candidate);
     }
   }
 
