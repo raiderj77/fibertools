@@ -3,7 +3,7 @@ import EmbedCodeCard, { PartnerInterestLink } from "@/components/EmbedCodeCard";
 
 export const metadata: Metadata = {
   title: "Free Embeddable Fiber Arts Calculators",
-  description: "Add a free branded FiberTools blanket, yarn, or gauge calculator to your HTTPS website.",
+  description: "Add a free branded FiberTools blanket, yarn, or gauge calculator, or the color combination generator, to your HTTPS website.",
   alternates: { canonical: "/embeds" },
 };
 
@@ -11,6 +11,7 @@ const embedTools = [
   { name: "Blanket Calculator", slug: "blanket-calculator" as const },
   { name: "Yarn Calculator", slug: "yarn-calculator" as const },
   { name: "Gauge Calculator", slug: "gauge-calculator" as const },
+  { name: "Color Combination Generator", slug: "color-combination-generator" as const },
 ];
 
 export default function EmbedsPage() {

@@ -5,7 +5,7 @@ import nextConfig from "../next.config.mjs";
 import { isEmbedPath } from "../src/lib/embed-policy.mjs";
 
 const read = (path) => fs.readFileSync(path, "utf8");
-const embedSlugs = ["blanket-calculator", "yarn-calculator", "gauge-calculator"];
+const embedSlugs = ["blanket-calculator", "yarn-calculator", "gauge-calculator", "color-combination-generator"];
 
 test("recognizes only the dedicated embed route segment", () => {
   assert.equal(isEmbedPath("/embed"), true);

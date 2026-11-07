@@ -18,6 +18,7 @@ export type FixedAnalyticsSlug =
   | "blanket-calculator"
   | "yarn-calculator"
   | "gauge-calculator"
+  | "color-combination-generator"
   | "embed-program"
   | "amigurumi-pattern-checker";
 
@@ -26,7 +27,7 @@ const ALLOWED_EVENT_SLUGS: Readonly<Record<FixedAnalyticsEvent, readonly FixedAn
   planning_pack_purchase_click: ["fiber-project-planning-pack"],
   planning_pack_interest_click: ["fiber-project-planning-pack"],
   designer_preflight_inquiry_click: ["designer-pattern-preflight"],
-  embed_code_copy: ["blanket-calculator", "yarn-calculator", "gauge-calculator"],
+  embed_code_copy: ["blanket-calculator", "yarn-calculator", "gauge-calculator", "color-combination-generator"],
   partner_interest_click: ["embed-program"],
   pattern_check_run: ["amigurumi-pattern-checker"],
   ravelry_patterns_shown: ["yarn-calculator"],
