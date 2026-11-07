@@ -20,6 +20,7 @@ const KNITTING_SLUGS = [
   "stash-estimator",
   "project-cost-calculator",
   "stripe-generator",
+  "color-combination-generator",
   "abbreviation-glossary",
 ];
 
@@ -121,7 +122,7 @@ export default function KnittingToolsPage() {
     ["hat-calculator", "sock-calculator", "sleeve-calculator", "raglan-calculator", "cast-on-calculator"].includes(t.slug)
   );
   const accessoryTools = knittingTools.filter((t) =>
-    ["blanket-calculator", "stripe-generator", "blocking-calculator", "stash-estimator", "project-cost-calculator", "increase-decrease-calculator"].includes(t.slug)
+    ["blanket-calculator", "stripe-generator", "color-combination-generator", "blocking-calculator", "stash-estimator", "project-cost-calculator", "increase-decrease-calculator"].includes(t.slug)
   );
   const referenceTools = knittingTools.filter((t) =>
     ["yarn-calculator", "gauge-calculator", "needle-converter", "yarn-weight-chart", "stitch-counter", "wpi-calculator", "abbreviation-glossary"].includes(t.slug)

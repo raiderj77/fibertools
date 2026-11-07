@@ -66,8 +66,8 @@ test("keeps every remaining registered tool in the complete searchable directory
   assert.ok(filterMap, "directory filters must use one explicit audited slug map");
   const mapped = [...filterMap[1].matchAll(/"([^"]+)"/gu)].map((entry) => entry[1]).sort();
 
-  assert.equal(readyTools.length, 38);
-  assert.equal(remaining.length, 32);
+  assert.equal(readyTools.length, 39);
+  assert.equal(remaining.length, 33);
   assert.deepEqual(mapped, remaining);
   assert.match(homepage, /<HomeToolDirectory tools=\{remainingTools\} \/>/u);
   assert.match(directory, /useState<DirectoryFilter>\("all"\)/u);

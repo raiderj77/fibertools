@@ -133,6 +133,14 @@ export const toolFaqs: Record<string, FAQ[]> = {
     { q: "What is the difference between turned and same-direction rows?", a: "Turned mode places return rows from right to left while consuming the yarn sequence continuously. Same-direction mode starts every displayed row on the left." },
     { q: "Does the trial row width include foundation or turning chains?", a: "No. It is a worked-stitch count only. Add and verify setup or turning chains from the instructions for the stitch you actually use." },
   ],
+  "color-combination-generator": [
+    { q: "What is a color combination generator?", a: "It starts with one main color and builds a small palette with named roles and usage shares. This one also checks light-dark value contrast and turns the shares into a simple stripe cycle." },
+    { q: "How do I choose colors for a crochet blanket?", a: "Pick the yarn color you like most as the main color, then choose Standard for a safe palette or Mixed for more contrast. Check the grayscale strip and swatch any pair the tool flags as low contrast." },
+    { q: "What is the difference between Standard, Mixed, and Wild?", a: "Standard uses nearby colors plus one opposite accent. Mixed spreads colors farther around the color wheel, while Wild raises saturation and contrast for a deliberate statement." },
+    { q: "Why does the grayscale value check matter?", a: "Two colors can look different as hues but share nearly the same darkness. In grayscale that problem is visible before the colors disappear into each other in stripes or motifs." },
+    { q: "Can I use variegated yarn with these palettes?", a: "Yes. Let one variegated yarn lead and pull companion solids from colors visible in it. Several variegated yarns usually need solids between them and unequal shares." },
+    { q: "Does this generator match exact yarn brand colors?", a: "No. It works from the screen color you choose and does not contain a brand dye catalog. Compare physical yarn in project light because fiber, dye lot, and texture change the result." },
+  ],
   "thread-converter": [
     {
       q: "What does this lookup cover?",

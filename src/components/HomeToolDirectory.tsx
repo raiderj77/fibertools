@@ -45,6 +45,7 @@ const TOOL_FILTERS: Record<Exclude<DirectoryFilter, "all">, Set<string>> = {
     "blocking-calculator",
     "c2c-calculator",
     "color-pooling-calculator",
+    "color-combination-generator",
     "cross-stitch-calculator",
     "granny-square-planner",
     "hat-calculator",

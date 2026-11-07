@@ -48,6 +48,14 @@ const TOOL_RECOMMENDATIONS: Record<string, RecommendationSet> = {
       { label: "Locking stitch markers", description: "Mark repeat boundaries while you tune stitch count and tension.", query: "locking stitch markers crochet", category: "notions" },
     ],
   },
+  "color-combination-generator": {
+    intro: "Use the palette roles and shares when comparing solid yarns and simple color-planning supplies. Check physical yarn in project light because screen colors are only a starting point.",
+    items: [
+      { label: "Solid yarn color packs", description: "Compare coordinated solid colors by weight, fiber, yardage, and care instructions.", query: "solid yarn color pack crochet knitting", category: "yarn" },
+      { label: "Artist color wheel", description: "A physical wheel helps compare nearby, opposite, and triadic colors away from a screen.", query: "artist color wheel color guide", category: "color-tools" },
+      { label: "Blank swatch cards", description: "Wrap small yarn samples in palette order to check value and texture side by side.", query: "blank swatch cards yarn craft", category: "notions" },
+    ],
+  },
   "sock-calculator": {
     intro: "Use the calculated stitch count with durable sock yarn and the needle style you prefer for small circumferences.",
     items: [
