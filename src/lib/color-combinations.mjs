@@ -161,12 +161,16 @@ export function contrastRatio(firstHex, secondHex) {
   return (lighter + 0.05) / (darker + 0.05);
 }
 
+function linearToSrgbChannel(linear) {
+  const clamped = clamp(linear, 0, 1);
+  const encoded =
+    clamped <= 0.0031308 ? 12.92 * clamped : 1.055 * Math.pow(clamped, 1 / 2.4) - 0.055;
+  return Math.round(encoded * 255);
+}
+
 function grayscaleHex(hex) {
   const luminance = relativeLuminance(hex);
-  const gray = Math.round(clamp(luminance, 0, 1) * 255)
-    .toString(16)
-    .padStart(2, "0")
-    .toUpperCase();
+  const gray = linearToSrgbChannel(luminance).toString(16).padStart(2, "0").toUpperCase();
   return `#${gray}${gray}${gray}`;
 }
 

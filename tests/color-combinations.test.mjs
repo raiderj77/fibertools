@@ -132,6 +132,18 @@ test("luminance, contrast, and color names use the documented color math", () =>
   assert.equal(describeColor("#000000"), "Black");
 });
 
+test("the grayscale preview re-encodes luminance to sRGB so neutral grays stay unchanged", () => {
+  const gray = buildColorCombination({ baseColor: "#808080", mode: "standard", colorCount: 3 });
+  assert.equal(gray.ok, true);
+  assert.equal(gray.palette[0].grayscaleHex, "#808080");
+  const white = buildColorCombination({ baseColor: "#FFFFFF", mode: "standard", colorCount: 3 });
+  assert.equal(white.palette[0].grayscaleHex, "#FFFFFF");
+  const black = buildColorCombination({ baseColor: "#000000", mode: "standard", colorCount: 3 });
+  assert.equal(black.palette[0].grayscaleHex, "#000000");
+  const blue = buildColorCombination({ baseColor: "#3B6EA5", mode: "standard", colorCount: 3 });
+  assert.notEqual(blue.palette[0].grayscaleHex, "#272727");
+});
+
 test("rejects malformed colors and unsupported options before building a palette", () => {
   const valid = {
     baseColor: "#3B6EA5",
