@@ -42,6 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/newsletter", priority: 0.65, freq: "weekly" as const },
     { path: "/embeds", priority: 0.65, freq: "monthly" as const },
     { path: "/fiber-project-planning-pack", priority: 0.75, freq: "monthly" as const },
+    { path: "/planned-pooling-project-pack", priority: 0.75, freq: "monthly" as const },
     { path: "/about", priority: 0.5, freq: "monthly" as const },
     { path: "/privacy", priority: 0.3, freq: "yearly" as const },
     { path: "/terms", priority: 0.3, freq: "yearly" as const },

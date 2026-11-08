@@ -65,6 +65,9 @@ export default function ColorPoolingCalculatorPage() {
           of worked stitches in the idealized row, not a foundation-chain prescription. Follow the setup
           instructions for the stitch you actually plan to use.
         </p>
+        <p className="mt-4 text-[15px] leading-relaxed text-bark-600 dark:text-bark-400">
+          <Link href="/planned-pooling-project-pack" className="text-sage-600 dark:text-sage-400 underline hover:opacity-80">Planning a full project? The printable Planned Pooling Project Pack turns this preview into worksheets and worked projects.</Link>
+        </p>
       </section>
 
       <section className="mt-10">

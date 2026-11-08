@@ -59,7 +59,25 @@ test("publication approval is narrow and time-bound", () => {
     approvalReference: "Owner renewal in the FiberTools task dated 2026-09-25: yes to extending the unchanged $9 scope through 2026-11-20, with checkout still disabled and fail-closed and no experiment or offer changes",
     reviewOrExpirationDate: "2026-11-20",
     indexingApproved: true,
-  }]);
+  }, {
+  "route": "/planned-pooling-project-pack",
+  "contentType": "PAID_OFFER",
+  "title": "Planned Pooling Project Pack",
+  "ownerApprovalDate": "2026-10-31",
+  "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time.",
+  "approvalReference": "Owner in main chat 2026-10-31 23:07 PT (options tap + text): \"Build the $12 project pack (recommended)\"; and 23:08 PT: \"fiber tools calculators are supposed to be free\".",
+  "reviewOrExpirationDate": "2026-11-20",
+  "indexingApproved": true
+}, {
+  "route": "/planned-pooling-project-pack/download",
+  "contentType": "PAID_OFFER",
+  "title": "Planned Pooling Project Pack — download page",
+  "ownerApprovalDate": "2026-10-31",
+  "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time.",
+  "approvalReference": "Owner in main chat 2026-10-31 23:07 PT (options tap + text): \"Build the $12 project pack (recommended)\"; and 23:08 PT: \"fiber tools calculators are supposed to be free\".",
+  "reviewOrExpirationDate": "2026-11-20",
+  "indexingApproved": true
+}]);
 });
 
 

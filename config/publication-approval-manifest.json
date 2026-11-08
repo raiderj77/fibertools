@@ -161,6 +161,26 @@
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the embed variant of the already-approved Color Combination Generator, following the existing branded embed pattern used by the blanket, yarn, and gauge calculators. The embed route itself is served noindex by design (metadata robots and X-Robots-Tag), like every FiberTools embed; indexingApproved records the parent tool's approved indexing. The same instruction also approved competitor-driven improvements to the tool itself: start-from-a-photo color extraction, a surprise main-color pick, and copy palette plus copy palette link sharing.",
       "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-11-07: \"double check this work and find competition and make ours better and have the ability to embed, I think we want embedded calculators and those types of things now correct?\""
+    },
+    {
+      "route": "/planned-pooling-project-pack",
+      "contentType": "PAID_OFFER",
+      "title": "Planned Pooling Project Pack",
+      "ownerApprovalDate": "2026-10-31",
+      "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time.",
+      "approvalReference": "Owner in main chat 2026-10-31 23:07 PT (options tap + text): \"Build the $12 project pack (recommended)\"; and 23:08 PT: \"fiber tools calculators are supposed to be free\".",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true
+    },
+    {
+      "route": "/planned-pooling-project-pack/download",
+      "contentType": "PAID_OFFER",
+      "title": "Planned Pooling Project Pack — download page",
+      "ownerApprovalDate": "2026-10-31",
+      "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time.",
+      "approvalReference": "Owner in main chat 2026-10-31 23:07 PT (options tap + text): \"Build the $12 project pack (recommended)\"; and 23:08 PT: \"fiber tools calculators are supposed to be free\".",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true
     }
   ]
 }
