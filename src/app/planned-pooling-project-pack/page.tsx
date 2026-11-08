@@ -77,6 +77,6 @@ export default function PlannedPoolingProjectPackPage() {
       <p>Why pay when the calculator is free? The calculators stay free; this pack is the printable, worked bridge from a preview to your project notes. You can keep using the preview and your own notebook without buying anything.</p>
     </section>
     <section><h2 className="section-heading">Frequently asked questions</h2><div className="mt-5 space-y-4">{faqs.map(([question, answer]) => <details key={question} className="rounded-xl border border-cream-300 p-5 dark:border-bark-700"><summary className="cursor-pointer font-semibold">{question}</summary><p>{answer}</p></details>)}</div></section>
-    <section><h2 className="section-heading">Keep your next pooling trial together</h2><p>Record the repeat, test the worked width, and check your physical swatch before committing to the project.</p><PackActions checkoutUrl={checkoutUrl} /><p>Already purchased? Keep your confirmation link and use the <Link href="/planned-pooling-project-pack/download" className="underline">pack download page</Link>.</p></section>
+    <section><h2 className="section-heading">Keep your next pooling trial together</h2><p>Record the repeat, test the worked width, and check your physical swatch before committing to the project.</p><PackActions checkoutUrl={checkoutUrl} /><p>Already purchased? Use the download link in your Stripe payment confirmation to get your PDF.</p></section>
   </div>;
 }
