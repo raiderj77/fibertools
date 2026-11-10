@@ -993,6 +993,68 @@ export const guides: Guide[] = [
       }
     ]
   },
+  {
+    slug: "planned-pooling-calculator-how-to-use",
+    title: "Planned Pooling Calculator: How to Use It, Step by Step",
+    description: "How to use the free planned pooling calculator: measure the stitches in each color section, preview the placement, and test row widths before you commit.",
+    toolSlug: "color-pooling-calculator",
+    date: "2026-11-10",
+    keywords: ["planned pooling calculator", "planned pooling calculator how to use", "planned pooling crochet", "planned pooling", "color pooling calculator", "argyle crochet"],
+    sections: [
+      {
+        heading: "The short version",
+        content: "Open the free [planned pooling calculator](/color-pooling-calculator) and feed it one measured fact: how many whole stitches each color section of your yarn takes, in the stitch you plan to use. It draws an idealized preview of how those colors land across your rows, so you can test row widths on screen, where mistakes are free, instead of three skeins in, where they are not.\n\nWhat it does not do: pick your yarn, promise the real fabric matches the idealized grid stitch for stitch, or replace a swatch. The workflow is measure, preview, then swatch the winning width.",
+        markdown: true
+      },
+      {
+        heading: "What planned pooling is, and what it is not",
+        content: "Planned pooling is a crochet technique that turns the repeating colors in a variegated yarn into a deliberate pattern, most often an argyle-style plaid, by controlling exactly how many stitches each color gets in every row. It is not random striping, and it is not a property of the yarn alone. The same skein pools beautifully at one row width and dissolves into mud at another, because the pattern lives in the relationship between the yarn's color repeat and the number of stitches you work per row.\n\nNot every variegated yarn can pool. You need a yarn whose colors repeat in the same order, in roughly the same lengths, skein after skein. Space-dyed yarns with long, consistent color sections are the usual candidates. Print yarns with short, irregular splashes, and hand-dyed skeins where every repeat wanders, will fight you no matter what the preview says, and the preview will usually show you that honestly before you spend anything."
+      },
+      {
+        heading: "How the preview works",
+        content: "The method behind this guide, so you can judge its numbers instead of trusting them:\n\n- The preview assumes every measured color segment repeats exactly, all the way through the skein. The tool says so on its own page, and real yarn only approximates it, which is why this guide keeps sending you back to a swatch.\n- Your inputs are counts you measure yourself: whole stitches per color section, worked in the stitch, hook, and tension you actually plan to use. A different stitch gives different counts, and the tool's own help says to measure the intended stitch.\n- Turned rows in the preview mirror flat crochet: every return row is placed from right to left, the way your work actually runs.\n- The figure that matters most is the shift: how many stitches farther through the repeat each new row begins. A shift of zero stacks colors into columns. A small, steady shift leans them into the diagonals that argyle pooling is built from.\n- No yardage or skein math lives in this tool, and this guide will not pretend otherwise. Project quantities come from your swatch gauge and your project dimensions, the usual way.",
+        markdown: true
+      },
+      {
+        heading: "Step by step: using the calculator",
+        content: "### 1. Work a measuring swatch in your actual stitch\n\nSingle crochet and moss stitch are the common pooling stitches because their small, even stitches make color sections easy to count and control. Whatever stitch you choose, measure with that stitch, your hook, and your normal tension. Counts taken in a different stitch are numbers about a project you are not making.\n\n### 2. Count the whole stitches in each color section\n\nWork through one full color repeat, from the start of one color sequence to where it begins again, and count the whole stitches each color takes. Then check a second repeat. If the counts differ, write down both: the preview will show you the idealized version, and the difference tells you how much to trust it.\n\n### 3. Enter each color and its stitch count, in order\n\nAdd the sections to the calculator in the order they come off the skein. Order is the whole game: the same counts in a different order are a different yarn.\n\n### 4. Match the row placement to how you work\n\nChoose \"Turn after every row\" for ordinary flat crochet. Choose \"Start every row on the left\" only if your construction actually restarts each row from the same side. The wrong choice draws a pattern your hands will never produce.\n\n### 5. Set enough preview rows to see the pattern form\n\nTwenty rows is a good start, and it is the tool's default. Argyle shapes declare themselves slowly; five rows will lie to you in both directions.\n\n### 6. Read the grid, and the shift\n\nLook for one of three outcomes. Colors stacking in straight columns: tidy, and sometimes what you want. Colors leaning at a steady diagonal: the raw material of argyle. Colors dissolving into noise: at this width, with this repeat, there is no pattern to find. The results line tells you the measured repeat in stitches and how far each row shifts through it.\n\n### 7. Test widths with the stitches-per-row adjustment\n\nThis is the step the tool exists for. Nudge the adjustment one stitch at a time and watch the preview sharpen or fall apart. Each nudge is a different row width for your project, tested in seconds instead of evenings. When a width produces a pattern you like, note the width and the shift that came with it.\n\n### 8. Swatch the winning width before you commit\n\nWork 10 to 15 rows at the chosen width with the real yarn and compare against the preview. Small differences are normal, because the preview is idealized. A pattern that collapses in the swatch would have collapsed across a whole blanket, and finding out at row 12 instead of row 120 is the entire point.",
+        markdown: true
+      },
+      {
+        heading: "A worked example, start to finish",
+        content: "Say a variegated yarn, worked in moss stitch at your normal tension, measures like this across one repeat:\n\n- 6 stitches of deep red\n- 2 stitches of cream\n- 6 stitches of navy\n- 2 stitches of cream\n\nOne repeat is 16 stitches. Entered into the calculator with turned rows and 20 preview rows, at an adjustment of zero each new row begins at the same point in the repeat, and the preview stacks the colors into straight vertical columns. Nudge the adjustment to +1 and each new row begins one stitch farther through the repeat; the columns lean, row by row, into the steady diagonal drift that argyle-style pooling is built from. Nudge it the other way and the lean reverses.\n\nThe lesson the example is really teaching: the pattern is not in the yarn alone, and not in the width alone. It is in the relationship between your measured repeat and your row width, and the preview lets you search that relationship in a minute. The counts above are an illustration of how to read the tool, not a promise about any yarn on a shelf. Your yarn gets its say through your own measured swatch.",
+        markdown: true
+      },
+      {
+        heading: "Calculator, pattern, or graph paper",
+        content: "| Option | Cost | What it gives you | Works with your exact yarn | Swatch still needed |\n| --- | --- | --- | --- | --- |\n| This preview calculator | Free | A placement preview and row-width tests from your measured repeat | Yes, it runs on your counts | Yes |\n| A pooling pattern's built-in math | The pattern's price | Counts and shaping for the yarn the designer used | Only if your repeat matches the pattern's yarn | Yes |\n| Graph paper and a pencil | Free | The same placement map, drawn by hand | Yes | Yes |\n| Skipping the preview entirely | Free | Whatever the yarn decides | Not applicable | You will find out at blanket scale |\n\nPatterns are best for a fixed project in a specified yarn, where the designer already did the measuring. The preview is best when the yarn is yours, the project is yours, and the question is simply: will this repeat make a pattern at a width I can use?",
+        markdown: true
+      },
+      {
+        heading: "When the preview and the fabric disagree",
+        content: "### The yarn's repeats are not even\n\nMeasured sections that vary by a stitch or two from repeat to repeat are normal in real yarn. The preview assumes they are exact, so treat the grid as an idealized comparison rather than a prediction, in the tool's own framing. Slight drift in the fabric is the yarn being honest, not you failing.\n\n### A knot or a join breaks the sequence\n\nA factory knot or a careless skein change can cut colors short or repeat them, and one break invalidates the repeat from that point on. Inspect joins as you work, and start a new skein at a repeat boundary so the sequence survives the change.\n\n### Your tension wandered\n\nThe counts were measured on a fresh swatch. Tired hands, a different chair, or a film's exciting bit can tighten your work enough to move color transitions. If the fabric drifts mid-project, re-measure your sections on the work itself before blaming the yarn.\n\n### The yarn was never going to pool\n\nSome variegated yarns have no stable repeat to measure: sections come in random lengths and the order itself shuffles. The preview is still useful there. If every width dissolves into noise, the tool just saved you a blanket's worth of finding out.",
+        markdown: true
+      },
+      {
+        heading: "How to choose your approach",
+        content: "- **Your repeat measures consistently, and you want to hunt for the best width:** preview first, swatch the winner. This is the tool's home ground.\n- **You are following a pattern written for your exact yarn and colorway:** use the pattern's numbers, and run the preview as a sanity check before you start.\n- **You only need to know whether a yarn can pool at all:** a measuring swatch and five minutes in the preview will answer it before you buy a project's worth.\n- **Your repeat will not sit still across two measured repeats:** pick a different yarn, or a design that loves chaos, like a simple stitch in a gradient. Fighting an unrepeatable yarn is a month you do not get back.\n- **You hate swatching:** be honest with yourself and skip pooling this month. Every route to a pooled fabric runs through one small, truthful swatch.",
+        markdown: true
+      },
+      {
+        heading: "The Planned Pooling Project Pack",
+        content: "If you want the paper side of the process, the [Planned Pooling Project Pack](/planned-pooling-project-pack) is a printable PDF with worksheets, three worked projects, a dye-lot checklist, and a troubleshooting grid. It costs $12, one time, and it exists to carry a trial width from the screen into a project record you can keep with the yarn.\n\nThe boundary, stated plainly because this site gets asked: every FiberTools calculator, including this pooling preview, is free, and stays free whether or not anyone buys the pack. The pack is paper. The tools are the tools.",
+        markdown: true
+      },
+      {
+        heading: "Frequently asked questions",
+        content: "### What do I need to measure before using the calculator?\n\nOne thing: how many whole stitches each color section of your yarn takes across one full repeat, worked in the stitch, hook, and tension you plan to use. Measure more than one repeat if you can. Everything in the preview is built from those counts.\n\n### Does the calculator tell me how much yarn to buy?\n\nNo, and any tool that answers that from a color repeat alone is guessing at you. Yardage comes from your swatch gauge and your project size, worked out the usual way. What the preview decides is whether the pattern exists at your width, which is the question worth answering before yarn quantities matter.\n\n### Why does my fabric not match the preview?\n\nAlmost always one of three reasons: your yarn's sections vary from repeat to repeat while the preview assumes they are exact, a knot or skein join broke the sequence, or your tension drifted from the measuring swatch. The troubleshooting section above walks through each one.\n\n### Is the planned pooling calculator free?\n\nYes. All FiberTools calculators are free and stay free. The optional Project Pack is a printable PDF of worksheets and worked projects for people who like the paper side of a project.\n\n### Can I use it for knitting?\n\nThe counts can come from any stitch you measure, and the row placement setting describes rows either way, so knitters can preview with it too. Most pooling guidance, this guide included, is written from crochet practice, where the technique is most common.",
+        markdown: true
+      },
+    ],
+    sources: [
+      { title: "Craft Yarn Council: Standard Yarn Weight System", url: "https://www.craftyarncouncil.com/standards/yarn-weight-system" }
+    ]
+  },
 ];
 
 export function getGuideByToolSlug(toolSlug: string): Guide | undefined {
