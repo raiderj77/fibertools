@@ -67,6 +67,15 @@ export default function Footer() {
             <p className="text-sm text-cream-400 mt-2 max-w-[180px]">
               Free tools for every fiber crafter
             </p>
+            <p className="text-sm text-cream-400 mt-3 max-w-[220px]">
+              Printable crochet planners and workbooks:{" "}
+              <a
+                href="https://mycrochetkit.com/printables"
+                className="underline hover:text-amber-400 transition-colors"
+              >
+                MyCrochetKit
+              </a>
+            </p>
           </div>
 
           {/* Column 2, Tools */}
