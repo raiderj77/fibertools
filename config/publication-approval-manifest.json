@@ -181,6 +181,16 @@
       "approvalReference": "Owner in main chat 2026-10-31 23:07 PT (options tap + text): \"Build the $12 project pack (recommended)\"; and 23:08 PT: \"fiber tools calculators are supposed to be free\".",
       "reviewOrExpirationDate": "2026-11-20",
       "indexingApproved": true
+    },
+    {
+      "route": "/guides/planned-pooling-calculator-how-to-use",
+      "contentType": "GUIDE",
+      "title": "Planned Pooling Calculator: How to Use It, Step by Step",
+      "ownerApprovalDate": "2026-11-11",
+      "reason": "Owner granted an explicit exception to the publication freeze for one new free guide: the planned pooling calculator how-to at /guides/planned-pooling-calculator-how-to-use, including its guide registry entry and sitemap inclusion. The guide documents the existing free color pooling calculator as it actually works (measured stitches per color section in, idealized placement preview out, swatch still required) and adds no calculator, price, checkout, or paid offer change.",
+      "approvalReference": "Owner instruction in main chat dated 2026-11-11: \"Fiber Tools. Publish it\", approving publication of the planned pooling guide held by the freeze.",
+      "reviewOrExpirationDate": "2026-11-20",
+      "indexingApproved": true
     }
   ]
 }
