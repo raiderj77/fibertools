@@ -31,5 +31,5 @@ for(const [slug,needles] of Object.entries(expectations))test(`${slug}: full ren
 test('four narrowly scoped article update approvals do not lift freeze or authorize new routes',()=>{
  const manifest=JSON.parse(readFileSync('config/publication-approval-manifest.json','utf8'));assert.equal(manifest.freeze.status,'ACTIVE');assert.equal(manifest.freeze.ownerDecision,null);
  const approvals=manifest.approvals.filter(a=>a.contentType==='ARTICLE');assert.deepEqual(approvals.map(a=>a.route).sort(),Object.keys(expectations).map(s=>'/guides/'+s).sort());for(const a of approvals){assert.equal(a.ownerApprovalDate,'2026-09-16');assert.equal(a.reviewOrExpirationDate,'2026-11-20');assert.equal(a.indexingApproved,true);assert.match(a.approvalReference,/double check/);}
- assert.equal(registry.guides.length,23);assert.match(readFileSync('src/lib/blog-markdown.ts','utf8'),/APPROVED_BLOG_SLUGS = new Set<string>\(\)/);
+ assert.equal(registry.guides.length,24);assert.match(readFileSync('src/lib/blog-markdown.ts','utf8'),/APPROVED_BLOG_SLUGS = new Set<string>\(\)/);
 });
