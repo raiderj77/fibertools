@@ -257,3 +257,36 @@ test("homepage visible and structured FAQ explain measured yarn consumption", ()
   assert.match(answers[0], /flat rectangular/);
   assert.doesNotMatch(homepage, /tool identifies whether your yarn/);
 });
+
+
+test("yarn chart uses its page title, approved attribution and matching review date", () => {
+  const page = read("src/app/yarn-weight-chart/page.tsx");
+  assert.match(page, /pageTitle="Yarn Weight Chart: Sizes 0–7 & Substitution Guide"/);
+  assert.match(page, /Reviewed and maintained by/);
+  assert.match(page, /href="\/about"/);
+  assert.match(page, /dateModified: "2026-11-14"/);
+  assert.match(page, /lastUpdated="2026-11-14"/);
+  assert.match(page, /How to choose a yarn weight/);
+});
+
+test("four yarn substitution FAQs stay within three sentences and retain their caveats", async () => {
+  const { toolFaqs } = await import("../src/lib/faqs.ts");
+  const faqs = toolFaqs["yarn-weight-chart"];
+  for (const index of [2, 5, 6, 8]) {
+    const answer = faqs[index].a;
+    assert.ok(answer.split(/[.!?]+(?:\s+|$)/).filter(Boolean).length <= 3, faqs[index].q);
+  }
+  assert.match(faqs[2].a, /adjacent CYC categories/);
+  assert.match(faqs[2].a, /stitch gauge, row gauge, and fabric/);
+  assert.match(faqs[2].a, /compatibility scores or a required needle-size change/);
+  assert.match(faqs[5].a, /ranges overlap and wrapping tension/);
+  assert.match(faqs[5].a, /without stretching or overlapping/);
+  assert.match(faqs[5].a, /alone cannot confirm a substitution/);
+  assert.match(faqs[6].a, /categories or yards per gram/);
+  assert.match(faqs[6].a, /care instructions/);
+  assert.match(faqs[6].a, /feel or drape/);
+  assert.match(faqs[8].a, /suggested tools/);
+  assert.match(faqs[8].a, /stitch and row gauge/);
+  assert.match(faqs[8].a, /matching gauge alone is not enough/);
+  assert.match(faqs[8].a, /label information and measured swatch use/);
+});

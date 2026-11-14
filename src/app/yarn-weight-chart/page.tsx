@@ -40,12 +40,27 @@ export const metadata: Metadata = {
     images: ["https://fibertools.app/og-image.png"],
   },
   alternates: { canonical: "/yarn-weight-chart" },
-  other: { dateModified: "2026-10-17" },
+  authors: [{ name: "Jason Ramirez", url: "https://fibertools.app/about" }],
+  other: { dateModified: "2026-11-14" },
 };
 
 export default function YarnWeightChartPage() {
   return (
-    <ToolLayout slug="yarn-weight-chart">
+    <ToolLayout slug="yarn-weight-chart" pageTitle="Yarn Weight Chart: Sizes 0–7 & Substitution Guide">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          url: "https://fibertools.app/yarn-weight-chart",
+          name: "Yarn Weight Chart: Sizes 0–7 & Substitution Guide",
+          author: { "@type": "Person", name: "Jason Ramirez", url: "https://fibertools.app/about" },
+          dateModified: "2026-11-14",
+        }) }}
+      />
+      <p className="mb-4 text-sm text-bark-600 dark:text-cream-300">
+        Reviewed and maintained by Jason Ramirez · Updated <time dateTime="2026-11-14">November 14, 2026</time> · <Link href="/about" className="underline">About the reviewer</Link>
+      </p>
       <div className="sr-only">
         <h2>Yarn Weight and Substitution Guide</h2>
         <h2>How to Identify Yarn Weights</h2>
@@ -55,9 +70,26 @@ export default function YarnWeightChartPage() {
         what="A reference for the eight CYC yarn-weight rows 0–7 in the published detailed table, with knitting gauge, crochet gauge, WPI, regional names, and suggested needle and hook sizes."
         who="Knitters and crocheters comparing a yarn label, identifying an unlabeled yarn, or checking a possible substitution before swatching."
         bottomLine="Use the category and ranges as a starting point. Read the actual yarn label, follow the pattern, and swatch because category, gauge, and WPI ranges do not guarantee interchangeable yarns."
-        lastUpdated="2026-10-17"
+        lastUpdated="2026-11-14"
       />
       <YarnWeightChartTool />
+      <section className="mt-8">
+        <h2 className="section-heading">How to choose a yarn weight</h2>
+        <p className="text-bark-600 dark:text-cream-300 leading-relaxed text-[15px]">
+          Start with the project and the fabric you want, then compare your pattern&apos;s yarn label and gauge guidance.
+          Treat these options as starting points rather than rules:
+        </p>
+        <ul className="mt-3 list-disc pl-5 space-y-2 text-bark-600 dark:text-cream-300 leading-relaxed text-[15px]">
+          <li>For a delicate shawl or open lacework, consider lace; for socks or a fine-gauge garment, compare fingering options with the pattern.</li>
+          <li>For garments, compare sport and DK when you want a finer fabric, or worsted when you want a thicker fabric; check drape as well as gauge.</li>
+          <li>For blankets, compare bulky, super bulky, and jumbo if you want thick fabric and large stitches; use a lighter category when you want finer stitches.</li>
+          <li>For amigurumi, start with the pattern&apos;s specified weight and check that the swatch makes a fabric suited to its construction; category alone does not establish suitability.</li>
+        </ul>
+        <p className="mt-3 text-bark-600 dark:text-cream-300 leading-relaxed text-[15px]">
+          Swatch in the intended stitch pattern, wash and dry according to the yarn&apos;s care instructions,
+          and compare stitch gauge, row gauge, feel, and drape before committing. Matching a category or gauge alone does not guarantee an interchangeable yarn.
+        </p>
+      </section>
       <section className="mt-8">
         <h2 className="section-heading">Reading the skein symbol</h2>
         <p className="text-bark-600 dark:text-cream-300 leading-relaxed text-[15px]">

@@ -148,7 +148,7 @@ test("education, FAQs, metadata, and next step agree with the corrected checker"
   assert.match(page, /href="\/gauge-calculator"/);
   assert.equal((page.match(/Compare substitutes, then swatch/g) || []).length, 2);
   assert.match(page, /knitting and crochet gauge, WPI/);
-  assert.match(page, /lastUpdated="2026-10-17"/);
+  assert.match(page, /lastUpdated="2026-11-14"/);
 });
 
 test("the chart routes purchase-ready readers to existing vetted buying guides", () => {
