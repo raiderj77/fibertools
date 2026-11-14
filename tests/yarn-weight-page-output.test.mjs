@@ -47,3 +47,26 @@ test("built copy and FAQ schema avoid the retired substitution guarantees", () =
   assert.ok(faq, "FAQ structured data must remain present");
   assert.match(JSON.stringify(faq), /21–24 stockinette stitches per 4 inches/);
 });
+
+
+test("built yarn chart includes the query, reviewer, choice guidance and dated schema", () => {
+  assert.match(visible, /<h1[^>]*>Yarn Weight Chart/);
+  assert.match(visible, /Reviewed and maintained by Jason Ramirez/);
+  assert.match(visible, /href="\/about"/);
+  assert.match(visible, /<time dateTime="2026-11-14">November 14, 2026<\/time>/i);
+  assert.match(text, /How to choose a yarn weight/);
+  for (const weight of ["lace", "fingering", "sport", "DK", "worsted", "bulky", "super bulky", "jumbo"]) {
+    assert.ok(text.includes(weight), weight);
+  }
+  const schemas = [...html.matchAll(/<script[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+    .map((match) => JSON.parse(match[1]));
+  const page = schemas.find((item) => item["@type"] === "WebPage");
+  assert.equal(page.author.name, "Jason Ramirez");
+  assert.equal(page.author.url, "https://fibertools.app/about");
+  assert.equal(page.dateModified, "2026-11-14");
+  assert.equal(page.datePublished, undefined);
+  const faq = schemas.find((item) => item["@type"] === "FAQPage");
+  for (const index of [2, 5, 6, 8]) {
+    assert.ok(faq.mainEntity[index].acceptedAnswer.text.split(/[.!?]+(?:\s+|$)/).filter(Boolean).length <= 3);
+  }
+});
