@@ -11,7 +11,7 @@ Site: FiberTools
 Live URL: https://fibertools.app
 Repo: raiderj77/fibertools
 Top competitor to beat: Other fiber-arts calculator/guide sites — name the top one with evidence in Phase 0 (embed-outreach research already identified Sarah Maker, Heart Hook Home, ChristaCoDesign as aligned publishers)
-Primary money action: $12 Planned Pooling Pack (live, Stripe). Measure visits / checkout clicks / purchases / refunds / contribution per buyer before proposing any new paid product.
+Primary money action: $12 Planned Pooling Pack — RELEASE STATE UNVERIFIED AND GATED (corrected 2026-11-15 after Codex review on PR #101). This repo's own records (config/publication-approval-manifest.json and docs/fibertools-deployment-environment.md) state publication requires a separate owner ship instruction and NEXT_PUBLIC_POOLING_PACK_URL must remain unset until that authorization. Phase 0 must prove the pack's actual production state from owner authorization plus production checkout evidence before calling it live, and must NOT classify an intentionally disabled checkout as a conversion blocker to fix. Once proven live: measure visits / checkout clicks / purchases / refunds / contribution per buyer before proposing any new paid product.
 Primary keyword / money page: yarn weight chart — /yarn-weight-chart (biggest proven opportunity) plus the calculator cluster
 
 You are upgrading this site to get more traffic and more revenue, in that order.
