@@ -256,7 +256,7 @@ function validApproval(approval, freeze, today, violations, index) {
   if (!isIsoDate(approval.ownerApprovalDate)) violations.push(`${prefix}: ownerApprovalDate must be YYYY-MM-DD.`);
   if (typeof approval.reason !== "string" || !approval.reason.trim()) violations.push(`${prefix}: reason is required.`);
   if (typeof approval.approvalReference !== "string" || !approval.approvalReference.trim()) violations.push(`${prefix}: approvalReference is required.`);
-  if (!isIsoDate(approval.reviewOrExpirationDate)) violations.push(`${prefix}: reviewOrExpirationDate must be YYYY-MM-DD.`);
+  if (approval.reviewOrExpirationDate !== null && !isIsoDate(approval.reviewOrExpirationDate)) violations.push(`${prefix}: reviewOrExpirationDate must be YYYY-MM-DD or null for an open-ended approval.`);
   if (typeof approval.indexingApproved !== "boolean") violations.push(`${prefix}: indexingApproved must be boolean.`);
   if (isIsoDate(approval.ownerApprovalDate) && approval.ownerApprovalDate < freeze.startsOn) violations.push(`${prefix}: approval predates the freeze.`);
   if (isIsoDate(approval.ownerApprovalDate) && approval.ownerApprovalDate > today) violations.push(`${prefix}: ownerApprovalDate cannot be in the future.`);

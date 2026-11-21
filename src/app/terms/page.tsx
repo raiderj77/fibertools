@@ -86,9 +86,9 @@ export default function TermsPage() {
             or website message is not confirmation of a refund. When checkout is unavailable,
             the website shows a contact action and does not accept payment.
           </p>
-          <h3 className="text-lg font-semibold text-bark-800 dark:text-cream-100">Planning Pack refunds</h3>
+          <h3 className="text-lg font-semibold text-bark-800 dark:text-cream-100">Pack refunds</h3>
           <p>
-            You may request a full refund within 14 days of purchasing the Fiber Project Planning Pack. We also refund duplicate charges and unresolved file or delivery problems. Contact hello@fibertools.app with your order number for help or to request a refund. These terms do not limit your statutory rights.
+            The FiberTools packs are digital downloads delivered as soon as you check out, so we do not offer refunds if you change your mind. We always put right a duplicate charge, and a file or delivery problem that we cannot resolve. Contact hello@fibertools.app with your order number for help. These terms do not limit your statutory rights.
           </p>
         </section>
 

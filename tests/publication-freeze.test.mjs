@@ -42,13 +42,13 @@ test("current publication state passes with its owner-approved exception", () =>
   const violations = analyzePublicationState(
     readPublicationManifest(ROOT),
     collectPublicationState(ROOT),
-    NOW,
+    new Date("2026-11-21T12:00:00Z"),
   );
   assert.deepEqual(violations, []);
 });
 
 
-test("publication approval is narrow and time-bound", () => {
+test("publication approval records are narrow and open-ended", () => {
   const manifest = readPublicationManifest(ROOT);
   assert.deepEqual(manifest.approvals.filter(approval => approval.contentType === "PAID_OFFER"), [{
     route: "/amigurumi-pattern-checker/designer",
@@ -57,25 +57,25 @@ test("publication approval is narrow and time-bound", () => {
     ownerApprovalDate: "2026-09-25",
     reason: "Owner renewed the existing private browser-local Designer Report publication scope through the freeze decision date: $9 per pattern project, including revisions and report exports, with no subscription or pattern uploads. Checkout remains disabled until payment, recovery, and non-customer delivery verification pass.",
     approvalReference: "Owner renewal in the FiberTools task dated 2026-09-25: yes to extending the unchanged $9 scope through 2026-11-20, with checkout still disabled and fail-closed and no experiment or offer changes",
-    reviewOrExpirationDate: "2026-11-20",
+    reviewOrExpirationDate: null,
     indexingApproved: true,
   }, {
   "route": "/planned-pooling-project-pack",
   "contentType": "PAID_OFFER",
   "title": "Planned Pooling Project Pack",
   "ownerApprovalDate": "2026-10-31",
-  "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time.",
+  "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time",
   "approvalReference": "Owner in main chat 2026-10-31 23:07 PT (options tap + text): \"Build the $12 project pack (recommended)\"; and 23:08 PT: \"fiber tools calculators are supposed to be free\".",
-  "reviewOrExpirationDate": "2026-11-20",
+  "reviewOrExpirationDate": null,
   "indexingApproved": true
 }, {
   "route": "/planned-pooling-project-pack/download",
   "contentType": "PAID_OFFER",
   "title": "Planned Pooling Project Pack — download page",
   "ownerApprovalDate": "2026-10-31",
-  "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time.",
+  "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time",
   "approvalReference": "Owner in main chat 2026-10-31 23:07 PT (options tap + text): \"Build the $12 project pack (recommended)\"; and 23:08 PT: \"fiber tools calculators are supposed to be free\".",
-  "reviewOrExpirationDate": "2026-11-20",
+  "reviewOrExpirationDate": null,
   "indexingApproved": true
 }]);
 });
@@ -151,6 +151,8 @@ test("price-bearing JS, JSX, TS, and TSX source extensions are monitored", () =>
 
 test("reproduces and blocks the removed duplicate blanket article", () => {
   const manifest = readPublicationManifest(ROOT);
+  manifest.freeze.status = "ACTIVE";
+  manifest.freeze.ownerDecision = null;
   const state = snapshot(collectPublicationState(ROOT));
   state.articles.push({
     file: "2026-08-25-how-much-yarn-for-a-blanket.md",
@@ -204,6 +206,10 @@ test("a publisher cannot bypass the freeze by returning a quarantined duplicate 
   writeFileSync(resolve(fixture, "content", "quarantine", file), source);
   assert.deepEqual(collectPublicationState(fixture).articles, []);
 
+  const activeManifest = readPublicationManifest(ROOT);
+  activeManifest.freeze.status = "ACTIVE";
+  activeManifest.freeze.ownerDecision = null;
+
   mkdirSync(resolve(fixture, "content", "published"), { recursive: true });
   for (const status of ["draft", "published"]) {
     writeFileSync(resolve(fixture, "content", "published", file), source.replace(/^status: draft$/m, `status: ${status}`));
@@ -211,7 +217,7 @@ test("a publisher cannot bypass the freeze by returning a quarantined duplicate 
     assert.equal(articles.length, 1);
     const state = snapshot(collectPublicationState(ROOT));
     state.articles.push(...articles);
-    const violations = analyzePublicationState(readPublicationManifest(ROOT), state, NOW);
+    const violations = analyzePublicationState(activeManifest, state, NOW);
     assert(violations.some((message) => message.startsWith("Quarantined article inventory changed")));
     assert(violations.some((message) => message.includes(`Article ${file} is dated inside the freeze`)));
     assert(violations.some((message) => message.includes('Duplicate article slug "best-crochet-hooks"')));
@@ -229,6 +235,8 @@ test("required build CI runs the publication regression suite before the product
 
 test("blocks an unapproved calculator route and permits a complete approval record", () => {
   const manifest = readPublicationManifest(ROOT);
+  manifest.freeze.status = "ACTIVE";
+  manifest.freeze.ownerDecision = null;
   const state = snapshot(collectPublicationState(ROOT));
   state.publicRoutes.push("/synthetic-calculator");
   state.toolSlugs.push("synthetic-calculator");
@@ -253,6 +261,8 @@ test("blocks an unapproved calculator route and permits a complete approval reco
 
 test("decision date does not lift the freeze without an explicit owner decision", () => {
   const manifest = readPublicationManifest(ROOT);
+  manifest.freeze.status = "ACTIVE";
+  manifest.freeze.ownerDecision = null;
   manifest.approvals = [];
   const state = snapshot(collectPublicationState(ROOT));
   state.publicRoutes.push("/synthetic-after-decision-date");
@@ -336,6 +346,8 @@ test("the origin-main publication baseline cannot self-authorize by changing its
 
 test("blocks a scheduled content workflow that can push directly to main", () => {
   const manifest = readPublicationManifest(ROOT);
+  manifest.freeze.status = "ACTIVE";
+  manifest.freeze.ownerDecision = null;
   const state = snapshot(collectPublicationState(ROOT));
   state.scheduledDirectMainWorkflows.push(".github/workflows/synthetic-publisher.yml");
   assert(
