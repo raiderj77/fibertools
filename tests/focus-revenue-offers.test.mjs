@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 
@@ -49,6 +50,36 @@ test("planning-pack page presents the $17 product without exposing its tracked P
   assert.match(actions, /planning_pack_interest_click/);
   assert.match(actions, /trackFixedEvent/);
   assert.doesNotMatch(actions, /email|name|query|amount|value/);
+});
+
+test("live digital-pack Product schemas declare existing crawlable images without invented reviews", async () => {
+  const planningPack = await read("../src/app/fiber-project-planning-pack/page.tsx");
+  const poolingPack = await read("../src/app/planned-pooling-project-pack/page.tsx");
+
+  assert.match(
+    planningPack,
+    /image:\s*"https:\/\/fibertools\.app\/images\/planning-pack\/planning-pack-preview-project-brief\.png"/
+  );
+  assert.match(poolingPack, /const productImage = "https:\/\/fibertools\.app\/images\/planned-pooling-project-pack-cover\.png"/);
+  assert.match(poolingPack, /image:\s*productImage/);
+  for (const source of [planningPack, poolingPack]) {
+    assert.doesNotMatch(source, /aggregateRating|review:\s*\{/);
+    assert.doesNotMatch(source, /shippingDetails|hasMerchantReturnPolicy/);
+  }
+});
+
+test("planned-pooling product image is a hash-bound render of the public pack cover", async () => {
+  const provenance = JSON.parse(await read("../config/planned-pooling-pack-preview-provenance.json"));
+  const source = await readFile(new URL(`../${provenance.source}`, import.meta.url));
+  const image = await readFile(new URL(`../${provenance.output}`, import.meta.url));
+  const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
+
+  assert.equal(provenance.sourcePage, 1);
+  assert.equal(digest(source), provenance.sourceSha256);
+  assert.equal(digest(image), provenance.outputSha256);
+  assert.equal(image.subarray(1, 4).toString(), "PNG");
+  assert.equal(image.readUInt32BE(16), provenance.width);
+  assert.equal(image.readUInt32BE(20), provenance.height);
 });
 
 test("planning-pack runtime binds checkout to every release and artifact gate", async () => {

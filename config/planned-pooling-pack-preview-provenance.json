@@ -1,0 +1,10 @@
+{
+  "source": "public/planned-pooling-project-pack.pdf",
+  "sourcePage": 1,
+  "sourceSha256": "ebadbcbd4208898666966bbf937dd5897583c96c4020c05036593bc9ccd223c6",
+  "output": "public/images/planned-pooling-project-pack-cover.png",
+  "outputSha256": "2627406bc2d83fd73b2e1f21d6c1a522206976bbf416684e1fbff53482d96538",
+  "width": 1224,
+  "height": 1584,
+  "renderer": "Poppler pdftoppm at 144 DPI"
+}

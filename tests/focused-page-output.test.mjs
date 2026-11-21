@@ -71,6 +71,26 @@ test("built purchase help and gift previews describe existing downloads", () => 
   assert.equal(createHash("sha256").update(readFileSync(resolve(ROOT, "public/survival-kit.pdf"))).digest("hex"), "e0f3db048c2f188009db6cc395230ace250ac73d4c1957ba6b2785d250af534f");
 });
 
+test("built digital-pack Product schemas include truthful image fields", () => {
+  const expectations = new Map([
+    ["fiber-project-planning-pack", "https://fibertools.app/images/planning-pack/planning-pack-preview-project-brief.png"],
+    ["planned-pooling-project-pack", "https://fibertools.app/images/planned-pooling-project-pack-cover.png"],
+  ]);
+
+  for (const [route, image] of expectations) {
+    const html = readFileSync(resolve(ROOT, `.next/server/app/${route}.html`), "utf8");
+    const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]
+      .map((match) => JSON.parse(match[1]));
+    const product = schemas.find((schema) => schema["@type"] === "Product");
+    assert.ok(product, `${route}: missing Product schema`);
+    assert.equal(product.image, image);
+    assert.equal(product.review, undefined);
+    assert.equal(product.aggregateRating, undefined);
+    assert.equal(product.offers?.shippingDetails, undefined);
+    assert.equal(product.offers?.hasMerchantReturnPolicy, undefined);
+  }
+});
+
 test("built measured-swatch FAQ agrees with its structured answer and skein explanation", () => {
   const html = readFileSync(resolve(ROOT, ".next/server/app/index.html"), "utf8");
   const schemas = [...html.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)]

@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 const description = "A printable planned pooling project pack with worksheets, three worked projects, a dye-lot checklist, and a troubleshooting grid. All calculators stay free.";
+const productImage = "https://fibertools.app/images/planned-pooling-project-pack-cover.png";
 export const metadata: Metadata = {
   title: "Planned Pooling Project Pack — $12 Printable PDF",
   description,
   authors: [{ name: "FiberTools" }],
   alternates: { canonical: "/planned-pooling-project-pack" },
-  openGraph: { title: "Planned Pooling Project Pack — $12", description, url: "https://fibertools.app/planned-pooling-project-pack", images: [{ url: "https://fibertools.app/og-image.png", width: 1200, height: 630, alt: "FiberTools Planned Pooling Project Pack" }] },
-  twitter: { card: "summary_large_image", title: "Planned Pooling Project Pack — $12", description, images: ["https://fibertools.app/og-image.png"] },
+  openGraph: { title: "Planned Pooling Project Pack — $12", description, url: "https://fibertools.app/planned-pooling-project-pack", images: [{ url: productImage, width: 1224, height: 1584, alt: "Cover of the FiberTools Planned Pooling Project Pack" }] },
+  twitter: { card: "summary_large_image", title: "Planned Pooling Project Pack — $12", description, images: [productImage] },
   other: { datePublished: "2026-10-31", dateModified: "2026-10-31" },
 };
 
@@ -33,6 +34,7 @@ export default function PlannedPoolingProjectPackPage() {
   const productSchema = {
     "@context": "https://schema.org", "@type": "Product", name: "Planned Pooling Project Pack", description,
     brand: { "@type": "Brand", name: "FiberTools" }, url: "https://fibertools.app/planned-pooling-project-pack",
+    image: productImage,
     ...(checkoutUrl ? { offers: { "@type": "Offer", price: "12.00", priceCurrency: "USD", url: checkoutUrl, availability: "https://schema.org/InStock" } } : {}),
   };
   const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };

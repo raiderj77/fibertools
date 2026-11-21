@@ -71,6 +71,7 @@ export default function FiberProjectPlanningPackPage() {
     description: "A 12-page fillable and printable PDF workbook for planning crochet and knitting projects.",
     brand: { "@type": "Brand", name: "FiberTools" },
     url: "https://fibertools.app/fiber-project-planning-pack",
+    image: "https://fibertools.app/images/planning-pack/planning-pack-preview-project-brief.png",
     ...(checkoutUrl
       ? {
           offers: {
