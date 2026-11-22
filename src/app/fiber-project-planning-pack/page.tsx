@@ -71,6 +71,7 @@ export default function FiberProjectPlanningPackPage() {
     description: "A 12-page fillable and printable PDF workbook for planning crochet and knitting projects.",
     brand: { "@type": "Brand", name: "FiberTools" },
     url: "https://fibertools.app/fiber-project-planning-pack",
+    image: "https://fibertools.app/images/planning-pack/planning-pack-preview-project-brief.png",
     ...(checkoutUrl
       ? {
           offers: {
@@ -79,6 +80,8 @@ export default function FiberProjectPlanningPackPage() {
             priceCurrency: "USD",
             availability: "https://schema.org/InStock",
             url: checkoutUrl,
+            shippingDetails: { "@type": "OfferShippingDetails", shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" }, shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" }, deliveryTime: { "@type": "ShippingDeliveryTime", handlingTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 0, unitCode: "DAY" }, transitTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 0, unitCode: "DAY" } } },
+            hasMerchantReturnPolicy: { "@type": "MerchantReturnPolicy", applicableCountry: "US", returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted" },
           },
         }
       : {}),
@@ -197,7 +200,7 @@ export default function FiberProjectPlanningPackPage() {
         </p>
         <h3 className="mt-6 text-lg font-semibold text-bark-800 dark:text-cream-100">Refunds</h3>
         <p className="mt-3 text-sm text-bark-600 dark:text-bark-400">
-          You may request a full refund within 14 days of purchasing the Fiber Project Planning Pack. We also refund duplicate charges and unresolved file or delivery problems. Contact hello@fibertools.app with your order number for help or to request a refund. These terms do not limit your statutory rights.
+          The FiberTools packs are digital downloads delivered as soon as you check out, so we do not offer refunds if you change your mind. We always put right a duplicate charge, and a file or delivery problem that we cannot resolve. Contact hello@fibertools.app with your order number for help. These terms do not limit your statutory rights.
         </p>
         <p className="mt-4 text-sm text-bark-600 dark:text-bark-400">
           Read the{" "}

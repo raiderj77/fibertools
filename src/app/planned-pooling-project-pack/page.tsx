@@ -33,7 +33,8 @@ export default function PlannedPoolingProjectPackPage() {
   const productSchema = {
     "@context": "https://schema.org", "@type": "Product", name: "Planned Pooling Project Pack", description,
     brand: { "@type": "Brand", name: "FiberTools" }, url: "https://fibertools.app/planned-pooling-project-pack",
-    ...(checkoutUrl ? { offers: { "@type": "Offer", price: "12.00", priceCurrency: "USD", url: checkoutUrl, availability: "https://schema.org/InStock" } } : {}),
+    image: "https://fibertools.app/og-image.png",
+    ...(checkoutUrl ? { offers: { "@type": "Offer", price: "12.00", priceCurrency: "USD", url: checkoutUrl, availability: "https://schema.org/InStock", shippingDetails: { "@type": "OfferShippingDetails", shippingDestination: { "@type": "DefinedRegion", addressCountry: "US" }, shippingRate: { "@type": "MonetaryAmount", value: "0", currency: "USD" }, deliveryTime: { "@type": "ShippingDeliveryTime", handlingTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 0, unitCode: "DAY" }, transitTime: { "@type": "QuantitativeValue", minValue: 0, maxValue: 0, unitCode: "DAY" } } }, hasMerchantReturnPolicy: { "@type": "MerchantReturnPolicy", applicableCountry: "US", returnPolicyCategory: "https://schema.org/MerchantReturnNotPermitted" } } } : {}),
   };
   const faqSchema = { "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
   const breadcrumbSchema = { "@context": "https://schema.org", "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Home", item: "https://fibertools.app" }, { "@type": "ListItem", position: 2, name: "Planned Pooling Project Pack" }] };

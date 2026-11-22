@@ -43,7 +43,7 @@ function visibleText(html) {
 }
 
 test("built pack and terms show the approved refund policy unchanged", () => {
-  const policy = "You may request a full refund within 14 days of purchasing the Fiber Project Planning Pack. We also refund duplicate charges and unresolved file or delivery problems. Contact hello@fibertools.app with your order number for help or to request a refund. These terms do not limit your statutory rights.";
+  const policy = "The FiberTools packs are digital downloads delivered as soon as you check out, so we do not offer refunds if you change your mind. We always put right a duplicate charge, and a file or delivery problem that we cannot resolve. Contact hello@fibertools.app with your order number for help. These terms do not limit your statutory rights.";
   for (const route of ["fiber-project-planning-pack", "terms"]) {
     const html = readFileSync(resolve(ROOT, `.next/server/app/${route}.html`), "utf8");
     assert.ok(visibleText(html).includes(policy), route);

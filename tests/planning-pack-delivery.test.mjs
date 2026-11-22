@@ -12,7 +12,7 @@ import {
 const read = (relativePath) => readFile(new URL(relativePath, import.meta.url), "utf8");
 
 test("pack and terms publish the exact owner-approved refund policy", async () => {
-  const policy = "You may request a full refund within 14 days of purchasing the Fiber Project Planning Pack. We also refund duplicate charges and unresolved file or delivery problems. Contact hello@fibertools.app with your order number for help or to request a refund. These terms do not limit your statutory rights.";
+  const policy = "The FiberTools packs are digital downloads delivered as soon as you check out, so we do not offer refunds if you change your mind. We always put right a duplicate charge, and a file or delivery problem that we cannot resolve. Contact hello@fibertools.app with your order number for help. These terms do not limit your statutory rights.";
   for (const path of ["../src/app/fiber-project-planning-pack/page.tsx", "../src/app/terms/page.tsx"]) {
     const source = await read(path);
     assert.ok(source.replace(/\s+/g, " ").includes(policy), path);

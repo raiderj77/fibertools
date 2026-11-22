@@ -1,11 +1,16 @@
 {
   "schemaVersion": 1,
   "freeze": {
-    "status": "ACTIVE",
+    "status": "LIFTED",
     "startsOn": "2026-08-25",
     "decisionDate": "2026-11-20",
     "rule": "No new public calculator, general tool, article, guide, paid service, or major feature before November 20, 2026 unless an explicit owner-approved publication record exists. Bug fixes, security fixes, legal corrections, factual corrections, and broken-link repairs remain permitted.",
-    "ownerDecision": null
+    "ownerDecision": {
+      "action": "LIFT",
+      "ownerDecisionDate": "2026-11-21",
+      "reason": "Owner directed that publication approvals carry no renewal date and remain open, and directed article writing to proceed across the sites using the validated keyword families.",
+      "approvalReference": "Owner instruction in main chat dated 2026-11-21: \"there should be no renewal date leave that open and start writing for all our sites ... write away\""
+    }
   },
   "baseline": {
     "capturedFromCommit": "e67c27714f5353b14e6ae13f6b1291f677fdbaf3",
@@ -49,7 +54,7 @@
       "ownerApprovalDate": "2026-09-25",
       "reason": "Owner renewed the existing private browser-local Designer Report publication scope through the freeze decision date: $9 per pattern project, including revisions and report exports, with no subscription or pattern uploads. Checkout remains disabled until payment, recovery, and non-customer delivery verification pass.",
       "approvalReference": "Owner renewal in the FiberTools task dated 2026-09-25: yes to extending the unchanged $9 scope through 2026-11-20, with checkout still disabled and fail-closed and no experiment or offer changes",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true
     },
     {
@@ -59,7 +64,7 @@
       "ownerApprovalDate": "2026-09-16",
       "reason": "Owner authorized publishing the four completed articles after double-checking accuracy and including matching images. This is a substantive update at an existing guide route, not a new guide or blog route.",
       "approvalReference": "Owner instruction in FiberTools task dated 2026-09-16: \"go ahead and publish the articles as long as they are correct do double check your work also are the images added? Add images if they are not present\". The subsequent no-deploy instruction applies to the separate Blanket Calculator change.",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true
     },
     {
@@ -69,7 +74,7 @@
       "ownerApprovalDate": "2026-09-16",
       "reason": "Owner authorized publishing the four completed articles after double-checking accuracy and including matching images. This is a substantive update at an existing guide route, not a new guide or blog route.",
       "approvalReference": "Owner instruction in FiberTools task dated 2026-09-16: \"go ahead and publish the articles as long as they are correct do double check your work also are the images added? Add images if they are not present\". The subsequent no-deploy instruction applies to the separate Blanket Calculator change.",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true
     },
     {
@@ -79,7 +84,7 @@
       "ownerApprovalDate": "2026-09-16",
       "reason": "Owner authorized publishing the four completed articles after double-checking accuracy and including matching images. This is a substantive update at an existing guide route, not a new guide or blog route.",
       "approvalReference": "Owner instruction in FiberTools task dated 2026-09-16: \"go ahead and publish the articles as long as they are correct do double check your work also are the images added? Add images if they are not present\". The subsequent no-deploy instruction applies to the separate Blanket Calculator change.",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true
     },
     {
@@ -89,7 +94,7 @@
       "ownerApprovalDate": "2026-09-16",
       "reason": "Owner authorized publishing the four completed articles after double-checking accuracy and including matching images. This is a substantive update at an existing guide route, not a new guide or blog route.",
       "approvalReference": "Owner instruction in FiberTools task dated 2026-09-16: \"go ahead and publish the articles as long as they are correct do double check your work also are the images added? Add images if they are not present\". The subsequent no-deploy instruction applies to the separate Blanket Calculator change.",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true
     },
     {
@@ -97,7 +102,7 @@
       "contentType": "TOOL",
       "title": "Quilting Calculators",
       "ownerApprovalDate": "2026-10-23",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
       "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
@@ -107,7 +112,7 @@
       "contentType": "CALCULATOR",
       "title": "Quilt Backing Calculator",
       "ownerApprovalDate": "2026-10-23",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
       "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
@@ -117,7 +122,7 @@
       "contentType": "CALCULATOR",
       "title": "Quilt Binding Calculator",
       "ownerApprovalDate": "2026-10-23",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
       "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
@@ -127,7 +132,7 @@
       "contentType": "CALCULATOR",
       "title": "Quilt Border Calculator",
       "ownerApprovalDate": "2026-10-23",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
       "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
@@ -137,7 +142,7 @@
       "contentType": "CALCULATOR",
       "title": "Quilt Batting Calculator",
       "ownerApprovalDate": "2026-10-23",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
       "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
@@ -147,7 +152,7 @@
       "contentType": "TOOL",
       "title": "Color Combination Generator",
       "ownerApprovalDate": "2026-11-07",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for one new free browser-local tool: the Color Combination Generator at /color-combination-generator, including its registry entry and sitemap inclusion, homepage directory planning entry, crochet and knitting category lists, related-tool links, FAQs, affiliate recommendations, and focused tests. No existing calculator math, checkout, account, or paid offer is included.",
       "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-11-07: \"Can we create a color matching scheme for people that don't know what type of colors to put together standard, mixed, wild and so forth.\", followed at 09:10 PT on 2026-11-07 by: \"Build it\"."
@@ -157,7 +162,7 @@
       "contentType": "TOOL",
       "title": "Color Combination Generator Embed",
       "ownerApprovalDate": "2026-11-07",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the embed variant of the already-approved Color Combination Generator, following the existing branded embed pattern used by the blanket, yarn, and gauge calculators. The embed route itself is served noindex by design (metadata robots and X-Robots-Tag), like every FiberTools embed; indexingApproved records the parent tool's approved indexing. The same instruction also approved competitor-driven improvements to the tool itself: start-from-a-photo color extraction, a surprise main-color pick, and copy palette plus copy palette link sharing.",
       "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-11-07: \"double check this work and find competition and make ours better and have the ability to embed, I think we want embedded calculators and those types of things now correct?\""
@@ -167,9 +172,9 @@
       "contentType": "PAID_OFFER",
       "title": "Planned Pooling Project Pack",
       "ownerApprovalDate": "2026-10-31",
-      "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time.",
+      "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time",
       "approvalReference": "Owner in main chat 2026-10-31 23:07 PT (options tap + text): \"Build the $12 project pack (recommended)\"; and 23:08 PT: \"fiber tools calculators are supposed to be free\".",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true
     },
     {
@@ -177,9 +182,9 @@
       "contentType": "PAID_OFFER",
       "title": "Planned Pooling Project Pack — download page",
       "ownerApprovalDate": "2026-10-31",
-      "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time.",
+      "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time",
       "approvalReference": "Owner in main chat 2026-10-31 23:07 PT (options tap + text): \"Build the $12 project pack (recommended)\"; and 23:08 PT: \"fiber tools calculators are supposed to be free\".",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true
     },
     {
@@ -189,7 +194,7 @@
       "ownerApprovalDate": "2026-11-11",
       "reason": "Owner granted an explicit exception to the publication freeze for one new free guide: the planned pooling calculator how-to at /guides/planned-pooling-calculator-how-to-use, including its guide registry entry and sitemap inclusion. The guide documents the existing free color pooling calculator as it actually works (measured stitches per color section in, idealized placement preview out, swatch still required) and adds no calculator, price, checkout, or paid offer change.",
       "approvalReference": "Owner instruction in main chat dated 2026-11-11: \"Fiber Tools. Publish it\", approving publication of the planned pooling guide held by the freeze.",
-      "reviewOrExpirationDate": "2026-11-20",
+      "reviewOrExpirationDate": null,
       "indexingApproved": true
     }
   ]
