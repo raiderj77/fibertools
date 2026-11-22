@@ -54,7 +54,7 @@ Core calculator arithmetic runs in the browser. Optional network features, inclu
 
 - [How to Read a Yarn Label](https://fibertools.app/guides/reading-yarn-labels): Complete guide to yarn weight symbols, care instructions, dye lots, and gauge information on yarn labels.
 - [Knitting Gauge: Why It Matters](https://fibertools.app/guides/knitting-gauge-guide): How to make a gauge swatch, block it, measure it, and resize patterns when your gauge doesn't match.
-- [How Much Yarn for a Blanket?](https://fibertools.app/guides/blanket-yarn-guide): Yardage estimates by blanket size and yarn weight, from baby blankets to king-size bedspreads.
+- [How Much Yarn Do You Need for a Blanket?](https://fibertools.app/guides/blanket-yarn-guide): Estimate yardage and skeins from a weighed swatch, with a lap, throw, and queen comparison.
 - [Knitting Needle Sizes Explained](https://fibertools.app/guides/needle-sizes-guide): US, UK, and metric needle sizing systems explained, plus how to identify unlabeled needles.
 - [UK vs US Crochet Terms](https://fibertools.app/guides/uk-us-crochet-terms-guide): Complete conversion guide between UK and US crochet terminology with full chart.
 - [What is WPI and How to Measure It](https://fibertools.app/guides/wpi-guide): How wraps per inch works, how to measure it, and WPI ranges for every yarn weight category.

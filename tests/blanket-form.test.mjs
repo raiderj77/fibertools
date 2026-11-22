@@ -91,3 +91,25 @@ test("valid yarn can still be calculated with both gauge fields omitted",()=>{
  const r=calculate({...example,gaugeStitches:"",gaugeRows:"",swatchWidth:"4",swatchHeight:"4",swatchGrams:"10"});
  assert.equal(r.widthPlan,null);assert.equal(r.modeledLengthIn,null);assert.equal(r.yards,3630);
 });
+
+test("the guide chart matches the actual calculator across sizes and yarn weights", () => {
+  const guide = fs.readFileSync("src/lib/guides.ts", "utf8").split('heading: "Blanket yardage by size and yarn weight"')[1].split("markdown: true")[0];
+  const chart = [
+    { label: "Lap", sizeIdx: 5, factor: "52.8", displayed: "1,394" },
+    { label: "Throw", sizeIdx: 6, factor: "(275 ÷ 3)", displayed: "2,420" },
+    { label: "Queen", sizeIdx: 9, factor: "275", displayed: "7,260" },
+  ];
+  for (const { label, sizeIdx, factor, displayed } of chart) {
+    const results = ["3 – DK", "4 – Worsted", "5 – Bulky"].map((yarnLabel) => calculate({
+      sizeIdx, swatchWidth: "6", swatchHeight: "6", swatchGrams: "12", yw: { label: yarnLabel },
+    }));
+    const { widthIn, lengthIn } = results[0];
+    const cell = `${factor} × swatch yards`;
+    assert.ok(guide.includes(`| ${label}, ${widthIn} × ${lengthIn} | ${cell} | ${cell} | ${cell} | ${displayed} |`));
+    const numericFactor = factor === "(275 ÷ 3)" ? 275 / 3 : Number(factor);
+    assert.ok(Math.abs(numericFactor - widthIn * lengthIn / 36 * 1.1) < 1e-10);
+    for (const result of results) {
+      assert.equal(result.yards, Number(displayed.replaceAll(",", "")));
+    }
+  }
+});

@@ -63,11 +63,12 @@ test('blanket guide snippet and reciprocal contextual links stay focused', () =>
   const guide = loadGuides().find((item) => item.slug === 'blanket-yarn-guide');
   assert.equal(
     guide.description,
-    'Estimate throw-blanket yarn from a measured swatch, keep allowance separate, and convert yards to whole skeins with a checked 50×60-inch example.',
+    'Estimate blanket yardage and whole skeins from a weighed swatch. Compare blanket sizes and follow a worked example in the free blanket calculator.',
   );
   assert.ok(guide.description.length <= 155);
-  assert.equal(guide.modifiedDate, '2026-10-17');
-  assert.match(guide.sections.map((section) => section.content).join('\n'), /\[blanket calculator\]\(\/blanket-calculator\)/);
+  assert.equal(guide.modifiedDate, '2026-11-21');
+  assert.ok(guide.sections.flatMap((section) => section.content.match(/]\(\/blanket-calculator\)/g) ?? []).length >= 3);
+  assert.match(guide.sections.map((section) => section.content).join('\n'), /\[(?:free )?blanket calculator\]\(\/blanket-calculator\)/);
 
   const blanketPage = readFileSync('src/app/blanket-calculator/page.tsx', 'utf8');
   assert.match(blanketPage, /href="\/guides\/blanket-yarn-guide"/);

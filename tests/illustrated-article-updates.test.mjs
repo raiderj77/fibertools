@@ -23,8 +23,19 @@ for(const [slug,needles] of Object.entries(expectations))test(`${slug}: full ren
  const guide=registry.getGuideBySlug(slug);const rendered=renderToStaticMarkup(await component.default({params:Promise.resolve({slug})}));
  const metadata=await component.generateMetadata({params:Promise.resolve({slug})});
  assert.equal(metadata.alternates.canonical,`/guides/${slug}`);assert.equal(metadata.openGraph.publishedTime,guide.date);assert.equal(metadata.openGraph.modifiedTime,guide.modifiedDate);
- if(slug==='blanket-yarn-guide'){assert.equal(guide.toolSlug,'yarn-calculator');assert.ok((rendered.match(/href=\"\/yarn-calculator\"/g)||[]).length>=2);} assert.match(rendered,/<div[^>]*tabindex=\"0\"[^>]*role=\"region\"[^>]*aria-labelledby=/); assert.ok(guide.sections.length>=6);for(const needle of needles)assert.ok(rendered.includes(needle),needle);
- assert.equal((rendered.match(/<h1\b/g)||[]).length,1);assert.ok(rendered.includes('AI-assisted explanation'));assert.ok(!rendered.includes('Human editorial approval is pending'));assert.ok(!rendered.includes('By <strong class="text-bark-600 dark:text-cream-400">Jason Ramirez'));
+ if(slug==='blanket-yarn-guide'){assert.equal(guide.toolSlug,'blanket-calculator');assert.ok((rendered.match(/href=\"\/yarn-calculator\"/g)||[]).length>=2);} assert.match(rendered,/<div[^>]*tabindex=\"0\"[^>]*role=\"region\"[^>]*aria-labelledby=/); assert.ok(guide.sections.length>=6);for(const needle of needles)assert.ok(rendered.includes(needle),needle);
+ assert.equal((rendered.match(/<h1\b/g)||[]).length,1);assert.ok(rendered.includes('AI-assisted explanation'));assert.ok(!rendered.includes('Human editorial approval is pending'));if (slug === 'blanket-yarn-guide') {
+   assert.match(rendered, /By <a[^>]*href="\/about"[^>]*>Jason Ramirez<\/a>/);
+   assert.match(rendered, /"author":\{"@type":"Person","name":"Jason Ramirez"/);
+   assert.match(rendered, /"publisher":\{"@type":"Person","name":"Jason Ramirez"/);
+   assert.match(rendered, /datetime="2026-03-06">March 6, 2026<\/time>/i);
+   assert.ok(rendered.indexOf('To estimate how much yarn you need') < rendered.indexOf('aria-label="In this guide"'));
+   assert.match(rendered, /<th>Light \(3\) yards<\/th>/);
+   assert.ok((rendered.match(/href="\/blanket-calculator"/g) ?? []).length >= 3);
+ } else {
+   assert.match(rendered, /By <strong[^>]*>FiberTools<\/strong>/);
+   assert.match(rendered, /"author":\{"@type":"Organization","name":"FiberTools"/);
+ }
  const image=guide.sections.find(s=>s.image)?.image;assert.ok(image);for(const ext of ['src','preview'])assert.ok(existsSync('public'+image[ext]));assert.ok(rendered.includes(`alt="${image.alt.replace(/&/g,'&amp;').replace(/"/g,'&quot;')}"`));assert.ok(rendered.includes(`src="${image.src}"`));assert.ok(rendered.includes('<figcaption'));assert.ok(rendered.includes('<table>'));assert.ok(rendered.includes('https://media.craftyarncouncil.com/read_instructions.html')||rendered.includes('https://www.craftyarncouncil.com/standards/yarn-weight-system'));
  assert.ok(rendered.includes(`"dateModified":"${guide.modifiedDate}"`));assert.ok(rendered.includes(`"datePublished":"${guide.date}"`));assert.equal(metadata.openGraph.images,undefined);assert.ok(!rendered.includes(`"image":["https://fibertools.app${image.preview}`));assert.ok(!rendered.includes('!['));assert.ok(!rendered.includes('**'));
 });
