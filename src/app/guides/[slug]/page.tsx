@@ -52,6 +52,27 @@ export default async function GuidePage({ params }: { params: Params }) {
     html: section.markdown ? String(await remark().use(remarkGfm).use(html).process(section.content)) : null,
   })));
 
+  const sections = renderedSections.map((section, i) => {
+    const id = section.heading.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    return (
+      <div key={i} className="mb-8">
+        <h2 id={id} className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
+          {section.heading}
+        </h2>
+        {section.image && <figure className="my-6">
+          <Image src={section.image.src} alt={section.image.alt} width={section.image.width} height={section.image.height} unoptimized className="w-full h-auto rounded-lg" />
+          <figcaption className="mt-2 text-sm text-bark-600 dark:text-cream-300">{section.image.caption}</figcaption>
+        </figure>}
+        {section.html ? <div tabIndex={section.html.includes("<table>") ? 0 : undefined} role={section.html.includes("<table>") ? "region" : undefined} aria-labelledby={section.html.includes("<table>") ? id : undefined} className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-600 overflow-x-auto text-bark-600 dark:text-cream-300 leading-relaxed text-[15px] [&_p]:mb-4 [&_a]:underline [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:mb-3 [&_table]:w-full [&_table]:mb-4 [&_th]:text-left [&_th]:p-2 [&_td]:p-2 [&_td]:border [&_th]:border" dangerouslySetInnerHTML={{ __html: section.html }} /> : section.content.split("\n\n").map((paragraph, j) => (
+          <p key={j} className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
+            {paragraph}
+          </p>
+        ))}
+      </div>
+    );
+  });
+
+  const owner = { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" };
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -61,10 +82,10 @@ export default async function GuidePage({ params }: { params: Params }) {
     ...(guide.modifiedDate ? { dateModified: guide.modifiedDate } : {}),
     url: `https://fibertools.app/guides/${guide.slug}`,
     mainEntityOfPage: `https://fibertools.app/guides/${guide.slug}`,
-    author: guide.editorialNote
+    author: guide.editorialNote && !guide.ownerByline
       ? { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app/about" }
-      : { "@type": "Person", name: "Jason Ramirez", jobTitle: "Founder of FiberTools", url: "https://fibertools.app/about" },
-    publisher: { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
+      : owner,
+    publisher: guide.ownerByline ? owner : { "@type": "Organization", name: "FiberTools", url: "https://fibertools.app" },
     keywords: guide.keywords.join(", "),
   };
 
@@ -103,9 +124,9 @@ export default async function GuidePage({ params }: { params: Params }) {
         {guide.title}
       </h1>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-8 text-sm text-bark-400 dark:text-bark-500">
-        <time dateTime={guide.date}>{new Date(guide.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</time>
+        <time dateTime={guide.date}>{new Date(guide.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })}</time>
         <span aria-hidden="true">&middot;</span>
-        {guide.editorialNote ? <span>By <strong className="text-bark-600 dark:text-cream-400">FiberTools</strong></span> : <span>By <strong className="text-bark-600 dark:text-cream-400">Jason Ramirez</strong></span>}
+        {guide.ownerByline ? <span>By <Link href="/about" className="font-semibold underline">{owner.name}</Link></span> : guide.editorialNote ? <span>By <strong className="text-bark-600 dark:text-cream-400">FiberTools</strong></span> : <span>By <strong className="text-bark-600 dark:text-cream-400">Jason Ramirez</strong></span>}
         <span aria-hidden="true">&middot;</span>
         <span>Practical reference connected to a working calculator</span>
         {guide.modifiedDate && <span>Updated: <time dateTime={guide.modifiedDate}>{guide.modifiedDate}</time></span>}
@@ -120,6 +141,8 @@ export default async function GuidePage({ params }: { params: Params }) {
           </>
         )}
       </div>
+
+      {guide.answerFirst && <div className="prose-fiber">{sections[0]}</div>}
 
       {guide.editorialNote && <p className="mb-6 text-sm text-bark-600 dark:text-cream-300">{guide.editorialNote}</p>}
 
@@ -142,25 +165,7 @@ export default async function GuidePage({ params }: { params: Params }) {
 
       {/* Content */}
       <article className="prose-fiber">
-        {renderedSections.map((section, i) => {
-          const id = section.heading.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-          return (
-            <div key={i} className="mb-8">
-              <h2 id={id} className="text-xl font-display font-bold text-bark-700 dark:text-cream-200 mb-3">
-                {section.heading}
-              </h2>
-              {section.image && <figure className="my-6">
-                <Image src={section.image.src} alt={section.image.alt} width={section.image.width} height={section.image.height} unoptimized className="w-full h-auto rounded-lg" />
-                <figcaption className="mt-2 text-sm text-bark-600 dark:text-cream-300">{section.image.caption}</figcaption>
-              </figure>}
-              {section.html ? <div tabIndex={section.html.includes("<table>") ? 0 : undefined} role={section.html.includes("<table>") ? "region" : undefined} aria-labelledby={section.html.includes("<table>") ? id : undefined} className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage-600 overflow-x-auto text-bark-600 dark:text-cream-300 leading-relaxed text-[15px] [&_p]:mb-4 [&_a]:underline [&_h3]:font-semibold [&_h3]:text-lg [&_h3]:mb-3 [&_table]:w-full [&_table]:mb-4 [&_th]:text-left [&_th]:p-2 [&_td]:p-2 [&_td]:border [&_th]:border" dangerouslySetInnerHTML={{ __html: section.html }} /> : section.content.split("\n\n").map((paragraph, j) => (
-                <p key={j} className="text-bark-600 dark:text-cream-300 leading-relaxed mb-4 text-[15px]">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          );
-        })}
+        {guide.answerFirst ? sections.slice(1) : sections}
       </article>
       {guide.sources && <section className="mt-8" aria-label="Sources">
         <h2 className="text-xl font-semibold mb-3">Sources</h2>
