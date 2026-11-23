@@ -111,7 +111,7 @@ Yes. Every result includes a crochet line using 2 SC in the next stitch for an i
 
 ### Why does the flat-row answer end with plain stitches?
 
-A flat row has two edges, so the calculator places one gap before the first change and one after the last. That keeps every increase or decrease off the first and last stitches of the row. In a round there is no edge, so every gap sits before a change.
+A flat row has two edges, so the calculator places one gap before the first change and one after the last. When there are enough plain stitches to go around, that keeps every increase or decrease off the first and last stitches of the row. When the plain stitches run short, an edge gap can be zero, and then a change lands on the first or last stitch itself: increasing 40 stitches to 80 leaves no plain stitches at all, so every stitch, edges included, is worked as an increase. In a round there is no edge, so every gap sits before a change.
 
 ### What if I need to more than double my stitches?
 
