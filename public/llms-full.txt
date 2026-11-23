@@ -156,6 +156,9 @@ US crochet terminology is used throughout. Yarn weights follow the Craft Yarn Co
 - [What is WPI and How to Measure It](https://fibertools.app/guides/wpi-guide): How wraps per inch works, how to measure it, and WPI ranges for every yarn weight category.
 - [How to Price Handmade Knitting and Crochet](https://fibertools.app/guides/pricing-handmade-guide): Calculate the real cost of handmade items including materials, time, and pricing for commissions.
 - [Beginner's Guide to Amigurumi](https://fibertools.app/guides/amigurumi-beginners-guide): Shapes, sizes, and math for crochet amigurumi including magic ring, increases, and connecting parts.
+- [How to Increase Evenly Across a Row: Spacing Math](https://fibertools.app/guides/increase-evenly-guide): Space increases and decreases evenly in knitting or crochet. Checked 84 to 96 and 84 to 72 examples for flat rows and rounds, with common mistakes.
+- [What Weight Is My Yarn? Identify It From a Swatch](https://fibertools.app/guides/what-weight-is-my-yarn-guide): Identify an unlabeled yarn's possible CYC weight from a knitted swatch or wraps per inch, read overlaps and gaps honestly, and substitute by length.
+- [How Big Will My Cross Stitch Be? Fabric Count Guide](https://fibertools.app/guides/cross-stitch-fabric-size-guide): Work out finished cross stitch size from stitch count and fabric count, over one or over two, then add margins and plan floss. Checked 126 by 98 example.
 
 ## About
 - [About FiberTools](https://fibertools.app/about): Meet the identified maker behind FiberTools and read how the free calculators are built and checked.

@@ -23,7 +23,7 @@ import {
 
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..");
-const NOW = new Date("2026-11-11T12:00:00Z");
+const NOW = new Date("2026-11-22T12:00:00Z");
 
 
 function snapshot(value) {
@@ -42,7 +42,7 @@ test("current publication state passes with its owner-approved exception", () =>
   const violations = analyzePublicationState(
     readPublicationManifest(ROOT),
     collectPublicationState(ROOT),
-    new Date("2026-11-21T12:00:00Z"),
+    new Date("2026-11-22T12:00:00Z"),
   );
   assert.deepEqual(violations, []);
 });
@@ -252,7 +252,7 @@ test("blocks an unapproved calculator route and permits a complete approval reco
     ownerApprovalDate: "2026-08-25",
     reason: "Synthetic test fixture",
     approvalReference: "tests/publication-freeze.test.mjs",
-    reviewOrExpirationDate: "2026-11-20",
+    reviewOrExpirationDate: "2026-12-20",
     indexingApproved: true,
   });
   assert.deepEqual(analyzePublicationState(manifest, state, NOW), []);
@@ -308,7 +308,7 @@ test("approvals cannot be future-dated, expired, or indexable without approval",
   };
 
   const future = snapshot(baseManifest);
-  future.approvals.push({ ...approval, ownerApprovalDate: "2026-11-12" });
+  future.approvals.push({ ...approval, ownerApprovalDate: "2026-11-23" });
   assert(
     analyzePublicationState(future, state, NOW)
       .some((message) => message.includes("ownerApprovalDate cannot be in the future")),

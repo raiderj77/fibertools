@@ -1075,6 +1075,173 @@ export const guides: Guide[] = [
       { title: "Craft Yarn Council: Standard Yarn Weight System", url: "https://www.craftyarncouncil.com/standards/yarn-weight-system" }
     ]
   },
+  {
+    slug: "increase-evenly-guide",
+    title: "How to Increase Evenly Across a Row: Spacing Math",
+    description: "Space increases and decreases evenly in knitting or crochet. Checked 84 to 96 and 84 to 72 examples for flat rows and rounds, with common mistakes.",
+    toolSlug: "increase-decrease-calculator",
+    date: "2026-11-22",
+    modifiedDate: "2026-11-22",
+    keywords: ["how to increase evenly across a row", "increase evenly calculator", "decrease evenly knitting", "evenly spaced increases", "distribute increases crochet", "increase 12 stitches evenly"],
+    sections: [
+      {
+        heading: "How do you increase evenly across a row?",
+        content: "Subtract your current stitch count from the target to find how many increases you need. Each increase worked into a stitch uses up one existing stitch, so subtract the number of increases from the current count to find the plain stitches you have left to share out. In a flat row, divide those plain stitches into one more gap than you have increases, so both edges get plain stitches. In a round, divide them into exactly as many gaps as increases, because a round has no edges.\n\nFor example, going from 84 to 96 stitches in the round means 12 increases with 6 plain stitches before each one: knit 6, then increase, 12 times. The free [Increase & Decrease Calculator](/increase-decrease-calculator) does this arithmetic for flat rows and rounds, in knitting and crochet, and writes out the instruction line for you.",
+        markdown: true
+      },
+      {
+        heading: "What do you need to know before you calculate?",
+        content: "You need four things, and all of them come from your pattern or your needles, not from the calculator:\n\n- **Your current stitch count.** Count what is actually on the needle or in the last row, not what the pattern says you should have.\n- **Your target count after one row or round.** This is the total you want to end with, not the number of stitches to add.\n- **Flat row or in the round.** The edge handling is different, so the answer is different.\n- **Increase or decrease.** The calculator models a knit-front-and-back (KFB) increase and a knit-two-together (K2tog) decrease for knitting, and 2 SC in the next stitch or SC2tog for crochet.\n\nIf your pattern names a specific increase or decrease, use that stitch. The calculator's job is to tell you where the changes go and to prove the counts add up.",
+        markdown: true
+      },
+      {
+        heading: "Worked example: increasing from 84 to 96 stitches in a flat row",
+        content: "These are illustrative numbers, not a pattern we have tested. The arithmetic matches what the calculator's source code does for these inputs.\n\n| Step | Arithmetic | Result |\n| --- | --- | --- |\n| Increases needed | 96 − 84 | 12 increases |\n| Stitches used by the increases | 12 × 1 | 12 stitches |\n| Plain stitches left to share out | 84 − 12 | 72 plain stitches |\n| Gaps in a flat row | 12 + 1 | 13 gaps |\n| Even share per gap | 72 ÷ 13 | 5, remainder 7 |\n\nA remainder of 7 means 7 of the 13 gaps get one extra stitch. Seven gaps of 6 plus six gaps of 5 is 42 + 30 = 72, so every plain stitch is placed. The calculator spreads the larger gaps through the row instead of bunching them at one end, which gives this sequence of gaps: 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 5, 6, 6.\n\nWritten out for knitting, that is:\n\n> Across the flat row, work K5, KFB; K6, KFB; K5, KFB; K6, KFB; K5, KFB; K6, KFB; K5, KFB; K6, KFB; K5, KFB; K6, KFB; K5, KFB; K6, KFB; finish K6. (96 sts)\n\nCheck the counts both ways. Stitches used: 72 plain + 12 used by increases = 84, which matches what was on the needle. Stitches made: 72 plain + (12 × 2) = 96, which matches the target. For crochet, the same placement reads SC 5, 2 SC in next st; SC 6, 2 SC in next st; and so on, finishing with SC 6.",
+        markdown: true
+      },
+      {
+        heading: "How does the same increase work in the round?",
+        content: "In a round there is no first or last edge, so the 72 plain stitches go into 12 gaps instead of 13. That is 72 ÷ 12 = 6 exactly, with no remainder:\n\n> From the round marker, work \\*K6, KFB\\* repeat 12 times. (96 sts)\n\nCheck: each repeat uses 6 + 1 = 7 stitches, and 12 × 7 = 84. Each repeat makes 6 + 2 = 8 stitches, and 12 × 8 = 96. The crochet version is \\*SC 6, 2 SC in next st\\* repeat 12 times.",
+        markdown: true
+      },
+      {
+        heading: "How do you decrease evenly?",
+        content: "The method is the same, with one change: a K2tog or SC2tog uses up two stitches and makes one. Going from 84 to 72 stitches in the round:\n\n| Step | Arithmetic | Result |\n| --- | --- | --- |\n| Decreases needed | 84 − 72 | 12 decreases |\n| Stitches used by the decreases | 12 × 2 | 24 stitches |\n| Plain stitches left | 84 − 24 | 60 plain stitches |\n| Gaps in a round | 12 | 12 gaps |\n| Share per gap | 60 ÷ 12 | 5 |\n\n> From the round marker, work \\*K5, K2tog\\* repeat 12 times. (72 sts)\n\nCheck: each repeat uses 5 + 2 = 7 stitches, so 12 × 7 = 84. Each repeat makes 5 + 1 = 6, so 12 × 6 = 72. In crochet that is \\*SC 5, SC2tog\\* repeat 12 times.",
+        markdown: true
+      },
+      {
+        heading: "What are the most common mistakes?",
+        content: "**Using the round answer on a flat row.** The quick shortcut, 84 ÷ 12 = 7, so \"knit 6, increase\" 12 times, uses exactly 84 stitches. In a round that is correct. In a flat row it puts the twelfth increase in the very last stitch, with no plain stitches after it. The calculator's flat-row result keeps plain stitches at both edges instead.\n\n**Forgetting that a decrease uses two stitches.** Dividing 84 by 12 and writing \"K7, K2tog\" looks reasonable, but each repeat would need 7 + 2 = 9 stitches, and 12 × 9 = 108. You only have 84, so you would run out partway through the row. Subtract the stitches the decreases use first.\n\n**Entering the number of increases as the target.** The calculator asks for the count you want to end with. If you need to add 12 stitches to 84, enter 96, not 12.\n\n**Asking for too large a change in one row.** The calculator allows at most one increase per existing stitch and will not remove more than half the stitches with two-into-one decreases. Going from 40 to 90 stitches needs 50 increases, but you only have 40 stitches to work them into, so the tool reports the request as unsupported. Going from 40 to 15 needs 25 decreases, which would use 50 stitches. Patterns that make changes that large spread them over several rows.\n\n**Assuming the modeled stitch is the one your pattern wants.** KFB and K2tog make the count arithmetic clear, but they have their own look and lean. If your pattern specifies a different increase or decrease, use it. If it specifies an increase that does not use up an existing stitch, the gap arithmetic changes, so follow the pattern's own placement.",
+        markdown: true
+      },
+      {
+        heading: "When is the calculator the right tool, and when is it not?",
+        content: "**It is the right tool when** a pattern tells you to \"increase (or decrease) X stitches evenly\" across one row or round of plain fabric and leaves the placement to you. It is also useful for checking a placement you worked out on paper, because it shows that the stitches used and the stitches made both add up.\n\n**It is not the right tool when:**\n\n- The fabric has a stitch pattern, cable, or lace repeat that the changes must respect. Even numeric spacing can break a repeat. The [Stitch Pattern Calculator](/stitch-pattern-calculator) helps find counts that fit a multiple.\n- The shaping happens over many rows, such as a sleeve taper. Use the [Sleeve Shaping Calculator](/sleeve-calculator) or your pattern's schedule.\n- You are working a flat crochet circle, where increases repeat round after round. The [Crochet Circle Round Planner](/circle-calculator) is built for that.\n- Appearance matters more than spacing, such as visible paired decreases. Follow the designer's stated placement.",
+        markdown: true
+      },
+      {
+        heading: "Frequently asked questions",
+        content: "### How many stitches do I knit between increases?\n\nSubtract the number of increases from your current count, then divide by the number of gaps: one more than the number of increases for a flat row, or equal to it for a round. If the division leaves a remainder, some gaps get one extra stitch. The [calculator](/increase-decrease-calculator) spreads those extra stitches through the row for you.\n\n### Does the calculator work for crochet?\n\nYes. Every result includes a crochet line using 2 SC in the next stitch for an increase and SC2tog for a decrease. If your pattern uses a different stitch height, keep the same placement and swap in the stitch your pattern names.\n\n### Why does the flat-row answer end with plain stitches?\n\nA flat row has two edges, so the calculator places one gap before the first change and one after the last. When there are enough plain stitches to go around, that keeps every increase or decrease off the first and last stitches of the row. When the plain stitches run short, an edge gap can be zero, and then a change lands on the first or last stitch itself: increasing 40 stitches to 80 leaves no plain stitches at all, so every stitch, edges included, is worked as an increase. In a round there is no edge, so every gap sits before a change.\n\n### What if I need to more than double my stitches?\n\nThe calculator only models one increase per existing stitch in a single row or round, so it will report anything larger as unsupported. Spread the change across two or more rows, or follow your pattern's shaping instructions. Running each row through the calculator separately can still help you check the counts.",
+        markdown: true
+      }
+    ],
+    editorialNote: "AI-assisted explanation prepared with Claude. Numerical examples are hypothetical and were worked by hand from the calculator's source code; no physical project or yarn product was tested. Published by FiberTools.",
+    sources: [
+      { title: "FiberTools: Increase & Decrease Calculator inputs and model", url: "https://fibertools.app/increase-decrease-calculator" }
+    ]
+  },
+  {
+    slug: "what-weight-is-my-yarn-guide",
+    title: "What Weight Is My Yarn? Identify It From a Swatch",
+    description: "Identify an unlabeled yarn's possible CYC weight from a knitted swatch or wraps per inch, read overlaps and gaps honestly, and substitute by length.",
+    toolSlug: "yarn-weight-calculator",
+    date: "2026-11-22",
+    modifiedDate: "2026-11-22",
+    keywords: ["what weight is my yarn", "identify yarn weight", "yarn weight from gauge", "yarn weight calculator", "unlabeled yarn weight", "yarn substitution weight"],
+    sections: [
+      {
+        heading: "What weight is my yarn if it has no label?",
+        content: "Knit a stockinette swatch with the yarn, count how many stitches fit across 4 inches, and compare that number with the Craft Yarn Council knitting gauge ranges. For example, 18 stitches over 4 inches falls only in the Medium (4) range of 16 to 20 stitches, the category often labeled worsted or aran. If you do not knit, wrap the yarn around a ruler and count wraps per inch instead. Either way, the result is a possible category to test with a swatch, not proof of what the yarn is.\n\nThe free [Yarn Weight Calculator](/yarn-weight-calculator) takes either measurement and shows every category whose published range includes it, including when a number falls in an overlap or a gap.",
+        markdown: true
+      },
+      {
+        heading: "Which measurement should you use: gauge or wraps per inch?",
+        content: "The calculator has two modes, and they answer the question in different ways.\n\n- **Stitch gauge** uses stockinette stitches per 4 inches. It reflects how the yarn behaves as fabric, which is what a pattern cares about. The ranges are for knitting in stockinette only, so a crochet swatch cannot be entered here.\n- **Wraps per inch (WPI)** measures how many wraps of yarn sit side by side in one inch. It needs no knitting, which makes it the option for crocheters and for very small amounts of yarn. The ranges overlap a lot, so expect more than one possible answer. The [WPI guide](/guides/wpi-guide) covers how to wrap and count consistently.\n\nIf you can knit a swatch, start with gauge. It usually narrows the answer to one category; WPI often cannot.",
+        markdown: true
+      },
+      {
+        heading: "What are the gauge ranges the calculator uses?",
+        content: "These are the stockinette ranges in the calculator, from the Craft Yarn Council system, in stitches per 4 inches:\n\n| CYC category | Common names | Stitches per 4 inches |\n| --- | --- | --- |\n| Lace (0) | Lace, cobweb | 33 to 40 |\n| Super Fine (1) | Fingering, sock | 27 to 32 |\n| Fine (2) | Sport | 23 to 26 |\n| Light (3) | DK, light worsted | 21 to 24 |\n| Medium (4) | Worsted, aran | 16 to 20 |\n| Bulky (5) | Chunky | 12 to 15 |\n| Super Bulky (6) | Super chunky | 7 to 11 |\n| Jumbo (7) | Jumbo, roving | 6 or fewer |\n\nNotice two things. Fine and Light share 23 and 24, so those values match both. And there are gaps: nothing covers values between 15 and 16, between 20 and 21, or between 26 and 27, for example. The calculator leaves a value in a gap unassigned instead of forcing it into a category.",
+        markdown: true
+      },
+      {
+        heading: "Worked example: identifying a mystery yarn from a swatch",
+        content: "These are illustrative measurements, not a yarn we swatched.\n\n**Swatch A.** You knit a stockinette swatch and count 27 stitches across 6 inches of it. The calculator asks for stitches per 4 inches, so convert first:\n\n| Step | Arithmetic | Result |\n| --- | --- | --- |\n| Stitches per inch | 27 ÷ 6 | 4.5 |\n| Stitches per 4 inches | 4.5 × 4 | 18 |\n| Matching ranges | 18 is within 16 to 20 only | Medium (4) |\n\nOne category matches. The calculator shows Medium (4) with needle suggestions of US 7 to 9 (4.5 to 5.5 mm).\n\n**Swatch B.** A different yarn gives 41 stitches across 8 inches.\n\n| Step | Arithmetic | Result |\n| --- | --- | --- |\n| Stitches per inch | 41 ÷ 8 | 5.125 |\n| Stitches per 4 inches | 5.125 × 4 | 20.5 |\n| Matching ranges | Medium ends at 20; Light starts at 21 | No match |\n\nThe calculator reports that no category matches. That is an honest answer, not an error. The yarn could be a heavy Light (3) knit loosely or a light Medium (4) knit firmly, and the swatch alone cannot say which. Try a second swatch on a different needle size and see where it lands.\n\n**Swatch C.** A third yarn measures 23 stitches per 4 inches. That value sits in both Fine (2) and Light (3), so the calculator shows both and flags the overlap. Swatch with needles from each range before deciding.\n\n**A WPI check.** If you cannot knit, a yarn that measures 10 wraps per inch matches only Medium (4) in the calculator's WPI ranges (9 to 12). Many other WPI readings match two or three categories.",
+        markdown: true
+      },
+      {
+        heading: "How do you substitute a yarn once you know its weight?",
+        content: "Matching the category is only the first filter. Two yarns in the same category can knit to different gauges and contain very different lengths per ball.\n\n1. **Compare gauge, not just the category.** Swatch the candidate yarn in the pattern's stitch and compare it with the pattern gauge in the [Gauge Calculator](/gauge-calculator).\n2. **Compare the labels side by side.** The [Yarn Weight Chart](/yarn-weight-chart) includes a label comparison for two categories and their yards per gram. Matching numbers still do not prove matching fabric.\n3. **Buy by length, not by ball count or grams.** Suppose a pattern calls for 5 balls of a yarn with 200 yards each. That is 5 × 200 = 1,000 yards. A substitute with 220 yards per ball needs 1,000 ÷ 220 = 4.55, so 5 balls. A substitute with 180 yards per ball needs 1,000 ÷ 180 = 5.56, so 6 balls. Same pattern, same category, one more ball.\n\nThe [reading yarn labels guide](/guides/reading-yarn-labels) explains where to find length, mass, and label gauge.",
+        markdown: true
+      },
+      {
+        heading: "What are the most common mistakes?",
+        content: "**Entering a crochet swatch in the gauge mode.** The gauge ranges are knitting stockinette ranges. Crochet fabric uses different stitch counts for the same yarn, so a crochet swatch will point to the wrong category. Use WPI instead, or compare against the crochet ranges in the [Yarn Weight Chart](/yarn-weight-chart).\n\n**Measuring a short span and not scaling it.** Counting 9 stitches across 2 inches and entering 9 gives Super Bulky (6). Scaled properly, 9 ÷ 2 × 4 = 18 stitches per 4 inches, which is Medium (4). Always convert to stitches per 4 inches.\n\n**Rounding a gap value into a category.** A reading of 20.5 is not \"basically worsted.\" It is a signal to swatch again, ideally with a different needle.\n\n**Treating the category as the yarn's identity.** A weight category says nothing about fiber content, care, or length per ball. For unknown fiber, see the [fiber content guide](/guides/fiber-content-guide), and keep care requirements unresolved until you can confirm them.\n\n**Using the category to estimate yardage.** A category cannot tell you how many yards are in a partial ball. If you have the original label figures, the [Yarn Stash Estimator](/stash-estimator) estimates remaining length from weight.",
+        markdown: true
+      },
+      {
+        heading: "When is the calculator the right tool, and when is it not?",
+        content: "**It is the right tool when** you have unlabeled or mystery stash yarn, handspun you want to place in a category, or a label you want to sanity check against your own knitting.\n\n**It is not the right tool when:**\n\n- You need to know whether a yarn will match a specific pattern. Only a swatch at the pattern gauge answers that; use the [Gauge Calculator](/gauge-calculator).\n- You need fiber content or safe care instructions. No weight measurement can supply those.\n- You need yardage. Use the label, or the stash estimator with the original label ratio.\n- You already have the label. Read the category printed on it, and use the calculator only if your knitting disagrees.",
+        markdown: true
+      },
+      {
+        heading: "Frequently asked questions",
+        content: "### How can I tell if my yarn is worsted or DK?\n\nKnit a stockinette swatch and count stitches over 4 inches. Medium (4), which includes worsted, covers 16 to 20 stitches, and Light (3), which includes DK, covers 21 to 24. A value between 20 and 21 matches neither, so swatch again on a different needle.\n\n### Can I use the calculator if I only crochet?\n\nYes, use the wraps per inch mode, which needs no swatch at all. The gauge mode is for knitting in stockinette only. WPI ranges overlap, so expect the calculator to suggest more than one category in many cases.\n\n### Why does my yarn match two weights?\n\nSome published ranges overlap, such as Fine (2) and Light (3) at 23 and 24 stitches per 4 inches. A value in an overlap genuinely fits both. Swatch with a needle from each range and keep the fabric you prefer.\n\n### Is the yarn weight on the label always right?\n\nThe label is the manufacturer's category and the best starting point. Your own gauge can still differ because of needle size, stitch, and personal tension. If your swatch disagrees with the label, trust the swatch for matching a pattern.",
+        markdown: true
+      }
+    ],
+    editorialNote: "AI-assisted explanation prepared with Claude. Numerical examples are hypothetical and were worked by hand from the calculator's source code; no physical yarn or swatch was measured. Published by FiberTools.",
+    sources: [
+      { title: "Craft Yarn Council: Standard Yarn Weight System", url: "https://www.craftyarncouncil.com/standards/yarn-weight-system" },
+      { title: "Craft Yarn Council: How to Measure Wraps Per Inch", url: "https://www.craftyarncouncil.com/standards/how-measure-wraps-inch-wpi" },
+      { title: "FiberTools: Yarn Weight Calculator inputs and model", url: "https://fibertools.app/yarn-weight-calculator" }
+    ]
+  },
+  {
+    slug: "cross-stitch-fabric-size-guide",
+    title: "How Big Will My Cross Stitch Be? Fabric Count Guide",
+    description: "Work out finished cross stitch size from stitch count and fabric count, over one or over two, then add margins and plan floss. Checked 126 by 98 example.",
+    toolSlug: "cross-stitch-calculator",
+    date: "2026-11-22",
+    modifiedDate: "2026-11-22",
+    keywords: ["cross stitch size calculator", "how big will my cross stitch be", "cross stitch fabric count", "over two cross stitch size", "how much fabric for cross stitch", "cross stitch floss calculator"],
+    sections: [
+      {
+        heading: "How big will my cross stitch be?",
+        content: "Divide the pattern's stitch count by your fabric's stitches per inch. A design 126 stitches wide on 14-count Aida is 126 ÷ 14 = 9 inches wide. If you stitch over two threads on evenweave or linen, halve the fabric count first, so 28-count fabric worked over two behaves like 14 stitches per inch. That gives the finished design size only; add your chosen margin to every side before cutting fabric.\n\nThe free [Cross Stitch Calculator](/cross-stitch-calculator) runs this for any stitch count and compares the same design across common fabric counts in one table.",
+        markdown: true
+      },
+      {
+        heading: "What does fabric count actually mean?",
+        content: "Fabric count is how many grid units fit in one inch. On Aida, that is stitchable squares per inch. On evenweave and linen, it is threads per inch. A full cross worked over one grid unit uses the count directly as stitches per inch. A full cross worked over two grid units uses half the count, because each stitch covers twice the distance.\n\nSo the number you divide by is:\n\n- **Over one:** fabric count. 14-count Aida over one is 14 stitches per inch.\n- **Over two:** fabric count ÷ 2. 28-count evenweave over two is 14 stitches per inch.\n\nPattern dimensions should be in full crosses, which most charts list as width by height in stitches.",
+        markdown: true
+      },
+      {
+        heading: "Worked example: a 126 by 98 stitch design",
+        content: "Suppose a chart lists a design as 126 stitches wide and 98 stitches high. These are illustrative numbers, not a specific published chart.\n\nOn 14-count Aida, stitched over one:\n\n| Dimension | Arithmetic | Finished size |\n| --- | --- | --- |\n| Width | 126 ÷ 14 | 9 inches |\n| Height | 98 ÷ 14 | 7 inches |\n| Width in centimeters | 9 × 2.54 | 22.86 cm, shown as 22.9 cm |\n| Height in centimeters | 7 × 2.54 | 17.78 cm, shown as 17.8 cm |\n\nHere is the same design across other fabric choices. The calculator rounds displayed sizes to one decimal place, and this table follows that rounding.\n\n| Fabric and stitch span | Stitches per inch | Width | Height |\n| --- | --- | --- | --- |\n| Aida 11, over one | 11 | 126 ÷ 11 = 11.5 in | 98 ÷ 11 = 8.9 in |\n| Aida 14, over one | 14 | 9.0 in | 7.0 in |\n| Aida 16, over one | 16 | 126 ÷ 16 = 7.9 in | 98 ÷ 16 = 6.1 in |\n| Aida 18, over one | 18 | 126 ÷ 18 = 7.0 in | 98 ÷ 18 = 5.4 in |\n| Evenweave 28, over two | 28 ÷ 2 = 14 | 9.0 in | 7.0 in |\n| Evenweave 28, over one | 28 | 126 ÷ 28 = 4.5 in | 98 ÷ 28 = 3.5 in |\n\nTwo things stand out. Going from 11-count to 18-count shrinks the same chart from about 11.5 inches wide to 7 inches. And 28-count over two lands at exactly the same size as 14-count Aida over one, because both work out to 14 stitches per inch.",
+        markdown: true
+      },
+      {
+        heading: "How much fabric do you need to cut?",
+        content: "Add your margin to both sides of each dimension. Using a 3-inch margin on every side, which is the calculator's starting value and a choice for this example rather than a recommendation:\n\n| Dimension | Arithmetic | Fabric cut |\n| --- | --- | --- |\n| Width | 9 + (2 × 3) | 15 inches |\n| Height | 7 + (2 × 3) | 13 inches |\n\nThe right margin depends on your hoop or frame, how the piece will be finished, and what your framer or finishing method needs. The calculator does not pick one for you on purpose. Confirm the margin first, then round the cut up to whatever increments the fabric is sold in.",
+        markdown: true
+      },
+      {
+        heading: "How much floss will one color need?",
+        content: "The calculator's floss mode is a planning model for full crosses of a single color. It measures the two visible diagonals of each cross, then adds an allowance you choose for the back of the work, starts, stops, and tails. This example uses the tool's starting values for strands, allowance, and skein label, which are inputs to replace with your own, not measured rates.\n\nInputs: 5,000 full crosses of one color, 14-count Aida over one, 2 strands held together, a 40% allowance, and a skein labeled 8 meters with 6 strands in the bundle.\n\n| Step | Arithmetic | Result |\n| --- | --- | --- |\n| Side of one stitch square | 1 ÷ 14 | 0.0714 in |\n| Front path of one cross (two diagonals) | 2 × √2 ÷ 14 | 0.202 in |\n| Front path for all crosses | 5,000 × 0.20203 | 1,010.15 in |\n| Convert to meters | 1,010.15 × 0.0254 | 25.66 m |\n| Add 40% allowance | 25.66 × 1.40 | 35.9 m of working thread |\n| Two strands held together | 35.92 × 2 | 71.8 m of single strand |\n| Single strand in one skein | 8 m × 6 strands | 48 m |\n| Skeins | 71.84 ÷ 48 | 1.50, rounded up to 2 skeins |\n\nChange only the strands to 3 and the single-strand total becomes 35.92 × 3 = 107.8 m. That is 107.76 ÷ 48 = 2.25 skeins, rounded up to 3. Holding one more strand changed the purchase by a whole skein, even though the design did not change.\n\nTreat the result as a transparent scenario to compare against the floss list in your chart, not a promise. The model leaves out partial crosses, backstitch, French knots, beads, and the length you lose to cut ends.",
+        markdown: true
+      },
+      {
+        heading: "What are the most common mistakes?",
+        content: "**Forgetting to halve the count for over-two stitching.** Dividing 126 by 28 gives 4.5 inches. If you are stitching over two, the real width is 126 ÷ 14 = 9 inches, twice as wide. Cutting fabric for the smaller number leaves you with no margin at all.\n\n**Adding the margin once instead of twice.** A 9-inch design with a 3-inch margin needs 9 + 3 + 3 = 15 inches of fabric, not 12. The margin goes on the left and the right, and on the top and the bottom.\n\n**Counting the whole chart as one color in the floss mode.** The floss model works one color at a time. Run it once per color with that color's full-cross count, then round each color up to whole skeins separately.\n\n**Treating the starting values as facts about your floss.** The 8-meter skein, 6-strand bundle, and 40% allowance are editable inputs. Check the label on the floss you are buying and decide your own allowance.\n\n**Mixing units.** If you switch the calculator to metric, enter the margin in centimeters. A 3 entered as centimeters is a much smaller margin than 3 inches.",
+        markdown: true
+      },
+      {
+        heading: "When is the calculator the right tool, and when is it not?",
+        content: "**It is the right tool when** you know a chart's stitch dimensions and want to compare fabric counts before buying, work out a fabric cut from your own margin, or get a first estimate of floss for the full crosses of one color.\n\n**It is not the right tool when:**\n\n- You need floss for backstitch, partial crosses, or specialty stitches. Use the chart's own floss list.\n- You need a brand-to-brand floss match. The [Embroidery Thread Converter](/thread-converter) looks up a limited set of archived DMC and Anchor pairings, and you should still compare the physical thread.\n- You need to know what margin a particular frame or finishing method requires. Ask the framer or follow the finishing instructions.\n- The chart lists dimensions in something other than full stitches. Convert to full crosses first.",
+        markdown: true
+      },
+      {
+        heading: "Frequently asked questions",
+        content: "### What size fabric do I need for cross stitch?\n\nTake the finished design size and add your margin to every side: width plus two margins, height plus two margins. A 9 by 7 inch design with a 3-inch margin needs a 15 by 13 inch cut. Choose the margin based on how you plan to hoop, frame, or finish the piece.\n\n### Is 28-count fabric over two the same size as 14-count Aida?\n\nFor finished size, yes. Over two halves the count, so 28-count worked over two is 14 stitches per inch, the same as 14-count Aida over one. The look and handling of the fabric are different, but the arithmetic gives the same dimensions.\n\n### How do I make a cross stitch design bigger or smaller?\n\nChange the fabric count. A lower count, such as 11, makes each stitch larger and the design bigger; a higher count, such as 18, makes it smaller. The [calculator's comparison table](/cross-stitch-calculator) shows the same chart across ten fabric options at once.\n\n### Can I use centimeters?\n\nYes. Switch the calculator to metric and enter the margin in centimeters; finished sizes are shown in centimeters too. Fabric count stays a per-inch number, because the calculator's fabric options are defined that way.",
+        markdown: true
+      }
+    ],
+    editorialNote: "AI-assisted explanation prepared with Claude. Numerical examples are hypothetical and were worked by hand from the calculator's source code; no physical project, fabric, or floss product was tested. Published by FiberTools.",
+    sources: [
+      { title: "FiberTools: Cross Stitch Calculator inputs and model", url: "https://fibertools.app/cross-stitch-calculator" }
+    ]
+  },
 ];
 
 export function getGuideByToolSlug(toolSlug: string): Guide | undefined {
