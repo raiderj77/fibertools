@@ -105,7 +105,7 @@
       "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
-      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted \u2014 the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved \u2014 add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
     },
     {
       "route": "/quilting/backing-calculator",
@@ -115,7 +115,7 @@
       "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
-      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted \u2014 the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved \u2014 add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
     },
     {
       "route": "/quilting/binding-calculator",
@@ -125,7 +125,7 @@
       "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
-      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted \u2014 the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved \u2014 add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
     },
     {
       "route": "/quilting/border-calculator",
@@ -135,7 +135,7 @@
       "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
-      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted \u2014 the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved \u2014 add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
     },
     {
       "route": "/quilting/batting-calculator",
@@ -145,7 +145,7 @@
       "reviewOrExpirationDate": null,
       "indexingApproved": true,
       "reason": "Owner granted an explicit exception to the publication freeze for the new quilting section: a hub plus backing, binding, border, and batting calculators, including the approved registry, sitemap, and directory-map additions. No existing-page content changes and no navigation or footer links are included.",
-      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted — the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved — add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
+      "approvalReference": "Owner instruction in the FiberTools Muse dated 2026-10-23: \"Exception granted \u2014 the five quilting routes are exempt from the freeze; rebuild the worktree on the latest main and build it\", followed on 2026-10-23 by: \"Approved \u2014 add the five manifest records and fix the lint/type errors, finish all gates, and commit locally\"."
     },
     {
       "route": "/color-combination-generator",
@@ -172,7 +172,7 @@
       "contentType": "PAID_OFFER",
       "title": "Planned Pooling Project Pack",
       "ownerApprovalDate": "2026-10-31",
-      "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time",
+      "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged \u2014 publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time",
       "approvalReference": "Owner in main chat 2026-10-31 23:07 PT (options tap + text): \"Build the $12 project pack (recommended)\"; and 23:08 PT: \"fiber tools calculators are supposed to be free\".",
       "reviewOrExpirationDate": null,
       "indexingApproved": true
@@ -180,9 +180,9 @@
     {
       "route": "/planned-pooling-project-pack/download",
       "contentType": "PAID_OFFER",
-      "title": "Planned Pooling Project Pack — download page",
+      "title": "Planned Pooling Project Pack \u2014 download page",
       "ownerApprovalDate": "2026-10-31",
-      "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged — publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time",
+      "reason": "Owner approved building the $12 pack as a separate add-on; all calculators remain free and unchanged; branch held unmerged \u2014 publication still requires the owner ship word after the Nov 7 measurement, PR #91 merge, and Stripe key rotation; buy button inert until NEXT_PUBLIC_POOLING_PACK_URL is set at ship time",
       "approvalReference": "Owner in main chat 2026-10-31 23:07 PT (options tap + text): \"Build the $12 project pack (recommended)\"; and 23:08 PT: \"fiber tools calculators are supposed to be free\".",
       "reviewOrExpirationDate": null,
       "indexingApproved": true
@@ -194,6 +194,36 @@
       "ownerApprovalDate": "2026-11-11",
       "reason": "Owner granted an explicit exception to the publication freeze for one new free guide: the planned pooling calculator how-to at /guides/planned-pooling-calculator-how-to-use, including its guide registry entry and sitemap inclusion. The guide documents the existing free color pooling calculator as it actually works (measured stitches per color section in, idealized placement preview out, swatch still required) and adds no calculator, price, checkout, or paid offer change.",
       "approvalReference": "Owner instruction in main chat dated 2026-11-11: \"Fiber Tools. Publish it\", approving publication of the planned pooling guide held by the freeze.",
+      "reviewOrExpirationDate": null,
+      "indexingApproved": true
+    },
+    {
+      "route": "/guides/increase-evenly-guide",
+      "contentType": "GUIDE",
+      "title": "How to Increase Evenly Across a Row: Spacing Math",
+      "ownerApprovalDate": "2026-11-22",
+      "reason": "Owner lifted the publication freeze open-ended on 2026-11-21 (approvals carry no renewal date) and on 2026-11-22 directed article writing across all sites for SEO and AEO. This record covers one new free guide supporting an existing free calculator; it adds no calculator, price, checkout, or paid offer change, and the guide's worked examples were verified against the calculator's own code before publication.",
+      "approvalReference": "Owner decisions: 2026-11-21 freeze lift with open-ended approvals (no renewal dates), and 2026-11-22 main-chat instruction: \"also write articles so we can get SEO and AEO going for all of our sites\".",
+      "reviewOrExpirationDate": null,
+      "indexingApproved": true
+    },
+    {
+      "route": "/guides/what-weight-is-my-yarn-guide",
+      "contentType": "GUIDE",
+      "title": "What Weight Is My Yarn? Identify It From a Swatch",
+      "ownerApprovalDate": "2026-11-22",
+      "reason": "Owner lifted the publication freeze open-ended on 2026-11-21 (approvals carry no renewal date) and on 2026-11-22 directed article writing across all sites for SEO and AEO. This record covers one new free guide supporting an existing free calculator; it adds no calculator, price, checkout, or paid offer change, and the guide's worked examples were verified against the calculator's own code before publication.",
+      "approvalReference": "Owner decisions: 2026-11-21 freeze lift with open-ended approvals (no renewal dates), and 2026-11-22 main-chat instruction: \"also write articles so we can get SEO and AEO going for all of our sites\".",
+      "reviewOrExpirationDate": null,
+      "indexingApproved": true
+    },
+    {
+      "route": "/guides/cross-stitch-fabric-size-guide",
+      "contentType": "GUIDE",
+      "title": "How Big Will My Cross Stitch Be? Fabric Count Guide",
+      "ownerApprovalDate": "2026-11-22",
+      "reason": "Owner lifted the publication freeze open-ended on 2026-11-21 (approvals carry no renewal date) and on 2026-11-22 directed article writing across all sites for SEO and AEO. This record covers one new free guide supporting an existing free calculator; it adds no calculator, price, checkout, or paid offer change, and the guide's worked examples were verified against the calculator's own code before publication.",
+      "approvalReference": "Owner decisions: 2026-11-21 freeze lift with open-ended approvals (no renewal dates), and 2026-11-22 main-chat instruction: \"also write articles so we can get SEO and AEO going for all of our sites\".",
       "reviewOrExpirationDate": null,
       "indexingApproved": true
     }
