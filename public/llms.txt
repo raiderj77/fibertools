@@ -73,6 +73,9 @@ Core calculator arithmetic runs in the browser. Optional network features, inclu
 - [Knitting Cast-On Methods](https://fibertools.app/guides/cast-on-methods-guide): Long-tail, cable, tubular, and more, stretch levels, difficulty, and best use cases.
 - [Crochet Stitch Reference](https://fibertools.app/guides/crochet-stitch-reference-guide): Basic stitches, stitch height, reading diagrams, and common stitch combinations.
 - [Yarn Stripe Patterns](https://fibertools.app/guides/yarn-stripe-patterns-guide): Color planning, carrying yarn vs cutting, weaving in ends, and yardage calculation.
+- [How to Increase Evenly Across a Row: Spacing Math](https://fibertools.app/guides/increase-evenly-guide): Space increases and decreases evenly in knitting or crochet. Checked 84 to 96 and 84 to 72 examples for flat rows and rounds, with common mistakes.
+- [What Weight Is My Yarn? Identify It From a Swatch](https://fibertools.app/guides/what-weight-is-my-yarn-guide): Identify an unlabeled yarn's possible CYC weight from a knitted swatch or wraps per inch, read overlaps and gaps honestly, and substitute by length.
+- [How Big Will My Cross Stitch Be? Fabric Count Guide](https://fibertools.app/guides/cross-stitch-fabric-size-guide): Work out finished cross stitch size from stitch count and fabric count, over one or over two, then add margins and plan floss. Checked 126 by 98 example.
 
 ## Category Landing Pages
 
