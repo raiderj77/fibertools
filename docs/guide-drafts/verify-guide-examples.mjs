@@ -1,14 +1,14 @@
 // Reproduces every worked-example number in the three draft guides in this
 // folder by calling the live calculator functions. Run from the repo root:
-//   node content/drafts/guides/verify-guide-examples.mjs
+//   node docs/guide-drafts/verify-guide-examples.mjs
 // Exits non-zero if any value differs from what the drafts state.
 import assert from "node:assert/strict";
-import { planStitchDistribution } from "../../../src/lib/stitch-distribution.mjs";
+import { planStitchDistribution } from "../../src/lib/stitch-distribution.mjs";
 import {
   calculateCrossStitchSize,
   calculateCrossStitchFabricCut,
   calculateCrossStitchFlossPlan,
-} from "../../../src/lib/cross-stitch-planning.mjs";
+} from "../../src/lib/cross-stitch-planning.mjs";
 
 const show = (label, value) => console.log(label, JSON.stringify(value));
 
