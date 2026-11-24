@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const description = "A printable planned pooling project pack with worksheets, three worked projects, a dye-lot checklist, and a troubleshooting grid. All calculators stay free.";
 export const metadata: Metadata = {
-  title: "Planned Pooling Project Pack — $12 Printable PDF",
+  title: "Planned Pooling Project Pack — $12 PDF",
   description,
   authors: [{ name: "FiberTools" }],
   alternates: { canonical: "/planned-pooling-project-pack" },
