@@ -242,9 +242,9 @@ export default function SleeveCalculatorTool() {
 
       {/* Quick reference */}
       <div className="result-card mt-8">
-        <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-2">
+        <h2 className="font-semibold text-bark-700 dark:text-cream-200 mb-2">
           Sleeve Shaping Tips
-        </h3>
+        </h2>
         <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
           <li><strong>Use the pattern&apos;s decrease placement.</strong> Moving an event can change a seam, motif, edge, or visible line.</li>
           <li><strong>Enter pattern-supported finished dimensions.</strong> The calculator does not choose or add ease.</li>

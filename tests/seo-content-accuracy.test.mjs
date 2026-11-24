@@ -160,7 +160,7 @@ test("keeps priority search snippets specific to what each existing page deliver
   assert.match(yarnWeightChartPage, /Size 8 status/);
   assert.match(yarnWeightChartPage, /Compare substitutes, then swatch/);
 
-  assert.match(bestKnittingNeedlesPage, /Choosing Knitting Needles: Size, Construction and Gauge \| FiberTools/);
+  assert.match(bestKnittingNeedlesPage, /Choosing Knitting Needles: Size & Gauge \| FiberTools/);
   assert.match(bestKnittingNeedlesPage, /representative swatch/);
   assert.doesNotMatch(bestKnittingNeedlesPage, /Lab[- ]tested|Hands[- ]on tested/i);
 
@@ -175,7 +175,7 @@ test("keeps priority search snippets specific to what each existing page deliver
   assert.match(yarnPage, /estimate yardage and whole-skein counts/);
   assert.doesNotMatch(yarnPage, /get exact yardage/);
 
-  assert.match(bestCrochetHooksPage, /Crochet Hook Selection Guide: Size, Grip & Gauge \| FiberTools/);
+  assert.match(bestCrochetHooksPage, /Crochet Hook Selection Guide: Size & Gauge \| FiberTools/);
   assert.match(bestCrochetHooksPage, /Compare hook sizes, handle styles and manufacturer specifications/);
 });
 

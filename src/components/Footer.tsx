@@ -80,9 +80,9 @@ export default function Footer() {
 
           {/* Column 2, Tools */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3">
               Tools
-            </h3>
+            </h2>
             <ul>
               {toolLinks.map((link) => (
                 <li key={link.href}>
@@ -99,9 +99,9 @@ export default function Footer() {
 
           {/* Column 3, Explore */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3">
               Explore
-            </h3>
+            </h2>
             <ul>
               {exploreLinks.map((link) => (
                 <li key={link.href}>
@@ -118,9 +118,9 @@ export default function Footer() {
 
           {/* Column 4, Info */}
           <div>
-            <h3 className="text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3">
+            <h2 className="text-xs font-semibold uppercase tracking-widest text-cream-400 mb-3">
               Info
-            </h3>
+            </h2>
             <ul>
               {infoLinks.map((link) => (
                 <li key={link.href}>

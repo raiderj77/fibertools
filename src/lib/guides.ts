@@ -93,7 +93,7 @@ export const guides: Guide[] = [
       image: {
         src: "/images/guides/gauge-width-comparison.svg",
         preview: "/images/guides/gauge-width-comparison.png",
-        alt: "At a fixed 200 stitches, 20 stitches per 4 inches models a 40-inch width, while 25 stitches per 4 inches models 32 inches; bars use the same scale.",
+        alt: "Same-scale bars show 200 stitches span 40 inches at 20 stitches per 4 inches, or 32 inches at 25 stitches per 4 inches.",
         caption: "Original comparison diagram. Bars represent modeled widths at the same scale; they do not depict stitch structure, fabric stretch or a tested garment.",
         width: 1200,
         height: 760
@@ -172,7 +172,7 @@ export const guides: Guide[] = [
       image: {
         src: "/images/guides/blanket-yarn-example.svg",
         preview: "/images/guides/blanket-yarn-example.png",
-        alt: "Hypothetical blanket estimate: a 4 by 4 inch swatch using 20 yards scales to 3,750 yards for 50 by 60 inches, or 4,125 yards with 10 percent extra.",
+        alt: "A 4 by 4 inch swatch uses 20 yards. A 50 by 60 inch blanket needs an estimated 3,750 yards, or 4,125 with 10% extra.",
         caption: "Original calculation diagram. Hypothetical inputs; drawings are not at a shared scale and do not depict stitches or a finished project.",
         width: 1200,
         height: 800
@@ -673,7 +673,7 @@ export const guides: Guide[] = [
       image: {
         src: "/images/guides/remaining-yarn-ratio.svg",
         preview: "/images/guides/remaining-yarn-ratio.png",
-        alt: "Hypothetical same-yarn ratio: 42 grams remaining from a 100-gram, 220-yard skein gives an estimated 92.4 yards, or 42 percent of the labeled length.",
+        alt: "42 grams remain from a 100-gram, 220-yard skein. At 42% of the original weight, about 92.4 yards remain.",
         caption: "Original arithmetic diagram. The filled bar shows a 42 percent proportion, not yarn thickness, a photographed skein or a measured length of real yarn.",
         width: 1200,
         height: 760
@@ -832,7 +832,7 @@ export const guides: Guide[] = [
       image: {
         src: "/images/guides/cast-on-repeat-count.svg",
         preview: "/images/guides/cast-on-repeat-count.png",
-        alt: "Three groups of six numbered stitch symbols make 18 stitches; two groups make only 12, below the hypothetical raw requirement of 12.2.",
+        alt: "Numbered symbols show three repeats of six make 18 stitches. Two repeats give 12, below the 12.2 raw stitch target.",
         caption: "Original count diagram with hypothetical inputs. Each circle represents one stitch for counting only; it does not depict a knitted loop, a cast-on technique or physical fabric.",
         width: 1200,
         height: 760

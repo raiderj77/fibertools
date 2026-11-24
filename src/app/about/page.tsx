@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About Jason Ramirez, the maker behind FiberTools",
+  title: "About Jason Ramirez, Maker of FiberTools",
   description:
-    "FiberTools is made by Jason Ramirez, owner and developer, and a counselor in recovery who crochets. Explore the free fiber arts planning tools and the story behind them.",
+    "Meet Jason Ramirez, the crocheter and developer behind FiberTools, and learn the story behind his free planning tools for fiber arts projects.",
   keywords: [
     "about FiberTools",
     "Jason Ramirez",

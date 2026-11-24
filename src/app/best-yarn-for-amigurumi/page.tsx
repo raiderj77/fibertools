@@ -3,7 +3,7 @@ import Link from "next/link";
 import { amazonSearchUrl } from "@/lib/affiliate";
 import { REVIEW_DATES } from "@/lib/review-dates.mjs";
 
-const title = "Choosing Yarn for Amigurumi: Labels, Gauge and Fabric | FiberTools";
+const title = "Choosing Yarn for Amigurumi: Labels & Gauge | FiberTools";
 const headline = "Choosing Yarn for Amigurumi: Labels, Gauge and Fabric";
 const description = "Compare exact yarn labels, test the hook and fabric against your pattern, and plan quantity and care without universal product rankings.";
 const faqs = [

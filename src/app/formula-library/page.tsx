@@ -5,7 +5,7 @@ import { BreadcrumbSchema, FaqSchema } from "@/components/StructuredData";
 const LAST_REVIEWED = "August 7, 2026";
 
 export const metadata: Metadata = {
-  title: "Fiber Arts Formula Library: Gauge, Yarn, Circles and Fit",
+  title: "Fiber Arts Formula Library: Gauge & Yarn",
   description:
     "See the formulas behind FiberTools calculators, with worked examples for gauge, stitch counts, swatch-based yarn estimates, circles, socks and skeins.",
   keywords: [

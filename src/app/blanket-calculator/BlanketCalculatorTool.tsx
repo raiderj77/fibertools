@@ -410,7 +410,7 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
             Enter both values exactly as printed on your yarn label. The result includes a 10% planning buffer and rounds skeins up.
           </p>
           <aside aria-labelledby="blanket-yarn-example-title" className="rounded-xl border border-sage-200 dark:border-sage-800 p-4 text-sm text-bark-700 dark:text-cream-200 space-y-2">
-            <h3 id="blanket-yarn-example-title" className="font-semibold">Hypothetical yarn example</h3>
+            <h2 id="blanket-yarn-example-title" className="font-semibold">Hypothetical yarn example</h2>
             <p>
               In Yards / Inches mode, suppose a swatch measuring 6 by 6 inches weighs 12 grams,
               and the yarn label lists 220 yards per 100 grams. Select Throw (50 by 60 inches),
@@ -432,9 +432,9 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
           <StickyResult summary={stickySummary} visible={!!result}>
             {result && (
               <div className="result-card space-y-5 sticky top-24">
-                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                <h2 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
                   {useCustom ? "Custom Blanket" : BLANKET_SIZES[sizeIdx].label}
-                </h3>
+                </h2>
 
                 <p className="text-sm text-bark-500 dark:text-bark-400">
                   Calculated target size: {sizeText(result.widthIn,result.lengthIn)}
@@ -458,7 +458,7 @@ export default function BlanketCalculatorTool({ embedded = false }: { embedded?:
                   <p>{result.rows} rows; modeled length approximately {formatBlanketDimension(result.modeledLengthIn!,units)} {dim}.</p>
                 </div>}
                 <div className="rounded-lg border border-cream-300 p-3" data-testid="blanket-project-output">
-                  <h4 className="font-semibold">Selected project output</h4>
+                  <h3 className="font-semibold">Selected project output</h3>
                   <p className="whitespace-pre-line text-sm">{projectText}</p>
                 </div>
 

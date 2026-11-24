@@ -96,6 +96,13 @@ export default function GuidesPage() {
         </p>
       </div>
 
+      <section aria-labelledby="guides-intro" className="mb-12">
+        <h2 id="guides-intro" className="text-xl font-display font-bold text-bark-700 dark:text-cream-200">Find a guide for your project</h2>
+        <p className="mt-2 text-bark-600 dark:text-cream-300">
+          If you are starting a project, use these guides to work through the choices and measurements that come up before you begin. Learn how to read a yarn label, measure a gauge swatch, choose a cast-on method, or estimate yarn for a blanket. If you are picking up a project again, you can also find help estimating how much yarn is left in a partial skein. Guides link to related calculators where you can try the steps with your own measurements.
+        </p>
+      </section>
+
       {/* Guides by category */}
       {Object.entries(guidesByCategory).map(([category, categoryGuides]) => (
         <section key={category} className="mb-12">
