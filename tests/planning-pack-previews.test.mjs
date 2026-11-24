@@ -34,7 +34,7 @@ test("preview section labels excerpts and provides readable descriptions and ful
   assert.match(page, /loading="lazy"/);
   assert.match(page, /width=\{preview.width\}/);
   assert.match(page, /height=\{preview.height\}/);
-  assert.match(page, /alt=\{preview.description\}/);
+  assert.match(page, /alt=\{preview.alt \?\? preview.description\}/);
   assert.match(page, /View full-size \{preview.title\} preview/);
   assert.doesNotMatch(page, /preview[^\n]*\.pdf/i);
 });

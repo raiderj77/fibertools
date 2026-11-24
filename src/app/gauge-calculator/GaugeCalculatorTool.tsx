@@ -322,9 +322,9 @@ export default function GaugeCalculatorTool({ embedded = false }: { embedded?: b
           <StickyResult summary={stickySummary} visible={!!swatchResult}>
             {swatchResult && (
               <div className="result-card space-y-4">
-                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                <h2 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
                   Your Gauge
-                </h3>
+                </h2>
                 <div className="grid grid-cols-2 gap-6">
                   <div>
                     <p className="text-3xl font-bold text-bark-800 dark:text-cream-100">
@@ -461,9 +461,9 @@ export default function GaugeCalculatorTool({ embedded = false }: { embedded?: b
           <StickyResult summary={stickySummary} visible={!!resizeResult}>
             {resizeResult && (
               <div className="result-card space-y-4">
-                <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                <h2 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
                   Proportional Count Check
-                </h3>
+                </h2>
 
                 <div className="grid grid-cols-2 gap-6">
                   {resizeResult.newStitches !== null && resizeResult.newStitches > 0 && (
@@ -619,9 +619,9 @@ export default function GaugeCalculatorTool({ embedded = false }: { embedded?: b
               <StickyResult summary={stickySummary} visible={!!dimResult}>
                 {dimResult && (
                   <div className="result-card space-y-4">
-                    <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+                    <h2 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
                       At-or-above width checkpoint
-                    </h3>
+                    </h2>
 
                     <div className="space-y-4">
                       <div>
@@ -711,9 +711,9 @@ export default function GaugeCalculatorTool({ embedded = false }: { embedded?: b
 
       {/* Quick reference */}
       <div className="result-card mt-8">
-        <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-2">
+        <h2 className="font-semibold text-bark-700 dark:text-cream-200 mb-2">
           💡 Gauge Tips
-        </h3>
+        </h2>
         <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
           <li><strong>Treat the swatch as directed</strong> by the selected pattern and yarn care instructions before taking the comparison measurement.</li>
           <li><strong>Use the stated measurement area.</strong> Count where the pattern directs and avoid distorted edges unless they are intentionally part of the gauge sample.</li>

@@ -6,7 +6,7 @@ import previewProvenance from "../../../config/planning-pack-preview-provenance.
 import { getPlanningPackCheckoutUrl } from "@/lib/planning-pack-availability.mjs";
 
 export const metadata: Metadata = {
-  title: "Fiber Project Planning Pack — $17 Digital Workbook",
+  title: "Fiber Project Planning Pack — $17 Workbook",
   description:
     "A 12-page fillable and printable PDF workbook for planning yarn, gauge, costs, finishing, and troubleshooting across crochet and knitting projects.",
   alternates: { canonical: "/fiber-project-planning-pack" },
@@ -51,7 +51,7 @@ const faqs = [
 
 const previewDescriptions = [
   { title: "Project brief", description: "Blank project-identity fields for project name, recipient or use, pattern or source, and pattern version/date." },
-  { title: "Swatch record", description: "Blank materials-and-setup fields for yarn and color, hook or needle, stitch or pattern, and construction, tension, and edge notes." },
+  { title: "Swatch record", description: "Blank materials-and-setup fields for yarn and color, hook or needle, stitch or pattern, and construction, tension, and edge notes.", alt: "Blank swatch record fields for yarn, color, hook or needle, stitch or pattern, and construction, tension, and edge notes." },
   { title: "Project-cost sheet", description: "Blank yarn, notions, and tools rows with planned-cost and actual-cost columns." },
 ];
 const previews = previewProvenance.previews.map((preview, index) => ({ ...preview, ...previewDescriptions[index] }));
@@ -151,7 +151,7 @@ export default function FiberProjectPlanningPackPage() {
                 src={`/images/planning-pack/${preview.file}`}
                 width={preview.width}
                 height={preview.height}
-                alt={preview.description}
+                alt={preview.alt ?? preview.description}
                 loading="lazy"
                 decoding="async"
                 className="h-auto w-full"

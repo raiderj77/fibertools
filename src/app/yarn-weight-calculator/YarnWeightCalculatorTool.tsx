@@ -240,9 +240,9 @@ export default function YarnWeightCalculatorTool() {
       {results && (
         <div>
           <div className="result-card space-y-4">
-            <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+            <h2 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
               {results.isOverlap ? "Possible Yarn Weights" : "Possible Yarn Weight"}
-            </h3>
+            </h2>
 
             {results.isOverlap && (
               <div className="p-3 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-800 rounded-xl">
@@ -296,9 +296,9 @@ export default function YarnWeightCalculatorTool() {
 
       {/* Quick reference table */}
       <div className="result-card mt-4">
-        <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-3">
+        <h2 className="font-semibold text-bark-700 dark:text-cream-200 mb-3">
           CYC Quick Reference
-        </h3>
+        </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead>

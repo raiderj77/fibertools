@@ -3,7 +3,7 @@ import Link from "next/link";
 import { amazonSearchUrl } from "@/lib/affiliate";
 import { REVIEW_DATES } from "@/lib/review-dates.mjs";
 
-const title = "Crochet Hook Selection Guide: Size, Grip & Gauge | FiberTools";
+const title = "Crochet Hook Selection Guide: Size & Gauge | FiberTools";
 const description = "Compare hook sizes, handle styles and manufacturer specifications, then choose with a project swatch. Includes primary sources and limits of the comparison.";
 const headline = "Choosing a Crochet Hook: Size, Grip and Gauge";
 const faqs = [

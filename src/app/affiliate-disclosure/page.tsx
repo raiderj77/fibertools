@@ -22,6 +22,14 @@ export default function AffiliateDisclosurePage() {
           your visit results in a qualifying purchase. Product availability, pricing, and seller terms are
           controlled by Amazon and can change without notice.
         </p>
+        <section aria-labelledby="paid-links">
+          <h2 id="paid-links" className="mb-2 text-xl font-semibold text-bark-800 dark:text-cream-100">How to spot paid links</h2>
+          <p>
+            Look for a &ldquo;Paid links&rdquo; notice near product recommendations or &ldquo;paid link&rdquo;
+            in the link text. If you follow one of those links to Amazon and make a qualifying purchase,
+            Amazon may pay FiberTools a commission. The link does not change the price you pay.
+          </p>
+        </section>
         <p>
           Recommendations are chosen for their relevance to the calculator result, project, or guide. A
           commission does not guarantee a positive recommendation, and FiberTools does not accept payment

@@ -224,7 +224,7 @@ test("built crochet hook guide keeps factual limits and FAQ answers aligned with
   assert.ok(text.includes(article.headline));
   assert.equal(article.dateModified, "2026-10-10");
   assert.ok(text.includes("Last updated: October 10, 2026"));
-  assert.match(html, /<title>Crochet Hook Selection Guide: Size, Grip &amp; Gauge \| FiberTools<\/title>/);
+  assert.match(html, /<title>Crochet Hook Selection Guide: Size &amp; Gauge \| FiberTools<\/title>/);
   assert.match(html, /rel="canonical" href="https:\/\/fibertools.app\/best-crochet-hooks"/);
   assert.ok(text.includes("not a hands-on product test"));
   assert.ok(text.includes("not evidence of pain relief or fatigue reduction"));
@@ -278,5 +278,26 @@ test("bundled fonts preserve verified bytes, licenses, CSS coverage, and Latin p
     assert.ok(link, `${asset.family}: Latin preload`);
     assert.match(link, /type="font\/woff2"/);
     assert.match(link, /crossorigin="anonymous"/);
+  }
+});
+
+test("audited pages have one H1 and no skipped heading levels", () => {
+  const routes = [
+    "gauge-calculator",
+    "blanket-calculator",
+    "cast-on-calculator",
+    "sleeve-calculator",
+    "affiliate-disclosure",
+    "yarn-weight-calculator",
+  ];
+
+  for (const route of routes) {
+    const html = readFileSync(resolve(ROOT, `.next/server/app/${route}.html`), "utf8");
+    const levels = [...visibleMarkup(html).matchAll(/<h([1-6])\b/gi)].map((match) => Number(match[1]));
+    assert.equal(levels[0], 1, `${route}: first heading`);
+    assert.equal(levels.filter((level) => level === 1).length, 1, `${route}: one H1`);
+    for (let index = 1; index < levels.length; index++) {
+      assert.ok(levels[index] <= levels[index - 1] + 1, `${route}: H${levels[index - 1]} to H${levels[index]}`);
+    }
   }
 });

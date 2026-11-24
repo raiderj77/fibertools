@@ -5,7 +5,7 @@ import DesignerPreflightForm from "./DesignerPreflightForm";
 import { getDesignerPreflightAction } from "@/lib/designer-preflight-availability";
 
 export const metadata: Metadata = {
-  title: "Crochet Designer Pattern Preflight Review — $39 Pilot",
+  title: "Crochet Designer Pattern Preflight — $39 Pilot",
   description: "A manual $39 crochet pattern preflight for one version of one pattern up to 10 pages, delivered as one written review report.",
   alternates: { canonical: "/designer-pattern-preflight" },
   openGraph: {

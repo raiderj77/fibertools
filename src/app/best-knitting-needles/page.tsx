@@ -3,7 +3,7 @@ import Link from "next/link";
 import { amazonSearchUrl } from "@/lib/affiliate";
 import { REVIEW_DATES } from "@/lib/review-dates.mjs";
 
-const title = "Choosing Knitting Needles: Size, Construction and Gauge | FiberTools";
+const title = "Choosing Knitting Needles: Size & Gauge | FiberTools";
 const headline = "Choosing Knitting Needles: Size, Construction and Gauge";
 const description = "Compare needle construction, millimeter sizes and project requirements using manufacturer references and a representative swatch.";
 const faqs = [

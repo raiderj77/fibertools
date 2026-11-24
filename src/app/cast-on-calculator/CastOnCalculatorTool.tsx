@@ -128,9 +128,9 @@ export default function CastOnCalculatorTool() {
       <StickyResult summary={stickySummary} visible={!!result}>
         {result && (
           <div className="result-card space-y-4">
-            <h3 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
+            <h2 className="text-lg font-display font-bold text-sage-700 dark:text-sage-300">
               Cast On Count
-            </h3>
+            </h2>
 
             <div className="grid grid-cols-2 gap-6">
               <div>
@@ -192,9 +192,9 @@ export default function CastOnCalculatorTool() {
 
       {/* Reference Table */}
       <div className="result-card mt-8">
-        <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-3">
+        <h2 className="font-semibold text-bark-700 dark:text-cream-200 mb-3">
           Example Project Widths
-        </h3>
+        </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead>
@@ -220,9 +220,9 @@ export default function CastOnCalculatorTool() {
 
       {/* Tips */}
       <div className="result-card">
-        <h3 className="font-semibold text-bark-700 dark:text-cream-200 mb-2">
+        <h2 className="font-semibold text-bark-700 dark:text-cream-200 mb-2">
           Cast On Tips
-        </h3>
+        </h2>
         <ul className="text-sm text-bark-500 dark:text-bark-400 space-y-1">
           <li><strong>Always swatch first.</strong> Your actual gauge may differ from the yarn label recommendation.</li>
           <li><strong>Edge stitches</strong> are extra stitches (usually 1 or 2 per side) that create a neat selvedge for seaming or picking up stitches.</li>
