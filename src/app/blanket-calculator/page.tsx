@@ -7,7 +7,7 @@ import BlanketCalculatorTool from "./BlanketCalculatorTool";
 export const metadata: Metadata = {
   title: { absolute: "How Much Yarn for a Blanket? Calculator (Yards & Skeins)" },
   description:
-    "Enter your swatch to estimate yards and whole skeins for a throw, queen, king or custom blanket. Free blanket yarn calculator, no signup.",
+    "How much yarn for a blanket? Enter your swatch to estimate yards and whole skeins for a throw, queen, king or custom blanket. Free, no signup.",
   keywords: [
     "blanket size chart", "crochet blanket sizes", "blanket size calculator",
     "how big should a blanket be", "baby blanket size crochet", "throw blanket dimensions",
